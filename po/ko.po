@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
-"POT-Creation-Date: 2021-11-28 01:21+0100\n"
+"POT-Creation-Date: 2021-12-23 20:06+0100\n"
 "PO-Revision-Date: 2021-05-17 13:45+0900\n"
 "Last-Translator: Kevin Kim <root@hamonikr.org>\n"
 "Language-Team: Korean\n"
@@ -191,6 +191,12 @@ msgstr "저장"
 #: src/ui/app-menus.ui src/ui/win-menus.ui
 msgid "Save without transparency"
 msgstr "투명 속성 없이 저장"
+
+#. This "feature" is only visible on April Fools' day, and it
+#. will just rickroll the user.
+#: src/ui/app-menus.ui src/ui/win-menus.ui
+msgid "Prepare as NFT…"
+msgstr ""
 
 #: src/ui/app-menus.ui src/ui/headerbar-eos.ui src/ui/win-menus.ui
 #: src/saving_manager.py
@@ -542,11 +548,13 @@ msgid "Troubleshoot selection"
 msgstr "선택 문제 해결"
 
 #: src/ui/app-menus.ui
+#: src/optionsbars/transform/abstract-optionsbar-transform.ui
 #, fuzzy
 msgid "Cancel transformation"
 msgstr "변형 적용"
 
 #: src/ui/app-menus.ui
+#: src/optionsbars/transform/abstract-optionsbar-transform.ui
 #, fuzzy
 msgid "Apply transformation"
 msgstr "변형 적용"
@@ -846,7 +854,7 @@ msgstr "툴바 보이기 전환"
 msgid "Touch gestures"
 msgstr "터치 제스처"
 
-#: src/ui/window.ui
+#: src/ui/window.ui src/deco_manager.py
 #, fuzzy
 msgid "Loading…"
 msgstr "로딩 %s"
@@ -957,9 +965,7 @@ msgid "%s%%"
 msgstr "%s%%"
 
 #: src/new_image_dialog.py src/saving_manager.py src/window.py
-#: src/utilities/utilities_paths.py
-#: src/optionsbars/transform/abstract-optionsbar-transform.ui
-#: src/tools/ui/tool-text.ui
+#: src/utilities/utilities_paths.py src/tools/ui/tool-text.ui
 msgid "Cancel"
 msgstr "취소"
 
@@ -1628,10 +1634,6 @@ msgid "Extract from this color"
 msgstr "이 색상에서 추출"
 
 #: src/optionsbars/transform/abstract-optionsbar-transform.ui
-msgid "Apply"
-msgstr "적용"
-
-#: src/optionsbars/transform/abstract-optionsbar-transform.ui
 msgid "More options"
 msgstr "더 많은 옵션"
 
@@ -1800,19 +1802,20 @@ msgstr "헤어 브러시"
 msgid "Calligraphic nib"
 msgstr "붓글씨 펜촉"
 
-#: src/tools/ui/tool-brush.ui
+#: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_nib.py
 msgid "Right-handed nib"
 msgstr "오른 손잡이 펜촉"
 
-#: src/tools/ui/tool-brush.ui
+#: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_nib.py
 msgid "Vertical nib"
 msgstr "수직 펜촉"
 
-#: src/tools/ui/tool-brush.ui
+#: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_nib.py
 msgid "Left-handed nib"
 msgstr "왼손잡이 펜촉"
 
-#: src/tools/ui/tool-brush.ui
+#. brush_direction == 'horizontal':
+#: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_nib.py
 msgid "Horizontal nib"
 msgstr "수평 펜촉"
 
@@ -1904,6 +1907,11 @@ msgstr "수직으로 뒤집기"
 #: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
 msgid "Invert colors"
 msgstr "색상 반전"
+
+#: src/tools/ui/tool-highlight.ui
+#, fuzzy
+msgid "Straighten the line"
+msgstr "선택 크기 조정"
 
 #: src/tools/ui/tool-line.ui
 msgid "Color gradient"
@@ -2098,6 +2106,10 @@ msgstr "곡선"
 msgid "Curve options"
 msgstr "곡선 옵션"
 
+#: src/tools/classic_tools/tool_arc.py
+msgid "Draw a second segment to complete the curve"
+msgstr ""
+
 #: src/tools/classic_tools/tool_arc.py src/tools/classic_tools/tool_line.py
 msgid "Dashed arrow"
 msgstr "점선 화살표"
@@ -2111,13 +2123,34 @@ msgstr "화살표"
 msgid "Dashed"
 msgstr "점선"
 
+#: src/tools/classic_tools/tool_arc.py src/tools/classic_tools/tool_line.py
+#: src/tools/classic_tools/tool_pencil.py
+msgid "Press <Alt> to toggle the 'outline' option"
+msgstr ""
+
 #: src/tools/classic_tools/tool_brush.py
 msgid "Brush options"
 msgstr "브러시 옵션"
 
 #: src/tools/classic_tools/tool_eraser.py
+msgid "Press <Shift> to erase a rectangle area instead"
+msgstr ""
+
+#: src/tools/classic_tools/tool_eraser.py
+msgid "Press <Shift> to erase a path instead"
+msgstr ""
+
+#: src/tools/classic_tools/tool_eraser.py
 msgid "Eraser options"
 msgstr "지우개 옵션"
+
+#: src/tools/classic_tools/tool_highlight.py
+msgid "Press <Shift> to temporarily highlight on dark background instead"
+msgstr ""
+
+#: src/tools/classic_tools/tool_highlight.py
+msgid "Press <Shift> to temporarily highlight on light background instead"
+msgstr ""
 
 #: src/tools/classic_tools/tool_highlight.py
 msgid "Highlighter options"
@@ -2148,6 +2181,14 @@ msgstr ""
 msgid "Line options"
 msgstr "라인 옵션"
 
+#: src/tools/classic_tools/tool_line.py
+msgid "Press <Shift> to unlock the line direction"
+msgstr ""
+
+#: src/tools/classic_tools/tool_line.py
+msgid "Press <Shift> to lock the line direction"
+msgstr ""
+
 #: src/tools/classic_tools/tool_paint.py
 msgid "Painting options"
 msgstr "페인팅 옵션"
@@ -2159,6 +2200,16 @@ msgstr "색상을 투명도로 바꿀 영역을 클릭하십시오"
 #: src/tools/classic_tools/tool_paint.py
 msgid "Click on the canvas to entirely paint it"
 msgstr "캔버스를 클릭하여 완전히 칠하십시오"
+
+#: src/tools/classic_tools/tool_paint.py
+#: src/tools/selection_tools/select_color.py
+msgid "May not work for complex shapes"
+msgstr ""
+
+#: src/tools/classic_tools/tool_paint.py
+#: src/tools/selection_tools/select_color.py
+msgid "It will not work well if the area's edges are blurry"
+msgstr ""
 
 #: src/tools/classic_tools/tool_pencil.py
 msgid "Pencil options"
@@ -2197,8 +2248,13 @@ msgid "Filled with secondary color"
 msgstr "보조 색상으로 채우기"
 
 #: src/tools/classic_tools/tool_shape.py
+#: src/tools/selection_tools/select_free.py
 msgid "Click on the shape's first point to close it."
 msgstr "도형의 첫 번째 지점을 클릭하여 닫습니다."
+
+#: src/tools/classic_tools/tool_shape.py
+msgid "Press <Alt>, <Shift>, or both, to quickly change the 'filling' option"
+msgstr ""
 
 #: src/tools/classic_tools/tool_text.py
 msgid "Text"
@@ -2246,18 +2302,38 @@ msgstr "직사각형 선택"
 msgid "Error: invalid values"
 msgstr "오류 : 잘못된 값"
 
+#. The options of the "crop" tool are all about how to expand the canvas,
+#. hence this label.
 #: src/tools/transform_tools/tool_crop.py
 #, fuzzy
-msgid "Cropping options"
-msgstr "포인트 옵션"
+msgid "Expanding options"
+msgstr "페인팅 옵션"
+
+#: src/tools/transform_tools/tool_crop.py
+msgid "The sides you'll crop are hinted by the mouse pointer"
+msgstr ""
 
 #: src/tools/transform_tools/tool_crop.py
 msgid "Cropping the selection"
 msgstr "선택 자르기"
 
 #: src/tools/transform_tools/tool_crop.py
-msgid "Cropping the canvas"
+#, fuzzy
+msgid "Cropping or expanding the canvas"
 msgstr "캔버스 자르기"
+
+#: src/tools/transform_tools/tool_crop.py
+#: src/tools/transform_tools/tool_rotate.py
+#: src/tools/transform_tools/tool_scale.py
+#: src/tools/transform_tools/tool_skew.py
+msgid "Don't forget to confirm the operation!"
+msgstr ""
+
+#: src/tools/transform_tools/tool_crop.py
+#: src/tools/transform_tools/tool_skew.py
+msgid ""
+"Press <Alt>, <Shift>, or both, to quickly change the 'expand with' option"
+msgstr ""
 
 #: src/tools/transform_tools/tool_filters.py
 msgid "Active filter"
@@ -2298,10 +2374,18 @@ msgstr "선택 크기 조정"
 msgid "Scaling the canvas"
 msgstr "캔버스 크기 조정"
 
+#: src/tools/transform_tools/tool_scale.py
+msgid "Press <Shift> to quickly toggle the 'lock proportions' option"
+msgstr ""
+
 #: src/tools/transform_tools/tool_skew.py
 #, fuzzy
 msgid "Skewing options"
 msgstr "페인팅 옵션"
+
+#: src/tools/transform_tools/tool_skew.py
+msgid "The directions of the deformation are hinted by the mouse pointer"
+msgstr ""
 
 #: src/tools/transform_tools/tool_skew.py
 #, fuzzy

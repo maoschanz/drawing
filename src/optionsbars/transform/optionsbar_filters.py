@@ -1,6 +1,6 @@
 # optionsbar_filters.py
 #
-# Copyright 2018-2021 Romain F. T.
+# Copyright 2018-2022 Romain F. T.
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -64,7 +64,7 @@ class OptionsBarFilters(AbstractOptionsBar):
 
 	def on_filter_changed(self):
 		self.set_compact(self._is_narrow)
-		self.window.set_picture_title()
+		self.window.set_window_subtitles()
 		# self.menu_label.set_label(self.filters_tool.type_label) # XXX width???
 
 	def set_compact(self, state):

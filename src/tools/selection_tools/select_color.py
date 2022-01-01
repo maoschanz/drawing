@@ -1,6 +1,6 @@
 # select_color.py
 #
-# Copyright 2018-2021 Romain F. T.
+# Copyright 2018-2022 Romain F. T.
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -37,6 +37,18 @@ class ToolColorSelect(AbstractSelectionTool):
 		color_name = utilities_get_rgba_name(color)
 		color_code = utilities_gdk_rgba_to_hexadecimal(color)
 		return color_name + "\n" + color_code
+
+	def get_editing_tips(self):
+		tips = super().get_editing_tips()
+		if not self.selection_is_active():
+			label_warning1 = self.label + " - " + _("May not work for complex shapes")
+			tips.append(label_warning1)
+			label_warning2 = self.label + " - " + _("It will not work well " + \
+				                               "if the area's edges are blurry")
+			tips.append(label_warning2)
+		return tips
+
+	############################################################################
 
 	def press_define(self, event_x, event_y):
 		pass

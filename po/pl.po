@@ -7,17 +7,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
-"POT-Creation-Date: 2021-11-28 01:21+0100\n"
-"PO-Revision-Date: 2021-11-28 18:53+0100\n"
+"POT-Creation-Date: 2021-12-23 20:06+0100\n"
+"PO-Revision-Date: 2021-12-24 22:55+0100\n"
 "Last-Translator: Piotr Komur <pkomur@gmail.com>\n"
 "Language-Team: Piotr Komur\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.0\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 "
 "|| n%100>14) ? 1 : 2);\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #: data/com.github.maoschanz.drawing.desktop.in
 #: data/com.github.maoschanz.drawing.appdata.xml.in src/deco_manager.py
@@ -214,6 +214,12 @@ msgstr "Zapisz"
 #: src/ui/app-menus.ui src/ui/win-menus.ui
 msgid "Save without transparency"
 msgstr "Zapisz bez przezroczystości"
+
+#. This "feature" is only visible on April Fools' day, and it
+#. will just rickroll the user.
+#: src/ui/app-menus.ui src/ui/win-menus.ui
+msgid "Prepare as NFT…"
+msgstr "Przygotuj jako NFT…"
 
 #: src/ui/app-menus.ui src/ui/headerbar-eos.ui src/ui/win-menus.ui
 #: src/saving_manager.py
@@ -561,10 +567,12 @@ msgid "Troubleshoot selection"
 msgstr "Rozwiąż problemy z zaznaczaniem"
 
 #: src/ui/app-menus.ui
+#: src/optionsbars/transform/abstract-optionsbar-transform.ui
 msgid "Cancel transformation"
 msgstr "Anuluj przekształcenie"
 
 #: src/ui/app-menus.ui
+#: src/optionsbars/transform/abstract-optionsbar-transform.ui
 msgid "Apply transformation"
 msgstr "Zastosuj przekształcenie"
 
@@ -860,7 +868,7 @@ msgstr "Przełącz widoczność pasków narzędzi"
 msgid "Touch gestures"
 msgstr "Gesty dotykowe"
 
-#: src/ui/window.ui
+#: src/ui/window.ui src/deco_manager.py
 msgid "Loading…"
 msgstr "Ładowanie…"
 
@@ -970,9 +978,7 @@ msgid "%s%%"
 msgstr "%s%%"
 
 #: src/new_image_dialog.py src/saving_manager.py src/window.py
-#: src/utilities/utilities_paths.py
-#: src/optionsbars/transform/abstract-optionsbar-transform.ui
-#: src/tools/ui/tool-text.ui
+#: src/utilities/utilities_paths.py src/tools/ui/tool-text.ui
 msgid "Cancel"
 msgstr "Anuluj"
 
@@ -1641,10 +1647,6 @@ msgid "Extract from this color"
 msgstr "Wyciąg z tego koloru"
 
 #: src/optionsbars/transform/abstract-optionsbar-transform.ui
-msgid "Apply"
-msgstr "Zastosuj"
-
-#: src/optionsbars/transform/abstract-optionsbar-transform.ui
 msgid "More options"
 msgstr "Więcej opcji"
 
@@ -1813,19 +1815,20 @@ msgstr "Włochaty pędzel"
 msgid "Calligraphic nib"
 msgstr "Stalówka kaligraficzna"
 
-#: src/tools/ui/tool-brush.ui
+#: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_nib.py
 msgid "Right-handed nib"
 msgstr "Stalówka praworęczna"
 
-#: src/tools/ui/tool-brush.ui
+#: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_nib.py
 msgid "Vertical nib"
 msgstr "Stalówka pionowa"
 
-#: src/tools/ui/tool-brush.ui
+#: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_nib.py
 msgid "Left-handed nib"
 msgstr "Stalówka leworęczna"
 
-#: src/tools/ui/tool-brush.ui
+#. brush_direction == 'horizontal':
+#: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_nib.py
 msgid "Horizontal nib"
 msgstr "Stalówka pozioma"
 
@@ -1915,6 +1918,11 @@ msgstr "Rozmyj pionowo"
 #: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
 msgid "Invert colors"
 msgstr "Odwrócenie koloru"
+
+#: src/tools/ui/tool-highlight.ui
+#, fuzzy
+msgid "Straighten the line"
+msgstr "Skalowanie zaznaczenia"
 
 #: src/tools/ui/tool-line.ui
 msgid "Color gradient"
@@ -2106,6 +2114,10 @@ msgstr "Krzywa"
 msgid "Curve options"
 msgstr "Opcje krzywej"
 
+#: src/tools/classic_tools/tool_arc.py
+msgid "Draw a second segment to complete the curve"
+msgstr "Narysuj drugi segment, aby ukończyć krzywą"
+
 #: src/tools/classic_tools/tool_arc.py src/tools/classic_tools/tool_line.py
 msgid "Dashed arrow"
 msgstr "Przerywana strzałka"
@@ -2119,13 +2131,34 @@ msgstr "Strzałka"
 msgid "Dashed"
 msgstr "Przerywane"
 
+#: src/tools/classic_tools/tool_arc.py src/tools/classic_tools/tool_line.py
+#: src/tools/classic_tools/tool_pencil.py
+msgid "Press <Alt> to toggle the 'outline' option"
+msgstr "Naciśnij <Alt>, aby przełączyć opcję 'Kontur'"
+
 #: src/tools/classic_tools/tool_brush.py
 msgid "Brush options"
 msgstr "Opcje pędzla"
 
 #: src/tools/classic_tools/tool_eraser.py
+msgid "Press <Shift> to erase a rectangle area instead"
+msgstr "Naciśnij <Shift>, aby zamiast tego wymazać prostokątny obszar"
+
+#: src/tools/classic_tools/tool_eraser.py
+msgid "Press <Shift> to erase a path instead"
+msgstr "Naciśnij <Shift>, aby zamiast tego wymazać ścieżkę"
+
+#: src/tools/classic_tools/tool_eraser.py
 msgid "Eraser options"
 msgstr "Opcje gumki"
+
+#: src/tools/classic_tools/tool_highlight.py
+msgid "Press <Shift> to temporarily highlight on dark background instead"
+msgstr "Naciśnij <Shift>, aby tymczasowo zakreślić na ciemnym tle"
+
+#: src/tools/classic_tools/tool_highlight.py
+msgid "Press <Shift> to temporarily highlight on light background instead"
+msgstr "Naciśnij <Shift>, aby tymczasowo zakreślić na jasnym tle"
 
 #: src/tools/classic_tools/tool_highlight.py
 msgid "Highlighter options"
@@ -2156,6 +2189,14 @@ msgstr "Długość: %spx"
 msgid "Line options"
 msgstr "Opcje linii"
 
+#: src/tools/classic_tools/tool_line.py
+msgid "Press <Shift> to unlock the line direction"
+msgstr "Naciśnij <Shift>, aby odblokować kierunek linii"
+
+#: src/tools/classic_tools/tool_line.py
+msgid "Press <Shift> to lock the line direction"
+msgstr "Naciśnij <Shift>, aby zablokować kierunek linii"
+
 #: src/tools/classic_tools/tool_paint.py
 msgid "Painting options"
 msgstr "Opcje malowania"
@@ -2167,6 +2208,16 @@ msgstr "Kliknij obszar, aby zastąpić kolor przezroczystością"
 #: src/tools/classic_tools/tool_paint.py
 msgid "Click on the canvas to entirely paint it"
 msgstr "Kliknij płótno, aby je całkowicie zamalować"
+
+#: src/tools/classic_tools/tool_paint.py
+#: src/tools/selection_tools/select_color.py
+msgid "May not work for complex shapes"
+msgstr "Może nie działać w przypadku złożonych kształtów"
+
+#: src/tools/classic_tools/tool_paint.py
+#: src/tools/selection_tools/select_color.py
+msgid "It will not work well if the area's edges are blurry"
+msgstr "Nie będzie działać dobrze, jeśli krawędzie obszaru są rozmyte"
 
 #: src/tools/classic_tools/tool_pencil.py
 msgid "Pencil options"
@@ -2205,8 +2256,14 @@ msgid "Filled with secondary color"
 msgstr "Wypełnione kolorem dodatkowym"
 
 #: src/tools/classic_tools/tool_shape.py
+#: src/tools/selection_tools/select_free.py
 msgid "Click on the shape's first point to close it."
 msgstr "Kliknij pierwszy punkt kształtu, aby zakończyć."
+
+#: src/tools/classic_tools/tool_shape.py
+msgid "Press <Alt>, <Shift>, or both, to quickly change the 'filling' option"
+msgstr ""
+"Naciśnij <Alt>, <Shift> lub oba, aby szybko zmienić opcję 'Wypełnienie'"
 
 #: src/tools/classic_tools/tool_text.py
 msgid "Text"
@@ -2254,17 +2311,39 @@ msgstr "Zaznaczanie (prostokątem)"
 msgid "Error: invalid values"
 msgstr "Błąd: nieprawidłowe wartości"
 
+#. The options of the "crop" tool are all about how to expand the canvas,
+#. hence this label.
 #: src/tools/transform_tools/tool_crop.py
-msgid "Cropping options"
-msgstr "Opcje przycinania"
+#, fuzzy
+msgid "Expanding options"
+msgstr "Opcje malowania"
+
+#: src/tools/transform_tools/tool_crop.py
+msgid "The sides you'll crop are hinted by the mouse pointer"
+msgstr "Przycinane boki są wskazywane przez wskaźnik myszy"
 
 #: src/tools/transform_tools/tool_crop.py
 msgid "Cropping the selection"
 msgstr "Przycinanie zaznaczenia"
 
 #: src/tools/transform_tools/tool_crop.py
-msgid "Cropping the canvas"
-msgstr "Przycinanie płótna"
+msgid "Cropping or expanding the canvas"
+msgstr "Przycinanie lub powiększanie płótna"
+
+#: src/tools/transform_tools/tool_crop.py
+#: src/tools/transform_tools/tool_rotate.py
+#: src/tools/transform_tools/tool_scale.py
+#: src/tools/transform_tools/tool_skew.py
+msgid "Don't forget to confirm the operation!"
+msgstr "Nie zapomnij potwierdzić operacji!"
+
+#: src/tools/transform_tools/tool_crop.py
+#: src/tools/transform_tools/tool_skew.py
+msgid ""
+"Press <Alt>, <Shift>, or both, to quickly change the 'expand with' option"
+msgstr ""
+"Naciśnij <Alt>, <Shift> lub oba, aby szybko zmienić opcję 'Rozszerz za "
+"pomocą'"
 
 #: src/tools/transform_tools/tool_filters.py
 msgid "Active filter"
@@ -2303,9 +2382,17 @@ msgstr "Skalowanie zaznaczenia"
 msgid "Scaling the canvas"
 msgstr "Skalowanie płótna"
 
+#: src/tools/transform_tools/tool_scale.py
+msgid "Press <Shift> to quickly toggle the 'lock proportions' option"
+msgstr "Naciśnij <Shift>, aby szybko przełączyć opcję 'Zablokuj proporcje'"
+
 #: src/tools/transform_tools/tool_skew.py
 msgid "Skewing options"
 msgstr "Opcje zniekształcania"
+
+#: src/tools/transform_tools/tool_skew.py
+msgid "The directions of the deformation are hinted by the mouse pointer"
+msgstr "Kierunki deformacji są wskazywane przez wskaźnik myszy"
 
 #: src/tools/transform_tools/tool_skew.py
 msgid "Skewing the selection"

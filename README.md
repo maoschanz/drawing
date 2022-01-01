@@ -98,21 +98,22 @@ incorrect english labels, please report an issue about it.
 
 #### Classic tools
 
-General options for these tools: colors, use antialiasing, size, …
+These tools have many options (colors, antialiasing, size, gradients, dashes,
+outline style, …) that are not listed here.
 
-- Pencil (options: dashes, line shape, outline, …)
-- *Brushes (pressure sensitive)*:
+- Pencil
+- *Brushes (pressure sensitive):*
 	- *Simple round brush*
 	- *Hairy brush*
 	- *Airbrush*
 	- *Calligraphic nibs*
-- *Eraser* (options: blur, mosaic, transparency, solid color, …)
-- *Highlighter* (options: highlight on dark background)
-- Line (options: arrow, dashes, gradient, …)
-- Curve (options: arrow, dashes, …)
-- Insert text (options: font, shadow/outline, font size, …)
-- *Insert points (options: shape of the points, include a number, …) to help captioning*
-- Shape (options: filling style, outline style, gradient, …):
+- *Eraser*
+- *Highlighter*
+- Line
+- Curve
+- Insert text
+- *Insert points, to help captioning*
+- Shape:
 	- rectangle
 	- rounded rectangle
 	- circle
@@ -120,7 +121,7 @@ General options for these tools: colors, use antialiasing, size, …
 	- polygon
 	- free shape
 - *Color picker*
-- *Paint (options: remove a color, …)*
+- *Paint*
 
 #### Selection tools
 
@@ -137,7 +138,7 @@ image, etc.
 These tools can edit the whole image, or edit a selected part of it.
 
 - Crop
-- Scale (options: keep proportions or not)
+- Scale
 - Rotate (rotate or flip)
 - Filters:
 	- Saturation (increase or decrease)<!-- - Veil -->
@@ -146,7 +147,7 @@ These tools can edit the whole image, or edit a selected part of it.
 	- Blur (various types)
 	- Pixelization
 	- Invert colors
-- Skew (horizontally or vertically)
+- Skew
 
 ----
 

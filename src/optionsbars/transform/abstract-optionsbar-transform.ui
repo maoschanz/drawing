@@ -6,9 +6,7 @@
 
     <child>
       <object class="GtkButton" id="cancel_btn">
-        <property name="tooltip_text" translatable="yes">Cancel</property>
-        <!-- TODO dans le futur quand ce sera bien traduit, mettre plutôt -->
-        <!-- "Cancel transformation" ici -->
+        <property name="tooltip_text" translatable="yes">Cancel transformation</property>
         <property name="visible">True</property>
         <property name="valign">center</property>
         <property name="action_name">win.cancel_transform</property>
@@ -31,9 +29,7 @@
     <child>
       <object class="GtkButton" id="apply_btn">
         <property name="action_name">win.apply_transform</property>
-        <property name="tooltip-text" translatable="yes">Apply</property>
-        <!-- TODO dans le futur quand ce sera bien traduit, mettre plutôt -->
-        <!-- "Apply transformation" ici -->
+        <property name="tooltip-text" translatable="yes">Apply transformation</property>
         <property name="visible">True</property>
         <property name="valign">center</property>
         <style>

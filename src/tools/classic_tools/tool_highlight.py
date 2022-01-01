@@ -1,6 +1,6 @@
 # tool_highlight.py
 #
-# Copyright 2018-2021 Romain F. T.
+# Copyright 2018-2022 Romain F. T.
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -17,30 +17,42 @@
 
 import cairo
 from .tool_pencil import ToolPencil
-from .utilities_paths import utilities_smooth_path
+# from .utilities_paths import utilities_smooth_path
 from .abstract_classic_tool import AbstractClassicTool
 
 class ToolHighlighter(ToolPencil):
 	__gtype_name__ = 'ToolHighlighter'
 
 	def __init__(self, window, **kwargs):
-		super().__init__(window)
 		# Context: this is the name of a tool, a thick pencil dedicated to
 		# highlight text, for example in screenshots
 		AbstractClassicTool.__init__(self, 'highlight', _("Highlighter"), \
 		                                      'tool-highlight-symbolic', window)
-		self.add_tool_action_enum('highlight-bg', 'light')
+		self.use_operator = True
+		self._path = None
 		self.add_tool_action_boolean('highlight-alpha', True)
+		self.add_tool_action_boolean('highlight-rigid', True)
+		self.add_tool_action_enum('highlight-bg', 'light')
 
-	def get_edition_status(self):
+	def get_editing_tips(self):
 		self._bg_type = self.get_option_value('highlight-bg')
 		self._force_alpha = self.get_option_value('highlight-alpha')
-		statut = self.label + " - "
+		self._is_rigid = self.get_option_value('highlight-rigid')
+
+		label_options = self.label + " - "
 		if self._bg_type == 'light':
-			statut += _("Dark text on light background")
+			label_options += _("Dark text on light background")
+			label_modifier_shift = _("Press <Shift> to temporarily highlight" + \
+			                                      " on dark background instead")
 		else:
-			statut += _("Light text on dark background")
-		return statut
+			label_options += _("Light text on dark background")
+			label_modifier_shift = _("Press <Shift> to temporarily highlight" + \
+			                                     " on light background instead")
+		if self.get_image().get_mouse_is_pressed():
+			label_modifier_shift = None
+
+		full_list = [label_options, label_modifier_shift]
+		return list(filter(None, full_list))
 
 	def get_options_label(self):
 		return _("Highlighter options")
@@ -48,13 +60,73 @@ class ToolHighlighter(ToolPencil):
 	############################################################################
 
 	def on_press_on_area(self, event, surface, event_x, event_y):
-		super().on_press_on_area(event, surface, event_x, event_y)
+		self.set_common_values(event.button, event_x, event_y)
+		self._path = None
 
-		if "SHIFT" in self._modifier_keys:
+		self.update_modifier_state(event.state)
+		if 'SHIFT' in self._modifier_keys:
 			if self._bg_type == 'light':
 				self._bg_type = 'dark'
 			else:
 				self._bg_type = 'light'
+
+	def _add_point(self, event_x, event_y):
+		cairo_context = self.get_context()
+		if self._path is None:
+			cairo_context.move_to(self.x_press, self.y_press)
+		elif self._didnt_really_move(cairo_context, event_x, event_y):
+			length = -1
+			for pts in self._path:
+				if pts[1] == ():
+					continue
+				length += 1
+				# a better technique to find the length probably exists
+			for index, pts in enumerate(self._path):
+				if pts[1] == ():
+					continue
+				if pts[0] == cairo.PathDataType.MOVE_TO:
+					cairo_context.move_to(pts[1][0], pts[1][1])
+				elif index == length:
+					event_x = (pts[1][0] + event_x) / 2
+					event_y = (pts[1][1] + event_y) / 2
+					break
+				else: # if pts[0] == cairo.PathDataType.LINE_TO:
+					cairo_context.line_to(pts[1][0], pts[1][1])
+		cairo_context.line_to(event_x, event_y)
+		self._path = cairo_context.copy_path()
+
+	def _didnt_really_move(self, cairo_context, event_x, event_y):
+		"""Tells if the pointer has moved enough to add a new point, otherwise
+		the last point will be changed.
+		It's an option that can be disabled.
+		The context of an highlighter tool means the direction is biased: i will
+		assume the underlying text is written horizontally, and in straight
+		lines; so the highlighting will also be straight, but the chosen line
+		may change during the stroke."""
+		cairo_context.append_path(self._path)
+		if not self._is_rigid:
+			return False
+
+		rigidity = min(self.tool_width, 10.0)
+		if abs(cairo_context.get_current_point()[0] - event_x) > rigidity:
+			return False
+		if abs(cairo_context.get_current_point()[1] - event_y) > rigidity / 5:
+			return False
+
+		cairo_context.new_path()
+		return True
+
+	def on_motion_on_area(self, event, surface, event_x, event_y, render=True):
+		self._add_point(event_x, event_y)
+		if not render:
+			return
+		operation = self.build_operation()
+		self.do_tool_operation(operation)
+
+	def on_release_on_area(self, event, surface, event_x, event_y):
+		self._add_point(event_x, event_y)
+		operation = self.build_operation()
+		self.apply_operation(operation)
 
 	############################################################################
 
@@ -89,7 +161,8 @@ class ToolHighlighter(ToolPencil):
 			main_color[3] = 0.5
 		ccontext.set_source_rgba(*main_color)
 
-		utilities_smooth_path(ccontext, operation['path'])
+		# utilities_smooth_path(ccontext, operation['path'])
+		ccontext.append_path(operation['path'])
 		ccontext.stroke()
 
 	############################################################################

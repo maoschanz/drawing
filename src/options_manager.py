@@ -1,6 +1,6 @@
 # options_manager.py
 #
-# Copyright 2018-2021 Romain F. T.
+# Copyright 2018-2022 Romain F. T.
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -74,7 +74,7 @@ class DrOptionsManager():
 		new_value = args[1].get_boolean()
 
 		args[0].set_state(GLib.Variant.new_boolean(new_value))
-		self.window.set_picture_title()
+		self.window.set_window_subtitles()
 		self.get_active_pane().hide_options_menu()
 
 	def _enum_callback(self, *args):
@@ -89,7 +89,7 @@ class DrOptionsManager():
 
 		# Actually change the state to the new value.
 		args[0].set_state(GLib.Variant.new_string(new_value))
-		self.window.set_picture_title()
+		self.window.set_window_subtitles()
 		self.get_active_pane().hide_options_menu()
 
 	############################################################################

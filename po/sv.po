@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
-"POT-Creation-Date: 2021-11-28 01:21+0100\n"
+"POT-Creation-Date: 2021-12-23 20:06+0100\n"
 "PO-Revision-Date: 2021-11-28 19:33+0100\n"
 "Last-Translator: Åke Engelbrektson <eson@svenskasprakfiler.se>\n"
 "Language-Team: Svenska Språkfiler <contactform@svenskasprakfiler.se>\n"
@@ -213,6 +213,12 @@ msgstr "Spara"
 #: src/ui/app-menus.ui src/ui/win-menus.ui
 msgid "Save without transparency"
 msgstr "Spara utan transparens"
+
+#. This "feature" is only visible on April Fools' day, and it
+#. will just rickroll the user.
+#: src/ui/app-menus.ui src/ui/win-menus.ui
+msgid "Prepare as NFT…"
+msgstr ""
 
 #: src/ui/app-menus.ui src/ui/headerbar-eos.ui src/ui/win-menus.ui
 #: src/saving_manager.py
@@ -560,10 +566,12 @@ msgid "Troubleshoot selection"
 msgstr "Felsök markering"
 
 #: src/ui/app-menus.ui
+#: src/optionsbars/transform/abstract-optionsbar-transform.ui
 msgid "Cancel transformation"
 msgstr "Avbryt omvandling"
 
 #: src/ui/app-menus.ui
+#: src/optionsbars/transform/abstract-optionsbar-transform.ui
 msgid "Apply transformation"
 msgstr "Tillämpa omvandling"
 
@@ -859,7 +867,7 @@ msgstr "Växla verktygsfältens synlighet"
 msgid "Touch gestures"
 msgstr "Pekgester"
 
-#: src/ui/window.ui
+#: src/ui/window.ui src/deco_manager.py
 msgid "Loading…"
 msgstr "Läser in…"
 
@@ -969,9 +977,7 @@ msgid "%s%%"
 msgstr "%s%%"
 
 #: src/new_image_dialog.py src/saving_manager.py src/window.py
-#: src/utilities/utilities_paths.py
-#: src/optionsbars/transform/abstract-optionsbar-transform.ui
-#: src/tools/ui/tool-text.ui
+#: src/utilities/utilities_paths.py src/tools/ui/tool-text.ui
 msgid "Cancel"
 msgstr "Avbryt"
 
@@ -1636,10 +1642,6 @@ msgid "Extract from this color"
 msgstr "Extrahera från den här färgen"
 
 #: src/optionsbars/transform/abstract-optionsbar-transform.ui
-msgid "Apply"
-msgstr "Tillämpa"
-
-#: src/optionsbars/transform/abstract-optionsbar-transform.ui
 msgid "More options"
 msgstr "Fler alternativ"
 
@@ -1806,19 +1808,20 @@ msgstr "Hårig pensel"
 msgid "Calligraphic nib"
 msgstr "Kalligrafisk spets"
 
-#: src/tools/ui/tool-brush.ui
+#: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_nib.py
 msgid "Right-handed nib"
 msgstr "Högerhandsspets"
 
-#: src/tools/ui/tool-brush.ui
+#: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_nib.py
 msgid "Vertical nib"
 msgstr "Vertikal spets"
 
-#: src/tools/ui/tool-brush.ui
+#: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_nib.py
 msgid "Left-handed nib"
 msgstr "Vänsterhandsspets"
 
-#: src/tools/ui/tool-brush.ui
+#. brush_direction == 'horizontal':
+#: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_nib.py
 msgid "Horizontal nib"
 msgstr "Horisontell spets"
 
@@ -1908,6 +1911,11 @@ msgstr "Vertikal oskärpa"
 #: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
 msgid "Invert colors"
 msgstr "Invertera färger"
+
+#: src/tools/ui/tool-highlight.ui
+#, fuzzy
+msgid "Straighten the line"
+msgstr "Skalar markering"
 
 #: src/tools/ui/tool-line.ui
 msgid "Color gradient"
@@ -2099,6 +2107,10 @@ msgstr "Kurva"
 msgid "Curve options"
 msgstr "Kurvalternativ"
 
+#: src/tools/classic_tools/tool_arc.py
+msgid "Draw a second segment to complete the curve"
+msgstr ""
+
 #: src/tools/classic_tools/tool_arc.py src/tools/classic_tools/tool_line.py
 msgid "Dashed arrow"
 msgstr "Streckad pil"
@@ -2112,13 +2124,34 @@ msgstr "Pil"
 msgid "Dashed"
 msgstr "Streckad"
 
+#: src/tools/classic_tools/tool_arc.py src/tools/classic_tools/tool_line.py
+#: src/tools/classic_tools/tool_pencil.py
+msgid "Press <Alt> to toggle the 'outline' option"
+msgstr ""
+
 #: src/tools/classic_tools/tool_brush.py
 msgid "Brush options"
 msgstr "Penselalternativ"
 
 #: src/tools/classic_tools/tool_eraser.py
+msgid "Press <Shift> to erase a rectangle area instead"
+msgstr ""
+
+#: src/tools/classic_tools/tool_eraser.py
+msgid "Press <Shift> to erase a path instead"
+msgstr ""
+
+#: src/tools/classic_tools/tool_eraser.py
 msgid "Eraser options"
 msgstr "Raderingsalternativ"
+
+#: src/tools/classic_tools/tool_highlight.py
+msgid "Press <Shift> to temporarily highlight on dark background instead"
+msgstr ""
+
+#: src/tools/classic_tools/tool_highlight.py
+msgid "Press <Shift> to temporarily highlight on light background instead"
+msgstr ""
 
 #: src/tools/classic_tools/tool_highlight.py
 msgid "Highlighter options"
@@ -2149,6 +2182,14 @@ msgstr "Längd: %spx"
 msgid "Line options"
 msgstr "Linjealternativ"
 
+#: src/tools/classic_tools/tool_line.py
+msgid "Press <Shift> to unlock the line direction"
+msgstr ""
+
+#: src/tools/classic_tools/tool_line.py
+msgid "Press <Shift> to lock the line direction"
+msgstr ""
+
 #: src/tools/classic_tools/tool_paint.py
 msgid "Painting options"
 msgstr "Målningsalternativ"
@@ -2160,6 +2201,16 @@ msgstr "Klicka på ett område för att byta ut färgen mot transparens"
 #: src/tools/classic_tools/tool_paint.py
 msgid "Click on the canvas to entirely paint it"
 msgstr "Klicka på arbetsytan för att färgsätta den"
+
+#: src/tools/classic_tools/tool_paint.py
+#: src/tools/selection_tools/select_color.py
+msgid "May not work for complex shapes"
+msgstr ""
+
+#: src/tools/classic_tools/tool_paint.py
+#: src/tools/selection_tools/select_color.py
+msgid "It will not work well if the area's edges are blurry"
+msgstr ""
 
 #: src/tools/classic_tools/tool_pencil.py
 msgid "Pencil options"
@@ -2198,8 +2249,13 @@ msgid "Filled with secondary color"
 msgstr "Fylld med sekundär färg"
 
 #: src/tools/classic_tools/tool_shape.py
+#: src/tools/selection_tools/select_free.py
 msgid "Click on the shape's first point to close it."
 msgstr "Klicka på figurens första punkt för att stänga den."
+
+#: src/tools/classic_tools/tool_shape.py
+msgid "Press <Alt>, <Shift>, or both, to quickly change the 'filling' option"
+msgstr ""
 
 #: src/tools/classic_tools/tool_text.py
 msgid "Text"
@@ -2247,17 +2303,38 @@ msgstr "Rektangelmarkering"
 msgid "Error: invalid values"
 msgstr "Fel: Ogiltiga värden"
 
+#. The options of the "crop" tool are all about how to expand the canvas,
+#. hence this label.
 #: src/tools/transform_tools/tool_crop.py
-msgid "Cropping options"
-msgstr "Beskärningsalternativ"
+#, fuzzy
+msgid "Expanding options"
+msgstr "Målningsalternativ"
+
+#: src/tools/transform_tools/tool_crop.py
+msgid "The sides you'll crop are hinted by the mouse pointer"
+msgstr ""
 
 #: src/tools/transform_tools/tool_crop.py
 msgid "Cropping the selection"
 msgstr "Beskär markeringen"
 
 #: src/tools/transform_tools/tool_crop.py
-msgid "Cropping the canvas"
+#, fuzzy
+msgid "Cropping or expanding the canvas"
 msgstr "Beskär arbetsytan"
+
+#: src/tools/transform_tools/tool_crop.py
+#: src/tools/transform_tools/tool_rotate.py
+#: src/tools/transform_tools/tool_scale.py
+#: src/tools/transform_tools/tool_skew.py
+msgid "Don't forget to confirm the operation!"
+msgstr ""
+
+#: src/tools/transform_tools/tool_crop.py
+#: src/tools/transform_tools/tool_skew.py
+msgid ""
+"Press <Alt>, <Shift>, or both, to quickly change the 'expand with' option"
+msgstr ""
 
 #: src/tools/transform_tools/tool_filters.py
 msgid "Active filter"
@@ -2296,9 +2373,17 @@ msgstr "Skalar markering"
 msgid "Scaling the canvas"
 msgstr "Skalar arbetsytan"
 
+#: src/tools/transform_tools/tool_scale.py
+msgid "Press <Shift> to quickly toggle the 'lock proportions' option"
+msgstr ""
+
 #: src/tools/transform_tools/tool_skew.py
 msgid "Skewing options"
 msgstr "Skevningsalternativ"
+
+#: src/tools/transform_tools/tool_skew.py
+msgid "The directions of the deformation are hinted by the mouse pointer"
+msgstr ""
 
 #: src/tools/transform_tools/tool_skew.py
 msgid "Skewing the selection"

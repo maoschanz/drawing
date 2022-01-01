@@ -60,8 +60,11 @@ class ToolExperiment(AbstractClassicTool):
 		super().build_flowbox_child(flowbox)
 		self._label_box.get_style_context().add_class('dim-label')
 
-	def get_edition_status(self):
-		return "You're not supposed to use this tool (development only)."
+	def get_editing_tips(self):
+		return [
+			self.label + " - " + self.get_options_label(),
+			"You're not supposed to use this tool (development only)."
+		]
 
 	def get_options_label(self):
 		self._set_active_operator()

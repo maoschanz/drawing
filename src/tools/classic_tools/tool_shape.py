@@ -1,6 +1,6 @@
 # tool_shape.py
 #
-# Copyright 2018-2021 Romain F. T.
+# Copyright 2018-2022 Romain F. T.
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -43,10 +43,10 @@ class ToolShape(AbstractClassicTool):
 
 	def _reset_temp_points(self):
 		self._path = None
-		self.x_press = -1.0
-		self.y_press = -1.0
-		self.initial_x = -1.0
-		self.initial_y = -1.0
+		self.x_press = None
+		self.y_press = None
+		self.initial_x = None
+		self.initial_y = None
 
 	def get_tooltip(self, event_x, event_y, motion_behavior):
 		if motion_behavior != 1:
@@ -84,12 +84,9 @@ class ToolShape(AbstractClassicTool):
 	def get_options_label(self):
 		return _("Shape options")
 
-	def get_edition_status(self):
-		self._set_filling_style()
-		self._set_outline_style()
+	def get_editing_tips(self):
 		self._set_active_shape()
-
-		label = {
+		shape_name = {
 			'rectangle': _("Rectangle"),
 			'roundedrect': _("Rounded rectangle"),
 			'oval': _("Oval"),
@@ -98,15 +95,17 @@ class ToolShape(AbstractClassicTool):
 			'freeshape': _("Free shape"),
 		}[self._shape_id]
 
+		label_options = shape_name
+		self._set_filling_style()
+		self._set_outline_style()
 		if self._outline_id != 'solid':
-			label += ' - ' + {
+			label_options += " - " + {
 				'solid': _("Solid outline"),
 				'dashed': _("Dashed outline"),
 				'none': _("No outline"),
 			}[self._outline_id]
-
 		if self._filling_id != 'empty':
-			label += ' - ' + {
+			label_options += " - " + {
 				'empty': _("Empty shape"),
 				# Context: fill a shape with the color of the left click
 				'filled': _("Filled with main color"),
@@ -117,13 +116,22 @@ class ToolShape(AbstractClassicTool):
 				'r-gradient': _("Radial gradient"),
 			}[self._filling_id]
 
-		if self._shape_id == 'polygon' or self._shape_id == 'freeshape':
-			instruction = _("Click on the shape's first point to close it.")
-			label = label + ' - ' + instruction
+		if (self._shape_id == 'polygon' or self._shape_id == 'freeshape') and \
+		                                                 self._path is not None:
+			label_instruction = shape_name + " - " + \
+			                  _("Click on the shape's first point to close it.")
 		else:
+			label_instruction = None
 			self.set_action_sensitivity('shape_close', False)
 
-		return label
+		if self.get_image().get_mouse_is_pressed():
+			label_modifiers = None
+		else:
+			label_modifiers = _("Press <Alt>, <Shift>, or both, to quickly " + \
+			                                      "change the 'filling' option")
+
+		full_list = [label_options, label_instruction, label_modifiers]
+		return list(filter(None, full_list))
 
 	def give_back_control(self, preserve_selection):
 		self.restore_pixbuf()
@@ -135,15 +143,18 @@ class ToolShape(AbstractClassicTool):
 		self.last_mouse_btn = event.button
 		self.set_common_values(self.last_mouse_btn, event_x, event_y)
 
-	def on_motion_on_area(self, event, surface, event_x, event_y, render=True):
 		self.update_modifier_state(event.state)
 		if 'SHIFT' in self._modifier_keys and 'ALT' in self._modifier_keys:
 			self._filling_id = 'secondary'
 		elif 'SHIFT' in self._modifier_keys:
 			self._filling_id = 'empty'
+			if self._outline_id == 'none':
+				self._outline_id = 'solid'
 		elif 'ALT' in self._modifier_keys:
 			self._filling_id = 'filled'
+			self._outline_id = 'none'
 
+	def on_motion_on_area(self, event, surface, event_x, event_y, render=True):
 		if self._shape_id == 'freeshape':
 			operation = self._add_point(event_x, event_y, True)
 		elif self._shape_id == 'polygon':
@@ -193,7 +204,7 @@ class ToolShape(AbstractClassicTool):
 	def _add_point(self, event_x, event_y, memorize):
 		"""Add a point to a shape (used by both freeshape and polygon)."""
 		cairo_context = self.get_context()
-		if self.initial_x == -1.0:
+		if self.initial_x is None:
 			# print('init polygon')
 			(self.initial_x, self.initial_y) = (self.x_press, self.y_press)
 			cairo_context.move_to(self.x_press, self.y_press)
@@ -212,7 +223,7 @@ class ToolShape(AbstractClassicTool):
 		return operation
 
 	def _should_close_shape(self, event_x, event_y):
-		if self.initial_x == -1.0 or self.initial_y == -1.0:
+		if self.initial_x is None or self.initial_y is None:
 			return False
 		delta_x = max(event_x, self.initial_x) - min(event_x, self.initial_x)
 		delta_y = max(event_y, self.initial_y) - min(event_y, self.initial_y)

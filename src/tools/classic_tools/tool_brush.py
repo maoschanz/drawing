@@ -1,6 +1,6 @@
 # tool_brush.py
 #
-# Copyright 2018-2021 Romain F. T.
+# Copyright 2018-2022 Romain F. T.
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -29,7 +29,7 @@ class ToolBrush(AbstractClassicTool):
 	def __init__(self, window, **kwargs):
 		super().__init__('brush', _("Brush"), 'tool-brush-symbolic', window)
 		self.use_operator = True
-		self._last_use_pressure = False
+		self._used_pressure = False
 
 		self._brushes_dict = {
 			'simple': BrushSimple('simple', self),
@@ -46,7 +46,7 @@ class ToolBrush(AbstractClassicTool):
 	def get_options_label(self):
 		return _("Brush options")
 
-	def get_edition_status(self):
+	def get_editing_tips(self):
 		self._brush_type = self.get_option_value('brush-type')
 		self._brush_dir = self.get_option_value('brush-dir')
 
@@ -54,7 +54,7 @@ class ToolBrush(AbstractClassicTool):
 		self.set_action_sensitivity('brush-dir', enable_direction)
 
 		active_brush = self._brushes_dict[self._brush_type]
-		return active_brush._get_status(self._last_use_pressure, self._brush_dir)
+		return active_brush._get_tips(self._used_pressure, self._brush_dir)
 
 	############################################################################
 
@@ -62,7 +62,7 @@ class ToolBrush(AbstractClassicTool):
 		self.set_common_values(event.button, event_x, event_y)
 		self._manual_path = []
 		self._add_pressured_point(event_x, event_y, event)
-		self._last_use_pressure = self._manual_path[0]['p'] is not None
+		self._used_pressure = self._manual_path[0]['p'] is not None
 
 	def on_motion_on_area(self, event, surface, event_x, event_y, render=True):
 		self._add_pressured_point(event_x, event_y, event)

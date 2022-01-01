@@ -1,6 +1,6 @@
 # saving_manager.py
 #
-# Copyright 2018-2021 Romain F. T.
+# Copyright 2018-2022 Romain F. T.
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -80,7 +80,7 @@ class DrSavingManager():
 				image.connect_gfile_monitoring()
 				image.remember_current_state()
 				image.post_save()
-				self._window.set_picture_title()
+				self._window.update_picture_title()
 		except Exception as e:
 			if not is_export and str(e) == '2': # exception has been raised
 				# because the user wants to save the file under an other format

@@ -1,6 +1,6 @@
 # tool_filters.py
 #
-# Copyright 2018-2021 Romain F. T.
+# Copyright 2018-2022 Romain F. T.
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -77,9 +77,9 @@ class ToolFilters(AbstractCanvasTool):
 	def get_options_label(self):
 		return _("Active filter")
 
-	def get_edition_status(self):
+	def get_editing_tips(self):
 		tip_label = _("Click on the image to preview the selected filter")
-		return self.type_label + ' - ' + tip_label
+		return [self.type_label, tip_label]
 
 	############################################################################
 

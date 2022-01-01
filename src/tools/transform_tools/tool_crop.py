@@ -1,6 +1,6 @@
 # tool_crop.py
 #
-# Copyright 2018-2021 Romain F. T.
+# Copyright 2018-2022 Romain F. T.
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -46,13 +46,27 @@ class ToolCrop(AbstractCanvasTool):
 		return bar
 
 	def get_options_label(self):
-		return _("Cropping options")
+		# The options of the "crop" tool are all about how to expand the canvas,
+		# hence this label.
+		return _("Expanding options")
 
-	def get_edition_status(self):
+	def get_editing_tips(self):
+		label_direction = _("The sides you'll crop are hinted by the mouse pointer")
+
+		label_modifiers = None
 		if self.apply_to_selection:
-			return _("Cropping the selection")
+			label_action = _("Cropping the selection")
+			label_confirm = None
 		else:
-			return _("Cropping the canvas")
+			label_action = _("Cropping or expanding the canvas")
+			label_confirm = self.label + " - " + \
+			                         _("Don't forget to confirm the operation!")
+			if not self.get_image().get_mouse_is_pressed():
+				label_modifiers = _("Press <Alt>, <Shift>, or both, to " + \
+				                      "quickly change the 'expand with' option")
+
+		full_list = [label_action, label_direction, label_confirm, label_modifiers]
+		return list(filter(None, full_list))
 
 	############################################################################
 
@@ -123,18 +137,17 @@ class ToolCrop(AbstractCanvasTool):
 		self._unclicked = False
 		self._update_expansion_rgba(event.button)
 
-	def on_motion_on_area(self, event, surface, event_x, event_y, render=True):
 		self.update_modifier_state(event.state)
 		if 'SHIFT' in self._modifier_keys and 'ALT' in self._modifier_keys:
-			self._force_expansion_rgba('secondary')
-			# XXX inconsistency: what if the user right-clicked
+			self._force_expansion_rgba('secondary', event.button)
 		elif 'SHIFT' in self._modifier_keys:
 			self._force_expansion_rgba('alpha')
 		elif 'ALT' in self._modifier_keys:
 			self._force_expansion_rgba('initial')
 
-		delta_x = int(event_x - self.x_motion)
-		delta_y = int(event_y - self.y_motion)
+	def on_motion_on_area(self, event, surface, event_x, event_y, render=True):
+		delta_x = event_x - self.x_press
+		delta_y = event_y - self.y_press
 
 		if self._directions == '':
 			return
@@ -268,7 +281,7 @@ class ToolCrop(AbstractCanvasTool):
 			dest_x = max(-1 * x, 0)
 			dest_y = max(-1 * y, 0)
 
-		# Dotted lines == new sizes; plain line == old sizes.
+		# Dotted lines == new sizes; plain lines == old sizes.
 		#
 		# If the origin has been cropped, `src` == the new coordinates, and
 		# `dest` == 0 (in the considered direction x or y):

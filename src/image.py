@@ -1,6 +1,6 @@
 # image.py
 #
-# Copyright 2018-2021 Romain F. T.
+# Copyright 2018-2022 Romain F. T.
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -218,7 +218,7 @@ class DrImage(Gtk.Box):
 			return
 		disk_pixbuf = GdkPixbuf.Pixbuf.new_from_file(self.get_file_path())
 		self._load_pixbuf_common(disk_pixbuf)
-		self.window.set_picture_title(self.update_title())
+		self.window.update_picture_title()
 		self.use_stable_pixbuf()
 		self.update()
 		self.remember_current_state()
@@ -401,6 +401,9 @@ class DrImage(Gtk.Box):
 	def active_tool(self):
 		return self.window.active_tool()
 
+	def get_mouse_is_pressed(self):
+		return self._is_pressed
+
 	############################################################################
 	# Drawing area, main pixbuf, and surface management ########################
 
@@ -447,8 +450,11 @@ class DrImage(Gtk.Box):
 			self._slip_init_y = self.scroll_y
 			return
 		self.motion_behavior = DrMotionBehavior.DRAW
-		self.active_tool().on_press_on_area(event, self.surface, event_x, event_y)
 		self._is_pressed = True
+		self.window.set_window_subtitles()
+		# subtitles must be generated *before* calling the tool, otherwise any
+		# property changed by a modifier would be reset by `get_editing_tips`
+		self.active_tool().on_press_on_area(event, self.surface, event_x, event_y)
 
 	def on_motion_on_area(self, area, event):
 		"""Signal callback. Executed when the mouse pointer moves upon
@@ -499,17 +505,18 @@ class DrImage(Gtk.Box):
 		"""Signal callback. Executed when a mouse button is released on
 		self._drawing_area, if the button is not the signal is transmitted to
 		the selected tool."""
+		self._ctrl_pressed = False
 		if self.motion_behavior == DrMotionBehavior.SLIP:
 			if not self._is_slip_moving():
 				self.window.on_middle_click()
 			self.motion_behavior = DrMotionBehavior.HOVER
 			return
-		self._ctrl_pressed = False
 		self.motion_behavior = DrMotionBehavior.HOVER
 		event_x, event_y = self.get_event_coords(event)
 		self.active_tool().on_release_on_area(event, self.surface, event_x, event_y)
-		self.window.set_picture_title()
 		self._is_pressed = False
+		self.window.update_picture_title() # just to add the star
+		self.window.set_window_subtitles() # the tool's state changed
 
 	def _is_slip_moving(self):
 		"""Tells if the pointer moved while the middle button of the mouse is

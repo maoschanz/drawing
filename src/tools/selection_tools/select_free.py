@@ -1,6 +1,6 @@
 # select_free.py
 #
-# Copyright 2018-2021 Romain F. T.
+# Copyright 2018-2022 Romain F. T.
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -34,6 +34,15 @@ class ToolFreeSelect(AbstractSelectionTool):
 	def on_tool_unselected(self, *args):
 		super().on_tool_unselected()
 		self.set_action_sensitivity('selection_close', False)
+
+	def get_editing_tips(self):
+		tips = super().get_editing_tips()
+		future_path = self.get_selection().get_future_path()
+		if future_path is not None and not self.selection_is_active():
+			label_instruction = self.label + " - " + \
+			                  _("Click on the shape's first point to close it.")
+			tips.append(label_instruction)
+		return tips
 
 	############################################################################
 

@@ -6,11 +6,11 @@ from .abstract_brush import AbstractBrush
 class BrushHairy(AbstractBrush):
 	__gtype_name__ = 'BrushHairy'
 
-	def _get_status(self, use_pressure, brush_direction):
+	def _get_tips(self, use_pressure, brush_direction):
 		label = _("Hairy brush")
 		if use_pressure:
 			label += " - " + _("Width depends on the stylus pressure")
-		return label
+		return [label]
 
 	def draw_preview(self, operation, cairo_context):
 		cairo_context.set_line_cap(cairo.LineCap.ROUND)

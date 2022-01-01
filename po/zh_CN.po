@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
-"POT-Creation-Date: 2021-11-28 01:21+0100\n"
+"POT-Creation-Date: 2021-12-23 20:06+0100\n"
 "PO-Revision-Date: 2020-07-21 17:29+0800\n"
 "Last-Translator: OverflowCat <overflowcat@gmail.com>\n"
 "Language-Team: none\n"
@@ -190,6 +190,12 @@ msgstr "保存"
 #, fuzzy
 msgid "Save without transparency"
 msgstr "增加透明度"
+
+#. This "feature" is only visible on April Fools' day, and it
+#. will just rickroll the user.
+#: src/ui/app-menus.ui src/ui/win-menus.ui
+msgid "Prepare as NFT…"
+msgstr ""
 
 #: src/ui/app-menus.ui src/ui/headerbar-eos.ui src/ui/win-menus.ui
 #: src/saving_manager.py
@@ -545,11 +551,13 @@ msgid "Troubleshoot selection"
 msgstr "对选区排查问题"
 
 #: src/ui/app-menus.ui
+#: src/optionsbars/transform/abstract-optionsbar-transform.ui
 #, fuzzy
 msgid "Cancel transformation"
 msgstr "关于工具的帮助"
 
 #: src/ui/app-menus.ui
+#: src/optionsbars/transform/abstract-optionsbar-transform.ui
 #, fuzzy
 msgid "Apply transformation"
 msgstr "关于工具的帮助"
@@ -858,7 +866,7 @@ msgstr ""
 msgid "Touch gestures"
 msgstr ""
 
-#: src/ui/window.ui
+#: src/ui/window.ui src/deco_manager.py
 #, fuzzy
 msgid "Loading…"
 msgstr "已加载 %s"
@@ -970,9 +978,7 @@ msgid "%s%%"
 msgstr "%s%%"
 
 #: src/new_image_dialog.py src/saving_manager.py src/window.py
-#: src/utilities/utilities_paths.py
-#: src/optionsbars/transform/abstract-optionsbar-transform.ui
-#: src/tools/ui/tool-text.ui
+#: src/utilities/utilities_paths.py src/tools/ui/tool-text.ui
 msgid "Cancel"
 msgstr "取消"
 
@@ -1638,10 +1644,6 @@ msgid "Extract from this color"
 msgstr ""
 
 #: src/optionsbars/transform/abstract-optionsbar-transform.ui
-msgid "Apply"
-msgstr "应用"
-
-#: src/optionsbars/transform/abstract-optionsbar-transform.ui
 msgid "More options"
 msgstr "更多选项"
 
@@ -1818,20 +1820,21 @@ msgstr "使用虚线"
 msgid "Calligraphic nib"
 msgstr ""
 
-#: src/tools/ui/tool-brush.ui
+#: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_nib.py
 msgid "Right-handed nib"
 msgstr ""
 
-#: src/tools/ui/tool-brush.ui
+#: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_nib.py
 #, fuzzy
 msgid "Vertical nib"
 msgstr "垂直"
 
-#: src/tools/ui/tool-brush.ui
+#: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_nib.py
 msgid "Left-handed nib"
 msgstr ""
 
-#: src/tools/ui/tool-brush.ui
+#. brush_direction == 'horizontal':
+#: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_nib.py
 #, fuzzy
 msgid "Horizontal nib"
 msgstr "水平"
@@ -1926,6 +1929,11 @@ msgstr "垂直翻转"
 #: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
 msgid "Invert colors"
 msgstr "插入颜色"
+
+#: src/tools/ui/tool-highlight.ui
+#, fuzzy
+msgid "Straighten the line"
+msgstr "拉伸选区"
 
 #: src/tools/ui/tool-line.ui
 msgid "Color gradient"
@@ -2123,6 +2131,10 @@ msgstr "曲线"
 msgid "Curve options"
 msgstr "曲线选项"
 
+#: src/tools/classic_tools/tool_arc.py
+msgid "Draw a second segment to complete the curve"
+msgstr ""
+
 #: src/tools/classic_tools/tool_arc.py src/tools/classic_tools/tool_line.py
 msgid "Dashed arrow"
 msgstr "虚线箭头"
@@ -2136,15 +2148,36 @@ msgstr "箭头"
 msgid "Dashed"
 msgstr "虚线"
 
+#: src/tools/classic_tools/tool_arc.py src/tools/classic_tools/tool_line.py
+#: src/tools/classic_tools/tool_pencil.py
+msgid "Press <Alt> to toggle the 'outline' option"
+msgstr ""
+
 #: src/tools/classic_tools/tool_brush.py
 #, fuzzy
 msgid "Brush options"
 msgstr "更多选项"
 
 #: src/tools/classic_tools/tool_eraser.py
+msgid "Press <Shift> to erase a rectangle area instead"
+msgstr ""
+
+#: src/tools/classic_tools/tool_eraser.py
+msgid "Press <Shift> to erase a path instead"
+msgstr ""
+
+#: src/tools/classic_tools/tool_eraser.py
 #, fuzzy
 msgid "Eraser options"
 msgstr "更多选项"
+
+#: src/tools/classic_tools/tool_highlight.py
+msgid "Press <Shift> to temporarily highlight on dark background instead"
+msgstr ""
+
+#: src/tools/classic_tools/tool_highlight.py
+msgid "Press <Shift> to temporarily highlight on light background instead"
+msgstr ""
 
 #: src/tools/classic_tools/tool_highlight.py
 #, fuzzy
@@ -2176,6 +2209,14 @@ msgstr ""
 msgid "Line options"
 msgstr "直线选项"
 
+#: src/tools/classic_tools/tool_line.py
+msgid "Press <Shift> to unlock the line direction"
+msgstr ""
+
+#: src/tools/classic_tools/tool_line.py
+msgid "Press <Shift> to lock the line direction"
+msgstr ""
+
 #: src/tools/classic_tools/tool_paint.py
 msgid "Painting options"
 msgstr "绘画选项"
@@ -2188,6 +2229,16 @@ msgstr "单击一个区域以用透明色替换其颜色"
 #, fuzzy
 msgid "Click on the canvas to entirely paint it"
 msgstr "单击形状的第一个节点以将其关闭。"
+
+#: src/tools/classic_tools/tool_paint.py
+#: src/tools/selection_tools/select_color.py
+msgid "May not work for complex shapes"
+msgstr ""
+
+#: src/tools/classic_tools/tool_paint.py
+#: src/tools/selection_tools/select_color.py
+msgid "It will not work well if the area's edges are blurry"
+msgstr ""
 
 #: src/tools/classic_tools/tool_pencil.py
 msgid "Pencil options"
@@ -2229,8 +2280,13 @@ msgid "Filled with secondary color"
 msgstr "编辑副颜色…"
 
 #: src/tools/classic_tools/tool_shape.py
+#: src/tools/selection_tools/select_free.py
 msgid "Click on the shape's first point to close it."
 msgstr "单击形状的第一个节点以将其关闭。"
+
+#: src/tools/classic_tools/tool_shape.py
+msgid "Press <Alt>, <Shift>, or both, to quickly change the 'filling' option"
+msgstr ""
 
 #: src/tools/classic_tools/tool_text.py
 msgid "Text"
@@ -2278,18 +2334,38 @@ msgstr "矩形选区"
 msgid "Error: invalid values"
 msgstr "错误：值无效"
 
+#. The options of the "crop" tool are all about how to expand the canvas,
+#. hence this label.
 #: src/tools/transform_tools/tool_crop.py
 #, fuzzy
-msgid "Cropping options"
-msgstr "字体选项"
+msgid "Expanding options"
+msgstr "绘画选项"
+
+#: src/tools/transform_tools/tool_crop.py
+msgid "The sides you'll crop are hinted by the mouse pointer"
+msgstr ""
 
 #: src/tools/transform_tools/tool_crop.py
 msgid "Cropping the selection"
 msgstr "裁切选区"
 
 #: src/tools/transform_tools/tool_crop.py
-msgid "Cropping the canvas"
+#, fuzzy
+msgid "Cropping or expanding the canvas"
 msgstr "裁切画布"
+
+#: src/tools/transform_tools/tool_crop.py
+#: src/tools/transform_tools/tool_rotate.py
+#: src/tools/transform_tools/tool_scale.py
+#: src/tools/transform_tools/tool_skew.py
+msgid "Don't forget to confirm the operation!"
+msgstr ""
+
+#: src/tools/transform_tools/tool_crop.py
+#: src/tools/transform_tools/tool_skew.py
+msgid ""
+"Press <Alt>, <Shift>, or both, to quickly change the 'expand with' option"
+msgstr ""
 
 #: src/tools/transform_tools/tool_filters.py
 #, fuzzy
@@ -2331,10 +2407,18 @@ msgstr "拉伸选区"
 msgid "Scaling the canvas"
 msgstr "拉伸画布"
 
+#: src/tools/transform_tools/tool_scale.py
+msgid "Press <Shift> to quickly toggle the 'lock proportions' option"
+msgstr ""
+
 #: src/tools/transform_tools/tool_skew.py
 #, fuzzy
 msgid "Skewing options"
 msgstr "绘画选项"
+
+#: src/tools/transform_tools/tool_skew.py
+msgid "The directions of the deformation are hinted by the mouse pointer"
+msgstr ""
 
 #: src/tools/transform_tools/tool_skew.py
 #, fuzzy

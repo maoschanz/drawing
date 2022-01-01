@@ -1,6 +1,6 @@
 # tool_eraser.py
 #
-# Copyright 2018-2021 Romain F. T.
+# Copyright 2018-2022 Romain F. T.
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -37,31 +37,41 @@ class ToolEraser(ToolPencil):
 		self.add_tool_action_enum('eraser-shape', 'pencil')
 		self._rgba = [0.0, 0.0, 0.0, 0.0]
 
-	def get_edition_status(self):
+	def get_editing_tips(self):
 		self._rgba_type = self.get_option_value('selection-color')
 		self._eraser_shape = self.get_option_value('eraser-shape')
-
 		self._apply_shape_constraints()
 
-		label = self.label
+		label_options = self.label
 		if self._eraser_shape == 'pencil':
-			label += ' - ' + _("Pencil")
+			label_options += " - " + _("Pencil")
 		else:
-			label += ' - ' + _("Rectangle")
+			label_options += " - " + _("Rectangle")
 		if self._eraser_type == 'solid':
-			label += ' - ' + {
+			label_options += " - " + {
 				'alpha': _("Transparency"),
 				'initial': _("Default color"),
 				'secondary': _("Secondary color")
 			}[self._rgba_type]
 		else:
-			label += ' - ' + {
+			label_options += " - " + {
 				'blur': _("Blur"),
 				'shuffle': _("Shuffle pixels"),
 				'mixed': _("Shuffle and blur"),
 				'mosaic': _("Mosaic")
 			}[self._eraser_type]
-		return label
+
+		if self.get_image().get_mouse_is_pressed():
+			label_modifier_shift = None
+		else:
+			label_modifier_shift = self.label + " - "
+			if self._eraser_shape == 'pencil':
+				label_modifier_shift += _("Press <Shift> to erase a rectangle area instead")
+			else:
+				label_modifier_shift += _("Press <Shift> to erase a path instead")
+
+		full_list = [label_options, label_modifier_shift]
+		return list(filter(None, full_list))
 
 	def get_options_label(self):
 		return _("Eraser options")
@@ -88,6 +98,8 @@ class ToolEraser(ToolPencil):
 
 	def on_press_on_area(self, event, surface, event_x, event_y):
 		super().on_press_on_area(event, surface, event_x, event_y)
+		# TODO the eraser grew up to be too different from the pencil, it
+		# shouldn't extend it
 
 		if self._rgba_type == 'alpha':
 			self._rgba = [0.0, 0.0, 0.0, 0.0]
@@ -99,7 +111,7 @@ class ToolEraser(ToolPencil):
 			self._rgba = [clr.red, clr.green, clr.blue, clr.alpha]
 
 		self.update_modifier_state(event.state)
-		if "SHIFT" in self._modifier_keys:
+		if 'SHIFT' in self._modifier_keys:
 			if self._eraser_shape == 'rectangle':
 				self._eraser_shape = 'pencil'
 			else:
@@ -111,9 +123,11 @@ class ToolEraser(ToolPencil):
 			self._draw_rectangle(event_x, event_y)
 		else:
 			self._add_point(event_x, event_y)
-		if render:
-			operation = self.build_operation(True)
-			self.do_tool_operation(operation)
+
+		if not render:
+			return
+		operation = self.build_operation(True)
+		self.do_tool_operation(operation)
 
 	def on_release_on_area(self, event, surface, event_x, event_y):
 		if self._eraser_shape == 'rectangle':

@@ -1,6 +1,6 @@
 # tool_arc.py
 #
-# Copyright 2018-2021 Romain F. T.
+# Copyright 2018-2022 Romain F. T.
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -55,21 +55,38 @@ class ToolArc(AbstractClassicTool):
 	def get_options_label(self):
 		return _("Curve options")
 
-	def get_edition_status(self):
+	def get_editing_tips(self):
 		self._use_outline = self.get_option_value('pencil-outline')
 		self._dashes_type = self.get_option_value('dashes-type')
 		self._arrow_type = self.get_option_value('arrow-type')
 		self.set_active_shape()
 		is_arrow = self._arrow_type != 'none'
 		use_dashes = self._dashes_type != 'none'
-		label = self.label
+
+		label_segments = self.label + " - "
+		if self._1st_segment is not None:
+			label_segments += _("Draw a second segment to complete the curve")
+		else:
+			label_segments = None
+
+		label_options = self.label + " - "
 		if is_arrow and use_dashes:
-			label = label + ' - ' + _("Dashed arrow")
+			label_options += _("Dashed arrow")
 		elif is_arrow:
-			label = label + ' - ' + _("Arrow")
+			label_options += _("Arrow")
 		elif use_dashes:
-			label = label + ' - ' + _("Dashed")
-		return label
+			label_options += _("Dashed")
+		else:
+			label_options = None
+
+		if self.get_image().get_mouse_is_pressed():
+			label_modifier_alt = None
+		else:
+			label_modifier_alt = self.label + " - " + \
+			                     _("Press <Alt> to toggle the 'outline' option")
+
+		full_list = [label_segments, label_options, label_modifier_alt]
+		return list(filter(None, full_list))
 
 	############################################################################
 
@@ -77,7 +94,7 @@ class ToolArc(AbstractClassicTool):
 		self.set_common_values(event.button, event_x, event_y)
 
 		self.update_modifier_state(event.state)
-		if "ALT" in self._modifier_keys:
+		if 'ALT' in self._modifier_keys:
 			self._use_outline = not self._use_outline
 
 	def on_motion_on_area(self, event, surface, event_x, event_y, render=True):
@@ -90,9 +107,11 @@ class ToolArc(AbstractClassicTool):
 			cairo_context.curve_to(self._1st_segment[2], self._1st_segment[3], \
 			                       self.x_press, self.y_press, event_x, event_y)
 		self._path = cairo_context.copy_path()
-		if render:
-			operation = self.build_operation(event_x, event_y)
-			self.do_tool_operation(operation)
+
+		if not render:
+			return
+		operation = self.build_operation(event_x, event_y)
+		self.do_tool_operation(operation)
 
 	def on_release_on_area(self, event, surface, event_x, event_y):
 		if self._1st_segment is None:

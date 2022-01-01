@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
-"POT-Creation-Date: 2021-11-28 01:21+0100\n"
-"PO-Revision-Date: 2021-11-28 12:53+1000\n"
+"POT-Creation-Date: 2021-12-23 20:06+0100\n"
+"PO-Revision-Date: 2021-12-24 16:19+1000\n"
 "Last-Translator: Ser82-png\n"
 "Language-Team: \n"
 "Language: ru\n"
@@ -216,6 +216,12 @@ msgstr "Сохранить"
 #: src/ui/app-menus.ui src/ui/win-menus.ui
 msgid "Save without transparency"
 msgstr "Сохранить без прозрачности"
+
+#. This "feature" is only visible on April Fools' day, and it
+#. will just rickroll the user.
+#: src/ui/app-menus.ui src/ui/win-menus.ui
+msgid "Prepare as NFT…"
+msgstr "Подготовить как NFT…"
 
 #: src/ui/app-menus.ui src/ui/headerbar-eos.ui src/ui/win-menus.ui
 #: src/saving_manager.py
@@ -504,7 +510,7 @@ msgstr "Оттенок и насыщенность"
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/classic/optionsbar-operator-menus.ui
 msgid "Luminosity only"
-msgstr "Только освещенность"
+msgstr "Только освещённость"
 
 #. Context: possible ways to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
@@ -531,7 +537,7 @@ msgstr "Без использования цвета…"
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Erase"
-msgstr "Ластик"
+msgstr "Стирать"
 
 #: src/ui/app-menus.ui src/ui/preferences.ui src/ui/shortcuts.ui
 msgid "Tools"
@@ -563,10 +569,12 @@ msgid "Troubleshoot selection"
 msgstr "Устранение неполадок при выделении"
 
 #: src/ui/app-menus.ui
+#: src/optionsbars/transform/abstract-optionsbar-transform.ui
 msgid "Cancel transformation"
 msgstr "Отменить преобразование"
 
 #: src/ui/app-menus.ui
+#: src/optionsbars/transform/abstract-optionsbar-transform.ui
 msgid "Apply transformation"
 msgstr "Применить преобразование"
 
@@ -862,7 +870,7 @@ msgstr "Отобразить панель инструментов"
 msgid "Touch gestures"
 msgstr "Сенсорные жесты"
 
-#: src/ui/window.ui
+#: src/ui/window.ui src/deco_manager.py
 msgid "Loading…"
 msgstr "Загрузка…"
 
@@ -974,9 +982,7 @@ msgid "%s%%"
 msgstr ""
 
 #: src/new_image_dialog.py src/saving_manager.py src/window.py
-#: src/utilities/utilities_paths.py
-#: src/optionsbars/transform/abstract-optionsbar-transform.ui
-#: src/tools/ui/tool-text.ui
+#: src/utilities/utilities_paths.py src/tools/ui/tool-text.ui
 msgid "Cancel"
 msgstr "Отмена"
 
@@ -1073,7 +1079,7 @@ msgstr "Внешний вид"
 
 #: src/preferences.py
 msgid "Use big icons"
-msgstr "Большие кнопки"
+msgstr "Большие значки"
 
 #. Context: title of a section of the preferences
 #: src/preferences.py
@@ -1157,7 +1163,7 @@ msgstr "Цвет фона"
 
 #: src/preferences.py
 msgid "Prefer dark theme variant"
-msgstr "Предпочитаю темный вариант темы"
+msgstr "Предпочитаю тёмный вариант темы"
 
 #. Context: title of a section of the preferences. It corresponds to the
 #. window layout (header-bar? tool-bar? menu-bar?)
@@ -1266,7 +1272,7 @@ msgstr "Не сохранять"
 #: src/saving_manager.py src/window.py
 #, python-format
 msgid "There are unsaved modifications to %s."
-msgstr "Имеются несохраненные изменения в %s."
+msgstr "Имеются несохранённые изменения в %s."
 
 #: src/saving_manager.py
 msgid ""
@@ -1294,11 +1300,11 @@ msgstr "Снять выделение и сохранить"
 
 #: src/saving_manager.py
 msgid "Save anyway"
-msgstr "Все равно сохранить"
+msgstr "Всё равно сохранить"
 
 #: src/saving_manager.py
 msgid "Do you want to save anyway?"
-msgstr "Вы все равно хотите сохранить?"
+msgstr "Вы всё равно хотите сохранить?"
 
 #. Context: confirm replacing transparent pixels with the selected color
 #: src/saving_manager.py
@@ -1383,7 +1389,7 @@ msgstr "Изменения вступят в силу в следующем но
 #: src/window.py
 msgid "Middle-click or press F8 to show/hide controls."
 msgstr ""
-"Щелкните средней кнопкой мыши или нажмите F8, чтобы отобразить/скрыть "
+"Щёлкните средней кнопкой мыши или нажмите F8, чтобы отобразить/скрыть "
 "элементы управления."
 
 #: src/window.py
@@ -1475,7 +1481,7 @@ msgstr "Красный"
 
 #: src/utilities/utilities_colors.py
 msgid "Green"
-msgstr "Зеленый"
+msgstr "Зелёный"
 
 #: src/utilities/utilities_colors.py
 msgid "Blue"
@@ -1483,7 +1489,7 @@ msgstr "Синий"
 
 #: src/utilities/utilities_colors.py
 msgid "Yellow"
-msgstr "Желтый"
+msgstr "Жёлтый"
 
 #: src/utilities/utilities_colors.py
 msgid "Magenta"
@@ -1504,7 +1510,7 @@ msgstr "Голубой"
 #. turquoise or green-blue.
 #: src/utilities/utilities_colors.py
 msgid "Probably teal"
-msgstr "Вероятно сине-зеленый (teal)"
+msgstr "Вероятно сине-зелёный (teal)"
 
 #. Context: the name of the current color is provided as a tooltip to
 #. help users with color blindness, but some color names don't have a
@@ -1575,7 +1581,7 @@ msgstr "градусы"
 #. but it has to be FAR SHORTER so it fits in the color chooser
 #: src/optionsbars/classic/optionsbar_color_popover.py
 msgid "Highlight (dark)"
-msgstr "Выделять (темный)"
+msgstr "Выделять (тёмный)"
 
 #: src/optionsbars/classic/optionsbar_color_popover.py
 #: src/tools/ui/tool-shape.ui
@@ -1641,10 +1647,6 @@ msgstr "Прозрачность"
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 msgid "Extract from this color"
 msgstr "Исключить из этого цвет"
-
-#: src/optionsbars/transform/abstract-optionsbar-transform.ui
-msgid "Apply"
-msgstr "Применить"
 
 #: src/optionsbars/transform/abstract-optionsbar-transform.ui
 msgid "More options"
@@ -1815,19 +1817,20 @@ msgstr "Кисть с волосами"
 msgid "Calligraphic nib"
 msgstr "Каллиграфическое перо"
 
-#: src/tools/ui/tool-brush.ui
+#: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_nib.py
 msgid "Right-handed nib"
 msgstr "Перо для правой руки"
 
-#: src/tools/ui/tool-brush.ui
+#: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_nib.py
 msgid "Vertical nib"
 msgstr "Вертикальное перо"
 
-#: src/tools/ui/tool-brush.ui
+#: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_nib.py
 msgid "Left-handed nib"
 msgstr "Перо для левой руки"
 
-#: src/tools/ui/tool-brush.ui
+#. brush_direction == 'horizontal':
+#: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_nib.py
 msgid "Horizontal nib"
 msgstr "Горизонтальное перо"
 
@@ -1917,6 +1920,11 @@ msgstr "Вертикальное размытие"
 #: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
 msgid "Invert colors"
 msgstr "Инвертировать цвета"
+
+#: src/tools/ui/tool-highlight.ui
+#, fuzzy
+msgid "Straighten the line"
+msgstr "Масштабировать выделенное"
 
 #: src/tools/ui/tool-line.ui
 msgid "Color gradient"
@@ -2108,6 +2116,10 @@ msgstr "Кривая"
 msgid "Curve options"
 msgstr "Параметры кривой"
 
+#: src/tools/classic_tools/tool_arc.py
+msgid "Draw a second segment to complete the curve"
+msgstr "Нарисуйте второй сегмент, чтобы завершить кривую"
+
 #: src/tools/classic_tools/tool_arc.py src/tools/classic_tools/tool_line.py
 msgid "Dashed arrow"
 msgstr "Пунктирная стрелка"
@@ -2121,13 +2133,35 @@ msgstr "Стрелка"
 msgid "Dashed"
 msgstr "Пунктирная"
 
+#: src/tools/classic_tools/tool_arc.py src/tools/classic_tools/tool_line.py
+#: src/tools/classic_tools/tool_pencil.py
+msgid "Press <Alt> to toggle the 'outline' option"
+msgstr "Нажмите <Alt>, чтобы переключить опцию «контур»"
+
 #: src/tools/classic_tools/tool_brush.py
 msgid "Brush options"
 msgstr "Параметры кисти"
 
 #: src/tools/classic_tools/tool_eraser.py
+msgid "Press <Shift> to erase a rectangle area instead"
+msgstr "Нажмите <Shift>, чтобы, вместо этого, стереть прямоугольником"
+
+#: src/tools/classic_tools/tool_eraser.py
+msgid "Press <Shift> to erase a path instead"
+msgstr "Нажмите <Shift>, чтобы, вместо этого, стереть дорожкой"
+
+#: src/tools/classic_tools/tool_eraser.py
 msgid "Eraser options"
 msgstr "Параметры ластика"
+
+#: src/tools/classic_tools/tool_highlight.py
+msgid "Press <Shift> to temporarily highlight on dark background instead"
+msgstr "Нажмите <Shift>, чтобы, вместо этого, временно выделить на тёмном фоне"
+
+#: src/tools/classic_tools/tool_highlight.py
+msgid "Press <Shift> to temporarily highlight on light background instead"
+msgstr ""
+"Нажмите <Shift>, чтобы, вместо этого, временно выделить на светлом фоне"
 
 #: src/tools/classic_tools/tool_highlight.py
 msgid "Highlighter options"
@@ -2158,6 +2192,14 @@ msgstr "Длина: %spx"
 msgid "Line options"
 msgstr "Параметры линии"
 
+#: src/tools/classic_tools/tool_line.py
+msgid "Press <Shift> to unlock the line direction"
+msgstr "Нажмите <Shift>, чтобы разблокировать направление линии"
+
+#: src/tools/classic_tools/tool_line.py
+msgid "Press <Shift> to lock the line direction"
+msgstr "Нажмите <Shift>, чтобы зафиксировать направление линии"
+
 #: src/tools/classic_tools/tool_paint.py
 msgid "Painting options"
 msgstr "Параметры заливки"
@@ -2169,6 +2211,16 @@ msgstr "Щелкните на область, чтобы заменить ее �
 #: src/tools/classic_tools/tool_paint.py
 msgid "Click on the canvas to entirely paint it"
 msgstr "Щелкните на холст, чтобы полностью его залить"
+
+#: src/tools/classic_tools/tool_paint.py
+#: src/tools/selection_tools/select_color.py
+msgid "May not work for complex shapes"
+msgstr "Может не работать для сложных форм"
+
+#: src/tools/classic_tools/tool_paint.py
+#: src/tools/selection_tools/select_color.py
+msgid "It will not work well if the area's edges are blurry"
+msgstr "Не получится, если края области будут размытыми"
 
 #: src/tools/classic_tools/tool_pencil.py
 msgid "Pencil options"
@@ -2207,8 +2259,14 @@ msgid "Filled with secondary color"
 msgstr "Заполнение дополнительным цветом"
 
 #: src/tools/classic_tools/tool_shape.py
+#: src/tools/selection_tools/select_free.py
 msgid "Click on the shape's first point to close it."
 msgstr "Клик по первой точке формы, чтобы закрыть ее."
+
+#: src/tools/classic_tools/tool_shape.py
+msgid "Press <Alt>, <Shift>, or both, to quickly change the 'filling' option"
+msgstr ""
+"Нажмите <Alt>, <Shift> или оба, чтобы быстро изменить параметр \"заливка\""
 
 #: src/tools/classic_tools/tool_text.py
 msgid "Text"
@@ -2257,17 +2315,39 @@ msgstr "Прямоугольное выделение"
 msgid "Error: invalid values"
 msgstr "Ошибка: недопустимые значения"
 
+#. The options of the "crop" tool are all about how to expand the canvas,
+#. hence this label.
 #: src/tools/transform_tools/tool_crop.py
-msgid "Cropping options"
-msgstr "Параметры обрезки"
+#, fuzzy
+msgid "Expanding options"
+msgstr "Параметры заливки"
+
+#: src/tools/transform_tools/tool_crop.py
+msgid "The sides you'll crop are hinted by the mouse pointer"
+msgstr "Стороны, которые вы будете обрезать, намечаются указателем мыши"
 
 #: src/tools/transform_tools/tool_crop.py
 msgid "Cropping the selection"
 msgstr "Обрезать выделенное"
 
 #: src/tools/transform_tools/tool_crop.py
-msgid "Cropping the canvas"
-msgstr "Обрезать холст"
+msgid "Cropping or expanding the canvas"
+msgstr "Обрезка или расширение холста"
+
+#: src/tools/transform_tools/tool_crop.py
+#: src/tools/transform_tools/tool_rotate.py
+#: src/tools/transform_tools/tool_scale.py
+#: src/tools/transform_tools/tool_skew.py
+msgid "Don't forget to confirm the operation!"
+msgstr "Не забудьте подтвердить операцию!"
+
+#: src/tools/transform_tools/tool_crop.py
+#: src/tools/transform_tools/tool_skew.py
+msgid ""
+"Press <Alt>, <Shift>, or both, to quickly change the 'expand with' option"
+msgstr ""
+"Нажмите <Alt>, <Shift> или оба, чтобы быстро изменить параметр \"расширить с"
+"\""
 
 #: src/tools/transform_tools/tool_filters.py
 msgid "Active filter"
@@ -2306,9 +2386,18 @@ msgstr "Масштабировать выделенное"
 msgid "Scaling the canvas"
 msgstr "Масштабировать холст"
 
+#: src/tools/transform_tools/tool_scale.py
+msgid "Press <Shift> to quickly toggle the 'lock proportions' option"
+msgstr ""
+"Нажмите <Shift>, чтобы быстро переключить опцию «зафиксировать пропорции»"
+
 #: src/tools/transform_tools/tool_skew.py
 msgid "Skewing options"
 msgstr "Параметры наклона"
+
+#: src/tools/transform_tools/tool_skew.py
+msgid "The directions of the deformation are hinted by the mouse pointer"
+msgstr "Направление деформации указывается указателем мыши"
 
 #: src/tools/transform_tools/tool_skew.py
 msgid "Skewing the selection"

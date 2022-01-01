@@ -1,6 +1,6 @@
 # abstract_tool.py
 #
-# Copyright 2018-2021 Romain F. T.
+# Copyright 2018-2022 Romain F. T.
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -97,9 +97,9 @@ class AbstractAbstractTool():
 		modifier_keys = []
 		# CONTROL_MASK can't be used, because it already has an effect app-wide.
 		if (event_state & Gdk.ModifierType.SHIFT_MASK) == Gdk.ModifierType.SHIFT_MASK:
-			modifier_keys.append("SHIFT")
+			modifier_keys.append('SHIFT')
 		if (event_state & Gdk.ModifierType.MOD1_MASK) == Gdk.ModifierType.MOD1_MASK:
-			modifier_keys.append("ALT")
+			modifier_keys.append('ALT')
 		self._modifier_keys = modifier_keys
 
 	############################################################################
@@ -150,8 +150,8 @@ class AbstractAbstractTool():
 		menu can't provide all the features."""
 		return None
 
-	def get_edition_status(self):
-		return self.label
+	def get_editing_tips(self):
+		return [self.label]
 
 	############################################################################
 	# Side pane ################################################################

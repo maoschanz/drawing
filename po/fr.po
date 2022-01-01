@@ -1,13 +1,13 @@
 # French translation of com.github.maoschanz.drawing
 # This file is under the same GPLv3.
-# Romain F. T. <rrroschan@gmail.com>, 2018-2021.
+# Romain F. T. <rrroschan@gmail.com>, 2018-2022.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: com.github.maoschanz.drawing 0.4\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
-"POT-Creation-Date: 2021-11-28 01:21+0100\n"
-"PO-Revision-Date: 2021-11-28 01:53+0100\n"
+"POT-Creation-Date: 2022-01-01 23:40+0100\n"
+"PO-Revision-Date: 2022-01-01 23:37+0100\n"
 "Last-Translator: Romain F. T. <rrroschan@gmail.com>\n"
 "Language-Team: French <aaaa@bbbb.com>\n"
 "Language: fr\n"
@@ -215,6 +215,12 @@ msgstr "Enregistrer"
 #: src/ui/app-menus.ui src/ui/win-menus.ui
 msgid "Save without transparency"
 msgstr "Enregistrer sans transparence"
+
+#. This "feature" is only visible on April Fools' day, and it
+#. will just rickroll the user.
+#: src/ui/app-menus.ui src/ui/win-menus.ui
+msgid "Prepare as NFT…"
+msgstr "Préparer comme NFT…"
 
 #: src/ui/app-menus.ui src/ui/headerbar-eos.ui src/ui/win-menus.ui
 #: src/saving_manager.py
@@ -562,10 +568,12 @@ msgid "Troubleshoot selection"
 msgstr "Débuggage de la sélection"
 
 #: src/ui/app-menus.ui
+#: src/optionsbars/transform/abstract-optionsbar-transform.ui
 msgid "Cancel transformation"
 msgstr "Annuler la transformation"
 
 #: src/ui/app-menus.ui
+#: src/optionsbars/transform/abstract-optionsbar-transform.ui
 msgid "Apply transformation"
 msgstr "Appliquer la transformation"
 
@@ -861,7 +869,7 @@ msgstr "Basculer la visibilité des barres d'outils"
 msgid "Touch gestures"
 msgstr "Gestuelles tactiles"
 
-#: src/ui/window.ui
+#: src/ui/window.ui src/deco_manager.py
 msgid "Loading…"
 msgstr "Chargement…"
 
@@ -971,9 +979,7 @@ msgid "%s%%"
 msgstr "%s%%"
 
 #: src/new_image_dialog.py src/saving_manager.py src/window.py
-#: src/utilities/utilities_paths.py
-#: src/optionsbars/transform/abstract-optionsbar-transform.ui
-#: src/tools/ui/tool-text.ui
+#: src/utilities/utilities_paths.py src/tools/ui/tool-text.ui
 msgid "Cancel"
 msgstr "Annuler"
 
@@ -1645,10 +1651,6 @@ msgid "Extract from this color"
 msgstr "Extraire depuis cette couleur"
 
 #: src/optionsbars/transform/abstract-optionsbar-transform.ui
-msgid "Apply"
-msgstr "Appliquer"
-
-#: src/optionsbars/transform/abstract-optionsbar-transform.ui
 msgid "More options"
 msgstr "Plus d'options"
 
@@ -1816,19 +1818,20 @@ msgstr "Pinceau poilu"
 msgid "Calligraphic nib"
 msgstr "Plume calligraphique"
 
-#: src/tools/ui/tool-brush.ui
+#: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_nib.py
 msgid "Right-handed nib"
 msgstr "Plume de droitier"
 
-#: src/tools/ui/tool-brush.ui
+#: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_nib.py
 msgid "Vertical nib"
 msgstr "Plume verticale"
 
-#: src/tools/ui/tool-brush.ui
+#: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_nib.py
 msgid "Left-handed nib"
 msgstr "Plume de gaucher"
 
-#: src/tools/ui/tool-brush.ui
+#. brush_direction == 'horizontal':
+#: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_nib.py
 msgid "Horizontal nib"
 msgstr "Plume horizontale"
 
@@ -1918,6 +1921,10 @@ msgstr "Flouter verticalement"
 #: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
 msgid "Invert colors"
 msgstr "Inverser les couleurs"
+
+#: src/tools/ui/tool-highlight.ui
+msgid "Straighten the line"
+msgstr "Rectifier le tracé"
 
 #: src/tools/ui/tool-line.ui
 msgid "Color gradient"
@@ -2109,6 +2116,10 @@ msgstr "Courbe"
 msgid "Curve options"
 msgstr "Options de courbe"
 
+#: src/tools/classic_tools/tool_arc.py
+msgid "Draw a second segment to complete the curve"
+msgstr "Tracez un second segment pour compléter la courbe"
+
 #: src/tools/classic_tools/tool_arc.py src/tools/classic_tools/tool_line.py
 msgid "Dashed arrow"
 msgstr "Flèche en pointillés"
@@ -2122,13 +2133,34 @@ msgstr "Flèche"
 msgid "Dashed"
 msgstr "En pointillés"
 
+#: src/tools/classic_tools/tool_arc.py src/tools/classic_tools/tool_line.py
+#: src/tools/classic_tools/tool_pencil.py
+msgid "Press <Alt> to toggle the 'outline' option"
+msgstr "Pressez <Alt> pour changer l'option 'contour'"
+
 #: src/tools/classic_tools/tool_brush.py
 msgid "Brush options"
 msgstr "Options du pinceau"
 
 #: src/tools/classic_tools/tool_eraser.py
+msgid "Press <Shift> to erase a rectangle area instead"
+msgstr "Appuyez sur <Maj> pour plutôt effacer une zone rectangulaire"
+
+#: src/tools/classic_tools/tool_eraser.py
+msgid "Press <Shift> to erase a path instead"
+msgstr "Appuyez sur <Maj> pour plutôt effacer un chemin"
+
+#: src/tools/classic_tools/tool_eraser.py
 msgid "Eraser options"
 msgstr "Options de la gomme"
+
+#: src/tools/classic_tools/tool_highlight.py
+msgid "Press <Shift> to temporarily highlight on dark background instead"
+msgstr ""
+
+#: src/tools/classic_tools/tool_highlight.py
+msgid "Press <Shift> to temporarily highlight on light background instead"
+msgstr ""
 
 #: src/tools/classic_tools/tool_highlight.py
 msgid "Highlighter options"
@@ -2159,6 +2191,14 @@ msgstr "Longueur : %spx"
 msgid "Line options"
 msgstr "Options de la ligne"
 
+#: src/tools/classic_tools/tool_line.py
+msgid "Press <Shift> to unlock the line direction"
+msgstr "Pressez <Maj> pour verrouiller la direction du trait"
+
+#: src/tools/classic_tools/tool_line.py
+msgid "Press <Shift> to lock the line direction"
+msgstr "Pressez <Maj> pour verrouiller la direction du trait"
+
 #: src/tools/classic_tools/tool_paint.py
 msgid "Painting options"
 msgstr "Options de peinture"
@@ -2170,6 +2210,16 @@ msgstr "Cliquez sur une zone pour remplacer sa couleur par de la transparence"
 #: src/tools/classic_tools/tool_paint.py
 msgid "Click on the canvas to entirely paint it"
 msgstr "Cliquez sur le canevas pour le peindre entièrement"
+
+#: src/tools/classic_tools/tool_paint.py
+#: src/tools/selection_tools/select_color.py
+msgid "May not work for complex shapes"
+msgstr "Peut ne pas fonctionner pour les formes complexes"
+
+#: src/tools/classic_tools/tool_paint.py
+#: src/tools/selection_tools/select_color.py
+msgid "It will not work well if the area's edges are blurry"
+msgstr "Ça ne marchera pas si les bords de la zone sont flous"
 
 #: src/tools/classic_tools/tool_pencil.py
 msgid "Pencil options"
@@ -2208,8 +2258,13 @@ msgid "Filled with secondary color"
 msgstr "Rempli par la couleur secondaire"
 
 #: src/tools/classic_tools/tool_shape.py
+#: src/tools/selection_tools/select_free.py
 msgid "Click on the shape's first point to close it."
 msgstr "Cliquez sur le 1er point de la forme pour la refermer."
+
+#: src/tools/classic_tools/tool_shape.py
+msgid "Press <Alt>, <Shift>, or both, to quickly change the 'filling' option"
+msgstr ""
 
 #: src/tools/classic_tools/tool_text.py
 msgid "Text"
@@ -2257,17 +2312,36 @@ msgstr "Selection rectangulaire"
 msgid "Error: invalid values"
 msgstr "Erreur : valeurs invalides"
 
+#. The options of the "crop" tool are all about how to expand the canvas,
+#. hence this label.
 #: src/tools/transform_tools/tool_crop.py
-msgid "Cropping options"
-msgstr "Options de rognage"
+msgid "Expanding options"
+msgstr "Options de recadrage"
+
+#: src/tools/transform_tools/tool_crop.py
+msgid "The sides you'll crop are hinted by the mouse pointer"
+msgstr "Les côtés à modifier sont montrés par le pointeur de la souris"
 
 #: src/tools/transform_tools/tool_crop.py
 msgid "Cropping the selection"
 msgstr "Recadrer la sélection"
 
 #: src/tools/transform_tools/tool_crop.py
-msgid "Cropping the canvas"
-msgstr "Recadrer le canevas"
+msgid "Cropping or expanding the canvas"
+msgstr "Recadrer ou étendre le canevas"
+
+#: src/tools/transform_tools/tool_crop.py
+#: src/tools/transform_tools/tool_rotate.py
+#: src/tools/transform_tools/tool_scale.py
+#: src/tools/transform_tools/tool_skew.py
+msgid "Don't forget to confirm the operation!"
+msgstr "N'oubliez pas de confirmer l'opération !"
+
+#: src/tools/transform_tools/tool_crop.py
+#: src/tools/transform_tools/tool_skew.py
+msgid ""
+"Press <Alt>, <Shift>, or both, to quickly change the 'expand with' option"
+msgstr ""
 
 #: src/tools/transform_tools/tool_filters.py
 msgid "Active filter"
@@ -2306,9 +2380,19 @@ msgstr "Redimensionner la sélection"
 msgid "Scaling the canvas"
 msgstr "Redimensionner le canevas"
 
+#: src/tools/transform_tools/tool_scale.py
+msgid "Press <Shift> to quickly toggle the 'lock proportions' option"
+msgstr ""
+"Pressez <Maj> pour rapidement changer l'option 'conserver les proportions'"
+
 #: src/tools/transform_tools/tool_skew.py
 msgid "Skewing options"
 msgstr "Options d'inclinement"
+
+#: src/tools/transform_tools/tool_skew.py
+msgid "The directions of the deformation are hinted by the mouse pointer"
+msgstr ""
+"Les directions de la déformation sont montrées par le pointeur de la souris"
 
 #: src/tools/transform_tools/tool_skew.py
 msgid "Skewing the selection"
