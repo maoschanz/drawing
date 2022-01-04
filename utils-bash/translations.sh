@@ -7,6 +7,7 @@ function src_lang () {
 }
 
 function src_all () {
+	echo "Updating .po files for src"
 	ninja -C _build drawing-update-po
 
 	# while IFS= read -r line; do
@@ -23,9 +24,6 @@ function src_pot () {
 	# xgettext --files-from=po/POTFILES --from-code=UTF-8 -c --add-location=file --output=po/drawing.pot
 }
 
-function help_new () {
-}
-
 function help_all () {
 	echo "Updating .po files for help"
 	ninja -C _build help-drawing-update-po
@@ -33,7 +31,7 @@ function help_all () {
 
 function help_pot () {
 	echo "Updating .pot file for help"
-	# ninja -C _build help-drawing-pot
+	ninja -C _build help-drawing-pot
 }
 
 if [ $# = 0 ]; then
