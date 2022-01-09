@@ -3,27 +3,28 @@
 # This file is distributed under the same license as the drawing package.
 # Antonio Hauren <haurenburu@protonmail.com>, 2019.
 # Arthur <arthurbacci64@gmail.com>, 2020.
+# Fúlvio Alves <fga.fulvio@gmail.com>, 2022.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
-"POT-Creation-Date: 2021-12-23 20:06+0100\n"
-"PO-Revision-Date: 2020-09-03 11:30-0300\n"
-"Last-Translator: Arthur <arthurbacci64@gmail.com>\n"
+"POT-Creation-Date: 2022-01-01 20:06+0100\n"
+"PO-Revision-Date: 2022-01-08 21:03-0300\n"
+"Last-Translator: Fúlvio Alves <fga.fulvio@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <arthurbacci64@gmail.com>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n > 1)\n"
-"X-Generator: Gtranslator 3.36.0\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Poedit 2.3\n"
 
 #: data/com.github.maoschanz.drawing.desktop.in
 #: data/com.github.maoschanz.drawing.appdata.xml.in src/deco_manager.py
 #: src/main.py
 msgid "Drawing"
-msgstr "Drawing"
+msgstr "Desenhando"
 
 #: data/com.github.maoschanz.drawing.desktop.in
 msgid "Simple drawing utility"
@@ -46,17 +47,17 @@ msgstr "Nova janela"
 #: src/ui/headerbar.ui src/ui/headerbar-eos.ui src/ui/toolbar.ui
 #: src/ui/toolbar-symbolic.ui src/ui/window.ui src/ui/win-menus.ui
 msgid "New Image"
-msgstr "Nova Imagem"
+msgstr "Nova imagem"
 
 #: data/com.github.maoschanz.drawing.desktop.in
 msgid "Edit Image in Clipboard"
-msgstr "Editar Imagem no Clipboard"
+msgstr "Editar imagem na área de transferência"
 
 #. IMPORTANT: the summarized description of the application.
 #. https://gitlab.gnome.org/GNOME/Initiatives/-/wikis/App-Metadata
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "Edit screenshots or memes"
-msgstr ""
+msgstr "Editar capturas de tela ou memes"
 
 #. IMPORTANT: complete description of the application (1/3)
 #: data/com.github.maoschanz.drawing.appdata.xml.in
@@ -65,6 +66,9 @@ msgid ""
 "filters, insert or censor text, and manipulate a selected portion of the "
 "picture (cut/copy/paste/drag/…)"
 msgstr ""
+"Este editor de imagens básico pode redimensionar, cortar ou girar uma "
+"imagem, aplicar filtros simples, inserir ou censurar texto e manipular uma "
+"parte selecionada da imagem (cortar/copiar/colar/arrastar/…)"
 
 #. IMPORTANT: complete description of the application (2/3)
 #: data/com.github.maoschanz.drawing.appdata.xml.in
@@ -73,17 +77,22 @@ msgid ""
 "line, the curve tool, many shapes, several brushes, and their various colors "
 "and options."
 msgstr ""
+"E, claro, você pode desenhar! Usando ferramentas como o lápis, a linha reta, "
+"a ferramenta de curva, muitas formas, vários pincéis e suas várias cores e "
+"opções."
 
 #. IMPORTANT: complete description of the application (3/3)
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "Supported file types include PNG, JPEG and BMP."
-msgstr ""
+msgstr "Os tipos de arquivo suportados incluem PNG, JPEG e BMP."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "Version 1.0.0 improves rendering performance, which is visible when editing "
 "large images with a poor CPU."
 msgstr ""
+"A versão 1.0.0 melhora o desempenho de renderização, o que é visível ao "
+"editar imagens grandes com uma CPU de baixo desempenho."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -91,12 +100,17 @@ msgid ""
 "a parallelogram. Such a deformation can be applied horizontally or "
 "vertically."
 msgstr ""
+"Agora você pode usar a nova ferramenta \"Inclinar\" para modificar uma "
+"imagem de um retângulo para um paralelogramo. Essa deformação pode ser "
+"aplicada horizontalmente ou verticalmente."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "You can select tools with keyboard accelerators (Alt+letter). This may not "
 "work yet with languages using a non-latin alphabet."
 msgstr ""
+"Você pode selecionar ferramentas com aceleradores de teclado (Alt+letra). "
+"Isso pode não funcionar ainda com idiomas que usam um alfabeto não-latino."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -104,6 +118,10 @@ msgid ""
 "do it while using a tool, it may display additional data, for example the "
 "dimensions of the shape you're drawing!"
 msgstr ""
+"Ao pressionar \"Ctrl\", serão exibidas as coordenadas do cursor em uma dica "
+"de ferramenta. Se você fizer isso enquanto utiliza uma ferramenta, ela pode "
+"exibir dados adicionais, por exemplo, as dimensões da forma que você está "
+"desenhando!"
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -111,12 +129,17 @@ msgid ""
 "such as locking the direction for the \"line\" tool, or changing the filling "
 "style of a shape."
 msgstr ""
+"Pressionar \"Shift\" ou \"Alt\" ao usar uma ferramenta ativa opções "
+"específicas, como bloquear a direção da ferramenta \"Linha\" ou alterar o "
+"estilo de preenchimento de uma forma."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "Using the \"scale\" tool, you may optionally set the new size as a relative "
 "percentage rather than an absolute value in pixels."
 msgstr ""
+"Ao usar a ferramenta \"Escala\" você pode, ocasionalmente, definir o novo "
+"tamanho como uma porcentagem relativa em vez de um valor absoluto em pixels."
 
 #. very generic release notes i use for ALL minor updates, please
 #. translate this one!
@@ -129,22 +152,22 @@ msgstr ""
 #. Caption of a screenshot, for appstores
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "The window and its primary menu"
-msgstr ""
+msgstr "A janela e seu menu principal"
 
 #. Caption of a screenshot, for appstores
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "The selection and the actions associated with it"
-msgstr ""
+msgstr "A seleção e as ações associadas a ela"
 
 #. Caption of a screenshot, for appstores
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "Zooming in various shapes"
-msgstr ""
+msgstr "Ampliando em várias formas"
 
 #. Caption of a screenshot, for appstores
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "The \"new image\" menu opened"
-msgstr ""
+msgstr "O menu \"Nova imagem\" aberto"
 
 #: src/ui/app-menus.ui
 msgid "File"
@@ -169,7 +192,7 @@ msgstr "Nova imagem da seleção"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
 msgid "New Image From Clipboard"
-msgstr "Nova imagem do clipboard"
+msgstr "Nova imagem da área de transferência"
 
 #: src/ui/app-menus.ui src/ui/win-menus.ui
 msgid "Reload file"
@@ -181,7 +204,7 @@ msgstr "Propiedades da imagem"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Reset canvas"
-msgstr ""
+msgstr "Redefinir tela"
 
 #: src/ui/app-menus.ui src/ui/headerbar.ui src/ui/headerbar-eos.ui
 #: src/ui/shortcuts.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
@@ -190,15 +213,14 @@ msgid "Save"
 msgstr "Salvar"
 
 #: src/ui/app-menus.ui src/ui/win-menus.ui
-#, fuzzy
 msgid "Save without transparency"
-msgstr "Adicionar transparência"
+msgstr "Salvar sem transparência"
 
 #. This "feature" is only visible on April Fools' day, and it
 #. will just rickroll the user.
 #: src/ui/app-menus.ui src/ui/win-menus.ui
 msgid "Prepare as NFT…"
-msgstr ""
+msgstr "Preparar como NFT…"
 
 #: src/ui/app-menus.ui src/ui/headerbar-eos.ui src/ui/win-menus.ui
 #: src/saving_manager.py
@@ -213,7 +235,7 @@ msgstr "Exportar como…"
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/toolbar.ui
 #: src/ui/toolbar-symbolic.ui src/ui/win-menus.ui
 msgid "Copy to clipboard"
-msgstr ""
+msgstr "Copiar para a área de transferência"
 
 #: src/ui/app-menus.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
 #: src/ui/win-menus.ui
@@ -352,31 +374,29 @@ msgstr "Ir para direita"
 #. canvas. The "go left" action only goes a few centimeters
 #. to the left, but this one goes all the way left.
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
-#, fuzzy
 msgid "Go to the left end"
-msgstr "Ir para a esquerda"
+msgstr "Ir para a extremidade esquerda"
 
 #. Context: this action scrolls to the top of the canvas
 #. The "go up" action only goes a few centimeters up, but
 #. this one goes all the way to the top.
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Go to the top"
-msgstr ""
+msgstr "Ir para a parte superior"
 
 #. Context: this action scrolls to the bottom of the canvas
 #. The "go down" action only goes a few centimeters down,
 #. but this one goes all the way to the bottom.
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Go to the bottom"
-msgstr ""
+msgstr "Ir para a parte inferior"
 
 #. Context: this action scrolls to the right end of the
 #. canvas. The "go right" action only goes a few centimeters
 #. to the right, but this one goes all the way right.
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
-#, fuzzy
 msgid "Go to the right end"
-msgstr "Ir para a direita"
+msgstr "Ir para a extremidade direita"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Tab at the left"
@@ -393,21 +413,19 @@ msgstr "Atualizar"
 #. Label shown only in developer mode
 #: src/ui/app-menus.ui
 msgid "Track framerate"
-msgstr ""
+msgstr "Rastrear a taxa de quadros"
 
 #: src/ui/app-menus.ui
-#, fuzzy
 msgid "Dark theme variant"
-msgstr "Largura padrão"
+msgstr "Variante de tema escuro"
 
 #: src/ui/app-menus.ui
-#, fuzzy
 msgid "Show the menu-bar"
-msgstr "Alternar a pré-visualização"
+msgstr "Mostrar a barra de menu"
 
 #: src/ui/app-menus.ui
 msgid "Hide toolbars"
-msgstr ""
+msgstr "Ocultar barras de ferramentas"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
 msgid "Fullscreen"
@@ -452,24 +470,22 @@ msgstr "Ênfase"
 #. Context: a possible way to highlight text
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-operator-menus.ui
 #: src/tools/ui/tool-highlight.ui src/tools/classic_tools/tool_highlight.py
-#, fuzzy
 msgid "Dark text on light background"
-msgstr "Fundo retangular"
+msgstr "Texto escuro em fundo claro"
 
 #. Context: a possible way to highlight text
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-operator-menus.ui
 #: src/tools/ui/tool-highlight.ui src/tools/classic_tools/tool_highlight.py
 msgid "Light text on dark background"
-msgstr ""
+msgstr "Texto claro em fundo escuro"
 
 #. Context: possible ways to apply the color to the canvas, using
 #. only some specific dimension(s) of the selected color in its
 #. hue-saturation-luminosity (HSL) representation
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/classic/optionsbar-operator-menus.ui
-#, fuzzy
 msgid "HSL modes"
-msgstr "Outros modos"
+msgstr "Modos HSL"
 
 #. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
@@ -531,9 +547,8 @@ msgid "Previous tool"
 msgstr "Ferramenta anterior"
 
 #: src/ui/app-menus.ui
-#, fuzzy
 msgid "Active tool"
-msgstr "Outras ferramentas"
+msgstr "Ferramenta ativa"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
 #: src/preferences.py
@@ -542,12 +557,11 @@ msgstr "Mostrar nome das ferramentas"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Bigger width"
-msgstr ""
+msgstr "Largura maior"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
-#, fuzzy
 msgid "Smaller width"
-msgstr "Largura padrão"
+msgstr "Largura menor"
 
 #: src/ui/app-menus.ui
 msgid "Troubleshoot selection"
@@ -555,15 +569,13 @@ msgstr "Resolver problemas de seleção"
 
 #: src/ui/app-menus.ui
 #: src/optionsbars/transform/abstract-optionsbar-transform.ui
-#, fuzzy
 msgid "Cancel transformation"
-msgstr "Ajuda sobre as ferramentas"
+msgstr "Cancelar transformação"
 
 #: src/ui/app-menus.ui
 #: src/optionsbars/transform/abstract-optionsbar-transform.ui
-#, fuzzy
 msgid "Apply transformation"
-msgstr "Ajuda sobre as ferramentas"
+msgstr "Aplicar transformação"
 
 #: src/ui/app-menus.ui
 msgid "Options"
@@ -589,7 +601,7 @@ msgstr "Índice"
 #. Context: submenu listing individual help pages
 #: src/ui/app-menus.ui
 msgid "Individual pages"
-msgstr ""
+msgstr "Páginas individuais"
 
 #. Context: open the help page about general use of the app
 #: src/ui/app-menus.ui
@@ -597,32 +609,27 @@ msgid "Basic help"
 msgstr "Ajuda básica"
 
 #: src/ui/app-menus.ui src/ui/minimap.ui
-#, fuzzy
 msgid "Help about zooming"
-msgstr "Ajuda sobre as ferramentas"
+msgstr "Ajuda sobre o zoom"
 
 #: src/ui/app-menus.ui
-#, fuzzy
 msgid "Help about the full-screen mode"
-msgstr "Entrar na tela cheia"
+msgstr "Ajuda sobre o modo de tela cheia"
 
 #: src/ui/app-menus.ui
-#, fuzzy
 msgid "Help about classic tools"
-msgstr "Ajuda sobre as ferramentas"
+msgstr "Ajuda sobre as ferramentas clássicas"
 
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-color-popover.ui
-#, fuzzy
 msgid "Help about colors"
-msgstr "Ajuda sobre as ferramentas"
+msgstr "Ajuda sobre as cores"
 
 #. Context: open the help page about transformation tools (crop,
 #. scale, rotate, filters, ...
 #: src/ui/app-menus.ui
 #: src/optionsbars/transform/abstract-optionsbar-transform.ui
-#, fuzzy
 msgid "Help about transformation tools"
-msgstr "Ajuda sobre as ferramentas"
+msgstr "Ajuda sobre ferramentas de transformação"
 
 #: src/ui/app-menus.ui src/optionsbars/selection/optionsbar-selection.ui
 msgid "Help about selection"
@@ -630,7 +637,7 @@ msgstr "Ajuda sobre seleção"
 
 #: src/ui/app-menus.ui
 msgid "What's new"
-msgstr ""
+msgstr "O que há de novo"
 
 #: src/ui/app-menus.ui src/ui/win-menus.ui
 msgid "About Drawing"
@@ -643,16 +650,15 @@ msgstr "Abrir"
 
 #: src/ui/headerbar-eos.ui
 msgid "Share the image"
-msgstr ""
+msgstr "Compartilhar a imagem"
 
 #: src/ui/image.ui
 msgid "The image changed on the disk, do you want to reload it?"
-msgstr ""
+msgstr "A imagem foi alterada no disco; deseja recarregá-la?"
 
 #: src/ui/image.ui
-#, fuzzy
 msgid "Reload"
-msgstr "Recarregar Arquivo"
+msgstr "Recarregar"
 
 #: src/ui/minimap.ui
 msgid "100%"
@@ -690,15 +696,15 @@ msgstr "Janela"
 #. numerical inputs
 #: src/ui/properties.ui src/utilities/utilities_units.py
 msgid "pixels"
-msgstr "Pixeis"
+msgstr "pixels"
 
 #: src/ui/properties.ui
 msgid "centimeters"
-msgstr "Centímetros"
+msgstr "centímetros"
 
 #: src/ui/properties.ui
 msgid "inches"
-msgstr "Polegadas"
+msgstr "polegadas"
 
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
@@ -728,7 +734,7 @@ msgstr "Rotacionar"
 #: src/ui/selection-manager.ui src/preferences.py
 #: src/tools/transform_tools/tool_skew.py
 msgid "Skew"
-msgstr "Entortar"
+msgstr "Inclinar"
 
 #: src/ui/selection-manager.ui src/tools/transform_tools/tool_filters.py
 msgid "Filters"
@@ -740,23 +746,21 @@ msgstr "Mais ações"
 
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
-#, fuzzy
 msgid "Invert selection"
-msgstr "Seleção livre"
+msgstr "Inverter seleção"
 
 #. Define the image as being the currently selected area
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
-#, fuzzy
 msgid "Define as current image"
-msgstr "Abrir uma imagem"
+msgstr "Definir como imagem atual"
 
 #. Expand the canvas of the current image to make the current selection fit in it.
 #. Can be translated as "Expand to this size".
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 msgid "Expand image to fit"
-msgstr ""
+msgstr "Expandir a imagem para caber"
 
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
@@ -776,9 +780,8 @@ msgid "Main menu"
 msgstr "Menu principal"
 
 #: src/ui/shortcuts.ui
-#, fuzzy
 msgid "Toggle the menu-bar"
-msgstr "Alternar a pré-visualização"
+msgstr "Alternar a barra de menu"
 
 #: src/ui/shortcuts.ui
 msgid "Image"
@@ -801,9 +804,8 @@ msgid "Close the active image"
 msgstr "Fechar a imagem ativa"
 
 #: src/ui/shortcuts.ui
-#, fuzzy
 msgid "Open the tool options menu"
-msgstr "Menu de opções"
+msgstr "Abrir o menu de opções de ferramentas"
 
 #: src/ui/shortcuts.ui
 msgid "Back to previous tool"
@@ -811,7 +813,7 @@ msgstr "Voltar para última ferramenta"
 
 #: src/ui/shortcuts.ui
 msgid "Apply a transformation"
-msgstr ""
+msgstr "Aplicar uma transformação"
 
 #: src/ui/shortcuts.ui
 msgid "Tabs"
@@ -856,22 +858,20 @@ msgid "Navigation"
 msgstr "Navegação"
 
 #: src/ui/shortcuts.ui
-#, fuzzy
 msgid "Toggle fullscreen mode"
-msgstr "Entrar na tela cheia"
+msgstr "Alternar modo de tela inteira"
 
 #: src/ui/shortcuts.ui
 msgid "Toggle toolbars visibility"
-msgstr ""
+msgstr "Alternar a visibilidade da barra de ferramentas"
 
 #: src/ui/shortcuts.ui
 msgid "Touch gestures"
 msgstr "Gestos de toque"
 
 #: src/ui/window.ui src/deco_manager.py
-#, fuzzy
 msgid "Loading…"
-msgstr "Carregando %s"
+msgstr "Carregando…"
 
 #: src/ui/window.ui
 msgid "Exit fullscreen"
@@ -890,18 +890,18 @@ msgstr "Refazer %s"
 #. Context: an error message
 #: src/history_manager.py
 msgid "Attempt to save an invalid state"
-msgstr ""
+msgstr "Tentar salvar um estado inválido"
 
 #: src/history_manager.py
 #, python-format
 msgid "Error: no tool '%s'"
-msgstr ""
+msgstr "Erro: nenhuma ferramenta '%s'"
 
 #. Context: an error message
 #: src/image.py
 #, python-format
 msgid "New pixbuf empty, no change applied to %s"
-msgstr ""
+msgstr "Novo pixbuf vazio, nenhuma alteração aplicada a %s"
 
 #: src/image.py src/properties.py
 msgid "Unsaved file"
@@ -911,7 +911,7 @@ msgstr "Arquivo não salvo"
 #: src/image.py
 #, python-format
 msgid "%s frames per second"
-msgstr ""
+msgstr "%s quadros por segundo"
 
 #. Description of a command line option
 #: src/main.py
@@ -931,11 +931,11 @@ msgstr "Abrir uma nova aba"
 #. Description of a command line option
 #: src/main.py
 msgid "Edit the clipboard content"
-msgstr "Editar conteúdo do clipboard"
+msgstr "Editar conteúdo da área de transferência"
 
 #: src/main.py
 msgid "This version isn't stable!"
-msgstr "Essa versão não é estável!"
+msgstr "Esta versão não é estável!"
 
 #: src/main.py
 msgid "Report bugs or ideas"
@@ -947,33 +947,33 @@ msgstr "Reportar bugs ou ideias"
 msgid "translator-credits"
 msgstr ""
 "Antonio Hauren\n"
-"Luís Fernando Stürmer da Rosa\n"
-"Arthur Bacci"
+"Arthur Bacci\n"
+"Fúlvio Alves\n"
+"Luís Fernando Stürmer da Rosa"
 
 #. To translators: this is credits for the icons, consider that "Art
 #. Libre" is proper name
 #: src/main.py
 msgid "GNOME's \"Art Libre\" icon set authors"
-msgstr ""
+msgstr "Os autores do conjunto de ícones \"Art Libre\" do GNOME"
 
 #: src/main.py
 msgid "Simple image editor for Linux"
-msgstr ""
+msgstr "Editor de imagem simples para Linux"
 
 #: src/main.py
 msgid "Official webpage"
 msgstr "Página oficial"
 
 #: src/main.py
-#, fuzzy
 msgid "Error opening this file."
-msgstr "Erro ao abrir este arquivo. Você quis dizer %s ?"
+msgstr "Erro ao abrir este arquivo."
 
 #. This is an error message, %s is a better command suggestion
 #: src/main.py
 #, python-format
 msgid "Did you mean %s ?"
-msgstr ""
+msgstr "Você quis dizer %s ?"
 
 #. This string displays the zoom level: %s will be replaced with a
 #. number, while %% will be rendered as the symbol '%'
@@ -1025,7 +1025,7 @@ msgstr "Salvação de imagens"
 
 #: src/preferences.py
 msgid "JPEG and BMP images can't handle transparency."
-msgstr "Imagens JPEG e BMP não podem ter transparência"
+msgstr "Imagens JPEG e BMP não podem ter transparência."
 
 #: src/preferences.py
 msgid ""
@@ -1061,7 +1061,7 @@ msgstr "Perguntar antes de salvar"
 
 #: src/preferences.py
 msgid "You can zoom with Ctrl+scrolling, or only scrolling."
-msgstr "Você pode dar zoom com Ctrl+scroll, ou somente scroll"
+msgstr "Você pode dar zoom com Ctrl+rolagem, ou apenas rolagem."
 
 #: src/preferences.py
 msgid "See the user help manual for explanations."
@@ -1108,7 +1108,7 @@ msgstr "Realçador"
 #: src/preferences.py src/tools/classic_tools/tool_brush.py
 #: src/tools/classic_tools/brushes/abstract_brush.py
 msgid "Brush"
-msgstr ""
+msgstr "Pincel"
 
 #. Context: this is the name of a tool to draw little circles, crosses,
 #. or squares at precise points of the image, for example to draw a vague
@@ -1117,7 +1117,7 @@ msgstr ""
 #. the elements of an image.
 #: src/preferences.py src/tools/classic_tools/tool_points.py
 msgid "Points"
-msgstr ""
+msgstr "Pontos"
 
 #. Context: this is a tool to select an area according to a shape that
 #. can be freely defined by the user.
@@ -1162,9 +1162,8 @@ msgid "Background color"
 msgstr "Cor de fundo"
 
 #: src/preferences.py
-#, fuzzy
 msgid "Prefer dark theme variant"
-msgstr "Largura padrão"
+msgstr "Preferir variante de tema escuro"
 
 #. Context: title of a section of the preferences. It corresponds to the
 #. window layout (header-bar? tool-bar? menu-bar?)
@@ -1280,32 +1279,32 @@ msgid ""
 "A part of the image is selected: the pixels beneath the selection will be "
 "saved with a color you might not expect!"
 msgstr ""
+"Uma parte da imagem está selecionada: os pixels abaixo da seleção serão "
+"salvos com uma cor que você não esperava!"
 
 #. Context: the user tries to save the image while previewing an
 #. unapplied "transform" operation (scaling, cropping, whatever)
 #: src/saving_manager.py
 msgid "Modifications from the current tool haven't been applied."
-msgstr ""
+msgstr "As modificações da ferramenta atual não foram aplicadas."
 
 #. To translators: this string should be quite short
 #: src/saving_manager.py
 msgid "Apply & save"
-msgstr ""
+msgstr "Aplicar e salvar"
 
 #. To translators: this string should be quite short
 #: src/saving_manager.py
-#, fuzzy
 msgid "Deselect & save"
-msgstr "Desselecionar"
+msgstr "Desmarcar e salvar"
 
 #: src/saving_manager.py
 msgid "Save anyway"
-msgstr ""
+msgstr "Salvar mesmo assim"
 
 #: src/saving_manager.py
-#, fuzzy
 msgid "Do you want to save anyway?"
-msgstr "Onde você quer abrir %s?"
+msgstr "Você deseja salvar mesmo assim?"
 
 #. Context: confirm replacing transparent pixels with the selected color
 #: src/saving_manager.py
@@ -1314,7 +1313,7 @@ msgstr "Subtítuir"
 
 #: src/saving_manager.py
 msgid "This file format doesn't support transparent colors."
-msgstr "Esse formato de arquivo não suporta cores transparentes"
+msgstr "Esse formato de arquivo não oferece suporte a cores transparentes."
 
 #: src/saving_manager.py
 msgid "You can save the image as a PNG file, or replace transparency with:"
@@ -1327,11 +1326,11 @@ msgstr "Substituír transparência com:"
 #. Context: an error message
 #: src/selection_manager.py
 msgid "The selection pixbuf is empty."
-msgstr ""
+msgstr "O pixbuf de seleção está vazio."
 
 #: src/selection_manager.py
 msgid "The selection path is empty."
-msgstr ""
+msgstr "O caminho de seleção está vazio."
 
 #. Context: an error message
 #: src/tools_initializer.py
@@ -1349,58 +1348,61 @@ msgstr "Erro ao iniciar o aplicativo, por favor reportar o bug."
 msgid ""
 "It's the first time you use Drawing %s, would you like to read what's new?"
 msgstr ""
+"Esta é a primeira vez que você usa o Drawing %s. Gostaria de ver o que há de "
+"novo?"
 
 #: src/window.py
 msgid "No"
-msgstr ""
+msgstr "Não"
 
 #: src/window.py
 msgid "Later"
-msgstr ""
+msgstr "Mais tarde"
 
 #: src/window.py
 msgid "Yes"
-msgstr ""
+msgstr "Sim"
 
 #: src/window.py
 msgid "The clipboard doesn't contain any image."
-msgstr ""
+msgstr "A área de transferência não contém nenhuma imagem."
 
 #. Context: %s is a file name
 #: src/window.py
 #, python-format
 msgid "The file %s is already opened"
-msgstr ""
+msgstr "O arquivo %s já está aberto"
 
 #. Context: the user would click here to confirm they want to open the
 #. same file twice
 #: src/window.py
-#, fuzzy
 msgid "Open again"
-msgstr "Abrir uma imagem"
+msgstr "Abrir novamente"
 
 #: src/window.py
 msgid "Switch to this image"
-msgstr ""
+msgstr "Mudar para esta imagem"
 
 #: src/window.py
 msgid "Modifications will take effect in the next new window."
-msgstr "Modificações vão ter efeito na próxima janela"
+msgstr "As modificações terão efeito na próxima nova janela."
 
 #: src/window.py
 msgid "Middle-click or press F8 to show/hide controls."
 msgstr ""
+"Clique com o botão do meio ou pressione F8 para mostrar/ocultar os controles."
 
 #: src/window.py
-#, fuzzy
 msgid "Press F11 to exit fullscreen."
-msgstr "Sair da tela cheia"
+msgstr "Pressione F11 para sair da tela inteira."
 
 #: src/window.py
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Error loading the bottom pane for the tool '%s', please report this bug."
-msgstr "Erro ao iniciar o aplicativo, por favor reportar o bug."
+msgstr ""
+"Erro ao carregar o painel inferior para a ferramenta '%s'; por favor reporte "
+"este bug."
 
 #: src/window.py
 #, python-format
@@ -1435,9 +1437,8 @@ msgid "What do you want to do with %s?"
 msgstr "O quê você quer fazer com %s?"
 
 #: src/window.py
-#, fuzzy
 msgid "Image copied to clipboard"
-msgstr "Editar Imagem no Clipboard"
+msgstr "Imagem copiada para a área de transferência"
 
 #: src/window.py
 msgid "Import a picture"
@@ -1536,19 +1537,20 @@ msgid "BMP images"
 msgstr "Imagens BMP"
 
 #: src/utilities/utilities_files.py
-#, fuzzy, python-format
+#, python-format
 msgid "%s isn't an image."
-msgstr "Abrir uma imagem"
+msgstr "%s não é uma imagem."
 
 #: src/utilities/utilities_files.py
 msgid "Sorry, WEBP images can't be loaded by this app."
 msgstr ""
+"Lamentamos, mas as imagens WEBP não podem ser carregadas por esta aplicação."
 
 #. Context: an error message, %s is a file path
 #: src/utilities/utilities_files.py
 #, python-format
 msgid "Despite its name, %s is a WEBP file."
-msgstr ""
+msgstr "Apesar do nome, %s é um arquivo WEBP."
 
 #: src/utilities/utilities_paths.py
 msgid "Continue"
@@ -1580,9 +1582,8 @@ msgstr "graus"
 #. Context: this is equivalent to "Highlight: Light text on dark background"
 #. but it has to be FAR SHORTER so it fits in the color chooser
 #: src/optionsbars/classic/optionsbar_color_popover.py
-#, fuzzy
 msgid "Highlight (dark)"
-msgstr "Realçador"
+msgstr "Destacar (escuro)"
 
 #: src/optionsbars/classic/optionsbar_color_popover.py
 #: src/tools/ui/tool-shape.ui
@@ -1633,9 +1634,8 @@ msgstr "Opções da seleção"
 
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 #: src/tools/ui/tool-eraser.ui
-#, fuzzy
 msgid "Replace with…"
-msgstr "Expandir com…"
+msgstr "Substituir com…"
 
 #: src/optionsbars/selection/optionsbar-selection.ui
 #: src/optionsbars/transform/optionsbar-crop.ui
@@ -1648,7 +1648,7 @@ msgstr "Transparência"
 
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 msgid "Extract from this color"
-msgstr ""
+msgstr "Extrair desta cor"
 
 #: src/optionsbars/transform/abstract-optionsbar-transform.ui
 msgid "More options"
@@ -1712,14 +1712,12 @@ msgid "Never"
 msgstr "Nunca"
 
 #: src/optionsbars/transform/optionsbar-scale.ui src/tools/ui/tool-scale.ui
-#, fuzzy
 msgid "Pixels"
-msgstr "Pixeis"
+msgstr "Pixels"
 
 #: src/optionsbars/transform/optionsbar-scale.ui src/tools/ui/tool-scale.ui
-#, fuzzy
 msgid "Percentage"
-msgstr "porcentagens"
+msgstr "Porcentagem"
 
 #: src/optionsbars/transform/optionsbar-skew.ui
 msgid "Horizontal deformation"
@@ -1734,6 +1732,8 @@ msgstr "Deformação vertical"
 #, python-brace-format
 msgid "Can't start operation: wrong tool id (expected {0}, got {1})"
 msgstr ""
+"Não é possível iniciar a operação: ID da ferramenta incorreto (esperado {0}, "
+"obtido {1})"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui
@@ -1761,46 +1761,40 @@ msgstr "Borda"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui
-#, fuzzy
 msgid "No dashes"
-msgstr "Usar traços"
+msgstr "Sem traços"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui
-#, fuzzy
 msgid "Simple dashes"
-msgstr "Usar traços"
+msgstr "Traços simples"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui
-#, fuzzy
 msgid "Long dashes"
-msgstr "Usar traços"
+msgstr "Traços longos"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui
-#, fuzzy
 msgid "Short dashes"
-msgstr "Usar traços"
+msgstr "Traços curtos"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui
 msgid "Alternated dashes"
-msgstr ""
+msgstr "Traços alternados"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
-#, fuzzy
 msgid "No arrow"
-msgstr "Flecha"
+msgstr "Sem flecha"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 msgid "Simple arrow"
-msgstr ""
+msgstr "Flecha simples"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
-#, fuzzy
 msgid "Double arrow"
-msgstr "Seta traçada"
+msgstr "Flecha dupla"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-brush.ui
 #: src/tools/ui/tool-highlight.ui src/tools/ui/tool-line.ui
@@ -1810,41 +1804,37 @@ msgid "Antialiasing"
 msgstr "Antiserrilhado"
 
 #: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_simple.py
-#, fuzzy
 msgid "Simple brush"
-msgstr "Usar traços"
+msgstr "Pincel simples"
 
 #: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_airbrush.py
 msgid "Airbrush"
-msgstr ""
+msgstr "Aerógrafo"
 
 #: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_hairy.py
-#, fuzzy
 msgid "Hairy brush"
-msgstr "Usar traços"
+msgstr "Pincel peludo"
 
 #: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_nib.py
 msgid "Calligraphic nib"
-msgstr ""
+msgstr "Bico caligráfico"
 
 #: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_nib.py
 msgid "Right-handed nib"
-msgstr ""
+msgstr "Bico destro"
 
 #: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_nib.py
-#, fuzzy
 msgid "Vertical nib"
-msgstr "Vertical"
+msgstr "Bico vertical"
 
 #: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_nib.py
 msgid "Left-handed nib"
-msgstr ""
+msgstr "Bico canhoto"
 
 #. brush_direction == 'horizontal':
 #: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_nib.py
-#, fuzzy
 msgid "Horizontal nib"
-msgstr "horizontal"
+msgstr "Bico horizontal"
 
 #: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
 #: src/tools/classic_tools/tool_pencil.py
@@ -1861,25 +1851,23 @@ msgid "Blur"
 msgstr "Borrar"
 
 #: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
-#, fuzzy
 msgid "Shuffle pixels"
-msgstr "Pixeis"
+msgstr "Pixels de ordem aleatória"
 
 #: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
 msgid "Shuffle and blur"
-msgstr ""
+msgstr "Misturar e desfocar"
 
 #. Context: a filter to censor the image with some little tiles
 #: src/tools/ui/tool-eraser.ui src/tools/ui/tool-filters.ui
 #: src/tools/classic_tools/tool_eraser.py
 #: src/tools/transform_tools/tool_filters.py
 msgid "Mosaic"
-msgstr ""
+msgstr "Mosaico"
 
 #: src/tools/ui/tool-eraser.ui
-#, fuzzy
 msgid "Solid color"
-msgstr "Cor secundária"
+msgstr "Cor sólida"
 
 #: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
 msgid "Change saturation"
@@ -1898,7 +1886,7 @@ msgstr "Adicionar transparência"
 #: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
 #: src/tools/transform_tools/filters/filter_contrast.py
 msgid "Increase contrast"
-msgstr ""
+msgstr "Aumentar contraste"
 
 #. Context: the title of the menu with various types of blurring
 #. filters and their options.
@@ -1924,32 +1912,28 @@ msgid "No direction"
 msgstr "Sem direão"
 
 #: src/tools/ui/tool-filters.ui
-#, fuzzy
 msgid "Blur horizontally"
-msgstr "Inverter horizontalmente"
+msgstr "Desfocar horizontalmente"
 
 #: src/tools/ui/tool-filters.ui
-#, fuzzy
 msgid "Blur vertically"
-msgstr "Inverter verticalmente"
+msgstr "Desfocar verticalmente"
 
 #: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
 msgid "Invert colors"
 msgstr "Inverter cores"
 
 #: src/tools/ui/tool-highlight.ui
-#, fuzzy
 msgid "Straighten the line"
-msgstr "Redimensionar a seleção"
+msgstr "Endireitar a linha"
 
 #: src/tools/ui/tool-line.ui
 msgid "Color gradient"
 msgstr "Gradiente de cor"
 
 #: src/tools/ui/tool-line.ui
-#, fuzzy
 msgid "Locked direction"
-msgstr "Sem direão"
+msgstr "Direção bloqueada"
 
 #. Context: title for the list of the possible painting algorithms.
 #: src/tools/ui/tool-paint.ui
@@ -1975,22 +1959,20 @@ msgstr "Apagar e substituir"
 #. paints over the entire image, instead of following the shapes
 #. already drawn.
 #: src/tools/ui/tool-paint.ui
-#, fuzzy
 msgid "Entire image"
-msgstr "Imagens abertas"
+msgstr "Imagem inteira"
 
 #. Context: this is one of the possible painting algorithms. It
 #. doesn't really paint, instead it erases the color the user
 #. clicked. For example to cut out an object from its white
 #. background.
 #: src/tools/ui/tool-paint.ui
-#, fuzzy
 msgid "Remove color"
-msgstr "Cor de origem"
+msgstr "Remover cor"
 
 #: src/tools/ui/tool-points.ui
 msgid "Dots type"
-msgstr ""
+msgstr "Tipos de pontos"
 
 #: src/tools/ui/tool-points.ui src/tools/ui/tool-shape.ui
 #: src/tools/classic_tools/tool_points.py src/tools/classic_tools/tool_shape.py
@@ -1999,31 +1981,31 @@ msgstr "Circulo"
 
 #: src/tools/ui/tool-points.ui src/tools/classic_tools/tool_points.py
 msgid "Cross"
-msgstr ""
+msgstr "Cruz"
 
 #: src/tools/ui/tool-points.ui src/tools/classic_tools/tool_points.py
 msgid "X-shaped cross"
-msgstr ""
+msgstr "Cruz em forma de X"
 
 #: src/tools/ui/tool-points.ui
 msgid "Include a number"
-msgstr ""
+msgstr "Inclui um número"
 
 #: src/tools/ui/tool-points.ui
 msgid "Next number"
-msgstr ""
+msgstr "Próximo número"
 
 #: src/tools/ui/tool-points.ui
 msgid "Reset number"
-msgstr ""
+msgstr "Redefinir número"
 
 #: src/tools/ui/tool-points.ui
 msgid "Decrement number"
-msgstr ""
+msgstr "Diminuir número"
 
 #: src/tools/ui/tool-points.ui
 msgid "Increment number"
-msgstr ""
+msgstr "Aumentar número"
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
 msgid "Solid outline"
@@ -2114,15 +2096,13 @@ msgstr "Sombra"
 
 #. Context: a type of background behind the inserted text
 #: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
-#, fuzzy
 msgid "Thin outline"
-msgstr "Sem borda"
+msgstr "Contorno fino"
 
 #. Context: a type of background behind the inserted text
 #: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
-#, fuzzy
 msgid "Thick outline"
-msgstr "Sem borda"
+msgstr "Contorno espesso"
 
 #. Context: a type of background behind the inserted text
 #: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
@@ -2139,7 +2119,7 @@ msgstr "Opções de curva"
 
 #: src/tools/classic_tools/tool_arc.py
 msgid "Draw a second segment to complete the curve"
-msgstr ""
+msgstr "Desenhe um segundo segmento para completar a curva"
 
 #: src/tools/classic_tools/tool_arc.py src/tools/classic_tools/tool_line.py
 msgid "Dashed arrow"
@@ -2157,38 +2137,35 @@ msgstr "Traçado"
 #: src/tools/classic_tools/tool_arc.py src/tools/classic_tools/tool_line.py
 #: src/tools/classic_tools/tool_pencil.py
 msgid "Press <Alt> to toggle the 'outline' option"
-msgstr ""
+msgstr "Pressione <Alt> para alternar para a opção 'Borda'"
 
 #: src/tools/classic_tools/tool_brush.py
-#, fuzzy
 msgid "Brush options"
-msgstr "Mais opções"
+msgstr "Opções do pincel"
 
 #: src/tools/classic_tools/tool_eraser.py
 msgid "Press <Shift> to erase a rectangle area instead"
-msgstr ""
+msgstr "Pressione <Shift> para apagar uma área de retângulo"
 
 #: src/tools/classic_tools/tool_eraser.py
 msgid "Press <Shift> to erase a path instead"
-msgstr ""
+msgstr "Pressione <Shift> para apagar um caminho"
 
 #: src/tools/classic_tools/tool_eraser.py
-#, fuzzy
 msgid "Eraser options"
-msgstr "Mais opções"
+msgstr "Opções da borracha"
 
 #: src/tools/classic_tools/tool_highlight.py
 msgid "Press <Shift> to temporarily highlight on dark background instead"
-msgstr ""
+msgstr "Pressione <Shift> para destacar temporariamente no fundo escuro"
 
 #: src/tools/classic_tools/tool_highlight.py
 msgid "Press <Shift> to temporarily highlight on light background instead"
-msgstr ""
+msgstr "Pressione <Shift> para destacar temporariamente no fundo claro"
 
 #: src/tools/classic_tools/tool_highlight.py
-#, fuzzy
 msgid "Highlighter options"
-msgstr "Realçador"
+msgstr "Opções de realce"
 
 #: src/tools/classic_tools/tool_line.py
 msgid "Line"
@@ -2196,20 +2173,20 @@ msgstr "Linha"
 
 #: src/tools/classic_tools/tool_line.py src/tools/classic_tools/tool_shape.py
 #: src/tools/selection_tools/select_rect.py
-#, fuzzy, python-format
+#, python-format
 msgid "Width: %spx"
-msgstr "Largura"
+msgstr "Largura: %spx"
 
 #: src/tools/classic_tools/tool_line.py src/tools/classic_tools/tool_shape.py
 #: src/tools/selection_tools/select_rect.py
-#, fuzzy, python-format
+#, python-format
 msgid "Height: %spx"
-msgstr "Altura"
+msgstr "Altura: %spx"
 
 #: src/tools/classic_tools/tool_line.py
 #, python-format
 msgid "Length: %spx"
-msgstr ""
+msgstr "Comprimento: %spx"
 
 #: src/tools/classic_tools/tool_line.py
 msgid "Line options"
@@ -2217,11 +2194,11 @@ msgstr "Opções da linha"
 
 #: src/tools/classic_tools/tool_line.py
 msgid "Press <Shift> to unlock the line direction"
-msgstr ""
+msgstr "Pressione <Shift> para desbloquear a direção da linha"
 
 #: src/tools/classic_tools/tool_line.py
 msgid "Press <Shift> to lock the line direction"
-msgstr ""
+msgstr "Pressione <Shift> para bloquear a direção da linha"
 
 #: src/tools/classic_tools/tool_paint.py
 msgid "Painting options"
@@ -2232,33 +2209,31 @@ msgid "Click on an area to replace its color by transparency"
 msgstr "Clique em uma área para substituir a cor por transparência"
 
 #: src/tools/classic_tools/tool_paint.py
-#, fuzzy
 msgid "Click on the canvas to entirely paint it"
-msgstr "Clique no primeiro ponto da forma para fechá-la"
+msgstr "Clique na tela para pintá-la inteiramente"
 
 #: src/tools/classic_tools/tool_paint.py
 #: src/tools/selection_tools/select_color.py
 msgid "May not work for complex shapes"
-msgstr ""
+msgstr "Pode não funcionar para formas complexas"
 
 #: src/tools/classic_tools/tool_paint.py
 #: src/tools/selection_tools/select_color.py
 msgid "It will not work well if the area's edges are blurry"
-msgstr ""
+msgstr "Não funcionará bem se as bordas da área estiverem borradas"
 
 #: src/tools/classic_tools/tool_pencil.py
 msgid "Pencil options"
 msgstr "Opções do lápis"
 
 #: src/tools/classic_tools/tool_points.py
-#, fuzzy
 msgid "Points options"
-msgstr "Opções de fonte"
+msgstr "Opções de pontos"
 
 #: src/tools/classic_tools/tool_points.py
 #, python-format
 msgid "Next number: %s"
-msgstr ""
+msgstr "Próximo número: %s"
 
 #: src/tools/classic_tools/tool_shape.py
 msgid "Shape"
@@ -2267,7 +2242,7 @@ msgstr "Forma"
 #: src/tools/classic_tools/tool_shape.py
 #, python-format
 msgid "Radius: %spx"
-msgstr ""
+msgstr "Raio: %spx"
 
 #: src/tools/classic_tools/tool_shape.py
 msgid "Shape options"
@@ -2275,24 +2250,24 @@ msgstr "Opções da forma"
 
 #. Context: fill a shape with the color of the left click
 #: src/tools/classic_tools/tool_shape.py
-#, fuzzy
 msgid "Filled with main color"
-msgstr "Editar cor primária"
+msgstr "Preenchido com a cor principal"
 
 #. Context: fill a shape with the color of the right click
 #: src/tools/classic_tools/tool_shape.py
-#, fuzzy
 msgid "Filled with secondary color"
-msgstr "Editar cor secundária"
+msgstr "Preenchido com a cor secundária"
 
 #: src/tools/classic_tools/tool_shape.py
 #: src/tools/selection_tools/select_free.py
 msgid "Click on the shape's first point to close it."
-msgstr "Clique no primeiro ponto da forma para fechá-la"
+msgstr "Clique no primeiro ponto da forma para fechá-la."
 
 #: src/tools/classic_tools/tool_shape.py
 msgid "Press <Alt>, <Shift>, or both, to quickly change the 'filling' option"
 msgstr ""
+"Pressione <Alt>, <Shift> ou ambos para alterar rapidamente a opção de "
+"'Preenchimento'"
 
 #: src/tools/classic_tools/tool_text.py
 msgid "Text"
@@ -2304,25 +2279,25 @@ msgstr "Opções de fonte"
 
 #: src/tools/classic_tools/brushes/brush_airbrush.py
 msgid "Density depends on the stylus pressure"
-msgstr ""
+msgstr "A densidade depende da pressão da caneta"
 
 #: src/tools/classic_tools/brushes/brush_airbrush.py
 msgid "Density depends on the mouse speed"
-msgstr ""
+msgstr "A densidade depende da velocidade do mouse"
 
 #: src/tools/classic_tools/brushes/brush_hairy.py
 #: src/tools/classic_tools/brushes/brush_nib.py
 #: src/tools/classic_tools/brushes/brush_simple.py
 msgid "Width depends on the stylus pressure"
-msgstr ""
+msgstr "A largura depende da pressão da caneta"
 
 #: src/tools/classic_tools/brushes/brush_nib.py
 msgid "Width depends on the line orientation"
-msgstr ""
+msgstr "A largura depende da orientação da linha"
 
 #: src/tools/classic_tools/brushes/brush_simple.py
 msgid "Width depends on the mouse speed"
-msgstr ""
+msgstr "A largura depende da velocidade do mouse"
 
 #: src/tools/selection_tools/abstract_select.py
 msgid "Drag the selection or right-click on the canvas"
@@ -2343,40 +2318,39 @@ msgstr "Erro: valores inválidos"
 #. The options of the "crop" tool are all about how to expand the canvas,
 #. hence this label.
 #: src/tools/transform_tools/tool_crop.py
-#, fuzzy
 msgid "Expanding options"
-msgstr "Opções da pintura"
+msgstr "Opções de expansão"
 
 #: src/tools/transform_tools/tool_crop.py
 msgid "The sides you'll crop are hinted by the mouse pointer"
-msgstr ""
+msgstr "Os lados que você corta são indicados pelo ponteiro do mouse"
 
 #: src/tools/transform_tools/tool_crop.py
 msgid "Cropping the selection"
 msgstr "Recortar a seleção"
 
 #: src/tools/transform_tools/tool_crop.py
-#, fuzzy
 msgid "Cropping or expanding the canvas"
-msgstr "Recortar a tela"
+msgstr "Cortar ou expandir a tela"
 
 #: src/tools/transform_tools/tool_crop.py
 #: src/tools/transform_tools/tool_rotate.py
 #: src/tools/transform_tools/tool_scale.py
 #: src/tools/transform_tools/tool_skew.py
 msgid "Don't forget to confirm the operation!"
-msgstr ""
+msgstr "Não se esqueça de confirmar a operação!"
 
 #: src/tools/transform_tools/tool_crop.py
 #: src/tools/transform_tools/tool_skew.py
 msgid ""
 "Press <Alt>, <Shift>, or both, to quickly change the 'expand with' option"
 msgstr ""
+"Pressione <Alt>, <Shift> ou ambos para alterar rapidamente a opção 'Expandir "
+"com'"
 
 #: src/tools/transform_tools/tool_filters.py
-#, fuzzy
 msgid "Active filter"
-msgstr "Outras ferramentas"
+msgstr "Filtro ativo"
 
 #: src/tools/transform_tools/tool_filters.py
 msgid "Click on the image to preview the selected filter"
@@ -2385,12 +2359,11 @@ msgstr "Clique na imagem para pré-visualizar o filtro selecionado"
 #. Context: a filter. See "image embossing" on wikipedia
 #: src/tools/transform_tools/tool_filters.py
 msgid "Emboss"
-msgstr ""
+msgstr "Esculpir"
 
 #: src/tools/transform_tools/tool_rotate.py
-#, fuzzy
 msgid "Rotating options"
-msgstr "Opções da pintura"
+msgstr "Opções de rotação"
 
 #: src/tools/transform_tools/tool_rotate.py
 msgid "Rotating the selection"
@@ -2401,9 +2374,8 @@ msgid "Rotating the canvas"
 msgstr "Girando a tela"
 
 #: src/tools/transform_tools/tool_scale.py
-#, fuzzy
 msgid "Scaling options"
-msgstr "Opções da pintura"
+msgstr "Opções de escala"
 
 #: src/tools/transform_tools/tool_scale.py
 msgid "Scaling the selection"
@@ -2416,25 +2388,24 @@ msgstr "Redimensionar a tela"
 #: src/tools/transform_tools/tool_scale.py
 msgid "Press <Shift> to quickly toggle the 'lock proportions' option"
 msgstr ""
+"Pressione <Shift> para alternar rapidamente a opção de 'Proporções de "
+"bloqueio'"
 
 #: src/tools/transform_tools/tool_skew.py
-#, fuzzy
 msgid "Skewing options"
-msgstr "Opções da pintura"
+msgstr "Opções de inclinação"
 
 #: src/tools/transform_tools/tool_skew.py
 msgid "The directions of the deformation are hinted by the mouse pointer"
-msgstr ""
+msgstr "As direções da deformação são indicadas pelo ponteiro do mouse"
 
 #: src/tools/transform_tools/tool_skew.py
-#, fuzzy
 msgid "Skewing the selection"
-msgstr "Redimensionar a seleção"
+msgstr "Inclinando a seleção"
 
 #: src/tools/transform_tools/tool_skew.py
-#, fuzzy
 msgid "Skewing the canvas"
-msgstr "Redimensionar a tela"
+msgstr "Inclinando a tela"
 
 #: src/tools/transform_tools/filters/filter_blur.py
 msgid "Blur radius"
