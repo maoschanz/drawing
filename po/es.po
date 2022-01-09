@@ -3,22 +3,22 @@
 # This file is distributed under the same license as the drawing package.
 # Adolfo Jayme Barrientos <fitojb@ubuntu.com>, 2019-2020
 # Xoán Sampaíño <xoansampainho@gmail.com>, 2019
-# Óscar Fernández Díaz <oscfdezdz@tuta.io>, 2021.
+# Óscar Fernández Díaz <oscfdezdz@tuta.io>, 2021-2022
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
-"POT-Creation-Date: 2021-12-23 20:06+0100\n"
-"PO-Revision-Date: 2021-12-04 16:15+0100\n"
+"POT-Creation-Date: 2022-01-03 13:50+0100\n"
+"PO-Revision-Date: 2022-01-03 14:03+0100\n"
 "Last-Translator: Óscar Fernández Díaz <oscfdezdz@tuta.io>\n"
 "Language-Team: Spanish\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.0\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #: data/com.github.maoschanz.drawing.desktop.in
 #: data/com.github.maoschanz.drawing.appdata.xml.in src/deco_manager.py
@@ -36,7 +36,7 @@ msgstr "Utilidad de dibujo sencilla"
 #. Don't forget the semicolons.
 #: data/com.github.maoschanz.drawing.desktop.in
 msgid "Paint;Sketch;Pencil;"
-msgstr "Paint;Boceto;Lápiz;"
+msgstr "Paint;Sketch;Pencil;Pintar;Boceto;Lápiz;"
 
 #: data/com.github.maoschanz.drawing.desktop.in src/ui/app-menus.ui
 #: src/ui/shortcuts.ui src/ui/win-menus.ui src/window.py
@@ -222,7 +222,7 @@ msgstr "Guardar sin transparencia"
 #. will just rickroll the user.
 #: src/ui/app-menus.ui src/ui/win-menus.ui
 msgid "Prepare as NFT…"
-msgstr ""
+msgstr "Preparar como NFT…"
 
 #: src/ui/app-menus.ui src/ui/headerbar-eos.ui src/ui/win-menus.ui
 #: src/saving_manager.py
@@ -2122,7 +2122,7 @@ msgstr "Opciones de curva"
 
 #: src/tools/classic_tools/tool_arc.py
 msgid "Draw a second segment to complete the curve"
-msgstr ""
+msgstr "Dibujar un segundo segmento para completar la curva"
 
 #: src/tools/classic_tools/tool_arc.py src/tools/classic_tools/tool_line.py
 msgid "Dashed arrow"
@@ -2140,7 +2140,7 @@ msgstr "Discontinua"
 #: src/tools/classic_tools/tool_arc.py src/tools/classic_tools/tool_line.py
 #: src/tools/classic_tools/tool_pencil.py
 msgid "Press <Alt> to toggle the 'outline' option"
-msgstr ""
+msgstr "Pulse <Alt> para conmutar la opción de \"contorno\""
 
 #: src/tools/classic_tools/tool_brush.py
 msgid "Brush options"
@@ -2148,11 +2148,11 @@ msgstr "Opciones de pincel"
 
 #: src/tools/classic_tools/tool_eraser.py
 msgid "Press <Shift> to erase a rectangle area instead"
-msgstr ""
+msgstr "Pulse <Shift> para borrar un área rectangular en su lugar"
 
 #: src/tools/classic_tools/tool_eraser.py
 msgid "Press <Shift> to erase a path instead"
-msgstr ""
+msgstr "Pulse <Shift> para borrar una ruta en su lugar"
 
 #: src/tools/classic_tools/tool_eraser.py
 msgid "Eraser options"
@@ -2161,10 +2161,12 @@ msgstr "Opciones de borrado"
 #: src/tools/classic_tools/tool_highlight.py
 msgid "Press <Shift> to temporarily highlight on dark background instead"
 msgstr ""
+"Pulse <Shift> para resaltar temporalmente sobre fondo oscuro en su lugar"
 
 #: src/tools/classic_tools/tool_highlight.py
 msgid "Press <Shift> to temporarily highlight on light background instead"
 msgstr ""
+"Pulse <Shift> para resaltar temporalmente sobre fondo claro en su lugar"
 
 #: src/tools/classic_tools/tool_highlight.py
 msgid "Highlighter options"
@@ -2197,11 +2199,11 @@ msgstr "Opciones de línea"
 
 #: src/tools/classic_tools/tool_line.py
 msgid "Press <Shift> to unlock the line direction"
-msgstr ""
+msgstr "Pulse <Shift> para desbloquear la dirección de la línea"
 
 #: src/tools/classic_tools/tool_line.py
 msgid "Press <Shift> to lock the line direction"
-msgstr ""
+msgstr "Pulse <Shift> para bloquear la dirección de la línea"
 
 #: src/tools/classic_tools/tool_paint.py
 msgid "Painting options"
@@ -2218,12 +2220,12 @@ msgstr "Pulse en el lienzo para pintarlo completamente"
 #: src/tools/classic_tools/tool_paint.py
 #: src/tools/selection_tools/select_color.py
 msgid "May not work for complex shapes"
-msgstr ""
+msgstr "Puede no funcionar para formas complejas"
 
 #: src/tools/classic_tools/tool_paint.py
 #: src/tools/selection_tools/select_color.py
 msgid "It will not work well if the area's edges are blurry"
-msgstr ""
+msgstr "No funcionará bien si los bordes del área son difusos"
 
 #: src/tools/classic_tools/tool_pencil.py
 msgid "Pencil options"
@@ -2269,6 +2271,8 @@ msgstr "Pulse en el primer punto de la forma para cerrarla."
 #: src/tools/classic_tools/tool_shape.py
 msgid "Press <Alt>, <Shift>, or both, to quickly change the 'filling' option"
 msgstr ""
+"Pulse <Alt>, <Shift>, o ambas, para cambiar rápidamente la opción de "
+"\"relleno\""
 
 #: src/tools/classic_tools/tool_text.py
 msgid "Text"
@@ -2321,35 +2325,35 @@ msgstr "Error: valores no válidos"
 #. The options of the "crop" tool are all about how to expand the canvas,
 #. hence this label.
 #: src/tools/transform_tools/tool_crop.py
-#, fuzzy
 msgid "Expanding options"
-msgstr "Opciones de relleno"
+msgstr "Opciones de ampliación"
 
 #: src/tools/transform_tools/tool_crop.py
 msgid "The sides you'll crop are hinted by the mouse pointer"
-msgstr ""
+msgstr "Los lados que vaya a recortar se indican con el puntero del ratón"
 
 #: src/tools/transform_tools/tool_crop.py
 msgid "Cropping the selection"
 msgstr "Recortando la selección"
 
 #: src/tools/transform_tools/tool_crop.py
-#, fuzzy
 msgid "Cropping or expanding the canvas"
-msgstr "Recortando el lienzo"
+msgstr "Recortar o ampliar el lienzo"
 
 #: src/tools/transform_tools/tool_crop.py
 #: src/tools/transform_tools/tool_rotate.py
 #: src/tools/transform_tools/tool_scale.py
 #: src/tools/transform_tools/tool_skew.py
 msgid "Don't forget to confirm the operation!"
-msgstr ""
+msgstr "¡No olvide confirmar la operación!"
 
 #: src/tools/transform_tools/tool_crop.py
 #: src/tools/transform_tools/tool_skew.py
 msgid ""
 "Press <Alt>, <Shift>, or both, to quickly change the 'expand with' option"
 msgstr ""
+"Pulse <Alt>, <Shift>, o ambas, para cambiar rápidamente la opción \"ampliar "
+"con\""
 
 #: src/tools/transform_tools/tool_filters.py
 msgid "Active filter"
@@ -2392,6 +2396,7 @@ msgstr "Escalando el lienzo"
 #: src/tools/transform_tools/tool_scale.py
 msgid "Press <Shift> to quickly toggle the 'lock proportions' option"
 msgstr ""
+"Pulse <Shift> para activar rápidamente la opción de \"bloquear proporciones\""
 
 #: src/tools/transform_tools/tool_skew.py
 msgid "Skewing options"
@@ -2399,7 +2404,7 @@ msgstr "Opciones de sesgo"
 
 #: src/tools/transform_tools/tool_skew.py
 msgid "The directions of the deformation are hinted by the mouse pointer"
-msgstr ""
+msgstr "Las direcciones de la deformación se indican con el puntero del ratón"
 
 #: src/tools/transform_tools/tool_skew.py
 msgid "Skewing the selection"
