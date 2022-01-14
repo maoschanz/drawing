@@ -67,8 +67,8 @@ class AbstractCanvasTool(AbstractAbstractTool):
 	def temp_preview(self, is_selection, local_dx, local_dy):
 		"""Part of the previewing methods shared by all transform tools."""
 		pixbuf = self.get_image().temp_pixbuf
+		cairo_context = self.get_context()
 		if is_selection:
-			cairo_context = self.get_context()
 			cairo_context.set_source_surface(self.get_surface(), 0, 0)
 			cairo_context.paint()
 			x = self.get_selection().selection_x + local_dx
@@ -76,10 +76,6 @@ class AbstractCanvasTool(AbstractAbstractTool):
 			Gdk.cairo_set_source_pixbuf(cairo_context, pixbuf, x, y)
 			cairo_context.paint()
 		else:
-			cairo_context = self.get_context()
-			# widget_surface = cairo.ImageSurface(cairo.Format.ARGB32, w, h)
-			# cairo_context = cairo.Context(widget_surface)
-			# TODO concerning the scale(/crop)/rotate/skew preview ^
 			cairo_context.set_operator(cairo.Operator.SOURCE)
 			Gdk.cairo_set_source_pixbuf(cairo_context, pixbuf, 0, 0)
 			cairo_context.paint()
@@ -174,6 +170,8 @@ class AbstractCanvasTool(AbstractAbstractTool):
 	def _draw_temp_pixbuf(self, cairo_context, x, y):
 		pixbuf = self.get_image().temp_pixbuf
 		Gdk.cairo_set_source_pixbuf(cairo_context, pixbuf, x, y)
+		if self.get_image().is_zoomed_surface_sharp():
+			cairo_context.get_source().set_filter(cairo.FILTER_NEAREST)
 		cairo_context.paint()
 
 	def get_deformed_surface(self, source_surface, coefs, prefill=False):

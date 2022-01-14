@@ -150,6 +150,8 @@ class DrSelectionManager():
 			x = self.selection_x + tool_dx
 			y = self.selection_y + tool_dy
 		Gdk.cairo_set_source_pixbuf(cairo_context, self.selection_pixbuf, x, y)
+		if self.image.is_zoomed_surface_sharp():
+			cairo_context.get_source().set_filter(cairo.FILTER_NEAREST)
 		cairo_context.paint()
 
 	def get_center_coords(self):

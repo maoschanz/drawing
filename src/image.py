@@ -48,7 +48,11 @@ class DrImage(Gtk.Box):
 	reload_info_bar = Gtk.Template.Child()
 	reload_label = Gtk.Template.Child()
 
+	# HiDPI scale factor
 	SCALE_FACTOR = 1.0 # XXX doesn't work well enough to be anything else
+
+	# Threshold between normal rendering and crisp (costly) rendering
+	ZOOM_THRESHOLD = 4.0
 
 	def __init__(self, window, **kwargs):
 		super().__init__(**kwargs)
@@ -422,6 +426,8 @@ class DrImage(Gtk.Box):
 		# Image (with scroll position)
 		cairo_context.set_source_surface(self.get_surface(), \
 		                                 -1 * self.scroll_x, -1 * self.scroll_y)
+		if self.is_zoomed_surface_sharp():
+			cairo_context.get_source().set_filter(cairo.FILTER_NEAREST)
 		cairo_context.paint()
 
 		# What the tool shows on the canvas, upon what it paints, for example an
@@ -815,6 +821,8 @@ class DrImage(Gtk.Box):
 		normalized_zoom_level = max(min(level, 400), 20)
 		self.zoom_level = (int(normalized_zoom_level)/100)
 		self.window.minimap.update_zoom_scale(self.zoom_level)
+		if self.is_zoomed_surface_sharp():
+			self.window.minimap.set_zoom_label(self.zoom_level * 100)
 		self.fake_scrollbar_update()
 		self.update()
 
@@ -827,6 +835,9 @@ class DrImage(Gtk.Box):
 		self.set_zoom_level(opti)
 		self.scroll_x = 0
 		self.scroll_y = 0
+
+	def is_zoomed_surface_sharp(self):
+		return self.zoom_level > self.ZOOM_THRESHOLD
 
 	############################################################################
 ################################################################################
