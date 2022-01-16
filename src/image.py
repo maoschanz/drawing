@@ -666,6 +666,10 @@ class DrImage(Gtk.Box):
 	def get_event_coords(self, event):
 		event_x = self.scroll_x + (event.x / self.zoom_level)
 		event_y = self.scroll_y + (event.y / self.zoom_level)
+		# `int()` will truncate to the lower integer so we need this to get an
+		# accurate behavior when doing pixel-art for example
+		event_x += 0.5
+		event_y += 0.5
 		return int(event_x), int(event_y)
 
 	def get_corrected_coords(self, x1, x2, y1, y2, with_selection, with_zoom):
@@ -818,7 +822,7 @@ class DrImage(Gtk.Box):
 		self.set_zoom_level((self.zoom_level * 100) + delta)
 
 	def set_zoom_level(self, level):
-		normalized_zoom_level = max(min(level, 400), 20)
+		normalized_zoom_level = max(min(level, 1200), 20)
 		self.zoom_level = (int(normalized_zoom_level)/100)
 		self.window.minimap.update_zoom_scale(self.zoom_level)
 		if self.is_zoomed_surface_sharp():

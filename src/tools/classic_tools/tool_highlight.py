@@ -17,7 +17,6 @@
 
 import cairo
 from .tool_pencil import ToolPencil
-# from .utilities_paths import utilities_smooth_path
 from .abstract_classic_tool import AbstractClassicTool
 
 class ToolHighlighter(ToolPencil):
@@ -161,7 +160,6 @@ class ToolHighlighter(ToolPencil):
 			main_color[3] = 0.5
 		ccontext.set_source_rgba(*main_color)
 
-		# utilities_smooth_path(ccontext, operation['path'])
 		ccontext.append_path(operation['path'])
 		ccontext.stroke()
 
