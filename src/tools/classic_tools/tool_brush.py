@@ -120,6 +120,7 @@ class ToolBrush(AbstractClassicTool):
 			'line_width': self.tool_width,
 			'antialias': self._use_antialias,
 			'is_preview': True,
+			'smooth': not self.get_image().is_zoomed_surface_sharp(),
 			'path': self._manual_path
 		}
 		return operation

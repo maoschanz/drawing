@@ -112,6 +112,7 @@ class ToolPencil(AbstractClassicTool):
 			'rgba': self.main_color,
 			'rgba2': self.secondary_color,
 			'antialias': self._use_antialias,
+			'smooth': not self.get_image().is_zoomed_surface_sharp(),
 			'outline': self._use_outline,
 			'operator': self._operator,
 			'line_width': self.tool_width,
@@ -133,7 +134,10 @@ class ToolPencil(AbstractClassicTool):
 		                        operation['dashes'], operation['line_cap'])
 		cairo_context.set_line_join(operation['line_join']) # XXX useless?
 
-		utilities_smooth_path(cairo_context, operation['path'])
+		if operation['smooth']:
+			utilities_smooth_path(cairo_context, operation['path'])
+		else:
+			cairo_context.append_path(operation['path'])
 
 		if operation['outline']:
 			cairo_context.set_source_rgba(*operation['rgba2'])

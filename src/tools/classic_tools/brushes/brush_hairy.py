@@ -34,7 +34,7 @@ class BrushHairy(AbstractBrush):
 		cairo_context.set_line_join(cairo.LineJoin.ROUND)
 		cairo_context.set_line_width(1)
 
-		line_width = int(operation['line_width'] / 2)
+		line_width = max(1, int(operation['line_width'] / 2))
 
 		matrix = []
 		random.seed(1) # this hardcoded seed avoids the hairs changing their
