@@ -115,7 +115,7 @@ class DrHistoryManager():
 		self.initial_operation = {
 			'tool_id': None,
 			'pixbuf': pixbuf,
-			'red': r, 'green': g, 'blue': b, 'alpha': a,
+			'rgba': Gdk.RGBA(red=r, green=g, blue=b, alpha=a),
 			'width': width, 'height': height
 		}
 

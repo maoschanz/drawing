@@ -106,8 +106,7 @@ class ToolEraser(ToolPencil):
 			clr = self.get_image().get_initial_rgba()
 			self._rgba = [clr.red, clr.green, clr.blue, clr.alpha]
 		elif self._rgba_type == 'secondary':
-			clr = self.secondary_color
-			self._rgba = [clr.red, clr.green, clr.blue, clr.alpha]
+			self._rgba = self.secondary_color
 
 		self.update_modifier_state(event.state)
 		if 'SHIFT' in self._modifier_keys:

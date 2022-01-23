@@ -190,10 +190,11 @@ class DrImage(Gtk.Box):
 		self.surface = cairo.ImageSurface(cairo.Format.ARGB32, width, height)
 		if pixbuf is None:
 			# no pixbuf in the operation: the restored state is a blank one
-			r = state_op['red']
-			g = state_op['green']
-			b = state_op['blue']
-			a = state_op['alpha']
+			rgba = state_op['rgba']
+			r = rgba.red
+			g = rgba.green
+			b = rgba.blue
+			a = rgba.alpha
 			self.set_main_pixbuf(self._new_blank_pixbuf(width, height))
 			cairo_context = cairo.Context(self.surface)
 			cairo_context.set_source_rgba(r, g, b, a)
@@ -375,12 +376,7 @@ class DrImage(Gtk.Box):
 		return not self._history.has_initial_pixbuf()
 
 	def get_initial_rgba(self):
-		operation = self._history.initial_operation
-		r = operation['red']
-		g = operation['green']
-		b = operation['blue']
-		a = operation['alpha']
-		return Gdk.RGBA(red=r, green=g, blue=b, alpha=a)
+		return self._history.initial_operation['rgba']
 
 	############################################################################
 	# Misc ? ###################################################################
