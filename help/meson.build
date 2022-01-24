@@ -1,4 +1,8 @@
 
+if get_option('enable-translations-and-appdata')
+	itstool = find_program('itstool')
+endif
+
 gnome.yelp(
 	meson.project_name(),
 	sources: [
