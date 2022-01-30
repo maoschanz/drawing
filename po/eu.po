@@ -54,7 +54,7 @@ msgstr "Arbeleko irudia editatu"
 #. https://gitlab.gnome.org/GNOME/Initiatives/-/wikis/App-Metadata
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "Edit screenshots or memes"
-msgstr ""
+msgstr "Editatu pantaila-argazkiak edo memeak"
 
 #. IMPORTANT: complete description of the application (1/3)
 #: data/com.github.maoschanz.drawing.appdata.xml.in
@@ -63,6 +63,9 @@ msgid ""
 "filters, insert or censor text, and manipulate a selected portion of the "
 "picture (cut/copy/paste/drag/…)"
 msgstr ""
+"Oinarrizko irudi-editore honek irudi baten tamaina aldatu, moztu edo biratu dezake,"
+"iragazkiak aplikatu, testua txertatu eta irudiaren zati bat manipulatu"
+"(moztu/kopiatu/itsatsi/arrastatu/...)"
 
 #. IMPORTANT: complete description of the application (2/3)
 #: data/com.github.maoschanz.drawing.appdata.xml.in
@@ -71,17 +74,22 @@ msgid ""
 "line, the curve tool, many shapes, several brushes, and their various colors "
 "and options."
 msgstr ""
+"Eta, noski, marraztu dezakezu! Erabili dezakezu hainbat tresna: arkatza, "
+"lerro zuzena, kurba, forma asko, hainbat pintzel kolore eta aukera"
+"anitzekin."
 
 #. IMPORTANT: complete description of the application (3/3)
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "Supported file types include PNG, JPEG and BMP."
-msgstr ""
+msgstr "Onartutako fitxategi motak PNG, JPEG eta BMP dira."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "Version 1.0.0 improves rendering performance, which is visible when editing "
 "large images with a poor CPU."
 msgstr ""
+"1.0.0 bertsioak errendatze-errendimendua hobetzen du, PUZ eskas baten bidez "
+"irudi handiak editatzean nabaritzen dena."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -89,12 +97,17 @@ msgid ""
 "a parallelogram. Such a deformation can be applied horizontally or "
 "vertically."
 msgstr ""
+"Orain \"okertu\" tresna berria erabil dezakezu irudi bat laukizuzen batetik "
+"paralelogramo batera okertzeko. Deformazio hori horizontalean edo bertikalean "
+"aplika daiteke"
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "You can select tools with keyboard accelerators (Alt+letter). This may not "
 "work yet with languages using a non-latin alphabet."
 msgstr ""
+"Teklatu azeleragailuekin tresnak hauta ditzakezu (Alt+letra). Baliteke honek "
+"oraindik ez funtzionatzea latindarra ez den alfabetoa erabiltzen duten hizkuntzekin."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -102,6 +115,9 @@ msgid ""
 "do it while using a tool, it may display additional data, for example the "
 "dimensions of the shape you're drawing!"
 msgstr ""
+"\"ctrl\" sakatzean kurtsorearen koordenatuak bistaratuko dira. Tresna bat "
+"erabiltzen duzun bitartean egiten baduzu, baliteke datu gehigarriak bistaratzea, "
+"adibidez marrazten ari zaren formaren neurriak!"
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -109,12 +125,17 @@ msgid ""
 "such as locking the direction for the \"line\" tool, or changing the filling "
 "style of a shape."
 msgstr ""
+"Tresna bat erabiltzean \"shift\", edo \"alt\" sakatzean aukera zehatzak "
+"gaitzen dira, hala nola, \"lerroa\" tresnaren norabidea blokeatzea "
+"edo forma baten betetze estiloa aldatzea."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "Using the \"scale\" tool, you may optionally set the new size as a relative "
 "percentage rather than an absolute value in pixels."
 msgstr ""
+"\"Eskala\" tresna erabiliz, aukeran ezar dezakezu tamaina berria portzentaje "
+"erlatibo gisa eta ez pixeletan balio absolutu gisa."
 
 #. very generic release notes i use for ALL minor updates, please
 #. translate this one!
@@ -122,8 +143,7 @@ msgstr ""
 msgid ""
 "Version 0.8.5 features several minor bug fixes, and various new translations."
 msgstr ""
-"0.8.5 bertsioak errore txiki batzuen zuzenketa eta itzulpen berriak biltzen "
-"ditu."
+"0.8.5 bertsioak errore txiki batzuen zuzenketa eta itzulpen berriak biltzen ditu."
 
 #. Caption of a screenshot, for appstores
 #: data/com.github.maoschanz.drawing.appdata.xml.in
@@ -180,7 +200,7 @@ msgstr "Irudiaren propietateak"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Reset canvas"
-msgstr ""
+msgstr "Berrezarri oihala"
 
 #: src/ui/app-menus.ui src/ui/headerbar.ui src/ui/headerbar-eos.ui
 #: src/ui/shortcuts.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
@@ -190,13 +210,13 @@ msgstr "Gorde"
 
 #: src/ui/app-menus.ui src/ui/win-menus.ui
 msgid "Save without transparency"
-msgstr ""
+msgstr "Gorde gardentasunik gabe"
 
 #. This "feature" is only visible on April Fools' day, and it
 #. will just rickroll the user.
 #: src/ui/app-menus.ui src/ui/win-menus.ui
 msgid "Prepare as NFT…"
-msgstr ""
+msgstr "Prestatu NFT gisa…"
 
 #: src/ui/app-menus.ui src/ui/headerbar-eos.ui src/ui/win-menus.ui
 #: src/saving_manager.py
@@ -351,28 +371,28 @@ msgstr "Eskuinera"
 #. to the left, but this one goes all the way left.
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Go to the left end"
-msgstr ""
+msgstr "Joan ezkerreko muturrera"
 
 #. Context: this action scrolls to the top of the canvas
 #. The "go up" action only goes a few centimeters up, but
 #. this one goes all the way to the top.
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Go to the top"
-msgstr ""
+msgstr "Goraino joan"
 
 #. Context: this action scrolls to the bottom of the canvas
 #. The "go down" action only goes a few centimeters down,
 #. but this one goes all the way to the bottom.
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Go to the bottom"
-msgstr ""
+msgstr "Beheraino joan"
 
 #. Context: this action scrolls to the right end of the
 #. canvas. The "go right" action only goes a few centimeters
 #. to the right, but this one goes all the way right.
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Go to the right end"
-msgstr ""
+msgstr "Joan eskuineko muturrera"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Tab at the left"
@@ -389,7 +409,7 @@ msgstr "Freskatu"
 #. Label shown only in developer mode
 #: src/ui/app-menus.ui
 msgid "Track framerate"
-msgstr ""
+msgstr "Jarraitu fotograma-tasa"
 
 #: src/ui/app-menus.ui
 #, fuzzy
@@ -730,21 +750,21 @@ msgstr "Ekintza gehiago"
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 #, fuzzy
 msgid "Invert selection"
-msgstr "Hautapen librea"
+msgstr "Alderantzizkaatu hautapena"
 
 #. Define the image as being the currently selected area
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 #, fuzzy
 msgid "Define as current image"
-msgstr "Ireki irudi bat"
+msgstr "Uneko irudi gisa definitu"
 
 #. Expand the canvas of the current image to make the current selection fit in it.
 #. Can be translated as "Expand to this size".
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 msgid "Expand image to fit"
-msgstr ""
+msgstr "Zabaldu irudia doitzeko"
 
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
@@ -766,7 +786,7 @@ msgstr "Menu nagusia"
 #: src/ui/shortcuts.ui
 #, fuzzy
 msgid "Toggle the menu-bar"
-msgstr "Trukatu aurrebista"
+msgstr "Trukatu menu-barra"
 
 #: src/ui/shortcuts.ui
 msgid "Image"
@@ -850,7 +870,7 @@ msgstr "Pantaila osoko modura"
 
 #: src/ui/shortcuts.ui
 msgid "Toggle toolbars visibility"
-msgstr "Txandakat tresna-barren ikusgaitasuna"
+msgstr "Aldatu tresna-barren ikusgaitasuna"
 
 #: src/ui/shortcuts.ui
 msgid "Touch gestures"
@@ -899,7 +919,7 @@ msgstr "Gorde gabeko fitxategia"
 #: src/image.py
 #, python-format
 msgid "%s frames per second"
-msgstr ""
+msgstr "segunduko %s fotograma"
 
 #. Description of a command line option
 #: src/main.py
@@ -943,7 +963,7 @@ msgstr "GNOMEren \"Art Libre\" ikono bildumaren egileak"
 
 #: src/main.py
 msgid "Simple image editor for Linux"
-msgstr ""
+msgstr "Linuxerako irudi editore sinplea"
 
 #: src/main.py
 msgid "Official webpage"
@@ -952,7 +972,7 @@ msgstr "Webgune ofiziala"
 #: src/main.py
 #, fuzzy
 msgid "Error opening this file."
-msgstr "Errorea fitxategia irekitzean. %s esan nahi zenuen?"
+msgstr "Errorea fitxategia irekitzean."
 
 #. This is an error message, %s is a better command suggestion
 #: src/main.py
@@ -1149,7 +1169,7 @@ msgstr "Atzeko planoaren kolorea"
 #: src/preferences.py
 #, fuzzy
 msgid "Prefer dark theme variant"
-msgstr "Gaiaren aldaera"
+msgstr "Nahiago gai iluneko aldaera"
 
 #. Context: title of a section of the preferences. It corresponds to the
 #. window layout (header-bar? tool-bar? menu-bar?)
@@ -1266,8 +1286,8 @@ msgid ""
 "A part of the image is selected: the pixels beneath the selection will be "
 "saved with a color you might not expect!"
 msgstr ""
-"Irudiaren zati bat hautatuta dago eta hautapenaren azpiko pixelak hutsik "
-"daude"
+"Irudiaren zati bat hautatuta dago eta hautapenaren azpian dauden pixelak " 
+"espero ez duzun kolore batekin gordeko dira!"
 
 #. Context: the user tries to save the image while previewing an
 #. unapplied "transform" operation (scaling, cropping, whatever)
@@ -1278,22 +1298,22 @@ msgstr "Uneko tresnaren aldaketak ez dira aplikatu"
 #. To translators: this string should be quite short
 #: src/saving_manager.py
 msgid "Apply & save"
-msgstr ""
+msgstr "Aplikatu eta gorde"
 
 #. To translators: this string should be quite short
 #: src/saving_manager.py
 #, fuzzy
 msgid "Deselect & save"
-msgstr "Desautatu"
+msgstr "Desautatu eta gorde"
 
 #: src/saving_manager.py
 msgid "Save anyway"
-msgstr ""
+msgstr "Gorde edonola"
 
 #: src/saving_manager.py
 #, fuzzy
 msgid "Do you want to save anyway?"
-msgstr "Non ireki nahi duzu %s?"
+msgstr "Gorde nahi duzu edonola?"
 
 #. Context: confirm replacing transparent pixels with the selected color
 #: src/saving_manager.py
@@ -1306,7 +1326,7 @@ msgstr "Fitxategi formatu honek ez du kolore gardenik onartzen."
 
 #: src/saving_manager.py
 msgid "You can save the image as a PNG file, or replace transparency with:"
-msgstr "Irudia PDF formatuan gorde dezakezu edo gardentasunen ordez hau jarri:"
+msgstr "Irudia PNG formatuan gorde dezakezu edo gardentasunen ordez hau jarri:"
 
 #: src/saving_manager.py
 msgid "Replace transparency with:"
@@ -1361,19 +1381,19 @@ msgstr "Arbelean ez dago irudirik."
 #: src/window.py
 #, python-format
 msgid "The file %s is already opened"
-msgstr ""
+msgstr "%s fitxategia dagoeneko irekita dago"
 
 #. Context: the user would click here to confirm they want to open the
 #. same file twice
 #: src/window.py
 #, fuzzy
 msgid "Open again"
-msgstr "Ireki irudi bat"
+msgstr "Ireki berriro"
 
 #: src/window.py
 #, fuzzy
 msgid "Switch to this image"
-msgstr "Partekatu irudia"
+msgstr "Aldatu irudi honetara"
 
 #: src/window.py
 msgid "Modifications will take effect in the next new window."
@@ -1382,8 +1402,8 @@ msgstr "Aldaketok hurrengo leiho berrian gauzatuko dira."
 #: src/window.py
 #, fuzzy
 msgid "Middle-click or press F8 to show/hide controls."
-msgstr ""
-"Erdiko klika, sakatu 3 hatzekin, edo sakatu F8 kontrolak ikusteko/ezkutatzeko"
+msgstr "Erdiko klika edo sakatu F8 kontrolak ikusteko/ezkutatzeko"
+
 
 #: src/window.py
 msgid "Press F11 to exit fullscreen."
@@ -1432,7 +1452,7 @@ msgstr "Zer egin nahi duzu %s-rekin?"
 #: src/window.py
 #, fuzzy
 msgid "Image copied to clipboard"
-msgstr "Arbeleko irudia editatu"
+msgstr "Irudia arbelean kopiatu da"
 
 #: src/window.py
 msgid "Import a picture"
@@ -1533,7 +1553,7 @@ msgstr "IBMP irudiak"
 #: src/utilities/utilities_files.py
 #, fuzzy, python-format
 msgid "%s isn't an image."
-msgstr "Ireki irudi bat"
+msgstr "%s ez da irudi bat"
 
 #: src/utilities/utilities_files.py
 msgid "Sorry, WEBP images can't be loaded by this app."
@@ -2149,7 +2169,7 @@ msgstr "Etena"
 #: src/tools/classic_tools/tool_arc.py src/tools/classic_tools/tool_line.py
 #: src/tools/classic_tools/tool_pencil.py
 msgid "Press <Alt> to toggle the 'outline' option"
-msgstr ""
+msgstr "Sakatu <Alt> 'eskema' aukera aldatzeko"
 
 #: src/tools/classic_tools/tool_brush.py
 #, fuzzy
@@ -2162,7 +2182,7 @@ msgstr ""
 
 #: src/tools/classic_tools/tool_eraser.py
 msgid "Press <Shift> to erase a path instead"
-msgstr ""
+msgstr "Sakatu <Maius> eremu laukizuzen bat ezabatzeko"
 
 #: src/tools/classic_tools/tool_eraser.py
 #, fuzzy
@@ -2175,7 +2195,7 @@ msgstr ""
 
 #: src/tools/classic_tools/tool_highlight.py
 msgid "Press <Shift> to temporarily highlight on light background instead"
-msgstr ""
+msgstr "Sakatu <Maius> atzeko plano ilunean aldi baterako nabarmentzeko"
 
 #: src/tools/classic_tools/tool_highlight.py
 #, fuzzy
@@ -2190,18 +2210,18 @@ msgstr "Marra"
 #: src/tools/selection_tools/select_rect.py
 #, fuzzy, python-format
 msgid "Width: %spx"
-msgstr "Zabalera"
+msgstr "Zabalera: %spx"
 
 #: src/tools/classic_tools/tool_line.py src/tools/classic_tools/tool_shape.py
 #: src/tools/selection_tools/select_rect.py
 #, fuzzy, python-format
 msgid "Height: %spx"
-msgstr "Altuera"
+msgstr "Altuera: %spx"
 
 #: src/tools/classic_tools/tool_line.py
 #, python-format
 msgid "Length: %spx"
-msgstr ""
+msgstr "Luzera: %spx"
 
 #: src/tools/classic_tools/tool_line.py
 msgid "Line options"
@@ -2209,11 +2229,11 @@ msgstr "Marraren aukerak"
 
 #: src/tools/classic_tools/tool_line.py
 msgid "Press <Shift> to unlock the line direction"
-msgstr ""
+msgstr "Sakatu <Maius> lerroaren norabidea desblokeatzeko"
 
 #: src/tools/classic_tools/tool_line.py
 msgid "Press <Shift> to lock the line direction"
-msgstr ""
+msgstr "Sakatu <Maius> lerroaren norabidea blokeatzeko"
 
 #: src/tools/classic_tools/tool_paint.py
 msgid "Painting options"
@@ -2231,12 +2251,12 @@ msgstr "Klikatu formaren lehenengo puntuan bera ixteko."
 #: src/tools/classic_tools/tool_paint.py
 #: src/tools/selection_tools/select_color.py
 msgid "May not work for complex shapes"
-msgstr ""
+msgstr "Baliteke forma konplexuetan ez funtzionatzea"
 
 #: src/tools/classic_tools/tool_paint.py
 #: src/tools/selection_tools/select_color.py
 msgid "It will not work well if the area's edges are blurry"
-msgstr ""
+msgstr "Ez du ondo funtzionatuko eremuaren ertzak lausoak badira"
 
 #: src/tools/classic_tools/tool_pencil.py
 msgid "Pencil options"
@@ -2245,7 +2265,7 @@ msgstr "Arkatzaren aukerak"
 #: src/tools/classic_tools/tool_points.py
 #, fuzzy
 msgid "Points options"
-msgstr "Letra motaren aukerak"
+msgstr "Puntuen aukerak"
 
 #: src/tools/classic_tools/tool_points.py
 #, python-format
@@ -2259,7 +2279,7 @@ msgstr "Forma"
 #: src/tools/classic_tools/tool_shape.py
 #, python-format
 msgid "Radius: %spx"
-msgstr ""
+msgstr "Erradioa: %spx"
 
 #: src/tools/classic_tools/tool_shape.py
 msgid "Shape options"
@@ -2284,7 +2304,7 @@ msgstr "Klikatu formaren lehenengo puntuan bera ixteko."
 
 #: src/tools/classic_tools/tool_shape.py
 msgid "Press <Alt>, <Shift>, or both, to quickly change the 'filling' option"
-msgstr ""
+msgstr "Sakatu <Alt>, <Maius> edo biak, 'betetzea' aukera azkar aldatzeko"
 
 #: src/tools/classic_tools/tool_text.py
 msgid "Text"
@@ -2344,7 +2364,7 @@ msgstr "Margoaren aukerak"
 
 #: src/tools/transform_tools/tool_crop.py
 msgid "The sides you'll crop are hinted by the mouse pointer"
-msgstr ""
+msgstr "Moztuko dituzun aldeak saguaren erakuslearen bidez adierazten dira"
 
 #: src/tools/transform_tools/tool_crop.py
 msgid "Cropping the selection"
@@ -2353,20 +2373,20 @@ msgstr "Hautapena mozten"
 #: src/tools/transform_tools/tool_crop.py
 #, fuzzy
 msgid "Cropping or expanding the canvas"
-msgstr "Oihala mozten"
+msgstr "Oihala mozten edo zabaltzen"
 
 #: src/tools/transform_tools/tool_crop.py
 #: src/tools/transform_tools/tool_rotate.py
 #: src/tools/transform_tools/tool_scale.py
 #: src/tools/transform_tools/tool_skew.py
 msgid "Don't forget to confirm the operation!"
-msgstr ""
+msgstr "Ez ahaztu eragiketa baieztatzea!"
 
 #: src/tools/transform_tools/tool_crop.py
 #: src/tools/transform_tools/tool_skew.py
 msgid ""
 "Press <Alt>, <Shift>, or both, to quickly change the 'expand with' option"
-msgstr ""
+msgstr "Sakatu <Alt>, <Maius> edo biak, 'zabaldu honekin' aukera azkar aldatzeko"
 
 #: src/tools/transform_tools/tool_filters.py
 #, fuzzy
@@ -2398,7 +2418,7 @@ msgstr "Oihala biratzen"
 #: src/tools/transform_tools/tool_scale.py
 #, fuzzy
 msgid "Scaling options"
-msgstr "Betegarriaren aukerak"
+msgstr "Eskalaren aukerak"
 
 #: src/tools/transform_tools/tool_scale.py
 msgid "Scaling the selection"
@@ -2410,26 +2430,26 @@ msgstr "Oihala eskalatzen"
 
 #: src/tools/transform_tools/tool_scale.py
 msgid "Press <Shift> to quickly toggle the 'lock proportions' option"
-msgstr ""
+msgstr "Sakatu <Maius> 'blokeatu proportzioak' aukera azkar aldatzeko"
 
 #: src/tools/transform_tools/tool_skew.py
 #, fuzzy
 msgid "Skewing options"
-msgstr "Betegarriaren aukerak"
+msgstr "Okertzeko aukerak"
 
 #: src/tools/transform_tools/tool_skew.py
 msgid "The directions of the deformation are hinted by the mouse pointer"
-msgstr ""
+msgstr "Deformazioaren noranzkoak saguaren erakusleak iradokitzen ditu"
 
 #: src/tools/transform_tools/tool_skew.py
 #, fuzzy
 msgid "Skewing the selection"
-msgstr "Hautapena eskalatzen"
+msgstr "Hautapena okertzen"
 
 #: src/tools/transform_tools/tool_skew.py
 #, fuzzy
 msgid "Skewing the canvas"
-msgstr "Oihala eskalatzen"
+msgstr "Oihala okertzen"
 
 #: src/tools/transform_tools/filters/filter_blur.py
 msgid "Blur radius"
