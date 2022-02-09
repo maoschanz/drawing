@@ -2,7 +2,7 @@
 project(
 	'drawing',
 	version: '0.9.0-dev',
-	meson_version: '>= 0.50.0',
+	meson_version: '>= 0.50',
 )
 app_uuid = 'com.github.maoschanz.drawing'
 
@@ -23,9 +23,9 @@ endif
 gnome = import('gnome')
 
 subdir('data')
-subdir('help')
 subdir('src')
 subdir('po')
+subdir('help')
 
 meson.add_install_script('build-aux/meson/postinstall.py')
 
