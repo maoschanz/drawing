@@ -55,18 +55,29 @@ class ToolScale(AbstractCanvasTool):
 
 	def build_bottom_pane(self):
 		bar = OptionsBarScale(self)
-		self.width_btn = bar.width_btn
-		self.height_btn = bar.height_btn
-		self.width_btn.connect('value-changed', self.on_width_changed)
-		self.height_btn.connect('value-changed', self.on_height_changed)
+
+		self._width_btn = bar.width_btn
+		self._height_btn = bar.height_btn
+		self._width_btn.connect('value-changed', self.on_width_changed)
+		self._height_btn.connect('value-changed', self.on_height_changed)
+
+		self._width_100_btn = bar.width_100_btn
+		self._height_100_btn = bar.height_100_btn
+		self._width_100_btn.connect('value-changed', self.on_width_100_changed)
+		self._height_100_btn.connect('value-changed', self.on_height_100_changed)
+
 		return bar
+
+	############################################################################
 
 	def get_options_label(self):
 		return _("Scaling options")
 
 	def get_editing_tips(self):
-		# there is intentionally no `label_direction` because i expect the users
-		# to understand by themselves how it works.
+		# The current method is called when options change, so i use it to
+		# update the visibility of the spinbuttons depending on which ones the
+		# user wants to use.
+		self._update_to_wanted_unit()
 
 		if self.apply_to_selection:
 			label_action = _("Scaling the selection")
@@ -82,10 +93,11 @@ class ToolScale(AbstractCanvasTool):
 			label_modifier_shift = _("Press <Shift> to quickly toggle the " + \
 			                                        "'lock proportions' option")
 
+		# there is intentionally no `label_direction` because i expect the users
+		# to understand by themselves how it works.
+
 		full_list = [label_action, label_confirm, label_modifier_shift]
 		return list(filter(None, full_list))
-
-	############################################################################
 
 	def on_tool_selected(self, *args):
 		super().on_tool_selected()
@@ -101,11 +113,26 @@ class ToolScale(AbstractCanvasTool):
 		self.set_preserve_ratio()
 		self._ratio = width / height
 		self._spinbtns_disabled = False
-		self.width_btn.set_value(width)
-		self.height_btn.set_value(height)
+		self._width_btn.set_value(width)
+		self._height_btn.set_value(height)
+		self._width_100_btn.set_value(100)
+		self._height_100_btn.set_value(100)
 		self.build_and_do_op()
 
 	############################################################################
+
+	def _update_to_wanted_unit(self):
+		want_pixels = self.get_option_value('scale-unit') == 'pixels'
+		if want_pixels:
+			self._width_btn.set_visible(True)
+			self._height_btn.set_visible(True)
+			self._width_100_btn.set_visible(False)
+			self._height_100_btn.set_visible(False)
+		else:
+			self._width_btn.set_visible(False)
+			self._height_btn.set_visible(False)
+			self._width_100_btn.set_visible(True)
+			self._height_100_btn.set_visible(True)
 
 	def set_preserve_ratio(self, *args):
 		"""Set whether or not `self._preserve_ratio` should be true. If it is,
@@ -155,10 +182,10 @@ class ToolScale(AbstractCanvasTool):
 
 		if existing_width != new_width:
 			new_height = new_width / self._ratio
-			self.height_btn.set_value(new_height)
+			self._height_btn.set_value(new_height)
 		if existing_height != new_height:
 			new_width = new_height * self._ratio
-			self.width_btn.set_value(new_width)
+			self._width_btn.set_value(new_width)
 
 		self._spinbtns_disabled = False
 		self.build_and_do_op()
@@ -181,11 +208,17 @@ class ToolScale(AbstractCanvasTool):
 			self.set_preserve_ratio()
 		self._try_scale_dimensions()
 
+	def on_width_100_changed(self, *args):
+		pass
+
+	def on_height_100_changed(self, *args):
+		pass
+
 	def _get_width(self):
-		return self.width_btn.get_value_as_int()
+		return self._width_btn.get_value_as_int()
 
 	def _get_height(self):
-		return self.height_btn.get_value_as_int()
+		return self._height_btn.get_value_as_int()
 
 	############################################################################
 
@@ -233,12 +266,12 @@ class ToolScale(AbstractCanvasTool):
 
 		if self._preserve_ratio:
 			if abs(delta_y) > abs(delta_x):
-				self.height_btn.set_value(height)
+				self._height_btn.set_value(height)
 			else:
-				self.width_btn.set_value(width)
+				self._width_btn.set_value(width)
 		else:
-			self.height_btn.set_value(height)
-			self.width_btn.set_value(width)
+			self._height_btn.set_value(height)
+			self._width_btn.set_value(width)
 
 	def on_release_on_area(self, event, surface, event_x, event_y):
 		self.on_motion_on_area(event, surface, event_x, event_y)

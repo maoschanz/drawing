@@ -34,6 +34,11 @@ class OptionsBarScale(AbstractOptionsBar):
 		utilities_add_unit_to_spinbtn(self.height_btn, 4, 'px')
 		utilities_add_unit_to_spinbtn(self.width_btn, 4, 'px')
 
+		self.width_100_btn = builder.get_object('width_100_btn')
+		self.height_100_btn = builder.get_object('height_100_btn')
+		utilities_add_unit_to_spinbtn(self.height_100_btn, 3, '%')
+		utilities_add_unit_to_spinbtn(self.width_100_btn, 3, '%')
+
 		self.width_label = builder.get_object('width_label')
 		self.height_label = builder.get_object('height_label')
 		self.separator = builder.get_object('separator')
