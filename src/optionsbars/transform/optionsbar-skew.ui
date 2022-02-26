@@ -19,25 +19,21 @@
   <!-- -->
 
   <object class="GtkBox" id="centered_box">
-    <property name="visible">True</property>
     <property name="spacing">10</property>
     <property name="orientation">horizontal</property>
 
     <child>
       <object class="GtkBox">
-        <property name="visible">True</property>
         <property name="spacing">10</property>
         <property name="orientation">horizontal</property>
         <property name="tooltip_text" translatable="yes">Horizontal deformation</property>
         <child>
           <object class="GtkImage" id="xy_label">
             <property name="icon-name">object-flip-horizontal-symbolic</property>
-            <property name="visible">True</property>
           </object>
         </child>
         <child>
           <object class="GtkSpinButton" id="xy_spinbtn">
-            <property name="visible">True</property>
             <property name="adjustment">adj_xy</property>
           </object>
         </child>
@@ -45,26 +41,21 @@
     </child>
 
     <child>
-      <object class="GtkSeparator" id="separator">
-        <property name="visible">True</property>
-      </object>
+      <object class="GtkSeparator" id="separator"></object>
     </child>
 
     <child>
       <object class="GtkBox">
-        <property name="visible">True</property>
         <property name="spacing">10</property>
         <property name="orientation">horizontal</property>
         <property name="tooltip_text" translatable="yes">Vertical deformation</property>
         <child>
           <object class="GtkImage" id="yx_label">
             <property name="icon-name">object-flip-vertical-symbolic</property>
-            <property name="visible">True</property>
           </object>
         </child>
         <child>
           <object class="GtkSpinButton" id="yx_spinbtn">
-            <property name="visible">True</property>
             <property name="adjustment">adj_yx</property>
           </object>
         </child>

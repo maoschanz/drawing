@@ -12,23 +12,19 @@
   <!-- -->
 
   <object class="GtkBox" id="centered_box">
-    <property name="visible">True</property>
     <property name="spacing">10</property>
 
     <child>
       <object class="GtkBox" id="angle_box">
-        <property name="visible">True</property>
         <property name="spacing">10</property>
         <property name="tooltip_text" translatable="yes">Angle (degrees)</property>
         <child>
           <object class="GtkLabel" id="angle_label">
             <property name="label" translatable="yes">Angle</property>
-            <property name="visible">True</property>
           </object>
         </child>
         <child>
           <object class="GtkSpinButton" id="angle_btn">
-            <property name="visible">True</property>
             <property name="wrap">True</property>
             <property name="adjustment">adj_angle</property>
           </object>
@@ -38,18 +34,15 @@
 
     <child>
       <object class="GtkBox" id="rotate_box">
-        <property name="visible">True</property>
         <style><class name="linked"/></style>
         <child>
           <object class="GtkButton">
             <property name="tooltip_text" translatable="yes">Rotate left</property>
-            <property name="visible">True</property>
             <property name="valign">center</property>
             <property name="action-name">win.rotate-counter-cw</property>
             <child>
               <object class="GtkImage">
                 <property name="icon-name">object-rotate-left-symbolic</property>
-                <property name="visible">True</property>
               </object>
             </child>
           </object>
@@ -57,13 +50,11 @@
         <child>
           <object class="GtkButton">
             <property name="tooltip_text" translatable="yes">Rotate right</property>
-            <property name="visible">True</property>
             <property name="valign">center</property>
             <property name="action-name">win.rotate-clockwise</property>
             <child>
               <object class="GtkImage">
                 <property name="icon-name">object-rotate-right-symbolic</property>
-                <property name="visible">True</property>
               </object>
             </child>
           </object>
@@ -73,18 +64,15 @@
 
     <child>
       <object class="GtkBox" id="flip_box">
-        <property name="visible">True</property>
         <style><class name="linked"/></style>
         <child>
           <object class="GtkButton">
             <property name="tooltip_text" translatable="yes">Flip horizontally</property>
-            <property name="visible">True</property>
             <property name="valign">center</property>
             <property name="action-name">win.rotate-flip-h</property>
             <child>
               <object class="GtkImage">
                 <property name="icon-name">object-flip-horizontal-symbolic</property>
-                <property name="visible">True</property>
               </object>
             </child>
           </object>
@@ -92,13 +80,11 @@
         <child>
           <object class="GtkButton">
             <property name="tooltip_text" translatable="yes">Flip vertically</property>
-            <property name="visible">True</property>
             <property name="valign">center</property>
             <property name="action-name">win.rotate-flip-v</property>
             <child>
               <object class="GtkImage">
                 <property name="icon-name">object-flip-vertical-symbolic</property>
-                <property name="visible">True</property>
               </object>
             </child>
           </object>
