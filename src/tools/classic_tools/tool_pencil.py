@@ -101,6 +101,23 @@ class ToolPencil(AbstractClassicTool):
 
 	def on_release_on_area(self, event, surface, event_x, event_y):
 		self._add_point(event_x, event_y)
+
+		if self.x_press == event_x and self.y_press == event_y:
+			# Special case when the pointer hasn't moved: in order to "force"
+			# cairo to draw a pixel, a tiny segment is added artifically
+			float_x, float_y = self.get_image().get_event_coords(event, False)
+			decimals_x = float_x - event_x
+			if decimals_x > 0:
+				delta_x = 0.20
+			else:
+				delta_x = -0.20
+			decimals_y = float_y - event_y
+			if decimals_y > 0:
+				delta_y = 0.20
+			else:
+				delta_y = -0.20
+			self._add_point(event_x + delta_x, event_y + delta_y)
+
 		operation = self.build_operation()
 		self.apply_operation(operation)
 
