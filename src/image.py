@@ -48,7 +48,14 @@ class DrImage(Gtk.Box):
 	reload_info_bar = Gtk.Template.Child()
 	reload_label = Gtk.Template.Child()
 
+	# HiDPI scale factor
 	SCALE_FACTOR = 1.0 # XXX doesn't work well enough to be anything else
+
+	# Threshold between normal rendering and crisp (costly) rendering
+	ZOOM_THRESHOLD = 4.0
+
+	# Maximal level of zoom (crisp rendering only)
+	ZOOM_MAX = 2000
 
 	def __init__(self, window, **kwargs):
 		super().__init__(**kwargs)
@@ -186,10 +193,11 @@ class DrImage(Gtk.Box):
 		self.surface = cairo.ImageSurface(cairo.Format.ARGB32, width, height)
 		if pixbuf is None:
 			# no pixbuf in the operation: the restored state is a blank one
-			r = state_op['red']
-			g = state_op['green']
-			b = state_op['blue']
-			a = state_op['alpha']
+			rgba = state_op['rgba']
+			r = rgba.red
+			g = rgba.green
+			b = rgba.blue
+			a = rgba.alpha
 			self.set_main_pixbuf(self._new_blank_pixbuf(width, height))
 			cairo_context = cairo.Context(self.surface)
 			cairo_context.set_source_rgba(r, g, b, a)
@@ -371,12 +379,7 @@ class DrImage(Gtk.Box):
 		return not self._history.has_initial_pixbuf()
 
 	def get_initial_rgba(self):
-		operation = self._history.initial_operation
-		r = operation['red']
-		g = operation['green']
-		b = operation['blue']
-		a = operation['alpha']
-		return Gdk.RGBA(red=r, green=g, blue=b, alpha=a)
+		return self._history.initial_operation['rgba']
 
 	############################################################################
 	# Misc ? ###################################################################
@@ -422,6 +425,8 @@ class DrImage(Gtk.Box):
 		# Image (with scroll position)
 		cairo_context.set_source_surface(self.get_surface(), \
 		                                 -1 * self.scroll_x, -1 * self.scroll_y)
+		if self.is_zoomed_surface_sharp():
+			cairo_context.get_source().set_filter(cairo.FILTER_NEAREST)
 		cairo_context.paint()
 
 		# What the tool shows on the canvas, upon what it paints, for example an
@@ -672,10 +677,17 @@ class DrImage(Gtk.Box):
 	def fake_scrollbar_update(self):
 		self.add_deltas(0, 0, 0)
 
-	def get_event_coords(self, event):
+	def get_event_coords(self, event, as_integers=True):
 		event_x = self.scroll_x + (event.x / self.zoom_level)
 		event_y = self.scroll_y + (event.y / self.zoom_level)
-		return int(event_x), int(event_y)
+		if as_integers:
+			# `int()` will truncate to the lower integer so we need this to get
+			# an accurate behavior when doing pixel-art for example
+			event_x += 0.5
+			event_y += 0.5
+			return int(event_x), int(event_y)
+		else:
+			return event_x, event_y
 
 	def get_corrected_coords(self, x1, x2, y1, y2, with_selection, with_zoom):
 		"""Do whatever coordinates conversions are needed by tools like `crop`
@@ -827,9 +839,11 @@ class DrImage(Gtk.Box):
 		self.set_zoom_level((self.zoom_level * 100) + delta)
 
 	def set_zoom_level(self, level):
-		normalized_zoom_level = max(min(level, 400), 20)
+		normalized_zoom_level = max(min(level, self.ZOOM_MAX), 20)
 		self.zoom_level = (int(normalized_zoom_level)/100)
 		self.window.minimap.update_zoom_scale(self.zoom_level)
+		if self.is_zoomed_surface_sharp():
+			self.window.minimap.set_zoom_label(self.zoom_level * 100)
 		self.fake_scrollbar_update()
 		self.update()
 
@@ -842,6 +856,9 @@ class DrImage(Gtk.Box):
 		self.set_zoom_level(opti)
 		self.scroll_x = 0
 		self.scroll_y = 0
+
+	def is_zoomed_surface_sharp(self):
+		return self.zoom_level > self.ZOOM_THRESHOLD
 
 	############################################################################
 ################################################################################

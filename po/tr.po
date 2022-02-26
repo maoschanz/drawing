@@ -2,14 +2,14 @@
 # Copyright (C) 2020
 # This file is distributed under the same license as the drawing package.
 # Serdar Sağlam <teknomobil@yandex.com>, 2018, 2019, 2020.
-# Serkan ÖNDER <serkanonder@outlook.com>, 2021
+# Serkan ÖNDER <serkanonder@outlook.com>, 2021, 2022.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
 "POT-Creation-Date: 2021-12-23 20:06+0100\n"
-"PO-Revision-Date: 2021-08-09 23:18+0300\n"
+"PO-Revision-Date: 2022-02-17 10:55+0300\n"
 "Last-Translator: Serkan ÖNDER <serkanonder@outlook.com>\n"
 "Language-Team: \n"
 "Language: tr\n"
@@ -56,7 +56,7 @@ msgstr "Panodaki Resmi Düzenle"
 #. https://gitlab.gnome.org/GNOME/Initiatives/-/wikis/App-Metadata
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "Edit screenshots or memes"
-msgstr ""
+msgstr "Ekran görüntülerini veya memleri düzenleyin"
 
 #. IMPORTANT: complete description of the application (1/3)
 #: data/com.github.maoschanz.drawing.appdata.xml.in
@@ -65,6 +65,10 @@ msgid ""
 "filters, insert or censor text, and manipulate a selected portion of the "
 "picture (cut/copy/paste/drag/…)"
 msgstr ""
+"Bu temel görüntü düzenleyici, bir görüntüyü yeniden boyutlandırabilir, "
+"kırpabilir veya döndürebilir, basit filtreler uygulayabilir, metin "
+"ekleyebilir veya sansürleyebilir ve resmin seçilen bir bölümünü "
+"değiştirebilir (kes/kopyala/yapıştır/sürükle/…)"
 
 #. IMPORTANT: complete description of the application (2/3)
 #: data/com.github.maoschanz.drawing.appdata.xml.in
@@ -73,11 +77,13 @@ msgid ""
 "line, the curve tool, many shapes, several brushes, and their various colors "
 "and options."
 msgstr ""
+"Ve elbette çizebilirsin! Kurşun kalem, düz çizgi, eğri aracı, birçok şekil, "
+"birkaç fırça ve bunların çeşitli renk ve seçenekleri gibi araçları kullanma."
 
 #. IMPORTANT: complete description of the application (3/3)
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "Supported file types include PNG, JPEG and BMP."
-msgstr ""
+msgstr "Desteklenen dosya türleri PNG, JPEG ve BMP'yi içerir."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -98,14 +104,12 @@ msgstr ""
 "dikey olarak uygulanabilir."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
-#, fuzzy
 msgid ""
 "You can select tools with keyboard accelerators (Alt+letter). This may not "
 "work yet with languages using a non-latin alphabet."
 msgstr ""
-"Araçların adları görünüyorsa, \"alt+[altı çizili harf]\" ile belirli bir "
-"aracı etkinleştirebilirsiniz. Bu, latin olmayan bir alfabe kullanan dillerde "
-"henüz çalışmayabilir."
+"Klavye hızlandırıcılı (Alt+harf) araçları seçebilirsiniz. Bu, latin olmayan "
+"bir alfabe kullanan dillerde henüz çalışmayabilir."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -113,16 +117,19 @@ msgid ""
 "do it while using a tool, it may display additional data, for example the "
 "dimensions of the shape you're drawing!"
 msgstr ""
+"\"Ctrl\" tuşuna basmak, imleç koordinatlarını bir araç ipucunda görüntüler. "
+"Bunu bir araç kullanırken yaparsanız, örneğin çizdiğiniz şeklin boyutları "
+"gibi ek verileri görüntüleyebilir!"
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
-#, fuzzy
 msgid ""
 "Pressing \"shift\", or \"alt\" when using a tool enables specific options, "
 "such as locking the direction for the \"line\" tool, or changing the filling "
 "style of a shape."
 msgstr ""
-"Bir araç kullanırken \"ctrl\", \"shift\" veya \"alt\" tuşlarına basmak, "
-"seçim araçları için \"seçime ekle\" gibi belirli seçenekleri etkinleştirir."
+"Bir araç kullanırken \"shift\" veya \"alt\" tuşuna basmak, \"çizgi\" "
+"aracının yönünü kilitleme veya bir şeklin doldurma stilini değiştirme gibi "
+"belirli seçenekleri etkinleştirir."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -196,7 +203,7 @@ msgstr "Görüntü özellikleri"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Reset canvas"
-msgstr ""
+msgstr "Tuvali sıfırla"
 
 #: src/ui/app-menus.ui src/ui/headerbar.ui src/ui/headerbar-eos.ui
 #: src/ui/shortcuts.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
@@ -212,7 +219,7 @@ msgstr "Şeffaflık olmadan kaydedin"
 #. will just rickroll the user.
 #: src/ui/app-menus.ui src/ui/win-menus.ui
 msgid "Prepare as NFT…"
-msgstr ""
+msgstr "NFT olarak hazırlayın…"
 
 #: src/ui/app-menus.ui src/ui/headerbar-eos.ui src/ui/win-menus.ui
 #: src/saving_manager.py
@@ -366,31 +373,29 @@ msgstr "Sağa Git"
 #. canvas. The "go left" action only goes a few centimeters
 #. to the left, but this one goes all the way left.
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
-#, fuzzy
 msgid "Go to the left end"
-msgstr "Soldaki sekme"
+msgstr "Sol uca git"
 
 #. Context: this action scrolls to the top of the canvas
 #. The "go up" action only goes a few centimeters up, but
 #. this one goes all the way to the top.
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Go to the top"
-msgstr ""
+msgstr "En üste git"
 
 #. Context: this action scrolls to the bottom of the canvas
 #. The "go down" action only goes a few centimeters down,
 #. but this one goes all the way to the bottom.
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Go to the bottom"
-msgstr ""
+msgstr "En alta git"
 
 #. Context: this action scrolls to the right end of the
 #. canvas. The "go right" action only goes a few centimeters
 #. to the right, but this one goes all the way right.
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
-#, fuzzy
 msgid "Go to the right end"
-msgstr "Sağdaki sekme"
+msgstr "Sağ uca git"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Tab at the left"
@@ -410,9 +415,8 @@ msgid "Track framerate"
 msgstr "Kare hızını izle"
 
 #: src/ui/app-menus.ui
-#, fuzzy
 msgid "Dark theme variant"
-msgstr "Karanlık tema varyantını tercih edin"
+msgstr "Karanlık tema varyantı"
 
 #: src/ui/app-menus.ui
 msgid "Show the menu-bar"
@@ -951,9 +955,8 @@ msgid "GNOME's \"Art Libre\" icon set authors"
 msgstr "GNOME'un \"Art Libre\" simge seti yazarları"
 
 #: src/main.py
-#, fuzzy
 msgid "Simple image editor for Linux"
-msgstr "Linux masaüstü için basit resim düzenleyici"
+msgstr "Linux için basit görüntü düzenleyici"
 
 #: src/main.py
 msgid "Official webpage"
@@ -1270,11 +1273,12 @@ msgid "There are unsaved modifications to %s."
 msgstr "%s üstünde kaydedilmemiş değişiklikler."
 
 #: src/saving_manager.py
-#, fuzzy
 msgid ""
 "A part of the image is selected: the pixels beneath the selection will be "
 "saved with a color you might not expect!"
-msgstr "Görüntünün bir bölümü seçildi ve seçimin altındaki pikseller boş."
+msgstr ""
+"Görüntünün bir kısmı seçilir: seçimin altındaki pikseller, beklemeyeceğiniz "
+"bir renkle kaydedilir!"
 
 #. Context: the user tries to save the image while previewing an
 #. unapplied "transform" operation (scaling, cropping, whatever)
@@ -1285,17 +1289,16 @@ msgstr "Mevcut araçtaki değişiklikler uygulanmadı."
 #. To translators: this string should be quite short
 #: src/saving_manager.py
 msgid "Apply & save"
-msgstr ""
+msgstr "Uygula ve kaydet"
 
 #. To translators: this string should be quite short
 #: src/saving_manager.py
-#, fuzzy
 msgid "Deselect & save"
-msgstr "Seçimi kaldır"
+msgstr "Seçimi kaldır ve kaydet"
 
 #: src/saving_manager.py
 msgid "Save anyway"
-msgstr ""
+msgstr "Yine de kaydet"
 
 #: src/saving_manager.py
 msgid "Do you want to save anyway?"
@@ -1368,30 +1371,26 @@ msgstr "Pano herhangi bir görüntü içermiyor."
 #: src/window.py
 #, python-format
 msgid "The file %s is already opened"
-msgstr ""
+msgstr "%s dosyası zaten açıldı"
 
 #. Context: the user would click here to confirm they want to open the
 #. same file twice
 #: src/window.py
-#, fuzzy
 msgid "Open again"
-msgstr "Bir dosya aç"
+msgstr "Tekrar aç"
 
 #: src/window.py
-#, fuzzy
 msgid "Switch to this image"
-msgstr "Resmi paylaşın"
+msgstr "Bu görüntüye geç"
 
 #: src/window.py
 msgid "Modifications will take effect in the next new window."
 msgstr "Değişiklikler bir sonraki yeni pencerede geçerli olacaktır."
 
 #: src/window.py
-#, fuzzy
 msgid "Middle-click or press F8 to show/hide controls."
 msgstr ""
-"Denetimleri göstermek / gizlemek için orta tıklayın, 3 parmağınızla dokunun "
-"veya F8 tuşuna basın."
+"Kontrolleri göstermek/gizlemek için orta tıklayın veya F8 tuşuna basın."
 
 #: src/window.py
 msgid "Press F11 to exit fullscreen."
@@ -1713,14 +1712,12 @@ msgid "Never"
 msgstr "Asla"
 
 #: src/optionsbars/transform/optionsbar-scale.ui src/tools/ui/tool-scale.ui
-#, fuzzy
 msgid "Pixels"
-msgstr "piksel"
+msgstr "Pikseller"
 
 #: src/optionsbars/transform/optionsbar-scale.ui src/tools/ui/tool-scale.ui
-#, fuzzy
 msgid "Percentage"
-msgstr "yüzdeler"
+msgstr "Yüzde"
 
 #: src/optionsbars/transform/optionsbar-skew.ui
 msgid "Horizontal deformation"
@@ -1913,23 +1910,20 @@ msgid "No direction"
 msgstr "Yön yok"
 
 #: src/tools/ui/tool-filters.ui
-#, fuzzy
 msgid "Blur horizontally"
-msgstr "Yatay çevir"
+msgstr "Yatay olarak bulanıklaştır"
 
 #: src/tools/ui/tool-filters.ui
-#, fuzzy
 msgid "Blur vertically"
-msgstr "Dikey çevir"
+msgstr "Dikey olarak bulanıklaştır"
 
 #: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
 msgid "Invert colors"
 msgstr "Renkleri ters çevir"
 
 #: src/tools/ui/tool-highlight.ui
-#, fuzzy
 msgid "Straighten the line"
-msgstr "Seçimi ölçeklendir"
+msgstr "Çizgiyi düzelt"
 
 #: src/tools/ui/tool-line.ui
 msgid "Color gradient"
@@ -2100,15 +2094,13 @@ msgstr "Gölge"
 
 #. Context: a type of background behind the inserted text
 #: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
-#, fuzzy
 msgid "Thin outline"
-msgstr "Anahat yok"
+msgstr "İnce anahat"
 
 #. Context: a type of background behind the inserted text
 #: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
-#, fuzzy
 msgid "Thick outline"
-msgstr "Anahat yok"
+msgstr "Kalın anahat"
 
 #. Context: a type of background behind the inserted text
 #: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
@@ -2125,7 +2117,7 @@ msgstr "Kavis seçenekleri"
 
 #: src/tools/classic_tools/tool_arc.py
 msgid "Draw a second segment to complete the curve"
-msgstr ""
+msgstr "Eğriyi tamamlamak için ikinci bir parça çizin"
 
 #: src/tools/classic_tools/tool_arc.py src/tools/classic_tools/tool_line.py
 msgid "Dashed arrow"
@@ -2143,7 +2135,7 @@ msgstr "Kesik"
 #: src/tools/classic_tools/tool_arc.py src/tools/classic_tools/tool_line.py
 #: src/tools/classic_tools/tool_pencil.py
 msgid "Press <Alt> to toggle the 'outline' option"
-msgstr ""
+msgstr "'Anahat' seçeneğini değiştirmek için <Alt> tuşuna basın"
 
 #: src/tools/classic_tools/tool_brush.py
 msgid "Brush options"
@@ -2151,11 +2143,11 @@ msgstr "Fırça seçenekleri"
 
 #: src/tools/classic_tools/tool_eraser.py
 msgid "Press <Shift> to erase a rectangle area instead"
-msgstr ""
+msgstr "Bunun yerine bir dikdörtgen alanı silmek için <Shift> tuşuna basın"
 
 #: src/tools/classic_tools/tool_eraser.py
 msgid "Press <Shift> to erase a path instead"
-msgstr ""
+msgstr "Bunun yerine bir yolu silmek için <Shift> tuşuna basın"
 
 #: src/tools/classic_tools/tool_eraser.py
 msgid "Eraser options"
@@ -2164,10 +2156,14 @@ msgstr "Silgi seçenekleri"
 #: src/tools/classic_tools/tool_highlight.py
 msgid "Press <Shift> to temporarily highlight on dark background instead"
 msgstr ""
+"Bunun yerine koyu arka planı geçici olarak vurgulamak için <Shift> tuşuna "
+"basın"
 
 #: src/tools/classic_tools/tool_highlight.py
 msgid "Press <Shift> to temporarily highlight on light background instead"
 msgstr ""
+"Bunun yerine açık renkli arka planı geçici olarak vurgulamak için <Shift> "
+"tuşuna basın"
 
 #: src/tools/classic_tools/tool_highlight.py
 msgid "Highlighter options"
@@ -2179,20 +2175,20 @@ msgstr "Çizgi"
 
 #: src/tools/classic_tools/tool_line.py src/tools/classic_tools/tool_shape.py
 #: src/tools/selection_tools/select_rect.py
-#, fuzzy, python-format
+#, python-format
 msgid "Width: %spx"
-msgstr "Genişlik"
+msgstr "Genişlik: %spx"
 
 #: src/tools/classic_tools/tool_line.py src/tools/classic_tools/tool_shape.py
 #: src/tools/selection_tools/select_rect.py
-#, fuzzy, python-format
+#, python-format
 msgid "Height: %spx"
-msgstr "Yükseklik"
+msgstr "Yükseklik: %spx"
 
 #: src/tools/classic_tools/tool_line.py
 #, python-format
 msgid "Length: %spx"
-msgstr ""
+msgstr "Uzunluk: %spx"
 
 #: src/tools/classic_tools/tool_line.py
 msgid "Line options"
@@ -2200,11 +2196,11 @@ msgstr "Çizgi seçenekleri"
 
 #: src/tools/classic_tools/tool_line.py
 msgid "Press <Shift> to unlock the line direction"
-msgstr ""
+msgstr "Çizgi yönünün kilidini açmak için <Shift> tuşuna basın"
 
 #: src/tools/classic_tools/tool_line.py
 msgid "Press <Shift> to lock the line direction"
-msgstr ""
+msgstr "Çizgi yönünü kilitlemek için <Shift> tuşuna basın"
 
 #: src/tools/classic_tools/tool_paint.py
 msgid "Painting options"
@@ -2221,12 +2217,12 @@ msgstr "Tamamen boyamak için tuvali tıklayın"
 #: src/tools/classic_tools/tool_paint.py
 #: src/tools/selection_tools/select_color.py
 msgid "May not work for complex shapes"
-msgstr ""
+msgstr "Karmaşık şekiller için çalışmayabilir"
 
 #: src/tools/classic_tools/tool_paint.py
 #: src/tools/selection_tools/select_color.py
 msgid "It will not work well if the area's edges are blurry"
-msgstr ""
+msgstr "Alanın kenarları bulanıksa iyi çalışmaz"
 
 #: src/tools/classic_tools/tool_pencil.py
 msgid "Pencil options"
@@ -2248,7 +2244,7 @@ msgstr "Şekil"
 #: src/tools/classic_tools/tool_shape.py
 #, python-format
 msgid "Radius: %spx"
-msgstr ""
+msgstr "Yarıçap: %spx"
 
 #: src/tools/classic_tools/tool_shape.py
 msgid "Shape options"
@@ -2272,6 +2268,8 @@ msgstr "Kapatmak için şeklin ilk noktasına tıklayın."
 #: src/tools/classic_tools/tool_shape.py
 msgid "Press <Alt>, <Shift>, or both, to quickly change the 'filling' option"
 msgstr ""
+"'Doldurma' seçeneğini hızlı bir şekilde değiştirmek için <Alt>, <Shift> veya "
+"her ikisine basın"
 
 #: src/tools/classic_tools/tool_text.py
 msgid "Text"
@@ -2322,35 +2320,35 @@ msgstr "Hata: geçersiz değerler"
 #. The options of the "crop" tool are all about how to expand the canvas,
 #. hence this label.
 #: src/tools/transform_tools/tool_crop.py
-#, fuzzy
 msgid "Expanding options"
-msgstr "Boyama seçenekleri"
+msgstr "Genişleyen seçenekler"
 
 #: src/tools/transform_tools/tool_crop.py
 msgid "The sides you'll crop are hinted by the mouse pointer"
-msgstr ""
+msgstr "Kırpacağınız taraflar fare işaretçisi tarafından belirtilir"
 
 #: src/tools/transform_tools/tool_crop.py
 msgid "Cropping the selection"
 msgstr "Seçimi kırp"
 
 #: src/tools/transform_tools/tool_crop.py
-#, fuzzy
 msgid "Cropping or expanding the canvas"
-msgstr "Tuvali kırp"
+msgstr "Tuvali kırpma veya genişletme"
 
 #: src/tools/transform_tools/tool_crop.py
 #: src/tools/transform_tools/tool_rotate.py
 #: src/tools/transform_tools/tool_scale.py
 #: src/tools/transform_tools/tool_skew.py
 msgid "Don't forget to confirm the operation!"
-msgstr ""
+msgstr "İşlemi onaylamayı unutmayın!"
 
 #: src/tools/transform_tools/tool_crop.py
 #: src/tools/transform_tools/tool_skew.py
 msgid ""
 "Press <Alt>, <Shift>, or both, to quickly change the 'expand with' option"
 msgstr ""
+"'Birlikte genişlet' seçeneğini hızlı bir şekilde değiştirmek için <Alt>, "
+"<Shift> veya her ikisine basın"
 
 #: src/tools/transform_tools/tool_filters.py
 msgid "Active filter"
@@ -2392,25 +2390,24 @@ msgstr "Tuvali ölçeklendir"
 #: src/tools/transform_tools/tool_scale.py
 msgid "Press <Shift> to quickly toggle the 'lock proportions' option"
 msgstr ""
+"'Oranları kilitle' seçeneğini hızlı bir şekilde değiştirmek için <Shift> "
+"tuşuna basın"
 
 #: src/tools/transform_tools/tool_skew.py
-#, fuzzy
 msgid "Skewing options"
-msgstr "Ölçekleme seçenekleri"
+msgstr "Eğme seçenekleri"
 
 #: src/tools/transform_tools/tool_skew.py
 msgid "The directions of the deformation are hinted by the mouse pointer"
-msgstr ""
+msgstr "Deformasyonun yönleri, fare işaretçisi tarafından ima edilir"
 
 #: src/tools/transform_tools/tool_skew.py
-#, fuzzy
 msgid "Skewing the selection"
-msgstr "Seçimi ölçeklendir"
+msgstr "Seçimi eğriltme"
 
 #: src/tools/transform_tools/tool_skew.py
-#, fuzzy
 msgid "Skewing the canvas"
-msgstr "Tuvali ölçeklendir"
+msgstr "Tuvali eğmek"
 
 #: src/tools/transform_tools/filters/filter_blur.py
 msgid "Blur radius"

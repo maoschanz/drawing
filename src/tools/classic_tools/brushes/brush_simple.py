@@ -31,7 +31,7 @@ class BrushSimple(AbstractBrush):
 		make it less ugly)."""
 
 		if operation['is_preview']: # Previewing helps performance & debug
-			operation['line_width'] = int(operation['line_width'] / 2)
+			operation['line_width'] = max(1, int(operation['line_width'] / 2))
 			return self.draw_preview(operation, cairo_context)
 
 		if len(operation['path']) < 3:
@@ -51,10 +51,14 @@ class BrushSimple(AbstractBrush):
 			cairo_context.line_to(pt['x'], pt['y'])
 		raw_path = cairo_context.copy_path()
 
-		# Smooth this raw path
-		cairo_context.new_path()
-		utilities_smooth_path(cairo_context, raw_path)
-		smoothed_path = cairo_context.copy_path()
+		if operation['smooth']:
+			# When the zoom is less than 400% (no great precision required by
+			# the user), this "raw" path is smoothed.
+			cairo_context.new_path()
+			utilities_smooth_path(cairo_context, raw_path)
+			smoothed_path = cairo_context.copy_path()
+		else:
+			smoothed_path = raw_path
 
 		# Build an array with all the widths for each segment
 		widths = self._build_widths(operation['path'], operation['line_width'])

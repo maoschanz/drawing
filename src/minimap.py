@@ -89,10 +89,11 @@ class DrMinimap(Gtk.Popover):
 
 	def _update_zoom_level(self, *args):
 		zoom_value = self._zoom_scale.get_value()
-		if self._window.get_active_image().zoom_level != zoom_value/100:
-			self._window.get_active_image().zoom_level = zoom_value/100
-			self._window.get_active_image().update()
-		self.set_zoom_label(zoom_value)
+		image = self._window.get_active_image()
+		if image.zoom_level != zoom_value / 100:
+			image.zoom_level = zoom_value / 100
+			image.update()
+		self.set_zoom_label(image.zoom_level * 100)
 
 	def _on_popover_dismissed(self, *args):
 		"""Callback of the 'closed' signal, updating the state of the action."""

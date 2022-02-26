@@ -35,8 +35,8 @@ class AbstractClassicTool(AbstractAbstractTool):
 		self.secondary_color = None
 		self._fallback_operator = 'over'
 		self._operator = cairo.Operator.OVER
-		self.x_press = 0.0
-		self.y_press = 0.0
+		self.x_press = 0
+		self.y_press = 0
 		self._use_antialias = self.load_tool_action_boolean('antialias', \
 		                                                     'use-antialiasing')
 		# XXX honteusement sous-performant ^

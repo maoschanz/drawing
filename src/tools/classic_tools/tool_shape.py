@@ -227,7 +227,8 @@ class ToolShape(AbstractClassicTool):
 			return False
 		delta_x = max(event_x, self.initial_x) - min(event_x, self.initial_x)
 		delta_y = max(event_y, self.initial_y) - min(event_y, self.initial_y)
-		return (delta_x < self.tool_width and delta_y < self.tool_width)
+		closing_limit = max(2, self.tool_width)
+		return (delta_x < closing_limit and delta_y < closing_limit)
 
 	############################################################################
 
@@ -285,6 +286,7 @@ class ToolShape(AbstractClassicTool):
 	############################################################################
 
 	def build_operation(self, cairo_path):
+		pixelart_mode = self.get_image().is_zoomed_surface_sharp()
 		operation = {
 			'tool_id': self.id,
 			'rgba_main': self.main_color,
@@ -295,7 +297,7 @@ class ToolShape(AbstractClassicTool):
 			'line_width': self.tool_width,
 			'filling': self._filling_id,
 			'outline': self._outline_id,
-			'smooth': (self._shape_id == 'freeshape'),
+			'smooth': (self._shape_id == 'freeshape') and not pixelart_mode,
 			'closed': True,
 			'path': cairo_path
 		}

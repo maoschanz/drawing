@@ -101,6 +101,23 @@ class ToolPencil(AbstractClassicTool):
 
 	def on_release_on_area(self, event, surface, event_x, event_y):
 		self._add_point(event_x, event_y)
+
+		if self.x_press == event_x and self.y_press == event_y:
+			# Special case when the pointer hasn't moved: in order to "force"
+			# cairo to draw a pixel, a tiny segment is added artifically
+			float_x, float_y = self.get_image().get_event_coords(event, False)
+			decimals_x = float_x - event_x
+			if decimals_x > 0:
+				delta_x = 0.20
+			else:
+				delta_x = -0.20
+			decimals_y = float_y - event_y
+			if decimals_y > 0:
+				delta_y = 0.20
+			else:
+				delta_y = -0.20
+			self._add_point(event_x + delta_x, event_y + delta_y)
+
 		operation = self.build_operation()
 		self.apply_operation(operation)
 
@@ -112,6 +129,7 @@ class ToolPencil(AbstractClassicTool):
 			'rgba': self.main_color,
 			'rgba2': self.secondary_color,
 			'antialias': self._use_antialias,
+			'smooth': not self.get_image().is_zoomed_surface_sharp(),
 			'outline': self._use_outline,
 			'operator': self._operator,
 			'line_width': self.tool_width,
@@ -133,7 +151,10 @@ class ToolPencil(AbstractClassicTool):
 		                        operation['dashes'], operation['line_cap'])
 		cairo_context.set_line_join(operation['line_join']) # XXX useless?
 
-		utilities_smooth_path(cairo_context, operation['path'])
+		if operation['smooth']:
+			utilities_smooth_path(cairo_context, operation['path'])
+		else:
+			cairo_context.append_path(operation['path'])
 
 		if operation['outline']:
 			cairo_context.set_source_rgba(*operation['rgba2'])

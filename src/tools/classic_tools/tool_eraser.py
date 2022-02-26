@@ -19,7 +19,6 @@ import cairo, random
 from gi.repository import Gdk, GdkPixbuf
 from .tool_pencil import ToolPencil
 from .abstract_classic_tool import AbstractClassicTool
-from .utilities_paths import utilities_smooth_path
 from .utilities_blur import utilities_blur_surface, BlurType, BlurDirection
 
 class ToolEraser(ToolPencil):
@@ -107,8 +106,7 @@ class ToolEraser(ToolPencil):
 			clr = self.get_image().get_initial_rgba()
 			self._rgba = [clr.red, clr.green, clr.blue, clr.alpha]
 		elif self._rgba_type == 'secondary':
-			clr = self.secondary_color
-			self._rgba = [clr.red, clr.green, clr.blue, clr.alpha]
+			self._rgba = self.secondary_color
 
 		self.update_modifier_state(event.state)
 		if 'SHIFT' in self._modifier_keys:
@@ -189,7 +187,7 @@ class ToolEraser(ToolPencil):
 				cairo_context.set_line_cap(cairo.LineCap.ROUND)
 				cairo_context.set_line_join(cairo.LineJoin.ROUND)
 				cairo_context.set_line_width(operation['line_width'])
-				utilities_smooth_path(cairo_context, operation['path'])
+				cairo_context.append_path(operation['path'])
 				cairo_context.stroke()
 			return
 		else:
