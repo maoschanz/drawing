@@ -26,10 +26,19 @@ class ToolScale(AbstractCanvasTool):
 	def __init__(self, window):
 		super().__init__('scale', _("Scale"), 'tool-scale-symbolic', window)
 		self.cursor_name = 'not-allowed'
+
+		# depends on both the option AND the click coordinates
 		self._preserve_ratio = True
+
+		# the user inverted the ratio preservation behavior with a modifier key
 		self._ratio_is_inverted = False
-		self._spinbtns_disabled = True
+
+		# safety lock to reload asynchronously
 		self._reload_is_locked = False
+
+		# safety lock to set values in the spinbuttons
+		self._spinbtns_disabled = True
+
 		self._directions = ''
 		self._x = 0
 		self._y = 0
@@ -57,7 +66,7 @@ class ToolScale(AbstractCanvasTool):
 
 	def get_editing_tips(self):
 		# there is intentionally no `label_direction` because i expect the users
-		# to understand themselves how it works.
+		# to understand by themselves how it works.
 
 		if self.apply_to_selection:
 			label_action = _("Scaling the selection")

@@ -16,7 +16,7 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 # Import libs
-import os, traceback
+import os
 from gi.repository import Gtk, Gdk, Gio, GdkPixbuf, GLib
 
 # Import various classes

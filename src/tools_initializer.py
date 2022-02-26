@@ -1,5 +1,7 @@
 # Licensed under GPL3 https://github.com/maoschanz/drawing/blob/master/LICENSE
 
+import traceback
+
 from .tool_arc import ToolArc
 from .tool_brush import ToolBrush
 from .tool_eraser import ToolEraser
