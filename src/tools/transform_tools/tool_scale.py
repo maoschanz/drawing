@@ -39,14 +39,14 @@ class ToolScale(AbstractCanvasTool):
 		# safety lock to set values in the spinbuttons
 		self._spinbtns_disabled = True
 
-		self._directions = ''
 		self._x = 0
 		self._y = 0
 		self._x2 = 0
 		self._y2 = 0
-		self.x_press = self.x_motion = 0
-		self.y_press = self.y_motion = 0
+		self.x_press = self.x_motion = None
+		self.y_press = self.y_motion = None
 		self.add_tool_action_enum('scale-proportions', 'corners')
+		self.add_tool_action_boolean('scale-ratio-spinbtns', False)
 		self.add_tool_action_enum('scale-unit', 'pixels')
 
 	def try_build_pane(self):
@@ -74,10 +74,18 @@ class ToolScale(AbstractCanvasTool):
 		return _("Scaling options")
 
 	def get_editing_tips(self):
-		# The current method is called when options change, so i use it to
-		# update the visibility of the spinbuttons depending on which ones the
-		# user wants to use.
+		# The current method is called when options change, so i use it to:
+
+		# 1) update the visibility of the spinbuttons depending on which ones
+		# the user wants to use.
 		self._update_to_wanted_unit()
+
+		# 2) update the bullshit around ratio preservation actions
+		ratio_option = self.get_option_value('scale-proportions')
+		if not ratio_option == 'corners':
+			action = self.window.lookup_action('scale-ratio-spinbtns')
+			action.set_state(GLib.Variant.new_boolean(ratio_option == 'always'))
+		self.set_action_sensitivity('scale-ratio-spinbtns', ratio_option == 'corners')
 
 		if self.apply_to_selection:
 			label_action = _("Scaling the selection")
@@ -103,16 +111,18 @@ class ToolScale(AbstractCanvasTool):
 		super().on_tool_selected()
 		self._x = 0
 		self._y = 0
-		self._directions = ''
+		self.x_press = self.x_motion = None
+		self.y_press = self.y_motion = None
 		self._w100_btn.set_value(100)
 		self._h100_btn.set_value(100)
+
 		width, height = self._get_original_size()
 		self.set_preserve_ratio()
 		self._ratio = width / height
 		self._spinbtns_disabled = False
 		self._width_btn.set_value(width)
 		self._height_btn.set_value(height)
-		self.build_and_do_op()
+		self.build_and_do_op() # Ensure a correct preview
 
 	def _get_original_size(self):
 		if self.apply_to_selection:
@@ -136,17 +146,23 @@ class ToolScale(AbstractCanvasTool):
 			self._w100_btn.set_visible(True)
 			self._h100_btn.set_visible(True)
 
-	def set_preserve_ratio(self, *args):
+	def set_preserve_ratio(self, for_spinbtns=False):
 		"""Set whether or not `self._preserve_ratio` should be true. If it is,
 		and that wasn't the case before, it sets the `self._ratio` value too."""
 		former_setting = self._preserve_ratio
-		setting = self.get_option_value('scale-proportions')
-		if setting == 'corners':
-			self._preserve_ratio = len(self._directions) != 1
+
+		if for_spinbtns:
+			self._preserve_ratio = self.get_option_value('scale-ratio-spinbtns')
 		else:
-			self._preserve_ratio = setting == 'always'
+			setting = self.get_option_value('scale-proportions')
+			if setting == 'corners':
+				self._preserve_ratio = len(self._directions) != 1
+			else:
+				self._preserve_ratio = setting == 'always'
+
 		if self._ratio_is_inverted:
 			self._preserve_ratio = not self._preserve_ratio
+
 		if self._preserve_ratio == former_setting:
 			return
 		if self._preserve_ratio:
@@ -204,19 +220,20 @@ class ToolScale(AbstractCanvasTool):
 	def on_spinbtn_changed(self, *args):
 		if self._spinbtns_disabled:
 			return
-		if self._directions == '':
-			# These empty directions mean we use the spinbtn directly, instead
-			# of the surface signals.
-			self.set_preserve_ratio()
+		if self.x_press is None:
+			# This means the user interacts with the spinbtn directly, instead
+			# of the surface.
+			self._preserve_ratio = self.get_option_value('scale-ratio-spinbtns')
+			self.set_preserve_ratio(True)
 		self._try_scale_dimensions()
 
 	def on_spinbtn100_changed(self, *args):
 		if self._spinbtns_disabled:
 			return
-		if self._directions == '':
-			# These empty directions mean we use the spinbtn directly, instead
-			# of the surface signals.
-			self.set_preserve_ratio()
+		# This callback can only pass its guard clause when triggered from the
+		# spinbutton directly: i don't have to check the value of self.x_press
+		self._preserve_ratio = self.get_option_value('scale-ratio-spinbtns')
+		self.set_preserve_ratio(True)
 
 		original_width, original_height = self._get_original_size()
 		new_width = original_width * (self._w100_btn.get_value() / 100)
@@ -292,7 +309,10 @@ class ToolScale(AbstractCanvasTool):
 		self._ratio_is_inverted = False
 		self.build_and_do_op() # technically already done
 		self._scroll_to_end(event_x - self.x_press, event_y - self.y_press)
-		self._directions = ''
+
+		# Reset those to tell apart a spinbtn signals' possible origins
+		self.x_press = self.x_motion = None
+		self.y_press = self.y_motion = None
 
 	############################################################################
 
