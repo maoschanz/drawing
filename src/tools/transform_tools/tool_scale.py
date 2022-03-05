@@ -58,13 +58,13 @@ class ToolScale(AbstractCanvasTool):
 
 		self._width_btn = bar.width_btn
 		self._height_btn = bar.height_btn
-		self._width_btn.connect('value-changed', self.on_width_changed)
-		self._height_btn.connect('value-changed', self.on_height_changed)
+		self._width_btn.connect('value-changed', self.on_spinbtn_changed)
+		self._height_btn.connect('value-changed', self.on_spinbtn_changed)
 
-		self._width_100_btn = bar.width_100_btn
-		self._height_100_btn = bar.height_100_btn
-		self._width_100_btn.connect('value-changed', self.on_width_100_changed)
-		self._height_100_btn.connect('value-changed', self.on_height_100_changed)
+		self._w100_btn = bar.width_100_btn
+		self._h100_btn = bar.height_100_btn
+		self._w100_btn.connect('value-changed', self.on_spinbtn100_changed)
+		self._h100_btn.connect('value-changed', self.on_spinbtn100_changed)
 
 		return bar
 
@@ -104,20 +104,22 @@ class ToolScale(AbstractCanvasTool):
 		self._x = 0
 		self._y = 0
 		self._directions = ''
-		if self.apply_to_selection:
-			width = self.get_selection_pixbuf().get_width()
-			height = self.get_selection_pixbuf().get_height()
-		else:
-			width = self.get_image().get_pixbuf_width()
-			height = self.get_image().get_pixbuf_height()
+		self._w100_btn.set_value(100)
+		self._h100_btn.set_value(100)
+		width, height = self._get_original_size()
 		self.set_preserve_ratio()
 		self._ratio = width / height
 		self._spinbtns_disabled = False
 		self._width_btn.set_value(width)
 		self._height_btn.set_value(height)
-		self._width_100_btn.set_value(100)
-		self._height_100_btn.set_value(100)
 		self.build_and_do_op()
+
+	def _get_original_size(self):
+		if self.apply_to_selection:
+			original_pixbuf = self.get_selection_pixbuf()
+		else:
+			original_pixbuf = self.get_main_pixbuf()
+		return original_pixbuf.get_width(), original_pixbuf.get_height()
 
 	############################################################################
 
@@ -126,13 +128,13 @@ class ToolScale(AbstractCanvasTool):
 		if want_pixels:
 			self._width_btn.set_visible(True)
 			self._height_btn.set_visible(True)
-			self._width_100_btn.set_visible(False)
-			self._height_100_btn.set_visible(False)
+			self._w100_btn.set_visible(False)
+			self._h100_btn.set_visible(False)
 		else:
 			self._width_btn.set_visible(False)
 			self._height_btn.set_visible(False)
-			self._width_100_btn.set_visible(True)
-			self._height_100_btn.set_visible(True)
+			self._w100_btn.set_visible(True)
+			self._h100_btn.set_visible(True)
 
 	def set_preserve_ratio(self, *args):
 		"""Set whether or not `self._preserve_ratio` should be true. If it is,
@@ -165,54 +167,73 @@ class ToolScale(AbstractCanvasTool):
 		"""When the value in a spinbutton changes, adjust the values in the
 		spinbuttons if necessary, and build-and-do the corresponding tool
 		operation."""
-		if not self._preserve_ratio:
-			# Guard clause: if the ratio isn't locked, the dimension should be
-			# applied without any change. Calculations are only useful when
-			# trying to preserve the image proportions.
-			self.build_and_do_op()
-			return
-
-		pixbuf = self.get_image().temp_pixbuf
-		existing_width = pixbuf.get_width()
-		existing_height = pixbuf.get_height()
-
-		new_width = self._get_width()
-		new_height = self._get_height()
 		self._spinbtns_disabled = True
 
-		if existing_width != new_width:
-			new_height = new_width / self._ratio
-			self._height_btn.set_value(new_height)
-		if existing_height != new_height:
-			new_width = new_height * self._ratio
-			self._width_btn.set_value(new_width)
+		if self._preserve_ratio:
+			temp_pixbuf = self.get_image().temp_pixbuf
+			existing_width = temp_pixbuf.get_width()
+			existing_height = temp_pixbuf.get_height()
+
+			new_width = self._get_width()
+			new_height = self._get_height()
+
+			if existing_width != new_width:
+				new_height = new_width / self._ratio
+				self._height_btn.set_value(new_height)
+			if existing_height != new_height:
+				new_width = new_height * self._ratio
+				self._width_btn.set_value(new_width)
+		# else:
+			# If the ratio isn't locked, the dimension should be applied without
+			# any change. Calculations to adjust the size are only useful when
+			# trying to preserve the image proportions.
+
+		# Update the "percentage" spinbuttons
+		original_width , original_height = self._get_original_size()
+		new_w100 = 100 * (self._get_width() / original_width)
+		new_h100 = 100 * (self._get_height() / original_height)
+		self._w100_btn.set_value(new_w100)
+		self._h100_btn.set_value(new_h100)
 
 		self._spinbtns_disabled = False
 		self.build_and_do_op()
 
 	############################################################################
+	# Spinbuttons management ###################################################
 
-	def on_width_changed(self, *args):
+	def on_spinbtn_changed(self, *args):
 		if self._spinbtns_disabled:
 			return
 		if self._directions == '':
-			# Means we use the spinbtn directly, instead of the surface signals
+			# These empty directions mean we use the spinbtn directly, instead
+			# of the surface signals.
 			self.set_preserve_ratio()
 		self._try_scale_dimensions()
 
-	def on_height_changed(self, *args):
+	def on_spinbtn100_changed(self, *args):
 		if self._spinbtns_disabled:
 			return
 		if self._directions == '':
-			# Means we use the spinbtn directly, instead of the surface signals
+			# These empty directions mean we use the spinbtn directly, instead
+			# of the surface signals.
 			self.set_preserve_ratio()
-		self._try_scale_dimensions()
 
-	def on_width_100_changed(self, *args):
-		pass
+		original_width, original_height = self._get_original_size()
+		new_width = original_width * (self._w100_btn.get_value() / 100)
+		new_height = original_height * (self._h100_btn.get_value() / 100)
+		delta_x = self._get_width() - new_width
+		delta_y = self._get_height() - new_height
+		self._apply_deltas_to_spinbtns(new_width, new_height, delta_x, delta_y)
 
-	def on_height_100_changed(self, *args):
-		pass
+	def _apply_deltas_to_spinbtns(self, new_width, new_height, dx=0, dy=0):
+		if self._preserve_ratio:
+			if abs(dy) > abs(dx):
+				self._height_btn.set_value(new_height)
+			else:
+				self._width_btn.set_value(new_width)
+		else:
+			self._height_btn.set_value(new_height)
+			self._width_btn.set_value(new_width)
 
 	def _get_width(self):
 		return self._width_btn.get_value_as_int()
@@ -264,14 +285,7 @@ class ToolScale(AbstractCanvasTool):
 			if 'n' in self._directions:
 				self._y = self._y2 - height
 
-		if self._preserve_ratio:
-			if abs(delta_y) > abs(delta_x):
-				self._height_btn.set_value(height)
-			else:
-				self._width_btn.set_value(width)
-		else:
-			self._height_btn.set_value(height)
-			self._width_btn.set_value(width)
+		self._apply_deltas_to_spinbtns(width, height, delta_x, delta_y)
 
 	def on_release_on_area(self, event, surface, event_x, event_y):
 		self.on_motion_on_area(event, surface, event_x, event_y)
