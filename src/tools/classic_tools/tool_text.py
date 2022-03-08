@@ -54,29 +54,37 @@ class ToolText(AbstractClassicTool):
 	# Options ##################################################################
 
 	def _set_font(self, *args):
+		print("57")
 		Gdk.threads_add_idle(GLib.PRIORITY_DEFAULT_IDLE, self._set_font_async, {})
+		print("59")
 
 	def _set_font_async(self, *args):
-		"""Incorrect fonts may trigger `Pango.CRITICAL` errors, which are fine
-		but i don't want the entire app to go down when it happens. The solution
+		"""Incorrect fonts may trigger `Pango.CRITICAL` errors, which would be
+		fine if the entire app didn't to go down when it happens. The solution
 		seems to be a 2nd thread.
-		This asynchrous function is actually on a different thread, it's not
+		This asynchronous function is actually on a different thread, it's not
 		just a shitty timeout-based locking system."""
 		dialog = Gtk.FontChooserDialog(show_preview_entry=False)
 		dialog.set_level(Gtk.FontChooserLevel.FAMILY)
 		dialog.set_font(self._font_fam_name)
 
+		print("-------------------------------")
+
 		# for f in PangoCairo.font_map_get_default().list_families():
 		# 	print(f.get_name())
 
 		status = dialog.run()
+		print("on a fini de run !!!")
 		if(status == Gtk.ResponseType.OK):
+			print("ok !!!!!")
 			self._font_fam_name = dialog.get_font_family().get_name()
 			# print(dialog.get_font())
 			font_gvar = GLib.Variant.new_string(self._font_fam_name)
 			self.window.lookup_action('text-active-family').set_state(font_gvar)
 			self._preview_text()
 		dialog.destroy()
+		print("destroy")
+		# TODO update le editing tip !
 
 	def _set_font_options(self, *args):
 		# XXX incomplete? OBLIQUE exists
