@@ -11,7 +11,9 @@ How to contribute to Drawing
 
 # Bug reports
 
-- If you can, try to **check if the bug has already been fixed but not released**.
+- If you can, try to **check if the bug has already been reported**
+	- See [here](https://github.com/maoschanz/drawing/issues?q=is%3Aissue)
+	- Some bugs might be already fixed but not released!
 - Report it with informations required by the adequate issue template.
 - If it's meaningful, try to include screenshots.
 
@@ -19,7 +21,9 @@ How to contribute to Drawing
 
 # Feature requests
 
-- If you can, try to **check if the feature has already been added but not released**.
+- If you can, try to **check if the feature has already been requested**.
+	- See [here](https://github.com/maoschanz/drawing/issues?q=is%3Aissue)
+	- Some features might be already implemented but not released!
 - Report it with informations required by the adequate issue template.
 - In the report, explain **what** it does, **not how** it does it.
 
@@ -177,18 +181,14 @@ dependencies to make the script work anyway.
 ### Branches and tags
 
 Stable versions for end-users are **tagged**, and listed in this Github repo's
-"_Releases_" section.
+["_Releases_" section](https://github.com/maoschanz/drawing/releases).
 
-```
-          0.4.1  0.4.2  …  0.4.14                     0.6.3  0.6.4
-           _.______.____…____.                         _.______._
-   0.2    /         ______       0.6.0  0.6.1  0.6.2  /
-____.____/_________/______\________.______.______.___/____________
-                        \____________/
-```
+Most tags are **not** on the `master` branch:
 
-**Please don't package anything aside this tagged code**
-<details><summary>(except if your distro have experimental repos)</summary>
+![tags and branches](documentation/contributing-branches.png)
+
+**Please don't package anything aside these tagged versions of the code**
+<details><summary>(except if your distro has experimental repos)</summary>
 <p>
 
 <a href=https://wiki.debian.org/DebianExperimental>How to set up the debian
