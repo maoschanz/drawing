@@ -3,21 +3,22 @@
 # This file is distributed under the same license as the drawing package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # Shaked Ashkenazi <shaked.a21@gmail.com>, 2019.
+# Omer I.S. <omeritzicschwartz@gmail.com>, 2022.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
 "POT-Creation-Date: 2021-12-23 20:06+0100\n"
-"PO-Revision-Date: 2019-06-03 23:22+0300\n"
-"Last-Translator: Shaked Ashkenazi <shaked.a21@gmail.com>\n"
+"PO-Revision-Date: 2022-03-15 18:29+0200\n"
+"Last-Translator: Omer I.S. <omeritzicschwartz@gmail.com>\n"
 "Language-Team: Hebrew <shaked.a21@gmail.com>\n"
 "Language: he\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Gtranslator 3.32.1\n"
-"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #: data/com.github.maoschanz.drawing.desktop.in
 #: data/com.github.maoschanz.drawing.appdata.xml.in src/deco_manager.py
@@ -56,8 +57,9 @@ msgstr "עריכת תמונה מהלוח"
 #. IMPORTANT: the summarized description of the application.
 #. https://gitlab.gnome.org/GNOME/Initiatives/-/wikis/App-Metadata
 #: data/com.github.maoschanz.drawing.appdata.xml.in
+#, fuzzy
 msgid "Edit screenshots or memes"
-msgstr ""
+msgstr "עריכת צילומי מסך או „מִימִים”"
 
 #. IMPORTANT: complete description of the application (1/3)
 #: data/com.github.maoschanz.drawing.appdata.xml.in
@@ -129,7 +131,7 @@ msgstr ""
 #. Caption of a screenshot, for appstores
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "The window and its primary menu"
-msgstr ""
+msgstr "החלון והתפריט הראשי שלו"
 
 #. Caption of a screenshot, for appstores
 #: data/com.github.maoschanz.drawing.appdata.xml.in
@@ -144,7 +146,7 @@ msgstr ""
 #. Caption of a screenshot, for appstores
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "The \"new image\" menu opened"
-msgstr ""
+msgstr "נפתח תפריט „תמונה חדשה”"
 
 #: src/ui/app-menus.ui
 msgid "File"
@@ -156,28 +158,24 @@ msgid "Open an image"
 msgstr "פתיחת תמונה"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
-#, fuzzy
 msgid "New Blank Image"
-msgstr "תמונה חדשה"
+msgstr "תמונה חדשה ריקה"
 
 #: src/ui/app-menus.ui src/ui/win-menus.ui src/new_image_dialog.py
-#, fuzzy
 msgid "New Image With Custom Size"
-msgstr "בחירה מלבנית"
+msgstr "תמונה חדשה בגודל מותאם אישית"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
-#, fuzzy
 msgid "New Image From Selection"
-msgstr "בחירה מלבנית"
+msgstr "יצירת תמונה חדשה מהבחירה"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
 msgid "New Image From Clipboard"
 msgstr "תמונה חדשה מהלוח"
 
 #: src/ui/app-menus.ui src/ui/win-menus.ui
-#, fuzzy
 msgid "Reload file"
-msgstr "פתיחת קובץ"
+msgstr "טעינת הקובץ מחדש"
 
 #: src/ui/app-menus.ui src/ui/win-menus.ui src/properties.py
 msgid "Image properties"
@@ -185,7 +183,7 @@ msgstr "מאפייני תמונה"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Reset canvas"
-msgstr ""
+msgstr "איפוס לוח הציור"
 
 #: src/ui/app-menus.ui src/ui/headerbar.ui src/ui/headerbar-eos.ui
 #: src/ui/shortcuts.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
@@ -194,30 +192,29 @@ msgid "Save"
 msgstr "שמירה"
 
 #: src/ui/app-menus.ui src/ui/win-menus.ui
-#, fuzzy
 msgid "Save without transparency"
-msgstr "שקיפות"
+msgstr "שמירה ללא שקיפות"
 
 #. This "feature" is only visible on April Fools' day, and it
 #. will just rickroll the user.
 #: src/ui/app-menus.ui src/ui/win-menus.ui
 msgid "Prepare as NFT…"
-msgstr ""
+msgstr "העלאה לרשת NFT…"
 
 #: src/ui/app-menus.ui src/ui/headerbar-eos.ui src/ui/win-menus.ui
 #: src/saving_manager.py
 msgid "Save as…"
-msgstr "שמירה כ…"
+msgstr "שמירה בשם…"
 
 #: src/ui/app-menus.ui src/ui/selection-manager.ui src/ui/win-menus.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 msgid "Export as…"
-msgstr "ייצוא כ…"
+msgstr "ייצוא בשם…"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/toolbar.ui
 #: src/ui/toolbar-symbolic.ui src/ui/win-menus.ui
 msgid "Copy to clipboard"
-msgstr ""
+msgstr "העתקה ללוח הגזירים"
 
 #: src/ui/app-menus.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
 #: src/ui/win-menus.ui
@@ -225,14 +222,12 @@ msgid "Print"
 msgstr "הדפסה"
 
 #: src/ui/app-menus.ui
-#, fuzzy
 msgid "Close Image"
-msgstr "תמונה חדשה"
+msgstr "סגירת התמונה"
 
 #: src/ui/app-menus.ui
-#, fuzzy
 msgid "Close Window"
-msgstr "חלון חדש"
+msgstr "סגירת החלון"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Quit all windows"
@@ -304,12 +299,10 @@ msgid "Show the preview"
 msgstr "הצג תצוגה מקדימה"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/preferences.py
-#, fuzzy
 msgid "Zoom"
-msgstr "התקרבות"
+msgstr "תקריב"
 
 #: src/ui/app-menus.ui src/ui/minimap.ui src/ui/shortcuts.ui
-#, fuzzy
 msgid "Optimal Zoom"
 msgstr "מרחק מיטבי"
 
@@ -317,7 +310,6 @@ msgstr "מרחק מיטבי"
 #: src/ui/toolbar-symbolic.ui src/optionsbars/transform/optionsbar-crop.ui
 #: src/optionsbars/transform/optionsbar-scale.ui
 #: src/optionsbars/transform/optionsbar-skew.ui
-#, fuzzy
 msgid "Zoom Out"
 msgstr "התרחקות"
 
@@ -325,7 +317,6 @@ msgstr "התרחקות"
 #: src/ui/toolbar-symbolic.ui src/optionsbars/transform/optionsbar-crop.ui
 #: src/optionsbars/transform/optionsbar-scale.ui
 #: src/optionsbars/transform/optionsbar-skew.ui
-#, fuzzy
 msgid "Original Zoom"
 msgstr "מרחק מקורי"
 
@@ -333,7 +324,6 @@ msgstr "מרחק מקורי"
 #: src/ui/toolbar-symbolic.ui src/optionsbars/transform/optionsbar-crop.ui
 #: src/optionsbars/transform/optionsbar-scale.ui
 #: src/optionsbars/transform/optionsbar-skew.ui
-#, fuzzy
 msgid "Zoom In"
 msgstr "התקרבות"
 
@@ -342,59 +332,56 @@ msgstr "התקרבות"
 #. Context: this submenu is about moving the view to the
 #. left/right/top/bottom
 #: src/ui/app-menus.ui
-#, fuzzy
 msgid "Position"
-msgstr "עריכה"
+msgstr "מיקום"
 
 # I think that "Left" may be a slightly better choice, or is it to vague?
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Go Left"
-msgstr "לך שמאלה"
+msgstr "מעבר שמאלה"
 
 # I think that "Up" may be a slightly better choice, or is it too vague?
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Go Up"
-msgstr "לך למעלה"
+msgstr "מעבר למעלה"
 
 # I think that "Down" may be a slightly better choice, or is it too vague?
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Go Down"
-msgstr "לך למטה"
+msgstr "מעבר למטה"
 
 # I think that "Right" may be a slightly better choice, or is it too vague?
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Go Right"
-msgstr "לך ימינה"
+msgstr "מעבר ימינה"
 
 #. Context: this action scrolls to the left end of the
 #. canvas. The "go left" action only goes a few centimeters
 #. to the left, but this one goes all the way left.
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
-#, fuzzy
 msgid "Go to the left end"
-msgstr "חזרה ללוח הצבעים"
+msgstr "מעבר לקצה השמאלי"
 
 #. Context: this action scrolls to the top of the canvas
 #. The "go up" action only goes a few centimeters up, but
 #. this one goes all the way to the top.
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Go to the top"
-msgstr ""
+msgstr "מעבר לקצה העליון"
 
 #. Context: this action scrolls to the bottom of the canvas
 #. The "go down" action only goes a few centimeters down,
 #. but this one goes all the way to the bottom.
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Go to the bottom"
-msgstr ""
+msgstr "מעבר לקצה התחתון"
 
 #. Context: this action scrolls to the right end of the
 #. canvas. The "go right" action only goes a few centimeters
 #. to the right, but this one goes all the way right.
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
-#, fuzzy
 msgid "Go to the right end"
-msgstr "סובב ימינה"
+msgstr "מעבר לקצה הימני"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 #, fuzzy
@@ -408,7 +395,7 @@ msgstr "סובב ימינה"
 
 #: src/ui/app-menus.ui
 msgid "Refresh"
-msgstr "רענון"
+msgstr "ריענון"
 
 #. Label shown only in developer mode
 #: src/ui/app-menus.ui
@@ -439,14 +426,12 @@ msgid "Colors"
 msgstr "צבעים"
 
 #: src/ui/app-menus.ui
-#, fuzzy
 msgid "Edit Main Color…"
-msgstr "צבע ראשי"
+msgstr "עריכת הצבע הראשי…"
 
 #: src/ui/app-menus.ui
-#, fuzzy
 msgid "Edit Secondary Color…"
-msgstr "צבע משנה"
+msgstr "עריכת הצבע המשני…"
 
 #: src/ui/app-menus.ui
 #, fuzzy
@@ -465,16 +450,14 @@ msgstr "אפשרויות צבע"
 
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
-#, fuzzy
 msgid "Normal"
-msgstr "תבנית"
+msgstr "רגיל"
 
 #. Context: possible ways to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/classic/optionsbar-operator-menus.ui
-#, fuzzy
 msgid "Highlight"
-msgstr "גובה"
+msgstr "מודגש"
 
 #. Context: a possible way to highlight text
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-operator-menus.ui
@@ -549,7 +532,6 @@ msgstr ""
 
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
-#, fuzzy
 msgid "Erase"
 msgstr "מחק"
 
@@ -586,15 +568,13 @@ msgstr "אפשרויות צבע"
 
 #: src/ui/app-menus.ui
 #: src/optionsbars/transform/abstract-optionsbar-transform.ui
-#, fuzzy
 msgid "Cancel transformation"
-msgstr "שינוי קנה מידה של הבחירה"
+msgstr "ביטול שינוי הצורה"
 
 #: src/ui/app-menus.ui
 #: src/optionsbars/transform/abstract-optionsbar-transform.ui
-#, fuzzy
 msgid "Apply transformation"
-msgstr "שינוי קנה מידה של הבחירה"
+msgstr "החלת שינוי הצורה"
 
 #: src/ui/app-menus.ui
 msgid "Options"
@@ -624,14 +604,12 @@ msgstr ""
 
 #. Context: open the help page about general use of the app
 #: src/ui/app-menus.ui
-#, fuzzy
 msgid "Basic help"
-msgstr "בסיסי"
+msgstr "עזרה בסיסית"
 
 #: src/ui/app-menus.ui src/ui/minimap.ui
-#, fuzzy
 msgid "Help about zooming"
-msgstr "שינוי קנה מידה של הבחירה"
+msgstr "עזרה לגבי התקריב"
 
 #: src/ui/app-menus.ui
 msgid "Help about the full-screen mode"
@@ -643,30 +621,27 @@ msgid "Help about classic tools"
 msgstr "שינוי קנה מידה של הבחירה"
 
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-color-popover.ui
-#, fuzzy
 msgid "Help about colors"
-msgstr "שינוי קנה מידה של הבחירה"
+msgstr "עזרה לגבי הצבעים"
 
 #. Context: open the help page about transformation tools (crop,
 #. scale, rotate, filters, ...
 #: src/ui/app-menus.ui
 #: src/optionsbars/transform/abstract-optionsbar-transform.ui
-#, fuzzy
 msgid "Help about transformation tools"
-msgstr "שינוי קנה מידה של הבחירה"
+msgstr "עזרה לגבי כלי שינוי הצורה"
 
 #: src/ui/app-menus.ui src/optionsbars/selection/optionsbar-selection.ui
-#, fuzzy
 msgid "Help about selection"
-msgstr "שינוי קנה מידה של הבחירה"
+msgstr "עזרה לגבי הבחירה"
 
 #: src/ui/app-menus.ui
 msgid "What's new"
-msgstr ""
+msgstr "מה חדש"
 
 #: src/ui/app-menus.ui src/ui/win-menus.ui
 msgid "About Drawing"
-msgstr "אודות ציור"
+msgstr "על אודות „ציור”"
 
 #: src/ui/headerbar.ui src/ui/headerbar-eos.ui src/ui/toolbar.ui
 #: src/ui/toolbar-symbolic.ui src/window.py
@@ -675,20 +650,19 @@ msgstr "פתיחה"
 
 #: src/ui/headerbar-eos.ui
 msgid "Share the image"
-msgstr ""
+msgstr "שיתוף התמונה"
 
 #: src/ui/image.ui
 msgid "The image changed on the disk, do you want to reload it?"
 msgstr ""
 
 #: src/ui/image.ui
-#, fuzzy
 msgid "Reload"
-msgstr "פתיחת קובץ"
+msgstr "טעינה מחדש"
 
 #: src/ui/minimap.ui
 msgid "100%"
-msgstr ""
+msgstr "100%"
 
 #: src/ui/new-image-dialog.ui src/ui/properties.ui
 #: src/optionsbars/transform/optionsbar-crop.ui
@@ -703,9 +677,8 @@ msgid "Height"
 msgstr "גובה"
 
 #: src/ui/new-image-dialog.ui
-#, fuzzy
 msgid "Color"
-msgstr "צבעים"
+msgstr "צבע"
 
 #: src/ui/new-image-dialog.ui
 #, fuzzy
@@ -713,14 +686,12 @@ msgid "Use these settings by default"
 msgstr "עשה שימוש בעורך זה בברירת המחדל"
 
 #: src/ui/preferences.ui
-#, fuzzy
 msgid "Images"
-msgstr "תמונה"
+msgstr "תמונות"
 
 #: src/ui/preferences.ui
-#, fuzzy
 msgid "Window"
-msgstr "חלון חדש"
+msgstr "חלון"
 
 #. To translators: it's a measure unit, it appears in tooltips over
 #. numerical inputs
@@ -734,7 +705,7 @@ msgstr "סנטימטרים"
 
 #: src/ui/properties.ui
 msgid "inches"
-msgstr "אינצ'ים"
+msgstr "אינצ׳ים"
 
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
@@ -745,7 +716,7 @@ msgstr "אפשרויות צבע"
 #: src/ui/selection-manager.ui src/ui/shortcuts.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 msgid "Deselect"
-msgstr "בטל בחירה"
+msgstr "ביטול הבחירה"
 
 #: src/ui/selection-manager.ui src/tools/transform_tools/tool_crop.py
 msgid "Crop"
@@ -772,15 +743,13 @@ msgid "Filters"
 msgstr ""
 
 #: src/ui/selection-manager.ui src/tools/ui/selection.ui
-#, fuzzy
 msgid "More actions"
-msgstr "אין אפשרויות"
+msgstr "אפשרויות נוספות"
 
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
-#, fuzzy
 msgid "Invert selection"
-msgstr "בחירה חופשית"
+msgstr "היפוך הבחירה"
 
 #. Define the image as being the currently selected area
 #: src/ui/selection-manager.ui
@@ -834,16 +803,15 @@ msgstr ""
 
 #: src/ui/shortcuts.ui src/saving_manager.py
 msgid "Save picture as…"
-msgstr "שמירת תמונה כ…"
+msgstr "שמירת תמונה בשם…"
 
 #: src/ui/shortcuts.ui
 msgid "Close the active image"
 msgstr "סגור תמונה נוכחית"
 
 #: src/ui/shortcuts.ui
-#, fuzzy
 msgid "Open the tool options menu"
-msgstr "תפריט אפשרויות"
+msgstr "פתיחת תפריט האפשרויות"
 
 #: src/ui/shortcuts.ui
 msgid "Back to previous tool"
@@ -860,7 +828,7 @@ msgstr ""
 # There is no word for "toggle" in hebrew, so I opted to use the translation for "show/hide".
 #: src/ui/shortcuts.ui
 msgid "Toggle the preview"
-msgstr "הצג/הסתר תצוגה מקדימה"
+msgstr "הצגת/הסתרת התצוגה המקדימה"
 
 #: src/ui/shortcuts.ui src/tools/selection_tools/abstract_select.py
 msgid "Selection"
@@ -868,9 +836,8 @@ msgstr "בחירה"
 
 #. Label displayed in the keyboard shortcuts dialog
 #: src/ui/shortcuts.ui
-#, fuzzy
 msgid "Delete the selection"
-msgstr "שינוי קנה מידה של הבחירה"
+msgstr "מחיקת הבחירה"
 
 #. Label displayed in the keyboard shortcuts dialog
 #: src/ui/shortcuts.ui
@@ -911,13 +878,12 @@ msgid "Touch gestures"
 msgstr ""
 
 #: src/ui/window.ui src/deco_manager.py
-#, fuzzy
 msgid "Loading…"
-msgstr "טוען %s"
+msgstr "בטעינה…"
 
 #: src/ui/window.ui
 msgid "Exit fullscreen"
-msgstr ""
+msgstr "יציאה ממסך מלא"
 
 #: src/deco_manager.py
 #, python-format
@@ -957,9 +923,8 @@ msgstr ""
 
 #. Description of a command line option
 #: src/main.py
-#, fuzzy
 msgid "Show the app version"
-msgstr "הצג תצוגה מקדימה"
+msgstr "הצגת גרסת היישום"
 
 #. Description of a command line option
 #: src/main.py
@@ -989,7 +954,9 @@ msgstr "דווח באגים או רעיונות"
 #. per line), they will be displayed in the "about" dialog
 #: src/main.py
 msgid "translator-credits"
-msgstr "moriel5"
+msgstr ""
+"moriel5\n"
+"Omer I.S. <omeritzicschwartz@gmail.com>"
 
 #. To translators: this is credits for the icons, consider that "Art
 #. Libre" is proper name
@@ -999,25 +966,21 @@ msgstr ""
 
 #: src/main.py
 msgid "Simple image editor for Linux"
-msgstr ""
+msgstr "עורך תמונות פשוט עבור לינוקס"
 
 #: src/main.py
 msgid "Official webpage"
-msgstr ""
+msgstr "אתר האינטרנט הרשמי"
 
 #: src/main.py
-#, fuzzy
 msgid "Error opening this file."
-msgstr ""
-"שגיאה בפתיחת קובץ זה. האם התכוונת ל-\n"
-"flatpak run --file-forwarding {0} @@ {1}\n"
-"?"
+msgstr "שגיאה בפתיחת קובץ זה."
 
 #. This is an error message, %s is a better command suggestion
 #: src/main.py
 #, python-format
 msgid "Did you mean %s ?"
-msgstr ""
+msgstr "האם התכוונת ל־„%s”?"
 
 #. This string displays the zoom level: %s will be replaced with a
 #. number, while %% will be rendered as the symbol '%'
@@ -1034,7 +997,7 @@ msgstr "ביטול"
 #. Context: Create a new image
 #: src/new_image_dialog.py
 msgid "Create"
-msgstr ""
+msgstr "יצירה"
 
 #. Context: title of a section of the preferences
 #: src/preferences.py
@@ -1059,15 +1022,13 @@ msgstr "גובה ברירת מחדל"
 #: src/optionsbars/transform/optionsbar-skew.ui src/tools/ui/selection.ui
 #: src/tools/ui/tool-crop.ui src/tools/ui/tool-eraser.ui
 #: src/tools/classic_tools/tool_eraser.py
-#, fuzzy
 msgid "Default color"
-msgstr "רקע ברירת מחדל"
+msgstr "צבע ברירת מחדל"
 
 #. Context: title of a section of the preferences
 #: src/preferences.py
-#, fuzzy
 msgid "Images saving"
-msgstr "תמונה"
+msgstr "שמירת תמונות"
 
 #: src/preferences.py
 msgid "JPEG and BMP images can't handle transparency."
@@ -1081,11 +1042,11 @@ msgstr ""
 
 #: src/preferences.py src/saving_manager.py src/utilities/utilities_colors.py
 msgid "White"
-msgstr ""
+msgstr "לבן"
 
 #: src/preferences.py src/saving_manager.py src/utilities/utilities_colors.py
 msgid "Black"
-msgstr ""
+msgstr "שחור"
 
 #. Context: replace transparent pixels with [checkboard]. This is a
 #. pattern of dark and light greys.
@@ -1101,7 +1062,7 @@ msgstr ""
 
 #: src/preferences.py
 msgid "Ask before saving"
-msgstr ""
+msgstr "בקשת אישור לשמירה"
 
 #: src/preferences.py
 msgid "You can zoom with Ctrl+scrolling, or only scrolling."
@@ -1119,16 +1080,16 @@ msgstr ""
 #. tools: big icons?, labels?)
 #: src/preferences.py
 msgid "Appearance"
-msgstr ""
+msgstr "מראה"
 
 #: src/preferences.py
 msgid "Use big icons"
-msgstr ""
+msgstr "שימוש בסמלים גדולים"
 
 #. Context: title of a section of the preferences
 #: src/preferences.py
 msgid "Additional tools"
-msgstr ""
+msgstr "כלים נוספים"
 
 #: src/preferences.py
 msgid ""
@@ -1187,9 +1148,8 @@ msgstr "צבע"
 
 #. Context: title of a section of the preferences
 #: src/preferences.py
-#, fuzzy
 msgid "Advanced options"
-msgstr "אפשרויות קשת"
+msgstr "אפשרויות מתקדמות"
 
 #: src/preferences.py
 msgid "Preview size"
@@ -1201,9 +1161,8 @@ msgid "Development features"
 msgstr "תכונות פיתוח"
 
 #: src/preferences.py
-#, fuzzy
 msgid "Background color"
-msgstr "רקע אטום"
+msgstr "צבע רקע"
 
 #: src/preferences.py
 #, fuzzy
@@ -1218,33 +1177,33 @@ msgstr "פריסה"
 
 #: src/preferences.py
 msgid "The recommended value is \"Automatic\"."
-msgstr ""
+msgstr "האפשרות המומלצת היא \"אוטומטית\"."
 
 #. It has to match what's written in the previous string.
 #: src/preferences.py
 msgid "Automatic"
-msgstr "אוטומטי"
+msgstr "אוטומטית"
 
 #: src/preferences.py
 msgid "Compact"
-msgstr "דחוס"
+msgstr "חסכונית"
 
 #: src/preferences.py
 msgid "elementary OS"
-msgstr ""
+msgstr "elementary OS"
 
 #. "Legacy" is about the window layout, it means menubar+toolbar, you
 #. can translate it like if it was "Traditional"
 #: src/preferences.py
 msgid "Legacy"
-msgstr "מסורתיבש"
+msgstr "מסורתי"
 
 #. "Legacy" is about the window layout, it means menubar+toolbar, you
 #. can translate it like if it was "Traditional".
 #. Symbolic icons are monochrome icons.
 #: src/preferences.py
 msgid "Legacy (symbolic icons)"
-msgstr ""
+msgstr "מסורתי (סמלים סימבוליים)"
 
 #: src/preferences.py
 msgid "Menubar only"
@@ -1263,17 +1222,17 @@ msgstr "סרגל כלים בלבד"
 #: src/properties.py
 #, python-format
 msgid "%s px"
-msgstr ""
+msgstr "%s פיקסלים"
 
 #: src/properties.py
 #, python-format
 msgid "%s cm"
-msgstr ""
+msgstr "%s ס״מ"
 
 #: src/properties.py
 #, python-format
 msgid "%s in"
-msgstr ""
+msgstr "%s אינצ׳ים"
 
 #. Context: the path of the edited file
 #: src/properties.py
@@ -1286,25 +1245,24 @@ msgid "Format"
 msgstr "תבנית"
 
 #: src/properties.py
-#, fuzzy
 msgid "Colorspace"
-msgstr "צבעים"
+msgstr "מרחב צבעים"
 
 #. Context: an invalid colorspace format
 #: src/properties.py
 msgid "Invalid format"
-msgstr "תבנית לא תקפה"
+msgstr "תבנית לא תקינה"
 
 #. Context: an error message
 #: src/saving_manager.py
 #, python-format
 msgid "Failed to save %s"
-msgstr ""
+msgstr "שמירת %s נכשלה"
 
 #. Context: Untitled(.png) is the default name of a newly saved file
 #: src/saving_manager.py
 msgid "Untitled"
-msgstr "חסר שם"
+msgstr "ללא שם"
 
 #. Context: the sentence "There are unsaved modifications to %s."
 #: src/saving_manager.py
@@ -1319,7 +1277,7 @@ msgstr "מחיקת שינויים"
 #: src/saving_manager.py src/window.py
 #, python-format
 msgid "There are unsaved modifications to %s."
-msgstr "ישנם שינויים אשר לא שמורים ל%s."
+msgstr "יש שינויים שלא נשמרו לקובץ %s."
 
 #: src/saving_manager.py
 msgid ""
@@ -1336,7 +1294,7 @@ msgstr ""
 #. To translators: this string should be quite short
 #: src/saving_manager.py
 msgid "Apply & save"
-msgstr ""
+msgstr "החלה ושמירה"
 
 #. To translators: this string should be quite short
 #: src/saving_manager.py
@@ -1345,19 +1303,17 @@ msgid "Deselect & save"
 msgstr "בטל בחירה"
 
 #: src/saving_manager.py
-#, fuzzy
 msgid "Save anyway"
-msgstr "שמירה כ…"
+msgstr "שמירה בכל זאת"
 
 #: src/saving_manager.py
-#, fuzzy
 msgid "Do you want to save anyway?"
-msgstr "היכן ברצונך לפתוח את %s?"
+msgstr "לשמור בכל זאת?"
 
 #. Context: confirm replacing transparent pixels with the selected color
 #: src/saving_manager.py
 msgid "Replace"
-msgstr ""
+msgstr "החלפה"
 
 #: src/saving_manager.py
 msgid "This file format doesn't support transparent colors."
@@ -1395,36 +1351,35 @@ msgstr "שגיאה בפתיחת היישום, נא לדווח באג זה."
 #, python-format
 msgid ""
 "It's the first time you use Drawing %s, would you like to read what's new?"
-msgstr ""
+msgstr "זאת הפעם הראשונה שלך ב־„ציור” %s, האם ברצונך לראות מה חדש?"
 
 #: src/window.py
 msgid "No"
-msgstr ""
+msgstr "לא"
 
 #: src/window.py
 msgid "Later"
-msgstr ""
+msgstr "מאוחר יותר"
 
 #: src/window.py
 msgid "Yes"
-msgstr ""
+msgstr "כן"
 
 #: src/window.py
 msgid "The clipboard doesn't contain any image."
-msgstr ""
+msgstr "לוח הגזירים אינו מכיל תמונות כלל."
 
 #. Context: %s is a file name
 #: src/window.py
 #, python-format
 msgid "The file %s is already opened"
-msgstr ""
+msgstr "הקובץ %s כבר פתוח"
 
 #. Context: the user would click here to confirm they want to open the
 #. same file twice
 #: src/window.py
-#, fuzzy
 msgid "Open again"
-msgstr "פתיחת קובץ"
+msgstr "פתיחה חוזרת"
 
 #: src/window.py
 msgid "Switch to this image"
@@ -1440,18 +1395,18 @@ msgstr ""
 
 #: src/window.py
 msgid "Press F11 to exit fullscreen."
-msgstr ""
+msgstr "יש ללחוץ על F11 כדי לצאת ממסך מלא."
 
 #: src/window.py
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Error loading the bottom pane for the tool '%s', please report this bug."
-msgstr "שגיאה בפתיחת היישום, נא לדווח באג זה."
+msgstr "שגיאה בטעינת החלונית התחתונה של הכלי „%s”, נא לדווח על התקלה הזאת."
 
 #: src/window.py
 #, python-format
 msgid "Loading %s"
-msgstr "טוען %s"
+msgstr "%s בטעינה"
 
 #: src/window.py
 msgid "New Tab"
@@ -1459,7 +1414,7 @@ msgstr "לשונית חדשה"
 
 #: src/window.py
 msgid "Discard changes"
-msgstr "בטל שינויים"
+msgstr "ביטול השינויים"
 
 #. Context: %s will be replaced by the name of a file.
 #: src/window.py
@@ -1482,13 +1437,12 @@ msgid "What do you want to do with %s?"
 msgstr "היכן ברצונך לפתוח את %s?"
 
 #: src/window.py
-#, fuzzy
 msgid "Image copied to clipboard"
-msgstr "עריכת תמונה מהלוח"
+msgstr "התמונה הועתקה ללוח הגזירים"
 
 #: src/window.py
 msgid "Import a picture"
-msgstr "יבא תמונה"
+msgstr "ייבוא תמונה"
 
 #: src/window.py
 msgid "Required tool is not available"
@@ -1506,15 +1460,15 @@ msgstr "הוסף שקיפות"
 
 #: src/utilities/utilities_colors.py
 msgid "Grey"
-msgstr ""
+msgstr "אפור"
 
 #: src/utilities/utilities_colors.py
 msgid "Orange"
-msgstr ""
+msgstr "כתום"
 
 #: src/utilities/utilities_colors.py
 msgid "Brown"
-msgstr ""
+msgstr "חום"
 
 #. Context: the name of the current color is provided as a tooltip to
 #. help users with color blindness, but some color names don't have a
@@ -1524,21 +1478,20 @@ msgid "Probably brown"
 msgstr ""
 
 #: src/utilities/utilities_colors.py
-#, fuzzy
 msgid "Red"
-msgstr "חידוש פעולה"
+msgstr "אדום"
 
 #: src/utilities/utilities_colors.py
 msgid "Green"
-msgstr ""
+msgstr "ירוק"
 
 #: src/utilities/utilities_colors.py
 msgid "Blue"
-msgstr ""
+msgstr "כחול"
 
 #: src/utilities/utilities_colors.py
 msgid "Yellow"
-msgstr ""
+msgstr "צהוב"
 
 #: src/utilities/utilities_colors.py
 msgid "Magenta"
@@ -1546,7 +1499,7 @@ msgstr ""
 
 #: src/utilities/utilities_colors.py
 msgid "Purple"
-msgstr ""
+msgstr "סגול"
 
 #: src/utilities/utilities_colors.py
 msgid "Cyan"
@@ -1566,7 +1519,7 @@ msgstr ""
 #. clear definition. Here, the app can't find a corresponding color name.
 #: src/utilities/utilities_colors.py
 msgid "Unknown color name"
-msgstr ""
+msgstr "שם צבע לא ידוע"
 
 #: src/utilities/utilities_files.py
 msgid "All pictures"
@@ -1585,13 +1538,13 @@ msgid "BMP images"
 msgstr "תמונות BMP"
 
 #: src/utilities/utilities_files.py
-#, fuzzy, python-format
+#, python-format
 msgid "%s isn't an image."
-msgstr "פתיחת תמונה"
+msgstr "הקובץ %s אינו תמונה."
 
 #: src/utilities/utilities_files.py
 msgid "Sorry, WEBP images can't be loaded by this app."
-msgstr ""
+msgstr "יישום זה אינו תומך בטעינת תמונות WEBP, עימך הסליחה."
 
 #. Context: an error message, %s is a file path
 #: src/utilities/utilities_files.py
@@ -1618,14 +1571,13 @@ msgstr "האם ברצונך לבטל את הפעולה, או לתת לכלי ל�
 #. To translators: it appears in tooltips over numerical inputs
 #: src/utilities/utilities_units.py
 msgid "percents"
-msgstr ""
+msgstr "אחוזים"
 
 #. To translators: it's the angle measure unit, it appears in a tooltip
 #. over a numerical input
 #: src/utilities/utilities_units.py
-#, fuzzy
 msgid "degrees"
-msgstr "זווית (מעלות)"
+msgstr "מעלות"
 
 #. Context: this is equivalent to "Highlight: Light text on dark background"
 #. but it has to be FAR SHORTER so it fits in the color chooser
@@ -1671,7 +1623,7 @@ msgstr "חזרה ללוח הצבעים"
 
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Palette"
-msgstr ""
+msgstr "לוח צבעים"
 
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Use this editor by default"
@@ -1684,7 +1636,7 @@ msgstr "אפשרויות בחירה"
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 #: src/tools/ui/tool-eraser.ui
 msgid "Replace with…"
-msgstr ""
+msgstr "החלפה עם…"
 
 #: src/optionsbars/selection/optionsbar-selection.ui
 #: src/optionsbars/transform/optionsbar-crop.ui
@@ -1700,9 +1652,8 @@ msgid "Extract from this color"
 msgstr ""
 
 #: src/optionsbars/transform/abstract-optionsbar-transform.ui
-#, fuzzy
 msgid "More options"
-msgstr "אין אפשרויות"
+msgstr "אפשרויות נוספות"
 
 #: src/optionsbars/transform/optionsbar-crop.ui
 #: src/optionsbars/transform/optionsbar-skew.ui src/tools/ui/tool-crop.ui
@@ -1711,9 +1662,8 @@ msgstr ""
 
 #: src/optionsbars/transform/optionsbar-filters.ui
 #: src/tools/transform_tools/tool_filters.py
-#, fuzzy
 msgid "Select a filter…"
-msgstr "בחירה בהכל"
+msgstr "בחירת מסנן…"
 
 #: src/optionsbars/transform/optionsbar-rotate.ui
 msgid "Angle (degrees)"
@@ -1721,7 +1671,7 @@ msgstr "זווית (מעלות)"
 
 #: src/optionsbars/transform/optionsbar-rotate.ui
 msgid "Angle"
-msgstr ""
+msgstr "מעלה"
 
 #: src/optionsbars/transform/optionsbar-rotate.ui src/tools/ui/tool-rotate.ui
 msgid "Rotate left"
@@ -1741,15 +1691,14 @@ msgstr "הפוך אנכית"
 
 #. Context: the title of a menu to chose how the image will be scaled
 #: src/optionsbars/transform/optionsbar-scale.ui src/tools/ui/tool-scale.ui
-#, fuzzy
 msgid "Keep proportions"
-msgstr "שמור יחסי קנה מידה"
+msgstr "שמירה על היחס"
 
 #. Context: an item in a menu whose title is "Keep proportions"
 #. Context for translations: "Always [keep proportions]"
 #: src/optionsbars/transform/optionsbar-scale.ui src/tools/ui/tool-scale.ui
 msgid "Always"
-msgstr ""
+msgstr "תמיד"
 
 #. Context: an item in a menu whose title is "Keep proportions"
 #. Context for translations: "[Keep proportions only] when scaling from corners"
@@ -1761,10 +1710,9 @@ msgstr ""
 #. Context for translations: "Never [keep proportions]"
 #: src/optionsbars/transform/optionsbar-scale.ui src/tools/ui/tool-scale.ui
 msgid "Never"
-msgstr ""
+msgstr "אף פעם"
 
 #: src/optionsbars/transform/optionsbar-scale.ui src/tools/ui/tool-scale.ui
-#, fuzzy
 msgid "Pixels"
 msgstr "פיקסלים"
 
@@ -1811,7 +1759,7 @@ msgstr "מרובע"
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui
 msgid "Outline"
-msgstr ""
+msgstr "קו מתאר"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui
@@ -1843,38 +1791,35 @@ msgid "Alternated dashes"
 msgstr ""
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
-#, fuzzy
 msgid "No arrow"
-msgstr "חץ"
+msgstr ""
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 msgid "Simple arrow"
-msgstr ""
+msgstr "חץ פשוט"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 msgid "Double arrow"
-msgstr ""
+msgstr "חץ כפול"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-brush.ui
 #: src/tools/ui/tool-highlight.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui src/tools/ui/tool-points.ui
 #: src/tools/ui/tool-shape.ui src/tools/ui/tool-text.ui
 msgid "Antialiasing"
-msgstr ""
+msgstr "החלקת עקומות"
 
 #: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_simple.py
-#, fuzzy
 msgid "Simple brush"
-msgstr "השתמש בקווים מפרידים"
+msgstr "מברשת פשוטה"
 
 #: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_airbrush.py
 msgid "Airbrush"
 msgstr ""
 
 #: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_hairy.py
-#, fuzzy
 msgid "Hairy brush"
-msgstr "השתמש בקווים מפרידים"
+msgstr "מברשת שעירה"
 
 #: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_nib.py
 msgid "Calligraphic nib"
@@ -1914,9 +1859,8 @@ msgid "Blur"
 msgstr ""
 
 #: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
-#, fuzzy
 msgid "Shuffle pixels"
-msgstr "פיקסלים"
+msgstr "ערבוב פיקסלים"
 
 #: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
 msgid "Shuffle and blur"
@@ -1946,9 +1890,8 @@ msgstr ""
 
 #: src/tools/ui/tool-filters.ui src/tools/ui/tool-highlight.ui
 #: src/tools/transform_tools/tool_filters.py
-#, fuzzy
 msgid "Add transparency"
-msgstr "שקיפות"
+msgstr "הוספת שקיפות"
 
 #: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
 #: src/tools/transform_tools/filters/filter_contrast.py
@@ -1991,9 +1934,8 @@ msgid "Blur vertically"
 msgstr "הפוך אנכית"
 
 #: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
-#, fuzzy
 msgid "Invert colors"
-msgstr "החלף צבעים"
+msgstr "היפוך צבעים"
 
 #: src/tools/ui/tool-highlight.ui
 #, fuzzy
@@ -2001,9 +1943,8 @@ msgid "Straighten the line"
 msgstr "שינוי קנה מידה של הבחירה"
 
 #: src/tools/ui/tool-line.ui
-#, fuzzy
 msgid "Color gradient"
-msgstr "בוחר צבעים"
+msgstr "מעבר צבעים"
 
 #: src/tools/ui/tool-line.ui
 #, fuzzy
@@ -2013,7 +1954,7 @@ msgstr "אפשרויות צבע"
 #. Context: title for the list of the possible painting algorithms.
 #: src/tools/ui/tool-paint.ui
 msgid "Behavior"
-msgstr ""
+msgstr "התנהגות"
 
 #. Context: this is one of the possible painting algorithms. It
 #. tries to draw a shape around the area to paint, and fill it
@@ -2034,9 +1975,8 @@ msgstr "מחק והחלף"
 #. paints over the entire image, instead of following the shapes
 #. already drawn.
 #: src/tools/ui/tool-paint.ui
-#, fuzzy
 msgid "Entire image"
-msgstr "תמונות שנפתחו"
+msgstr "כל התמונה"
 
 #. Context: this is one of the possible painting algorithms. It
 #. doesn't really paint, instead it erases the color the user
@@ -2092,9 +2032,8 @@ msgid "Dashed outline"
 msgstr ""
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
-#, fuzzy
 msgid "No outline"
-msgstr "אין אפשרויות"
+msgstr "ללא קו מתאר"
 
 #: src/tools/ui/tool-shape.ui
 msgid "Filling"
@@ -2106,14 +2045,12 @@ msgid "Empty shape"
 msgstr "ריק"
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
-#, fuzzy
 msgid "Horizontal gradient"
-msgstr "הפוך אופקית"
+msgstr "מעבר אופקי"
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
-#, fuzzy
 msgid "Vertical gradient"
-msgstr "בוחר צבעים"
+msgstr "מעבר אנָכי"
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
 #, fuzzy
@@ -2151,34 +2088,31 @@ msgid "Font"
 msgstr "גופן"
 
 #: src/tools/ui/tool-text.ui
-#, fuzzy
 msgid "Select a font…"
-msgstr "בחירה בהכל"
+msgstr "בחירת גופן…"
 
 #: src/tools/ui/tool-text.ui
 msgid "Italic"
-msgstr ""
+msgstr "נטוי"
 
 #: src/tools/ui/tool-text.ui
 msgid "Bold"
-msgstr ""
+msgstr "מודגש"
 
 #. Context: the types of background behind the inserted text
 #: src/tools/ui/tool-text.ui
-#, fuzzy
 msgid "Background"
-msgstr "רקע אטום"
+msgstr "רקע"
 
 #. Context: a type of background behind the inserted text
 #: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
-#, fuzzy
 msgid "No background"
-msgstr "רקע אטום"
+msgstr "ללא רקע"
 
 #. Context: a type of background behind the inserted text
 #: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
 msgid "Shadow"
-msgstr ""
+msgstr "צל"
 
 #. Context: a type of background behind the inserted text
 #: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
@@ -2230,9 +2164,8 @@ msgid "Press <Alt> to toggle the 'outline' option"
 msgstr ""
 
 #: src/tools/classic_tools/tool_brush.py
-#, fuzzy
 msgid "Brush options"
-msgstr "אין אפשרויות"
+msgstr "אפשרויות מברשת"
 
 #: src/tools/classic_tools/tool_eraser.py
 msgid "Press <Shift> to erase a rectangle area instead"
@@ -2243,9 +2176,8 @@ msgid "Press <Shift> to erase a path instead"
 msgstr ""
 
 #: src/tools/classic_tools/tool_eraser.py
-#, fuzzy
 msgid "Eraser options"
-msgstr "אין אפשרויות"
+msgstr "אפשרויות מחק"
 
 #: src/tools/classic_tools/tool_highlight.py
 msgid "Press <Shift> to temporarily highlight on dark background instead"
@@ -2266,15 +2198,15 @@ msgstr "קו"
 
 #: src/tools/classic_tools/tool_line.py src/tools/classic_tools/tool_shape.py
 #: src/tools/selection_tools/select_rect.py
-#, fuzzy, python-format
+#, python-format
 msgid "Width: %spx"
-msgstr "רוחב"
+msgstr "רוחב: %s פיקסלים"
 
 #: src/tools/classic_tools/tool_line.py src/tools/classic_tools/tool_shape.py
 #: src/tools/selection_tools/select_rect.py
-#, fuzzy, python-format
+#, python-format
 msgid "Height: %spx"
-msgstr "גובה"
+msgstr "גובה: %s פיקסלים"
 
 #: src/tools/classic_tools/tool_line.py
 #, python-format
@@ -2336,7 +2268,7 @@ msgstr "צורה"
 #: src/tools/classic_tools/tool_shape.py
 #, python-format
 msgid "Radius: %spx"
-msgstr ""
+msgstr "רדיוס: %s פיקסלים"
 
 #: src/tools/classic_tools/tool_shape.py
 msgid "Shape options"
@@ -2344,15 +2276,13 @@ msgstr "אפשרויות"
 
 #. Context: fill a shape with the color of the left click
 #: src/tools/classic_tools/tool_shape.py
-#, fuzzy
 msgid "Filled with main color"
-msgstr "צבע ראשי"
+msgstr "מילוי עם הצבע הראשי"
 
 #. Context: fill a shape with the color of the right click
 #: src/tools/classic_tools/tool_shape.py
-#, fuzzy
 msgid "Filled with secondary color"
-msgstr "צבע משנה"
+msgstr "מילוי עם הצבע המשני"
 
 #: src/tools/classic_tools/tool_shape.py
 #: src/tools/selection_tools/select_free.py
@@ -2368,9 +2298,8 @@ msgid "Text"
 msgstr "טקסט"
 
 #: src/tools/classic_tools/tool_text.py
-#, fuzzy
 msgid "Text options"
-msgstr "אין אפשרויות"
+msgstr "אפשרויות טקסט"
 
 #: src/tools/classic_tools/brushes/brush_airbrush.py
 msgid "Density depends on the stylus pressure"
@@ -2410,14 +2339,13 @@ msgstr "בחירה מלבנית"
 
 #: src/tools/transform_tools/abstract_transform_tool.py
 msgid "Error: invalid values"
-msgstr ""
+msgstr "שגיאה: ערכים בלתי־חוקיים"
 
 #. The options of the "crop" tool are all about how to expand the canvas,
 #. hence this label.
 #: src/tools/transform_tools/tool_crop.py
-#, fuzzy
 msgid "Expanding options"
-msgstr "אפשרויות צביעה"
+msgstr "אפשרויות הרחבה"
 
 #: src/tools/transform_tools/tool_crop.py
 msgid "The sides you'll crop are hinted by the mouse pointer"
@@ -2428,9 +2356,8 @@ msgid "Cropping the selection"
 msgstr "חיתוך הבחירה"
 
 #: src/tools/transform_tools/tool_crop.py
-#, fuzzy
 msgid "Cropping or expanding the canvas"
-msgstr "חיתוך לוח הציור"
+msgstr "חיתוך או הרחבת לוח הציור"
 
 #: src/tools/transform_tools/tool_crop.py
 #: src/tools/transform_tools/tool_rotate.py
@@ -2447,7 +2374,7 @@ msgstr ""
 
 #: src/tools/transform_tools/tool_filters.py
 msgid "Active filter"
-msgstr ""
+msgstr "הפעלת סינון"
 
 #: src/tools/transform_tools/tool_filters.py
 msgid "Click on the image to preview the selected filter"
@@ -2459,9 +2386,8 @@ msgid "Emboss"
 msgstr ""
 
 #: src/tools/transform_tools/tool_rotate.py
-#, fuzzy
 msgid "Rotating options"
-msgstr "אפשרויות צביעה"
+msgstr "אפשרויות סיבוב"
 
 #: src/tools/transform_tools/tool_rotate.py
 msgid "Rotating the selection"
@@ -2472,17 +2398,16 @@ msgid "Rotating the canvas"
 msgstr "סיבוב לוח הציור"
 
 #: src/tools/transform_tools/tool_scale.py
-#, fuzzy
 msgid "Scaling options"
-msgstr "אפשרויות צביעה"
+msgstr "אפשרויות קנה מידה"
 
 #: src/tools/transform_tools/tool_scale.py
 msgid "Scaling the selection"
-msgstr "שינוי קנה מידה של הבחירה"
+msgstr "שינוי קנה המידה של הבחירה"
 
 #: src/tools/transform_tools/tool_scale.py
 msgid "Scaling the canvas"
-msgstr "שינוי קנה מידה של לוח הציור"
+msgstr "שינוי קנה המידה של לוח הציור"
 
 #: src/tools/transform_tools/tool_scale.py
 msgid "Press <Shift> to quickly toggle the 'lock proportions' option"
@@ -2513,7 +2438,7 @@ msgstr ""
 
 #: src/tools/transform_tools/filters/filter_saturation.py
 msgid "Saturation"
-msgstr "רוויה"
+msgstr "רווייה"
 
 #~ msgid "Quit"
 #~ msgstr "יציאה"
