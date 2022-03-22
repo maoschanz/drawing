@@ -60,18 +60,16 @@ class ToolText(AbstractClassicTool):
 
 		# for f in PangoCairo.font_map_get_default().list_families():
 		# 	print(f.get_name())
-		try:
-			status = dialog.run()
-			if(status == Gtk.ResponseType.OK):
-				self._font_fam_name = dialog.get_font_family().get_name()
-				# print(dialog.get_font())
-				font_gvar = GLib.Variant.new_string(self._font_fam_name)
-				self.window.lookup_action('text-active-family').set_state(font_gvar)
-				self._preview_text()
-		except ex as Exception:
-			print(ex) # XXX mmhmh?
-			return
+
+		status = dialog.run() # <<< FIXME
+		if(status == Gtk.ResponseType.OK):
+			self._font_fam_name = dialog.get_font_family().get_name()
+			# print(dialog.get_font())
+			font_gvar = GLib.Variant.new_string(self._font_fam_name)
+			self.window.lookup_action('text-active-family').set_state(font_gvar)
+			self._preview_text()
 		dialog.destroy()
+		# TODO update le editing tip !!
 
 	def _set_font_options(self, *args):
 		# XXX incomplete? OBLIQUE exists

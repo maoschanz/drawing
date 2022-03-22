@@ -11,7 +11,9 @@ How to contribute to Drawing
 
 # Bug reports
 
-- If you can, try to **check if the bug has already been fixed but not released**.
+- If you can, try to **check if the bug has already been reported**
+	- See [here](https://github.com/maoschanz/drawing/issues?q=is%3Aissue)
+	- Some bugs might be already fixed but not released!
 - Report it with informations required by the adequate issue template.
 - If it's meaningful, try to include screenshots.
 
@@ -19,7 +21,9 @@ How to contribute to Drawing
 
 # Feature requests
 
-- If you can, try to **check if the feature has already been added but not released**.
+- If you can, try to **check if the feature has already been requested**.
+	- See [here](https://github.com/maoschanz/drawing/issues?q=is%3Aissue)
+	- Some features might be already implemented but not released!
 - Report it with informations required by the adequate issue template.
 - In the report, explain **what** it does, **not how** it does it.
 
@@ -30,16 +34,12 @@ How to contribute to Drawing
 Notice that this procedure will translate the unstable, unreleased version
 currently developed on the `master` branch.
 
-<!-- If you want to entirely translate older versions, restart this -->
-<!-- procedure but run `git checkout 0.6` just after having cloned the repo, -->
-<!-- and at the end, open the merge request to `0.6` too. -->
-
 >You don't have to update your translation each time i update the files!
 
 >Doing it just before the planned date of a major release should be enough;
 >there are around two major releases per year, and 1 minor release per month.
 
->Their dates are written in `debian/changelog`.
+>Their planned dates are written in `debian/changelog`.
 
 ### Get the .po file
 
@@ -49,13 +49,13 @@ currently developed on the `master` branch.
 - **If the translation doesn't exist at all:**
 	- Add your language to `po/LINGUAS`
 	- Run `msginit -i po/drawing.pot --locale=xx -o po/xx.po`, where `xx` should
-	be replaced by the ISO code of your language. This command will produce a
+	be replaced by the ISO code of your language. This command will create a
 	`.po` file for your language in the `po` directory.
 
 ### Translate
 
-Use a text editor or [an adequate app](https://flathub.org/apps/details/org.gnome.Gtranslator)
-to translate the strings of this `.po` file.
+Use [an adequate app](https://flathub.org/apps/details/org.gnome.Gtranslator) or
+a text editor to translate the strings of this `.po` file.
 
 Concerning the "original version" in english: i'm **not** a native english
 speaker, so there might be mistakes. If you find incorrect english labels,
@@ -63,12 +63,13 @@ please report an issue about them.
 
 ##### Comments
 
-There are comments in the file to give context helping you to translate some
-strings, please take them into account.
+There are comments in the `.po` file to give context helping you to translate
+some strings, please take them into account.
 
 Example of something translators can't guess so it's written in the comments:
 since this app is a clone of MS Paint, `Paint;` (untranslated) has to be in the
-list of keywords for finding the app in searchable menus or software centers.
+list of keywords for finding the app in searchable menus or "software stores"
+apps or websites.
 
 ### Testing your translation (optional)
 
@@ -111,32 +112,35 @@ This app is developed using _GNOME Builder_ and its support for `flatpak`:
 - Open _GNOME Builder_
 - Click on "Clone a repository…" and use this address: `https://github.com/maoschanz/drawing.git`
 - Open it as a project with GNOME Builder
-- Be sure the runtime is installed (if it doesn't suggest it automatically,
-<kbd>Ctrl</kbd>+<kbd>Return</kbd> → type `update-dependencies`)
+- Be sure the runtime is installed (if it doesn't suggest it automatically, do
+<kbd>Ctrl</kbd>+<kbd>Return</kbd> and type `update-dependencies`)
 - Click on the _Run_ button
 
 ### With `git` and `meson`
 
 See [here](#dependencies) for the list of dependencies.
 
-Get the code:
+#### Get the code
 
 ```sh
 git clone https://github.com/maoschanz/drawing.git
 ```
 
-Build the app:
+#### Build the app
+
 ```sh
 cd drawing
 meson _build
 ninja -C _build
 ```
 
-Install the app (system-wide):
+#### Install the app
+
 ```sh
 sudo ninja -C _build install
 ```
-(if you know the options to install user-wide, please tell)
+(it installs the app system-wide. If you know the options to install user-wide,
+please tell me)
 
 The app can then be removed with:
 ```sh
@@ -177,18 +181,14 @@ dependencies to make the script work anyway.
 ### Branches and tags
 
 Stable versions for end-users are **tagged**, and listed in this Github repo's
-"_Releases_" section.
+["_Releases_" section](https://github.com/maoschanz/drawing/releases).
 
-```
-          0.4.1  0.4.2  …  0.4.14                     0.6.3  0.6.4
-           _.______.____…____.                         _.______._
-   0.2    /         ______       0.6.0  0.6.1  0.6.2  /
-____.____/_________/______\________.______.______.___/____________
-                        \____________/
-```
+Most tags are **not** on the `master` branch:
 
-**Please don't package anything aside this tagged code**
-<details><summary>(except if your distro have experimental repos)</summary>
+![tags and branches](documentation/contributing-branches.png)
+
+**Please don't package anything aside these tagged versions of the code**
+<details><summary>(except if your distro has experimental repos)</summary>
 <p>
 
 <a href=https://wiki.debian.org/DebianExperimental>How to set up the debian
@@ -217,15 +217,21 @@ Minimal versions of the dependencies:
 |-----------------|--------------|--------------------|------------------|
 | 0.2             | any          | any?               | 3.22             |
 | --------------- | ------------ | ------------------ | ---------------- |
-| 0.4.1, 0.4.2    | **≥3.30.0**  | any?               | 3.22             |
+| 0.4.1, 0.4.2    | **≥3.30**    | any?               | 3.22             |
 | 0.4.3 to 0.4.13 | any          | any?               | 3.22             |
 | 0.4.14          | **≥3.32**    | any?               | 3.22             |
 | 0.4.15          | any          | any?               | 3.22             |
 | --------------- | ------------ | ------------------ | ---------------- |
-| 0.6.0 to 0.6.1  | **≥3.32.0**  | any?               | 3.22             |
-| 0.6.2           | **≥3.30.0**  | any?               | 3.22             |
-| 0.6.3 to 0.6.?? | any          | any?               | 3.22             |
-| `master`'s HEAD | **≥3.30.0**  | any?               | 3.22             |
+| 0.6.0 to 0.6.1  | **≥3.32**    | any?               | 3.22             |
+| 0.6.2           | **≥3.30**    | any?               | 3.22             |
+| 0.6.3 to 0.6.5  | any          | any?               | 3.22             |
+| --------------- | ------------ | ------------------ | ---------------- |
+| 0.8.0, 0.8.1    | **≥3.30**    | any?               | 3.22             |
+| 0.8.2 to 0.8.5  | any          | any?               | 3.22             |
+| --------------- | ------------ | ------------------ | ---------------- |
+| 0.1.0           | **≥3.30**    | any?               | 3.22             |
+| --------------- | ------------ | ------------------ | ---------------- |
+| `master`'s HEAD | **≥3.30**    | any?               | 3.22             |
 
 ##### Dependencies to build the app
 
@@ -235,6 +241,7 @@ your commit(s).
 - [optional] `appstream-util` (validation of the `.appdata.xml` file)
 - `libglib2.0-dev-bin` (IIRC that one is to compress the `.ui` files and the
 icons into a `.gresource` file)
+- [optional] `itstool` (to generate translation files for the help manual)
 
 ----
 

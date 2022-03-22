@@ -1,15 +1,15 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the drawing package.
-# Onno Giesmann <nutzer3105@gmail.com>, 2019-2021.
-# Milo Ivir <mail@milotype.de>, 2020.
+# Milo Ivir <mail@milotype.de>, 2020
+# Onno Giesmann <nutzer3105@gmail.com>, 2019-2022
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
 "POT-Creation-Date: 2021-12-23 20:06+0100\n"
-"PO-Revision-Date: 2021-08-29 10:22+0200\n"
+"PO-Revision-Date: 2022-03-20 14:53+0100\n"
 "Last-Translator: Onno Giesmann <nutzer3105@gmail.com>\n"
 "Language-Team: German <--->\n"
 "Language: de\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.0\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #: data/com.github.maoschanz.drawing.desktop.in
 #: data/com.github.maoschanz.drawing.appdata.xml.in src/deco_manager.py
@@ -56,7 +56,7 @@ msgstr "Bild in Zwischenablage bearbeiten"
 #. https://gitlab.gnome.org/GNOME/Initiatives/-/wikis/App-Metadata
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "Edit screenshots or memes"
-msgstr ""
+msgstr "Bearbeiten von Bildschirmfotos oder Memes"
 
 #. IMPORTANT: complete description of the application (1/3)
 #: data/com.github.maoschanz.drawing.appdata.xml.in
@@ -65,6 +65,10 @@ msgid ""
 "filters, insert or censor text, and manipulate a selected portion of the "
 "picture (cut/copy/paste/drag/…)"
 msgstr ""
+"Dieses einfache Bildbearbeitungsprogramm kann die Größe von Bildern ändern, "
+"sie zuschneiden oder drehen, einfache Filter anwenden oder auch Text "
+"einfügen oder unkenntlich machen. Es lässt sich auch eine bestimmte Auswahl "
+"im Bild bearbeiten (Ausschneiden/Kopieren/Einfügen/Ziehen/…)"
 
 #. IMPORTANT: complete description of the application (2/3)
 #: data/com.github.maoschanz.drawing.appdata.xml.in
@@ -73,11 +77,14 @@ msgid ""
 "line, the curve tool, many shapes, several brushes, and their various colors "
 "and options."
 msgstr ""
+"Und natürlich können Sie auch zeichnen! Verwenden Sie Werkzeuge, wie den "
+"Bleistift, verschiedene Pinsel, viele Formen, gerade Linien oder das "
+"Bogenwerkzeug. Und das alles in den verschiedensten Farben und Optionen."
 
 #. IMPORTANT: complete description of the application (3/3)
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "Supported file types include PNG, JPEG and BMP."
-msgstr ""
+msgstr "Die unterstützten Dateitypen sind PNG, JPEG und BMP."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -98,15 +105,13 @@ msgstr ""
 "kann horizontal und vertikal angewendet werden."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
-#, fuzzy
 msgid ""
 "You can select tools with keyboard accelerators (Alt+letter). This may not "
 "work yet with languages using a non-latin alphabet."
 msgstr ""
-"Wenn die Namen der Werkzeuge sichtbar sind, können Sie das gewünschte "
-"Werkzeug mit \"Alt+[unterstrichenem Buchstaben] auswählen. Dies funktioniert "
-"möglicherweise noch nicht mit Sprachen, die ein nicht-lateinisches Alphabet "
-"verwenden."
+"Sie können Werkzeuge mit Tastenkürzeln (Alt+Buchstabe) auswählen. Dies "
+"funktioniert möglicherweise noch nicht mit Sprachen, die ein nicht-"
+"lateinisches Alphabet verwenden."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -114,17 +119,19 @@ msgid ""
 "do it while using a tool, it may display additional data, for example the "
 "dimensions of the shape you're drawing!"
 msgstr ""
+"Drücken von \"Strg\" zeigt die Cursor-Koordinaten in einer Minihilfe an. Bei "
+"der Verwendung eines Werkzeugs kann es zusätzliche Infos anzeigen, wie "
+"beispielsweise die Abmessungen der gerade zu zeichnenden Form!"
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
-#, fuzzy
 msgid ""
 "Pressing \"shift\", or \"alt\" when using a tool enables specific options, "
 "such as locking the direction for the \"line\" tool, or changing the filling "
 "style of a shape."
 msgstr ""
-"Das Drücken von \"Strg\", \"Shift\" oder \"Alt\" beim Verwenden eines "
-"Werkzeuges aktiviert bestimmte Optionen, wie z.B. \"Zur Auswahl hinzufügen\" "
-"bei den Auswählen-Werkzeugen."
+"Das Drücken von \"Shift\" oder \"Alt\" beim Verwenden eines Werkzeuges "
+"aktiviert bestimmte Optionen, wie z.B. das Sperren der Richtung beim "
+"Werkzeug \"Linie\" oder das Wechseln der Füllmethode bei Formen."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -198,7 +205,7 @@ msgstr "Bildeigenschaften"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Reset canvas"
-msgstr ""
+msgstr "Leinwand zurücksetzen"
 
 #: src/ui/app-menus.ui src/ui/headerbar.ui src/ui/headerbar-eos.ui
 #: src/ui/shortcuts.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
@@ -214,7 +221,7 @@ msgstr "Speichern ohne Transparenz"
 #. will just rickroll the user.
 #: src/ui/app-menus.ui src/ui/win-menus.ui
 msgid "Prepare as NFT…"
-msgstr ""
+msgstr "Als NFT vorbereiten…"
 
 #: src/ui/app-menus.ui src/ui/headerbar-eos.ui src/ui/win-menus.ui
 #: src/saving_manager.py
@@ -368,31 +375,29 @@ msgstr "Nach rechts"
 #. canvas. The "go left" action only goes a few centimeters
 #. to the left, but this one goes all the way left.
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
-#, fuzzy
 msgid "Go to the left end"
-msgstr "Reiter links"
+msgstr "Zum Ende nach links gehen"
 
 #. Context: this action scrolls to the top of the canvas
 #. The "go up" action only goes a few centimeters up, but
 #. this one goes all the way to the top.
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Go to the top"
-msgstr ""
+msgstr "Nach ganz oben gehen"
 
 #. Context: this action scrolls to the bottom of the canvas
 #. The "go down" action only goes a few centimeters down,
 #. but this one goes all the way to the bottom.
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Go to the bottom"
-msgstr ""
+msgstr "Nach ganz unten gehen"
 
 #. Context: this action scrolls to the right end of the
 #. canvas. The "go right" action only goes a few centimeters
 #. to the right, but this one goes all the way right.
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
-#, fuzzy
 msgid "Go to the right end"
-msgstr "Reiter rechts"
+msgstr "Zum Ende nach rechts gehen"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Tab at the left"
@@ -1384,11 +1389,9 @@ msgid "Modifications will take effect in the next new window."
 msgstr "Die Änderungen werden im nächsten neuen Fenster angewendet."
 
 #: src/window.py
-#, fuzzy
 msgid "Middle-click or press F8 to show/hide controls."
 msgstr ""
-"Mittelklick, Tippen mit drei Fingern oder F8 drücken, um Steuerung "
-"anzuzeigen bzw. zu verstecken."
+"Mittelklick oder F8 drücken, um Steuerung anzuzeigen bzw. zu verstecken."
 
 #: src/window.py
 msgid "Press F11 to exit fullscreen."
@@ -1634,7 +1637,7 @@ msgstr "Diesen Farbwähler standardmäßig nutzen"
 
 #: src/optionsbars/selection/optionsbar-selection.ui
 msgid "Selection options"
-msgstr "Auswahl-Optionen"
+msgstr "Optionen für Auswahl"
 
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 #: src/tools/ui/tool-eraser.ui
@@ -1716,12 +1719,10 @@ msgid "Never"
 msgstr "Nie"
 
 #: src/optionsbars/transform/optionsbar-scale.ui src/tools/ui/tool-scale.ui
-#, fuzzy
 msgid "Pixels"
 msgstr "Pixel"
 
 #: src/optionsbars/transform/optionsbar-scale.ui src/tools/ui/tool-scale.ui
-#, fuzzy
 msgid "Percentage"
 msgstr "Prozent"
 
@@ -1917,23 +1918,20 @@ msgid "No direction"
 msgstr "Keine Richtung"
 
 #: src/tools/ui/tool-filters.ui
-#, fuzzy
 msgid "Blur horizontally"
-msgstr "Horizontal spiegeln"
+msgstr "Horizontal verwischen"
 
 #: src/tools/ui/tool-filters.ui
-#, fuzzy
 msgid "Blur vertically"
-msgstr "Vertikal spiegeln"
+msgstr "Vertikal verwischen"
 
 #: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
 msgid "Invert colors"
 msgstr "Farben tauschen"
 
 #: src/tools/ui/tool-highlight.ui
-#, fuzzy
 msgid "Straighten the line"
-msgstr "Auswahl skalieren"
+msgstr "Linie begradigen"
 
 #: src/tools/ui/tool-line.ui
 msgid "Color gradient"
@@ -2104,15 +2102,13 @@ msgstr "Schatten"
 
 #. Context: a type of background behind the inserted text
 #: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
-#, fuzzy
 msgid "Thin outline"
-msgstr "Keine Außenlinie"
+msgstr "Dünne Außenlinie"
 
 #. Context: a type of background behind the inserted text
 #: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
-#, fuzzy
 msgid "Thick outline"
-msgstr "Keine Außenlinie"
+msgstr "Dicke Außenlinie"
 
 #. Context: a type of background behind the inserted text
 #: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
@@ -2125,11 +2121,11 @@ msgstr "Bogen"
 
 #: src/tools/classic_tools/tool_arc.py
 msgid "Curve options"
-msgstr "Bogen-Optionen"
+msgstr "Optionen für Bogen"
 
 #: src/tools/classic_tools/tool_arc.py
 msgid "Draw a second segment to complete the curve"
-msgstr ""
+msgstr "Ein zweiten Teil zeichnen, um den Bogen zu vervollständigen"
 
 #: src/tools/classic_tools/tool_arc.py src/tools/classic_tools/tool_line.py
 msgid "Dashed arrow"
@@ -2147,35 +2143,40 @@ msgstr "Gestrichelt"
 #: src/tools/classic_tools/tool_arc.py src/tools/classic_tools/tool_line.py
 #: src/tools/classic_tools/tool_pencil.py
 msgid "Press <Alt> to toggle the 'outline' option"
-msgstr ""
+msgstr "Taste <Alt> drücken zum Umschalten der Option 'Außenlinie'"
 
 #: src/tools/classic_tools/tool_brush.py
 msgid "Brush options"
-msgstr "Pinsel-Optionen"
+msgstr "Optionen für Pinsel"
 
 #: src/tools/classic_tools/tool_eraser.py
 msgid "Press <Shift> to erase a rectangle area instead"
 msgstr ""
+"Taste <Shift> drücken, um stattdessen einen rechteckigen Bereich zu löschen"
 
 #: src/tools/classic_tools/tool_eraser.py
 msgid "Press <Shift> to erase a path instead"
-msgstr ""
+msgstr "Taste <Shift> drücken, um stattdessen einen Pfad zu löschen"
 
 #: src/tools/classic_tools/tool_eraser.py
 msgid "Eraser options"
-msgstr "Radiergummi-Optionen"
+msgstr "Optionen für Radiergummi"
 
 #: src/tools/classic_tools/tool_highlight.py
 msgid "Press <Shift> to temporarily highlight on dark background instead"
 msgstr ""
+"Taste <Shift> drücken, um stattdessen temporär etwas auf dunklem Hintergrund "
+"hervorzuheben"
 
 #: src/tools/classic_tools/tool_highlight.py
 msgid "Press <Shift> to temporarily highlight on light background instead"
 msgstr ""
+"Taste <Shift> drücken, um stattdessen temporär etwas auf hellem Hintergrund "
+"hervorzuheben"
 
 #: src/tools/classic_tools/tool_highlight.py
 msgid "Highlighter options"
-msgstr "Hervorhebe-Optionen"
+msgstr "Optionen für Hervorhebung"
 
 #: src/tools/classic_tools/tool_line.py
 msgid "Line"
@@ -2183,36 +2184,36 @@ msgstr "Linie"
 
 #: src/tools/classic_tools/tool_line.py src/tools/classic_tools/tool_shape.py
 #: src/tools/selection_tools/select_rect.py
-#, fuzzy, python-format
+#, python-format
 msgid "Width: %spx"
-msgstr "Breite"
+msgstr "Breite: %spx"
 
 #: src/tools/classic_tools/tool_line.py src/tools/classic_tools/tool_shape.py
 #: src/tools/selection_tools/select_rect.py
-#, fuzzy, python-format
+#, python-format
 msgid "Height: %spx"
-msgstr "Höhe"
+msgstr "Höhe: %spx"
 
 #: src/tools/classic_tools/tool_line.py
 #, python-format
 msgid "Length: %spx"
-msgstr ""
+msgstr "Länge: %spx"
 
 #: src/tools/classic_tools/tool_line.py
 msgid "Line options"
-msgstr "Linien-Optionen"
+msgstr "Optionen für Linien"
 
 #: src/tools/classic_tools/tool_line.py
 msgid "Press <Shift> to unlock the line direction"
-msgstr ""
+msgstr "Drücken Sie <Shift>, um die Linienrichtung zu entsperren"
 
 #: src/tools/classic_tools/tool_line.py
 msgid "Press <Shift> to lock the line direction"
-msgstr ""
+msgstr "Drücken Sie <Shift>, um die Linienrichtung zu sperren"
 
 #: src/tools/classic_tools/tool_paint.py
 msgid "Painting options"
-msgstr "Füll-Optionen"
+msgstr "Optionen für Füllen"
 
 #: src/tools/classic_tools/tool_paint.py
 msgid "Click on an area to replace its color by transparency"
@@ -2226,20 +2227,21 @@ msgstr "Leinwand anklicken, um sie vollständig auszumalen"
 #: src/tools/classic_tools/tool_paint.py
 #: src/tools/selection_tools/select_color.py
 msgid "May not work for complex shapes"
-msgstr ""
+msgstr "Funktioniert möglicherweise nicht für komplexe Formen"
 
 #: src/tools/classic_tools/tool_paint.py
 #: src/tools/selection_tools/select_color.py
 msgid "It will not work well if the area's edges are blurry"
 msgstr ""
+"Es funktioniert nicht gut, wenn die Ränder des Bereichs verschwommen sind"
 
 #: src/tools/classic_tools/tool_pencil.py
 msgid "Pencil options"
-msgstr "Bleistift-Optionen"
+msgstr "Optionen für Bleistift"
 
 #: src/tools/classic_tools/tool_points.py
 msgid "Points options"
-msgstr "Punkte-Optionen"
+msgstr "Optionen für Punkte"
 
 #: src/tools/classic_tools/tool_points.py
 #, python-format
@@ -2253,11 +2255,11 @@ msgstr "Form"
 #: src/tools/classic_tools/tool_shape.py
 #, python-format
 msgid "Radius: %spx"
-msgstr ""
+msgstr "Radius: %spx"
 
 #: src/tools/classic_tools/tool_shape.py
 msgid "Shape options"
-msgstr "Form-Optionen"
+msgstr "Optionen für Formen"
 
 #. Context: fill a shape with the color of the left click
 #: src/tools/classic_tools/tool_shape.py
@@ -2277,6 +2279,8 @@ msgstr "Klicken Sie auf den ersten Punkt der Form, um es zu schließen."
 #: src/tools/classic_tools/tool_shape.py
 msgid "Press <Alt>, <Shift>, or both, to quickly change the 'filling' option"
 msgstr ""
+"Tasten <Alt>, <Shift> oder beides drücken, um schnell die Option für "
+"'Füllen' zu wechseln"
 
 #: src/tools/classic_tools/tool_text.py
 msgid "Text"
@@ -2284,7 +2288,7 @@ msgstr "Text"
 
 #: src/tools/classic_tools/tool_text.py
 msgid "Text options"
-msgstr "Schriftart-Optionen"
+msgstr "Optionen für Schriftart"
 
 #: src/tools/classic_tools/brushes/brush_airbrush.py
 msgid "Density depends on the stylus pressure"
@@ -2327,35 +2331,36 @@ msgstr "Fehler: Ungültige Werte"
 #. The options of the "crop" tool are all about how to expand the canvas,
 #. hence this label.
 #: src/tools/transform_tools/tool_crop.py
-#, fuzzy
 msgid "Expanding options"
-msgstr "Füll-Optionen"
+msgstr "Optionen für Erweitern"
 
 #: src/tools/transform_tools/tool_crop.py
 msgid "The sides you'll crop are hinted by the mouse pointer"
 msgstr ""
+"Die Seiten, die Sie beschneiden, werden durch den Mauszeiger angedeutet"
 
 #: src/tools/transform_tools/tool_crop.py
 msgid "Cropping the selection"
 msgstr "Auswahl zuschneiden"
 
 #: src/tools/transform_tools/tool_crop.py
-#, fuzzy
 msgid "Cropping or expanding the canvas"
-msgstr "Leinwand zuschneiden"
+msgstr "Leinwand zuschneiden oder erweitern"
 
 #: src/tools/transform_tools/tool_crop.py
 #: src/tools/transform_tools/tool_rotate.py
 #: src/tools/transform_tools/tool_scale.py
 #: src/tools/transform_tools/tool_skew.py
 msgid "Don't forget to confirm the operation!"
-msgstr ""
+msgstr "Vergessen Sie nicht, den Vorgang zu bestätigen!"
 
 #: src/tools/transform_tools/tool_crop.py
 #: src/tools/transform_tools/tool_skew.py
 msgid ""
 "Press <Alt>, <Shift>, or both, to quickly change the 'expand with' option"
 msgstr ""
+"Tasten <Alt>, <Shift> oder beide drücken, um schnell die Option für "
+"'Erweitern mit' zu wechseln"
 
 #: src/tools/transform_tools/tool_filters.py
 msgid "Active filter"
@@ -2397,25 +2402,24 @@ msgstr "Leinwand skalieren"
 #: src/tools/transform_tools/tool_scale.py
 msgid "Press <Shift> to quickly toggle the 'lock proportions' option"
 msgstr ""
+"Taste <Shift> drücken, um schnell die Option für 'Verhältnisse sperren' "
+"umzuschalten"
 
 #: src/tools/transform_tools/tool_skew.py
-#, fuzzy
 msgid "Skewing options"
-msgstr "Skalierungsoptionen"
+msgstr "Optionen für Verzerren"
 
 #: src/tools/transform_tools/tool_skew.py
 msgid "The directions of the deformation are hinted by the mouse pointer"
-msgstr ""
+msgstr "Die Richtungen der Verformung werden durch den Mauszeiger angedeutet"
 
 #: src/tools/transform_tools/tool_skew.py
-#, fuzzy
 msgid "Skewing the selection"
-msgstr "Auswahl skalieren"
+msgstr "Auswahl verzerren"
 
 #: src/tools/transform_tools/tool_skew.py
-#, fuzzy
 msgid "Skewing the canvas"
-msgstr "Leinwand skalieren"
+msgstr "Leinwand verzerren"
 
 #: src/tools/transform_tools/filters/filter_blur.py
 msgid "Blur radius"

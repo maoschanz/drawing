@@ -126,9 +126,6 @@ class ToolPoints(AbstractClassicTool):
 
 		x = operation['x']
 		y = operation['y']
-		number = operation['number']
-		num_x = x - line_width
-		num_y = y + line_width
 
 		point_type = operation['point_type']
 		if point_type == 'circle':
@@ -150,14 +147,28 @@ class ToolPoints(AbstractClassicTool):
 			cairo_context.move_to(x, y - half_width)
 			cairo_context.line_to(x, y + half_width)
 
-		cairo_context.stroke() # without operator support because they don't
+		cairo_context.stroke() # without operator support, because they don't
 		# make much sense, and the abstract method for it doesn't support
-		# changing the line width depending on the type like here.
+		# changing the line width depending on the point type (like here).
 
+		number = operation['number']
 		if number is not None:
+			# Coordinates
+			if number < 10:
+				num_x = x - line_width
+			elif number < 100:
+				num_x = x - line_width * 2
+			else:
+				num_x = x - line_width * 3
+			# XXX could be better with cairo.ScaledFont.text_extents()
+			num_y = y + line_width
+			cairo_context.move_to(num_x, num_y)
+
+			# Size and color
 			cairo_context.set_font_size(max(1, int(point_width * 0.8)))
 			cairo_context.set_source_rgba(*operation['rgba2'])
-			cairo_context.move_to(num_x, num_y)
+
+			# Cairo's "toy" text API (enough for numbers)
 			cairo_context.show_text(str(number))
 
 	############################################################################
