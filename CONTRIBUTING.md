@@ -229,6 +229,8 @@ Minimal versions of the dependencies:
 | 0.8.0, 0.8.1    | **≥3.30**    | any?               | 3.22             |
 | 0.8.2 to 0.8.5  | any          | any?               | 3.22             |
 | --------------- | ------------ | ------------------ | ---------------- |
+| 0.1.0           | **≥3.30**    | any?               | 3.22             |
+| --------------- | ------------ | ------------------ | ---------------- |
 | `master`'s HEAD | **≥3.30**    | any?               | 3.22             |
 
 ##### Dependencies to build the app
@@ -239,6 +241,7 @@ your commit(s).
 - [optional] `appstream-util` (validation of the `.appdata.xml` file)
 - `libglib2.0-dev-bin` (IIRC that one is to compress the `.ui` files and the
 icons into a `.gresource` file)
+- [optional] `itstool` (to generate translation files for the help manual)
 
 ----
 

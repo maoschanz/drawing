@@ -59,13 +59,13 @@ If your language is not here, or is incompletely translated, you can
 | cs   | Czech        | 90%        | @pervoj                                   |
 | ca   | Catalan      | 89%        | @jordimas                                 |
 | da   | Danish       | 81%        | @scootergrisen                            |
-| de   | German       | 90%        | @Etamuk                                   |
+| de   | German       | 100%       | @Etamuk                                   |
 |      | English      | 100%       | help welcome **                           |
 | es   | Castillan    | 100%       | @fitojb, @xoan, @oscfdezdz                |
 | eu   | Basque       | 86%        | @alexgabi                                 |
 | fi   | Finnish      | **60%**    | @mahtiankka                               |
 | fr   | French       | 100%       |                                           |
-| he   | Hebrew       | **32%**    | @moriel5 and @shaqash                     |
+| he   | Hebrew       | **61%**    | @moriel5, @shaqash, @omeritzics           |
 | hr   | Croatian     | 99%        | @milotype                                 |
 | hu   | Hungarian    | **50%**    | @kami911                                  |
 | id   | Indonesian   | 61%        | @ekickx                                   |
@@ -73,7 +73,7 @@ If your language is not here, or is incompletely translated, you can
 | ja   | Japanese     | 90%        | @rlbxku1r                                 |
 | kr   | Korean       | 85%        | @chaeya                                   |
 | nl   | Dutch        | 96%        | @Vistaus                                  |
-| oc   | Occitan      | 35%        | @? <!-- TODO -->                          |
+| oc   | Occitan      | 35%        | @Mejans                                   |
 | pl   | Polish       | 100%       | @pkomur                                   |
 | pt_BR | Br. portuguese | 100%    | @haurenburu and @ArthurBacci64            |
 | ru   | Russian      | 99%        | @tim77 and @Ser82-png                     |
