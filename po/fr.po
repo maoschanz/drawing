@@ -5,9 +5,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: com.github.maoschanz.drawing 0.4\n"
-"Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
-"POT-Creation-Date: 2022-01-01 23:40+0100\n"
-"PO-Revision-Date: 2022-01-01 23:37+0100\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-03-23 22:49+0100\n"
+"PO-Revision-Date: 2022-03-23 23:37+0100\n"
 "Last-Translator: Romain F. T. <rrroschan@gmail.com>\n"
 "Language-Team: French <aaaa@bbbb.com>\n"
 "Language: fr\n"
@@ -1705,6 +1705,11 @@ msgstr "Toujours"
 msgid "When scaling from corners"
 msgstr "Seulement avec les coins"
 
+#. Context for translations: "[Keep proportions only] when setting values manually"
+#: src/optionsbars/transform/optionsbar-scale.ui src/tools/ui/tool-scale.ui
+msgid "When setting values manually"
+msgstr "En entrant les valeurs manuellement"
+
 #. Context: an item in a menu whose title is "Keep proportions"
 #. Context for translations: "Never [keep proportions]"
 #: src/optionsbars/transform/optionsbar-scale.ui src/tools/ui/tool-scale.ui
@@ -2157,10 +2162,12 @@ msgstr "Options de la gomme"
 #: src/tools/classic_tools/tool_highlight.py
 msgid "Press <Shift> to temporarily highlight on dark background instead"
 msgstr ""
+"Appuyez sur <Maj> pour surligner temporairement surligner sur fond sombre"
 
 #: src/tools/classic_tools/tool_highlight.py
 msgid "Press <Shift> to temporarily highlight on light background instead"
 msgstr ""
+"Appuyez sur <Maj> pour surligner temporairement surligner sur fond clair"
 
 #: src/tools/classic_tools/tool_highlight.py
 msgid "Highlighter options"
@@ -2265,6 +2272,8 @@ msgstr "Cliquez sur le 1er point de la forme pour la refermer."
 #: src/tools/classic_tools/tool_shape.py
 msgid "Press <Alt>, <Shift>, or both, to quickly change the 'filling' option"
 msgstr ""
+"Appuyez sur <Maj>, <Alt>, ou les deux, pour changer rapidement l'option "
+"'remplissage'"
 
 #: src/tools/classic_tools/tool_text.py
 msgid "Text"
@@ -2342,6 +2351,8 @@ msgstr "N'oubliez pas de confirmer l'opération !"
 msgid ""
 "Press <Alt>, <Shift>, or both, to quickly change the 'expand with' option"
 msgstr ""
+"Appuyez sur <Maj>, <Alt>, ou les deux, pour changer rapidement l'option "
+"'étendre avec'"
 
 #: src/tools/transform_tools/tool_filters.py
 msgid "Active filter"

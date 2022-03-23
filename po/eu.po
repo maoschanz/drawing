@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
-"Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
-"POT-Creation-Date: 2021-12-23 20:06+0100\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-03-23 22:49+0100\n"
 "PO-Revision-Date: 2020-08-29 16:24+0200\n"
 "Last-Translator: Alexander Gabilondo <alexgabi@disroot.org>\n"
 "Language-Team: \n"
@@ -63,9 +63,9 @@ msgid ""
 "filters, insert or censor text, and manipulate a selected portion of the "
 "picture (cut/copy/paste/drag/…)"
 msgstr ""
-"Oinarrizko irudi-editore honek irudi baten tamaina aldatu, moztu edo biratu dezake,"
-"iragazkiak aplikatu, testua txertatu eta irudiaren zati bat manipulatu"
-"(moztu/kopiatu/itsatsi/arrastatu/...)"
+"Oinarrizko irudi-editore honek irudi baten tamaina aldatu, moztu edo biratu "
+"dezake,iragazkiak aplikatu, testua txertatu eta irudiaren zati bat "
+"manipulatu(moztu/kopiatu/itsatsi/arrastatu/...)"
 
 #. IMPORTANT: complete description of the application (2/3)
 #: data/com.github.maoschanz.drawing.appdata.xml.in
@@ -75,8 +75,7 @@ msgid ""
 "and options."
 msgstr ""
 "Eta, noski, marraztu dezakezu! Erabili dezakezu hainbat tresna: arkatza, "
-"lerro zuzena, kurba, forma asko, hainbat pintzel kolore eta aukera"
-"anitzekin."
+"lerro zuzena, kurba, forma asko, hainbat pintzel kolore eta aukeraanitzekin."
 
 #. IMPORTANT: complete description of the application (3/3)
 #: data/com.github.maoschanz.drawing.appdata.xml.in
@@ -98,8 +97,8 @@ msgid ""
 "vertically."
 msgstr ""
 "Orain \"okertu\" tresna berria erabil dezakezu irudi bat laukizuzen batetik "
-"paralelogramo batera okertzeko. Deformazio hori horizontalean edo bertikalean "
-"aplika daiteke"
+"paralelogramo batera okertzeko. Deformazio hori horizontalean edo "
+"bertikalean aplika daiteke"
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -107,7 +106,8 @@ msgid ""
 "work yet with languages using a non-latin alphabet."
 msgstr ""
 "Teklatu azeleragailuekin tresnak hauta ditzakezu (Alt+letra). Baliteke honek "
-"oraindik ez funtzionatzea latindarra ez den alfabetoa erabiltzen duten hizkuntzekin."
+"oraindik ez funtzionatzea latindarra ez den alfabetoa erabiltzen duten "
+"hizkuntzekin."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -116,8 +116,8 @@ msgid ""
 "dimensions of the shape you're drawing!"
 msgstr ""
 "\"ctrl\" sakatzean kurtsorearen koordenatuak bistaratuko dira. Tresna bat "
-"erabiltzen duzun bitartean egiten baduzu, baliteke datu gehigarriak bistaratzea, "
-"adibidez marrazten ari zaren formaren neurriak!"
+"erabiltzen duzun bitartean egiten baduzu, baliteke datu gehigarriak "
+"bistaratzea, adibidez marrazten ari zaren formaren neurriak!"
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -126,8 +126,8 @@ msgid ""
 "style of a shape."
 msgstr ""
 "Tresna bat erabiltzean \"shift\", edo \"alt\" sakatzean aukera zehatzak "
-"gaitzen dira, hala nola, \"lerroa\" tresnaren norabidea blokeatzea "
-"edo forma baten betetze estiloa aldatzea."
+"gaitzen dira, hala nola, \"lerroa\" tresnaren norabidea blokeatzea edo forma "
+"baten betetze estiloa aldatzea."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -143,7 +143,8 @@ msgstr ""
 msgid ""
 "Version 0.8.5 features several minor bug fixes, and various new translations."
 msgstr ""
-"0.8.5 bertsioak errore txiki batzuen zuzenketa eta itzulpen berriak biltzen ditu."
+"0.8.5 bertsioak errore txiki batzuen zuzenketa eta itzulpen berriak biltzen "
+"ditu."
 
 #. Caption of a screenshot, for appstores
 #: data/com.github.maoschanz.drawing.appdata.xml.in
@@ -1286,7 +1287,7 @@ msgid ""
 "A part of the image is selected: the pixels beneath the selection will be "
 "saved with a color you might not expect!"
 msgstr ""
-"Irudiaren zati bat hautatuta dago eta hautapenaren azpian dauden pixelak " 
+"Irudiaren zati bat hautatuta dago eta hautapenaren azpian dauden pixelak "
 "espero ez duzun kolore batekin gordeko dira!"
 
 #. Context: the user tries to save the image while previewing an
@@ -1403,7 +1404,6 @@ msgstr "Aldaketok hurrengo leiho berrian gauzatuko dira."
 #, fuzzy
 msgid "Middle-click or press F8 to show/hide controls."
 msgstr "Erdiko klika edo sakatu F8 kontrolak ikusteko/ezkutatzeko"
-
 
 #: src/window.py
 msgid "Press F11 to exit fullscreen."
@@ -1718,6 +1718,11 @@ msgstr "Beti"
 #: src/optionsbars/transform/optionsbar-scale.ui src/tools/ui/tool-scale.ui
 msgid "When scaling from corners"
 msgstr "Izkinatik eskalatzean"
+
+#. Context for translations: "[Keep proportions only] when setting values manually"
+#: src/optionsbars/transform/optionsbar-scale.ui src/tools/ui/tool-scale.ui
+msgid "When setting values manually"
+msgstr ""
 
 #. Context: an item in a menu whose title is "Keep proportions"
 #. Context for translations: "Never [keep proportions]"
@@ -2386,7 +2391,8 @@ msgstr "Ez ahaztu eragiketa baieztatzea!"
 #: src/tools/transform_tools/tool_skew.py
 msgid ""
 "Press <Alt>, <Shift>, or both, to quickly change the 'expand with' option"
-msgstr "Sakatu <Alt>, <Maius> edo biak, 'zabaldu honekin' aukera azkar aldatzeko"
+msgstr ""
+"Sakatu <Alt>, <Maius> edo biak, 'zabaldu honekin' aukera azkar aldatzeko"
 
 #: src/tools/transform_tools/tool_filters.py
 #, fuzzy
