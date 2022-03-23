@@ -148,7 +148,11 @@ class ToolScale(AbstractCanvasTool):
 
 	def set_preserve_ratio(self, for_spinbtns=False):
 		"""Set whether or not `self._preserve_ratio` should be true. If it is,
-		and that wasn't the case before, it sets the `self._ratio` value too."""
+		AND that wasn't already the case before, this method sets the value of
+		`self._ratio` too.
+		The parameter is `True` if the request to set the ratio is triggered by
+		a direct interaction with a spinbutton: the method will not look at the
+		same options to decide what to do."""
 		former_setting = self._preserve_ratio
 
 		if for_spinbtns:
@@ -223,7 +227,6 @@ class ToolScale(AbstractCanvasTool):
 		if self.x_press is None:
 			# This means the user interacts with the spinbtn directly, instead
 			# of the surface.
-			self._preserve_ratio = self.get_option_value('scale-ratio-spinbtns')
 			self.set_preserve_ratio(True)
 		self._try_scale_dimensions()
 
@@ -232,7 +235,6 @@ class ToolScale(AbstractCanvasTool):
 			return
 		# This callback can only pass its guard clause when triggered from the
 		# spinbutton directly: i don't have to check the value of self.x_press
-		self._preserve_ratio = self.get_option_value('scale-ratio-spinbtns')
 		self.set_preserve_ratio(True)
 
 		original_width, original_height = self._get_original_size()
