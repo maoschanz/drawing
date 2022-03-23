@@ -16,28 +16,45 @@
     <property name="value">10</property>
   </object>
 
+  <object class="GtkAdjustment" id="adj_width_100">
+    <property name="lower">1</property>
+    <property name="upper">500</property>
+    <property name="step_increment">1</property>
+    <property name="page_increment">10</property>
+    <property name="value">100</property>
+  </object>
+  <object class="GtkAdjustment" id="adj_height_100">
+    <property name="lower">1</property>
+    <property name="upper">500</property>
+    <property name="step_increment">1</property>
+    <property name="page_increment">10</property>
+    <property name="value">100</property>
+  </object>
+
   <!-- -->
 
   <object class="GtkBox" id="centered_box">
-    <property name="visible">True</property>
     <property name="spacing">10</property>
     <property name="orientation">horizontal</property>
 
     <child>
       <object class="GtkBox">
-        <property name="visible">True</property>
         <property name="spacing">10</property>
         <property name="orientation">horizontal</property>
         <child>
           <object class="GtkLabel" id="width_label">
             <property name="label" translatable="yes">Width</property>
-            <property name="visible">True</property>
           </object>
         </child>
         <child>
           <object class="GtkSpinButton" id="width_btn">
-            <property name="visible">True</property>
             <property name="adjustment">adj_width</property>
+            <property name="tooltip_text" translatable="yes">Width</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkSpinButton" id="width_100_btn">
+            <property name="adjustment">adj_width_100</property>
             <property name="tooltip_text" translatable="yes">Width</property>
           </object>
         </child>
@@ -45,26 +62,27 @@
     </child>
 
     <child>
-      <object class="GtkSeparator" id="separator">
-        <property name="visible">True</property>
-      </object>
+      <object class="GtkSeparator" id="separator"></object>
     </child>
 
     <child>
       <object class="GtkBox">
-        <property name="visible">True</property>
         <property name="spacing">10</property>
         <property name="orientation">horizontal</property>
         <child>
           <object class="GtkLabel" id="height_label">
             <property name="label" translatable="yes">Height</property>
-            <property name="visible">True</property>
           </object>
         </child>
         <child>
           <object class="GtkSpinButton" id="height_btn">
-            <property name="visible">True</property>
             <property name="adjustment">adj_height</property>
+            <property name="tooltip_text" translatable="yes">Height</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkSpinButton" id="height_100_btn">
+            <property name="adjustment">adj_height_100</property>
             <property name="tooltip_text" translatable="yes">Height</property>
           </object>
         </child>
@@ -91,6 +109,11 @@
         <attribute name="label" translatable="yes">When scaling from corners</attribute>
         <attribute name="action">win.scale-proportions</attribute>
         <attribute name="target">corners</attribute>
+      </item>
+      <item>
+        <!-- Context for translations: "[Keep proportions only] when setting values manually" -->
+        <attribute name="label" translatable="yes">When setting values manually</attribute>
+        <attribute name="action">win.scale-ratio-spinbtns</attribute>
       </item>
       <item>
         <!-- Context: an item in a menu whose title is "Keep proportions" -->
