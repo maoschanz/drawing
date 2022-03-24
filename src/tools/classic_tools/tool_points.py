@@ -147,29 +147,40 @@ class ToolPoints(AbstractClassicTool):
 			cairo_context.move_to(x, y - half_width)
 			cairo_context.line_to(x, y + half_width)
 
-		cairo_context.stroke() # without operator support, because they don't
-		# make much sense, and the abstract method for it doesn't support
+		cairo_context.stroke() # without operator support, because it wouldn't
+		# make much sense, and the abstract method for them doesn't support
 		# changing the line width depending on the point type (like here).
 
 		number = operation['number']
-		if number is not None:
-			# Coordinates
-			if number < 10:
-				num_x = x - line_width
-			elif number < 100:
-				num_x = x - line_width * 2
-			else:
-				num_x = x - line_width * 3
-			# XXX could be better with cairo.ScaledFont.text_extents()
-			num_y = y + line_width
-			cairo_context.move_to(num_x, num_y)
+		if number is None:
+			return
 
-			# Size and color
-			cairo_context.set_font_size(max(1, int(point_width * 0.8)))
-			cairo_context.set_source_rgba(*operation['rgba2'])
+		# Text size
+		cairo_context.set_font_size(max(1, int(point_width * 0.8)))
 
-			# Cairo's "toy" text API (enough for numbers)
-			cairo_context.show_text(str(number))
+		# Coordinates
+		if number < 10:
+			num_x = x - line_width
+		elif number < 100:
+			num_x = x - line_width * 2
+		else:
+			num_x = x - line_width * 3
+		# XXX could be better with cairo.ScaledFont.text_extents()
+		num_y = y + line_width
+
+		# Outline
+		for dx in [-1, 1]:
+			for dy in [-1, 1]:
+				cairo_context.move_to(num_x + dx, num_y + dy)
+				cairo_context.show_text(str(number))
+		# XXX all my text insertions could use a "layer" like the brushes
+
+		# Text color
+		cairo_context.set_source_rgba(*operation['rgba2'])
+
+		# Cairo's "toy" text API (enough for numbers)
+		cairo_context.move_to(num_x, num_y)
+		cairo_context.show_text(str(number))
 
 	############################################################################
 ################################################################################
