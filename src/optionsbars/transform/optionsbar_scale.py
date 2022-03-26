@@ -24,7 +24,6 @@ class OptionsBarScale(AbstractOptionsBar):
 
 	def __init__(self, scale_tool):
 		super().__init__()
-		#self.scale_tool = scale_tool
 
 		self._build_ui('transform/abstract-optionsbar-transform.ui')
 		builder = self._hydrate_transform_tool('transform/optionsbar-scale.ui')
@@ -45,6 +44,10 @@ class OptionsBarScale(AbstractOptionsBar):
 
 	def init_adaptability(self):
 		super().init_adaptability()
+		# this ^ just did a show_all, but both sets of spinbuttons can't be
+		# visible at the same time: the limit size only depends on one of them
+		self.width_100_btn.set_visible(False)
+		self.height_100_btn.set_visible(False)
 		temp_limit_size = self.centered_box.get_preferred_width()[0] + \
 		                    self.cancel_btn.get_preferred_width()[0] + \
 		                   self.options_btn.get_preferred_width()[0] + \
