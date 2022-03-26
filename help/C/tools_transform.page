@@ -39,7 +39,7 @@
   <p>If you try to save without applying the transformation, a dialog will
   remind you that you should apply it before saving.</p>
 
-  <section>
+  <section id="crop">
     <title>Crop</title>
 
     <p>Change the size of the image, by removing parts of it. The side you're
@@ -57,7 +57,7 @@
     pressing <key>Shift</key> and/or <key>Alt</key> when you click to resize.</p>
   </section>
 
-  <section>
+  <section id="scale">
     <title>Scale</title>
 
     <p>Resize the image, using the mouse or the values in the bottom bar.</p>
@@ -72,7 +72,7 @@
            src="figures/screenshot_scale.png" />
   </section>
 
-  <section>
+  <section id="rotate">
     <title>Rotate</title>
 
     <p>Change the orientation of the image, or flip it, using the buttons in the
@@ -81,7 +81,7 @@
     rotation. Otherwise, only rotations of 90°, 180° or 270° are possible.</p>
   </section>
 
-  <section>
+  <section id="skew">
     <title>Skew</title>
 
     <p>This optional tool tilts the image horizontally, vertically, or in both
