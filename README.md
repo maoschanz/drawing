@@ -11,13 +11,13 @@ Besides GNOME, the app is well integrated in traditional-looking desktops, as
 well as [elementaryOS](./docs/screenshots/0.8/elementary_labels.png).
 
 It should also be compatible with the *Pinephone* and *Librem 5*
-[smartphones](./docs/screenshots/0.6/librem_menu.png).
+[smartphones](./docs/screenshots/1.0/librem_menu.png).
 
 ## Screenshots
 
 ### Default user interface (for GNOME/Budgie)
 
-![UI for GNOME and Budgie, here with the main menu opened](./docs/screenshots/0.8/gnome_menu.png)
+![UI for GNOME and Budgie, here with the main menu opened](./docs/screenshots/1.0/gnome_menu.png)
 
 [More screenshots](https://maoschanz.github.io/drawing/gallery.html)
 
@@ -93,7 +93,7 @@ incorrect english labels, please report an issue about it.
 
 ### Tools
 
-(last update: **version 0.9.0**)
+(last update: **version 1.0.0**)
 
 *Tools in italic can be disabled.*
 
