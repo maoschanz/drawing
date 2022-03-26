@@ -23,6 +23,7 @@ class DrDecoManagerMenubar():
 		self._loop_is_ongoing = False
 
 	def remove_from_ui(self):
+		self._loop_is_ongoing = False
 		return False
 
 	############################################################################
@@ -63,6 +64,9 @@ class DrDecoManagerMenubar():
 
 		if self._is_forced:
 			self._is_forced = False
+		elif not self._loop_is_ongoing:
+			# The loop has been stopped = the window has been closed
+			return
 		else:
 			GLib.timeout_add(self.SUBTITLE_TIME, self._update_titles, {})
 
@@ -174,11 +178,15 @@ class DrDecoManagerHeaderbar(DrDecoManagerMenubar):
 		self._manual_correction = -50
 
 	def remove_from_ui(self):
+		self._loop_is_ongoing = False
 		return self._is_narrow
 
 	############################################################################
 
 	def _update_titles(self, *args):
+		if not self._loop_is_ongoing:
+			# The loop has been stopped = the window has been closed
+			return False
 		self._increment_subtitle_index()
 
 		self._widget.set_title(self._main_title)
@@ -287,6 +295,7 @@ class DrDecoManagerToolbar(DrDecoManagerMenubar):
 			self._main_menu_btn.set_menu_model(others_menu)
 
 	def remove_from_ui(self):
+		self._loop_is_ongoing = False
 		self._widget.destroy()
 		return False
 

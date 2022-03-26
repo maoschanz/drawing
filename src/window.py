@@ -383,6 +383,7 @@ class DrWindow(Gtk.ApplicationWindow):
 			if not self.get_active_image().try_close_tab():
 				return True
 
+		self._decorations.remove_from_ui()
 		self.options_manager.persist_tools_options()
 		self.gsettings.set_string('last-active-tool', self.active_tool_id)
 		self.gsettings.set_boolean('maximized', self.is_maximized())
