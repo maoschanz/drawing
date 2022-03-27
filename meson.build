@@ -1,7 +1,7 @@
 
 project(
 	'drawing',
-	version: '1.0.0',
+	version: '1.0.1-dev',
 	meson_version: '>= 0.50',
 )
 app_uuid = 'com.github.maoschanz.drawing'
