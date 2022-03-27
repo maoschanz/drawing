@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-23 22:49+0100\n"
-"PO-Revision-Date: 2021-12-05 14:28+0100\n"
+"PO-Revision-Date: 2022-03-27 13:43+0200\n"
 "Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
 "Language-Team: Dutch <vistausss@outlook.com>\n"
 "Language: nl_NL\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.0\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #: data/com.github.maoschanz.drawing.desktop.in
 #: data/com.github.maoschanz.drawing.appdata.xml.in src/deco_manager.py
@@ -216,7 +216,7 @@ msgstr "Opslaan zonder doorzichtigheid"
 #. will just rickroll the user.
 #: src/ui/app-menus.ui src/ui/win-menus.ui
 msgid "Prepare as NFT…"
-msgstr ""
+msgstr "NFT aanschaffen…"
 
 #: src/ui/app-menus.ui src/ui/headerbar-eos.ui src/ui/win-menus.ui
 #: src/saving_manager.py
@@ -1703,7 +1703,7 @@ msgstr "Bij aanpassen vanuit de hoeken"
 #. Context for translations: "[Keep proportions only] when setting values manually"
 #: src/optionsbars/transform/optionsbar-scale.ui src/tools/ui/tool-scale.ui
 msgid "When setting values manually"
-msgstr ""
+msgstr "Bij handmatig instellen van de waarden"
 
 #. Context: an item in a menu whose title is "Keep proportions"
 #. Context for translations: "Never [keep proportions]"
@@ -1924,9 +1924,8 @@ msgid "Invert colors"
 msgstr "Kleuren omdraaien"
 
 #: src/tools/ui/tool-highlight.ui
-#, fuzzy
 msgid "Straighten the line"
-msgstr "Bezig met wijzigen van selectiegrootte"
+msgstr "Lijn rechttrekken"
 
 #: src/tools/ui/tool-line.ui
 msgid "Color gradient"
@@ -2120,7 +2119,7 @@ msgstr "Boogopties"
 
 #: src/tools/classic_tools/tool_arc.py
 msgid "Draw a second segment to complete the curve"
-msgstr ""
+msgstr "Teken een tweede segment om de kromming te voltooien"
 
 #: src/tools/classic_tools/tool_arc.py src/tools/classic_tools/tool_line.py
 msgid "Dashed arrow"
@@ -2138,7 +2137,7 @@ msgstr "Gestreept"
 #: src/tools/classic_tools/tool_arc.py src/tools/classic_tools/tool_line.py
 #: src/tools/classic_tools/tool_pencil.py
 msgid "Press <Alt> to toggle the 'outline' option"
-msgstr ""
+msgstr "Druk op <Shift> om de optie ‘contour’ te wijzigen"
 
 #: src/tools/classic_tools/tool_brush.py
 msgid "Brush options"
@@ -2146,11 +2145,11 @@ msgstr "Kwastopties"
 
 #: src/tools/classic_tools/tool_eraser.py
 msgid "Press <Shift> to erase a rectangle area instead"
-msgstr ""
+msgstr "Druk op <Shift> om een rechthoekig gebied te wissen"
 
 #: src/tools/classic_tools/tool_eraser.py
 msgid "Press <Shift> to erase a path instead"
-msgstr ""
+msgstr "Druk op <Shift> om een spoor te wissen"
 
 #: src/tools/classic_tools/tool_eraser.py
 msgid "Eraser options"
@@ -2158,11 +2157,11 @@ msgstr "Gumopties"
 
 #: src/tools/classic_tools/tool_highlight.py
 msgid "Press <Shift> to temporarily highlight on dark background instead"
-msgstr ""
+msgstr "Druk op <Shift> om de markering te tonen op een zwarte achtergrond"
 
 #: src/tools/classic_tools/tool_highlight.py
 msgid "Press <Shift> to temporarily highlight on light background instead"
-msgstr ""
+msgstr "Druk op <Shift> om de markering te tonen op een lichte achtergrond"
 
 #: src/tools/classic_tools/tool_highlight.py
 msgid "Highlighter options"
@@ -2195,11 +2194,11 @@ msgstr "Lijnopties"
 
 #: src/tools/classic_tools/tool_line.py
 msgid "Press <Shift> to unlock the line direction"
-msgstr ""
+msgstr "Druk op <Shift> om de lijnrichting te los te maken"
 
 #: src/tools/classic_tools/tool_line.py
 msgid "Press <Shift> to lock the line direction"
-msgstr ""
+msgstr "Druk op <Shift> om de lijnrichting te vast te maken"
 
 #: src/tools/classic_tools/tool_paint.py
 msgid "Painting options"
@@ -2217,12 +2216,12 @@ msgstr "Klik op het canvas om het op te vullen"
 #: src/tools/classic_tools/tool_paint.py
 #: src/tools/selection_tools/select_color.py
 msgid "May not work for complex shapes"
-msgstr ""
+msgstr "Let op: dit werkt mogelijk niet bij gebruik van complexe vormen"
 
 #: src/tools/classic_tools/tool_paint.py
 #: src/tools/selection_tools/select_color.py
 msgid "It will not work well if the area's edges are blurry"
-msgstr ""
+msgstr "Let op: dit werkt niet goed als de randen vervaagd zijn"
 
 #: src/tools/classic_tools/tool_pencil.py
 msgid "Pencil options"
@@ -2267,7 +2266,7 @@ msgstr "Klik op het eerste punt om te sluiten."
 
 #: src/tools/classic_tools/tool_shape.py
 msgid "Press <Alt>, <Shift>, or both, to quickly change the 'filling' option"
-msgstr ""
+msgstr "Druk op <Alt>, <Shift> of beide om de optie ‘opvullen’ te wijzigen"
 
 #: src/tools/classic_tools/tool_text.py
 msgid "Text"
@@ -2318,35 +2317,34 @@ msgstr "Fout: ongeldige waarden"
 #. The options of the "crop" tool are all about how to expand the canvas,
 #. hence this label.
 #: src/tools/transform_tools/tool_crop.py
-#, fuzzy
 msgid "Expanding options"
-msgstr "Kwastopties"
+msgstr "Vergrootopties"
 
 #: src/tools/transform_tools/tool_crop.py
 msgid "The sides you'll crop are hinted by the mouse pointer"
-msgstr ""
+msgstr "De bijgesneden zijden worden door de cursor aangeduid"
 
 #: src/tools/transform_tools/tool_crop.py
 msgid "Cropping the selection"
 msgstr "Bezig met bijsnijden van selectie"
 
 #: src/tools/transform_tools/tool_crop.py
-#, fuzzy
 msgid "Cropping or expanding the canvas"
-msgstr "Bezig met bijsnijden van canvas"
+msgstr "Bezig met bijsnijden of vergroten van canvas"
 
 #: src/tools/transform_tools/tool_crop.py
 #: src/tools/transform_tools/tool_rotate.py
 #: src/tools/transform_tools/tool_scale.py
 #: src/tools/transform_tools/tool_skew.py
 msgid "Don't forget to confirm the operation!"
-msgstr ""
+msgstr "Vergeet niet om de actie te bevestigen!"
 
 #: src/tools/transform_tools/tool_crop.py
 #: src/tools/transform_tools/tool_skew.py
 msgid ""
 "Press <Alt>, <Shift>, or both, to quickly change the 'expand with' option"
 msgstr ""
+"Druk op <Alt>, <Shift> of beide om de optie ‘vergroten met’ te wijzigen"
 
 #: src/tools/transform_tools/tool_filters.py
 msgid "Active filter"
@@ -2387,7 +2385,7 @@ msgstr "Bezig met wijzigen van canvasgrootte"
 
 #: src/tools/transform_tools/tool_scale.py
 msgid "Press <Shift> to quickly toggle the 'lock proportions' option"
-msgstr ""
+msgstr "Druk op <Shift> om de optie ‘afmetingen behouden’ te wijzigen"
 
 #: src/tools/transform_tools/tool_skew.py
 msgid "Skewing options"
@@ -2395,7 +2393,7 @@ msgstr "Scheeftrekopties"
 
 #: src/tools/transform_tools/tool_skew.py
 msgid "The directions of the deformation are hinted by the mouse pointer"
-msgstr ""
+msgstr "De vervormrichtingen worden door de cursor aangeduid"
 
 #: src/tools/transform_tools/tool_skew.py
 msgid "Skewing the selection"
