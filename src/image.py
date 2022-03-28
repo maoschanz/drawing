@@ -806,7 +806,7 @@ class DrImage(Gtk.Box):
 		pointer stays as much as possible under the pointer."""
 		event_x, event_y = self.get_event_coords(event)
 
-		zoom_delta = (event.delta_x + event.delta_y) * -4 # Arbitrary
+		zoom_delta = (event.delta_x + event.delta_y) * -1 * self._zoom_profile()
 		self.inc_zoom_level(zoom_delta)
 
 		# Where the zoom event occurs, in terms of percentages, in the widget's
@@ -859,6 +859,19 @@ class DrImage(Gtk.Box):
 
 	def is_zoomed_surface_sharp(self):
 		return self.zoom_level > self.ZOOM_THRESHOLD
+
+	def _zoom_profile(self):
+		"""This is the 'speed' of the zoom scrolling: when between 20% and 100%
+		it's quite precise, but between 1000% and 2000% we prefer being as fast
+		as possible."""
+		if self.zoom_level < 2.0:
+			return 3.0
+		elif self.zoom_level < 4.0:
+			return 6.0
+		elif self.zoom_level < 10.0:
+			return 10.0
+		else:
+			return 20.0
 
 	############################################################################
 ################################################################################
