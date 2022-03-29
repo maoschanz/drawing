@@ -23,12 +23,6 @@ from .window import DrWindow
 from .preferences import DrPrefsWindow
 from .utilities_files import utilities_gfile_is_image
 
-APP_ID = 'com.github.maoschanz.drawing'
-APP_PATH = '/com/github/maoschanz/drawing'
-BUG_REPORT_URL = 'https://github.com/maoschanz/drawing/issues/new/choose'
-FLATPAK_BINARY_PATH = '/app/bin/drawing'
-CURRENT_BINARY_PATH = '/app/bin/drawing'
-
 def main(version):
 	app = Application(version)
 	return app.run(sys.argv)
@@ -39,15 +33,21 @@ class Application(Gtk.Application):
 	shortcuts_window = None
 	prefs_window = None
 
+	APP_ID = 'com.github.maoschanz.drawing'
+	APP_PATH = '/com/github/maoschanz/drawing'
+	BUG_REPORT_URL = 'https://github.com/maoschanz/drawing/issues/new/choose'
+	FLATPAK_BINARY_PATH = '/app/bin/drawing'
+	CURRENT_BINARY_PATH = ''
+
 	############################################################################
 	# Initialization ###########################################################
 
 	def __init__(self, version):
-		super().__init__(application_id=APP_ID,
+		super().__init__(application_id=self.APP_ID,
 		                 flags=Gio.ApplicationFlags.HANDLES_COMMAND_LINE)
 
 		GLib.set_application_name(_("Drawing"))
-		GLib.set_prgname(APP_ID)
+		GLib.set_prgname(self.APP_ID)
 		self._version = version
 		self.has_tools_in_menubar = False
 		self.runs_in_sandbox = False
@@ -71,13 +71,13 @@ class Application(Gtk.Application):
 		             GLib.OptionArg.NONE, _("Edit the clipboard content"), None)
 
 		icon_theme = Gtk.IconTheme.get_default()
-		icon_theme.add_resource_path(APP_PATH + '/icons')
-		icon_theme.add_resource_path(APP_PATH + '/tools/icons')
+		icon_theme.add_resource_path(self.APP_PATH + '/icons')
+		icon_theme.add_resource_path(self.APP_PATH + '/tools/icons')
 
 	def on_startup(self, *args):
 		"""Called only once, add app-wide menus and actions, and all accels."""
 		self._build_actions()
-		builder = Gtk.Builder.new_from_resource(APP_PATH + '/ui/app-menus.ui')
+		builder = Gtk.Builder.new_from_resource(self.APP_PATH + '/ui/app-menus.ui')
 		menubar_model = builder.get_object('menu-bar')
 		self.set_menubar(menubar_model)
 
@@ -139,26 +139,28 @@ class Application(Gtk.Application):
 		else:
 			win.present()
 
-	def on_cli(self, *args):
-		"""Main handler, managing options and CLI arguments."""
+	def on_cli(self, gio_app, gio_command_line):
+		"""Main handler, managing options and CLI arguments.
+		Arguments are a `Gio.Application` and a `Gio.ApplicationCommandLine`."""
+
 		# This is the list of files given by the command line. If there is none,
 		# this will be ['/app/bin/drawing'] which has a length of 1.
-		arguments = args[1].get_arguments()
-		CURRENT_BINARY_PATH = arguments[0]
-		if CURRENT_BINARY_PATH == FLATPAK_BINARY_PATH:
+		arguments = gio_command_line.get_arguments()
+		self.CURRENT_BINARY_PATH = arguments[0]
+		if self.CURRENT_BINARY_PATH == self.FLATPAK_BINARY_PATH:
 			self.runs_in_sandbox = True
 
 		# Possible options are 'version', 'edit-clipboard', 'new-tab', and
 		# 'new-window', in this order: only one option can be applied, '-ntvc'
 		# will be understood as '-v'.
-		options = args[1].get_options_dict()
+		options = gio_command_line.get_options_dict()
 
 		if options.contains('version'):
 			print(_("Drawing") + ' ' + self._version)
 			if self.is_beta():
 				print(_("This version isn't stable!"))
 			print()
-			print(_("Report bugs or ideas") + " 👉️ " + BUG_REPORT_URL)
+			print(_("Report bugs or ideas") + " 👉️ " + self.BUG_REPORT_URL)
 
 		elif options.contains('edit-clipboard'):
 			win = self.props.active_window
@@ -182,13 +184,14 @@ class Application(Gtk.Application):
 			# new window if no argument is a valid enough file.
 			windows_counter = 0
 			for fpath in arguments:
-				f = self._get_valid_file(args[1], fpath)
+				f = self._get_valid_file(gio_command_line, fpath)
 				# here, f can be a GioFile or a boolean. True would mean the app
 				# should open a new blank image.
-				if f != False:
-					f = None if f == True else f
-					self.open_window_with_content(f, False)
-					windows_counter = windows_counter + 1
+				if f == False:
+					continue
+				f = None if f == True else f
+				self.open_window_with_content(f, False)
+				windows_counter = windows_counter + 1
 			if windows_counter == 0:
 				self.on_new_window()
 
@@ -198,20 +201,21 @@ class Application(Gtk.Application):
 		else:
 			# giving files without '-n' is equivalent to giving files with '-t'
 			for fpath in arguments:
-				f = self._get_valid_file(args[1], fpath)
+				f = self._get_valid_file(gio_command_line, fpath)
 				# here f can be a Gio.File or a boolean: True would mean the app
 				# should open a new blank image.
-				if f != False:
-					win = self.props.active_window
-					if not win:
-						f = None if f == True else f
-						self.open_window_with_content(f, False)
+				if f == False:
+					continue
+				win = self.props.active_window
+				if not win:
+					f = None if f == True else f
+					self.open_window_with_content(f, False)
+				else:
+					win.present()
+					if f == True:
+						win.build_blank_image()
 					else:
-						win.present()
-						if f == True:
-							win.build_blank_image()
-						else:
-							win.build_new_from_file(gfile=f)
+						win.build_new_from_file(gfile=f)
 
 		# I don't even know if i should return something
 		return 0
@@ -226,13 +230,13 @@ class Application(Gtk.Application):
 	def on_report(self, *args):
 		"""Action callback, opening a new issue on the github repo."""
 		win = self.props.active_window
-		Gtk.show_uri_on_window(win, BUG_REPORT_URL, Gdk.CURRENT_TIME)
+		Gtk.show_uri_on_window(win, self.BUG_REPORT_URL, Gdk.CURRENT_TIME)
 
 	def on_shortcuts(self, *args):
 		"""Action callback, showing the 'shortcuts' dialog."""
 		if self.shortcuts_window is not None:
 			self.shortcuts_window.destroy()
-		builder = Gtk.Builder().new_from_resource(APP_PATH + '/ui/shortcuts.ui')
+		builder = Gtk.Builder().new_from_resource(self.APP_PATH + '/ui/shortcuts.ui')
 		self.shortcuts_window = builder.get_object('shortcuts-window')
 		self.shortcuts_window.present()
 
@@ -298,11 +302,11 @@ class Application(Gtk.Application):
 			                       _("GNOME's \"Art Libre\" icon set authors")],
 			comments=_("Simple image editor for Linux"),
 			license_type=Gtk.License.GPL_3_0,
-			logo_icon_name=APP_ID, version=str(self._version),
+			logo_icon_name=self.APP_ID, version=str(self._version),
 			website='https://maoschanz.github.io/drawing/',
 			website_label=_("Official webpage"))
 		bug_report_btn = Gtk.LinkButton(halign=Gtk.Align.CENTER, visible=True, \
-		                    label=_("Report bugs or ideas"), uri=BUG_REPORT_URL)
+		               label=_("Report bugs or ideas"), uri=self.BUG_REPORT_URL)
 		# about_dialog.get_content_area().add(bug_report_btn) # should i?
 		about_dialog.set_icon_name('com.github.maoschanz.drawing')
 
@@ -375,11 +379,7 @@ class Application(Gtk.Application):
 		"""Creates a GioFile object if the path corresponds to an image. If no
 		GioFile can be created, it returns a boolean telling whether or not a
 		window should be opened anyway."""
-		if path == FLATPAK_BINARY_PATH:
-			self.runs_in_sandbox = True
-			# when it's /app/bin/drawing, the app is in a flatpak sandbox. It'll
-			# match the following condition too.
-		if path == CURRENT_BINARY_PATH:
+		if path == self.CURRENT_BINARY_PATH:
 			# when it's CURRENT_BINARY_PATH, the situation is normal (no error)
 			# and nothing to open.
 			return False
@@ -390,7 +390,7 @@ class Application(Gtk.Application):
 		except Exception as excp:
 			if self.runs_in_sandbox:
 				command = "\n\tflatpak run --file-forwarding {0} @@ {1} @@\n"
-				command = command.format(APP_ID, path)
+				command = command.format(self.APP_ID, path)
 				# This is an error message, %s is a better command suggestion
 				err = err + _("Did you mean %s ?") % command
 			else:
