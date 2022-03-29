@@ -735,7 +735,8 @@ class DrImage(Gtk.Box):
 		if ctrl_is_used == self._ctrl_to_zoom:
 			self._zoom_to_point(event)
 		else:
-			self.add_deltas(event.delta_x, event.delta_y, 10)
+			acceleration = 20 / self._zoom_profile()
+			self.add_deltas(event.delta_x, event.delta_y, acceleration)
 
 	def on_scrollbar_value_change(self, scrollbar):
 		self.correct_coords(self._h_scrollbar.get_value(), self._v_scrollbar.get_value())
@@ -806,6 +807,7 @@ class DrImage(Gtk.Box):
 		pointer stays as much as possible under the pointer."""
 		event_x, event_y = self.get_event_coords(event)
 
+		# Updating the zoom level
 		zoom_delta = (event.delta_x + event.delta_y) * -1 * self._zoom_profile()
 		self.inc_zoom_level(zoom_delta)
 
@@ -816,7 +818,7 @@ class DrImage(Gtk.Box):
 
 		# Size of the rectangle between the current scroll position (values of
 		# the self.scroll_* attributes) and the zoom event. Both are expressed
-		# in pixels in the reference frame of the pixbuf.
+		# in pixels, in the reference frame of the pixbuf.
 		corner_w = event_x - self.scroll_x
 		corner_h = event_y - self.scroll_y
 
