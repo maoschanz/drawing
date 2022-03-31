@@ -175,7 +175,7 @@ class DrDecoManagerHeaderbar(DrDecoManagerMenubar):
 		share_menubtn.set_menu_model(builder.get_object('share-section'))
 		new_btn = builder.get_object('new_btn')
 		new_btn.set_menu_model(builder.get_object('new-image-menu'))
-		self._manual_correction = -50
+		self._manual_correction = 100
 
 	def remove_from_ui(self):
 		self._loop_is_ongoing = False

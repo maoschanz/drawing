@@ -132,7 +132,7 @@ class Application(Gtk.Application):
 
 	def on_activate(self, *args):
 		"""I don't know if this is ever called from the 'activate' signal, but
-		it's called by on_cli anyway."""
+		it's called anyways."""
 		win = self.props.active_window
 		if not win:
 			self.on_new_window()
@@ -183,7 +183,7 @@ class Application(Gtk.Application):
 			# it opens one new window per file given as argument, or just one
 			# new window if no argument is a valid enough file.
 			windows_counter = 0
-			for fpath in arguments:
+			for fpath in arguments[1:]:
 				f = self._get_valid_file(gio_command_line, fpath)
 				# here, f can be a GioFile or a boolean. True would mean the app
 				# should open a new blank image.
@@ -200,7 +200,7 @@ class Application(Gtk.Application):
 
 		else:
 			# giving files without '-n' is equivalent to giving files with '-t'
-			for fpath in arguments:
+			for fpath in arguments[1:]:
 				f = self._get_valid_file(gio_command_line, fpath)
 				# here f can be a Gio.File or a boolean: True would mean the app
 				# should open a new blank image.
