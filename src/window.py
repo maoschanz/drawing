@@ -136,22 +136,38 @@ class DrWindow(Gtk.ApplicationWindow):
 		if current_version == last_version:
 			return
 
-		dialog = DrMessageDialog(self)
-		# Context: %s is the version number of the app
-		label = _("It's the first time you use Drawing %s, " + \
-		                                   "would you like to read what's new?")
-		dialog.add_string(label % current_version)
+		# To avoid spamming users too much, only major updates are worthy of
+		# that message dialog.
+		if last_version.split('.')[0] == current_version.split('.')[0] \
+		and last_version.split('.')[1] == current_version.split('.')[1]:
+			self.gsettings.set_string('last-version', current_version)
+			return
 
-		no_id = dialog.set_action(_("No"), None)
-		later_id = dialog.set_action(_("Later"), None)
-		yes_id = dialog.set_action(_("Yes"), 'suggested-action', True)
+		dialog = DrMessageDialog(self)
+		# First use of the app
+		if last_version == '0.0.0':
+			dialog.add_string(_("It's the first time you use Drawing, " + \
+			                         "would you like to read the help manual?"))
+
+		# Major update (assuming i actually follow semantic versionning lol)
+		else:
+			# Context: %s is the version number of the app
+			label = _("It's the first time you use Drawing %s, " + \
+			                               "would you like to read what's new?")
+			dialog.add_string(label % current_version)
+			dialog.add_string(_("These news will always be available in the" + \
+			     " help manual: click the 'Help' menu item whenever you want!"))
+
+		no_id = dialog.set_action(_("No"), None, True)
+		yes_id = dialog.set_action(_("Yes"), 'suggested-action')
 		result = dialog.run()
 		dialog.destroy()
 
-		if result == later_id:
-			return
 		if result == yes_id:
-			self.app.on_help_whats_new()
+			if last_version == '0.0.0':
+				self.app.on_help_index()
+			else:
+				self.app.on_help_whats_new()
 		self.gsettings.set_string('last-version', current_version)
 
 	def _init_tools(self):
@@ -631,6 +647,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		"""Set the window's subtitles list (regardless of the current UI bars).
 		Tools have to be initialized before calling this method, for now."""
 		if subtitles_list is None:
+			# TODO éviter ça en changeant les appels, et changer le commentaire
 			subtitles_list = self.active_tool().get_editing_tips()
 		if self._decorations.set_subtitles(subtitles_list):
 			self._decorations.force_update_titles()
@@ -723,6 +740,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		key = 'gtk-application-prefer-dark-theme';
 		use_dark_theme = self.gsettings.get_boolean('dark-theme-variant')
 		Gtk.Settings.get_default().set_property(key, use_dark_theme)
+		# XXX intriguant ce truc là ^ imho ça a changé, le night theme existe
 
 	############################################################################
 	# INFORMATION MESSAGES #####################################################
@@ -780,6 +798,7 @@ class DrWindow(Gtk.ApplicationWindow):
 			self.fullscreen()
 			self.reveal_message(_("Middle-click or press F8 to show/hide controls.") + \
 			                     " " + _("Press F11 to exit fullscreen."), True)
+			# TODO find a solution for touchscreens!!
 		else:
 			self.unfullscreen()
 		self._set_controls_hidden(shall_fullscreen)
@@ -1008,6 +1027,7 @@ class DrWindow(Gtk.ApplicationWindow):
 			file_name = gfile.get_path().split('/')[-1]
 			self.reveal_message(_("Loading %s") % file_name)
 		if self.get_active_image().should_replace():
+			# XXX ne marche pas de ouf en pratique ^
 			# If the current image is just a blank, unmodified canvas.
 			self._try_load_file(gfile)
 		else:
