@@ -5,9 +5,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: com.github.maoschanz.drawing 0.4\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-23 22:49+0100\n"
-"PO-Revision-Date: 2022-03-23 23:37+0100\n"
+"Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
+"POT-Creation-Date: 2022-04-05 00:54+0200\n"
+"PO-Revision-Date: 2022-04-05 01:15+0200\n"
 "Last-Translator: Romain F. T. <rrroschan@gmail.com>\n"
 "Language-Team: French <aaaa@bbbb.com>\n"
 "Language: fr\n"
@@ -84,6 +84,44 @@ msgstr ""
 msgid "Supported file types include PNG, JPEG and BMP."
 msgstr "Les types de fichiers supportés incluent PNG, JPEG et BMP."
 
+#. very generic release notes i use for ALL minor updates, please
+#. translate this one!
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Version 1.0.1 features several minor bug fixes, and various new translations."
+msgstr ""
+"La version 1.0.1 comporte plusieurs correctifs de bugs mineurs, et diverses "
+"nouvelles traductions."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"By popular demand, the \"highlighter\" tool is now enabled by default, and "
+"the message dialog to warn you about the release notes is less intrusive."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"The main improvement in this update is the zoom workflow: since the version "
+"1.0.0 it's possible to zoom in very deep, but the process was very slow, and "
+"the view didn't stay well centered around the mouse pointer is; and once at "
+"2000%%, scrolling up or down, or left or right, was quite violent. These "
+"problems should all have disappeared in this new version!"
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Incorrect command line parsing when using the app outiside of a flatpak "
+"sandbox has also been fixed."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"For users on elementary OS, a small issue concerning window resizing has "
+"been mended too."
+msgstr ""
+"Pour les utilisateurs d'elementary OS, un petit problème de "
+"redimensionnement de fenêtre a été réparé aussi."
+
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "Version 1.0.0 improves rendering performance, which is visible when editing "
@@ -109,6 +147,14 @@ msgstr ""
 "Vous pouvez activer les outils avec des accélérateurs clavier (Alt+lettre). "
 "Cela pourrait ne pas encore fonctionner avec les langues utilisant un "
 "alphabet non-latin."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Zooming very deep is now possible, and the rendering will be very crisp, "
+"even at 2000%%."
+msgstr ""
+"Il est maintenant possible de zoomer très profond, et le rendu restera très "
+"net, même à 2000%%."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -139,15 +185,6 @@ msgstr ""
 "Avec l'outil \"redimensionner\", vous pouvez optionnellement donner la "
 "nouvelle taille sous la forme d'un pourcentage relatif, plutôt qu'une valeur "
 "absolue."
-
-#. very generic release notes i use for ALL minor updates, please
-#. translate this one!
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"Version 1.0.1 features several minor bug fixes, and various new translations."
-msgstr ""
-"La version 1.0.1 comporte plusieurs correctifs de bugs mineurs, et diverses "
-"nouvelles traductions."
 
 #. Caption of a screenshot, for appstores
 #: data/com.github.maoschanz.drawing.appdata.xml.in
@@ -1340,6 +1377,13 @@ msgstr "Erreur en chargeant l'outil : %s"
 msgid "Error starting the application, please report this bug."
 msgstr "Erreur au démarrage de l'application, veuillez reporter ce problème."
 
+#: src/window.py
+msgid ""
+"It's the first time you use Drawing, would you like to read the help manual?"
+msgstr ""
+"C'est la première fois que vous utilisez Dessin %s, désirez-vous lire le "
+"manuel d'aide ?"
+
 #. Context: %s is the version number of the app
 #: src/window.py
 #, python-format
@@ -1350,12 +1394,16 @@ msgstr ""
 "découvrir les nouveautés ?"
 
 #: src/window.py
-msgid "No"
-msgstr "Non"
+msgid ""
+"These news will always be available in the help manual: click the 'Help' "
+"menu item whenever you want!"
+msgstr ""
+"Ces informations resteront disponibles dans le manuel d'aide : cliquez sur "
+"l'item \"Aide\" quand vous le voulez !"
 
 #: src/window.py
-msgid "Later"
-msgstr "Plus tard"
+msgid "No"
+msgstr "Non"
 
 #: src/window.py
 msgid "Yes"
@@ -2420,3 +2468,6 @@ msgstr "Rayon de floutage"
 #: src/tools/transform_tools/filters/filter_saturation.py
 msgid "Saturation"
 msgstr "Saturation"
+
+#~ msgid "Later"
+#~ msgstr "Plus tard"
