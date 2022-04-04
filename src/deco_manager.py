@@ -95,9 +95,15 @@ class DrDecoManagerMenubar():
 			return
 
 		if available:
+			icon_name = 'dialog-information-symbolic'
 			self._main_menu_btn.get_style_context().add_class('suggested-action')
 		else:
+			icon_name = 'open-menu-symbolic'
 			self._main_menu_btn.get_style_context().remove_class('suggested-action')
+		# XXX ackshually depending on the layout, it shouldn't always be
+		# symbolic, and it shouldn't always be the "BUTTON" size
+		image = Gtk.Image.new_from_icon_name(icon_name, Gtk.IconSize.BUTTON)
+		self._main_menu_btn.set_image(image)
 
 	def set_undo_label(self, label):
 		pass # update "undo" item in the menubar ?

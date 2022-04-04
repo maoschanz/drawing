@@ -136,6 +136,11 @@ class DrWindow(Gtk.ApplicationWindow):
 		if current_version == last_version:
 			return
 
+		# if last_version.split('.')[0] == current_version.split('.')[0] \
+		# and last_version.split('.')[1] == current_version.split('.')[1]:
+		# 	self.gsettings.set_string('last-version', current_version)
+		# 	return
+
 		self._decorations.set_release_notes_available(True)
 		self.add_action_simple('help_news_dismiss', self._on_news_dismiss)
 		self.add_action_simple('help_news_open', self._on_news_open)
