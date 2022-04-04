@@ -31,9 +31,9 @@ class ToolEraser(ToolPencil):
 		                                         'tool-eraser-symbolic', window)
 		self.use_operator = False
 		self._fallback_operator = 'clear'
+		self.load_tool_action_enum('eraser-shape', 'last-eraser-type')
 		self.load_tool_action_enum('selection-color', 'last-delete-replace')
 		self.add_tool_action_enum('eraser-type', 'mosaic')
-		self.add_tool_action_enum('eraser-shape', 'rubber')
 		self._rgba = [0.0, 0.0, 0.0, 0.0]
 
 	def get_editing_tips(self):

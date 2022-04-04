@@ -164,6 +164,14 @@
       <description>The name of the last active shape filling style from the
       "shape" tool, saved when closing a window.</description>
     </key>
+    <key type="s" name="last-eraser-type">
+      <default>'rubber'</default>
+      <summary>Default eraser type</summary>
+      <description>
+        The name of the last active eraser type, from the "eraser" tool, saved
+        when closing a window. The value can be 'rubber', 'area', or 'color'.
+      </description>
+    </key>
     <key type="s" name="last-font-name">
       <default>'Sans'</default>
       <summary>Default active font</summary>
@@ -185,10 +193,12 @@
     <key type="s" name="last-delete-replace">
       <default>'alpha'</default>
       <summary>Type of color left behind by a deletion</summary>
-      <description>A deletion is any use of the solid eraser, or any area under
-      a selection that will be moved, cut, or deleted. Values can be 'alpha'
-      (transparency), 'initial' (the initial color of the canvas), or
-      'secondary' (the color of the right-click).</description>
+      <description>
+        A deletion is any use of the solid eraser, or any area under a selection
+        that will be moved, cut, or deleted. The value can be 'alpha'
+        (transparency), 'initial' (the initial color of the canvas), or
+        'secondary' (the color of the right-click).
+      </description>
     </key>
 
     <!-- TODO persist also: active filter? active brush? -->
