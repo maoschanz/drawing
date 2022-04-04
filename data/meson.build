@@ -15,7 +15,7 @@ if get_option('enable-translations-and-appdata')
 else
 	install_data(
 		app_uuid + '.desktop.in',
-		install_rename: app_uuid + '.desktop',
+		rename: app_uuid + '.desktop',
 		install_dir: desktop_files_dir
 	)
 	desktop_file = desktop_files_dir / app_uuid + '.desktop'

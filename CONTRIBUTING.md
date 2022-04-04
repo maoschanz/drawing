@@ -120,13 +120,13 @@ This app is developed using _GNOME Builder_ and its support for `flatpak`:
 
 See [here](#dependencies) for the list of dependencies.
 
-#### Get the code
+#### 1) Get the code
 
 ```sh
 git clone https://github.com/maoschanz/drawing.git
 ```
 
-#### Build the app
+#### 2) Build the app
 
 ```sh
 cd drawing
@@ -134,7 +134,26 @@ meson _build
 ninja -C _build
 ```
 
-#### Install the app
+##### Custom meson options
+
+I have added 2 options you can use when you setup the project with `meson`:
+
+- `enable-translations-and-appdata`
+- `use-uuid-as-binary-name`
+
+Their name are clear enough. Using the first one should allow you to have less
+build dependencies, but i don't really test these options so you may have to
+report issues about it.
+
+Example:
+
+```sh
+cd drawing
+meson -Denable-translations-and-appdata=false _build
+ninja -C _build
+```
+
+#### 3) Install the app
 
 ```sh
 sudo ninja -C _build install
@@ -233,14 +252,17 @@ Minimal versions of the dependencies:
 | --------------- | ------------ | ------------------ | ---------------- |
 | `master`'s HEAD | **≥3.30**    | any?               | 3.22             |
 
-##### Dependencies to build the app
+##### Dependencies to **build** the app
+
+Here, "optional" means you may succeed without them if you use the correct meson
+options, the right building tools, and luck.
 
 - `meson`. The version of meson required by the `meson.build` file at the root
 of the project can be changed if necessary, but please don't add this change to
 your commit(s).
 - [optional] `appstream-util` (validation of the `.appdata.xml` file)
 - `libglib2.0-dev-bin` (IIRC that one is to compress the `.ui` files and the
-icons into a `.gresource` file)
+icons into a `.gresource` file: 100% necessary)
 - [optional] `itstool` (to generate translation files for the help manual)
 
 ----
