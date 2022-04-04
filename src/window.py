@@ -136,39 +136,20 @@ class DrWindow(Gtk.ApplicationWindow):
 		if current_version == last_version:
 			return
 
-		# To avoid spamming users too much, only major updates are worthy of
-		# that message dialog.
-		if last_version.split('.')[0] == current_version.split('.')[0] \
-		and last_version.split('.')[1] == current_version.split('.')[1]:
-			self.gsettings.set_string('last-version', current_version)
-			return
+		self._decorations.set_release_notes_available(True)
+		self.add_action_simple('help_news_dismiss', self._on_news_dismiss)
+		self.add_action_simple('help_news_open', self._on_news_open)
 
-		dialog = DrMessageDialog(self)
-		# First use of the app
-		if last_version == '0.0.0':
-			dialog.add_string(_("It's the first time you use Drawing, " + \
-			                         "would you like to read the help manual?"))
-
-		# Major update (assuming i actually follow semantic versionning lol)
-		else:
-			# Context: %s is the version number of the app
-			label = _("It's the first time you use Drawing %s, " + \
-			                               "would you like to read what's new?")
-			dialog.add_string(label % current_version)
-			dialog.add_string(_("These news will always be available in the" + \
-			     " help manual: click the 'Help' menu item whenever you want!"))
-
-		no_id = dialog.set_action(_("No"), None, True)
-		yes_id = dialog.set_action(_("Yes"), 'suggested-action')
-		result = dialog.run()
-		dialog.destroy()
-
-		if result == yes_id:
-			if last_version == '0.0.0':
-				self.app.on_help_index()
-			else:
-				self.app.on_help_whats_new()
+	def _on_news_dismiss(self, *args):
+		current_version = self.app.get_current_version()
 		self.gsettings.set_string('last-version', current_version)
+		self._decorations.set_release_notes_available(False)
+		self.lookup_action('help_news_dismiss').set_enabled(False)
+		self.lookup_action('help_news_open').set_enabled(False)
+
+	def _on_news_open(self, *args):
+		self.app.on_help_whats_new()
+		self._on_news_dismiss()
 
 	def _init_tools(self):
 		"""Initialize all tools, building the UI for them including the menubar,
