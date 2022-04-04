@@ -5,16 +5,22 @@
     <section>
       <attribute name="display-hint">horizontal-buttons</attribute>
       <item>
-        <attribute name="label" translatable="yes">Pencil</attribute>
+        <attribute name="label" translatable="yes">Rubber eraser</attribute>
         <attribute name="action">win.eraser-shape</attribute>
-        <attribute name="target">pencil</attribute>
+        <attribute name="target">rubber</attribute>
         <attribute name="verb-icon">tool-pencil-symbolic</attribute>
       </item>
       <item>
-        <attribute name="label" translatable="yes">Rectangle</attribute>
+        <attribute name="label" translatable="yes">Rectangle area</attribute>
         <attribute name="action">win.eraser-shape</attribute>
         <attribute name="target">rectangle</attribute>
         <attribute name="verb-icon">tool-rectangle-symbolic</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Remove color</attribute>
+        <attribute name="action">win.eraser-shape</attribute>
+        <attribute name="target">cut-out</attribute>
+        <attribute name="verb-icon">tool-magic-symbolic</attribute>
       </item>
     </section>
     <section>

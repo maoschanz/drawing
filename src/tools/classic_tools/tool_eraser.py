@@ -33,7 +33,7 @@ class ToolEraser(ToolPencil):
 		self._fallback_operator = 'clear'
 		self.load_tool_action_enum('selection-color', 'last-delete-replace')
 		self.add_tool_action_enum('eraser-type', 'mosaic')
-		self.add_tool_action_enum('eraser-shape', 'pencil')
+		self.add_tool_action_enum('eraser-shape', 'rubber')
 		self._rgba = [0.0, 0.0, 0.0, 0.0]
 
 	def get_editing_tips(self):
@@ -42,7 +42,7 @@ class ToolEraser(ToolPencil):
 		self._apply_shape_constraints()
 
 		label_options = self.label
-		if self._eraser_shape == 'pencil':
+		if self._eraser_shape == 'rubber':
 			label_options += " - " + _("Pencil")
 		else:
 			label_options += " - " + _("Rectangle")
@@ -64,7 +64,7 @@ class ToolEraser(ToolPencil):
 			label_modifier_shift = None
 		else:
 			label_modifier_shift = self.label + " - "
-			if self._eraser_shape == 'pencil':
+			if self._eraser_shape == 'rubber':
 				label_modifier_shift += _("Press <Shift> to erase a rectangle area instead")
 			else:
 				label_modifier_shift += _("Press <Shift> to erase a path instead")
@@ -78,7 +78,7 @@ class ToolEraser(ToolPencil):
 	def _apply_shape_constraints(self):
 		self._eraser_type = self.get_option_value('eraser-type')
 
-		can_blur = self._eraser_shape != 'pencil'
+		can_blur = self._eraser_shape != 'rubber'
 		self.set_action_sensitivity('eraser-type', can_blur)
 		if not can_blur:
 			self._eraser_type = 'solid'
@@ -111,7 +111,7 @@ class ToolEraser(ToolPencil):
 		self.update_modifier_state(event.state)
 		if 'SHIFT' in self._modifier_keys:
 			if self._eraser_shape == 'rectangle':
-				self._eraser_shape = 'pencil'
+				self._eraser_shape = 'rubber'
 			else:
 				self._eraser_shape = 'rectangle'
 			self._apply_shape_constraints()
@@ -218,7 +218,7 @@ class ToolEraser(ToolPencil):
 			bs = utilities_blur_surface(bs, b_rad, BlurType.CAIRO_REPAINTS, b_dir)
 
 		cairo_context.clip()
-		# XXX this ^ doesn't work with the 'pencil' shape, which forces me to
+		# XXX this ^ doesn't work with the 'rubber' shape, which forces me to
 		# disable the 'eraser-type' option in this case
 		cairo_context.set_source_surface(bs, r0, r1)
 		cairo_context.paint()
