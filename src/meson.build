@@ -91,6 +91,11 @@ drawing_sources = [
 	'tools/classic_tools/brushes/brush_hairy.py',
 	'tools/classic_tools/brushes/brush_simple.py',
 
+	'tools/classic_tools/erasers/abstract_eraser.py',
+	'tools/classic_tools/erasers/eraser_area.py',
+	'tools/classic_tools/erasers/eraser_color.py',
+	'tools/classic_tools/erasers/eraser_rubber.py',
+
 	'tools/selection_tools/abstract_select.py',
 	'tools/selection_tools/select_rect.py',
 	'tools/selection_tools/select_free.py',
