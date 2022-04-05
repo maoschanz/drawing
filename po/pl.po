@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
 "POT-Creation-Date: 2022-04-05 00:54+0200\n"
-"PO-Revision-Date: 2022-03-23 23:52+0100\n"
+"PO-Revision-Date: 2022-04-05 07:45+0200\n"
 "Last-Translator: Piotr Komur <pkomur@gmail.com>\n"
 "Language-Team: Piotr Komur\n"
 "Language: pl\n"
@@ -98,6 +98,9 @@ msgid ""
 "By popular demand, the \"highlighter\" tool is now enabled by default, and "
 "the message dialog to warn you about the release notes is less intrusive."
 msgstr ""
+"Na życzenie użytkowników narzędzie „Zakreślacz” jest teraz domyślnie "
+"włączone, a okno dialogowe komunikatu ostrzegającego o uwagach do wydania "
+"jest mniej natrętne."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -107,18 +110,28 @@ msgid ""
 "2000%%, scrolling up or down, or left or right, was quite violent. These "
 "problems should all have disappeared in this new version!"
 msgstr ""
+"Głównym ulepszeniem w tej aktualizacji jest przepływ pracy z powiększeniem: "
+"od wersji 1.0.0 możliwe jest bardzo głębokie powiększanie, ale proces ten "
+"był bardzo powolny, a widok nie pozostawał dobrze wyśrodkowany wokół "
+"wskaźnika myszy; ponadto po osiągnięciu 2000%% przewijanie w górę lub w dół, "
+"w lewo lub w prawo było dość gwałtowne. Wszystkie te problemy powinny "
+"zniknąć w nowej wersji!"
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "Incorrect command line parsing when using the app outiside of a flatpak "
 "sandbox has also been fixed."
 msgstr ""
+"Poprawiono także niepoprawne przetwarzanie wiersza poleceń podczas używania "
+"aplikacji poza piaskownicą flatpak."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "For users on elementary OS, a small issue concerning window resizing has "
 "been mended too."
 msgstr ""
+"W przypadku użytkowników elementary OS naprawiono także drobny problem "
+"związany ze zmianą rozmiaru okna."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -152,6 +165,8 @@ msgid ""
 "Zooming very deep is now possible, and the rendering will be very crisp, "
 "even at 2000%%."
 msgstr ""
+"Możliwe jest teraz bardzo głębokie powiększanie, a renderowanie będzie "
+"bardzo wyraźne, nawet przy 2000%%."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -1373,12 +1388,11 @@ msgid "Error starting the application, please report this bug."
 msgstr "Wystąpił błąd podczas uruchamiania aplikacji, proszę zgłosić ten błąd."
 
 #: src/window.py
-#, fuzzy
 msgid ""
 "It's the first time you use Drawing, would you like to read the help manual?"
 msgstr ""
-"Po raz pierwszy używasz programu Rysunek %s. Czy chcesz przeczytać, co "
-"nowego?"
+"Używasz programu Rysunek po raz pierwszy, czy chcesz przeczytać podręcznik "
+"użytkownika?"
 
 #. Context: %s is the version number of the app
 #: src/window.py
@@ -1394,6 +1408,8 @@ msgid ""
 "These news will always be available in the help manual: click the 'Help' "
 "menu item whenever you want!"
 msgstr ""
+"Te wiadomości będą zawsze dostępne w podręczniku użytkownika: w każdej "
+"chwili możesz kliknąć pozycję menu 'Pomoc'!"
 
 #: src/window.py
 msgid "No"
