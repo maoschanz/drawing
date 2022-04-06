@@ -7,15 +7,13 @@ from .selection_manager import NoSelectionPathException
 ################################################################################
 # Selection overlay ############################################################
 
-def utilities_show_overlay_on_context(ccontext, cpath, is_dashed, thickness=1):
-	"""Draw a blueish area on `ccontext`, with or without dashes. This is mainly
-	used for the selection, but also for the minimap."""
+def utilities_show_overlay_on_context(ccontext, cpath, thickness=1):
+	"""Draw a blueish area on `ccontext`, for the selection."""
 	if cpath is None:
 		raise NoSelectionPathException()
 	ccontext.new_path()
 	ccontext.set_line_width(thickness)
-	if is_dashed:
-		ccontext.set_dash([thickness * 3, thickness * 3])
+	ccontext.set_dash([thickness * 3, thickness * 3])
 	ccontext.append_path(cpath)
 	ccontext.set_source_rgba(0.1, 0.1, 0.3, 0.2)
 	ccontext.fill_preserve()

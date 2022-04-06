@@ -3,9 +3,6 @@ if get_option('enable-translations-and-appdata') and meson.version().version_com
 	itstool = find_program('itstool')
 else
 	itstool = false
-endif
-
-if not itstool
 	i18n = []
 endif
 

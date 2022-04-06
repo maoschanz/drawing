@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-23 22:49+0100\n"
+"Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
+"POT-Creation-Date: 2022-04-05 00:54+0200\n"
 "PO-Revision-Date: 2021-05-17 13:45+0900\n"
 "Last-Translator: Kevin Kim <root@hamonikr.org>\n"
 "Language-Team: Korean\n"
@@ -78,6 +78,41 @@ msgstr ""
 msgid "Supported file types include PNG, JPEG and BMP."
 msgstr ""
 
+#. very generic release notes i use for ALL minor updates, please
+#. translate this one!
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Version 1.0.1 features several minor bug fixes, and various new translations."
+msgstr ""
+"버전 1.0.1에는 몇 가지 사소한 버그 수정과 다양한 새로운 번역이 있습니다."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"By popular demand, the \"highlighter\" tool is now enabled by default, and "
+"the message dialog to warn you about the release notes is less intrusive."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"The main improvement in this update is the zoom workflow: since the version "
+"1.0.0 it's possible to zoom in very deep, but the process was very slow, and "
+"the view didn't stay well centered around the mouse pointer is; and once at "
+"2000%%, scrolling up or down, or left or right, was quite violent. These "
+"problems should all have disappeared in this new version!"
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Incorrect command line parsing when using the app outiside of a flatpak "
+"sandbox has also been fixed."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"For users on elementary OS, a small issue concerning window resizing has "
+"been mended too."
+msgstr ""
+
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "Version 1.0.0 improves rendering performance, which is visible when editing "
@@ -99,6 +134,12 @@ msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
+"Zooming very deep is now possible, and the rendering will be very crisp, "
+"even at 2000%%."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
 "Pressing \"ctrl\" will display the cursor coordinates in a tooltip. If you "
 "do it while using a tool, it may display additional data, for example the "
 "dimensions of the shape you're drawing!"
@@ -116,14 +157,6 @@ msgid ""
 "Using the \"scale\" tool, you may optionally set the new size as a relative "
 "percentage rather than an absolute value in pixels."
 msgstr ""
-
-#. very generic release notes i use for ALL minor updates, please
-#. translate this one!
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"Version 1.0.1 features several minor bug fixes, and various new translations."
-msgstr ""
-"버전 1.0.1에는 몇 가지 사소한 버그 수정과 다양한 새로운 번역이 있습니다."
 
 #. Caption of a screenshot, for appstores
 #: data/com.github.maoschanz.drawing.appdata.xml.in
@@ -1324,6 +1357,12 @@ msgid "Error starting the application, please report this bug."
 msgstr ""
 "응용 프로그램을 시작하는 동안 오류가 발생했습니다.이 버그를보고하십시오."
 
+#: src/window.py
+#, fuzzy
+msgid ""
+"It's the first time you use Drawing, would you like to read the help manual?"
+msgstr "처음으로 Drawing %s 를 사용합니다. 새로운 기능을 읽으시겠습니까?"
+
 #. Context: %s is the version number of the app
 #: src/window.py
 #, python-format
@@ -1332,12 +1371,14 @@ msgid ""
 msgstr "처음으로 Drawing %s 를 사용합니다. 새로운 기능을 읽으시겠습니까?"
 
 #: src/window.py
-msgid "No"
-msgstr "아니오"
+msgid ""
+"These news will always be available in the help manual: click the 'Help' "
+"menu item whenever you want!"
+msgstr ""
 
 #: src/window.py
-msgid "Later"
-msgstr "나중에"
+msgid "No"
+msgstr "아니오"
 
 #: src/window.py
 msgid "Yes"
@@ -2409,6 +2450,9 @@ msgstr "흐림 반경"
 #: src/tools/transform_tools/filters/filter_saturation.py
 msgid "Saturation"
 msgstr "채도"
+
+#~ msgid "Later"
+#~ msgstr "나중에"
 
 #~ msgid "Transform"
 #~ msgstr "변환"

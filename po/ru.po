@@ -6,9 +6,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-23 22:49+0100\n"
-"PO-Revision-Date: 2022-03-24 23:58+1000\n"
+"Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
+"POT-Creation-Date: 2022-04-05 00:54+0200\n"
+"PO-Revision-Date: 2022-04-05 19:02+1000\n"
 "Last-Translator: Ser82-png <sw@atrus.ru>\n"
 "Language-Team: \n"
 "Language: ru\n"
@@ -86,6 +86,55 @@ msgstr ""
 msgid "Supported file types include PNG, JPEG and BMP."
 msgstr "Поддерживаемые типы файлов включают PNG, JPEG и BMP."
 
+#. very generic release notes i use for ALL minor updates, please
+#. translate this one!
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Version 1.0.1 features several minor bug fixes, and various new translations."
+msgstr ""
+"Версия 1.0.1 содержит несколько мелких исправлений и несколько новых "
+"переводов."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"By popular demand, the \"highlighter\" tool is now enabled by default, and "
+"the message dialog to warn you about the release notes is less intrusive."
+msgstr ""
+"По многочисленным просьбам инструмент \"Маркер\" теперь включен по "
+"умолчанию, а диалоговое окно сообщающее о примечаниях к выпуску стало менее "
+"навязчивым."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"The main improvement in this update is the zoom workflow: since the version "
+"1.0.0 it's possible to zoom in very deep, but the process was very slow, and "
+"the view didn't stay well centered around the mouse pointer is; and once at "
+"2000%%, scrolling up or down, or left or right, was quite violent. These "
+"problems should all have disappeared in this new version!"
+msgstr ""
+"Основным улучшением в этом обновлении является рабочий процесс "
+"масштабирования: начиная с версии 1.0.0 появилась возможность использовать "
+"очень большое увеличение. Раньше этот процесс был очень медленным, и "
+"качество полученного изображения оставляло желать лучшего; при увеличении в "
+"2000%% отмечалась довольно сильная прокрутка вверх-вниз и влево-вправо. Все "
+"эти проблемы должны были исчезнуть в этой новой версии!"
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Incorrect command line parsing when using the app outiside of a flatpak "
+"sandbox has also been fixed."
+msgstr ""
+"Был исправлен неверный синтаксический анализ командной строки при "
+"использовании приложения вне песочницы flatpak."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"For users on elementary OS, a small issue concerning window resizing has "
+"been mended too."
+msgstr ""
+"Для пользователей elementary OS исправлена небольшая проблема, связанная с "
+"изменением размера окна."
+
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "Version 1.0.0 improves rendering performance, which is visible when editing "
@@ -115,6 +164,14 @@ msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
+"Zooming very deep is now possible, and the rendering will be very crisp, "
+"even at 2000%%."
+msgstr ""
+"Теперь возможно очень глубокое масштабирование, и отрисовка будет очень "
+"чёткой даже при масштабе 2000%%."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
 "Pressing \"ctrl\" will display the cursor coordinates in a tooltip. If you "
 "do it while using a tool, it may display additional data, for example the "
 "dimensions of the shape you're drawing!"
@@ -140,15 +197,6 @@ msgid ""
 msgstr ""
 "Используя инструмент «Масштаб», вы можете дополнительно устанавливать новый "
 "размер в процентах, а не только в виде абсолютных значений в пикселях."
-
-#. very generic release notes i use for ALL minor updates, please
-#. translate this one!
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"Version 1.0.1 features several minor bug fixes, and various new translations."
-msgstr ""
-"Версия 1.0.1 содержит несколько мелких исправлений и несколько новых "
-"переводов."
 
 #. Caption of a screenshot, for appstores
 #: data/com.github.maoschanz.drawing.appdata.xml.in
@@ -1343,6 +1391,12 @@ msgstr "Не удалось загрузить инструмент: %s"
 msgid "Error starting the application, please report this bug."
 msgstr "Ошибка при запуске приложения, пожалуйста, сообщите об этой ошибке."
 
+#: src/window.py
+msgid ""
+"It's the first time you use Drawing, would you like to read the help manual?"
+msgstr ""
+"Вы впервые используете Drawing. Хотите прочитать справочное руководство?"
+
 #. Context: %s is the version number of the app
 #: src/window.py
 #, python-format
@@ -1351,12 +1405,16 @@ msgid ""
 msgstr "Вы впервые используете Drawing %s. Хотите узнать, что нового?"
 
 #: src/window.py
-msgid "No"
-msgstr "Нет"
+msgid ""
+"These news will always be available in the help manual: click the 'Help' "
+"menu item whenever you want!"
+msgstr ""
+"Эта информация всегда будет доступна в справочном руководстве: щёлкните "
+"пункт меню «Справка» в любое время!"
 
 #: src/window.py
-msgid "Later"
-msgstr "Позже"
+msgid "No"
+msgstr "Нет"
 
 #: src/window.py
 msgid "Yes"
@@ -2417,6 +2475,9 @@ msgstr "Радиус размытия"
 #: src/tools/transform_tools/filters/filter_saturation.py
 msgid "Saturation"
 msgstr "Насыщенность"
+
+#~ msgid "Later"
+#~ msgstr "Позже"
 
 #~ msgid "Transform"
 #~ msgstr "Преобразование"

@@ -48,7 +48,7 @@ class ToolRectSelect(AbstractSelectionTool):
 		if rect is not None:
 			ccontext = self.get_context()
 			thickness = self.get_overlay_thickness()
-			utilities_show_overlay_on_context(ccontext, rect, True, thickness)
+			utilities_show_overlay_on_context(ccontext, rect, thickness)
 
 	def release_define(self, surface, event_x, event_y):
 		self._build_rectangle_path(self.x_press, self.y_press, event_x, event_y)

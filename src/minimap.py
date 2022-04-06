@@ -2,7 +2,6 @@
 
 import cairo
 from gi.repository import Gtk, Gdk, GdkPixbuf
-from .utilities_overlay import utilities_show_overlay_on_context
 
 class DrMinimap(Gtk.Popover):
 	__gtype_name__ = 'DrMinimap'
@@ -73,16 +72,41 @@ class DrMinimap(Gtk.Popover):
 			mini_x = int(image.scroll_x * size_ratio)
 			mini_y = int(image.scroll_y * size_ratio)
 			visible_width, visible_height = image.get_visible_size()
-			mini_width = int(visible_width * size_ratio)
-			mini_height = int(visible_height * size_ratio)
+			# We add pixels because those "int" truncate a pixel on each side
+			mini_width = int(visible_width * size_ratio) + 2
+			mini_height = int(visible_height * size_ratio) + 2
+
+			# Set up a cairo context
 			mini_context = cairo.Context(self._mini_surface)
+			mini_context.new_path()
+			mini_context.set_line_width(1)
+			mini_context.set_antialias(cairo.Antialias.NONE)
+			mini_context.set_line_cap(cairo.LineCap.SQUARE)
+
+			# Path around the visible area
 			mini_context.move_to(mini_x, mini_y)
 			mini_context.line_to(mini_x, mini_height + mini_y)
 			mini_context.line_to(mini_width + mini_x, mini_height + mini_y)
 			mini_context.line_to(mini_width + mini_x, mini_y)
+			mini_context.line_to(mini_x, mini_y)
+
+			# Path around the entire mini-surface
+			pix_width = self.mini_pixbuf.get_width()
+			pix_height = self.mini_pixbuf.get_height()
+			mini_context.move_to(0, 0)
+			mini_context.line_to(pix_width, 0)
+			# We add pixels because those "int" truncate a pixel on each side
+			mini_context.line_to(pix_width + 1, pix_height + 1)
+			mini_context.line_to(0, pix_height)
 			mini_context.close_path()
-			mini_path = mini_context.copy_path()
-			utilities_show_overlay_on_context(mini_context, mini_path, False)
+
+			# Fill between these 2 paths with half-transparent grey
+			mini_context.set_source_rgba(0.3, 0.3, 0.3, 0.2)
+			mini_context.fill_preserve()
+
+			# Draw the paths with grey
+			mini_context.set_source_rgba(0.5, 0.5, 0.5, 1.0)
+			mini_context.stroke()
 		self._minimap_area.queue_draw()
 
 	############################################################################

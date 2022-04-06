@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-23 22:49+0100\n"
+"Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
+"POT-Creation-Date: 2022-04-05 00:54+0200\n"
 "PO-Revision-Date: 2022-01-08 21:16-0300\n"
 "Last-Translator: Fúlvio Alves <fga.fulvio@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <arthurbacci64@gmail.com>\n"
@@ -86,6 +86,41 @@ msgstr ""
 msgid "Supported file types include PNG, JPEG and BMP."
 msgstr "Os tipos de arquivo suportados incluem PNG, JPEG e BMP."
 
+#. very generic release notes i use for ALL minor updates, please
+#. translate this one!
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Version 1.0.1 features several minor bug fixes, and various new translations."
+msgstr ""
+"A versão 1.0.1 apresenta diversas correções de erros e várias traduções."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"By popular demand, the \"highlighter\" tool is now enabled by default, and "
+"the message dialog to warn you about the release notes is less intrusive."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"The main improvement in this update is the zoom workflow: since the version "
+"1.0.0 it's possible to zoom in very deep, but the process was very slow, and "
+"the view didn't stay well centered around the mouse pointer is; and once at "
+"2000%%, scrolling up or down, or left or right, was quite violent. These "
+"problems should all have disappeared in this new version!"
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Incorrect command line parsing when using the app outiside of a flatpak "
+"sandbox has also been fixed."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"For users on elementary OS, a small issue concerning window resizing has "
+"been mended too."
+msgstr ""
+
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "Version 1.0.0 improves rendering performance, which is visible when editing "
@@ -111,6 +146,12 @@ msgid ""
 msgstr ""
 "Você pode selecionar ferramentas com aceleradores de teclado (Alt+letra). "
 "Isso pode não funcionar ainda com idiomas que usam um alfabeto não-latino."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Zooming very deep is now possible, and the rendering will be very crisp, "
+"even at 2000%%."
+msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -140,14 +181,6 @@ msgid ""
 msgstr ""
 "Ao usar a ferramenta \"Escala\" você pode, ocasionalmente, definir o novo "
 "tamanho como uma porcentagem relativa em vez de um valor absoluto em pixels."
-
-#. very generic release notes i use for ALL minor updates, please
-#. translate this one!
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"Version 1.0.1 features several minor bug fixes, and various new translations."
-msgstr ""
-"A versão 1.0.1 apresenta diversas correções de erros e várias traduções."
 
 #. Caption of a screenshot, for appstores
 #: data/com.github.maoschanz.drawing.appdata.xml.in
@@ -1342,6 +1375,14 @@ msgstr "Falha ao carregar a ferramenta: %s"
 msgid "Error starting the application, please report this bug."
 msgstr "Erro ao iniciar o aplicativo, por favor reportar o bug."
 
+#: src/window.py
+#, fuzzy
+msgid ""
+"It's the first time you use Drawing, would you like to read the help manual?"
+msgstr ""
+"Esta é a primeira vez que você usa o Drawing %s. Gostaria de ver o que há de "
+"novo?"
+
 #. Context: %s is the version number of the app
 #: src/window.py
 #, python-format
@@ -1352,12 +1393,14 @@ msgstr ""
 "novo?"
 
 #: src/window.py
-msgid "No"
-msgstr "Não"
+msgid ""
+"These news will always be available in the help manual: click the 'Help' "
+"menu item whenever you want!"
+msgstr ""
 
 #: src/window.py
-msgid "Later"
-msgstr "Mais tarde"
+msgid "No"
+msgstr "Não"
 
 #: src/window.py
 msgid "Yes"
@@ -2419,6 +2462,9 @@ msgstr "Raio do borrado"
 #: src/tools/transform_tools/filters/filter_saturation.py
 msgid "Saturation"
 msgstr "Saturação"
+
+#~ msgid "Later"
+#~ msgstr "Mais tarde"
 
 #~ msgid "Horizontal"
 #~ msgstr "horizontal"
