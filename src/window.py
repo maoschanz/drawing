@@ -540,6 +540,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		                                   ['<Ctrl>minus', '<Ctrl>KP_Subtract'])
 		self.add_action_simple('zoom_100', self.action_zoom_100, ['<Ctrl>1', '<Ctrl>KP_1'])
 		self.add_action_simple('zoom_opti', self.action_zoom_opti, ['<Ctrl>0', '<Ctrl>KP_0'])
+		self.add_action_simple('zoom_max', self.action_zoom_max, ['<Ctrl><Shift>plus', '<Ctrl><Shift>KP_Add'])
 
 		self.add_action_simple('new_tab', self.build_blank_image, ['<Ctrl>t'])
 		self.add_action_simple('new_tab_custom', self.build_new_custom)
@@ -1324,6 +1325,11 @@ class DrWindow(Gtk.ApplicationWindow):
 
 	def action_zoom_opti(self, *args):
 		self.get_active_image().set_opti_zoom_level()
+
+	def action_zoom_max(self, *args):
+		self.get_active_image().set_zoom_level(2000)
+		# It has to be done twice, because the code of the minimap is shit
+		self.get_active_image().set_zoom_level(2000)
 
 	############################################################################
 ################################################################################

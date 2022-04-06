@@ -172,34 +172,7 @@
         <child>
           <object class="GtkShortcutsGroup">
             <property name="visible">True</property>
-            <property name="title" translatable="yes">Tabs</property>
-            <child>
-              <object class="GtkShortcutsShortcut">
-                <property name="visible">True</property>
-                <property name="title" translatable="yes">Tab at the left</property>
-                <property name="accelerator">&lt;Primary&gt;&lt;Alt&gt;Left</property>
-              </object>
-            </child>
-            <child>
-              <object class="GtkShortcutsShortcut">
-                <property name="visible">True</property>
-                <property name="title" translatable="yes">Tab at the right</property>
-                <property name="accelerator">&lt;Primary&gt;&lt;Alt&gt;Right</property>
-              </object>
-            </child>
-          </object>
-        </child>
-        <child>
-          <object class="GtkShortcutsGroup">
-            <property name="visible">True</property>
             <property name="title" translatable="yes">Zoom</property>
-            <child>
-              <object class="GtkShortcutsShortcut">
-                <property name="visible">True</property>
-                <property name="title" translatable="yes">Optimal Zoom</property>
-                <property name="accelerator">&lt;Primary&gt;0</property>
-              </object>
-            </child>
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="visible">True</property>
@@ -226,6 +199,20 @@
                 <property name="visible">True</property>
                 <property name="title" translatable="yes">Zoom In</property>
                 <property name="accelerator">&lt;Primary&gt;plus</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="visible">True</property>
+                <property name="title" translatable="yes">Maximum zoom</property>
+                <property name="accelerator">&lt;Primary&gt;&lt;Shift&gt;plus</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="visible">True</property>
+                <property name="title" translatable="yes">Optimal Zoom</property>
+                <property name="accelerator">&lt;Primary&gt;0</property>
               </object>
             </child>
           </object>
@@ -412,6 +399,26 @@
                 <property name="visible">True</property>
                 <property name="title" translatable="yes">Go to the right end</property>
                 <property name="accelerator">&lt;Primary&gt;End</property>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="GtkShortcutsGroup">
+            <property name="visible">True</property>
+            <property name="title" translatable="yes">Tabs</property>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="visible">True</property>
+                <property name="title" translatable="yes">Tab at the left</property>
+                <property name="accelerator">&lt;Primary&gt;&lt;Alt&gt;Left</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="visible">True</property>
+                <property name="title" translatable="yes">Tab at the right</property>
+                <property name="accelerator">&lt;Primary&gt;&lt;Alt&gt;Right</property>
               </object>
             </child>
           </object>
