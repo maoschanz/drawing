@@ -5,6 +5,45 @@ from gi.repository import Gdk, GdkPixbuf
 from .selection_manager import NoSelectionPathException
 
 ################################################################################
+# Classic tools overlay ########################################################
+
+def utilities_show_composite_overlay(ccontext, thickness=1):
+	ccontext.set_line_width(thickness)
+	ccontext.set_dash([thickness * 3, thickness * 3])
+
+	x1, y1 ,x2, y2 = ccontext.path_extents()
+	radius = _get_radius((x2 - x1), (y2 - y1), thickness)
+
+	radius_with_margin = (radius + 10) * 1.2
+	ccontext.move_to(x1 - radius_with_margin, y1 - radius_with_margin)
+	ccontext.line_to(x2 + radius_with_margin, y1 - radius_with_margin)
+	ccontext.line_to(x2 + radius_with_margin, y2 + radius_with_margin)
+	ccontext.line_to(x1 - radius_with_margin, y2 + radius_with_margin)
+	ccontext.close_path()
+
+	ccontext.set_fill_rule(cairo.FillRule.EVEN_ODD)
+
+	ccontext.set_source_rgba(0.3, 0.3, 0.3, 0.2)
+	ccontext.fill_preserve()
+
+	ccontext.set_source_rgba(0.5, 0.5, 0.8, 1.0)
+	ccontext.stroke()
+
+	# The 4 corner handles
+	ccontext.set_dash([])
+	if radius < 4 * thickness:
+		ccontext.set_line_width(thickness)
+	elif radius < 8 * thickness:
+		ccontext.set_line_width(2 * thickness)
+	else:
+		ccontext.set_line_width(3 * thickness)
+
+	_draw_arc_handle(ccontext, x1, y1, radius, 'nw')
+	_draw_arc_handle(ccontext, x2, y1, radius, 'ne')
+	_draw_arc_handle(ccontext, x2, y2, radius, 'se')
+	_draw_arc_handle(ccontext, x1, y2, radius, 'sw')
+
+################################################################################
 # Selection overlay ############################################################
 
 def utilities_show_overlay_on_context(ccontext, cpath, thickness=1):

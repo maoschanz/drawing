@@ -18,6 +18,7 @@
 import cairo
 from gi.repository import Gtk, Gdk, GLib, Pango, PangoCairo
 from .abstract_classic_tool import AbstractClassicTool
+from .utilities_overlay import utilities_show_composite_overlay
 
 class ToolText(AbstractClassicTool):
 	__gtype_name__ = 'ToolText'
@@ -27,6 +28,11 @@ class ToolText(AbstractClassicTool):
 
 		self._should_cancel = False
 		self._last_click_btn = 1
+
+		# These values are found during the operation computation, and are
+		# re-used when rendering the previewed overlay
+		self._preview_width = 0
+		self._preview_height = 0
 
 		self.add_tool_action_simple('text-set-font', self._set_font)
 		self.add_tool_action_boolean('text-bold', False)
@@ -189,6 +195,26 @@ class ToolText(AbstractClassicTool):
 			operation = self.build_operation()
 			self.do_tool_operation(operation)
 
+	def on_draw_above(self, area, ccontext):
+		if not self._has_current_text():
+			return
+		ccontext.new_path()
+		ccontext.set_font_size(self.tool_width * 2)
+		ccontext.move_to(self.x_press, self.y_press)
+		ext = ccontext.text_extents(self.text_string)
+
+		actual_width = self._preview_width
+		actual_height = self._preview_height
+
+		ccontext.move_to(self.x_press, self.y_press)
+		ccontext.rel_line_to(actual_width, 0)
+		ccontext.rel_line_to(0, actual_height)
+		ccontext.rel_line_to(-1 * actual_width, 0)
+		ccontext.rel_line_to(0, -1 * actual_height)
+
+		thickness = self.get_overlay_thickness()
+		utilities_show_composite_overlay(ccontext, thickness)
+
 	def _on_cancel(self, *args):
 		self._hide_entry()
 		self._set_string('')
@@ -284,6 +310,10 @@ class ToolText(AbstractClassicTool):
 		cairo_context.set_source_rgba(*operation['rgba1'])
 		self._show_text_at_coords(cairo_context, layout, entire_text, \
 		                                                         text_x, text_y)
+
+		ink_rect, logical_rect = layout.get_pixel_extents()
+		self._preview_width = logical_rect.width
+		self._preview_height = logical_rect.height
 
 		self.non_destructive_show_modif()
 
