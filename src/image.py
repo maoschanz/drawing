@@ -811,31 +811,12 @@ class DrImage(Gtk.Box):
 		zoom_delta = (event.delta_x + event.delta_y) * -1 * self._zoom_profile()
 		self.inc_zoom_level(zoom_delta)
 
-		# Where the zoom event occurs, in terms of percentages, in the widget's
-		# reference frame. Like, "at 10% of the width, and 80% of the height".
-		proportion_w = event.x / self.get_widget_width()
-		proportion_h = event.y / self.get_widget_height()
-
-		# Size of the rectangle between the current scroll position (values of
-		# the self.scroll_* attributes) and the zoom event. Both are expressed
-		# in pixels, in the reference frame of the pixbuf.
-		corner_w = event_x - self.scroll_x
-		corner_h = event_y - self.scroll_y
-
-		# Values based on empirical experiments
-		fake_delta_x = corner_w * (proportion_w - 0.5)
-		fake_delta_y = corner_h * (proportion_h - 0.5)
-		if zoom_delta > 0:
-			# Zooming in
-			fake_delta_x *= 0.5
-			fake_delta_y *= 0.5
-		else:
-			# Zooming out
-			fake_delta_x *= -0.1
-			fake_delta_y *= -0.1
+		new_event_x, new_event_y = self.get_event_coords(event)
+		delta_correction_x = event_x - new_event_x
+		delta_correction_y = event_y - new_event_y
 
 		# Updating the scroll position based on the values previously found
-		self.add_deltas(fake_delta_x, fake_delta_y, 1)
+		self.add_deltas(delta_correction_x, delta_correction_y, 1)
 
 	def inc_zoom_level(self, delta):
 		self.set_zoom_level((self.zoom_level * 100) + delta)
