@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
-"POT-Creation-Date: 2022-04-05 00:54+0200\n"
-"PO-Revision-Date: 2022-04-09 19:31+0300\n"
+"POT-Creation-Date: 2022-04-10 15:56+0200\n"
+"PO-Revision-Date: 2022-02-17 10:55+0300\n"
 "Last-Translator: Serkan ÖNDER <serkanonder@outlook.com>\n"
 "Language-Team: \n"
 "Language: tr\n"
@@ -107,7 +107,7 @@ msgstr ""
 msgid ""
 "The main improvement in this update is the zoom workflow: since the version "
 "1.0.0 it's possible to zoom in very deep, but the process was very slow, and "
-"the view didn't stay well centered around the mouse pointer is; and once at "
+"the view didn't stay well centered around the mouse pointer; and once at "
 "2000%%, scrolling up or down, or left or right, was quite violent. These "
 "problems should all have disappeared in this new version!"
 msgstr ""
@@ -119,7 +119,7 @@ msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-"Incorrect command line parsing when using the app outiside of a flatpak "
+"Incorrect command line parsing when using the app outside of a flatpak "
 "sandbox has also been fixed."
 msgstr ""
 "Uygulamayı bir flatpak sanal alanının dışında kullanırken hatalı komut "
@@ -710,6 +710,10 @@ msgstr "Tekrar yükle"
 msgid "100%"
 msgstr "%100"
 
+#: src/ui/minimap.ui src/ui/shortcuts.ui
+msgid "Maximum zoom"
+msgstr ""
+
 #: src/ui/new-image-dialog.ui src/ui/properties.ui
 #: src/optionsbars/transform/optionsbar-crop.ui
 #: src/optionsbars/transform/optionsbar-scale.ui
@@ -862,10 +866,6 @@ msgid "Apply a transformation"
 msgstr "Bir dönüşüm uygulayın"
 
 #: src/ui/shortcuts.ui
-msgid "Tabs"
-msgstr "Sekmeler"
-
-#: src/ui/shortcuts.ui
 msgid "Toggle the preview"
 msgstr "Önizlemeyi değiştir"
 
@@ -902,6 +902,10 @@ msgstr "Geçmiş"
 #: src/ui/shortcuts.ui
 msgid "Navigation"
 msgstr "Gezinti"
+
+#: src/ui/shortcuts.ui
+msgid "Tabs"
+msgstr "Sekmeler"
 
 #: src/ui/shortcuts.ui
 msgid "Toggle fullscreen mode"

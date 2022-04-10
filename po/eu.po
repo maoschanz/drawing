@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
-"POT-Creation-Date: 2022-04-05 00:54+0200\n"
+"POT-Creation-Date: 2022-04-10 15:56+0200\n"
 "PO-Revision-Date: 2020-08-29 16:24+0200\n"
 "Last-Translator: Alexander Gabilondo <alexgabi@disroot.org>\n"
 "Language-Team: \n"
@@ -101,14 +101,14 @@ msgstr ""
 msgid ""
 "The main improvement in this update is the zoom workflow: since the version "
 "1.0.0 it's possible to zoom in very deep, but the process was very slow, and "
-"the view didn't stay well centered around the mouse pointer is; and once at "
+"the view didn't stay well centered around the mouse pointer; and once at "
 "2000%%, scrolling up or down, or left or right, was quite violent. These "
 "problems should all have disappeared in this new version!"
 msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-"Incorrect command line parsing when using the app outiside of a flatpak "
+"Incorrect command line parsing when using the app outside of a flatpak "
 "sandbox has also been fixed."
 msgstr ""
 
@@ -700,6 +700,10 @@ msgstr "Birkargatu"
 msgid "100%"
 msgstr "%100"
 
+#: src/ui/minimap.ui src/ui/shortcuts.ui
+msgid "Maximum zoom"
+msgstr ""
+
 #: src/ui/new-image-dialog.ui src/ui/properties.ui
 #: src/optionsbars/transform/optionsbar-crop.ui
 #: src/optionsbars/transform/optionsbar-scale.ui
@@ -856,10 +860,6 @@ msgid "Apply a transformation"
 msgstr "Aplikatu eraldaketa"
 
 #: src/ui/shortcuts.ui
-msgid "Tabs"
-msgstr "Fitxak"
-
-#: src/ui/shortcuts.ui
 msgid "Toggle the preview"
 msgstr "Trukatu aurrebista"
 
@@ -896,6 +896,10 @@ msgstr "Historiala"
 #: src/ui/shortcuts.ui
 msgid "Navigation"
 msgstr "Nabigazioa"
+
+#: src/ui/shortcuts.ui
+msgid "Tabs"
+msgstr "Fitxak"
 
 #: src/ui/shortcuts.ui
 #, fuzzy

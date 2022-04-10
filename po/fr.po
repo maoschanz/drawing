@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.github.maoschanz.drawing 0.4\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
-"POT-Creation-Date: 2022-04-05 00:54+0200\n"
+"POT-Creation-Date: 2022-04-10 15:56+0200\n"
 "PO-Revision-Date: 2022-04-05 01:15+0200\n"
 "Last-Translator: Romain F. T. <rrroschan@gmail.com>\n"
 "Language-Team: French <aaaa@bbbb.com>\n"
@@ -65,8 +65,8 @@ msgid ""
 msgstr ""
 "Cet éditeur d'images basique peut redimensionner, rogner, ou pivoter une "
 "image, appliquer des filtres simples, insérer ou censurer du texte, et "
-"manipuler une portion sélectionnée de l'image (couper/copier/coller/déplacer/"
-"…)"
+"manipuler une portion sélectionnée de l'image (couper/copier/coller/"
+"déplacer/…)"
 
 #. IMPORTANT: complete description of the application (2/3)
 #: data/com.github.maoschanz.drawing.appdata.xml.in
@@ -103,14 +103,14 @@ msgstr ""
 msgid ""
 "The main improvement in this update is the zoom workflow: since the version "
 "1.0.0 it's possible to zoom in very deep, but the process was very slow, and "
-"the view didn't stay well centered around the mouse pointer is; and once at "
+"the view didn't stay well centered around the mouse pointer; and once at "
 "2000%%, scrolling up or down, or left or right, was quite violent. These "
 "problems should all have disappeared in this new version!"
 msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-"Incorrect command line parsing when using the app outiside of a flatpak "
+"Incorrect command line parsing when using the app outside of a flatpak "
 "sandbox has also been fixed."
 msgstr ""
 
@@ -174,8 +174,8 @@ msgid ""
 "style of a shape."
 msgstr ""
 "Presser \"maj\" ou \"alt\" en utilisant un outil activera désormais des "
-"options spécifiques, tel que verrouiller la direction pour l'outil \"ligne"
-"\", ou changer le style de remplissage d'une forme."
+"options spécifiques, tel que verrouiller la direction pour l'outil "
+"\"ligne\", ou changer le style de remplissage d'une forme."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -701,6 +701,10 @@ msgstr "Recharger"
 msgid "100%"
 msgstr "100%"
 
+#: src/ui/minimap.ui src/ui/shortcuts.ui
+msgid "Maximum zoom"
+msgstr "Zoom maximal"
+
 #: src/ui/new-image-dialog.ui src/ui/properties.ui
 #: src/optionsbars/transform/optionsbar-crop.ui
 #: src/optionsbars/transform/optionsbar-scale.ui
@@ -853,10 +857,6 @@ msgid "Apply a transformation"
 msgstr "Appliquer une transformation"
 
 #: src/ui/shortcuts.ui
-msgid "Tabs"
-msgstr "Onglets"
-
-#: src/ui/shortcuts.ui
 msgid "Toggle the preview"
 msgstr "Afficher l'aperçu"
 
@@ -893,6 +893,10 @@ msgstr "Historique"
 #: src/ui/shortcuts.ui
 msgid "Navigation"
 msgstr "Navigation"
+
+#: src/ui/shortcuts.ui
+msgid "Tabs"
+msgstr "Onglets"
 
 #: src/ui/shortcuts.ui
 msgid "Toggle fullscreen mode"
