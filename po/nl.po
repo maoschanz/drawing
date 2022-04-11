@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
 "POT-Creation-Date: 2022-04-10 15:56+0200\n"
-"PO-Revision-Date: 2022-03-27 13:43+0200\n"
+"PO-Revision-Date: 2022-04-11 14:12+0200\n"
 "Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
 "Language-Team: Dutch <vistausss@outlook.com>\n"
 "Language: nl_NL\n"
@@ -97,6 +97,8 @@ msgid ""
 "By popular demand, the \"highlighter\" tool is now enabled by default, and "
 "the message dialog to warn you about the release notes is less intrusive."
 msgstr ""
+"Op veler verzoek is het markeergereedschap voortaan standaard ingeschakeld. "
+"Verder staat het berichtvenster met het wijzigingslog minder in de weg."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -106,18 +108,27 @@ msgid ""
 "2000%%, scrolling up or down, or left or right, was quite violent. These "
 "problems should all have disappeared in this new version!"
 msgstr ""
+"De grootste verbetering in deze update is het zoomen. Sinds versie 1.0.0 was "
+"het mogelijk om héél ver in te zoomen, maar dat ging erg traag en de "
+"weergave bleef niet ‘%s’. Bovendien was het scrollen bij 2000%% zo goed als "
+"onmogelijk. Al deze problemen zouden met ingang van deze versie als sneeuw "
+"voor de zon verdwenen moeten zijn!"
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "Incorrect command line parsing when using the app outside of a flatpak "
 "sandbox has also been fixed."
 msgstr ""
+"De onjuiste verwerking van opdrachtregelopties buiten de flatpak-sandbox is "
+"eveneens opgelost."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "For users on elementary OS, a small issue concerning window resizing has "
 "been mended too."
 msgstr ""
+"Gebruikers van elementary OS zouden nu geen probleem meer moeten hebben met "
+"het vergroten/verkleinen van het venster."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -149,6 +160,8 @@ msgid ""
 "Zooming very deep is now possible, and the rendering will be very crisp, "
 "even at 2000%%."
 msgstr ""
+"Het is voortaan mogelijk om erg diep in te zoomen, en zelfs bij 2000%% "
+"blijft alles haarscherp."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -695,7 +708,7 @@ msgstr "100%"
 
 #: src/ui/minimap.ui src/ui/shortcuts.ui
 msgid "Maximum zoom"
-msgstr ""
+msgstr "Maximaal zoomniveau"
 
 #: src/ui/new-image-dialog.ui src/ui/properties.ui
 #: src/optionsbars/transform/optionsbar-crop.ui
@@ -1375,12 +1388,11 @@ msgid "Error starting the application, please report this bug."
 msgstr "Kan de toepassing niet starten - meld deze fout aan de ontwikkelaar."
 
 #: src/window.py
-#, fuzzy
 msgid ""
 "It's the first time you use Drawing, would you like to read the help manual?"
 msgstr ""
-"Dit is de eerste keer dat je Tekenen %s hebt geopend. Wil je het "
-"wijzigingslog bekijken?"
+"Dit is de eerste keer dat je Tekenen hebt geopend. Wil je de handleiding "
+"doornemen?"
 
 #. Context: %s is the version number of the app
 #: src/window.py
@@ -1396,6 +1408,8 @@ msgid ""
 "These news will always be available in the help manual: click the 'Help' "
 "menu item whenever you want!"
 msgstr ""
+"Dit nieuws is te allen tijde na te lezen in de handleiding. Open hiervoor "
+"het menu-item ‘Hulp’."
 
 #: src/window.py
 msgid "No"
