@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
-"POT-Creation-Date: 2022-04-05 00:54+0200\n"
+"POT-Creation-Date: 2022-04-10 15:56+0200\n"
 "PO-Revision-Date: 2022-02-17 10:55+0300\n"
 "Last-Translator: Serkan ÖNDER <serkanonder@outlook.com>\n"
 "Language-Team: \n"
@@ -99,27 +99,39 @@ msgid ""
 "By popular demand, the \"highlighter\" tool is now enabled by default, and "
 "the message dialog to warn you about the release notes is less intrusive."
 msgstr ""
+"Yoğun istek üzerine, \"vurgulayıcı\" aracı artık varsayılan olarak "
+"etkinleştirilmiştir ve sizi sürüm notları hakkında uyaran mesaj iletişim "
+"kutusu daha az müdahale ediyor."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "The main improvement in this update is the zoom workflow: since the version "
 "1.0.0 it's possible to zoom in very deep, but the process was very slow, and "
-"the view didn't stay well centered around the mouse pointer is; and once at "
+"the view didn't stay well centered around the mouse pointer; and once at "
 "2000%%, scrolling up or down, or left or right, was quite violent. These "
 "problems should all have disappeared in this new version!"
 msgstr ""
+"Bu güncellemedeki ana gelişme, yakınlaştırma iş akışıdır: 1.0.0 sürümünden "
+"bu yana çok derin yakınlaştırma yapmak mümkündür, ancak süreç çok yavaştı ve "
+"görünüm fare imlecinin etrafında tam olarak ortalanamıyordu; ve bir kez %"
+"%2000'de yukarı veya aşağı veya sola veya sağa kaydırmak oldukça "
+"şiddetliydi. Bu sorunların tümü bu yeni sürümde ortadan kalkmalıydı!"
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-"Incorrect command line parsing when using the app outiside of a flatpak "
+"Incorrect command line parsing when using the app outside of a flatpak "
 "sandbox has also been fixed."
 msgstr ""
+"Uygulamayı bir flatpak sanal alanının dışında kullanırken hatalı komut "
+"satırı ayrıştırması da düzeltildi."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "For users on elementary OS, a small issue concerning window resizing has "
 "been mended too."
 msgstr ""
+"Temel işletim sistemi kullanıcıları için, pencerenin yeniden "
+"boyutlandırılmasıyla ilgili küçük bir sorun da giderildi."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -152,6 +164,8 @@ msgid ""
 "Zooming very deep is now possible, and the rendering will be very crisp, "
 "even at 2000%%."
 msgstr ""
+"Artık çok derin yakınlaştırma yapmak mümkün ve işlem %%2000'de bile çok net "
+"olacak."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -696,6 +710,10 @@ msgstr "Tekrar yükle"
 msgid "100%"
 msgstr "%100"
 
+#: src/ui/minimap.ui src/ui/shortcuts.ui
+msgid "Maximum zoom"
+msgstr ""
+
 #: src/ui/new-image-dialog.ui src/ui/properties.ui
 #: src/optionsbars/transform/optionsbar-crop.ui
 #: src/optionsbars/transform/optionsbar-scale.ui
@@ -848,10 +866,6 @@ msgid "Apply a transformation"
 msgstr "Bir dönüşüm uygulayın"
 
 #: src/ui/shortcuts.ui
-msgid "Tabs"
-msgstr "Sekmeler"
-
-#: src/ui/shortcuts.ui
 msgid "Toggle the preview"
 msgstr "Önizlemeyi değiştir"
 
@@ -888,6 +902,10 @@ msgstr "Geçmiş"
 #: src/ui/shortcuts.ui
 msgid "Navigation"
 msgstr "Gezinti"
+
+#: src/ui/shortcuts.ui
+msgid "Tabs"
+msgstr "Sekmeler"
 
 #: src/ui/shortcuts.ui
 msgid "Toggle fullscreen mode"
@@ -933,7 +951,7 @@ msgstr "Hata: '%s' aracı yok"
 #: src/image.py
 #, python-format
 msgid "New pixbuf empty, no change applied to %s"
-msgstr "Yeni pixbuf boş,% s için hiçbir değişiklik uygulanmadı"
+msgstr "Yeni pixbuf boş, %s için değişiklik uygulanmadı"
 
 #: src/image.py src/properties.py
 msgid "Unsaved file"
@@ -1376,12 +1394,10 @@ msgid "Error starting the application, please report this bug."
 msgstr "Uygulama açılırken hata oldu, lütfen hatayı rapor edin."
 
 #: src/window.py
-#, fuzzy
 msgid ""
 "It's the first time you use Drawing, would you like to read the help manual?"
 msgstr ""
-"Draving in %s sürümünü ilk kez kullanıyorsunuz, yenilikleri okumak ister "
-"misiniz?"
+"Drawing'i ilk kez kullanıyorsunuz, yardım kılavuzunu okumak ister misiniz?"
 
 #. Context: %s is the version number of the app
 #: src/window.py
@@ -1397,6 +1413,8 @@ msgid ""
 "These news will always be available in the help manual: click the 'Help' "
 "menu item whenever you want!"
 msgstr ""
+"Bu yenilikler her zaman yardım kılavuzunda yer alacaktır: İstediğiniz zaman "
+"'Yardım' menü öğesini tıklayın!"
 
 #: src/window.py
 msgid "No"
@@ -1444,13 +1462,12 @@ msgstr "Tam ekrandan çıkmak için F11'e basın."
 msgid ""
 "Error loading the bottom pane for the tool '%s', please report this bug."
 msgstr ""
-"'% s' aracı için alt bölme yüklenirken hata oluştu, lütfen bu hatayı "
-"bildirin."
+"'%s' aracı için alt bölme yüklenirken hata oluştu, lütfen bu hatayı bildirin."
 
 #: src/window.py
 #, python-format
 msgid "Loading %s"
-msgstr "Yükleniyor %s"
+msgstr "%s yükleniyor"
 
 #: src/window.py
 msgid "New Tab"
@@ -1751,7 +1768,7 @@ msgstr "Köşe ölçeği yaparken"
 #. Context for translations: "[Keep proportions only] when setting values manually"
 #: src/optionsbars/transform/optionsbar-scale.ui src/tools/ui/tool-scale.ui
 msgid "When setting values manually"
-msgstr ""
+msgstr "Değerleri elle ayarlarken"
 
 #. Context: an item in a menu whose title is "Keep proportions"
 #. Context for translations: "Never [keep proportions]"

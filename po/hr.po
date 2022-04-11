@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
-"POT-Creation-Date: 2022-04-05 00:54+0200\n"
+"POT-Creation-Date: 2022-04-10 15:56+0200\n"
 "PO-Revision-Date: 2022-03-25 22:02+0100\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: \n"
@@ -103,14 +103,14 @@ msgstr ""
 msgid ""
 "The main improvement in this update is the zoom workflow: since the version "
 "1.0.0 it's possible to zoom in very deep, but the process was very slow, and "
-"the view didn't stay well centered around the mouse pointer is; and once at "
+"the view didn't stay well centered around the mouse pointer; and once at "
 "2000%%, scrolling up or down, or left or right, was quite violent. These "
 "problems should all have disappeared in this new version!"
 msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-"Incorrect command line parsing when using the app outiside of a flatpak "
+"Incorrect command line parsing when using the app outside of a flatpak "
 "sandbox has also been fixed."
 msgstr ""
 
@@ -694,6 +694,10 @@ msgstr "Učitaj ponovo"
 msgid "100%"
 msgstr "100 %"
 
+#: src/ui/minimap.ui src/ui/shortcuts.ui
+msgid "Maximum zoom"
+msgstr ""
+
 #: src/ui/new-image-dialog.ui src/ui/properties.ui
 #: src/optionsbars/transform/optionsbar-crop.ui
 #: src/optionsbars/transform/optionsbar-scale.ui
@@ -846,10 +850,6 @@ msgid "Apply a transformation"
 msgstr "Primijeni jednu transformaciju"
 
 #: src/ui/shortcuts.ui
-msgid "Tabs"
-msgstr "Kartice"
-
-#: src/ui/shortcuts.ui
 msgid "Toggle the preview"
 msgstr "Uključi/isključi pregled"
 
@@ -886,6 +886,10 @@ msgstr "Povijest"
 #: src/ui/shortcuts.ui
 msgid "Navigation"
 msgstr "Navigacija"
+
+#: src/ui/shortcuts.ui
+msgid "Tabs"
+msgstr "Kartice"
 
 #: src/ui/shortcuts.ui
 msgid "Toggle fullscreen mode"

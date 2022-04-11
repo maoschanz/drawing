@@ -17,6 +17,31 @@
   <p>The most recent versions are listed first.</p>
 
   <section>
+    <title>Version 1.0.1</title>
+    <p>
+      By popular demand, the "highlighter" tool is now enabled by default,
+      and the message dialog to warn you about the release notes is less
+      intrusive.
+    </p>
+    <p>
+      The main improvement in this update is the zoom workflow: since the
+      version 1.0.0 it's possible to zoom in very deep, but the process was
+      very slow, and the view didn't stay well centered around the mouse
+      pointer; and once at 2000%%, scrolling up or down, or left or right, was
+      quite violent.
+      These problems should all have disappeared in this new version!
+    </p>
+    <p>
+      Incorrect command line parsing when using the app outside of a flatpak
+      sandbox has also been fixed.
+    </p>
+    <p>
+      For users on elementary OS, a small issue concerning window resizing has
+      been mended too.
+    </p>
+  </section>
+
+  <section>
     <title>Version 1.0.0</title>
 
     <subsection>
@@ -114,10 +139,6 @@
   <section>
     <title>Version 0.8.4</title>
 
-    <p>
-      Version 0.8.4 features several minor bug fixes, and various new
-      translations.
-    </p>
     <p>
       Undoing several operations one after another should be less slow.
     </p>

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
-"POT-Creation-Date: 2022-04-05 00:54+0200\n"
-"PO-Revision-Date: 2022-03-26 20:15+0100\n"
+"POT-Creation-Date: 2022-04-10 15:56+0200\n"
+"PO-Revision-Date: 2022-04-10 16:15+0100\n"
 "Last-Translator: Albano Battistella\n"
 "Language-Team: Italian\n"
 "Language: it\n"
@@ -99,27 +99,38 @@ msgid ""
 "By popular demand, the \"highlighter\" tool is now enabled by default, and "
 "the message dialog to warn you about the release notes is less intrusive."
 msgstr ""
+"A grande richiesta, lo strumento \"evidenziatore\" è ora abilitato per impostazione predefinita e "
+"la finestra di dialogo del messaggio per avvisarti delle note di rilascio è meno invadente."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "The main improvement in this update is the zoom workflow: since the version "
 "1.0.0 it's possible to zoom in very deep, but the process was very slow, and "
-"the view didn't stay well centered around the mouse pointer is; and once at "
+"the view didn't stay well centered around the mouse pointer; and once at "
 "2000%%, scrolling up or down, or left or right, was quite violent. These "
 "problems should all have disappeared in this new version!"
 msgstr ""
+"Il principale miglioramento di questo aggiornamento è il flusso di lavoro dello zoom: dalla versione "
+"1.0.0 è possibile ingrandire molto in profondità, ma il processo è stato molto lento e "
+"la vista non è rimasta ben centrata attorno al puntatore del mouse; e una volta a "
+"2000%%, scorrere in alto o in basso, a sinistra o a destra, era piuttosto violento. Questi "
+"problemi dovrebbero essere tutti scomparsi in questa nuova versione!"
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-"Incorrect command line parsing when using the app outiside of a flatpak "
+"Incorrect command line parsing when using the app outside of a flatpak "
 "sandbox has also been fixed."
 msgstr ""
+"Analisi della riga di comando errata quando si utilizza l'app al di fuori di un flatpak "
+"sandbox è stato corretto."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "For users on elementary OS, a small issue concerning window resizing has "
 "been mended too."
 msgstr ""
+"Per gli utenti su elementary OS, un piccolo problema relativo al ridimensionamento delle finestre "
+" è stato sistemato."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -153,6 +164,8 @@ msgid ""
 "Zooming very deep is now possible, and the rendering will be very crisp, "
 "even at 2000%%."
 msgstr ""
+"Ora è possibile eseguire uno zoom molto profondo e il rendering sarà molto nitido ,"
+"anche al 2000%%."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -699,6 +712,10 @@ msgstr "Ricarica"
 msgid "100%"
 msgstr "100%"
 
+#: src/ui/minimap.ui src/ui/shortcuts.ui
+msgid "Maximum zoom"
+msgstr ""
+
 #: src/ui/new-image-dialog.ui src/ui/properties.ui
 #: src/optionsbars/transform/optionsbar-crop.ui
 #: src/optionsbars/transform/optionsbar-scale.ui
@@ -851,10 +868,6 @@ msgid "Apply a transformation"
 msgstr "Applica una trasformazione"
 
 #: src/ui/shortcuts.ui
-msgid "Tabs"
-msgstr "Schede"
-
-#: src/ui/shortcuts.ui
 msgid "Toggle the preview"
 msgstr "Mostra/nascondi anteprima"
 
@@ -891,6 +904,10 @@ msgstr "Cronologia"
 #: src/ui/shortcuts.ui
 msgid "Navigation"
 msgstr "Navigazione"
+
+#: src/ui/shortcuts.ui
+msgid "Tabs"
+msgstr "Schede"
 
 #: src/ui/shortcuts.ui
 msgid "Toggle fullscreen mode"
@@ -1376,10 +1393,9 @@ msgid "Error starting the application, please report this bug."
 msgstr "Errore nell'avvio dell'applicazione, invia una segnalazione."
 
 #: src/window.py
-#, fuzzy
 msgid ""
 "It's the first time you use Drawing, would you like to read the help manual?"
-msgstr "È la prima volta che usi Drawing %s, vuoi leggere le novità?"
+msgstr "È la prima volta che usi Drawing, vuoi leggere il manuale di aiuto?"
 
 #. Context: %s is the version number of the app
 #: src/window.py
@@ -1393,6 +1409,8 @@ msgid ""
 "These news will always be available in the help manual: click the 'Help' "
 "menu item whenever you want!"
 msgstr ""
+"Queste notizie saranno sempre disponibili nel manuale di aiuto: clicca su 'Aiuto' "
+"voce di menu quando vuoi!"
 
 #: src/window.py
 msgid "No"
