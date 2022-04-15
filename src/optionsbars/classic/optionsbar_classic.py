@@ -120,6 +120,9 @@ class OptionsBarClassic(AbstractOptionsBar):
 		self._color_l = OptionsBarClassicColorPopover(self.color_menu_btn_l, \
 		                                     thumbnail_l, True, options_manager)
 
+		show_editor = self.window.gsettings.get_boolean('direct-color-edit')
+		self.set_palette_setting(show_editor)
+
 	def set_palette_setting(self, show_editor):
 		self._color_r.editor_setting_changed(show_editor)
 		self._color_l.editor_setting_changed(show_editor)

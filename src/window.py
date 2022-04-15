@@ -422,6 +422,8 @@ class DrWindow(Gtk.ApplicationWindow):
 		# When a setting changes
 		self.gsettings.connect('changed::deco-type', self.on_layout_changed)
 		self.gsettings.connect('changed::big-icons', self.on_icon_size_changed)
+		self.gsettings.connect('changed::direct-color-edit', \
+		                                          self._update_use_color_editor)
 		self.gsettings.connect('changed::preview-size', self.show_info_settings)
 		self.gsettings.connect('changed::disabled-tools', self.show_info_settings)
 		# Other settings are connected in DrImage.
@@ -594,9 +596,6 @@ class DrWindow(Gtk.ApplicationWindow):
 		self.add_action_simple('main_color', self.action_color1, ['<Ctrl><Shift>l'])
 		self.add_action_simple('secondary_color', self.action_color2, ['<Ctrl><Shift>r'])
 		self.add_action_simple('exchange_color', self.exchange_colors, ['<Ctrl>e'])
-
-		editor = self.gsettings.get_boolean('direct-color-edit')
-		self.app.add_action_boolean('use_editor', editor, self.action_use_editor)
 
 		self.add_action_simple('size_more', self.action_size_more, ['<Ctrl><Shift>Up'])
 		self.add_action_simple('size_less', self.action_size_less, ['<Ctrl><Shift>Down'])
@@ -965,10 +964,8 @@ class DrWindow(Gtk.ApplicationWindow):
 		pane = self.options_manager.get_active_pane()
 		pane.build_options_menu(widget, model, label)
 
-	def action_use_editor(self, *args):
-		use_editor = not args[0].get_state()
-		self.gsettings.set_boolean('direct-color-edit', use_editor)
-		args[0].set_state(GLib.Variant.new_boolean(use_editor))
+	def _update_use_color_editor(self, *args):
+		use_editor = self.gsettings.get_boolean('direct-color-edit')
 		self.options_manager.set_palette_setting(use_editor)
 
 	def exchange_colors(self, *args):
