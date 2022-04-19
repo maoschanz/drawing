@@ -187,7 +187,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		                           self._update_active_tool_from_flowbox_signal)
 		for tool_id in self.tools:
 			self.tools[tool_id].build_flowbox_child(self.tools_flowbox)
-		self.on_show_labels_setting_changed()
+		self._update_show_labels()
 
 		# Tools's menubar items if they don't exist yet (they're defined on the
 		# application level, so they should only be built the first time)
@@ -420,14 +420,14 @@ class DrWindow(Gtk.ApplicationWindow):
 		self.connect('configure-event', self._adapt_to_window_size)
 
 		# When a setting changes
-		self.gsettings.connect('changed::show-labels', self.on_show_labels_setting_changed)
 		self.gsettings.connect('changed::deco-type', self.on_layout_changed)
 		self.gsettings.connect('changed::big-icons', self.on_icon_size_changed)
+		self.gsettings.connect('changed::direct-color-edit', \
+		                                          self._update_use_color_editor)
 		self.gsettings.connect('changed::preview-size', self.show_info_settings)
-		# devel-only' isn't connected because it's auto-updated to False
 		self.gsettings.connect('changed::disabled-tools', self.show_info_settings)
-		self.gsettings.connect('changed::dark-theme-variant', self._update_theme_variant)
-		# Other settings are connected in DrImage
+		# Other settings are connected in DrImage.
+		# Or when initializing the Gio.Actions
 
 		# What happens when the active image change
 		self.notebook.connect('switch-page', self.on_active_tab_changed)
@@ -477,6 +477,16 @@ class DrWindow(Gtk.ApplicationWindow):
 		action.connect('change-state', callback)
 		self.add_action(action)
 
+	def add_action_persisted_boolean(self, gkey_name, callback, shortcuts = []):
+		"""Convenient wrapper method adding a stateful action to the window, the
+		action being linked to a GSettings key whose value is boolean. Both the
+		key and the action will be named 'gkey_name' (string), and activating
+		the action will trigger the method 'callback'."""
+		action = self.gsettings.create_action(gkey_name)
+		self.add_action(action)
+		self.app.set_accels_for_action('win.' + gkey_name, shortcuts)
+		self.gsettings.connect('changed::' + gkey_name, callback)
+
 	def add_action_enum(self, action_name, default, callback):
 		"""Convenient wrapper method adding a stateful action to the window. It
 		will be named 'action_name' (string), be created with the state 'default'
@@ -501,12 +511,10 @@ class DrWindow(Gtk.ApplicationWindow):
 		self.add_action_boolean('toggle_preview', False, self.action_toggle_preview)
 		self.app.set_accels_for_action('win.toggle_preview', ['<Ctrl>m'])
 
-		dark_variant = self.gsettings.get_boolean('dark-theme-variant')
-		self.add_action_boolean('dark-variant', dark_variant, self.action_dark_theme)
-
-		show_labels = self.gsettings.get_boolean('show-labels')
-		self.add_action_boolean('show_labels', show_labels, self.action_show_labels)
-		self.app.set_accels_for_action('win.show_labels', ['F9'])
+		self.add_action_persisted_boolean('dark-theme-variant', \
+		                                             self._update_theme_variant)
+		self.add_action_persisted_boolean('show-labels', \
+		                                       self._update_show_labels, ['F9'])
 
 		self.add_action_boolean('hide_controls', False, self.action_hide_controls)
 		self.app.set_accels_for_action('win.hide_controls', ['F8'])
@@ -588,9 +596,6 @@ class DrWindow(Gtk.ApplicationWindow):
 		self.add_action_simple('main_color', self.action_color1, ['<Ctrl><Shift>l'])
 		self.add_action_simple('secondary_color', self.action_color2, ['<Ctrl><Shift>r'])
 		self.add_action_simple('exchange_color', self.exchange_colors, ['<Ctrl>e'])
-
-		editor = self.gsettings.get_boolean('direct-color-edit')
-		self.app.add_action_boolean('use_editor', editor, self.action_use_editor)
 
 		self.add_action_simple('size_more', self.action_size_more, ['<Ctrl><Shift>Up'])
 		self.add_action_simple('size_less', self.action_size_less, ['<Ctrl><Shift>Down'])
@@ -861,14 +866,8 @@ class DrWindow(Gtk.ApplicationWindow):
 			self.tools_flowbox.set_min_children_per_line(nb_min)
 		self.tools_flowbox.set_max_children_per_line(nb_tools)
 
-	def on_show_labels_setting_changed(self, *args):
-		# TODO https://lazka.github.io/pgi-docs/Gio-2.0/classes/Settings.html#Gio.Settings.create_action
+	def _update_show_labels(self, *args):
 		self.set_tools_labels_visibility(self.gsettings.get_boolean('show-labels'))
-
-	def action_show_labels(self, *args):
-		show_labels = not args[0].get_state()
-		self.gsettings.set_boolean('show-labels', show_labels)
-		args[0].set_state(GLib.Variant.new_boolean(show_labels))
 
 	def _check_for_alt_key(self, *args):
 		if not args[1].state | Gdk.ModifierType.MOD1_MASK == args[1].state:
@@ -965,10 +964,8 @@ class DrWindow(Gtk.ApplicationWindow):
 		pane = self.options_manager.get_active_pane()
 		pane.build_options_menu(widget, model, label)
 
-	def action_use_editor(self, *args):
-		use_editor = not args[0].get_state()
-		self.gsettings.set_boolean('direct-color-edit', use_editor)
-		args[0].set_state(GLib.Variant.new_boolean(use_editor))
+	def _update_use_color_editor(self, *args):
+		use_editor = self.gsettings.get_boolean('direct-color-edit')
 		self.options_manager.set_palette_setting(use_editor)
 
 	def exchange_colors(self, *args):

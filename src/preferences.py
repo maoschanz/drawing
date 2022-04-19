@@ -152,6 +152,12 @@ class DrPrefsWindow(Gtk.Window):
 		}
 		self.add_check_flowbox('disabled-tools', tools_dict)
 
+		self.add_section_separator()
+		self.add_section_title(_("Colors"))
+		# Context: the color editor is an interface to pick any RGBA color, and
+		# it can be used instead of the default simple RGB palette
+		self.add_switch(_("Use color editor by default"), 'direct-color-edit')
+
 	def page_builder_advanced(self, is_beta):
 		"""Adds the widget to the grid of the 'advanced' page."""
 		self.set_current_grid(self.page_advanced)
@@ -232,6 +238,8 @@ class DrPrefsWindow(Gtk.Window):
 		switch.set_active(self._gsettings.get_boolean(key))
 		switch.connect('notify::active', self.on_bool_changed, key)
 		self.add_row(label_text, switch)
+		self._gsettings.connect('changed::' + key, \
+		                                self.on_bool_background_changed, switch)
 
 	def add_colorbtn(self, label_text, key):
 		color_btn = Gtk.ColorButton(use_alpha=True)
@@ -288,6 +296,11 @@ class DrPrefsWindow(Gtk.Window):
 
 	def on_bool_changed(self, switch, state, key):
 		self._gsettings.set_boolean(key, switch.get_active())
+
+	def on_bool_background_changed(self, gsettings, key, switch):
+		"""Something else outside of the `DrPrefsWindow` changed the value of
+		the gsettings key, and this change should be reflected in the UI."""
+		switch.set_active(self._gsettings.get_boolean(key))
 
 	def on_adj_changed(self, spinbtn, key):
 		self._gsettings.set_int(key, spinbtn.get_value_as_int())

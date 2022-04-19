@@ -7,18 +7,27 @@ header, footer {
 header h1 {
 	color: white;
 }
-.nav-item {
-	color: white;
+.nav-row {
+	margin: 0 -5px;
+}
+.col33.nav-item {
 	font-weight: bold;
 	padding: 8px 12px;
 	border: 2px solid white;
 	border-radius: 24px;
+	text-align: center;
+	margin: 0 5px;
+}
+.col33.nav-item a {
+	color: white;
 }
 .nav-item.primary-nav-item {
 	background-color: rgba(255,0,0,0.5) ;
 }
 .nav-item:hover {
 	background-color: white;
+}
+.nav-item:hover a {
 	color: black;
 }
 .header-icon {
@@ -65,7 +74,7 @@ main {
 	margin: 10px;
 }
 hr {
-	margin: 0 0 19px;
+	margin: 0 0 12px;
 	border: 0;
 	border-bottom: 1px solid #ccc;
 }
@@ -163,7 +172,7 @@ input[type="radio"] ~ .tab {
 
 @media (max-width: 576px) {
 	/* Header & footer */
-	header a, footer a {
+	.header-box a {
 		font-size: 20px;
 		line-height: 32px;
 	}
@@ -177,7 +186,10 @@ input[type="radio"] ~ .tab {
 		flex-direction: column;
 	}
 	.col50, .col66, .col33 {
-		width: 100%;
+		width: auto;
+	}
+	.header-box .col66, .header-box .nav-item.col33 {
+		margin-top: 5px;
 	}
 
 	/* Images */
