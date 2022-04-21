@@ -21,14 +21,16 @@ from .tool_pencil import ToolPencil
 from .abstract_classic_tool import AbstractClassicTool
 from .utilities_blur import utilities_blur_surface, BlurType, BlurDirection
 
-class ToolEraser(ToolPencil):
+from .eraser_area import EraserArea
+from .eraser_color import EraserColor
+from .eraser_rubber import EraserRubber
+
+class ToolEraser(AbstractClassicTool):
 	__gtype_name__ = 'ToolEraser'
 
 	def __init__(self, window, **kwargs):
-		super().__init__(window)
 		# Context: this is the name of a tool, in the meaning "a rubber eraser"
-		AbstractClassicTool.__init__(self, 'eraser', _("Eraser"), \
-		                                         'tool-eraser-symbolic', window)
+		super().__init__('eraser', _("Eraser"), 'tool-eraser-symbolic', window)
 		self.use_operator = False
 		self._fallback_operator = 'clear'
 		self.load_tool_action_enum('eraser-shape', 'last-eraser-type')
@@ -96,9 +98,8 @@ class ToolEraser(ToolPencil):
 	############################################################################
 
 	def on_press_on_area(self, event, surface, event_x, event_y):
-		super().on_press_on_area(event, surface, event_x, event_y)
-		# TODO the eraser grew up to be too different from the pencil, it
-		# shouldn't extend it
+		self.set_common_values(event.button, event_x, event_y)
+		self._path = None
 
 		if self._rgba_type == 'alpha':
 			self._rgba = [0.0, 0.0, 0.0, 0.0]
@@ -115,6 +116,15 @@ class ToolEraser(ToolPencil):
 			else:
 				self._eraser_shape = 'rectangle'
 			self._apply_shape_constraints()
+
+	def _add_point(self, event_x, event_y):
+		cairo_context = self.get_context()
+		if self._path is None:
+			cairo_context.move_to(self.x_press, self.y_press)
+		else:
+			cairo_context.append_path(self._path)
+		cairo_context.line_to(event_x, event_y)
+		self._path = cairo_context.copy_path()
 
 	def on_motion_on_area(self, event, surface, event_x, event_y, render=True):
 		if self._eraser_shape == 'rectangle':
@@ -161,8 +171,6 @@ class ToolEraser(ToolPencil):
 			'tool_id': self.id,
 			'is_preview': is_preview,
 			'line_width': self.tool_width,
-			'line_cap': self._cap_id,
-			'line_join': self._join_id,
 			'replacement': self._rgba,
 			'censor-type': eraser_type,
 			'censor-shape': self._eraser_shape,
