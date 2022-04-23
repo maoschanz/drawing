@@ -52,11 +52,12 @@ class AbstractCanvasTool(AbstractAbstractTool):
 		self.set_action_sensitivity('cancel_transform', True)
 		self.set_action_sensitivity('apply_transform', True)
 
-	def give_back_control(self, preserve_selection):
+	def give_back_control(self, preserve_selection, next_tool=None):
 		if not preserve_selection and self.selection_is_active():
 			self.on_apply_transform_tool_operation()
 			self.window.get_selection_tool().unselect_and_apply()
 		super().give_back_control(preserve_selection)
+		return super().give_back_control(preserve_selection, next_tool)
 
 	def _scroll_to_end(self, h_growth, v_growth):
 		if h_growth > 0:

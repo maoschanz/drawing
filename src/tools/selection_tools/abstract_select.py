@@ -68,11 +68,12 @@ class AbstractSelectionTool(AbstractAbstractTool):
 	############################################################################
 	# Lifecycle implementations ################################################
 
-	def give_back_control(self, preserve_selection):
+	def give_back_control(self, preserve_selection, next_tool=None):
 		self.get_selection().hide_popovers()
 		# TODO if the selection hasn't been used, nothing should be applied
 		if not preserve_selection:
 			self.unselect_and_apply()
+		return next_tool
 
 	# def on_tool_selected(self, *args):
 	# 	pass

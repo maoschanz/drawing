@@ -114,9 +114,10 @@ class ToolText(AbstractClassicTool):
 		self.set_action_sensitivity('selection_cut', True)
 		self.set_action_sensitivity('selection_copy', True)
 
-	def give_back_control(self, preserve_selection):
+	def give_back_control(self, preserve_selection, next_tool=None):
 		if self._should_cancel:
 			self._on_cancel()
+		return next_tool
 
 	def force_text_tool(self, string):
 		self.select_flowbox_child()
