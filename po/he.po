@@ -454,7 +454,7 @@ msgstr ""
 msgid "Fullscreen"
 msgstr ""
 
-#: src/ui/app-menus.ui src/ui/shortcuts.ui
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/preferences.py
 msgid "Colors"
 msgstr "צבעים"
 
@@ -465,11 +465,6 @@ msgstr "עריכת הצבע הראשי…"
 #: src/ui/app-menus.ui
 msgid "Edit Secondary Color…"
 msgstr "עריכת הצבע המשני…"
-
-#: src/ui/app-menus.ui
-#, fuzzy
-msgid "Use color editor by default"
-msgstr "עורך צבעים בברירת המחדל"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 #: src/optionsbars/classic/optionsbar-classic.ui
@@ -1183,6 +1178,17 @@ msgstr "בוחר צבעים"
 msgid "Paint"
 msgstr "צבע"
 
+#. Context: the color editor is an interface to pick any RGBA color, and
+#. it can be used instead of the default simple RGB palette
+#: src/preferences.py
+#, fuzzy
+msgid "Use color editor by default"
+msgstr "עורך צבעים בברירת המחדל"
+
+#: src/preferences.py
+msgid "You can use a simple color palette, or use a full RGBA color editor."
+msgstr ""
+
 #. Context: title of a section of the preferences
 #: src/preferences.py
 msgid "Advanced options"
@@ -1669,10 +1675,6 @@ msgstr "חזרה ללוח הצבעים"
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Palette"
 msgstr "לוח צבעים"
-
-#: src/optionsbars/classic/optionsbar-color-popover.ui
-msgid "Use this editor by default"
-msgstr "עשה שימוש בעורך זה בברירת המחדל"
 
 #: src/optionsbars/selection/optionsbar-selection.ui
 msgid "Selection options"

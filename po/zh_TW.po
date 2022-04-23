@@ -447,7 +447,7 @@ msgstr ""
 msgid "Fullscreen"
 msgstr "全螢幕"
 
-#: src/ui/app-menus.ui src/ui/shortcuts.ui
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/preferences.py
 msgid "Colors"
 msgstr "色彩"
 
@@ -458,10 +458,6 @@ msgstr "編輯主色彩…"
 #: src/ui/app-menus.ui
 msgid "Edit Secondary Color…"
 msgstr "編輯副色彩…"
-
-#: src/ui/app-menus.ui
-msgid "Use color editor by default"
-msgstr "預設使用色彩編輯器"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 #: src/optionsbars/classic/optionsbar-classic.ui
@@ -1177,6 +1173,16 @@ msgstr "取色器"
 msgid "Paint"
 msgstr "筆刷"
 
+#. Context: the color editor is an interface to pick any RGBA color, and
+#. it can be used instead of the default simple RGB palette
+#: src/preferences.py
+msgid "Use color editor by default"
+msgstr "預設使用色彩編輯器"
+
+#: src/preferences.py
+msgid "You can use a simple color palette, or use a full RGBA color editor."
+msgstr ""
+
 #. Context: title of a section of the preferences
 #: src/preferences.py
 msgid "Advanced options"
@@ -1664,10 +1670,6 @@ msgstr "返回調色板"
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Palette"
 msgstr "調色板"
-
-#: src/optionsbars/classic/optionsbar-color-popover.ui
-msgid "Use this editor by default"
-msgstr "預設使用此編輯器"
 
 #: src/optionsbars/selection/optionsbar-selection.ui
 #, fuzzy

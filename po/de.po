@@ -481,7 +481,7 @@ msgstr "Werkzeugleisten ausblenden"
 msgid "Fullscreen"
 msgstr "Vollbildansicht"
 
-#: src/ui/app-menus.ui src/ui/shortcuts.ui
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/preferences.py
 msgid "Colors"
 msgstr "Farben"
 
@@ -492,10 +492,6 @@ msgstr "Hauptfarbe bearbeiten…"
 #: src/ui/app-menus.ui
 msgid "Edit Secondary Color…"
 msgstr "Zweitfarbe bearbeiten…"
-
-#: src/ui/app-menus.ui
-msgid "Use color editor by default"
-msgstr "Farbwähler standardmäßig verwenden"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 #: src/optionsbars/classic/optionsbar-classic.ui
@@ -1194,6 +1190,16 @@ msgstr "Farbwähler"
 msgid "Paint"
 msgstr "Füllen"
 
+#. Context: the color editor is an interface to pick any RGBA color, and
+#. it can be used instead of the default simple RGB palette
+#: src/preferences.py
+msgid "Use color editor by default"
+msgstr "Farbwähler standardmäßig verwenden"
+
+#: src/preferences.py
+msgid "You can use a simple color palette, or use a full RGBA color editor."
+msgstr ""
+
 #. Context: title of a section of the preferences
 #: src/preferences.py
 msgid "Advanced options"
@@ -1693,10 +1699,6 @@ msgstr "Zurück zur Palette"
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Palette"
 msgstr "Palette"
-
-#: src/optionsbars/classic/optionsbar-color-popover.ui
-msgid "Use this editor by default"
-msgstr "Diesen Farbwähler standardmäßig nutzen"
 
 #: src/optionsbars/selection/optionsbar-selection.ui
 msgid "Selection options"

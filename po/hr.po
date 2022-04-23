@@ -461,7 +461,7 @@ msgstr "Sakrij traku alata"
 msgid "Fullscreen"
 msgstr "Cjeloekranski prikaz"
 
-#: src/ui/app-menus.ui src/ui/shortcuts.ui
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/preferences.py
 msgid "Colors"
 msgstr "Boje"
 
@@ -472,10 +472,6 @@ msgstr "Uredi glavnu boju …"
 #: src/ui/app-menus.ui
 msgid "Edit Secondary Color…"
 msgstr "Uredi sporednu boju …"
-
-#: src/ui/app-menus.ui
-msgid "Use color editor by default"
-msgstr "Standardno koristi uređivač boja"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 #: src/optionsbars/classic/optionsbar-classic.ui
@@ -1173,6 +1169,16 @@ msgstr "Kapaljka"
 msgid "Paint"
 msgstr "Bojanje"
 
+#. Context: the color editor is an interface to pick any RGBA color, and
+#. it can be used instead of the default simple RGB palette
+#: src/preferences.py
+msgid "Use color editor by default"
+msgstr "Standardno koristi uređivač boja"
+
+#: src/preferences.py
+msgid "You can use a simple color palette, or use a full RGBA color editor."
+msgstr ""
+
 #. Context: title of a section of the preferences
 #: src/preferences.py
 msgid "Advanced options"
@@ -1658,10 +1664,6 @@ msgstr "Natrag na paletu"
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Palette"
 msgstr "Paleta"
-
-#: src/optionsbars/classic/optionsbar-color-popover.ui
-msgid "Use this editor by default"
-msgstr "Standardno koristi ovaj uređivač"
 
 #: src/optionsbars/selection/optionsbar-selection.ui
 msgid "Selection options"

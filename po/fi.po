@@ -448,7 +448,7 @@ msgstr ""
 msgid "Fullscreen"
 msgstr "Kokonäyttö"
 
-#: src/ui/app-menus.ui src/ui/shortcuts.ui
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/preferences.py
 msgid "Colors"
 msgstr "Värit"
 
@@ -459,10 +459,6 @@ msgstr "Muokkaa pääväriä..."
 #: src/ui/app-menus.ui
 msgid "Edit Secondary Color…"
 msgstr "Muokkaa toissijaista väriä…"
-
-#: src/ui/app-menus.ui
-msgid "Use color editor by default"
-msgstr "Käytä värieditoria oletuksena"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 #: src/optionsbars/classic/optionsbar-classic.ui
@@ -1185,6 +1181,16 @@ msgstr "Värin poiminta"
 msgid "Paint"
 msgstr "Maalaa"
 
+#. Context: the color editor is an interface to pick any RGBA color, and
+#. it can be used instead of the default simple RGB palette
+#: src/preferences.py
+msgid "Use color editor by default"
+msgstr "Käytä värieditoria oletuksena"
+
+#: src/preferences.py
+msgid "You can use a simple color palette, or use a full RGBA color editor."
+msgstr ""
+
 #. Context: title of a section of the preferences
 #: src/preferences.py
 msgid "Advanced options"
@@ -1671,10 +1677,6 @@ msgstr "Takaisin palettiin"
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Palette"
 msgstr "Paletti"
-
-#: src/optionsbars/classic/optionsbar-color-popover.ui
-msgid "Use this editor by default"
-msgstr "Käytä tätä editoria oletuksena"
 
 #: src/optionsbars/selection/optionsbar-selection.ui
 #, fuzzy

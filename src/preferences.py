@@ -157,6 +157,8 @@ class DrPrefsWindow(Gtk.Window):
 		# Context: the color editor is an interface to pick any RGBA color, and
 		# it can be used instead of the default simple RGB palette
 		self.add_switch(_("Use color editor by default"), 'direct-color-edit')
+		self.add_help(_("You can use a simple color palette, or use a full " + \
+		                                                  "RGBA color editor."))
 
 	def page_builder_advanced(self, is_beta):
 		"""Adds the widget to the grid of the 'advanced' page."""
