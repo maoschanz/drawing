@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2022-04-11 23:14+1000\n"
-"PO-Revision-Date: 2022-04-12 00:04+1000\n"
+"POT-Creation-Date: 2022-04-26 21:27+1000\n"
+"PO-Revision-Date: 2022-04-28 12:26+1000\n"
 "Last-Translator: Ser82-png <sw@atrus.ru>\n"
 "Language-Team: \n"
 "Language: ru\n"
@@ -74,7 +74,7 @@ msgstr ""
 #: index.page:6
 msgctxt "text"
 msgid "Drawing"
-msgstr "Рисование"
+msgstr "Drawing"
 
 #. (itstool) path: page/title
 #: index.page:15
@@ -102,7 +102,7 @@ msgstr ""
 #. (itstool) path: section/title
 #: index.page:27
 msgid "General"
-msgstr "Основные"
+msgstr "Основное"
 
 #. (itstool) path: section/title
 #: index.page:31 preferences.page:46
@@ -1798,11 +1798,33 @@ msgstr "Самые последние версии перечислены пер
 
 #. (itstool) path: section/title
 #: whats_new.page:20
+msgid "Version 1.0.2"
+msgstr "Версия 1.0.2"
+
+#. (itstool) path: section/p
+#: whats_new.page:21
+msgid ""
+"Version 1.0.2 features several minor bug fixes, and various new translations."
+msgstr ""
+"Версия 1.0.2 содержит несколько мелких исправлений ошибок и новые переводы."
+
+#. (itstool) path: section/p
+#: whats_new.page:25
+msgid ""
+"Transparency is now correctly preserved when a tool (such as \"crop\" or "
+"\"skew\") expands the canvas with a solid color."
+msgstr ""
+"Прозрачность теперь сохраняется правильно, когда инструмент (например, "
+"«Обрезать» или «Сдвиг») расширяет холст с заполнением образовавшегося "
+"пространства сплошным цветом."
+
+#. (itstool) path: section/title
+#: whats_new.page:32
 msgid "Version 1.0.1"
 msgstr "Версия 1.0.1"
 
 #. (itstool) path: section/p
-#: whats_new.page:21
+#: whats_new.page:33
 msgid ""
 "By popular demand, the \"highlighter\" tool is now enabled by default, and "
 "the message dialog to warn you about the release notes is less intrusive."
@@ -1811,7 +1833,7 @@ msgstr ""
 "а диалоговое окно сообщающее о примечаниях к выпуску стало менее навязчивым."
 
 #. (itstool) path: section/p
-#: whats_new.page:26
+#: whats_new.page:38
 msgid ""
 "The main improvement in this update is the zoom workflow: since the version "
 "1.0.0 it's possible to zoom in very deep, but the process was very slow, and "
@@ -1827,7 +1849,7 @@ msgstr ""
 "эти проблемы должны были исчезнуть в этой новой версии!"
 
 #. (itstool) path: section/p
-#: whats_new.page:34
+#: whats_new.page:46
 msgid ""
 "Incorrect command line parsing when using the app outside of a flatpak "
 "sandbox has also been fixed."
@@ -1836,7 +1858,7 @@ msgstr ""
 "использовании приложения вне песочницы flatpak."
 
 #. (itstool) path: section/p
-#: whats_new.page:38
+#: whats_new.page:50
 msgid ""
 "For users on elementary OS, a small issue concerning window resizing has "
 "been mended too."
@@ -1845,17 +1867,17 @@ msgstr ""
 "изменением размера окна."
 
 #. (itstool) path: section/title
-#: whats_new.page:45
+#: whats_new.page:57
 msgid "Version 1.0.0"
 msgstr "Версия 1.0.0"
 
 #. (itstool) path: subsection/title
-#: whats_new.page:48
+#: whats_new.page:60
 msgid "Performance"
 msgstr "Производительность"
 
 #. (itstool) path: subsection/p
-#: whats_new.page:49
+#: whats_new.page:61
 msgid ""
 "This new version improves rendering performance, which is visible when "
 "editing large images with a poor CPU."
@@ -1864,17 +1886,17 @@ msgstr ""
 "редактировании больших изображений на компьютере со слабым процессором."
 
 #. (itstool) path: subsection/p
-#: whats_new.page:53
+#: whats_new.page:65
 msgid "It's still not perfect, but it's better!"
 msgstr "Это всё ещё не идеально, но уже значительно лучше!"
 
 #. (itstool) path: subsection/title
-#: whats_new.page:59
+#: whats_new.page:71
 msgid "Keyboard controls"
 msgstr "Управление клавиатурой"
 
 #. (itstool) path: subsection/p
-#: whats_new.page:60
+#: whats_new.page:72
 msgid ""
 "You can select tools with keyboard accelerators (<key>Alt</key>+letter). "
 "This may not work yet with languages using a non-latin alphabet."
@@ -1884,7 +1906,7 @@ msgstr ""
 "нелатинский алфавит."
 
 #. (itstool) path: subsection/p
-#: whats_new.page:64
+#: whats_new.page:76
 msgid ""
 "Pressing <key>Ctrl</key> will display the cursor coordinates in a tooltip. "
 "If you do it while using a tool, it may display additional data, for example "
@@ -1895,7 +1917,7 @@ msgstr ""
 "дополнительные данные, например, размеры фигуры, которую вы рисуете!"
 
 #. (itstool) path: subsection/p
-#: whats_new.page:69
+#: whats_new.page:81
 msgid ""
 "Pressing <key>Shift</key>, or <key>Alt</key> when using a tool enables "
 "specific options, such as locking the direction for the \"line\" tool, or "
@@ -1906,12 +1928,12 @@ msgstr ""
 "инструмента «линия» или изменение стиля заливки формы."
 
 #. (itstool) path: subsection/title
-#: whats_new.page:77
+#: whats_new.page:89
 msgid "New tool!"
 msgstr "Новый инструмент!"
 
 #. (itstool) path: subsection/p
-#: whats_new.page:78
+#: whats_new.page:90
 msgid ""
 "You can now use the new <link xref=\"tools_transform#skew\">\"skew\" tool </"
 "link>, to tilt an image from a rectangle to a parallelogram. Such a "
@@ -1923,12 +1945,12 @@ msgstr ""
 "горизонтально или вертикально."
 
 #. (itstool) path: subsection/title
-#: whats_new.page:86
+#: whats_new.page:98
 msgid "New options!"
 msgstr "Новые параметры!"
 
 #. (itstool) path: subsection/p
-#: whats_new.page:87
+#: whats_new.page:99
 msgid ""
 "Using <link xref=\"tools_transform#scale\">the \"scale\" tool</link>, you "
 "may optionally set the new size as a relative percentage rather than an "
@@ -1939,7 +1961,7 @@ msgstr ""
 "в виде абсолютных значений в пикселях."
 
 #. (itstool) path: subsection/p
-#: whats_new.page:92
+#: whats_new.page:104
 msgid ""
 "Thanks to a new option, the highlighter will draw straighter, less messy "
 "lines."
@@ -1948,7 +1970,7 @@ msgstr ""
 "линии."
 
 #. (itstool) path: subsection/p
-#: whats_new.page:96
+#: whats_new.page:108
 msgid ""
 "Pixel rendering is now very sharp when the image is very <link xref="
 "\"zoom_preview\">zoomed in</link>, and the pencil is more precise, so you "
@@ -1959,12 +1981,12 @@ msgstr ""
 "точного карандаша, вы можете чётко нарисовать каждый пиксель."
 
 #. (itstool) path: subsection/title
-#: whats_new.page:104
+#: whats_new.page:116
 msgid "Translations"
 msgstr "Переводы"
 
 #. (itstool) path: subsection/p
-#: whats_new.page:105
+#: whats_new.page:117
 msgid ""
 "The version 1.0.0 also features new updates to many translations, such as "
 "czech, croatian, german, hebrew, and many more."
@@ -1973,7 +1995,7 @@ msgstr ""
 "чешский, хорватский, немецкий, иврит и многих других."
 
 #. (itstool) path: subsection/p
-#: whats_new.page:109
+#: whats_new.page:121
 msgid ""
 "The help manual you're reading is now mostly translated in spanish, russian, "
 "and turkish."
@@ -1982,17 +2004,17 @@ msgstr ""
 "испанский, русский и турецкий языки."
 
 #. (itstool) path: subsection/p
-#: whats_new.page:113
+#: whats_new.page:125
 msgid "A huge \"thank you\" to contributors all around the world!"
 msgstr "Огромное спасибо помощникам со всего мира!"
 
 #. (itstool) path: section/title
-#: whats_new.page:120
+#: whats_new.page:132
 msgid "Version 0.8.5"
 msgstr "Версия 0.8.5"
 
 #. (itstool) path: section/p
-#: whats_new.page:122
+#: whats_new.page:134
 msgid ""
 "Changing the view's position within the thumbnail preview now dynamically "
 "and immediately updates the view, instead of only reacting to your the click "
@@ -2003,13 +2025,13 @@ msgstr ""
 "нажатие кнопки."
 
 #. (itstool) path: section/p
-#: whats_new.page:127
+#: whats_new.page:139
 msgid "The text tool gains an option to use a thicker outline."
 msgstr ""
 "Инструмент «Текст» получил возможность использовать более толстый контур."
 
 #. (itstool) path: section/p
-#: whats_new.page:130
+#: whats_new.page:142
 msgid ""
 "Both the thumbnail preview and the blending mode selection have become more "
 "reliable and efficient."
@@ -2018,23 +2040,23 @@ msgstr ""
 "надежными и эффективными."
 
 #. (itstool) path: section/p
-#: whats_new.page:134
+#: whats_new.page:146
 msgid "The version 0.8.5 also features new translations."
 msgstr "Также версия 0.8.5 содержит новые переводы."
 
 #. (itstool) path: section/title
-#: whats_new.page:140
+#: whats_new.page:152
 msgid "Version 0.8.4"
 msgstr "Версия 0.8.4"
 
 #. (itstool) path: section/p
-#: whats_new.page:142
+#: whats_new.page:154
 msgid "Undoing several operations one after another should be less slow."
 msgstr ""
 "Отмена нескольких последовательных операций должна быть менее медленной."
 
 #. (itstool) path: section/p
-#: whats_new.page:145
+#: whats_new.page:157
 msgid ""
 "It's not possible anymore to reload the picture from the disk if it has "
 "never been saved on the disk to begin with."
@@ -2043,17 +2065,17 @@ msgstr ""
 "сохранялось на нём."
 
 #. (itstool) path: section/p
-#: whats_new.page:149
+#: whats_new.page:161
 msgid "The text tool gains an option to disable anti-aliasing."
 msgstr "Инструмент «Текст» получил возможность отключать сглаживание."
 
 #. (itstool) path: section/title
-#: whats_new.page:155
+#: whats_new.page:167
 msgid "Version 0.8.3"
 msgstr "Версия 0.8.3"
 
 #. (itstool) path: section/p
-#: whats_new.page:157
+#: whats_new.page:169
 msgid ""
 "After rotating the selection, it had an incorrectly big height, but now it's "
 "fixed."
@@ -2062,7 +2084,7 @@ msgstr ""
 "это исправлено."
 
 #. (itstool) path: section/p
-#: whats_new.page:161
+#: whats_new.page:173
 msgid ""
 "The outline of the <link xref=\"tools_selection\">free selection</link> is "
 "now visible even when the image is very zoomed out."
@@ -2071,7 +2093,7 @@ msgstr ""
 "виден, даже если изображение сильно уменьшено."
 
 #. (itstool) path: section/p
-#: whats_new.page:165
+#: whats_new.page:177
 msgid ""
 "In specific configurations, opening a file would open a second tab with an "
 "empty image. This weird behaviour should have disappeared."
@@ -2080,12 +2102,12 @@ msgstr ""
 "пустым изображением. Это странное поведение должно исчезнуть."
 
 #. (itstool) path: section/title
-#: whats_new.page:172
+#: whats_new.page:184
 msgid "Version 0.8.2"
 msgstr "Версия 0.8.2"
 
 #. (itstool) path: section/p
-#: whats_new.page:174
+#: whats_new.page:186
 msgid ""
 "The boundaries of the canvas are now always visibly delimited, to better "
 "render the area where you can draw, even if the canvas is transparent. It "
@@ -2098,7 +2120,7 @@ msgstr ""
 "отмените."
 
 #. (itstool) path: section/p
-#: whats_new.page:180
+#: whats_new.page:192
 msgid ""
 "<link xref=\"tools_transform\">Transform tools</link> can now draw a preview "
 "of the pixels they may create outside of the current canvas, which makes the "
@@ -2110,7 +2132,7 @@ msgstr ""
 "«масштабирование» и «повернуть» интуитивно более понятными."
 
 #. (itstool) path: section/p
-#: whats_new.page:185
+#: whats_new.page:197
 msgid ""
 "The straight line tool has a new option to lock its angle, so you can draw "
 "perfect horizontal, vertical, or 45° strokes."
@@ -2119,14 +2141,14 @@ msgstr ""
 "можете рисовать идеально горизонтальные, вертикальные или под 45 ° линии."
 
 #. (itstool) path: section/p
-#: whats_new.page:189
+#: whats_new.page:201
 msgid ""
 "The `--edit-clipboard` command line option now works better with Wayland."
 msgstr ""
 "Параметр командной строки '--edit-clipboard' теперь лучше работает с Wayland."
 
 #. (itstool) path: section/p
-#: whats_new.page:192
+#: whats_new.page:204
 msgid ""
 "Scaling an image using the numerical inputs now preserves the original "
 "proportions of the image (unless the \"never keep proportions\" option is "
@@ -2137,7 +2159,7 @@ msgstr ""
 "сохранять пропорции»)."
 
 #. (itstool) path: section/p
-#: whats_new.page:197
+#: whats_new.page:209
 msgid ""
 "This version of the app is compatible with older GNOME versions (Ubuntu LTS "
 "18.04)."
@@ -2146,12 +2168,12 @@ msgstr ""
 "18.04)."
 
 #. (itstool) path: section/title
-#: whats_new.page:204
+#: whats_new.page:216
 msgid "Version 0.8.1"
 msgstr "Версия 0.8.1"
 
 #. (itstool) path: section/p
-#: whats_new.page:206
+#: whats_new.page:218
 msgid ""
 "You can now crop or expand the canvas to an \"automatic\" size based on the "
 "current selection size, using new actions available in the selection menus."
@@ -2160,7 +2182,7 @@ msgstr ""
 "«автоматически», используя новые действия, доступные в меню выделения."
 
 #. (itstool) path: section/p
-#: whats_new.page:211
+#: whats_new.page:223
 msgid ""
 "A bug, where the \"crop\" tool could erase the image under certain "
 "conditions, has been fixed."
@@ -2169,7 +2191,7 @@ msgstr ""
 "при определенных условиях."
 
 #. (itstool) path: section/p
-#: whats_new.page:215
+#: whats_new.page:227
 msgid ""
 "In the preferences window, there is now an option to select if you prefer "
 "the dark theme variant."
@@ -2178,12 +2200,12 @@ msgstr ""
 "тему."
 
 #. (itstool) path: section/p
-#: whats_new.page:219
+#: whats_new.page:231
 msgid "Several minor options have been added to the tools:"
 msgstr "В инструменты было добавлено несколько второстепенных опций:"
 
 #. (itstool) path: item/p
-#: whats_new.page:223
+#: whats_new.page:235
 msgid ""
 "The orientation of the calligraphic nib (<gui style=\"button\">Brush</gui> "
 "tool);"
@@ -2192,7 +2214,7 @@ msgstr ""
 "gui>);"
 
 #. (itstool) path: item/p
-#: whats_new.page:227
+#: whats_new.page:239
 msgid ""
 "Various ways to censor an information using filters, with a far quicker "
 "workflow, as an option of the <gui style=\"button\">Eraser</gui> tool;"
@@ -2202,7 +2224,7 @@ msgstr ""
 "\"кнопка\">Ластик</gui>;"
 
 #. (itstool) path: item/p
-#: whats_new.page:231
+#: whats_new.page:243
 msgid ""
 "An \"outline\" option to the <gui style=\"button\">Pencil</gui>, <gui style="
 "\"button\">Line</gui> and <gui style=\"button\">Curve</gui> tools, to get "
@@ -2213,12 +2235,12 @@ msgstr ""
 "получения лучшего контраста или просто классного эффекта вокруг ваших линий."
 
 #. (itstool) path: section/title
-#: whats_new.page:240
+#: whats_new.page:252
 msgid "Version 0.8.0"
 msgstr "Версия 0.8.0"
 
 #. (itstool) path: section/p
-#: whats_new.page:242
+#: whats_new.page:254
 msgid ""
 "The <link xref=\"fullscreen\">fullscreen mode</link> has been completely "
 "redesigned to provide an easier yet less intrusive access to the tools and "
@@ -2229,7 +2251,7 @@ msgstr ""
 "инструментам и их параметрам."
 
 #. (itstool) path: section/p
-#: whats_new.page:247
+#: whats_new.page:259
 msgid ""
 "The help manual has been splitted in smaller pages to be easier to read, and "
 "several buttons to access it have been added across the application."
@@ -2239,12 +2261,12 @@ msgstr ""
 "доступа к нему."
 
 #. (itstool) path: subsection/title
-#: whats_new.page:253
+#: whats_new.page:265
 msgid "New tools"
 msgstr "Новые инструменты"
 
 #. (itstool) path: subsection/p
-#: whats_new.page:254
+#: whats_new.page:266
 msgid ""
 "You can now use a tablet and a stylus to <link xref=\"tools_classic#brushes"
 "\"> draw with pressure-sensitive brushes</link>, available under the new "
@@ -2257,12 +2279,12 @@ msgstr ""
 "аэрограф, кисть с волосами и каллиграфическое перо."
 
 #. (itstool) path: subsection/title
-#: whats_new.page:263
+#: whats_new.page:275
 msgid "New options for existing tools"
 msgstr "Новые возможности для существующих инструментов"
 
 #. (itstool) path: item/p
-#: whats_new.page:265
+#: whats_new.page:277
 msgid ""
 "The <link xref=\"tools_selection\">selection tools</link> have a new, more "
 "rich, more readable bottom pane."
@@ -2271,7 +2293,7 @@ msgstr ""
 "более богатую и удобочитаемую нижнюю панель."
 
 #. (itstool) path: item/p
-#: whats_new.page:269
+#: whats_new.page:281
 msgid ""
 "<link xref=\"tools_transform#filters\">Filters</link> have been rewritten to "
 "be more reliable, and a new filter to harmoniously increase contrast has "
@@ -2282,7 +2304,7 @@ msgstr ""
 "увеличения контрастности."
 
 #. (itstool) path: item/p
-#: whats_new.page:274
+#: whats_new.page:286
 msgid ""
 "When you move or delete the selection, now the pixels left behind can "
 "optionally be a specific color, rather than always transparency. This "
@@ -2295,7 +2317,7 @@ msgstr ""
 "словами, попробуйте сами, вы увидите."
 
 #. (itstool) path: item/p
-#: whats_new.page:280
+#: whats_new.page:292
 msgid ""
 "The eraser tool now as options: it can use a specific color, rather than "
 "always transparency. This option has the same value as the selection "
@@ -2308,7 +2330,7 @@ msgstr ""
 "новый значок, основанный на теме Adwaita."
 
 #. (itstool) path: item/p
-#: whats_new.page:286
+#: whats_new.page:298
 msgid ""
 "Options such as the text background type, the shape filling style, or the "
 "aforementioned eraser/selection replacement color, are now persisted when "
@@ -2319,12 +2341,12 @@ msgstr ""
 "приложения."
 
 #. (itstool) path: subsection/title
-#: whats_new.page:295
+#: whats_new.page:307
 msgid "Color modes"
 msgstr "Цветовые режимы"
 
 #. (itstool) path: subsection/p
-#: whats_new.page:296
+#: whats_new.page:308
 msgid ""
 "The user interface for selecting the <link xref=\"tools_classic_colors\"> "
 "active color application mode</link> has been redesigned to better show the "
@@ -2335,7 +2357,7 @@ msgstr ""
 "точную метку и лучше организовать возможные режимы в виде подменю."
 
 #. (itstool) path: subsection/p
-#: whats_new.page:303
+#: whats_new.page:315
 msgid ""
 "The \"blur\" mode has been removed, which simplifies the situation and "
 "allows <link xref=\"tools_classic\">several tools</link> (\"shapes\" and "
@@ -2346,12 +2368,12 @@ msgstr ""
 "получить поддержку режимов нанесения цвета в целом."
 
 #. (itstool) path: subsection/title
-#: whats_new.page:311
+#: whats_new.page:323
 msgid "Bugs fixed"
 msgstr "Исправлены ошибки"
 
 #. (itstool) path: subsection/p
-#: whats_new.page:312
+#: whats_new.page:324
 msgid ""
 "Coordinates of the selection were lost when unselecting a selection defined "
 "by an undo."
@@ -2501,13 +2523,6 @@ msgstr "Creative Commons Attribution-ShareAlike 3.0 Unported License"
 #: legal.xml:4
 msgid "This work is licensed under a <_:link-1/>."
 msgstr "Данная работа находится под лицензией <_:link-1/>."
-
-#~ msgid ""
-#~ "Version 0.8.4 features several minor bug fixes, and various new "
-#~ "translations."
-#~ msgstr ""
-#~ "Версия 0.8.4 содержит несколько мелких исправлений ошибок и новые "
-#~ "переводы."
 
 #~ msgid "Version 0.6.5"
 #~ msgstr "Версия 0.6.5"
