@@ -246,9 +246,10 @@ class AbstractAbstractTool():
 		self.non_destructive_show_modif()
 		self._ongoing_operation = False
 
-	def give_back_control(self, preserve_selection):
+	def give_back_control(self, preserve_selection, next_tool=None):
 		self.restore_pixbuf()
 		self.non_destructive_show_modif()
+		return next_tool
 
 	############################################################################
 	# History ##################################################################

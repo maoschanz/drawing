@@ -38,9 +38,10 @@ class ToolArc(AbstractClassicTool):
 		self.add_tool_action_enum('arrow-type', self._arrow_type)
 		self.add_tool_action_boolean('pencil-outline', self._use_outline)
 
-	def give_back_control(self, preserve_selection):
+	def give_back_control(self, preserve_selection, next_tool=None):
 		self._1st_segment = None
 		self.restore_pixbuf()
+		return next_tool
 
 	############################################################################
 	# Options ##################################################################

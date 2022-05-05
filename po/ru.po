@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
 "POT-Creation-Date: 2022-04-10 15:56+0200\n"
-"PO-Revision-Date: 2022-04-11 23:46+1000\n"
+"PO-Revision-Date: 2022-04-28 12:22+1000\n"
 "Last-Translator: Ser82-png <sw@atrus.ru>\n"
 "Language-Team: \n"
 "Language: ru\n"
@@ -479,7 +479,7 @@ msgstr "Скрыть панель инструментов"
 msgid "Fullscreen"
 msgstr "Полноэкранный режим"
 
-#: src/ui/app-menus.ui src/ui/shortcuts.ui
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/preferences.py
 msgid "Colors"
 msgstr "Цвета"
 
@@ -490,10 +490,6 @@ msgstr "Изменить основной цвет…"
 #: src/ui/app-menus.ui
 msgid "Edit Secondary Color…"
 msgstr "Изменить дополнительный цвет…"
-
-#: src/ui/app-menus.ui
-msgid "Use color editor by default"
-msgstr "Использовать по умолчанию редактор цвета"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 #: src/optionsbars/classic/optionsbar-classic.ui
@@ -1194,6 +1190,18 @@ msgstr "Получение цвета"
 msgid "Paint"
 msgstr "Заливка"
 
+#. Context: the color editor is an interface to pick any RGBA color, and
+#. it can be used instead of the default simple RGB palette
+#: src/preferences.py
+msgid "Use color editor by default"
+msgstr "Использовать по умолчанию редактор цвета"
+
+#: src/preferences.py
+msgid "You can use a simple color palette, or use a full RGBA color editor."
+msgstr ""
+"Вы можете использовать простую цветовую палитру или полноценный редактор "
+"цветовой модели RGBA."
+
 #. Context: title of a section of the preferences
 #: src/preferences.py
 msgid "Advanced options"
@@ -1682,10 +1690,6 @@ msgstr "Вернуться к палитре"
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Palette"
 msgstr "Палитра"
-
-#: src/optionsbars/classic/optionsbar-color-popover.ui
-msgid "Use this editor by default"
-msgstr "Использовать этот редактор по умолчанию"
 
 #: src/optionsbars/selection/optionsbar-selection.ui
 msgid "Selection options"

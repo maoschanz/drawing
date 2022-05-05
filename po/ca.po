@@ -1,7 +1,7 @@
 # Catalan translations for drawing package.
 # Copyright (C) 2021 THE drawing'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the drawing package.
-# Jordi Mas i Hernàndez <jmas@softcatala.org>, 2021.
+# Jordi Mas i Hernàndez <jmas@softcatala.org>, 2021, 2022
 #
 msgid ""
 msgstr ""
@@ -27,7 +27,8 @@ msgid "Simple drawing utility"
 msgstr "Utilitat de dibuix simple"
 
 #. This is a list of keywords, you can add any keyword that would be useful to
-#. find the app in your language. "Paint" should stay listed in its untranslated
+#. find the app in your language. "Paint" should stay listed in its
+#. untranslated
 #. version too, so people looking for a MS Paint equivalent will find the app.
 #. Don't forget the semicolons.
 #: data/com.github.maoschanz.drawing.desktop.in
@@ -53,7 +54,7 @@ msgstr "Edita la imatge al porta-retalls"
 #. https://gitlab.gnome.org/GNOME/Initiatives/-/wikis/App-Metadata
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "Edit screenshots or memes"
-msgstr ""
+msgstr "Editeu captures de pantalla o mems"
 
 #. IMPORTANT: complete description of the application (1/3)
 #: data/com.github.maoschanz.drawing.appdata.xml.in
@@ -62,25 +63,31 @@ msgid ""
 "filters, insert or censor text, and manipulate a selected portion of the "
 "picture (cut/copy/paste/drag/…)"
 msgstr ""
+"Aquest editor bàsic d'imatges pot redimensionar, escapçar o girar una "
+"imatge, aplicar filtres simples, inserir o censurar text, i manipular una "
+"part seleccionada de la imatge (retallar, copiar, enganxar, arrossegar…)"
 
 #. IMPORTANT: complete description of the application (2/3)
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "And of course, you can draw! Using tools such as the pencil, the straight "
-"line, the curve tool, many shapes, several brushes, and their various colors "
-"and options."
+"line, the curve tool, many shapes, several brushes, and their various colors"
+" and options."
 msgstr ""
+"I, per descomptat, podeu dibuixar! Usant eines com el llapis, la línia recta,"
+" l'eina de corba, moltes formes, diversos pinzells, colors i opcions."
 
 #. IMPORTANT: complete description of the application (3/3)
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "Supported file types include PNG, JPEG and BMP."
-msgstr ""
+msgstr "Els tipus de fitxers compatibles inclouen PNG, JPEG i BMP."
 
 #. very generic release notes i use for ALL minor updates, please
 #. translate this one!
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-"Version 1.0.1 features several minor bug fixes, and various new translations."
+"Version 1.0.1 features several minor bug fixes, and various new "
+"translations."
 msgstr ""
 "La versió 1.0.1 presenta diverses correccions d'errors menors i diverses "
 "traduccions noves."
@@ -90,27 +97,40 @@ msgid ""
 "By popular demand, the \"highlighter\" tool is now enabled by default, and "
 "the message dialog to warn you about the release notes is less intrusive."
 msgstr ""
+"Per la demanda popular, l'eina «marcador» ara està habilitada per defecte, i"
+" el diàleg de missatges per advertir-vos sobre les novetats de les noves versions és "
+"menys intrusiu."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "The main improvement in this update is the zoom workflow: since the version "
-"1.0.0 it's possible to zoom in very deep, but the process was very slow, and "
-"the view didn't stay well centered around the mouse pointer; and once at "
+"1.0.0 it's possible to zoom in very deep, but the process was very slow, and"
+" the view didn't stay well centered around the mouse pointer; and once at "
 "2000%%, scrolling up or down, or left or right, was quite violent. These "
 "problems should all have disappeared in this new version!"
 msgstr ""
+"La millora principal d'aquesta actualització és el flux de treball de zoom: "
+"des de la versió 1.0.0 és possible fer ampliacions molt profundes, però el "
+"procés era molt lent, i la vista no es mantenia ben centrada al voltant "
+"del punter del ratolí; i un cop al 2000%, desplaçar-se amunt o avall, o "
+"esquerra o dreta, era molt difícil. Tots aquests problemes haurien "
+"d'haver desaparegut en aquesta nova versió!"
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "Incorrect command line parsing when using the app outside of a flatpak "
 "sandbox has also been fixed."
 msgstr ""
+"L'anàlisi de la línia d'ordres és incorrecte quan s'utilitza l'aplicació "
+"fora d'un entorn de proves flatpak també s'ha esmenat."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "For users on elementary OS, a small issue concerning window resizing has "
 "been mended too."
 msgstr ""
+"Per als usuaris del sistema operatiu elementary, també s'ha esmenat un petit "
+"problema relatiu al redimensionament de finestres."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -131,20 +151,12 @@ msgstr ""
 "horitzontalment o verticalment."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
-#, fuzzy
-msgid ""
-"You can select tools with keyboard accelerators (Alt+letter). This may not "
-"work yet with languages using a non-latin alphabet."
-msgstr ""
-"Si els noms de les eines són visibles, podeu habilitar una eina específica "
-"amb «alt+[la lletra subratllada]». Això pot no funcionar encara amb idiomes "
-"que utilitzin un alfabet no llatí."
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "Zooming very deep is now possible, and the rendering will be very crisp, "
 "even at 2000%%."
 msgstr ""
+"Ara és possible fer un zoom molt profund, i la representació serà molt "
+"precisa, fins i tot en un 2000%."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -152,17 +164,9 @@ msgid ""
 "do it while using a tool, it may display additional data, for example the "
 "dimensions of the shape you're drawing!"
 msgstr ""
-
-#: data/com.github.maoschanz.drawing.appdata.xml.in
-#, fuzzy
-msgid ""
-"Pressing \"shift\", or \"alt\" when using a tool enables specific options, "
-"such as locking the direction for the \"line\" tool, or changing the filling "
-"style of a shape."
-msgstr ""
-"En prémer «ctrl», «shift» o «alt» quan s'utilitza una eina s'habilitaran "
-"opcions específiques, com ara «afegeix a la selecció» per a les eines de "
-"selecció."
+"En prémer «ctrl» es mostraran les coordenades del cursor en un indicador "
+"de funció. Si ho feu mentre utilitzeu una eina, es poden mostrar dades addicionals, per "
+"exemple les dimensions de la forma que esteu dibuixant!"
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -227,7 +231,7 @@ msgstr "Propietats de la imatge"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Reset canvas"
-msgstr ""
+msgstr "Reinicia el llenç"
 
 #: src/ui/app-menus.ui src/ui/headerbar.ui src/ui/headerbar-eos.ui
 #: src/ui/shortcuts.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
@@ -243,7 +247,7 @@ msgstr "Desa sense transparència"
 #. will just rickroll the user.
 #: src/ui/app-menus.ui src/ui/win-menus.ui
 msgid "Prepare as NFT…"
-msgstr ""
+msgstr "Prepara com a NFT…"
 
 #: src/ui/app-menus.ui src/ui/headerbar-eos.ui src/ui/win-menus.ui
 #: src/saving_manager.py
@@ -393,35 +397,19 @@ msgstr "Ves avall"
 msgid "Go Right"
 msgstr "Ves a la dreta"
 
-#. Context: this action scrolls to the left end of the
-#. canvas. The "go left" action only goes a few centimeters
-#. to the left, but this one goes all the way left.
-#: src/ui/app-menus.ui src/ui/shortcuts.ui
-#, fuzzy
-msgid "Go to the left end"
-msgstr "Pestanya a l'esquerra"
-
 #. Context: this action scrolls to the top of the canvas
 #. The "go up" action only goes a few centimeters up, but
 #. this one goes all the way to the top.
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Go to the top"
-msgstr ""
+msgstr "Ves a la part superior"
 
 #. Context: this action scrolls to the bottom of the canvas
 #. The "go down" action only goes a few centimeters down,
 #. but this one goes all the way to the bottom.
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Go to the bottom"
-msgstr ""
-
-#. Context: this action scrolls to the right end of the
-#. canvas. The "go right" action only goes a few centimeters
-#. to the right, but this one goes all the way right.
-#: src/ui/app-menus.ui src/ui/shortcuts.ui
-#, fuzzy
-msgid "Go to the right end"
-msgstr "Pestanya a la dreta"
+msgstr "Ves a la part inferior"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Tab at the left"
@@ -456,7 +444,7 @@ msgstr "Amaga les barres d'eines"
 msgid "Fullscreen"
 msgstr "Pantalla completa"
 
-#: src/ui/app-menus.ui src/ui/shortcuts.ui
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/preferences.py
 msgid "Colors"
 msgstr "Colors"
 
@@ -467,10 +455,6 @@ msgstr "Edita el color principal…"
 #: src/ui/app-menus.ui
 msgid "Edit Secondary Color…"
 msgstr "Edita el color secundari…"
-
-#: src/ui/app-menus.ui
-msgid "Use color editor by default"
-msgstr "Utilitza l'editor de color per defecte"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 #: src/optionsbars/classic/optionsbar-classic.ui
@@ -691,7 +675,7 @@ msgstr "100%"
 
 #: src/ui/minimap.ui src/ui/shortcuts.ui
 msgid "Maximum zoom"
-msgstr ""
+msgstr "Zoom màxim"
 
 #: src/ui/new-image-dialog.ui src/ui/properties.ui
 #: src/optionsbars/transform/optionsbar-crop.ui
@@ -784,7 +768,8 @@ msgstr "Inverteix la selecció"
 msgid "Define as current image"
 msgstr "Defineix com a imatge actual"
 
-#. Expand the canvas of the current image to make the current selection fit in it.
+#. Expand the canvas of the current image to make the current selection fit in
+#. it.
 #. Can be translated as "Expand to this size".
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
@@ -1052,7 +1037,6 @@ msgstr "Desament d'imatges"
 msgid "JPEG and BMP images can't handle transparency."
 msgstr "Les imatges JPEG i BMP no poden gestionar la transparència."
 
-#
 #: src/preferences.py
 msgid ""
 "If you save your images in these formats, what do want to use to replace "
@@ -1169,6 +1153,18 @@ msgstr "Selector de color"
 #: src/preferences.py src/tools/classic_tools/tool_paint.py
 msgid "Paint"
 msgstr "Pintor"
+
+#. Context: the color editor is an interface to pick any RGBA color, and
+#. it can be used instead of the default simple RGB palette
+#: src/preferences.py
+msgid "Use color editor by default"
+msgstr "Utilitza l'editor de color per defecte"
+
+#: src/preferences.py
+msgid "You can use a simple color palette, or use a full RGBA color editor."
+msgstr ""
+"Podeu utilitzar una paleta de colors simple, o utilitzar un editor de color "
+"RGBA complet."
 
 #. Context: title of a section of the preferences
 #: src/preferences.py
@@ -1306,8 +1302,8 @@ msgid ""
 "A part of the image is selected: the pixels beneath the selection will be "
 "saved with a color you might not expect!"
 msgstr ""
-"S'ha seleccionat una part de la imatge: els píxels de sota de la selecció es "
-"desaran amb un color que potser no espereu!"
+"S'ha seleccionat una part de la imatge: els píxels de sota de la selecció es"
+" desaran amb un color que potser no espereu!"
 
 #. Context: the user tries to save the image while previewing an
 #. unapplied "transform" operation (scaling, cropping, whatever)
@@ -1372,13 +1368,6 @@ msgstr ""
 "S'ha produït un error en iniciar l'aplicació, si us plau, informeu d'aquest "
 "error."
 
-#: src/window.py
-#, fuzzy
-msgid ""
-"It's the first time you use Drawing, would you like to read the help manual?"
-msgstr ""
-"És la primera vegada que utilitzeu el Dibuix %s, voleu llegir les novetats?"
-
 #. Context: %s is the version number of the app
 #: src/window.py
 #, python-format
@@ -1392,6 +1381,8 @@ msgid ""
 "These news will always be available in the help manual: click the 'Help' "
 "menu item whenever you want!"
 msgstr ""
+"Aquestes notícies sempre estaran disponibles en el manual d'ajuda: feu clic "
+"a l'element de menú «Ajuda» sempre que vulgueu."
 
 #: src/window.py
 msgid "No"
@@ -1426,13 +1417,6 @@ msgid "Modifications will take effect in the next new window."
 msgstr "Les modificacions tindran efecte en la següent finestra nova."
 
 #: src/window.py
-#, fuzzy
-msgid "Middle-click or press F8 to show/hide controls."
-msgstr ""
-"Feu clic amb el botó del mig, premeu amb 3 dits o premeu F8 per a mostrar o "
-"ocultar els controls."
-
-#: src/window.py
 msgid "Press F11 to exit fullscreen."
 msgstr "Premeu F11 per a sortir de la pantalla completa."
 
@@ -1441,8 +1425,8 @@ msgstr "Premeu F11 per a sortir de la pantalla completa."
 msgid ""
 "Error loading the bottom pane for the tool '%s', please report this bug."
 msgstr ""
-"S'ha produït un error en carregar la subfinestra inferior per a l'eina «%s»,"
-"si us plau informeu d'aquest error."
+"S'ha produït un error en carregar la subfinestra inferior per a l'eina "
+"«%s»,si us plau informeu d'aquest error."
 
 #: src/window.py
 #, python-format
@@ -1663,10 +1647,6 @@ msgstr "Torna a la paleta"
 msgid "Palette"
 msgstr "Paleta"
 
-#: src/optionsbars/classic/optionsbar-color-popover.ui
-msgid "Use this editor by default"
-msgstr "Utilitza aquest editor per defecte"
-
 #: src/optionsbars/selection/optionsbar-selection.ui
 msgid "Selection options"
 msgstr "Opcions de selecció"
@@ -1739,31 +1719,23 @@ msgid "Always"
 msgstr "Sempre"
 
 #. Context: an item in a menu whose title is "Keep proportions"
-#. Context for translations: "[Keep proportions only] when scaling from corners"
+#. Context for translations: "[Keep proportions only] when scaling from
+#. corners"
 #: src/optionsbars/transform/optionsbar-scale.ui src/tools/ui/tool-scale.ui
 msgid "When scaling from corners"
 msgstr "En escalar des de les cantonades"
 
-#. Context for translations: "[Keep proportions only] when setting values manually"
+#. Context for translations: "[Keep proportions only] when setting values
+#. manually"
 #: src/optionsbars/transform/optionsbar-scale.ui src/tools/ui/tool-scale.ui
 msgid "When setting values manually"
-msgstr ""
+msgstr "En establir els valors manualment"
 
 #. Context: an item in a menu whose title is "Keep proportions"
 #. Context for translations: "Never [keep proportions]"
 #: src/optionsbars/transform/optionsbar-scale.ui src/tools/ui/tool-scale.ui
 msgid "Never"
 msgstr "Mai"
-
-#: src/optionsbars/transform/optionsbar-scale.ui src/tools/ui/tool-scale.ui
-#, fuzzy
-msgid "Pixels"
-msgstr "píxels"
-
-#: src/optionsbars/transform/optionsbar-scale.ui src/tools/ui/tool-scale.ui
-#, fuzzy
-msgid "Percentage"
-msgstr "percentatges"
 
 #: src/optionsbars/transform/optionsbar-skew.ui
 msgid "Horizontal deformation"
@@ -1778,8 +1750,8 @@ msgstr "Deformació vertical"
 #, python-brace-format
 msgid "Can't start operation: wrong tool id (expected {0}, got {1})"
 msgstr ""
-"No s'ha pogut iniciar l'operació: ID d'eina incorrecte (s'esperava {0}, s'ha "
-"obtingut {1})"
+"No s'ha pogut iniciar l'operació: ID d'eina incorrecte (s'esperava {0}, s'ha"
+" obtingut {1})"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui
@@ -1853,7 +1825,8 @@ msgstr "Antialiàsing"
 msgid "Simple brush"
 msgstr "Pinzell simple"
 
-#: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_airbrush.py
+#: src/tools/ui/tool-brush.ui
+#: src/tools/classic_tools/brushes/brush_airbrush.py
 msgid "Airbrush"
 msgstr "Aerògraf"
 
@@ -1888,7 +1861,8 @@ msgid "Pencil"
 msgstr "Llapis"
 
 #: src/tools/ui/tool-eraser.ui src/tools/ui/tool-shape.ui
-#: src/tools/classic_tools/tool_eraser.py src/tools/classic_tools/tool_shape.py
+#: src/tools/classic_tools/tool_eraser.py
+#: src/tools/classic_tools/tool_shape.py
 msgid "Rectangle"
 msgstr "Rectangle"
 
@@ -1957,24 +1931,9 @@ msgstr "Direcció del difuminat"
 msgid "No direction"
 msgstr "Sense direcció"
 
-#: src/tools/ui/tool-filters.ui
-#, fuzzy
-msgid "Blur horizontally"
-msgstr "Inverteix horitzontalment"
-
-#: src/tools/ui/tool-filters.ui
-#, fuzzy
-msgid "Blur vertically"
-msgstr "Inverteix verticalment"
-
 #: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
 msgid "Invert colors"
 msgstr "Inverteix els colors"
-
-#: src/tools/ui/tool-highlight.ui
-#, fuzzy
-msgid "Straighten the line"
-msgstr "Escalat de la selecció"
 
 #: src/tools/ui/tool-line.ui
 msgid "Color gradient"
@@ -2024,7 +1983,8 @@ msgid "Dots type"
 msgstr "Tipus de punts"
 
 #: src/tools/ui/tool-points.ui src/tools/ui/tool-shape.ui
-#: src/tools/classic_tools/tool_points.py src/tools/classic_tools/tool_shape.py
+#: src/tools/classic_tools/tool_points.py
+#: src/tools/classic_tools/tool_shape.py
 msgid "Circle"
 msgstr "Cercle"
 
@@ -2058,11 +2018,11 @@ msgstr "Incrementa el nombre"
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
 msgid "Solid outline"
-msgstr "Esquema sòlid"
+msgstr "Contorn sòlid"
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
 msgid "Dashed outline"
-msgstr "Esquema de guions"
+msgstr "Contorn de guions"
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
 msgid "No outline"
@@ -2145,18 +2105,6 @@ msgstr "Ombra"
 
 #. Context: a type of background behind the inserted text
 #: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
-#, fuzzy
-msgid "Thin outline"
-msgstr "Sense contorn"
-
-#. Context: a type of background behind the inserted text
-#: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
-#, fuzzy
-msgid "Thick outline"
-msgstr "Sense contorn"
-
-#. Context: a type of background behind the inserted text
-#: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
 msgid "Rectangle background"
 msgstr "Fons del rectangle"
 
@@ -2170,7 +2118,7 @@ msgstr "Opcions de corba"
 
 #: src/tools/classic_tools/tool_arc.py
 msgid "Draw a second segment to complete the curve"
-msgstr ""
+msgstr "Dibuixa un segon segment per completar la corba"
 
 #: src/tools/classic_tools/tool_arc.py src/tools/classic_tools/tool_line.py
 msgid "Dashed arrow"
@@ -2188,7 +2136,7 @@ msgstr "Guió"
 #: src/tools/classic_tools/tool_arc.py src/tools/classic_tools/tool_line.py
 #: src/tools/classic_tools/tool_pencil.py
 msgid "Press <Alt> to toggle the 'outline' option"
-msgstr ""
+msgstr "Premeu <Alt> per a commutar l'opció «contorn»"
 
 #: src/tools/classic_tools/tool_brush.py
 msgid "Brush options"
@@ -2196,11 +2144,11 @@ msgstr "Opcions del pinzell"
 
 #: src/tools/classic_tools/tool_eraser.py
 msgid "Press <Shift> to erase a rectangle area instead"
-msgstr ""
+msgstr "Premeu <Maj> per a esborrar una àrea de rectangle"
 
 #: src/tools/classic_tools/tool_eraser.py
 msgid "Press <Shift> to erase a path instead"
-msgstr ""
+msgstr "Premeu <Maj> per a esborrar un camí"
 
 #: src/tools/classic_tools/tool_eraser.py
 msgid "Eraser options"
@@ -2208,11 +2156,11 @@ msgstr "Opcions de la goma d'esborrar"
 
 #: src/tools/classic_tools/tool_highlight.py
 msgid "Press <Shift> to temporarily highlight on dark background instead"
-msgstr ""
+msgstr "Premeu <Maj> per a sressaltar temporalment un fons fosc"
 
 #: src/tools/classic_tools/tool_highlight.py
 msgid "Press <Shift> to temporarily highlight on light background instead"
-msgstr ""
+msgstr "Premeu <Maj> per a ressaltar temporalment un fons clar"
 
 #: src/tools/classic_tools/tool_highlight.py
 msgid "Highlighter options"
@@ -2222,22 +2170,10 @@ msgstr "Opcions del marcador"
 msgid "Line"
 msgstr "Línia"
 
-#: src/tools/classic_tools/tool_line.py src/tools/classic_tools/tool_shape.py
-#: src/tools/selection_tools/select_rect.py
-#, fuzzy, python-format
-msgid "Width: %spx"
-msgstr "Amplada"
-
-#: src/tools/classic_tools/tool_line.py src/tools/classic_tools/tool_shape.py
-#: src/tools/selection_tools/select_rect.py
-#, fuzzy, python-format
-msgid "Height: %spx"
-msgstr "Alçada"
-
 #: src/tools/classic_tools/tool_line.py
 #, python-format
 msgid "Length: %spx"
-msgstr ""
+msgstr "Longitud: %spx"
 
 #: src/tools/classic_tools/tool_line.py
 msgid "Line options"
@@ -2245,11 +2181,11 @@ msgstr "Opcions de línia"
 
 #: src/tools/classic_tools/tool_line.py
 msgid "Press <Shift> to unlock the line direction"
-msgstr ""
+msgstr "Premeu <Maj> per a desbloquejar la direcció de la línia"
 
 #: src/tools/classic_tools/tool_line.py
 msgid "Press <Shift> to lock the line direction"
-msgstr ""
+msgstr "Premeu <Maj> per a bloquejar la direcció de la línia"
 
 #: src/tools/classic_tools/tool_paint.py
 msgid "Painting options"
@@ -2267,12 +2203,12 @@ msgstr "Feu clic sobre el llenç per a pintar-lo completament"
 #: src/tools/classic_tools/tool_paint.py
 #: src/tools/selection_tools/select_color.py
 msgid "May not work for complex shapes"
-msgstr ""
+msgstr "Pot ser que no funcioni per a formes complexes"
 
 #: src/tools/classic_tools/tool_paint.py
 #: src/tools/selection_tools/select_color.py
 msgid "It will not work well if the area's edges are blurry"
-msgstr ""
+msgstr "No funcionarà bé si les vores de la zona són borroses"
 
 #: src/tools/classic_tools/tool_pencil.py
 msgid "Pencil options"
@@ -2294,7 +2230,7 @@ msgstr "Forma"
 #: src/tools/classic_tools/tool_shape.py
 #, python-format
 msgid "Radius: %spx"
-msgstr ""
+msgstr "Radi: %spx"
 
 #: src/tools/classic_tools/tool_shape.py
 msgid "Shape options"
@@ -2318,6 +2254,7 @@ msgstr "Feu clic al primer punt de la forma per a tancar-la."
 #: src/tools/classic_tools/tool_shape.py
 msgid "Press <Alt>, <Shift>, or both, to quickly change the 'filling' option"
 msgstr ""
+"Premeu <Alt>, <Maj>, o ambdues, per a canviar ràpidament l'opció d'emplenament"
 
 #: src/tools/classic_tools/tool_text.py
 msgid "Text"
@@ -2365,38 +2302,28 @@ msgstr "Selecció de rectangle"
 msgid "Error: invalid values"
 msgstr "Error: valors no vàlids"
 
-#. The options of the "crop" tool are all about how to expand the canvas,
-#. hence this label.
-#: src/tools/transform_tools/tool_crop.py
-#, fuzzy
-msgid "Expanding options"
-msgstr "Opcions de pintura"
-
 #: src/tools/transform_tools/tool_crop.py
 msgid "The sides you'll crop are hinted by the mouse pointer"
-msgstr ""
+msgstr "Els costats que escapçaran són indicats pel punter del ratolí"
 
 #: src/tools/transform_tools/tool_crop.py
 msgid "Cropping the selection"
 msgstr "Escapça la selecció"
 
 #: src/tools/transform_tools/tool_crop.py
-#, fuzzy
-msgid "Cropping or expanding the canvas"
-msgstr "Escapça el llenç"
-
-#: src/tools/transform_tools/tool_crop.py
 #: src/tools/transform_tools/tool_rotate.py
 #: src/tools/transform_tools/tool_scale.py
 #: src/tools/transform_tools/tool_skew.py
 msgid "Don't forget to confirm the operation!"
-msgstr ""
+msgstr "No oblideu confirmar l'operació!"
 
 #: src/tools/transform_tools/tool_crop.py
 #: src/tools/transform_tools/tool_skew.py
 msgid ""
 "Press <Alt>, <Shift>, or both, to quickly change the 'expand with' option"
 msgstr ""
+"Premeu <Alt>, <Maj>, o ambdues, per canviar ràpidament l'opció «expandeix "
+"amb»"
 
 #: src/tools/transform_tools/tool_filters.py
 msgid "Active filter"
@@ -2438,25 +2365,12 @@ msgstr "Escalat del llenç"
 #: src/tools/transform_tools/tool_scale.py
 msgid "Press <Shift> to quickly toggle the 'lock proportions' option"
 msgstr ""
-
-#: src/tools/transform_tools/tool_skew.py
-#, fuzzy
-msgid "Skewing options"
-msgstr "Opcions d'escalat"
+"Premeu <Shift> per a commutar ràpidament l'opció «bloqueig de proporcions»"
 
 #: src/tools/transform_tools/tool_skew.py
 msgid "The directions of the deformation are hinted by the mouse pointer"
 msgstr ""
-
-#: src/tools/transform_tools/tool_skew.py
-#, fuzzy
-msgid "Skewing the selection"
-msgstr "Escalat de la selecció"
-
-#: src/tools/transform_tools/tool_skew.py
-#, fuzzy
-msgid "Skewing the canvas"
-msgstr "Escalat del llenç"
+"Les direccions de la deformació estan indicades pel punter del ratolí"
 
 #: src/tools/transform_tools/filters/filter_blur.py
 msgid "Blur radius"
@@ -2465,15 +2379,3 @@ msgstr "Radi del difuminat"
 #: src/tools/transform_tools/filters/filter_saturation.py
 msgid "Saturation"
 msgstr "Saturació"
-
-#~ msgid "Later"
-#~ msgstr "Més tard"
-
-#~ msgid "Transform"
-#~ msgstr "Transforma"
-
-#~ msgid "Horizontal"
-#~ msgstr "Horitzontal"
-
-#~ msgid "Vertical"
-#~ msgstr "Vertical"

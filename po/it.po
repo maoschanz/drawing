@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
 "POT-Creation-Date: 2022-04-10 15:56+0200\n"
-"PO-Revision-Date: 2022-04-10 16:15+0100\n"
+"PO-Revision-Date: 2022-04-29 21:15+0100\n"
 "Last-Translator: Albano Battistella\n"
 "Language-Team: Italian\n"
 "Language: it\n"
@@ -99,8 +99,9 @@ msgid ""
 "By popular demand, the \"highlighter\" tool is now enabled by default, and "
 "the message dialog to warn you about the release notes is less intrusive."
 msgstr ""
-"A grande richiesta, lo strumento \"evidenziatore\" è ora abilitato per impostazione predefinita e "
-"la finestra di dialogo del messaggio per avvisarti delle note di rilascio è meno invadente."
+"A grande richiesta, lo strumento \"evidenziatore\" è ora abilitato per "
+"impostazione predefinita e la finestra di dialogo del messaggio per "
+"avvisarti delle note di rilascio è meno invadente."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -110,27 +111,28 @@ msgid ""
 "2000%%, scrolling up or down, or left or right, was quite violent. These "
 "problems should all have disappeared in this new version!"
 msgstr ""
-"Il principale miglioramento di questo aggiornamento è il flusso di lavoro dello zoom: dalla versione "
-"1.0.0 è possibile ingrandire molto in profondità, ma il processo è stato molto lento e "
-"la vista non è rimasta ben centrata attorno al puntatore del mouse; e una volta a "
-"2000%%, scorrere in alto o in basso, a sinistra o a destra, era piuttosto violento. Questi "
-"problemi dovrebbero essere tutti scomparsi in questa nuova versione!"
+"Il principale miglioramento di questo aggiornamento è il flusso di lavoro "
+"dello zoom: dalla versione 1.0.0 è possibile ingrandire molto in profondità, "
+"ma il processo è stato molto lento e la vista non è rimasta ben centrata "
+"attorno al puntatore del mouse; e una volta a 2000%%, scorrere in alto o in "
+"basso, a sinistra o a destra, era piuttosto violento. Questi problemi "
+"dovrebbero essere tutti scomparsi in questa nuova versione!"
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "Incorrect command line parsing when using the app outside of a flatpak "
 "sandbox has also been fixed."
 msgstr ""
-"Analisi della riga di comando errata quando si utilizza l'app al di fuori di un flatpak "
-"sandbox è stato corretto."
+"Analisi della riga di comando errata quando si utilizza l'app al di fuori di "
+"un flatpak sandbox è stato corretto."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "For users on elementary OS, a small issue concerning window resizing has "
 "been mended too."
 msgstr ""
-"Per gli utenti su elementary OS, un piccolo problema relativo al ridimensionamento delle finestre "
-" è stato sistemato."
+"Per gli utenti su elementary OS, un piccolo problema relativo al "
+"ridimensionamento delle finestre  è stato sistemato."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -164,8 +166,8 @@ msgid ""
 "Zooming very deep is now possible, and the rendering will be very crisp, "
 "even at 2000%%."
 msgstr ""
-"Ora è possibile eseguire uno zoom molto profondo e il rendering sarà molto nitido ,"
-"anche al 2000%%."
+"Ora è possibile eseguire uno zoom molto profondo e il rendering sarà molto "
+"nitido ,anche al 2000%%."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -479,7 +481,7 @@ msgstr "Nascondi barre degli strumenti"
 msgid "Fullscreen"
 msgstr "Schero Intero"
 
-#: src/ui/app-menus.ui src/ui/shortcuts.ui
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/preferences.py
 msgid "Colors"
 msgstr "Colori"
 
@@ -490,10 +492,6 @@ msgstr "Modifica colore principale…"
 #: src/ui/app-menus.ui
 msgid "Edit Secondary Color…"
 msgstr "Modifica colore secondario…"
-
-#: src/ui/app-menus.ui
-msgid "Use color editor by default"
-msgstr "Usa colore dell'editor predefinito"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 #: src/optionsbars/classic/optionsbar-classic.ui
@@ -714,7 +712,7 @@ msgstr "100%"
 
 #: src/ui/minimap.ui src/ui/shortcuts.ui
 msgid "Maximum zoom"
-msgstr ""
+msgstr "Zoom massimo"
 
 #: src/ui/new-image-dialog.ui src/ui/properties.ui
 #: src/optionsbars/transform/optionsbar-crop.ui
@@ -1193,6 +1191,16 @@ msgstr "Selettore colore"
 msgid "Paint"
 msgstr "Dipingi"
 
+#. Context: the color editor is an interface to pick any RGBA color, and
+#. it can be used instead of the default simple RGB palette
+#: src/preferences.py
+msgid "Use color editor by default"
+msgstr "Usa colore dell'editor predefinito"
+
+#: src/preferences.py
+msgid "You can use a simple color palette, or use a full RGBA color editor."
+msgstr "È possibile utilizzare una semplice tavolozza di colori o utilizzare un editor di colori RGBA completo."
+
 #. Context: title of a section of the preferences
 #: src/preferences.py
 msgid "Advanced options"
@@ -1409,8 +1417,8 @@ msgid ""
 "These news will always be available in the help manual: click the 'Help' "
 "menu item whenever you want!"
 msgstr ""
-"Queste notizie saranno sempre disponibili nel manuale di aiuto: clicca su 'Aiuto' "
-"voce di menu quando vuoi!"
+"Queste notizie saranno sempre disponibili nel manuale di aiuto: clicca su "
+"'Aiuto' voce di menu quando vuoi!"
 
 #: src/window.py
 msgid "No"
@@ -1681,10 +1689,6 @@ msgstr "Ritorna alla tavolozza"
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Palette"
 msgstr "Tavolozza"
-
-#: src/optionsbars/classic/optionsbar-color-popover.ui
-msgid "Use this editor by default"
-msgstr "Usa questo editor come predefinito"
 
 #: src/optionsbars/selection/optionsbar-selection.ui
 msgid "Selection options"
@@ -2195,7 +2199,7 @@ msgstr "Freccia"
 #: src/tools/classic_tools/tool_arc.py src/tools/classic_tools/tool_line.py
 #: src/tools/classic_tools/tool_pencil.py
 msgid "Dashed"
-msgstr "Tratteggiata"
+msgstr "Tratteggiato"
 
 #: src/tools/classic_tools/tool_arc.py src/tools/classic_tools/tool_line.py
 #: src/tools/classic_tools/tool_pencil.py

@@ -463,7 +463,7 @@ msgstr "Ezkutatu tresna-barrak"
 msgid "Fullscreen"
 msgstr "Pantaila osoa"
 
-#: src/ui/app-menus.ui src/ui/shortcuts.ui
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/preferences.py
 msgid "Colors"
 msgstr "Koloreak"
 
@@ -474,10 +474,6 @@ msgstr "Editatu kolore nagusia…"
 #: src/ui/app-menus.ui
 msgid "Edit Secondary Color…"
 msgstr "Editatu bigarren kolorea…"
-
-#: src/ui/app-menus.ui
-msgid "Use color editor by default"
-msgstr "Erabili kolore editorea lehenespenez"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 #: src/optionsbars/classic/optionsbar-classic.ui
@@ -1186,6 +1182,16 @@ msgstr "Kolore-hautatzailea"
 msgid "Paint"
 msgstr "Betegarria"
 
+#. Context: the color editor is an interface to pick any RGBA color, and
+#. it can be used instead of the default simple RGB palette
+#: src/preferences.py
+msgid "Use color editor by default"
+msgstr "Erabili kolore editorea lehenespenez"
+
+#: src/preferences.py
+msgid "You can use a simple color palette, or use a full RGBA color editor."
+msgstr ""
+
 #. Context: title of a section of the preferences
 #: src/preferences.py
 msgid "Advanced options"
@@ -1684,10 +1690,6 @@ msgstr "Atzera paletara"
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Palette"
 msgstr "Paleta"
-
-#: src/optionsbars/classic/optionsbar-color-popover.ui
-msgid "Use this editor by default"
-msgstr "Erabili editore hau lehenespenez"
 
 #: src/optionsbars/selection/optionsbar-selection.ui
 msgid "Selection options"

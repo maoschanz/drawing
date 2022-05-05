@@ -133,9 +133,10 @@ class ToolShape(AbstractClassicTool):
 		full_list = [label_options, label_instruction, label_modifiers]
 		return list(filter(None, full_list))
 
-	def give_back_control(self, preserve_selection):
+	def give_back_control(self, preserve_selection, next_tool=None):
 		self.restore_pixbuf()
 		self._reset_temp_points()
+		return next_tool
 
 	############################################################################
 

@@ -455,7 +455,7 @@ msgstr "ツールバーを隠す"
 msgid "Fullscreen"
 msgstr "全画面表示"
 
-#: src/ui/app-menus.ui src/ui/shortcuts.ui
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/preferences.py
 msgid "Colors"
 msgstr "色"
 
@@ -466,10 +466,6 @@ msgstr "メインの色を編集…"
 #: src/ui/app-menus.ui
 msgid "Edit Secondary Color…"
 msgstr "サブの色を編集…"
-
-#: src/ui/app-menus.ui
-msgid "Use color editor by default"
-msgstr "既定で色エディターを使用"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 #: src/optionsbars/classic/optionsbar-classic.ui
@@ -1167,6 +1163,16 @@ msgstr "スポイト"
 msgid "Paint"
 msgstr "染色"
 
+#. Context: the color editor is an interface to pick any RGBA color, and
+#. it can be used instead of the default simple RGB palette
+#: src/preferences.py
+msgid "Use color editor by default"
+msgstr "既定で色エディターを使用"
+
+#: src/preferences.py
+msgid "You can use a simple color palette, or use a full RGBA color editor."
+msgstr ""
+
 #. Context: title of a section of the preferences
 #: src/preferences.py
 msgid "Advanced options"
@@ -1656,10 +1662,6 @@ msgstr "パレットに戻る"
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Palette"
 msgstr "パレット"
-
-#: src/optionsbars/classic/optionsbar-color-popover.ui
-msgid "Use this editor by default"
-msgstr "既定でこのエディターを使用"
 
 #: src/optionsbars/selection/optionsbar-selection.ui
 msgid "Selection options"
