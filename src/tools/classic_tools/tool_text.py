@@ -102,7 +102,7 @@ class ToolText(AbstractClassicTool):
 		self._set_background_style()
 
 		# get_editing_tips is likely called because an option changed
-		self._force_refresh()
+		self._preview_text()
 
 		label_options = self.label + " - " + self._font_fam_name
 		if self._background_id != 'none':
@@ -148,7 +148,20 @@ class ToolText(AbstractClassicTool):
 	############################################################################
 
 	def on_press_on_area(self, event, surface, event_x, event_y):
+		self._last_click_btn = event.button
+		self.set_common_values(self._last_click_btn, event_x, event_y)
 		self._pointer_target = 'input'
+		if not self._has_current_text():
+			return
+
+		should_input, should_move = self.on_draw_above(None, self.get_context())
+		if should_input:
+			return
+		elif not should_move:
+			self._pointer_target = 'apply'
+			return
+
+		self._pointer_target = 'move'
 
 	def on_motion_on_area(self, event, surface, event_x, event_y, render=True):
 		if 'move' == self._pointer_target:
@@ -229,16 +242,17 @@ class ToolText(AbstractClassicTool):
 	def on_draw_above(self, area, ccontext):
 		if not self._has_current_text():
 			return
-		ccontext.new_path()
-		ccontext.set_font_size(self.tool_width * 2)
-		ccontext.move_to(self._text_x, self._text_y)
-		ext = ccontext.text_extents(self.text_string)
+
+		sorigin_x = -1 * self.get_image().scroll_x
+		sorigin_y = -1 * self.get_image().scroll_y
+		if area is None:
+			sorigin_x = 0
+			sorigin_y = 0
 
 		actual_width = self._preview_width
 		actual_height = self._preview_height
 
-		sorigin_x = -1 * self.get_image().scroll_x
-		sorigin_y = -1 * self.get_image().scroll_y
+		ccontext.new_path()
 		ccontext.move_to(sorigin_x, sorigin_y)
 		ccontext.rel_move_to(self._text_x, self._text_y)
 		ccontext.rel_line_to(actual_width, 0)
@@ -246,8 +260,13 @@ class ToolText(AbstractClassicTool):
 		ccontext.rel_line_to(-1 * actual_width, 0)
 		ccontext.rel_line_to(0, -1 * actual_height)
 
+		should_input = ccontext.in_fill(self.x_press, self.y_press)
+
 		thickness = self.get_overlay_thickness()
-		utilities_show_composite_overlay(ccontext, thickness)
+		should_move = utilities_show_composite_overlay(ccontext, thickness, \
+		                     sorigin_x + self.x_press, sorigin_y + self.y_press)
+
+		return should_input, should_move
 
 	def _on_cancel(self, *args):
 		self._hide_entry()
