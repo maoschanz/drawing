@@ -29,6 +29,15 @@ class ToolText(AbstractClassicTool):
 		self._should_cancel = False
 		self._last_click_btn = 1
 
+		# There are several types of possible interactions with the canvas,
+		# depending on where the pointer is during the press event.
+		self._pointer_target = 'input' # input, resize, move, apply
+
+		# Weird ass caching (`_text_x0` and `_text_y0` are only updated when
+		# releasing a 'move' interaction) to avoid erratic motion of the preview
+		self._text_x = self._text_x0 = 0
+		self._text_y = self._text_y0 = 0
+
 		# These values are found during the operation computation, and are
 		# re-used when rendering the previewed overlay
 		self._preview_width = 0
@@ -42,10 +51,6 @@ class ToolText(AbstractClassicTool):
 		                                                 'last-text-background')
 		self._font_fam_name = self.load_tool_action_enum('text-active-family', \
 		                                                 'last-font-name')
-
-		# There are several types of possible interactions with the canvas,
-		# depending on where the pointer is during the press event.
-		self._pointer_target = 'input' # input, resize, move, apply
 
 		# XXX actions sensitivity?
 		self.add_tool_action_simple('text-cancel', self._on_cancel)
@@ -146,6 +151,9 @@ class ToolText(AbstractClassicTool):
 		self._pointer_target = 'input'
 
 	def on_motion_on_area(self, event, surface, event_x, event_y, render=True):
+		if 'move' == self._pointer_target:
+			self._text_x = self._text_x0 + (event_x - self.x_press)
+			self._text_y = self._text_y0 + (event_y - self.y_press)
 		if not render:
 			return
 		self._preview_text()
@@ -156,11 +164,15 @@ class ToolText(AbstractClassicTool):
 		if 'input' == self._pointer_target:
 			if not self._has_current_text():
 				self.set_common_values(self._last_click_btn, event_x, event_y)
+				self._text_x = self._text_x0 = event_x
+				self._text_y = self._text_y0 = event_y
 			self._open_popover_at(event.x, event.y)
 		elif 'apply' == self._pointer_target:
 			self._on_insert_text()
 		elif 'move' == self._pointer_target:
-			self._preview_text()
+			self.on_motion_on_area(event, surface, event_x, event_y)
+			self._text_x0 = self._text_x
+			self._text_y0 = self._text_y
 
 	# XXX could there be a better way to input the text ?
 	def _open_popover_at(self, x, y):
@@ -185,7 +197,7 @@ class ToolText(AbstractClassicTool):
 		self._popover.popdown()
 
 	def _force_refresh(self, *args):
-		self.set_common_values(self._last_click_btn, self.x_press, self.y_press)
+		self.set_common_values(self._last_click_btn, self._text_x, self._text_y)
 		self._preview_text()
 
 	def _on_insert_text(self, *args):
@@ -219,7 +231,7 @@ class ToolText(AbstractClassicTool):
 			return
 		ccontext.new_path()
 		ccontext.set_font_size(self.tool_width * 2)
-		ccontext.move_to(self.x_press, self.y_press)
+		ccontext.move_to(self._text_x, self._text_y)
 		ext = ccontext.text_extents(self.text_string)
 
 		actual_width = self._preview_width
@@ -228,7 +240,7 @@ class ToolText(AbstractClassicTool):
 		sorigin_x = -1 * self.get_image().scroll_x
 		sorigin_y = -1 * self.get_image().scroll_y
 		ccontext.move_to(sorigin_x, sorigin_y)
-		ccontext.rel_move_to(self.x_press, self.y_press)
+		ccontext.rel_move_to(self._text_x, self._text_y)
 		ccontext.rel_line_to(actual_width, 0)
 		ccontext.rel_line_to(0, actual_height)
 		ccontext.rel_line_to(-1 * actual_width, 0)
@@ -254,8 +266,8 @@ class ToolText(AbstractClassicTool):
 			'is_bold': self._is_bold,
 			'font_size': self.tool_width,
 			'antialias': self._use_antialias,
-			'x': self.x_press,
-			'y': self.y_press,
+			'x': self._text_x,
+			'y': self._text_y,
 			'background': self._background_id,
 			'text': self.text_string
 		}
