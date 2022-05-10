@@ -28,9 +28,11 @@ class ToolCrop(AbstractCanvasTool):
 	def __init__(self, window):
 		super().__init__('crop', _("Crop"), 'tool-crop-symbolic', window)
 		self.cursor_name = 'not-allowed'
-		self.x_press = self.x_motion = 0
-		self.y_press = self.y_motion = 0
-		self._unclicked = True # locking operation execution to avoid inf. loops
+		self._x = self.x_press = self.x_motion = 0
+		self._y = self.y_press = self.y_motion = 0
+		self._unclicked = True # the lock will prevent operations coming from
+		# the 'value-changed' signals, to avoid infinite loops
+		self._behavior = 'resize'
 		self.add_tool_action_enum('crop-expand', 'initial')
 
 	def try_build_pane(self):
@@ -64,8 +66,10 @@ class ToolCrop(AbstractCanvasTool):
 			if not self.get_image().get_mouse_is_pressed():
 				label_modifiers = _("Press <Alt>, <Shift>, or both, to " + \
 				                      "quickly change the 'expand with' option")
+		label_behavior = _("Change the size with the left click, adjust " + \
+		                                    "the position with the right click")
 
-		full_list = [label_action, label_direction, label_confirm, label_modifiers]
+		full_list = [label_action, label_direction, label_confirm, label_behavior, label_modifiers]
 		return list(filter(None, full_list))
 
 	############################################################################
@@ -145,9 +149,37 @@ class ToolCrop(AbstractCanvasTool):
 		elif 'ALT' in self._modifier_keys:
 			self._force_expansion_rgba('initial')
 
+		if event.button == 3:
+			self._behavior = 'move'
+		else:
+			self._behavior = 'resize'
+
 	def on_motion_on_area(self, event, surface, event_x, event_y, render=True):
 		delta_x = event_x - self.x_motion
 		delta_y = event_y - self.y_motion
+
+		render = render or (event_x % 4 == 0) # artificially less restrictive
+
+		if self._behavior == 'move':
+			self._x -= delta_x
+			self._y -= delta_y
+			self.x_motion = event_x
+			self.y_motion = event_y
+
+			if self.apply_to_selection:
+				self._x = max(0, self._x)
+				self._y = max(0, self._y)
+				self._x = min(self._x, self._original_width - self._get_width())
+				self._y = min(self._y, self._original_height - self._get_height())
+			else:
+				self._x = max(self._get_width() * -1, self._x)
+				self._y = max(self._get_height() * -1, self._y)
+				self._x = min(self._get_width() * 2, self._x)
+				self._y = min(self._get_height() * 2, self._y)
+
+			if render and not self.apply_to_selection:
+				self.build_and_do_op()
+			return
 
 		if self._directions == '':
 			return
