@@ -43,6 +43,10 @@ class ToolText(AbstractClassicTool):
 		self._font_fam_name = self.load_tool_action_enum('text-active-family', \
 		                                                 'last-font-name')
 
+		# There are several types of possible interactions with the canvas,
+		# depending on where the pointer is during the press event.
+		self._pointer_target = 'input' # input, resize, move, apply
+
 		# XXX actions sensitivity?
 		self.add_tool_action_simple('text-cancel', self._on_cancel)
 		self.add_tool_action_simple('text-preview', self._force_refresh)
@@ -138,13 +142,27 @@ class ToolText(AbstractClassicTool):
 
 	############################################################################
 
+	def on_press_on_area(self, event, surface, event_x, event_y):
+		self._pointer_target = 'input'
+
+	def on_motion_on_area(self, event, surface, event_x, event_y, render=True):
+		if not render:
+			return
+		self._preview_text()
+
 	def on_release_on_area(self, event, surface, event_x, event_y):
 		self._last_click_btn = event.button
 		self._should_cancel = True
-		self.set_common_values(self._last_click_btn, event_x, event_y)
-		self._open_popover_at(event.x, event.y)
+		if 'input' == self._pointer_target:
+			if not self._has_current_text():
+				self.set_common_values(self._last_click_btn, event_x, event_y)
+			self._open_popover_at(event.x, event.y)
+		elif 'apply' == self._pointer_target:
+			self._on_insert_text()
+		elif 'move' == self._pointer_target:
+			self._preview_text()
 
-	# XXX could there be a better way to move the text ?
+	# XXX could there be a better way to input the text ?
 	def _open_popover_at(self, x, y):
 		rectangle = Gdk.Rectangle()
 		rectangle.x = x
@@ -207,7 +225,10 @@ class ToolText(AbstractClassicTool):
 		actual_width = self._preview_width
 		actual_height = self._preview_height
 
-		ccontext.move_to(self.x_press, self.y_press)
+		sorigin_x = -1 * self.get_image().scroll_x
+		sorigin_y = -1 * self.get_image().scroll_y
+		ccontext.move_to(sorigin_x, sorigin_y)
+		ccontext.rel_move_to(self.x_press, self.y_press)
 		ccontext.rel_line_to(actual_width, 0)
 		ccontext.rel_line_to(0, actual_height)
 		ccontext.rel_line_to(-1 * actual_width, 0)
