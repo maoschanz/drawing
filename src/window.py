@@ -75,6 +75,10 @@ class DrWindow(Gtk.ApplicationWindow):
 		if self.gsettings.get_boolean('maximized'):
 			self.maximize()
 
+		icon_theme = Gtk.IconTheme.get_for_display(self.get_display())
+		icon_theme.add_resource_path(self.app.APP_PATH + '/icons')
+		icon_theme.add_resource_path(self.app.APP_PATH + '/tools/icons')
+
 		self._update_theme_variant()
 		# self.resize(360, 648)
 		# self.resize(720, 288)

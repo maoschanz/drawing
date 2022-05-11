@@ -16,7 +16,7 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 import sys, gi, datetime
-gi.require_version('Gtk', '3.0')
+gi.require_version('Gtk', '4.0')
 gi.require_version('PangoCairo', '1.0')
 from gi.repository import Gtk, Gio, GLib, Gdk
 from .window import DrWindow
@@ -69,10 +69,6 @@ class Application(Gtk.Application):
 		self.add_main_option('edit-clipboard', b'c', GLib.OptionFlags.NONE,
 		             # Description of a command line option
 		             GLib.OptionArg.NONE, _("Edit the clipboard content"), None)
-
-		icon_theme = Gtk.IconTheme.get_default()
-		icon_theme.add_resource_path(self.APP_PATH + '/icons')
-		icon_theme.add_resource_path(self.APP_PATH + '/tools/icons')
 
 	def on_startup(self, *args):
 		"""Called only once, add app-wide menus and actions, and all accels."""
