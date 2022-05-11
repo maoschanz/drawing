@@ -6,3 +6,9 @@ from .abstract_eraser import AbstractEraser
 class EraserRubber(AbstractEraser):
 	__gtype_name__ = 'EraserRubber'
 
+	def __init__(self, **kwargs):
+		super().__init__()
+
+	############################################################################
+################################################################################
+
