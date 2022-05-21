@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
-"POT-Creation-Date: 2022-04-10 15:56+0200\n"
+"POT-Creation-Date: 2022-05-21 23:53+0200\n"
 "PO-Revision-Date: 2020-04-06 22:26+0300\n"
 "Last-Translator: Kimmo Kujansuu <mrkujansuu@gmail.com>\n"
 "Language-Team: suomi <>\n"
@@ -77,6 +77,27 @@ msgstr ""
 #. IMPORTANT: complete description of the application (3/3)
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "Supported file types include PNG, JPEG and BMP."
+msgstr ""
+
+#. very generic release notes i use for ALL minor updates, please
+#. translate this one!
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Version 1.2.0 improves the transformation tools: their previews are now "
+"consistently applied when you change the active tool without clicking on "
+"\"apply\"."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Transparency is now correctly preserved when the \"skew\" tools expands the "
+"canvas with a solid color."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Using the right click, you can now adjust the position of the canvas when "
+"you're cropping it."
 msgstr ""
 
 #. very generic release notes i use for ALL minor updates, please
@@ -2322,6 +2343,18 @@ msgstr "Fontin asetukset"
 msgid "Next number: %s"
 msgstr ""
 
+#. Context: fill a shape with the color of the left click
+#: src/tools/classic_tools/tool_shape.py
+#, fuzzy
+msgid "Filled with main color"
+msgstr "Muokkaa pääväriä..."
+
+#. Context: fill a shape with the color of the right click
+#: src/tools/classic_tools/tool_shape.py
+#, fuzzy
+msgid "Filled with secondary color"
+msgstr "Muokkaa toissijaista väriä…"
+
 #: src/tools/classic_tools/tool_shape.py
 msgid "Shape"
 msgstr "Muoto"
@@ -2334,18 +2367,6 @@ msgstr ""
 #: src/tools/classic_tools/tool_shape.py
 msgid "Shape options"
 msgstr "Muodon asetukset"
-
-#. Context: fill a shape with the color of the left click
-#: src/tools/classic_tools/tool_shape.py
-#, fuzzy
-msgid "Filled with main color"
-msgstr "Muokkaa pääväriä..."
-
-#. Context: fill a shape with the color of the right click
-#: src/tools/classic_tools/tool_shape.py
-#, fuzzy
-msgid "Filled with secondary color"
-msgstr "Muokkaa toissijaista väriä…"
 
 #: src/tools/classic_tools/tool_shape.py
 #: src/tools/selection_tools/select_free.py
@@ -2435,6 +2456,11 @@ msgid ""
 "Press <Alt>, <Shift>, or both, to quickly change the 'expand with' option"
 msgstr ""
 
+#: src/tools/transform_tools/tool_crop.py
+msgid ""
+"Change the size with the left click, adjust the position with the right click"
+msgstr ""
+
 #: src/tools/transform_tools/tool_filters.py
 msgid "Active filter"
 msgstr ""
@@ -2504,6 +2530,13 @@ msgstr "Hämärrä säde"
 #: src/tools/transform_tools/filters/filter_saturation.py
 msgid "Saturation"
 msgstr "Kylläisyys"
+
+#, fuzzy
+#~ msgid ""
+#~ "Version 1.0.2 features several minor bug fixes, and various new "
+#~ "translations."
+#~ msgstr ""
+#~ "Versio 1.0.1 sisältää useita pieniä virhekorjauksia ja uusia käännöksiä."
 
 #~ msgid "Horizontal"
 #~ msgstr "Vaaka"

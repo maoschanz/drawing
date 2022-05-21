@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
-"POT-Creation-Date: 2022-04-10 15:56+0200\n"
+"POT-Creation-Date: 2022-05-21 23:53+0200\n"
 "PO-Revision-Date: 2022-04-29 21:15+0100\n"
 "Last-Translator: Albano Battistella\n"
 "Language-Team: Italian\n"
@@ -84,6 +84,27 @@ msgstr ""
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "Supported file types include PNG, JPEG and BMP."
 msgstr "I tipi di file supportati includono PNG, JPEG e BMP."
+
+#. very generic release notes i use for ALL minor updates, please
+#. translate this one!
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Version 1.2.0 improves the transformation tools: their previews are now "
+"consistently applied when you change the active tool without clicking on "
+"\"apply\"."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Transparency is now correctly preserved when the \"skew\" tools expands the "
+"canvas with a solid color."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Using the right click, you can now adjust the position of the canvas when "
+"you're cropping it."
+msgstr ""
 
 #. very generic release notes i use for ALL minor updates, please
 #. translate this one!
@@ -1199,7 +1220,9 @@ msgstr "Usa colore dell'editor predefinito"
 
 #: src/preferences.py
 msgid "You can use a simple color palette, or use a full RGBA color editor."
-msgstr "È possibile utilizzare una semplice tavolozza di colori o utilizzare un editor di colori RGBA completo."
+msgstr ""
+"È possibile utilizzare una semplice tavolozza di colori o utilizzare un "
+"editor di colori RGBA completo."
 
 #. Context: title of a section of the preferences
 #: src/preferences.py
@@ -2303,6 +2326,16 @@ msgstr "Opzioni punti"
 msgid "Next number: %s"
 msgstr "Numero successivo: %s"
 
+#. Context: fill a shape with the color of the left click
+#: src/tools/classic_tools/tool_shape.py
+msgid "Filled with main color"
+msgstr "Riempito con il colore principale"
+
+#. Context: fill a shape with the color of the right click
+#: src/tools/classic_tools/tool_shape.py
+msgid "Filled with secondary color"
+msgstr "Riempito con colore secondario"
+
 #: src/tools/classic_tools/tool_shape.py
 msgid "Shape"
 msgstr "Forma"
@@ -2315,16 +2348,6 @@ msgstr "Raggio: %spx"
 #: src/tools/classic_tools/tool_shape.py
 msgid "Shape options"
 msgstr "Opzioni forma"
-
-#. Context: fill a shape with the color of the left click
-#: src/tools/classic_tools/tool_shape.py
-msgid "Filled with main color"
-msgstr "Riempito con il colore principale"
-
-#. Context: fill a shape with the color of the right click
-#: src/tools/classic_tools/tool_shape.py
-msgid "Filled with secondary color"
-msgstr "Riempito con colore secondario"
 
 #: src/tools/classic_tools/tool_shape.py
 #: src/tools/selection_tools/select_free.py
@@ -2416,6 +2439,11 @@ msgstr ""
 "Premi <Alt>, <Shift>, o entrambi, per cambiare rapidamente l'opzione "
 "'espandi con'"
 
+#: src/tools/transform_tools/tool_crop.py
+msgid ""
+"Change the size with the left click, adjust the position with the right click"
+msgstr ""
+
 #: src/tools/transform_tools/tool_filters.py
 msgid "Active filter"
 msgstr "Filtro attivo"
@@ -2481,6 +2509,14 @@ msgstr "Raggio di sfocatura"
 #: src/tools/transform_tools/filters/filter_saturation.py
 msgid "Saturation"
 msgstr "Saturazione"
+
+#, fuzzy
+#~ msgid ""
+#~ "Version 1.0.2 features several minor bug fixes, and various new "
+#~ "translations."
+#~ msgstr ""
+#~ "La versione 1.0.1 presenta diverse correzioni di bug minori e varie nuove "
+#~ "traduzioni. "
 
 #~ msgid "Later"
 #~ msgstr "Dopo"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
-"POT-Creation-Date: 2022-04-10 15:56+0200\n"
+"POT-Creation-Date: 2022-05-21 23:53+0200\n"
 "PO-Revision-Date: 2022-02-17 10:55+0300\n"
 "Last-Translator: Serkan ÖNDER <serkanonder@outlook.com>\n"
 "Language-Team: \n"
@@ -84,6 +84,27 @@ msgstr ""
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "Supported file types include PNG, JPEG and BMP."
 msgstr "Desteklenen dosya türleri PNG, JPEG ve BMP'yi içerir."
+
+#. very generic release notes i use for ALL minor updates, please
+#. translate this one!
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Version 1.2.0 improves the transformation tools: their previews are now "
+"consistently applied when you change the active tool without clicking on "
+"\"apply\"."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Transparency is now correctly preserved when the \"skew\" tools expands the "
+"canvas with a solid color."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Using the right click, you can now adjust the position of the canvas when "
+"you're cropping it."
+msgstr ""
 
 #. very generic release notes i use for ALL minor updates, please
 #. translate this one!
@@ -2304,6 +2325,16 @@ msgstr "Noktalama seçenekleri"
 msgid "Next number: %s"
 msgstr "Sonraki numara: %s"
 
+#. Context: fill a shape with the color of the left click
+#: src/tools/classic_tools/tool_shape.py
+msgid "Filled with main color"
+msgstr "Ana renkle dolu"
+
+#. Context: fill a shape with the color of the right click
+#: src/tools/classic_tools/tool_shape.py
+msgid "Filled with secondary color"
+msgstr "İkincil renkle dolu"
+
 #: src/tools/classic_tools/tool_shape.py
 msgid "Shape"
 msgstr "Şekil"
@@ -2316,16 +2347,6 @@ msgstr "Yarıçap: %spx"
 #: src/tools/classic_tools/tool_shape.py
 msgid "Shape options"
 msgstr "Biçim seçenekleri"
-
-#. Context: fill a shape with the color of the left click
-#: src/tools/classic_tools/tool_shape.py
-msgid "Filled with main color"
-msgstr "Ana renkle dolu"
-
-#. Context: fill a shape with the color of the right click
-#: src/tools/classic_tools/tool_shape.py
-msgid "Filled with secondary color"
-msgstr "İkincil renkle dolu"
 
 #: src/tools/classic_tools/tool_shape.py
 #: src/tools/selection_tools/select_free.py
@@ -2417,6 +2438,11 @@ msgstr ""
 "'Birlikte genişlet' seçeneğini hızlı bir şekilde değiştirmek için <Alt>, "
 "<Shift> veya her ikisine basın"
 
+#: src/tools/transform_tools/tool_crop.py
+msgid ""
+"Change the size with the left click, adjust the position with the right click"
+msgstr ""
+
 #: src/tools/transform_tools/tool_filters.py
 msgid "Active filter"
 msgstr "Aktif filtre"
@@ -2483,6 +2509,14 @@ msgstr "Bulanıklık yarıçapı"
 #: src/tools/transform_tools/filters/filter_saturation.py
 msgid "Saturation"
 msgstr "Doygunluk"
+
+#, fuzzy
+#~ msgid ""
+#~ "Version 1.0.2 features several minor bug fixes, and various new "
+#~ "translations."
+#~ msgstr ""
+#~ "Sürüm 1.0.1, birkaç küçük hata düzeltmesi ve çeşitli yeni çeviriler "
+#~ "içermektedir."
 
 #~ msgid "Later"
 #~ msgstr "Sonra"
