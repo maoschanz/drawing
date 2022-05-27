@@ -15,10 +15,12 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+import cairo
 from gi.repository import Gdk
 from .abstract_transform_tool import AbstractCanvasTool
 from .optionsbar_skew import OptionsBarSkew
 from .utilities_overlay import utilities_show_handles_on_context
+from .utilities_colors import utilities_gdk_rgba_to_normalized_array
 
 class ToolSkew(AbstractCanvasTool):
 	__gtype_name__ = 'ToolSkew'
@@ -227,7 +229,17 @@ class ToolSkew(AbstractCanvasTool):
 			y0 = int(-1 * yx * source_surface.get_width())
 		coefs = [1.0, yx, xy, 1.0, x0, y0]
 
-		new_surface = self.get_deformed_surface(source_surface, coefs, prefill)
+		new_surface = self.get_deformed_surface(source_surface, coefs)
+		if prefill:
+			w = new_surface.get_width()
+			h = new_surface.get_height()
+			cairo_context = cairo.Context(new_surface)
+			color_array = utilities_gdk_rgba_to_normalized_array(self._expansion_rgba)
+			cairo_context.set_source_rgba(*color_array)
+
+			cairo_context.new_path()
+			cairo_context.fill()
+
 		new_pixbuf = Gdk.pixbuf_get_from_surface(new_surface, 0, 0, \
 		                      new_surface.get_width(), new_surface.get_height())
 		self.get_image().set_temp_pixbuf(new_pixbuf)
