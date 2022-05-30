@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
 "POT-Creation-Date: 2022-05-21 23:53+0200\n"
-"PO-Revision-Date: 2022-04-28 12:22+1000\n"
+"PO-Revision-Date: 2022-05-30 20:04+1000\n"
 "Last-Translator: Ser82-png <sw@atrus.ru>\n"
 "Language-Team: \n"
 "Language: ru\n"
@@ -16,8 +16,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 2.3\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
-"n%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
 
 #: data/com.github.maoschanz.drawing.desktop.in
 #: data/com.github.maoschanz.drawing.appdata.xml.in src/deco_manager.py
@@ -94,18 +94,24 @@ msgid ""
 "consistently applied when you change the active tool without clicking on "
 "\"apply\"."
 msgstr ""
+"В версии 1.2.0 улучшено поведение инструментов преобразования: их "
+"предварительный просмотр теперь последовательно применяется при смене "
+"активного инструмента без нажатия кнопки «Применить»."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "Transparency is now correctly preserved when the \"skew\" tools expands the "
 "canvas with a solid color."
 msgstr ""
+"Теперь правильно сохраняется прозрачность, когда инструмент «Наклон» "
+"расширяет холст с заполнением образовавшихся пикселей сплошным цветом."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "Using the right click, you can now adjust the position of the canvas when "
 "you're cropping it."
 msgstr ""
+"Теперь щелчком правой кнопкой мыши вы можете настроить место обрезки холста."
 
 #. very generic release notes i use for ALL minor updates, please
 #. translate this one!
@@ -2441,6 +2447,8 @@ msgstr ""
 msgid ""
 "Change the size with the left click, adjust the position with the right click"
 msgstr ""
+"Изменить размер - щелчок левой кнопкой мыши, отрегулировать положение - "
+"щелчок правой кнопкой мыши"
 
 #: src/tools/transform_tools/tool_filters.py
 msgid "Active filter"
