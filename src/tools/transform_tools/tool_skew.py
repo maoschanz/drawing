@@ -238,23 +238,35 @@ class ToolSkew(AbstractCanvasTool):
 			cairo_context.set_source_rgba(*color_array)
 
 			# Doing only one path is possible but it's a mess: as a dumbass, i
-			# prefer drawing 4 simple triangles
+			# prefer to draw 4 simple triangles
 			if yx != 0:
 				# Top triangle
 				cairo_context.new_path()
+				cairo_context.move_to(0, 0)
+				cairo_context.line_to(w, 0)
+				if xy >= 0:
+					pass
+				else:
+					x_new = 1.0 * 0 + xy * 0 + x0
+					y_new = yx * 0 + 1.0 * 0 + y0
+				cairo_context.line_to(x_new, y_new)
+				cairo_context.close_path()
 				cairo_context.fill()
 
 				# Bottom triangle
 				cairo_context.new_path()
+				cairo_context.close_path()
 				cairo_context.fill()
 
 			if xy != 0:
 				# Right triangle
 				cairo_context.new_path()
+				cairo_context.close_path()
 				cairo_context.fill()
 
 				# Left triangle
 				cairo_context.new_path()
+				cairo_context.close_path()
 				cairo_context.fill()
 
 		new_pixbuf = Gdk.pixbuf_get_from_surface(new_surface, 0, 0, \
