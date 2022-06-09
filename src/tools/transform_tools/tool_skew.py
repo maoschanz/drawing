@@ -218,15 +218,17 @@ class ToolSkew(AbstractCanvasTool):
 			prefill = True
 		source_surface = Gdk.cairo_surface_create_from_pixbuf(source_pixbuf, 0, None)
 		source_surface.set_device_scale(self.scale_factor(), self.scale_factor())
+		w0 = source_surface.get_width()
+		h0 = source_surface.get_height()
 
 		xy = operation['xy']
 		x0 = 0.0
 		if xy < 0:
-			x0 = int(-1 * xy * source_surface.get_height())
+			x0 = int(-1 * xy * h0)
 		yx = operation['yx']
 		y0 = 0.0
 		if yx < 0:
-			y0 = int(-1 * yx * source_surface.get_width())
+			y0 = int(-1 * yx * w0)
 		coefs = [1.0, yx, xy, 1.0, x0, y0]
 
 		new_surface = self.get_deformed_surface(source_surface, coefs)
@@ -243,12 +245,22 @@ class ToolSkew(AbstractCanvasTool):
 				# Top triangle
 				cairo_context.new_path()
 				cairo_context.move_to(0, 0)
-				cairo_context.line_to(w, 0)
 				if xy >= 0:
-					pass
+					if yx >= 0:
+						x_new = 0
+						y_new = 0
+					else:
+						cairo_context.line_to(w0, 0)
+						x_new = 1.0 * 0 + xy * 0 + x0
+						y_new = yx * 0 + 1.0 * 0 + y0
 				else:
-					x_new = 1.0 * 0 + xy * 0 + x0
-					y_new = yx * 0 + 1.0 * 0 + y0
+					if yx >= 0:
+						x_new = 0
+						y_new = 0
+					else:
+						cairo_context.line_to(w, 0)
+						x_new = 1.0 * 0 + xy * 0 + x0
+						y_new = yx * 0 + 1.0 * 0 + y0
 				cairo_context.line_to(x_new, y_new)
 				cairo_context.close_path()
 				cairo_context.fill()
