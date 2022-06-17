@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
-"POT-Creation-Date: 2022-04-10 15:56+0200\n"
-"PO-Revision-Date: 2022-01-08 21:16-0300\n"
+"POT-Creation-Date: 2022-05-21 23:53+0200\n"
+"PO-Revision-Date: 2022-05-24 20:42-0300\n"
 "Last-Translator: Fúlvio Alves <fga.fulvio@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <arthurbacci64@gmail.com>\n"
 "Language: pt_BR\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 2.3\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #: data/com.github.maoschanz.drawing.desktop.in
 #: data/com.github.maoschanz.drawing.appdata.xml.in src/deco_manager.py
@@ -90,6 +90,34 @@ msgstr "Os tipos de arquivo suportados incluem PNG, JPEG e BMP."
 #. translate this one!
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
+"Version 1.2.0 improves the transformation tools: their previews are now "
+"consistently applied when you change the active tool without clicking on "
+"\"apply\"."
+msgstr ""
+"A versão 1.2.0 melhora as ferramentas de transformação: suas visualizações "
+"agora são aplicadas de forma consistente quando você altera a ferramenta "
+"ativa sem clicar em \"aplicar\"."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Transparency is now correctly preserved when the \"skew\" tools expands the "
+"canvas with a solid color."
+msgstr ""
+"A transparência agora é preservada corretamente quando as ferramentas "
+"\"inclinar\" expandem a tela com uma cor sólida."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Using the right click, you can now adjust the position of the canvas when "
+"you're cropping it."
+msgstr ""
+"Usando o botão direito, agora você pode ajustar a posição da tela ao cortá-"
+"la."
+
+#. very generic release notes i use for ALL minor updates, please
+#. translate this one!
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
 "Version 1.0.1 features several minor bug fixes, and various new translations."
 msgstr ""
 "A versão 1.0.1 apresenta diversas correções de erros e várias traduções."
@@ -99,6 +127,9 @@ msgid ""
 "By popular demand, the \"highlighter\" tool is now enabled by default, and "
 "the message dialog to warn you about the release notes is less intrusive."
 msgstr ""
+"Por demanda popular, a ferramenta \"realçador\" agora está ativada por "
+"padrão, e a caixa de diálogo para avisá-lo sobre as notas de lançamento é "
+"menos intrusiva."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -108,18 +139,28 @@ msgid ""
 "2000%%, scrolling up or down, or left or right, was quite violent. These "
 "problems should all have disappeared in this new version!"
 msgstr ""
+"A principal melhoria nesta atualização é o fluxo de trabalho do zoom: desde "
+"a versão 1.0.0 é possível uma ampliação profunda, mas o processo era muito "
+"lento, e a visualização não ficava bem centralizada em torno do ponteiro do "
+"mouse, e uma vez em 2000%%, a rolagem para cima ou para baixo, ou para "
+"esquerda ou direita, tornava-se bastante violenta. Todos esses problemas "
+"devem ter desaparecido nesta nova versão!"
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "Incorrect command line parsing when using the app outside of a flatpak "
 "sandbox has also been fixed."
 msgstr ""
+"A análise incorreta da linha de comando ao usar o aplicativo fora de uma "
+"sandbox flatpak também foi corrigida."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "For users on elementary OS, a small issue concerning window resizing has "
 "been mended too."
 msgstr ""
+"Para usuários do elementary OS, um pequeno problema relacionado ao "
+"redimensionamento de janela também foi corrigido."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -152,6 +193,8 @@ msgid ""
 "Zooming very deep is now possible, and the rendering will be very crisp, "
 "even at 2000%%."
 msgstr ""
+"A ampliação (zoom) profunda agora é possível, e a renderização será muito "
+"nítida, mesmo em 2000%%."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -470,11 +513,11 @@ msgstr "Cores"
 
 #: src/ui/app-menus.ui
 msgid "Edit Main Color…"
-msgstr "Editar cor primária"
+msgstr "Editar cor primária…"
 
 #: src/ui/app-menus.ui
 msgid "Edit Secondary Color…"
-msgstr "Editar cor secundária"
+msgstr "Editar cor secundária…"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 #: src/optionsbars/classic/optionsbar-classic.ui
@@ -695,7 +738,7 @@ msgstr "100%"
 
 #: src/ui/minimap.ui src/ui/shortcuts.ui
 msgid "Maximum zoom"
-msgstr ""
+msgstr "Zoom máximo"
 
 #: src/ui/new-image-dialog.ui src/ui/properties.ui
 #: src/optionsbars/transform/optionsbar-crop.ui
@@ -1185,6 +1228,8 @@ msgstr "Usar editor de cores por padrão"
 #: src/preferences.py
 msgid "You can use a simple color palette, or use a full RGBA color editor."
 msgstr ""
+"Você pode usar uma paleta de cores simples ou usar um editor de cores RGBA "
+"completo."
 
 #. Context: title of a section of the preferences
 #: src/preferences.py
@@ -1386,12 +1431,11 @@ msgid "Error starting the application, please report this bug."
 msgstr "Erro ao iniciar o aplicativo, por favor reportar o bug."
 
 #: src/window.py
-#, fuzzy
 msgid ""
 "It's the first time you use Drawing, would you like to read the help manual?"
 msgstr ""
-"Esta é a primeira vez que você usa o Drawing %s. Gostaria de ver o que há de "
-"novo?"
+"Esta é a primeira vez que você usa o Drawing. Gostaria de ler o Manual de "
+"Ajuda?"
 
 #. Context: %s is the version number of the app
 #: src/window.py
@@ -1407,6 +1451,8 @@ msgid ""
 "These news will always be available in the help manual: click the 'Help' "
 "menu item whenever you want!"
 msgstr ""
+"Estas novidades estarão sempre disponíveis no Manual de Ajuda: clique no "
+"item de menu 'Ajuda' sempre que quiser!"
 
 #: src/window.py
 msgid "No"
@@ -1757,7 +1803,7 @@ msgstr "Quando aumentando de pontos"
 #. Context for translations: "[Keep proportions only] when setting values manually"
 #: src/optionsbars/transform/optionsbar-scale.ui src/tools/ui/tool-scale.ui
 msgid "When setting values manually"
-msgstr ""
+msgstr "Ao definir valores manualmente"
 
 #. Context: an item in a menu whose title is "Keep proportions"
 #. Context for translations: "Never [keep proportions]"
@@ -2289,6 +2335,16 @@ msgstr "Opções de pontos"
 msgid "Next number: %s"
 msgstr "Próximo número: %s"
 
+#. Context: fill a shape with the color of the left click
+#: src/tools/classic_tools/tool_shape.py
+msgid "Filled with main color"
+msgstr "Preenchido com a cor principal"
+
+#. Context: fill a shape with the color of the right click
+#: src/tools/classic_tools/tool_shape.py
+msgid "Filled with secondary color"
+msgstr "Preenchido com a cor secundária"
+
 #: src/tools/classic_tools/tool_shape.py
 msgid "Shape"
 msgstr "Forma"
@@ -2301,16 +2357,6 @@ msgstr "Raio: %spx"
 #: src/tools/classic_tools/tool_shape.py
 msgid "Shape options"
 msgstr "Opções da forma"
-
-#. Context: fill a shape with the color of the left click
-#: src/tools/classic_tools/tool_shape.py
-msgid "Filled with main color"
-msgstr "Preenchido com a cor principal"
-
-#. Context: fill a shape with the color of the right click
-#: src/tools/classic_tools/tool_shape.py
-msgid "Filled with secondary color"
-msgstr "Preenchido com a cor secundária"
 
 #: src/tools/classic_tools/tool_shape.py
 #: src/tools/selection_tools/select_free.py
@@ -2402,6 +2448,12 @@ msgstr ""
 "Pressione <Alt>, <Shift> ou ambos para alterar rapidamente a opção 'Expandir "
 "com'"
 
+#: src/tools/transform_tools/tool_crop.py
+msgid ""
+"Change the size with the left click, adjust the position with the right click"
+msgstr ""
+"Altere o tamanho com o botão esquerdo, ajuste a posição com o botão direito"
+
 #: src/tools/transform_tools/tool_filters.py
 msgid "Active filter"
 msgstr "Filtro ativo"
@@ -2468,6 +2520,13 @@ msgstr "Raio do borrado"
 #: src/tools/transform_tools/filters/filter_saturation.py
 msgid "Saturation"
 msgstr "Saturação"
+
+#, fuzzy
+#~ msgid ""
+#~ "Version 1.0.2 features several minor bug fixes, and various new "
+#~ "translations."
+#~ msgstr ""
+#~ "A versão 1.0.1 apresenta diversas correções de erros e várias traduções."
 
 #~ msgid "Later"
 #~ msgstr "Mais tarde"

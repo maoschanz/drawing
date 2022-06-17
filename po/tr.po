@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
-"POT-Creation-Date: 2022-04-10 15:56+0200\n"
-"PO-Revision-Date: 2022-02-17 10:55+0300\n"
+"POT-Creation-Date: 2022-05-21 23:53+0200\n"
+"PO-Revision-Date: 2022-05-28 19:10+0300\n"
 "Last-Translator: Serkan ÖNDER <serkanonder@outlook.com>\n"
 "Language-Team: \n"
 "Language: tr\n"
@@ -67,7 +67,7 @@ msgid ""
 msgstr ""
 "Bu temel görüntü düzenleyici, bir görüntüyü yeniden boyutlandırabilir, "
 "kırpabilir veya döndürebilir, basit filtreler uygulayabilir, metin "
-"ekleyebilir veya sansürleyebilir ve resmin seçilen bir bölümünü "
+"ekleyebilir veya sansürleyebilir ve resimin seçilen bir bölümünü "
 "değiştirebilir (kes/kopyala/yapıştır/sürükle/…)"
 
 #. IMPORTANT: complete description of the application (2/3)
@@ -84,6 +84,33 @@ msgstr ""
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "Supported file types include PNG, JPEG and BMP."
 msgstr "Desteklenen dosya türleri PNG, JPEG ve BMP'yi içerir."
+
+#. very generic release notes i use for ALL minor updates, please
+#. translate this one!
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Version 1.2.0 improves the transformation tools: their previews are now "
+"consistently applied when you change the active tool without clicking on "
+"\"apply\"."
+msgstr ""
+"Sürüm 1.2.0, dönüştürme araçlarını iyileştirir: \"Uygula\" düğmesine "
+"tıklamadan etkin aracı değiştirdiğinizde önizlemeleri artık tutarlı bir "
+"şekilde uygulanır."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Transparency is now correctly preserved when the \"skew\" tools expands the "
+"canvas with a solid color."
+msgstr ""
+"\"Eğim\" araçları tuvali düz bir renkle genişlettiğinde şeffaflık artık "
+"doğru bir şekilde korunuyor."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Using the right click, you can now adjust the position of the canvas when "
+"you're cropping it."
+msgstr ""
+"Sağ tıklamayı kullanarak artık tuvali kırparken konumunu ayarlayabilirsiniz."
 
 #. very generic release notes i use for ALL minor updates, please
 #. translate this one!
@@ -213,7 +240,7 @@ msgstr "Çeşitli şekillerde yakınlaştırma"
 #. Caption of a screenshot, for appstores
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "The \"new image\" menu opened"
-msgstr "\"Yeni resim\" menüsü açıldı"
+msgstr "\"Yeni görüntü\" menüsü açıldı"
 
 #: src/ui/app-menus.ui
 msgid "File"
@@ -692,7 +719,7 @@ msgstr "Aç"
 
 #: src/ui/headerbar-eos.ui
 msgid "Share the image"
-msgstr "Resmi paylaşın"
+msgstr "Görüntüyü paylaşın"
 
 #: src/ui/image.ui
 msgid "The image changed on the disk, do you want to reload it?"
@@ -708,7 +735,7 @@ msgstr "%100"
 
 #: src/ui/minimap.ui src/ui/shortcuts.ui
 msgid "Maximum zoom"
-msgstr ""
+msgstr "Azami yakınlaştırma"
 
 #: src/ui/new-image-dialog.ui src/ui/properties.ui
 #: src/optionsbars/transform/optionsbar-crop.ui
@@ -847,7 +874,7 @@ msgstr "Resmi farklı kaydet…"
 
 #: src/ui/shortcuts.ui
 msgid "Close the active image"
-msgstr "Aktif resmi kapat"
+msgstr "Aktif görüntüyü kapat"
 
 #: src/ui/shortcuts.ui
 msgid "Open the tool options menu"
@@ -1076,7 +1103,7 @@ msgid ""
 "If you save your images in these formats, what do want to use to replace "
 "transparent pixels?"
 msgstr ""
-"Resimlerinizi bu biçimlerde kaydederseniz, saydam pikselleri değiştirmek "
+"Görüntülerinizi bu biçimlerde kaydederseniz, saydam pikselleri değiştirmek "
 "için ne kullanmak istersiniz?"
 
 #: src/preferences.py src/saving_manager.py src/utilities/utilities_colors.py
@@ -1197,6 +1224,7 @@ msgstr "Öntanımlı renk düzenleyiciyi kullan"
 #: src/preferences.py
 msgid "You can use a simple color palette, or use a full RGBA color editor."
 msgstr ""
+"Basit bir renk paleti veya tam bir RGBA renk düzenleyicisi kullanabilirsiniz."
 
 #. Context: title of a section of the preferences
 #: src/preferences.py
@@ -1605,11 +1633,11 @@ msgstr "BMP görüntüler"
 #: src/utilities/utilities_files.py
 #, python-format
 msgid "%s isn't an image."
-msgstr "%s bir resim değil."
+msgstr "%s bir görüntü değil."
 
 #: src/utilities/utilities_files.py
 msgid "Sorry, WEBP images can't be loaded by this app."
-msgstr "Üzgünüz, WEBP resimleri bu uygulama tarafından yüklenemez."
+msgstr "Üzgünüz, WEBP görüntüleri bu uygulama tarafından yüklenemez."
 
 #. Context: an error message, %s is a file path
 #: src/utilities/utilities_files.py
@@ -2025,7 +2053,7 @@ msgstr "Temizle ve değiştir"
 #. already drawn.
 #: src/tools/ui/tool-paint.ui
 msgid "Entire image"
-msgstr "Resmin tamamı"
+msgstr "Tüm görüntü"
 
 #. Context: this is one of the possible painting algorithms. It
 #. doesn't really paint, instead it erases the color the user
@@ -2304,6 +2332,16 @@ msgstr "Noktalama seçenekleri"
 msgid "Next number: %s"
 msgstr "Sonraki numara: %s"
 
+#. Context: fill a shape with the color of the left click
+#: src/tools/classic_tools/tool_shape.py
+msgid "Filled with main color"
+msgstr "Ana renkle dolu"
+
+#. Context: fill a shape with the color of the right click
+#: src/tools/classic_tools/tool_shape.py
+msgid "Filled with secondary color"
+msgstr "İkincil renkle dolu"
+
 #: src/tools/classic_tools/tool_shape.py
 msgid "Shape"
 msgstr "Şekil"
@@ -2316,16 +2354,6 @@ msgstr "Yarıçap: %spx"
 #: src/tools/classic_tools/tool_shape.py
 msgid "Shape options"
 msgstr "Biçim seçenekleri"
-
-#. Context: fill a shape with the color of the left click
-#: src/tools/classic_tools/tool_shape.py
-msgid "Filled with main color"
-msgstr "Ana renkle dolu"
-
-#. Context: fill a shape with the color of the right click
-#: src/tools/classic_tools/tool_shape.py
-msgid "Filled with secondary color"
-msgstr "İkincil renkle dolu"
 
 #: src/tools/classic_tools/tool_shape.py
 #: src/tools/selection_tools/select_free.py
@@ -2417,13 +2445,18 @@ msgstr ""
 "'Birlikte genişlet' seçeneğini hızlı bir şekilde değiştirmek için <Alt>, "
 "<Shift> veya her ikisine basın"
 
+#: src/tools/transform_tools/tool_crop.py
+msgid ""
+"Change the size with the left click, adjust the position with the right click"
+msgstr "Sol tıklama ile boyutu değiştirin, sağ tıklama ile konumu ayarlayın"
+
 #: src/tools/transform_tools/tool_filters.py
 msgid "Active filter"
 msgstr "Aktif filtre"
 
 #: src/tools/transform_tools/tool_filters.py
 msgid "Click on the image to preview the selected filter"
-msgstr "Seçilen süzgeci önizlemek için resme tıklayın"
+msgstr "Seçilen süzgeci önizlemek için görüntüye tıklayın"
 
 #. Context: a filter. See "image embossing" on wikipedia
 #: src/tools/transform_tools/tool_filters.py
@@ -2483,6 +2516,14 @@ msgstr "Bulanıklık yarıçapı"
 #: src/tools/transform_tools/filters/filter_saturation.py
 msgid "Saturation"
 msgstr "Doygunluk"
+
+#, fuzzy
+#~ msgid ""
+#~ "Version 1.0.2 features several minor bug fixes, and various new "
+#~ "translations."
+#~ msgstr ""
+#~ "Sürüm 1.0.1, birkaç küçük hata düzeltmesi ve çeşitli yeni çeviriler "
+#~ "içermektedir."
 
 #~ msgid "Later"
 #~ msgstr "Sonra"

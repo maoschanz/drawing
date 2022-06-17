@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
-"POT-Creation-Date: 2022-04-10 15:56+0200\n"
+"POT-Creation-Date: 2022-05-21 23:53+0200\n"
 "PO-Revision-Date: 2020-08-29 16:24+0200\n"
 "Last-Translator: Alexander Gabilondo <alexgabi@disroot.org>\n"
 "Language-Team: \n"
@@ -81,6 +81,27 @@ msgstr ""
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "Supported file types include PNG, JPEG and BMP."
 msgstr "Onartutako fitxategi motak PNG, JPEG eta BMP dira."
+
+#. very generic release notes i use for ALL minor updates, please
+#. translate this one!
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Version 1.2.0 improves the transformation tools: their previews are now "
+"consistently applied when you change the active tool without clicking on "
+"\"apply\"."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Transparency is now correctly preserved when the \"skew\" tools expands the "
+"canvas with a solid color."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Using the right click, you can now adjust the position of the canvas when "
+"you're cropping it."
+msgstr ""
 
 #. very generic release notes i use for ALL minor updates, please
 #. translate this one!
@@ -2326,6 +2347,18 @@ msgstr "Puntuen aukerak"
 msgid "Next number: %s"
 msgstr "Hurrengo zenbakia: %s"
 
+#. Context: fill a shape with the color of the left click
+#: src/tools/classic_tools/tool_shape.py
+#, fuzzy
+msgid "Filled with main color"
+msgstr "Kolore nagusiaz betea"
+
+#. Context: fill a shape with the color of the right click
+#: src/tools/classic_tools/tool_shape.py
+#, fuzzy
+msgid "Filled with secondary color"
+msgstr "Bigarren kolorez betea"
+
 #: src/tools/classic_tools/tool_shape.py
 msgid "Shape"
 msgstr "Forma"
@@ -2338,18 +2371,6 @@ msgstr "Erradioa: %spx"
 #: src/tools/classic_tools/tool_shape.py
 msgid "Shape options"
 msgstr "Formaren aukerak"
-
-#. Context: fill a shape with the color of the left click
-#: src/tools/classic_tools/tool_shape.py
-#, fuzzy
-msgid "Filled with main color"
-msgstr "Kolore nagusiaz betea"
-
-#. Context: fill a shape with the color of the right click
-#: src/tools/classic_tools/tool_shape.py
-#, fuzzy
-msgid "Filled with secondary color"
-msgstr "Bigarren kolorez betea"
 
 #: src/tools/classic_tools/tool_shape.py
 #: src/tools/selection_tools/select_free.py
@@ -2443,6 +2464,11 @@ msgid ""
 msgstr ""
 "Sakatu <Alt>, <Maius> edo biak, 'zabaldu honekin' aukera azkar aldatzeko"
 
+#: src/tools/transform_tools/tool_crop.py
+msgid ""
+"Change the size with the left click, adjust the position with the right click"
+msgstr ""
+
 #: src/tools/transform_tools/tool_filters.py
 #, fuzzy
 msgid "Active filter"
@@ -2513,6 +2539,14 @@ msgstr "Lausotze erradioa"
 #: src/tools/transform_tools/filters/filter_saturation.py
 msgid "Saturation"
 msgstr "Saturazioa"
+
+#, fuzzy
+#~ msgid ""
+#~ "Version 1.0.2 features several minor bug fixes, and various new "
+#~ "translations."
+#~ msgstr ""
+#~ "1.0.1 bertsioak errore txiki batzuen zuzenketa eta itzulpen berriak "
+#~ "biltzen ditu."
 
 #~ msgid "Later"
 #~ msgstr "Geroago"

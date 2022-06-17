@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.github.maoschanz.drawing 0.4\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
-"POT-Creation-Date: 2022-04-10 15:56+0200\n"
-"PO-Revision-Date: 2022-04-05 01:15+0200\n"
+"POT-Creation-Date: 2022-05-21 23:53+0200\n"
+"PO-Revision-Date: 2022-05-21 23:57+0200\n"
 "Last-Translator: Romain F. T. <rrroschan@gmail.com>\n"
 "Language-Team: French <aaaa@bbbb.com>\n"
 "Language: fr\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1)\n"
-"X-Generator: Gtranslator 41.0\n"
+"X-Generator: Gtranslator 42.0\n"
 
 #: data/com.github.maoschanz.drawing.desktop.in
 #: data/com.github.maoschanz.drawing.appdata.xml.in src/deco_manager.py
@@ -65,8 +65,8 @@ msgid ""
 msgstr ""
 "Cet éditeur d'images basique peut redimensionner, rogner, ou pivoter une "
 "image, appliquer des filtres simples, insérer ou censurer du texte, et "
-"manipuler une portion sélectionnée de l'image (couper/copier/coller/"
-"déplacer/…)"
+"manipuler une portion sélectionnée de l'image (couper/copier/coller/déplacer/"
+"…)"
 
 #. IMPORTANT: complete description of the application (2/3)
 #: data/com.github.maoschanz.drawing.appdata.xml.in
@@ -83,6 +83,30 @@ msgstr ""
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "Supported file types include PNG, JPEG and BMP."
 msgstr "Les types de fichiers supportés incluent PNG, JPEG et BMP."
+
+#. very generic release notes i use for ALL minor updates, please
+#. translate this one!
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Version 1.2.0 improves the transformation tools: their previews are now "
+"consistently applied when you change the active tool without clicking on "
+"\"apply\"."
+msgstr ""
+"La version 1.2.0 améliore les outils de transformation : leurs aperçus sont "
+"désormais appliqués de manière cohérente lorsque l'outil actif change sans "
+"avoir cliqué sur \"appliquer\"."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Transparency is now correctly preserved when the \"skew\" tools expands the "
+"canvas with a solid color."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Using the right click, you can now adjust the position of the canvas when "
+"you're cropping it."
+msgstr ""
 
 #. very generic release notes i use for ALL minor updates, please
 #. translate this one!
@@ -174,8 +198,8 @@ msgid ""
 "style of a shape."
 msgstr ""
 "Presser \"maj\" ou \"alt\" en utilisant un outil activera désormais des "
-"options spécifiques, tel que verrouiller la direction pour l'outil "
-"\"ligne\", ou changer le style de remplissage d'une forme."
+"options spécifiques, tel que verrouiller la direction pour l'outil \"ligne"
+"\", ou changer le style de remplissage d'une forme."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -468,7 +492,7 @@ msgstr "Cacher les barres d'outils"
 msgid "Fullscreen"
 msgstr "Plein écran"
 
-#: src/ui/app-menus.ui src/ui/shortcuts.ui
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/preferences.py
 msgid "Colors"
 msgstr "Couleurs"
 
@@ -479,10 +503,6 @@ msgstr "Éditer la couleur principale…"
 #: src/ui/app-menus.ui
 msgid "Edit Secondary Color…"
 msgstr "Éditer la couleur secondaire…"
-
-#: src/ui/app-menus.ui
-msgid "Use color editor by default"
-msgstr "Utiliser l'éditeur de couleurs par défaut"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 #: src/optionsbars/classic/optionsbar-classic.ui
@@ -1180,6 +1200,18 @@ msgstr "Sélecteur de couleur"
 msgid "Paint"
 msgstr "Peinture"
 
+#. Context: the color editor is an interface to pick any RGBA color, and
+#. it can be used instead of the default simple RGB palette
+#: src/preferences.py
+msgid "Use color editor by default"
+msgstr "Utiliser l'éditeur de couleurs par défaut"
+
+#: src/preferences.py
+msgid "You can use a simple color palette, or use a full RGBA color editor."
+msgstr ""
+"Vous pouvez utiliser une palette de couleurs simple, ou bien un éditeur "
+"complet de couleurs RGBA."
+
 #. Context: title of a section of the preferences
 #: src/preferences.py
 msgid "Advanced options"
@@ -1675,10 +1707,6 @@ msgstr "Retour à la palette"
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Palette"
 msgstr "Palette"
-
-#: src/optionsbars/classic/optionsbar-color-popover.ui
-msgid "Use this editor by default"
-msgstr "Utiliser cet éditeur par défaut"
 
 #: src/optionsbars/selection/optionsbar-selection.ui
 msgid "Selection options"
@@ -2293,6 +2321,16 @@ msgstr "Options des points"
 msgid "Next number: %s"
 msgstr "Prochain numéro : %s"
 
+#. Context: fill a shape with the color of the left click
+#: src/tools/classic_tools/tool_shape.py
+msgid "Filled with main color"
+msgstr "Rempli par la couleur principale"
+
+#. Context: fill a shape with the color of the right click
+#: src/tools/classic_tools/tool_shape.py
+msgid "Filled with secondary color"
+msgstr "Rempli par la couleur secondaire"
+
 #: src/tools/classic_tools/tool_shape.py
 msgid "Shape"
 msgstr "Forme"
@@ -2305,16 +2343,6 @@ msgstr "Rayon : %spx"
 #: src/tools/classic_tools/tool_shape.py
 msgid "Shape options"
 msgstr "Options de la forme"
-
-#. Context: fill a shape with the color of the left click
-#: src/tools/classic_tools/tool_shape.py
-msgid "Filled with main color"
-msgstr "Rempli par la couleur principale"
-
-#. Context: fill a shape with the color of the right click
-#: src/tools/classic_tools/tool_shape.py
-msgid "Filled with secondary color"
-msgstr "Rempli par la couleur secondaire"
 
 #: src/tools/classic_tools/tool_shape.py
 #: src/tools/selection_tools/select_free.py
@@ -2406,6 +2434,12 @@ msgstr ""
 "Appuyez sur <Maj>, <Alt>, ou les deux, pour changer rapidement l'option "
 "'étendre avec'"
 
+#: src/tools/transform_tools/tool_crop.py
+msgid ""
+"Change the size with the left click, adjust the position with the right click"
+msgstr ""
+"Changez la taille avec le clic gauche, ajustez la position avec le clic droit"
+
 #: src/tools/transform_tools/tool_filters.py
 msgid "Active filter"
 msgstr "Filtre actif"
@@ -2472,6 +2506,17 @@ msgstr "Rayon de floutage"
 #: src/tools/transform_tools/filters/filter_saturation.py
 msgid "Saturation"
 msgstr "Saturation"
+
+#, fuzzy
+#~ msgid ""
+#~ "Version 1.0.2 features several minor bug fixes, and various new "
+#~ "translations."
+#~ msgstr ""
+#~ "La version 1.0.1 comporte plusieurs correctifs de bugs mineurs, et "
+#~ "diverses nouvelles traductions."
+
+#~ msgid "Use this editor by default"
+#~ msgstr "Utiliser cet éditeur par défaut"
 
 #~ msgid "Later"
 #~ msgstr "Plus tard"
