@@ -244,20 +244,29 @@ class ToolSkew(AbstractCanvasTool):
 			if yx != 0:
 				# Top triangle
 				cairo_context.new_path()
-				cairo_context.move_to(0, 0)
 				if xy >= 0:
+					# No lateral triangle on the top-left angle: the width we
+					# use is the original one.
 					if yx >= 0:
-						x_new = 0
-						y_new = 0
+						cairo_context.move_to(0, 0)
+						cairo_context.line_to(w0, 0)
+						x_new = w0
+						y_new = yx * w0 + 1.0 * 0 + y0
 					else:
+						cairo_context.move_to(0, 0)
 						cairo_context.line_to(w0, 0)
 						x_new = 1.0 * 0 + xy * 0 + x0
 						y_new = yx * 0 + 1.0 * 0 + y0
 				else:
+					# Lateral triangle on the top-left angle: the width we
+					# use is the corrected one.
 					if yx >= 0:
-						x_new = 0
-						y_new = 0
+						cairo_context.move_to(x0, y0)
+						cairo_context.line_to(w, 0)
+						x_new = w
+						y_new = yx * w0 + 1.0 * 0 + y0
 					else:
+						cairo_context.move_to(0, 0)
 						cairo_context.line_to(w, 0)
 						x_new = 1.0 * 0 + xy * 0 + x0
 						y_new = yx * 0 + 1.0 * 0 + y0
