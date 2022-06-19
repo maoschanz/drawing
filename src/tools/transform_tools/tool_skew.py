@@ -216,6 +216,9 @@ class ToolSkew(AbstractCanvasTool):
 		else:
 			source_pixbuf = self.get_main_pixbuf()
 			prefill = True
+			if operation['rgba'].alpha == 0.0:
+				# no need to compute so much shit if it's to paint it in alpha
+				prefill = False
 		source_surface = Gdk.cairo_surface_create_from_pixbuf(source_pixbuf, 0, None)
 		source_surface.set_device_scale(self.scale_factor(), self.scale_factor())
 		w0 = source_surface.get_width()
@@ -305,11 +308,37 @@ class ToolSkew(AbstractCanvasTool):
 			if xy != 0:
 				# Right triangle
 				cairo_context.new_path()
+				cairo_context.line_to(x_new, y_new)
 				cairo_context.close_path()
 				cairo_context.fill()
 
 				# Left triangle
 				cairo_context.new_path()
+				if yx >= 0:
+					# There is a bottom triangle, its adj. side is at the left.
+					if xy >= 0:
+						# The left triangle's adjacent side is at the bottom.
+						cairo_context.move_to(0, 0)
+						cairo_context.line_to(0, h)
+						x_new = 1.0 * 0 + xy * h0 + x0
+						y_new = h0
+					else:
+						cairo_context.move_to(0, 0)
+						cairo_context.line_to(x0, 0)
+						x_new = 0
+						y_new = h0
+				else:
+					if xy >= 0:
+						cairo_context.move_to(x0, y0)
+						cairo_context.line_to(0, h)
+						x_new = 1.0 * 0 + xy * h0 + x0
+						y_new = h
+					else:
+						cairo_context.move_to(0, 0)
+						cairo_context.line_to(0, h)
+						x_new = 1.0 * 0 + xy * 0 + x0
+						y_new = yx * 0 + 1.0 * 0 + y0
+				cairo_context.line_to(x_new, y_new)
 				cairo_context.close_path()
 				cairo_context.fill()
 
