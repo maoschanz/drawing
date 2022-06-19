@@ -276,6 +276,29 @@ class ToolSkew(AbstractCanvasTool):
 
 				# Bottom triangle
 				cairo_context.new_path()
+				if xy >= 0:
+					if yx >= 0:
+						cairo_context.move_to(0, h)
+						cairo_context.line_to(w, h)
+						x_new = 1.0 * 0 + xy * h0 + x0
+						y_new = yx * 0 + 1.0 * h0 + y0
+					else:
+						cairo_context.move_to(w - w0, h)
+						cairo_context.line_to(w, h)
+						x_new = 1.0 * w0 + xy * h0 + x0
+						y_new = yx * w0 + 1.0 * h0 + y0
+				else:
+					if yx >= 0:
+						cairo_context.move_to(0, h0)
+						cairo_context.line_to(0, h)
+						x_new = w0
+						y_new = h
+					else:
+						cairo_context.move_to(0, h)
+						cairo_context.line_to(w, h)
+						x_new = w0
+						y_new = h0
+				cairo_context.line_to(x_new, y_new)
 				cairo_context.close_path()
 				cairo_context.fill()
 
