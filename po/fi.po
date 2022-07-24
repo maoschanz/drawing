@@ -2,28 +2,27 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the drawing package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# Kimmo Kujansuu <kimmo.kujansuu@yahoo.com>, 2019.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
 "POT-Creation-Date: 2022-05-21 23:53+0200\n"
-"PO-Revision-Date: 2020-04-06 22:26+0300\n"
-"Last-Translator: Kimmo Kujansuu <mrkujansuu@gmail.com>\n"
-"Language-Team: suomi <>\n"
-"Language: fi\n"
+"PO-Revision-Date: 2022-07-14 23:57+0300\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.3\n"
+"Last-Translator: Kimmo Kujansuu <mrkujansuu@gmail.com>\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.0.6\n"
+"Language: fi\n"
 
 #: data/com.github.maoschanz.drawing.desktop.in
 #: data/com.github.maoschanz.drawing.appdata.xml.in src/deco_manager.py
 #: src/main.py
 msgid "Drawing"
-msgstr "Piirtäminen"
+msgstr "Drawing"
 
 #: data/com.github.maoschanz.drawing.desktop.in
 msgid "Simple drawing utility"
@@ -35,7 +34,7 @@ msgstr "Helppo piirustus apuohjelma"
 #. Don't forget the semicolons.
 #: data/com.github.maoschanz.drawing.desktop.in
 msgid "Paint;Sketch;Pencil;"
-msgstr "Paint;Maali;Luonnos;Lyijykynä;"
+msgstr "Paint;Maali;Luonnos;Kynä;"
 
 #: data/com.github.maoschanz.drawing.desktop.in src/ui/app-menus.ui
 #: src/ui/shortcuts.ui src/ui/win-menus.ui src/window.py
@@ -56,7 +55,7 @@ msgstr "Muokkaa kuvaa leikepöydällä"
 #. https://gitlab.gnome.org/GNOME/Initiatives/-/wikis/App-Metadata
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "Edit screenshots or memes"
-msgstr ""
+msgstr "Muokkaa kuvakaappauksia tai meemejä"
 
 #. IMPORTANT: complete description of the application (1/3)
 #: data/com.github.maoschanz.drawing.appdata.xml.in
@@ -65,6 +64,9 @@ msgid ""
 "filters, insert or censor text, and manipulate a selected portion of the "
 "picture (cut/copy/paste/drag/…)"
 msgstr ""
+"Tämä helppo piirto-ohjelma voi muuttaa kuvan kokoa, rajata tai kiertää, "
+"käyttää yksinkertaisia suodattimia, lisää tai sensuroi tekstiä ja muokata "
+"kuvan valittua osaa (leikkaa/kopioi/liitä/vedä/…)"
 
 #. IMPORTANT: complete description of the application (2/3)
 #: data/com.github.maoschanz.drawing.appdata.xml.in
@@ -73,11 +75,13 @@ msgid ""
 "line, the curve tool, many shapes, several brushes, and their various colors "
 "and options."
 msgstr ""
+"Ja tietysti osaat piirtää! Käytä työkaluja, kuten kynää, viivaa, käyriä, "
+"monia muotoja, useita siveltimiä ja niiden eri värejä ja vaihtoehtoja."
 
 #. IMPORTANT: complete description of the application (3/3)
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "Supported file types include PNG, JPEG and BMP."
-msgstr ""
+msgstr "Tuetut tiedostotyypit ovat PNG, JPEG ja BMP."
 
 #. very generic release notes i use for ALL minor updates, please
 #. translate this one!
@@ -87,18 +91,25 @@ msgid ""
 "consistently applied when you change the active tool without clicking on "
 "\"apply\"."
 msgstr ""
+"Versio 1.2.0 parantaa muuntamisen työkaluja: niiden esikatselu on nyt "
+"johdonmukaisesti käytössä, kun muutat aktiivista työkalua napsauttamatta "
+"\"käytä\"."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "Transparency is now correctly preserved when the \"skew\" tools expands the "
 "canvas with a solid color."
 msgstr ""
+"Läpinäkyvyys säilyy nyt oikein, kun \"vääntö\"-työkalut laajentavat pintaa "
+"yhtenäisellä värillä."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "Using the right click, you can now adjust the position of the canvas when "
 "you're cropping it."
 msgstr ""
+"Napsauta hiiren oikealla painikkeella, voit nyt säätää kankaan sijaintia, "
+"kun rajaat sitä."
 
 #. very generic release notes i use for ALL minor updates, please
 #. translate this one!
@@ -113,6 +124,8 @@ msgid ""
 "By popular demand, the \"highlighter\" tool is now enabled by default, and "
 "the message dialog to warn you about the release notes is less intrusive."
 msgstr ""
+"Yleisön pyynnöstä \"korostus\"-työkalu on nyt oletusarvoisesti käytössä  ja "
+"julkaisutiedoista varoittava viestivalintaikkuna on vähemmän häiritsevä."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -122,24 +135,35 @@ msgid ""
 "2000%%, scrolling up or down, or left or right, was quite violent. These "
 "problems should all have disappeared in this new version!"
 msgstr ""
+"Tämän päivityksen tärkein parannus on zoomauksen työnkulku: versiosta 1.0.0 "
+"lähtien on mahdollista zoomata hyvin syvälle, mutta prosessi oli erittäin "
+"hidas, eikä näkymä pysynyt hyvin keskitettynä hiiren osoittimen ympärille; "
+"ja kerran 2000%%, rullaaminen ylös tai alas tai vasemmalle tai oikealle oli "
+"melko väkivaltaista. Kaikki nämä ongelmat hävinneet tässä uudessa versiossa!"
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "Incorrect command line parsing when using the app outside of a flatpak "
 "sandbox has also been fixed."
 msgstr ""
+"Virheellinen komentorivin jäsennys käytettäessä sovellusta flatpak-"
+"hiekkalaatikon ulkopuolella on myös korjattu."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "For users on elementary OS, a small issue concerning window resizing has "
 "been mended too."
 msgstr ""
+"Elementary OS käyttäjille on myös korjattu pieni ongelma, joka liittyy "
+"ikkunoiden koon muuttamiseen."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "Version 1.0.0 improves rendering performance, which is visible when editing "
 "large images with a poor CPU."
 msgstr ""
+"Versio 1.0.0 parantaa renderöintiä, joka näkyy editoitaessa suuria kuvia "
+"huonolla suorittimella."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -147,18 +171,24 @@ msgid ""
 "a parallelogram. Such a deformation can be applied horizontally or "
 "vertically."
 msgstr ""
+"Voit nyt käyttää uutta vääntötyökalua kuvan kallistamiseen suorakulmiosta "
+"suunnikkaaksi. Muodonmuutosta voidaan soveltaa vaaka- tai pystysuoraan."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "You can select tools with keyboard accelerators (Alt+letter). This may not "
 "work yet with languages using a non-latin alphabet."
 msgstr ""
+"Voit valita työkaluja nopeasti näppäimistöltä (Alt+kirjain). Tämä ei ehkä "
+"vielä toimi kielissä, jotka käyttävät muita kuin latinalaisia aakkosia."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "Zooming very deep is now possible, and the rendering will be very crisp, "
 "even at 2000%%."
 msgstr ""
+"Zoomaus erittäin syvälle on nyt mahdollista ja renderöinti on erittäin "
+"terävä, jopa 2000%%."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -166,6 +196,9 @@ msgid ""
 "do it while using a tool, it may display additional data, for example the "
 "dimensions of the shape you're drawing!"
 msgstr ""
+"Painamalla \"ctrl\"-näppäimen näyttää kohdistimen koordinaatit vihjeessä. "
+"Jos teet sen työkalua käytettäessä, se voi näyttää lisätietoja, esimerkiksi "
+"piirtämäsi muodon mitat!"
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -173,32 +206,37 @@ msgid ""
 "such as locking the direction for the \"line\" tool, or changing the filling "
 "style of a shape."
 msgstr ""
+"Painamalla \"Shift\" tai \"alt\" työkalua käytettäessä mahdollistaa tietyt "
+"vaihtoehdot, kuten \"viiva\"-työkalun suunnan lukitsemisen tai muodon "
+"täyttötavan muuttamisen."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "Using the \"scale\" tool, you may optionally set the new size as a relative "
 "percentage rather than an absolute value in pixels."
 msgstr ""
+"Käyttämällä \"Skaalaus\"-työkalua voit halutessasi asettaa uuden koon "
+"prosenttimääräksi pikselien absoluuttisen arvon sijaan."
 
 #. Caption of a screenshot, for appstores
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "The window and its primary menu"
-msgstr ""
+msgstr "Ikkuna ja sen valikko"
 
 #. Caption of a screenshot, for appstores
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "The selection and the actions associated with it"
-msgstr ""
+msgstr "Valinta ja sen toiminnot"
 
 #. Caption of a screenshot, for appstores
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "Zooming in various shapes"
-msgstr ""
+msgstr "Suurenna eri muodoissa"
 
 #. Caption of a screenshot, for appstores
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "The \"new image\" menu opened"
-msgstr ""
+msgstr "Valikko \"Uusi kuva\" avautui"
 
 #: src/ui/app-menus.ui
 msgid "File"
@@ -215,7 +253,7 @@ msgstr "Uusi tyhjä kuva"
 
 #: src/ui/app-menus.ui src/ui/win-menus.ui src/new_image_dialog.py
 msgid "New Image With Custom Size"
-msgstr "Uusi kuva, jossa mukautettu koko"
+msgstr "Uusi kuva, mukautettulla koolla"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
 msgid "New Image From Selection"
@@ -235,7 +273,7 @@ msgstr "Kuvan ominaisuudet"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Reset canvas"
-msgstr ""
+msgstr "Nollaa pohja"
 
 #: src/ui/app-menus.ui src/ui/headerbar.ui src/ui/headerbar-eos.ui
 #: src/ui/shortcuts.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
@@ -244,20 +282,19 @@ msgid "Save"
 msgstr "Tallenna"
 
 #: src/ui/app-menus.ui src/ui/win-menus.ui
-#, fuzzy
 msgid "Save without transparency"
-msgstr "Lisää läpinäkyvyys"
+msgstr "Tallenna ilman läpinäkyvyyttä"
 
 #. This "feature" is only visible on April Fools' day, and it
 #. will just rickroll the user.
 #: src/ui/app-menus.ui src/ui/win-menus.ui
 msgid "Prepare as NFT…"
-msgstr ""
+msgstr "Aprilliä, syö silliä..."
 
 #: src/ui/app-menus.ui src/ui/headerbar-eos.ui src/ui/win-menus.ui
 #: src/saving_manager.py
 msgid "Save as…"
-msgstr "Tallenna nimellä…"
+msgstr "Tallenna nimellä."
 
 #: src/ui/app-menus.ui src/ui/selection-manager.ui src/ui/win-menus.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
@@ -267,7 +304,7 @@ msgstr "Vie nimellä…"
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/toolbar.ui
 #: src/ui/toolbar-symbolic.ui src/ui/win-menus.ui
 msgid "Copy to clipboard"
-msgstr ""
+msgstr "Kopioi leikepöydälle"
 
 #: src/ui/app-menus.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
 #: src/ui/win-menus.ui
@@ -336,7 +373,7 @@ msgstr "Liitä"
 #: src/ui/toolbar-symbolic.ui src/window.py
 #: src/optionsbars/selection/optionsbar-selection.ui
 msgid "Import"
-msgstr "Tuonti"
+msgstr "Tuo"
 
 #: src/ui/app-menus.ui src/ui/preferences.ui src/ui/win-menus.ui
 #: src/preferences.py
@@ -353,7 +390,7 @@ msgstr "Näytä esikatselu"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/preferences.py
 msgid "Zoom"
-msgstr "Zoomaus"
+msgstr "Suurennus"
 
 #: src/ui/app-menus.ui src/ui/minimap.ui src/ui/shortcuts.ui
 msgid "Optimal Zoom"
@@ -364,7 +401,7 @@ msgstr "Optimaalinen näkymä"
 #: src/optionsbars/transform/optionsbar-scale.ui
 #: src/optionsbars/transform/optionsbar-skew.ui
 msgid "Zoom Out"
-msgstr "Loitontaa"
+msgstr "Pienennys"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/toolbar.ui
 #: src/ui/toolbar-symbolic.ui src/optionsbars/transform/optionsbar-crop.ui
@@ -378,7 +415,7 @@ msgstr "Alkuperäinen koko"
 #: src/optionsbars/transform/optionsbar-scale.ui
 #: src/optionsbars/transform/optionsbar-skew.ui
 msgid "Zoom In"
-msgstr "Lähennä"
+msgstr "Suurenna"
 
 #. Context: this submenu is about moving the view to the
 #. left/right/top/bottom
@@ -406,41 +443,37 @@ msgstr "Mene oikealle"
 #. canvas. The "go left" action only goes a few centimeters
 #. to the left, but this one goes all the way left.
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
-#, fuzzy
 msgid "Go to the left end"
-msgstr "Takaisin palettiin"
+msgstr "Siirry vasempaan reunaan"
 
 #. Context: this action scrolls to the top of the canvas
 #. The "go up" action only goes a few centimeters up, but
 #. this one goes all the way to the top.
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Go to the top"
-msgstr ""
+msgstr "Siirry ylös"
 
 #. Context: this action scrolls to the bottom of the canvas
 #. The "go down" action only goes a few centimeters down,
 #. but this one goes all the way to the bottom.
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Go to the bottom"
-msgstr ""
+msgstr "Siirry alas"
 
 #. Context: this action scrolls to the right end of the
 #. canvas. The "go right" action only goes a few centimeters
 #. to the right, but this one goes all the way right.
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
-#, fuzzy
 msgid "Go to the right end"
-msgstr "Kierrä oikealle"
+msgstr "Mene oikeaan reunaan"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
-#, fuzzy
 msgid "Tab at the left"
-msgstr "Takaisin palettiin"
+msgstr "Välilehti vasemmalla"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
-#, fuzzy
 msgid "Tab at the right"
-msgstr "Kierrä oikealle"
+msgstr "Välilehti oikealla"
 
 #: src/ui/app-menus.ui
 msgid "Refresh"
@@ -449,21 +482,19 @@ msgstr "Virkistä"
 #. Label shown only in developer mode
 #: src/ui/app-menus.ui
 msgid "Track framerate"
-msgstr ""
+msgstr "Raidan kuvataajuus"
 
 #: src/ui/app-menus.ui
-#, fuzzy
 msgid "Dark theme variant"
-msgstr "Oletusleveys"
+msgstr "Tumma teema"
 
 #: src/ui/app-menus.ui
-#, fuzzy
 msgid "Show the menu-bar"
-msgstr "Vaihda esikatseluun"
+msgstr "Näytä valikkopalkki"
 
 #: src/ui/app-menus.ui
 msgid "Hide toolbars"
-msgstr ""
+msgstr "Piilota työkalurivit"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
 msgid "Fullscreen"
@@ -498,22 +529,20 @@ msgstr "Normaali"
 #. Context: possible ways to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/classic/optionsbar-operator-menus.ui
-#, fuzzy
 msgid "Highlight"
-msgstr "Korostekynä"
+msgstr "Korosta"
 
 #. Context: a possible way to highlight text
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-operator-menus.ui
 #: src/tools/ui/tool-highlight.ui src/tools/classic_tools/tool_highlight.py
-#, fuzzy
 msgid "Dark text on light background"
-msgstr "Suorakulmion tausta"
+msgstr "Tumma teksti vaalealla taustalla"
 
 #. Context: a possible way to highlight text
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-operator-menus.ui
 #: src/tools/ui/tool-highlight.ui src/tools/classic_tools/tool_highlight.py
 msgid "Light text on dark background"
-msgstr ""
+msgstr "Vaalea teksti tummalla taustalla"
 
 #. Context: possible ways to apply the color to the canvas, using
 #. only some specific dimension(s) of the selected color in its
@@ -521,47 +550,43 @@ msgstr ""
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/classic/optionsbar-operator-menus.ui
 msgid "HSL modes"
-msgstr ""
+msgstr "HSL-moodit"
 
 #. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/classic/optionsbar-operator-menus.ui
-#, fuzzy
 msgid "Hue only"
-msgstr "Vain valikkopalkki"
+msgstr "Vain sävy"
 
 #. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/classic/optionsbar-operator-menus.ui
-#, fuzzy
 msgid "Saturation only"
-msgstr "Kylläisyys"
+msgstr "Vain kylläisyys"
 
 #. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/classic/optionsbar-operator-menus.ui
-#, fuzzy
 msgid "Hue and saturation"
-msgstr "Vaihda kylläisyys"
+msgstr "Sävy ja kylläisyys"
 
 #. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/classic/optionsbar-operator-menus.ui
 msgid "Luminosity only"
-msgstr ""
+msgstr "Vain kirkkaus"
 
 #. Context: possible ways to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/classic/optionsbar-operator-menus.ui
 msgid "Other modes"
-msgstr ""
+msgstr "Muut moodit"
 
 #. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/classic/optionsbar-operator-menus.ui
-#, fuzzy
 msgid "Raw source color"
-msgstr "Lähdeväri"
+msgstr "Raw lähdeväri"
 
 #. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
@@ -588,7 +613,7 @@ msgstr "Edellinen työkalu"
 
 #: src/ui/app-menus.ui
 msgid "Active tool"
-msgstr ""
+msgstr "Aktiivinen työkalu"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
 #: src/preferences.py
@@ -597,12 +622,11 @@ msgstr "Näytä työkalujen nimet"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Bigger width"
-msgstr ""
+msgstr "Suurempi leveys"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
-#, fuzzy
 msgid "Smaller width"
-msgstr "Oletusleveys"
+msgstr "Pienempi leveys"
 
 #: src/ui/app-menus.ui
 msgid "Troubleshoot selection"
@@ -610,15 +634,13 @@ msgstr "Vianmääritys"
 
 #: src/ui/app-menus.ui
 #: src/optionsbars/transform/abstract-optionsbar-transform.ui
-#, fuzzy
 msgid "Cancel transformation"
-msgstr "Ohje työkaluista"
+msgstr "Peruuta muunnos"
 
 #: src/ui/app-menus.ui
 #: src/optionsbars/transform/abstract-optionsbar-transform.ui
-#, fuzzy
 msgid "Apply transformation"
-msgstr "Ohje työkaluista"
+msgstr "Käytä muunnosta"
 
 #: src/ui/app-menus.ui
 msgid "Options"
@@ -644,7 +666,7 @@ msgstr "Sisällysluettelo"
 #. Context: submenu listing individual help pages
 #: src/ui/app-menus.ui
 msgid "Individual pages"
-msgstr ""
+msgstr "Yksittäiset ohjeet"
 
 #. Context: open the help page about general use of the app
 #: src/ui/app-menus.ui
@@ -652,40 +674,35 @@ msgid "Basic help"
 msgstr "Perusohjeet"
 
 #: src/ui/app-menus.ui src/ui/minimap.ui
-#, fuzzy
 msgid "Help about zooming"
-msgstr "Ohje työkaluista"
+msgstr "Apua suurennukseen"
 
 #: src/ui/app-menus.ui
-#, fuzzy
 msgid "Help about the full-screen mode"
-msgstr "Siirry koko näyttöön"
+msgstr "Ohjeita koko näytön tilasta"
 
 #: src/ui/app-menus.ui
-#, fuzzy
 msgid "Help about classic tools"
-msgstr "Ohje työkaluista"
+msgstr "Ohjeita työkaluista"
 
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-color-popover.ui
-#, fuzzy
 msgid "Help about colors"
-msgstr "Ohje työkaluista"
+msgstr "Ohjeita väreihin"
 
 #. Context: open the help page about transformation tools (crop,
 #. scale, rotate, filters, ...
 #: src/ui/app-menus.ui
 #: src/optionsbars/transform/abstract-optionsbar-transform.ui
-#, fuzzy
 msgid "Help about transformation tools"
-msgstr "Ohje työkaluista"
+msgstr "Ohjeita muuntamiseen"
 
 #: src/ui/app-menus.ui src/optionsbars/selection/optionsbar-selection.ui
 msgid "Help about selection"
-msgstr "Ohje valinnasta"
+msgstr "Ohjeita valinnasta"
 
 #: src/ui/app-menus.ui
 msgid "What's new"
-msgstr ""
+msgstr "Mitä uutta?"
 
 #: src/ui/app-menus.ui src/ui/win-menus.ui
 msgid "About Drawing"
@@ -698,16 +715,15 @@ msgstr "Avaa"
 
 #: src/ui/headerbar-eos.ui
 msgid "Share the image"
-msgstr ""
+msgstr "Jaa kuva"
 
 #: src/ui/image.ui
 msgid "The image changed on the disk, do you want to reload it?"
-msgstr ""
+msgstr "Levyllä oleva kuva vaihtui, haluatko ladata sen uudelleen?"
 
 #: src/ui/image.ui
-#, fuzzy
 msgid "Reload"
-msgstr "Lataa uudelleen"
+msgstr "Lataa"
 
 #: src/ui/minimap.ui
 msgid "100%"
@@ -715,7 +731,7 @@ msgstr "100%"
 
 #: src/ui/minimap.ui src/ui/shortcuts.ui
 msgid "Maximum zoom"
-msgstr ""
+msgstr "Suurin suurennus"
 
 #: src/ui/new-image-dialog.ui src/ui/properties.ui
 #: src/optionsbars/transform/optionsbar-crop.ui
@@ -730,9 +746,8 @@ msgid "Height"
 msgstr "Korkeus"
 
 #: src/ui/new-image-dialog.ui
-#, fuzzy
 msgid "Color"
-msgstr "Värit"
+msgstr "Väri"
 
 #: src/ui/new-image-dialog.ui
 msgid "Use these settings by default"
@@ -776,11 +791,11 @@ msgstr "Rajaa"
 
 #: src/ui/selection-manager.ui src/tools/transform_tools/tool_scale.py
 msgid "Scale"
-msgstr "Skaalaa"
+msgstr "Koko"
 
 #: src/ui/selection-manager.ui src/tools/transform_tools/tool_rotate.py
 msgid "Rotate"
-msgstr "Kieritä"
+msgstr "Kierto"
 
 #. This is the name of the tool changing rectangles into parallelograms.
 #. It's synonymous with tilt, slant, bend. If you need a reference to
@@ -800,23 +815,21 @@ msgstr "Lisää toimintoja"
 
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
-#, fuzzy
 msgid "Invert selection"
-msgstr "Vapaa valinta"
+msgstr "Käänteinen valinta"
 
 #. Define the image as being the currently selected area
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
-#, fuzzy
 msgid "Define as current image"
-msgstr "Avaa kuva"
+msgstr "Määritä nykyiseksi kuvaksi"
 
 #. Expand the canvas of the current image to make the current selection fit in it.
 #. Can be translated as "Expand to this size".
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 msgid "Expand image to fit"
-msgstr ""
+msgstr "Laajenna kuva sopivaksi"
 
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
@@ -824,9 +837,8 @@ msgid "Open As New Image"
 msgstr "Avaa uutena kuvana"
 
 #: src/ui/shortcuts.ui
-#, fuzzy
 msgid "Keyboard Shortcuts"
-msgstr "Pikakuvakkeet"
+msgstr "Näppäimistön pikanäppäimet"
 
 #: src/ui/shortcuts.ui
 msgid "General"
@@ -837,9 +849,8 @@ msgid "Main menu"
 msgstr "Päävalikko"
 
 #: src/ui/shortcuts.ui
-#, fuzzy
 msgid "Toggle the menu-bar"
-msgstr "Vaihda esikatseluun"
+msgstr "Vaihda valikkopalkkia"
 
 #: src/ui/shortcuts.ui
 msgid "Image"
@@ -862,9 +873,8 @@ msgid "Close the active image"
 msgstr "Sulje aktiivinen kuva"
 
 #: src/ui/shortcuts.ui
-#, fuzzy
 msgid "Open the tool options menu"
-msgstr "Asetukset valikko"
+msgstr "Avaa työkalun valikko"
 
 #: src/ui/shortcuts.ui
 msgid "Back to previous tool"
@@ -872,7 +882,7 @@ msgstr "Takaisin edelliseen työkaluun"
 
 #: src/ui/shortcuts.ui
 msgid "Apply a transformation"
-msgstr ""
+msgstr "Käytä muunnosta"
 
 #: src/ui/shortcuts.ui
 msgid "Toggle the preview"
@@ -904,7 +914,7 @@ msgstr "Muokkaa seuraavaa väriä (napsauta hiiren oikealla painikkeella)"
 
 #: src/ui/shortcuts.ui
 msgid "History"
-msgstr ""
+msgstr "Historia"
 
 #. Context: this section of the shortcuts window is about moving
 #. the view to the left/right/top/bottom
@@ -914,25 +924,23 @@ msgstr "Navigaatio"
 
 #: src/ui/shortcuts.ui
 msgid "Tabs"
-msgstr ""
+msgstr "Välilehdet"
 
 #: src/ui/shortcuts.ui
-#, fuzzy
 msgid "Toggle fullscreen mode"
-msgstr "Siirry koko näyttöön"
+msgstr "Vaihda kokonäyttöön"
 
 #: src/ui/shortcuts.ui
 msgid "Toggle toolbars visibility"
-msgstr ""
+msgstr "Vaihda työkalujen näkyvyyttä"
 
 #: src/ui/shortcuts.ui
 msgid "Touch gestures"
-msgstr ""
+msgstr "Kosketuseleet"
 
 #: src/ui/window.ui src/deco_manager.py
-#, fuzzy
 msgid "Loading…"
-msgstr "Ladataan %s"
+msgstr "Ladataan..."
 
 #: src/ui/window.ui
 msgid "Exit fullscreen"
@@ -951,18 +959,18 @@ msgstr "Uudelleen %s"
 #. Context: an error message
 #: src/history_manager.py
 msgid "Attempt to save an invalid state"
-msgstr ""
+msgstr "Yritä tallentaa virheellinen tila"
 
 #: src/history_manager.py
 #, python-format
 msgid "Error: no tool '%s'"
-msgstr ""
+msgstr "Virhe: ei työkalua \"%s\""
 
 #. Context: an error message
 #: src/image.py
 #, python-format
 msgid "New pixbuf empty, no change applied to %s"
-msgstr ""
+msgstr "Uusi pixbuf tyhjä, ei muutosta kohteeseen %s"
 
 #: src/image.py src/properties.py
 msgid "Unsaved file"
@@ -972,7 +980,7 @@ msgstr "Tallentamaton tiedosto"
 #: src/image.py
 #, python-format
 msgid "%s frames per second"
-msgstr ""
+msgstr "%s kuvaa sekunnissa"
 
 #. Description of a command line option
 #: src/main.py
@@ -1016,22 +1024,21 @@ msgstr "GNOMEn \"Art Libre\" -kuvakesarjan kirjoittajat"
 
 #: src/main.py
 msgid "Simple image editor for Linux"
-msgstr ""
+msgstr "Helppo piirto-ohjelma Linuxille"
 
 #: src/main.py
 msgid "Official webpage"
 msgstr "Virallinen verkkosivu"
 
 #: src/main.py
-#, fuzzy
 msgid "Error opening this file."
-msgstr "Virhe avatessa tiedostoa. Tarkoititko %s ?"
+msgstr "Virhe avattaessa tätä tiedostoa."
 
 #. This is an error message, %s is a better command suggestion
 #: src/main.py
 #, python-format
 msgid "Did you mean %s ?"
-msgstr ""
+msgstr "Tarkoititko %s?"
 
 #. This string displays the zoom level: %s will be replaced with a
 #. number, while %% will be rendered as the symbol '%'
@@ -1043,7 +1050,7 @@ msgstr "%s%%"
 #: src/new_image_dialog.py src/saving_manager.py src/window.py
 #: src/utilities/utilities_paths.py src/tools/ui/tool-text.ui
 msgid "Cancel"
-msgstr "Peru"
+msgstr "Peruuta"
 
 #. Context: Create a new image
 #: src/new_image_dialog.py
@@ -1073,9 +1080,8 @@ msgstr "Oletuskorkeus"
 #: src/optionsbars/transform/optionsbar-skew.ui src/tools/ui/selection.ui
 #: src/tools/ui/tool-crop.ui src/tools/ui/tool-eraser.ui
 #: src/tools/classic_tools/tool_eraser.py
-#, fuzzy
 msgid "Default color"
-msgstr "Oletustausta"
+msgstr "Oletusväri"
 
 #. Context: title of a section of the preferences
 #: src/preferences.py
@@ -1120,15 +1126,15 @@ msgstr "Kysy ennen tallentamista"
 
 #: src/preferences.py
 msgid "You can zoom with Ctrl+scrolling, or only scrolling."
-msgstr "Voit zoomata painamalla Ctrl+vieritys tai vain vieritys."
+msgstr "Voit suurentaa painamalla Ctrl+vieritys tai vain vieritys."
 
 #: src/preferences.py
 msgid "See the user help manual for explanations."
-msgstr ""
+msgstr "Katso selitykset käyttöoppaasta."
 
 #: src/preferences.py
 msgid "Use 'Ctrl' to zoom"
-msgstr "Käytä 'Ctrl' zoomataksesi"
+msgstr "Käytä 'Ctrl' suurentaaksesi"
 
 #. Context: title of a section of the preferences (appearance of the
 #. tools: big icons?, labels?)
@@ -1162,12 +1168,12 @@ msgstr "Pyyhekumi"
 #. highlight text, for example in screenshots
 #: src/preferences.py src/tools/classic_tools/tool_highlight.py
 msgid "Highlighter"
-msgstr "Korostekynä"
+msgstr "Korostuskynä"
 
 #: src/preferences.py src/tools/classic_tools/tool_brush.py
 #: src/tools/classic_tools/brushes/abstract_brush.py
 msgid "Brush"
-msgstr ""
+msgstr "Sivellin"
 
 #. Context: this is the name of a tool to draw little circles, crosses,
 #. or squares at precise points of the image, for example to draw a vague
@@ -1176,7 +1182,7 @@ msgstr ""
 #. the elements of an image.
 #: src/preferences.py src/tools/classic_tools/tool_points.py
 msgid "Points"
-msgstr ""
+msgstr "Pisteet"
 
 #. Context: this is a tool to select an area according to a shape that
 #. can be freely defined by the user.
@@ -1210,7 +1216,7 @@ msgstr "Käytä värieditoria oletuksena"
 
 #: src/preferences.py
 msgid "You can use a simple color palette, or use a full RGBA color editor."
-msgstr ""
+msgstr "Voit käyttää väripalettia tai täyttä RGBA-värieditoria."
 
 #. Context: title of a section of the preferences
 #: src/preferences.py
@@ -1231,9 +1237,8 @@ msgid "Background color"
 msgstr "Taustaväri"
 
 #: src/preferences.py
-#, fuzzy
 msgid "Prefer dark theme variant"
-msgstr "Oletusleveys"
+msgstr "Suosi tummaa teemaa"
 
 #. Context: title of a section of the preferences. It corresponds to the
 #. window layout (header-bar? tool-bar? menu-bar?)
@@ -1342,39 +1347,39 @@ msgstr "Hylkää"
 #: src/saving_manager.py src/window.py
 #, python-format
 msgid "There are unsaved modifications to %s."
-msgstr "Täällä on %s tallentamattomia muutoksia."
+msgstr "Kohteeseen %s on tallentamattomia muutoksia."
 
 #: src/saving_manager.py
 msgid ""
 "A part of the image is selected: the pixels beneath the selection will be "
 "saved with a color you might not expect!"
 msgstr ""
+"Osa kuvasta valittu: valinnan alla olevat pikselit tallennetaan värillä, "
+"jota et ehkä odota!"
 
 #. Context: the user tries to save the image while previewing an
 #. unapplied "transform" operation (scaling, cropping, whatever)
 #: src/saving_manager.py
 msgid "Modifications from the current tool haven't been applied."
-msgstr ""
+msgstr "Nykyisen työkalun muutoksia ei ole otettu käyttöön."
 
 #. To translators: this string should be quite short
 #: src/saving_manager.py
 msgid "Apply & save"
-msgstr ""
+msgstr "Käytä ja tallenna"
 
 #. To translators: this string should be quite short
 #: src/saving_manager.py
-#, fuzzy
 msgid "Deselect & save"
-msgstr "Valitsematta"
+msgstr "Poista valinta ja tallenna"
 
 #: src/saving_manager.py
 msgid "Save anyway"
-msgstr ""
+msgstr "Tallenna kuitenkin"
 
 #: src/saving_manager.py
-#, fuzzy
 msgid "Do you want to save anyway?"
-msgstr "Missä haluat avata %s?"
+msgstr "Haluatko silti tallentaa?"
 
 #. Context: confirm replacing transparent pixels with the selected color
 #: src/saving_manager.py
@@ -1396,11 +1401,11 @@ msgstr "Korvaa läpinäkyvyys seuraavilla:"
 #. Context: an error message
 #: src/selection_manager.py
 msgid "The selection pixbuf is empty."
-msgstr ""
+msgstr "Valinta pixbuf on tyhjä."
 
 #: src/selection_manager.py
 msgid "The selection path is empty."
-msgstr ""
+msgstr "Valintapolku on tyhjä."
 
 #. Context: an error message
 #: src/tools_initializer.py
@@ -1416,6 +1421,8 @@ msgstr "Virhe sovelluksen käynnistämisessä, ilmoita tästä virheestä."
 msgid ""
 "It's the first time you use Drawing, would you like to read the help manual?"
 msgstr ""
+"Tämä on ensimmäinen kerta kun käytät Drawing piirtämistä. Haluatko lukea "
+"ohjekirjan?"
 
 #. Context: %s is the version number of the app
 #: src/window.py
@@ -1423,41 +1430,43 @@ msgstr ""
 msgid ""
 "It's the first time you use Drawing %s, would you like to read what's new?"
 msgstr ""
+"Tämä on ensimmäinen kerta, kun käytät Drawing piirtämistä %s. Haluatko lukea "
+"mitä on uutta?"
 
 #: src/window.py
 msgid ""
 "These news will always be available in the help manual: click the 'Help' "
 "menu item whenever you want!"
 msgstr ""
+"Nämä uutiset ovat aina ohjekirjassa: napsauta 'Ohje'-valikkoa milloin haluat!"
 
 #: src/window.py
 msgid "No"
-msgstr ""
+msgstr "Ei"
 
 #: src/window.py
 msgid "Yes"
-msgstr ""
+msgstr "Kyllä"
 
 #: src/window.py
 msgid "The clipboard doesn't contain any image."
-msgstr ""
+msgstr "Leikepöytä ei sisällä yhtään kuvaa."
 
 #. Context: %s is a file name
 #: src/window.py
 #, python-format
 msgid "The file %s is already opened"
-msgstr ""
+msgstr "Tiedosto %s on jo avattu"
 
 #. Context: the user would click here to confirm they want to open the
 #. same file twice
 #: src/window.py
-#, fuzzy
 msgid "Open again"
-msgstr "Avaa kuva"
+msgstr "Avaa uudelleen"
 
 #: src/window.py
 msgid "Switch to this image"
-msgstr ""
+msgstr "Vaihda tähän kuvaan"
 
 #: src/window.py
 msgid "Modifications will take effect in the next new window."
@@ -1465,18 +1474,17 @@ msgstr "Muutokset tulevat voimaan seuraavassa uudessa ikkunassa."
 
 #: src/window.py
 msgid "Middle-click or press F8 to show/hide controls."
-msgstr ""
+msgstr "Napsauta keskipainiketta tai paina F8 näyttää/piilottaa säätimet."
 
 #: src/window.py
-#, fuzzy
 msgid "Press F11 to exit fullscreen."
-msgstr "Poistu kokonäytöstä"
+msgstr "Paina F11 poistu koko näytöstä."
 
 #: src/window.py
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Error loading the bottom pane for the tool '%s', please report this bug."
-msgstr "Virhe sovelluksen käynnistämisessä, ilmoita tästä virheestä."
+msgstr "Virhe ladattaessa työkalun \"%s\" paneelia, ilmoita tästä virheestä."
 
 #: src/window.py
 #, python-format
@@ -1511,9 +1519,8 @@ msgid "What do you want to do with %s?"
 msgstr "Mitä haluat tehdä kohteen %s kanssa?"
 
 #: src/window.py
-#, fuzzy
 msgid "Image copied to clipboard"
-msgstr "Muokkaa kuvaa leikepöydällä"
+msgstr "Kuva kopioitu leikepöydälle"
 
 #: src/window.py
 msgid "Import a picture"
@@ -1612,19 +1619,19 @@ msgid "BMP images"
 msgstr "BMP-kuvat"
 
 #: src/utilities/utilities_files.py
-#, fuzzy, python-format
+#, python-format
 msgid "%s isn't an image."
-msgstr "Avaa kuva"
+msgstr "%s ei ole kuva."
 
 #: src/utilities/utilities_files.py
 msgid "Sorry, WEBP images can't be loaded by this app."
-msgstr ""
+msgstr "Tämä sovellus ei voi ladata WEBP-kuvia."
 
 #. Context: an error message, %s is a file path
 #: src/utilities/utilities_files.py
 #, python-format
 msgid "Despite its name, %s is a WEBP file."
-msgstr ""
+msgstr "Nimestä huolimatta %s on WEBP-tiedosto."
 
 #: src/utilities/utilities_paths.py
 msgid "Continue"
@@ -1656,9 +1663,8 @@ msgstr "astetta"
 #. Context: this is equivalent to "Highlight: Light text on dark background"
 #. but it has to be FAR SHORTER so it fits in the color chooser
 #: src/optionsbars/classic/optionsbar_color_popover.py
-#, fuzzy
 msgid "Highlight (dark)"
-msgstr "Korostekynä"
+msgstr "Korosta (tumma)"
 
 #: src/optionsbars/classic/optionsbar_color_popover.py
 #: src/tools/ui/tool-shape.ui
@@ -1700,15 +1706,13 @@ msgid "Palette"
 msgstr "Paletti"
 
 #: src/optionsbars/selection/optionsbar-selection.ui
-#, fuzzy
 msgid "Selection options"
-msgstr "Lyijykynän asetukset"
+msgstr "Valinta vaihtoehdot"
 
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 #: src/tools/ui/tool-eraser.ui
-#, fuzzy
 msgid "Replace with…"
-msgstr "Korvaa"
+msgstr "Korvaa..."
 
 #: src/optionsbars/selection/optionsbar-selection.ui
 #: src/optionsbars/transform/optionsbar-crop.ui
@@ -1721,7 +1725,7 @@ msgstr "Läpinäkyvyys"
 
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 msgid "Extract from this color"
-msgstr ""
+msgstr "Näyte tästä väristä"
 
 #: src/optionsbars/transform/abstract-optionsbar-transform.ui
 msgid "More options"
@@ -1730,7 +1734,7 @@ msgstr "Lisää vaihtoehtoja"
 #: src/optionsbars/transform/optionsbar-crop.ui
 #: src/optionsbars/transform/optionsbar-skew.ui src/tools/ui/tool-crop.ui
 msgid "Expand with…"
-msgstr ""
+msgstr "Laajenna…"
 
 #: src/optionsbars/transform/optionsbar-filters.ui
 #: src/tools/transform_tools/tool_filters.py
@@ -1781,7 +1785,7 @@ msgstr "Kulmista skaalattaessa"
 #. Context for translations: "[Keep proportions only] when setting values manually"
 #: src/optionsbars/transform/optionsbar-scale.ui src/tools/ui/tool-scale.ui
 msgid "When setting values manually"
-msgstr ""
+msgstr "Kun arvot asetetaan manuaalisesti"
 
 #. Context: an item in a menu whose title is "Keep proportions"
 #. Context for translations: "Never [keep proportions]"
@@ -1790,14 +1794,12 @@ msgid "Never"
 msgstr "Koskaan"
 
 #: src/optionsbars/transform/optionsbar-scale.ui src/tools/ui/tool-scale.ui
-#, fuzzy
 msgid "Pixels"
-msgstr "pikseliä"
+msgstr "Pikseliä"
 
 #: src/optionsbars/transform/optionsbar-scale.ui src/tools/ui/tool-scale.ui
-#, fuzzy
 msgid "Percentage"
-msgstr "prosentit"
+msgstr "Prosenttia"
 
 #: src/optionsbars/transform/optionsbar-skew.ui
 msgid "Horizontal deformation"
@@ -1811,7 +1813,7 @@ msgstr "Pystysuora muodonmuutos"
 #: src/tools/abstract_tool.py
 #, python-brace-format
 msgid "Can't start operation: wrong tool id (expected {0}, got {1})"
-msgstr ""
+msgstr "Toimintoa ei voi aloittaa: väärä työkalu (odotettu {0}, saatu {1})"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui
@@ -1839,95 +1841,85 @@ msgstr "Ääriviiva"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui
-#, fuzzy
 msgid "No dashes"
-msgstr "Käytä viivoja"
+msgstr "Ei viivoja"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui
-#, fuzzy
 msgid "Simple dashes"
-msgstr "Käytä viivoja"
+msgstr "Viivoja"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui
-#, fuzzy
 msgid "Long dashes"
-msgstr "Käytä viivoja"
+msgstr "Pitkät viivat"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui
-#, fuzzy
 msgid "Short dashes"
-msgstr "Käytä viivoja"
+msgstr "Lyhyet viivat"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui
 msgid "Alternated dashes"
-msgstr ""
+msgstr "Vuorottelevat viivat"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
-#, fuzzy
 msgid "No arrow"
-msgstr "Nuoli"
+msgstr "Ei nuolia"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 msgid "Simple arrow"
-msgstr ""
+msgstr "Nuolia"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
-#, fuzzy
 msgid "Double arrow"
-msgstr "Katkoviivattu nuoli"
+msgstr "Kaksoisnuoli"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-brush.ui
 #: src/tools/ui/tool-highlight.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui src/tools/ui/tool-points.ui
 #: src/tools/ui/tool-shape.ui src/tools/ui/tool-text.ui
 msgid "Antialiasing"
-msgstr "Reunojen"
+msgstr "Sahalaitaisuuden poisto"
 
 #: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_simple.py
-#, fuzzy
 msgid "Simple brush"
-msgstr "Käytä viivoja"
+msgstr "Perus sivellin"
 
 #: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_airbrush.py
 msgid "Airbrush"
-msgstr ""
+msgstr "Suihke"
 
 #: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_hairy.py
-#, fuzzy
 msgid "Hairy brush"
-msgstr "Käytä viivoja"
+msgstr "Karvainen sivellin"
 
 #: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_nib.py
 msgid "Calligraphic nib"
-msgstr ""
+msgstr "Korutekstaus kärki"
 
 #: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_nib.py
 msgid "Right-handed nib"
-msgstr ""
+msgstr "Oikeakätinen kärki"
 
 #: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_nib.py
-#, fuzzy
 msgid "Vertical nib"
-msgstr "Pystysuora"
+msgstr "Pystykärki"
 
 #: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_nib.py
 msgid "Left-handed nib"
-msgstr ""
+msgstr "Vasenkätinen kärki"
 
 #. brush_direction == 'horizontal':
 #: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_nib.py
-#, fuzzy
 msgid "Horizontal nib"
-msgstr "Vaaka"
+msgstr "Vaakakärki"
 
 #: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
 #: src/tools/classic_tools/tool_pencil.py
 msgid "Pencil"
-msgstr "Lyijykynä"
+msgstr "Kynä"
 
 #: src/tools/ui/tool-eraser.ui src/tools/ui/tool-shape.ui
 #: src/tools/classic_tools/tool_eraser.py src/tools/classic_tools/tool_shape.py
@@ -1936,28 +1928,26 @@ msgstr "Suorakulmio"
 
 #: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
 msgid "Blur"
-msgstr "Sumeus"
+msgstr "Sumennus"
 
 #: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
-#, fuzzy
 msgid "Shuffle pixels"
-msgstr "pikseliä"
+msgstr "Sekoita pikseleitä"
 
 #: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
 msgid "Shuffle and blur"
-msgstr ""
+msgstr "Sekoita ja sumenna"
 
 #. Context: a filter to censor the image with some little tiles
 #: src/tools/ui/tool-eraser.ui src/tools/ui/tool-filters.ui
 #: src/tools/classic_tools/tool_eraser.py
 #: src/tools/transform_tools/tool_filters.py
 msgid "Mosaic"
-msgstr ""
+msgstr "Mosaiikki"
 
 #: src/tools/ui/tool-eraser.ui
-#, fuzzy
 msgid "Solid color"
-msgstr "Seuraava väri"
+msgstr "Yksivärinen"
 
 #: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
 msgid "Change saturation"
@@ -1966,17 +1956,17 @@ msgstr "Vaihda kylläisyys"
 #. Context: a filter adding like a light veil on the image
 #: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
 msgid "Veil"
-msgstr "Peittää"
+msgstr "Peite"
 
 #: src/tools/ui/tool-filters.ui src/tools/ui/tool-highlight.ui
 #: src/tools/transform_tools/tool_filters.py
 msgid "Add transparency"
-msgstr "Lisää läpinäkyvyys"
+msgstr "Lisää läpinäkyvyyttä"
 
 #: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
 #: src/tools/transform_tools/filters/filter_contrast.py
 msgid "Increase contrast"
-msgstr ""
+msgstr "Lisää kontrastia"
 
 #. Context: the title of the menu with various types of blurring
 #. filters and their options.
@@ -1986,11 +1976,11 @@ msgstr "Sumentaminen"
 
 #: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
 msgid "Fast blur"
-msgstr "Nopea sumeus"
+msgstr "Nopea sumennus"
 
 #: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
 msgid "Slow blur"
-msgstr "Hidas sumeus"
+msgstr "Hidas sumennus"
 
 #: src/tools/ui/tool-filters.ui
 msgid "Blur direction"
@@ -2002,32 +1992,28 @@ msgid "No direction"
 msgstr "Ei suuntaa"
 
 #: src/tools/ui/tool-filters.ui
-#, fuzzy
 msgid "Blur horizontally"
-msgstr "Peilaa vaaka suunnassa"
+msgstr "Vaakasumennus"
 
 #: src/tools/ui/tool-filters.ui
-#, fuzzy
 msgid "Blur vertically"
-msgstr "Peilaa pystysuunnassa"
+msgstr "Pystysumennus"
 
 #: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
 msgid "Invert colors"
 msgstr "Käännä värit"
 
 #: src/tools/ui/tool-highlight.ui
-#, fuzzy
 msgid "Straighten the line"
-msgstr "Valinnan skaalaaminen"
+msgstr "Suorista viiva"
 
 #: src/tools/ui/tool-line.ui
 msgid "Color gradient"
 msgstr "Värin liukuväri"
 
 #: src/tools/ui/tool-line.ui
-#, fuzzy
 msgid "Locked direction"
-msgstr "Ei suuntaa"
+msgstr "Lukittu suunta"
 
 #. Context: title for the list of the possible painting algorithms.
 #: src/tools/ui/tool-paint.ui
@@ -2053,22 +2039,20 @@ msgstr "Pyyhi ja korvaa"
 #. paints over the entire image, instead of following the shapes
 #. already drawn.
 #: src/tools/ui/tool-paint.ui
-#, fuzzy
 msgid "Entire image"
-msgstr "Avatut kuvat"
+msgstr "Koko kuva"
 
 #. Context: this is one of the possible painting algorithms. It
 #. doesn't really paint, instead it erases the color the user
 #. clicked. For example to cut out an object from its white
 #. background.
 #: src/tools/ui/tool-paint.ui
-#, fuzzy
 msgid "Remove color"
-msgstr "Lähdeväri"
+msgstr "Poista väri"
 
 #: src/tools/ui/tool-points.ui
 msgid "Dots type"
-msgstr ""
+msgstr "Pistetyyppi"
 
 #: src/tools/ui/tool-points.ui src/tools/ui/tool-shape.ui
 #: src/tools/classic_tools/tool_points.py src/tools/classic_tools/tool_shape.py
@@ -2077,67 +2061,63 @@ msgstr "Ympyrä"
 
 #: src/tools/ui/tool-points.ui src/tools/classic_tools/tool_points.py
 msgid "Cross"
-msgstr ""
+msgstr "Tähti"
 
 #: src/tools/ui/tool-points.ui src/tools/classic_tools/tool_points.py
 msgid "X-shaped cross"
-msgstr ""
+msgstr "Risti X"
 
 #: src/tools/ui/tool-points.ui
 msgid "Include a number"
-msgstr ""
+msgstr "Sisältää numeron"
 
 #: src/tools/ui/tool-points.ui
 msgid "Next number"
-msgstr ""
+msgstr "Seuraava numero"
 
 #: src/tools/ui/tool-points.ui
 msgid "Reset number"
-msgstr ""
+msgstr "Nollaa numero"
 
 #: src/tools/ui/tool-points.ui
 msgid "Decrement number"
-msgstr ""
+msgstr "Vähennä numeroa"
 
 #: src/tools/ui/tool-points.ui
 msgid "Increment number"
-msgstr ""
+msgstr "Lisää numeroa"
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
-#, fuzzy
 msgid "Solid outline"
-msgstr "Tyhjä ääriviiva"
+msgstr "Kiinteä ääriviiva"
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
-#, fuzzy
 msgid "Dashed outline"
-msgstr "Katkoviivattu nuoli"
+msgstr "Katkonainen ääriviiva"
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
-#, fuzzy
 msgid "No outline"
-msgstr "Ääriviiva"
+msgstr "Ei ääriviivaa"
 
 #: src/tools/ui/tool-shape.ui
 msgid "Filling"
-msgstr ""
+msgstr "Täyte"
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
-#, fuzzy
 msgid "Empty shape"
-msgstr "Tyhjä"
+msgstr "Tyhjä muoto"
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
 msgid "Horizontal gradient"
-msgstr "Vaakasuuntainen liukuväri"
+msgstr "Liukuväri vaaka"
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
 msgid "Vertical gradient"
-msgstr "Pystysuora liukuväri"
+msgstr "Liukuväri pysty"
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
 msgid "Radial gradient"
-msgstr "Säteinen liukuväri"
+msgstr "Liukuväri keskeltä"
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
 msgid "Rounded rectangle"
@@ -2168,9 +2148,8 @@ msgid "Font"
 msgstr "Fontti"
 
 #: src/tools/ui/tool-text.ui
-#, fuzzy
 msgid "Select a font…"
-msgstr "Valitse suodatin…"
+msgstr "Valitse fontti…"
 
 #: src/tools/ui/tool-text.ui
 msgid "Italic"
@@ -2197,20 +2176,18 @@ msgstr "Varjo"
 
 #. Context: a type of background behind the inserted text
 #: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
-#, fuzzy
 msgid "Thin outline"
-msgstr "Ääriviiva"
+msgstr "Ohut ääriviiva"
 
 #. Context: a type of background behind the inserted text
 #: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
-#, fuzzy
 msgid "Thick outline"
-msgstr "Ääriviiva"
+msgstr "Paksu ääriviiva"
 
 #. Context: a type of background behind the inserted text
 #: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
 msgid "Rectangle background"
-msgstr "Suorakulmion tausta"
+msgstr "Suorakulmainen tausta"
 
 #: src/tools/classic_tools/tool_arc.py
 msgid "Curve"
@@ -2222,7 +2199,7 @@ msgstr "Käyrän asetukset"
 
 #: src/tools/classic_tools/tool_arc.py
 msgid "Draw a second segment to complete the curve"
-msgstr ""
+msgstr "Piirrä toinen osa suorittaaksesi käyrän loppuun"
 
 #: src/tools/classic_tools/tool_arc.py src/tools/classic_tools/tool_line.py
 msgid "Dashed arrow"
@@ -2240,38 +2217,35 @@ msgstr "Katkoviiva"
 #: src/tools/classic_tools/tool_arc.py src/tools/classic_tools/tool_line.py
 #: src/tools/classic_tools/tool_pencil.py
 msgid "Press <Alt> to toggle the 'outline' option"
-msgstr ""
+msgstr "Paina <Alt> vaihtaaksesi ääriviivaa"
 
 #: src/tools/classic_tools/tool_brush.py
-#, fuzzy
 msgid "Brush options"
-msgstr "Lisää vaihtoehtoja"
+msgstr "Siveltimen vaihtoehdot"
 
 #: src/tools/classic_tools/tool_eraser.py
 msgid "Press <Shift> to erase a rectangle area instead"
-msgstr ""
+msgstr "Voit poistaa suorakaiteen alueen painamalla <Shift>"
 
 #: src/tools/classic_tools/tool_eraser.py
 msgid "Press <Shift> to erase a path instead"
-msgstr ""
+msgstr "Voit poistaa polun painamalla <Shift>"
 
 #: src/tools/classic_tools/tool_eraser.py
-#, fuzzy
 msgid "Eraser options"
-msgstr "Lisää vaihtoehtoja"
+msgstr "Pyyhekumin vaihtoehdot"
 
 #: src/tools/classic_tools/tool_highlight.py
 msgid "Press <Shift> to temporarily highlight on dark background instead"
-msgstr ""
+msgstr "Paina <Shift> korostaa tilapäisesti tummaa taustaa"
 
 #: src/tools/classic_tools/tool_highlight.py
 msgid "Press <Shift> to temporarily highlight on light background instead"
-msgstr ""
+msgstr "Paina <Shift> korostaa tilapäisesti vaaleaa taustaa"
 
 #: src/tools/classic_tools/tool_highlight.py
-#, fuzzy
 msgid "Highlighter options"
-msgstr "Korostekynä"
+msgstr "Korostuksen vaihtoehdot"
 
 #: src/tools/classic_tools/tool_line.py
 msgid "Line"
@@ -2279,32 +2253,32 @@ msgstr "Viiva"
 
 #: src/tools/classic_tools/tool_line.py src/tools/classic_tools/tool_shape.py
 #: src/tools/selection_tools/select_rect.py
-#, fuzzy, python-format
+#, python-format
 msgid "Width: %spx"
-msgstr "Leveys"
+msgstr "Leveys: %spx"
 
 #: src/tools/classic_tools/tool_line.py src/tools/classic_tools/tool_shape.py
 #: src/tools/selection_tools/select_rect.py
-#, fuzzy, python-format
+#, python-format
 msgid "Height: %spx"
-msgstr "Korkeus"
+msgstr "Korkeus: %spx"
 
 #: src/tools/classic_tools/tool_line.py
 #, python-format
 msgid "Length: %spx"
-msgstr ""
+msgstr "Pituus: %spx"
 
 #: src/tools/classic_tools/tool_line.py
 msgid "Line options"
-msgstr "Viivan asetukset"
+msgstr "Viivan vaihtoehdot"
 
 #: src/tools/classic_tools/tool_line.py
 msgid "Press <Shift> to unlock the line direction"
-msgstr ""
+msgstr "Paina <Shift> avataksesi linjan suunnan"
 
 #: src/tools/classic_tools/tool_line.py
 msgid "Press <Shift> to lock the line direction"
-msgstr ""
+msgstr "Paina <Shift> lukitaksesi linjan suunnan"
 
 #: src/tools/classic_tools/tool_paint.py
 msgid "Painting options"
@@ -2315,45 +2289,41 @@ msgid "Click on an area to replace its color by transparency"
 msgstr "Napsauta aluetta korvataksesi sen väri läpinäkyvyydellä"
 
 #: src/tools/classic_tools/tool_paint.py
-#, fuzzy
 msgid "Click on the canvas to entirely paint it"
-msgstr "Napsauta muodon ensimmäistä kohtaa sulkeaksesi sen."
+msgstr "Napsauta pintaa maalataksesi sen kokonaan"
 
 #: src/tools/classic_tools/tool_paint.py
 #: src/tools/selection_tools/select_color.py
 msgid "May not work for complex shapes"
-msgstr ""
+msgstr "Ei ehkä toimi monimutkaisille muodoille"
 
 #: src/tools/classic_tools/tool_paint.py
 #: src/tools/selection_tools/select_color.py
 msgid "It will not work well if the area's edges are blurry"
-msgstr ""
+msgstr "Se ei toimi hyvin, jos alueen reunat ovat epäselviä"
 
 #: src/tools/classic_tools/tool_pencil.py
 msgid "Pencil options"
-msgstr "Lyijykynän asetukset"
+msgstr "Kynän vaihtoehdot"
 
 #: src/tools/classic_tools/tool_points.py
-#, fuzzy
 msgid "Points options"
-msgstr "Fontin asetukset"
+msgstr "Pisteiden vaihtoehdot"
 
 #: src/tools/classic_tools/tool_points.py
 #, python-format
 msgid "Next number: %s"
-msgstr ""
+msgstr "Seuraava numero: %s"
 
 #. Context: fill a shape with the color of the left click
 #: src/tools/classic_tools/tool_shape.py
-#, fuzzy
 msgid "Filled with main color"
-msgstr "Muokkaa pääväriä..."
+msgstr "Täytetty päävärillä"
 
 #. Context: fill a shape with the color of the right click
 #: src/tools/classic_tools/tool_shape.py
-#, fuzzy
 msgid "Filled with secondary color"
-msgstr "Muokkaa toissijaista väriä…"
+msgstr "Täytetty toissijaisella värillä"
 
 #: src/tools/classic_tools/tool_shape.py
 msgid "Shape"
@@ -2362,7 +2332,7 @@ msgstr "Muoto"
 #: src/tools/classic_tools/tool_shape.py
 #, python-format
 msgid "Radius: %spx"
-msgstr ""
+msgstr "Säde: %spx"
 
 #: src/tools/classic_tools/tool_shape.py
 msgid "Shape options"
@@ -2376,6 +2346,7 @@ msgstr "Napsauta muodon ensimmäistä kohtaa sulkeaksesi sen."
 #: src/tools/classic_tools/tool_shape.py
 msgid "Press <Alt>, <Shift>, or both, to quickly change the 'filling' option"
 msgstr ""
+"Paina <Alt>, <Shift> tai molempia vaihtaaksesi täytön vaihtoehtoa nopeasti"
 
 #: src/tools/classic_tools/tool_text.py
 msgid "Text"
@@ -2387,25 +2358,25 @@ msgstr "Fontin asetukset"
 
 #: src/tools/classic_tools/brushes/brush_airbrush.py
 msgid "Density depends on the stylus pressure"
-msgstr ""
+msgstr "Tiheys riippuu kynän paineesta"
 
 #: src/tools/classic_tools/brushes/brush_airbrush.py
 msgid "Density depends on the mouse speed"
-msgstr ""
+msgstr "Tiheys riippuu hiiren nopeudesta"
 
 #: src/tools/classic_tools/brushes/brush_hairy.py
 #: src/tools/classic_tools/brushes/brush_nib.py
 #: src/tools/classic_tools/brushes/brush_simple.py
 msgid "Width depends on the stylus pressure"
-msgstr ""
+msgstr "Leveys riippuu kynän paineesta"
 
 #: src/tools/classic_tools/brushes/brush_nib.py
 msgid "Width depends on the line orientation"
-msgstr ""
+msgstr "Leveys riippuu viivan suunnasta"
 
 #: src/tools/classic_tools/brushes/brush_simple.py
 msgid "Width depends on the mouse speed"
-msgstr ""
+msgstr "Leveys riippuu hiiren nopeudesta"
 
 #: src/tools/selection_tools/abstract_select.py
 msgid "Drag the selection or right-click on the canvas"
@@ -2426,44 +2397,46 @@ msgstr "Virhe: virheelliset arvot"
 #. The options of the "crop" tool are all about how to expand the canvas,
 #. hence this label.
 #: src/tools/transform_tools/tool_crop.py
-#, fuzzy
 msgid "Expanding options"
-msgstr "Maalauksen vaihtoehdot"
+msgstr "Vaihtoehtojen laajentaminen"
 
 #: src/tools/transform_tools/tool_crop.py
 msgid "The sides you'll crop are hinted by the mouse pointer"
-msgstr ""
+msgstr "Hiiren osoitin vihjaa sivuille, joita rajaat"
 
 #: src/tools/transform_tools/tool_crop.py
 msgid "Cropping the selection"
 msgstr "Rajaa valintaan"
 
 #: src/tools/transform_tools/tool_crop.py
-#, fuzzy
 msgid "Cropping or expanding the canvas"
-msgstr "Alustan rajaaminen"
+msgstr "Pinnan rajaaminen tai laajentaminen"
 
 #: src/tools/transform_tools/tool_crop.py
 #: src/tools/transform_tools/tool_rotate.py
 #: src/tools/transform_tools/tool_scale.py
 #: src/tools/transform_tools/tool_skew.py
 msgid "Don't forget to confirm the operation!"
-msgstr ""
+msgstr "Muista vahvistaa toiminto!"
 
 #: src/tools/transform_tools/tool_crop.py
 #: src/tools/transform_tools/tool_skew.py
 msgid ""
 "Press <Alt>, <Shift>, or both, to quickly change the 'expand with' option"
 msgstr ""
+"Paina <Alt>, <Shift> tai molempia vaihtaaksesi \"laajenna\" -vaihtoehtoa "
+"nopeasti"
 
 #: src/tools/transform_tools/tool_crop.py
 msgid ""
 "Change the size with the left click, adjust the position with the right click"
 msgstr ""
+"Muuta kokoa vasemmalla napsautuksella, säädä sijaintia oikealla "
+"napsautuksella"
 
 #: src/tools/transform_tools/tool_filters.py
 msgid "Active filter"
-msgstr ""
+msgstr "Aktiivinen suodatin"
 
 #: src/tools/transform_tools/tool_filters.py
 msgid "Click on the image to preview the selected filter"
@@ -2472,12 +2445,11 @@ msgstr "Napsauttamalla kuvaa voit esikatsella valittua suodatinta"
 #. Context: a filter. See "image embossing" on wikipedia
 #: src/tools/transform_tools/tool_filters.py
 msgid "Emboss"
-msgstr ""
+msgstr "Kohokuvio"
 
 #: src/tools/transform_tools/tool_rotate.py
-#, fuzzy
 msgid "Rotating options"
-msgstr "Maalauksen vaihtoehdot"
+msgstr "Kääntämisen vaihtoehdot"
 
 #: src/tools/transform_tools/tool_rotate.py
 msgid "Rotating the selection"
@@ -2488,67 +2460,41 @@ msgid "Rotating the canvas"
 msgstr "Alustan kääntäminen"
 
 #: src/tools/transform_tools/tool_scale.py
-#, fuzzy
 msgid "Scaling options"
-msgstr "Maalauksen vaihtoehdot"
+msgstr "Skaalauksen vaihtoehdot"
 
 #: src/tools/transform_tools/tool_scale.py
 msgid "Scaling the selection"
-msgstr "Valinnan skaalaaminen"
+msgstr "Valinnan koko"
 
 #: src/tools/transform_tools/tool_scale.py
 msgid "Scaling the canvas"
-msgstr "Alustan skaalaaminen"
+msgstr "Alustan koko"
 
 #: src/tools/transform_tools/tool_scale.py
 msgid "Press <Shift> to quickly toggle the 'lock proportions' option"
-msgstr ""
+msgstr "Paina <Shift> vaihtaaksesi \"lukituksen\" -vaihtoehtoa nopeasti"
 
 #: src/tools/transform_tools/tool_skew.py
-#, fuzzy
 msgid "Skewing options"
-msgstr "Maalauksen vaihtoehdot"
+msgstr "Vääntämisen vaihtoehdot"
 
 #: src/tools/transform_tools/tool_skew.py
 msgid "The directions of the deformation are hinted by the mouse pointer"
-msgstr ""
+msgstr "Muodonmuutos vihjataan hiiren osoittimella"
 
 #: src/tools/transform_tools/tool_skew.py
-#, fuzzy
 msgid "Skewing the selection"
-msgstr "Valinnan skaalaaminen"
+msgstr "Valinnan vääntö"
 
 #: src/tools/transform_tools/tool_skew.py
-#, fuzzy
 msgid "Skewing the canvas"
-msgstr "Alustan skaalaaminen"
+msgstr "Alustan vääntö"
 
 #: src/tools/transform_tools/filters/filter_blur.py
 msgid "Blur radius"
-msgstr "Hämärrä säde"
+msgstr "Sumennuksen säde"
 
 #: src/tools/transform_tools/filters/filter_saturation.py
 msgid "Saturation"
 msgstr "Kylläisyys"
-
-#, fuzzy
-#~ msgid ""
-#~ "Version 1.0.2 features several minor bug fixes, and various new "
-#~ "translations."
-#~ msgstr ""
-#~ "Versio 1.0.1 sisältää useita pieniä virhekorjauksia ja uusia käännöksiä."
-
-#~ msgid "Horizontal"
-#~ msgstr "Vaaka"
-
-#~ msgid "Vertical"
-#~ msgstr "Pystysuora"
-
-#~ msgid "A drawing application for the GNOME desktop"
-#~ msgstr "Piirustus apuohjelma GNOME-työpöydälle"
-
-#~ msgid "Quit"
-#~ msgstr "Sulje"
-
-#~ msgid "Keyboard"
-#~ msgstr "Näppäimistö"
