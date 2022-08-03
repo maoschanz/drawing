@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
 "POT-Creation-Date: 2022-05-21 23:53+0200\n"
-"PO-Revision-Date: 2022-03-25 22:02+0100\n"
+"PO-Revision-Date: 2022-08-03 15:28+0200\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: \n"
 "Language: hr\n"
@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 3.0\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
-"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #: data/com.github.maoschanz.drawing.desktop.in
 #: data/com.github.maoschanz.drawing.appdata.xml.in src/deco_manager.py
@@ -92,18 +92,25 @@ msgid ""
 "consistently applied when you change the active tool without clicking on "
 "\"apply\"."
 msgstr ""
+"Verzija 1.2.0 poboljšava alate za transformaciju: njihovi se pregledi sada "
+"dosljedno primijenjuju kad promijeniš aktivni alat bez pritiskanja gumba "
+"„Primjeni”."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "Transparency is now correctly preserved when the \"skew\" tools expands the "
 "canvas with a solid color."
 msgstr ""
+"Transparentnost se sada ispravno čuva kada alat „Ukosi” proširuje platno "
+"punom bojom."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "Using the right click, you can now adjust the position of the canvas when "
 "you're cropping it."
 msgstr ""
+"Pritiskom desnog gumba miša sada možeš prilagoditi položaj platna kad ga "
+"obrežeš."
 
 #. very generic release notes i use for ALL minor updates, please
 #. translate this one!
@@ -119,6 +126,8 @@ msgid ""
 "By popular demand, the \"highlighter\" tool is now enabled by default, and "
 "the message dialog to warn you about the release notes is less intrusive."
 msgstr ""
+"Zbog velike potražnje, alat „Isticanje” je sada standardno uključen, a "
+"prozor s porukama upozorenja o bilješkama uz izdanja je manje nametljiv."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -128,18 +137,28 @@ msgid ""
 "2000%%, scrolling up or down, or left or right, was quite violent. These "
 "problems should all have disappeared in this new version!"
 msgstr ""
+"Glavno poboljšanje ove verzije je način rada za uvećanje prikaza: s verzijom "
+"1.0.0 je veliko uvećanja prikaza već bilo moguće, ali postupak je bio vrlo "
+"spor, a prikaz nije bio dobro usredotočen na pokazivač miša; pri prikazu od "
+"2000 %%, pomicanje prema gore ili dolje, ili lijevo ili desno bilo je "
+"prilično nasilno. Svi ti problemi više nebi trebali postojati u ovoj novoj "
+"verziji!"
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "Incorrect command line parsing when using the app outside of a flatpak "
 "sandbox has also been fixed."
 msgstr ""
+"Ispravljena je i netočna obrada naredbenog retka tijekom korištenja programa "
+"izvan testnog Flatpak okruženja."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "For users on elementary OS, a small issue concerning window resizing has "
 "been mended too."
 msgstr ""
+"Za korisnike elementary OS-a, popravljen je i mali problem koji se odnosi na "
+"mijenjanje veličine prozora."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -147,7 +166,7 @@ msgid ""
 "large images with a poor CPU."
 msgstr ""
 "Verzija 1.0.0 poboljšava performanse iscrtavanja, što je vidljivo pri "
-"uređivanju velikih slika sa slabim CPU-om."
+"uređivanju velikih slika sa slabim procesorom."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -171,6 +190,8 @@ msgid ""
 "Zooming very deep is now possible, and the rendering will be very crisp, "
 "even at 2000%%."
 msgstr ""
+"Veliko uvećanje prikaza je sada moguće. Prikaz će biti izvrstan čak i pri "
+"uvećanju od 2000 %%."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -657,7 +678,7 @@ msgstr "Osnovna pomoć"
 
 #: src/ui/app-menus.ui src/ui/minimap.ui
 msgid "Help about zooming"
-msgstr "Pomoć za uvećanje"
+msgstr "Pomoć za mijenjanje uvećanja prikaza"
 
 #: src/ui/app-menus.ui
 msgid "Help about the full-screen mode"
@@ -713,7 +734,7 @@ msgstr "100 %"
 
 #: src/ui/minimap.ui src/ui/shortcuts.ui
 msgid "Maximum zoom"
-msgstr ""
+msgstr "Maksimalno uvećanje prikaza"
 
 #: src/ui/new-image-dialog.ui src/ui/properties.ui
 #: src/optionsbars/transform/optionsbar-crop.ui
@@ -1108,15 +1129,15 @@ msgstr "Pitaj prije spremanja"
 
 #: src/preferences.py
 msgid "You can zoom with Ctrl+scrolling, or only scrolling."
-msgstr "Uvećaj pomoću Ctrl+klizanje ili samo klizanjem."
+msgstr "Mijenjaj uvećanje prikaza pomoću Ctrl+klizanje ili samo klizanjem."
 
 #: src/preferences.py
 msgid "See the user help manual for explanations."
-msgstr "Za objašnjenja pogledaj priručnik za korisničku pomoć."
+msgstr "Za objašnjenja pogledaj korisnički priručnik za pomoć."
 
 #: src/preferences.py
 msgid "Use 'Ctrl' to zoom"
-msgstr "Koristi „Ctrl” za uvećvaanje"
+msgstr "Koristi „Ctrl” za mijenjanje uvećanja prikaza"
 
 #. Context: title of a section of the preferences (appearance of the
 #. tools: big icons?, labels?)
@@ -1199,6 +1220,8 @@ msgstr "Standardno koristi uređivač boja"
 #: src/preferences.py
 msgid "You can use a simple color palette, or use a full RGBA color editor."
 msgstr ""
+"Možeš koristiti jednostavnu paletu boja ili koristi uređivač potpunog RGBA "
+"sustava boja."
 
 #. Context: title of a section of the preferences
 #: src/preferences.py
@@ -1400,10 +1423,10 @@ msgid "Error starting the application, please report this bug."
 msgstr "Greška pri pokretanju programa. Prijavi ovu grešku."
 
 #: src/window.py
-#, fuzzy
 msgid ""
 "It's the first time you use Drawing, would you like to read the help manual?"
-msgstr "Ovo je prvi put da koristaš Crtanje %s. Želiš li pročitati novosti?"
+msgstr ""
+"Ovo je prvi put da koristaš Crtanje. Želiš li pročitati priručnik pomoći?"
 
 #. Context: %s is the version number of the app
 #: src/window.py
@@ -1417,6 +1440,8 @@ msgid ""
 "These news will always be available in the help manual: click the 'Help' "
 "menu item whenever you want!"
 msgstr ""
+"Ove će novosti uvijek biti dostupne u priručniku za pomoć: pritisni stavku "
+"izbornika „Pomoć” kad god želiš!"
 
 #: src/window.py
 msgid "No"
@@ -1453,7 +1478,7 @@ msgstr "Promjene će stupiti na snagu u sljedećem novom prozoru."
 #: src/window.py
 msgid "Middle-click or press F8 to show/hide controls."
 msgstr ""
-"Za prikazivanj/skrivanje kontrola koristi srednju tipku miša ili pritisni F8"
+"Za prikazivanj/skrivanje kontrola koristi srednju tipku miša ili pritisni F8."
 
 #: src/window.py
 msgid "Press F11 to exit fullscreen."
@@ -2415,6 +2440,8 @@ msgstr ""
 msgid ""
 "Change the size with the left click, adjust the position with the right click"
 msgstr ""
+"Promijeni veličinu pritiskom lijeve tipke miša, prilagodi položaj pritiskom "
+"desne tipke miša"
 
 #: src/tools/transform_tools/tool_filters.py
 msgid "Active filter"
@@ -2482,14 +2509,3 @@ msgstr "Radijus mutnoće"
 #: src/tools/transform_tools/filters/filter_saturation.py
 msgid "Saturation"
 msgstr "Zasićenost"
-
-#, fuzzy
-#~ msgid ""
-#~ "Version 1.0.2 features several minor bug fixes, and various new "
-#~ "translations."
-#~ msgstr ""
-#~ "Verzija 1.0.1 sadrži nekoliko ispravki manjih programskih grešaka i razne "
-#~ "nove prijevode."
-
-#~ msgid "Later"
-#~ msgstr "Kasnije"
