@@ -1,14 +1,14 @@
 # Language xx translations for drawing package.
 # Copyright (C) 2020 THE drawing'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the drawing package.
-# Vojtěch Perník <translations@pervoj.cz>, 2020-2021.
+# Vojtěch Perník <translations@pervoj.cz>, 2020-2022.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
-"POT-Creation-Date: 2022-05-21 23:53+0200\n"
-"PO-Revision-Date: 2021-08-09 22:47+0200\n"
+"POT-Creation-Date: 2022-07-18 13:02+0200\n"
+"PO-Revision-Date: 2022-07-18 13:20+0200\n"
 "Last-Translator: Vojtěch Perník <translations@pervoj.cz>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
 "Language: cs\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2\n"
-"X-Generator: Gtranslator 40.0\n"
+"X-Generator: Gtranslator 42.0\n"
 
 #: data/com.github.maoschanz.drawing.desktop.in
 #: data/com.github.maoschanz.drawing.appdata.xml.in src/deco_manager.py
@@ -91,18 +91,23 @@ msgid ""
 "consistently applied when you change the active tool without clicking on "
 "\"apply\"."
 msgstr ""
+"Verze 1.2.0 vylepšuje transformační nástroje: jejich náhledy se nyní "
+"důsledně aplikují při změně aktivního nástroje bez kliknutí na \"použít\"."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "Transparency is now correctly preserved when the \"skew\" tools expands the "
 "canvas with a solid color."
 msgstr ""
+"Průhlednost je nyní správně zachována, když nástroj \"zkosení\" rozšiřuje "
+"plátno neprůhlednou barvou."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "Using the right click, you can now adjust the position of the canvas when "
 "you're cropping it."
 msgstr ""
+"Pomocí pravého tlačítka myši můžete nyní upravit polohu plátna při ořezávání."
 
 #. very generic release notes i use for ALL minor updates, please
 #. translate this one!
@@ -117,6 +122,9 @@ msgid ""
 "By popular demand, the \"highlighter\" tool is now enabled by default, and "
 "the message dialog to warn you about the release notes is less intrusive."
 msgstr ""
+"Na přání uživatelů je nyní ve výchozím nastavení povolen nástroj "
+"\"zvýrazňovač\" a dialogové okno s upozorněním na poznámky k vydání je méně "
+"rušivé."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -126,18 +134,27 @@ msgid ""
 "2000%%, scrolling up or down, or left or right, was quite violent. These "
 "problems should all have disappeared in this new version!"
 msgstr ""
+"Hlavním vylepšením této aktualizace je práce se zoomem: od verze 1.0.0 je "
+"možné zoomovat velmi hluboko, ale tento proces byl velmi pomalý a zobrazení "
+"nezůstávalo dobře vycentrované kolem ukazatele myši; a jakmile bylo dosaženo "
+"2000%%, posouvání nahoru nebo dolů, nebo doleva či doprava, bylo docela "
+"násilné. Všechny tyto problémy by měly být v této nové verzi opraveny!"
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "Incorrect command line parsing when using the app outside of a flatpak "
 "sandbox has also been fixed."
 msgstr ""
+"Bylo také opraveno nesprávné zpracovávání vstupu z příkazového řádku při "
+"použití aplikace mimo sandbox flatpaku."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "For users on elementary OS, a small issue concerning window resizing has "
 "been mended too."
 msgstr ""
+"Pro uživatele elementary OS byl také opraven malý problém týkající se změny "
+"velikosti okna."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -158,20 +175,21 @@ msgstr ""
 "svislém směru."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
-#, fuzzy
 msgid ""
 "You can select tools with keyboard accelerators (Alt+letter). This may not "
 "work yet with languages using a non-latin alphabet."
 msgstr ""
-"Pokud jsou názvy nástrojů viditelné, můžete konkrétní nástroj povolit pomocí "
-"kláves \"alt+[podtržené písmeno]\". To zatím nemusí fungovat v jazycích, "
-"které používají jinou než latinskou abecedu."
+"Nástroje můžete vybírat pomocí klávesových akcelerátorů (Alt+písmeno). To "
+"zatím nemusí fungovat v jazycích, které používají jinou než latinskou "
+"abecedu."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "Zooming very deep is now possible, and the rendering will be very crisp, "
 "even at 2000%%."
 msgstr ""
+"Nyní je možné velmi hluboké přiblížení a vykreslování bude velmi ostré, a to "
+"i při 2000%%."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -184,15 +202,14 @@ msgstr ""
 "rozměry tvaru kterým kreslíte"
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
-#, fuzzy
 msgid ""
 "Pressing \"shift\", or \"alt\" when using a tool enables specific options, "
 "such as locking the direction for the \"line\" tool, or changing the filling "
 "style of a shape."
 msgstr ""
-"Stisknutím kláves \"ctrl\", \"shift\" nebo \"alt\" při použití nástroje "
-"aktivujete specifické možnosti, například \"přidat do výběru\" pro nástroje "
-"pro výběr."
+"Stisknutím klávesy \"shift\" nebo \"alt\" při použití nástroje aktivujete "
+"specifické možnosti, například uzamčení směru pro nástroj \"čára\" nebo "
+"změnu stylu výplně tvaru."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -427,7 +444,6 @@ msgstr "Vpravo"
 #. canvas. The "go left" action only goes a few centimeters
 #. to the left, but this one goes all the way left.
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
-#, fuzzy
 msgid "Go to the left end"
 msgstr "Přejít na levý konec"
 
@@ -449,7 +465,6 @@ msgstr "Přejít na úplný spodek"
 #. canvas. The "go right" action only goes a few centimeters
 #. to the right, but this one goes all the way right.
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
-#, fuzzy
 msgid "Go to the right end"
 msgstr "Přejít na pravý konec"
 
@@ -471,9 +486,8 @@ msgid "Track framerate"
 msgstr "Sledování snímkové frekvence"
 
 #: src/ui/app-menus.ui
-#, fuzzy
 msgid "Dark theme variant"
-msgstr "Upřednostňovat tmavé téma"
+msgstr "Tmavé téma"
 
 #: src/ui/app-menus.ui
 msgid "Show the menu-bar"
@@ -718,7 +732,7 @@ msgstr "100%"
 
 #: src/ui/minimap.ui src/ui/shortcuts.ui
 msgid "Maximum zoom"
-msgstr ""
+msgstr "Maximální přiblížení"
 
 #: src/ui/new-image-dialog.ui src/ui/properties.ui
 #: src/optionsbars/transform/optionsbar-crop.ui
@@ -1206,6 +1220,7 @@ msgstr "Ve výchozím nastavení použít editor barev"
 #: src/preferences.py
 msgid "You can use a simple color palette, or use a full RGBA color editor."
 msgstr ""
+"Můžete použít jednoduchou paletu barev nebo plnohodnotný editor barev RGBA."
 
 #. Context: title of a section of the preferences
 #: src/preferences.py
@@ -1339,11 +1354,12 @@ msgid "There are unsaved modifications to %s."
 msgstr "U obrázku %s existují neuložené úpravy."
 
 #: src/saving_manager.py
-#, fuzzy
 msgid ""
 "A part of the image is selected: the pixels beneath the selection will be "
 "saved with a color you might not expect!"
-msgstr "Je vybrána část obrázku a pixely pod výběrem jsou prázdné."
+msgstr ""
+"Je vybrána část obrázku: pixely pod výběrem budou uloženy s barvou, kterou "
+"byste možná nečekali!"
 
 #. Context: the user tries to save the image while previewing an
 #. unapplied "transform" operation (scaling, cropping, whatever)
@@ -1358,9 +1374,8 @@ msgstr "Potvrdit a Uložit"
 
 #. To translators: this string should be quite short
 #: src/saving_manager.py
-#, fuzzy
 msgid "Deselect & save"
-msgstr "Zrušit výběr"
+msgstr "Zrušit výběr a uložit"
 
 #: src/saving_manager.py
 msgid "Save anyway"
@@ -1407,11 +1422,9 @@ msgid "Error starting the application, please report this bug."
 msgstr "Při spuštění aplikace došlo k chybě, tuto chybu prosím nahlaste."
 
 #: src/window.py
-#, fuzzy
 msgid ""
 "It's the first time you use Drawing, would you like to read the help manual?"
-msgstr ""
-"Je to poprvé, kdy spouštíte Kreslení %s, chcete si přečíst, co je nového?"
+msgstr "Je to poprvé, co otevíráte Kreslení, chcete si přečíst nápovědu?"
 
 #. Context: %s is the version number of the app
 #: src/window.py
@@ -1426,6 +1439,8 @@ msgid ""
 "These news will always be available in the help manual: click the 'Help' "
 "menu item whenever you want!"
 msgstr ""
+"Tyto novinky budou vždy k dispozici v nápovědě: klikněte na položku nabídky "
+"\"Nápověda\", kdykoli budete chtít!"
 
 #: src/window.py
 msgid "No"
@@ -1448,25 +1463,22 @@ msgstr "Soubor %s je již otevřen"
 #. Context: the user would click here to confirm they want to open the
 #. same file twice
 #: src/window.py
-#, fuzzy
 msgid "Open again"
-msgstr "Otevřít obrázek"
+msgstr "Otevřít znovu"
 
 #: src/window.py
-#, fuzzy
 msgid "Switch to this image"
-msgstr "Sdílet obrázek"
+msgstr "Přepnout na tento obrázek"
 
 #: src/window.py
 msgid "Modifications will take effect in the next new window."
 msgstr "Úpravy se projeví v dalším novém okně."
 
 #: src/window.py
-#, fuzzy
 msgid "Middle-click or press F8 to show/hide controls."
 msgstr ""
-"Stisknutím prostředního tlačítka myši, tapnutím třemi prsty, nebo stisknutím "
-"klávesy F8 zobrazíte/skryjete panely nástrojů."
+"Kliknutím prostředním tlačítkem myši nebo stisknutím klávesy F8 zobrazíte/"
+"skryjete ovládací prvky."
 
 #: src/window.py
 msgid "Press F11 to exit fullscreen."
@@ -1774,12 +1786,12 @@ msgstr "Vždy"
 #. Context for translations: "[Keep proportions only] when scaling from corners"
 #: src/optionsbars/transform/optionsbar-scale.ui src/tools/ui/tool-scale.ui
 msgid "When scaling from corners"
-msgstr "Při změně velikosti z rohů"
+msgstr "při změně velikosti z rohů"
 
 #. Context for translations: "[Keep proportions only] when setting values manually"
 #: src/optionsbars/transform/optionsbar-scale.ui src/tools/ui/tool-scale.ui
 msgid "When setting values manually"
-msgstr ""
+msgstr "při ručním nastavování hodnot"
 
 #. Context: an item in a menu whose title is "Keep proportions"
 #. Context for translations: "Never [keep proportions]"
@@ -1788,14 +1800,12 @@ msgid "Never"
 msgstr "Nikdy"
 
 #: src/optionsbars/transform/optionsbar-scale.ui src/tools/ui/tool-scale.ui
-#, fuzzy
 msgid "Pixels"
-msgstr "pixely"
+msgstr "Pixely"
 
 #: src/optionsbars/transform/optionsbar-scale.ui src/tools/ui/tool-scale.ui
-#, fuzzy
 msgid "Percentage"
-msgstr "procenta"
+msgstr "Procenta"
 
 #: src/optionsbars/transform/optionsbar-skew.ui
 msgid "Horizontal deformation"
@@ -1989,23 +1999,20 @@ msgid "No direction"
 msgstr "Žádný směr"
 
 #: src/tools/ui/tool-filters.ui
-#, fuzzy
 msgid "Blur horizontally"
-msgstr "Překlopit horizontálně"
+msgstr "Rozmazat vodorovně"
 
 #: src/tools/ui/tool-filters.ui
-#, fuzzy
 msgid "Blur vertically"
-msgstr "Překlopit vertikálně"
+msgstr "Rozmazat svisle"
 
 #: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
 msgid "Invert colors"
 msgstr "Invertovat barvy"
 
 #: src/tools/ui/tool-highlight.ui
-#, fuzzy
 msgid "Straighten the line"
-msgstr "Změna velikosti výběru"
+msgstr "Narovnat čáru"
 
 #: src/tools/ui/tool-line.ui
 msgid "Color gradient"
@@ -2176,15 +2183,13 @@ msgstr "Stín"
 
 #. Context: a type of background behind the inserted text
 #: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
-#, fuzzy
 msgid "Thin outline"
-msgstr "Žádný obrys"
+msgstr "Tenký obrys"
 
 #. Context: a type of background behind the inserted text
 #: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
-#, fuzzy
 msgid "Thick outline"
-msgstr "Žádný obrys"
+msgstr "Tlustý obrys"
 
 #. Context: a type of background behind the inserted text
 #: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
@@ -2255,15 +2260,15 @@ msgstr "Čára"
 
 #: src/tools/classic_tools/tool_line.py src/tools/classic_tools/tool_shape.py
 #: src/tools/selection_tools/select_rect.py
-#, fuzzy, python-format
+#, python-format
 msgid "Width: %spx"
-msgstr "Šířka"
+msgstr "Šířka: %spx"
 
 #: src/tools/classic_tools/tool_line.py src/tools/classic_tools/tool_shape.py
 #: src/tools/selection_tools/select_rect.py
-#, fuzzy, python-format
+#, python-format
 msgid "Height: %spx"
-msgstr "Výška"
+msgstr "Výška: %spx"
 
 #: src/tools/classic_tools/tool_line.py
 #, python-format
@@ -2399,9 +2404,8 @@ msgstr "Chyba: neplatné hodnoty"
 #. The options of the "crop" tool are all about how to expand the canvas,
 #. hence this label.
 #: src/tools/transform_tools/tool_crop.py
-#, fuzzy
 msgid "Expanding options"
-msgstr "Možnosti výplně"
+msgstr "Možnosti rozšíření"
 
 #: src/tools/transform_tools/tool_crop.py
 msgid "The sides you'll crop are hinted by the mouse pointer"
@@ -2412,9 +2416,8 @@ msgid "Cropping the selection"
 msgstr "Oříznutí výběru"
 
 #: src/tools/transform_tools/tool_crop.py
-#, fuzzy
 msgid "Cropping or expanding the canvas"
-msgstr "Oříznutí plátna"
+msgstr "Oříznutí nebo rozšíření plátna"
 
 #: src/tools/transform_tools/tool_crop.py
 #: src/tools/transform_tools/tool_rotate.py
@@ -2434,6 +2437,8 @@ msgstr ""
 msgid ""
 "Change the size with the left click, adjust the position with the right click"
 msgstr ""
+"Levým tlačítkem myši můžete měnit velikost, pravým tlačítkem myši můžete "
+"upravovat polohu"
 
 #: src/tools/transform_tools/tool_filters.py
 msgid "Active filter"
@@ -2477,23 +2482,20 @@ msgid "Press <Shift> to quickly toggle the 'lock proportions' option"
 msgstr "Stiskněte <Shift> pro rychlé přepnutí možnosti 'uzamknout proporce'"
 
 #: src/tools/transform_tools/tool_skew.py
-#, fuzzy
 msgid "Skewing options"
-msgstr "Možnosti změny velikosti"
+msgstr "Možnosti zkosení"
 
 #: src/tools/transform_tools/tool_skew.py
 msgid "The directions of the deformation are hinted by the mouse pointer"
 msgstr "Směry deformace jsou ukazovány kurzorem myši"
 
 #: src/tools/transform_tools/tool_skew.py
-#, fuzzy
 msgid "Skewing the selection"
-msgstr "Změna velikosti výběru"
+msgstr "Zkosení výběru"
 
 #: src/tools/transform_tools/tool_skew.py
-#, fuzzy
 msgid "Skewing the canvas"
-msgstr "Změna velikosti plátna"
+msgstr "Zkosení plátna"
 
 #: src/tools/transform_tools/filters/filter_blur.py
 msgid "Blur radius"

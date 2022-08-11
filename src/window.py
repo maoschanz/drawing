@@ -617,8 +617,12 @@ class DrWindow(Gtk.ApplicationWindow):
 			name = self.active_tool().cursor_name
 		else:
 			name = 'default'
-		cursor = Gdk.Cursor.new_from_name(Gdk.Display.get_default(), name)
-		self.get_window().set_cursor(cursor)
+		try:
+			cursor = Gdk.Cursor.new_from_name(Gdk.Display.get_default(), name)
+			self.get_window().set_cursor(cursor)
+		except Exception as ex:
+			# the cursor theme may be incorrect (not contain the cursor)
+			self.reveal_message(ex.message)
 
 	############################################################################
 	# WINDOW DECORATIONS AND LAYOUTS ###########################################
