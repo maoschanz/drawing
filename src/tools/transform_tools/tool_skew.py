@@ -248,14 +248,17 @@ class ToolSkew(AbstractCanvasTool):
 				# Top triangle
 				cairo_context.new_path()
 				if xy >= 0:
-					# No lateral triangle on the top-left angle: the width we
-					# use is the original one.
+					# No lateral triangle on the top-left angle.
 					if yx >= 0:
+						# "diamond" scenario: the width we use is the corrected
+						# one (the top and the right triangles share a side).
 						cairo_context.move_to(0, 0)
-						cairo_context.line_to(w0, 0)
+						cairo_context.line_to(w, 0)
 						x_new = w0
 						y_new = yx * w0 + 1.0 * 0 + y0
 					else:
+						# "rotated rectangle" scenario: the width we use is the
+						# original one.
 						cairo_context.move_to(0, 0)
 						cairo_context.line_to(w0, 0)
 						x_new = 1.0 * 0 + xy * 0 + x0
