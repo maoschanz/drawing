@@ -308,6 +308,16 @@ class ToolSkew(AbstractCanvasTool):
 			if xy != 0:
 				# Right triangle
 				cairo_context.new_path()
+				if yx >= 0:
+					if xy >= 0:
+						pass # TODO
+					else:
+						pass # TODO
+				else:
+					if xy >= 0:
+						pass # TODO
+					else:
+						pass # TODO
 				cairo_context.line_to(x_new, y_new)
 				cairo_context.close_path()
 				cairo_context.fill()
