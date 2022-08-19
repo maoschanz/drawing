@@ -183,17 +183,21 @@ class AbstractCanvasTool(AbstractAbstractTool):
 			cairo_context.get_source().set_filter(cairo.FILTER_NEAREST)
 		cairo_context.paint()
 
-	def get_deformed_surface(self, source_surface, coefs):
-		"""Use cairo.Matrix to apply a transformation to `source_surface` using
-		the coefficients in `coefs` and return a new surface with the result."""
+	def get_resized_surface(self, source_surface, coefs):
+		"""Generate a blank new surface whose size is enough to fit a cairo
+		matrix transformation of `source_surface` using the coefficients in
+		`coefs`. The method `get_deformed_surface` should be used next."""
 		p_xx, p_yx, p_xy, p_yy, p_x0, p_y0 = coefs
-
 		source_w = source_surface.get_width()
 		source_h = source_surface.get_height()
 		w = p_xx * source_w + p_xy * source_h + p_x0 * 2
 		h = p_yx * source_w + p_yy * source_h + p_y0 * 2
+		return cairo.ImageSurface(cairo.Format.ARGB32, int(w), int(h))
 
-		new_surface = cairo.ImageSurface(cairo.Format.ARGB32, int(w), int(h))
+	def get_deformed_surface(self, source_surface, new_surface, coefs):
+		"""Use cairo.Matrix to apply a transformation to `source_surface` using
+		the coefficients in `coefs` and return a new surface with the result."""
+		p_xx, p_yx, p_xy, p_yy, p_x0, p_y0 = coefs
 		cairo_context = cairo.Context(new_surface)
 
 		# m = cairo.Matrix(xx=1.0, yx=0.0, xy=0.0, yy=1.0, x0=0.0, y0=0.0)

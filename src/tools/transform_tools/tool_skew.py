@@ -219,10 +219,10 @@ class ToolSkew(AbstractCanvasTool):
 			if operation['rgba'].alpha == 0.0:
 				# no need to compute so much shit if it's to paint it in alpha
 				prefill = False
-		source_surface = Gdk.cairo_surface_create_from_pixbuf(source_pixbuf, 0, None)
-		source_surface.set_device_scale(self.scale_factor(), self.scale_factor())
-		w0 = source_surface.get_width()
-		h0 = source_surface.get_height()
+		surface0 = Gdk.cairo_surface_create_from_pixbuf(source_pixbuf, 0, None)
+		surface0.set_device_scale(self.scale_factor(), self.scale_factor())
+		w0 = surface0.get_width()
+		h0 = surface0.get_height()
 
 		xy = operation['xy']
 		x0 = 0.0
@@ -234,149 +234,93 @@ class ToolSkew(AbstractCanvasTool):
 			y0 = int(-1 * yx * w0)
 		coefs = [1.0, yx, xy, 1.0, x0, y0]
 
-		new_surface = self.get_deformed_surface(source_surface, coefs)
+		new_surface = self.get_resized_surface(surface0, coefs)
 		if prefill:
-			# x_new = xx * x + xy * y + x0
-			# y_new = yx * x + yy * y + y0
-			w = new_surface.get_width()
-			h = new_surface.get_height()
-			cairo_context = cairo.Context(new_surface)
-			color_array = utilities_gdk_rgba_to_normalized_array(self._expansion_rgba)
-			cairo_context.set_source_rgba(*color_array)
-
-			# Doing only one path is possible but it's a mess: as a dumbass, i
-			# prefer to draw 4 simple triangles
-			if yx != 0:
-				# Top triangle
-				cairo_context.new_path()
-				if xy >= 0:
-					# No lateral triangle on the top-left angle.
-					if yx >= 0:
-						# "diamond" scenario: the width we use is the corrected
-						# one (the top and the right triangles share a side).
-						cairo_context.move_to(0, 0)
-						cairo_context.line_to(w, 0)
-						x_new = w0
-						y_new = yx * w0 + 1.0 * 0 + y0
-					else:
-						# "rotated rectangle" scenario: the width we use is the
-						# original one.
-						cairo_context.move_to(0, 0)
-						cairo_context.line_to(w0, 0)
-						x_new = 1.0 * 0 + xy * 0 + x0
-						y_new = yx * 0 + 1.0 * 0 + y0
-				else:
-					# Lateral triangle on the top-left angle: the width we
-					# use is the corrected one.
-					if yx >= 0:
-						cairo_context.move_to(x0, y0)
-						cairo_context.line_to(w, 0)
-						x_new = w
-						y_new = yx * w0 + y0
-					else:
-						cairo_context.move_to(0, 0)
-						cairo_context.line_to(w, 0)
-						x_new = x0
-						y_new = y0
-				cairo_context.line_to(x_new, y_new)
-				cairo_context.close_path()
-				cairo_context.fill()
-
-				# Bottom triangle
-				cairo_context.new_path()
-				if xy >= 0:
-					if yx >= 0:
-						cairo_context.move_to(0, h)
-						cairo_context.line_to(w, h)
-						x_new = 1.0 * 0 + xy * h0 + x0
-						y_new = yx * 0 + 1.0 * h0 + y0
-					else:
-						cairo_context.move_to(w - w0, h)
-						cairo_context.line_to(w, h)
-						x_new = 1.0 * w0 + xy * h0 + x0
-						y_new = yx * w0 + 1.0 * h0 + y0
-				else:
-					if yx >= 0:
-						cairo_context.move_to(0, h0)
-						cairo_context.line_to(0, h)
-						x_new = w0
-						y_new = h
-					else:
-						cairo_context.move_to(0, h)
-						cairo_context.line_to(w, h)
-						x_new = w0
-						y_new = h0
-				cairo_context.line_to(x_new, y_new)
-				cairo_context.close_path()
-				cairo_context.fill()
-
-			if xy != 0:
-				# Right triangle
-				cairo_context.new_path()
-				if yx >= 0:
-					if xy >= 0:
-						# "downwards diamond" scenario
-						cairo_context.move_to(w, 0)
-						cairo_context.line_to(w, h)
-						x_new = w0
-						y_new = h - h0
-					else:
-						# "rotated rectangle" scenario
-						cairo_context.move_to(w, h - h0)
-						cairo_context.line_to(w, h)
-						x_new = w - x0
-						y_new = h
-				else:
-					if xy >= 0:
-						# "rotated rectangle" scenario
-						cairo_context.move_to(w0, 0)
-						cairo_context.line_to(w, 0)
-						x_new = w
-						y_new = h0
-					else:
-						# "upwards diamond" scenario
-						cairo_context.move_to(w, 0)
-						cairo_context.line_to(w0, h0)
-						x_new = w
-						y_new = h
-				cairo_context.line_to(x_new, y_new)
-				cairo_context.close_path()
-				cairo_context.fill()
-
-				# Left triangle
-				cairo_context.new_path()
-				if yx >= 0:
-					# There is a bottom triangle, its adj. side is at the left.
-					if xy >= 0:
-						# The left triangle's adjacent side is at the bottom.
-						cairo_context.move_to(0, 0)
-						cairo_context.line_to(0, h)
-						x_new = 1.0 * 0 + xy * h0 + x0
-						y_new = h0
-					else:
-						cairo_context.move_to(0, 0)
-						cairo_context.line_to(x0, 0)
-						x_new = 0
-						y_new = h0
-				else:
-					if xy >= 0:
-						cairo_context.move_to(x0, y0)
-						cairo_context.line_to(0, h)
-						x_new = 1.0 * 0 + xy * h0 + x0
-						y_new = h
-					else:
-						cairo_context.move_to(0, 0)
-						cairo_context.line_to(0, h)
-						x_new = 1.0 * 0 + xy * 0 + x0
-						y_new = yx * 0 + 1.0 * 0 + y0
-				cairo_context.line_to(x_new, y_new)
-				cairo_context.close_path()
-				cairo_context.fill()
+			self._prefill_outline_triangles(new_surface, w0, h0, xy, yx)
+		new_surface = self.get_deformed_surface(surface0, new_surface, coefs)
 
 		new_pixbuf = Gdk.pixbuf_get_from_surface(new_surface, 0, 0, \
 		                      new_surface.get_width(), new_surface.get_height())
 		self.get_image().set_temp_pixbuf(new_pixbuf)
 		self.common_end_operation(operation)
+
+	def _prefill_outline_triangles(self, new_surface, w0, h0, xy, yx):
+		"""Not satisfying because it the boundaries look awful."""
+		w = new_surface.get_width()
+		h = new_surface.get_height()
+		cairo_context = cairo.Context(new_surface)
+		# cairo_context.set_antialias(cairo.Antialias.NONE)
+		color_array = utilities_gdk_rgba_to_normalized_array(self._expansion_rgba)
+		cairo_context.set_source_rgba(*color_array)
+
+		new_corners = {
+			'top-left': [None] * 2,
+			'top-right': [None] * 2,
+			'bottom-left': [None] * 2,
+			'bottom-right': [None] * 2,
+		}
+
+		if xy > 0:
+			new_corners['top-left'][0] = 0.0
+			new_corners['top-right'][0] = w0
+			new_corners['bottom-left'][0] = w - w0
+			new_corners['bottom-right'][0] = w
+		else:
+			new_corners['top-left'][0] = w - w0
+			new_corners['top-right'][0] = w
+			new_corners['bottom-left'][0] = 0.0
+			new_corners['bottom-right'][0] = w0
+
+		if yx > 0:
+			new_corners['top-left'][1] = 0.0
+			new_corners['top-right'][1] = h - h0
+			new_corners['bottom-left'][1] = h0
+			new_corners['bottom-right'][1] = h
+		else:
+			new_corners['top-left'][1] = h - h0
+			new_corners['top-right'][1] = 0.0
+			new_corners['bottom-left'][1] = h
+			new_corners['bottom-right'][1] = h0
+
+		# Doing only one path is possible but it's a mess: as a dumbass, i
+		# prefer to draw 4 simple triangles
+		if yx != 0:
+			# Top triangle
+			cairo_context.new_path()
+			cairo_context.move_to(0, 0)
+			cairo_context.line_to(w, 0)
+			cairo_context.line_to(*new_corners['top-right'])
+			cairo_context.line_to(*new_corners['top-left'])
+			cairo_context.close_path()
+			cairo_context.fill()
+
+			# Bottom triangle
+			cairo_context.new_path()
+			cairo_context.move_to(0, h)
+			cairo_context.line_to(w, h)
+			cairo_context.line_to(*new_corners['bottom-right'])
+			cairo_context.line_to(*new_corners['bottom-left'])
+			cairo_context.close_path()
+			cairo_context.fill()
+
+		if xy != 0:
+			# Right triangle
+			cairo_context.new_path()
+			cairo_context.move_to(w, 0)
+			cairo_context.line_to(w, h)
+			cairo_context.line_to(*new_corners['bottom-right'])
+			cairo_context.line_to(*new_corners['top-right'])
+			cairo_context.close_path()
+			cairo_context.fill()
+
+			# Left triangle
+			cairo_context.new_path()
+			cairo_context.move_to(0, 0)
+			cairo_context.line_to(0, h)
+			cairo_context.line_to(*new_corners['bottom-left'])
+			cairo_context.line_to(*new_corners['top-left'])
+			cairo_context.close_path()
+			cairo_context.fill()
 
 	############################################################################
 ################################################################################
