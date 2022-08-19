@@ -313,13 +313,22 @@ class ToolSkew(AbstractCanvasTool):
 				cairo_context.new_path()
 				if yx >= 0:
 					if xy >= 0:
-						pass # TODO
+						# "downwards diamond" scenario
+						cairo_context.move_to(w, 0)
+						cairo_context.line_to(w, h)
+						x_new = w0
+						y_new = h - h0
 					else:
-						pass # TODO
+						# "rotated rectangle" scenario
+						cairo_context.move_to(w, h - h0)
+						cairo_context.line_to(w, h)
+						x_new = w - x0
 				else:
 					if xy >= 0:
+						# "upwards diamond" scenario
 						pass # TODO
 					else:
+						# "rotated rectangle" scenario
 						pass # TODO
 				cairo_context.line_to(x_new, y_new)
 				cairo_context.close_path()
