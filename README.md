@@ -66,6 +66,7 @@ If your language is not here, or is incompletely translated, you can
 | fi   | Finnish      | **60%**    | @mahtiankka                               |
 | fr   | French       | 100%       |                                           |
 | he   | Hebrew       | **61%**    | @moriel5, @shaqash, @omeritzics           |
+| hi   | Hindi        | 100%       | @sujaldev                                 |
 | hr   | Croatian     | 99%        | @milotype                                 |
 | hu   | Hungarian    | **50%**    | @kami911                                  |
 | id   | Indonesian   | 61%        | @ekickx                                   |
