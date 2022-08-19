@@ -237,12 +237,20 @@ class ToolSkew(AbstractCanvasTool):
 		new_surface = self.get_resized_surface(surface0, coefs)
 		if prefill:
 			self._prefill_outline_triangles(new_surface, w0, h0, xy, yx)
+			# self._prefill_background(new_surface)
 		new_surface = self.get_deformed_surface(surface0, new_surface, coefs)
 
 		new_pixbuf = Gdk.pixbuf_get_from_surface(new_surface, 0, 0, \
 		                      new_surface.get_width(), new_surface.get_height())
 		self.get_image().set_temp_pixbuf(new_pixbuf)
 		self.common_end_operation(operation)
+
+	def _prefill_background(self, new_surface):
+		"""Not satisfying because it fills the alpha areas within the source."""
+		cairo_context = cairo.Context(new_surface)
+		color_array = utilities_gdk_rgba_to_normalized_array(self._expansion_rgba)
+		cairo_context.set_source_rgba(*color_array)
+		cairo_context.paint()
 
 	def _prefill_outline_triangles(self, new_surface, w0, h0, xy, yx):
 		"""Not satisfying because it the boundaries look awful."""
