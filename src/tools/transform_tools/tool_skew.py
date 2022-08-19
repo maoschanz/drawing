@@ -15,10 +15,12 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+import cairo
 from gi.repository import Gdk
 from .abstract_transform_tool import AbstractCanvasTool
 from .optionsbar_skew import OptionsBarSkew
 from .utilities_overlay import utilities_show_handles_on_context
+from .utilities_colors import utilities_gdk_rgba_to_normalized_array
 
 class ToolSkew(AbstractCanvasTool):
 	__gtype_name__ = 'ToolSkew'
@@ -214,24 +216,94 @@ class ToolSkew(AbstractCanvasTool):
 		else:
 			source_pixbuf = self.get_main_pixbuf()
 			prefill = True
-		source_surface = Gdk.cairo_surface_create_from_pixbuf(source_pixbuf, 0, None)
-		source_surface.set_device_scale(self.scale_factor(), self.scale_factor())
+			if operation['rgba'].alpha == 0.0:
+				# no need to compute so much shit if it's to paint it in alpha
+				prefill = False
+		surface0 = Gdk.cairo_surface_create_from_pixbuf(source_pixbuf, 0, None)
+		surface0.set_device_scale(self.scale_factor(), self.scale_factor())
+		w0 = surface0.get_width()
+		h0 = surface0.get_height()
 
 		xy = operation['xy']
 		x0 = 0.0
 		if xy < 0:
-			x0 = int(-1 * xy * source_surface.get_height())
+			x0 = int(-1 * xy * h0)
 		yx = operation['yx']
 		y0 = 0.0
 		if yx < 0:
-			y0 = int(-1 * yx * source_surface.get_width())
+			y0 = int(-1 * yx * w0)
 		coefs = [1.0, yx, xy, 1.0, x0, y0]
 
-		new_surface = self.get_deformed_surface(source_surface, coefs, prefill)
+		new_surface = self.get_resized_surface(surface0, coefs)
+		if prefill:
+			self._prefill_outline_triangles(new_surface, w0, h0, xy, yx)
+			# self._prefill_background(new_surface)
+		new_surface = self.get_deformed_surface(surface0, new_surface, coefs)
+
 		new_pixbuf = Gdk.pixbuf_get_from_surface(new_surface, 0, 0, \
 		                      new_surface.get_width(), new_surface.get_height())
 		self.get_image().set_temp_pixbuf(new_pixbuf)
 		self.common_end_operation(operation)
+
+	def _prefill_background(self, new_surface):
+		"""Not satisfying because it fills the alpha areas within the source."""
+		cairo_context = cairo.Context(new_surface)
+		color_array = utilities_gdk_rgba_to_normalized_array(self._expansion_rgba)
+		cairo_context.set_source_rgba(*color_array)
+		cairo_context.paint()
+
+	def _prefill_outline_triangles(self, new_surface, w0, h0, xy, yx):
+		"""Not satisfying because it the boundaries look awful."""
+		w = new_surface.get_width()
+		h = new_surface.get_height()
+		cairo_context = cairo.Context(new_surface)
+		# cairo_context.set_antialias(cairo.Antialias.NONE)
+		color_array = utilities_gdk_rgba_to_normalized_array(self._expansion_rgba)
+		cairo_context.set_source_rgba(*color_array)
+		cairo_context.paint()
+
+		new_corners = {
+			'top-left': [None] * 2,
+			'top-right': [None] * 2,
+			'bottom-left': [None] * 2,
+			'bottom-right': [None] * 2,
+		}
+
+		if xy > 0:
+			new_corners['top-left'][0] = 0.0
+			new_corners['top-right'][0] = w0
+			new_corners['bottom-left'][0] = w - w0
+			new_corners['bottom-right'][0] = w
+		else:
+			new_corners['top-left'][0] = w - w0
+			new_corners['top-right'][0] = w
+			new_corners['bottom-left'][0] = 0.0
+			new_corners['bottom-right'][0] = w0
+
+		if yx > 0:
+			new_corners['top-left'][1] = 0.0
+			new_corners['top-right'][1] = h - h0
+			new_corners['bottom-left'][1] = h0
+			new_corners['bottom-right'][1] = h
+		else:
+			new_corners['top-left'][1] = h - h0
+			new_corners['top-right'][1] = 0.0
+			new_corners['bottom-left'][1] = h
+			new_corners['bottom-right'][1] = h0
+
+		cairo_context.set_operator(cairo.Operator.SOURCE)
+		cairo_context.set_source_rgba(1.0, 1.0, 1.0, 0.0)
+		cairo_context.move_to(*new_corners['top-right'])
+		cairo_context.line_to(*new_corners['top-left'])
+		cairo_context.line_to(*new_corners['bottom-left'])
+		cairo_context.line_to(*new_corners['bottom-right'])
+		cairo_context.close_path()
+		cairo_context.fill_preserve()
+
+		# better-looking boundaries
+		cairo_context.set_source_rgba(*color_array)
+		cairo_context.set_line_width(1)
+		cairo_context.stroke_preserve()
 
 	############################################################################
 ################################################################################

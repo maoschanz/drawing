@@ -19,7 +19,6 @@ import cairo
 from gi.repository import Gtk, Gdk, GdkPixbuf
 
 from .abstract_tool import AbstractAbstractTool
-from .utilities_colors import utilities_gdk_rgba_to_normalized_array
 
 class AbstractCanvasTool(AbstractAbstractTool):
 	__gtype_name__ = 'AbstractCanvasTool'
@@ -184,27 +183,22 @@ class AbstractCanvasTool(AbstractAbstractTool):
 			cairo_context.get_source().set_filter(cairo.FILTER_NEAREST)
 		cairo_context.paint()
 
-	def get_deformed_surface(self, source_surface, coefs, prefill=False):
-		"""Use cairo.Matrix to apply a transformation to `source_surface` using
-		the coefficients in `coefs` and return a new surface with the result."""
+	def get_resized_surface(self, source_surface, coefs):
+		"""Generate a blank new surface whose size is enough to fit a cairo
+		matrix transformation of `source_surface` using the coefficients in
+		`coefs`. The method `get_deformed_surface` should be used next."""
 		p_xx, p_yx, p_xy, p_yy, p_x0, p_y0 = coefs
-
 		source_w = source_surface.get_width()
 		source_h = source_surface.get_height()
 		w = p_xx * source_w + p_xy * source_h + p_x0 * 2
 		h = p_yx * source_w + p_yy * source_h + p_y0 * 2
+		return cairo.ImageSurface(cairo.Format.ARGB32, int(w), int(h))
 
-		new_surface = cairo.ImageSurface(cairo.Format.ARGB32, int(w), int(h))
+	def get_deformed_surface(self, source_surface, new_surface, coefs):
+		"""Use cairo.Matrix to apply a transformation to `source_surface` using
+		the coefficients in `coefs` and return a new surface with the result."""
+		p_xx, p_yx, p_xy, p_yy, p_x0, p_y0 = coefs
 		cairo_context = cairo.Context(new_surface)
-
-		if prefill:
-			# TODO this exists only for the "skew" tool, and it shouldn't be
-			# here nor do this.
-			# TODO it should paint *around* the deformed surface after it's
-			# returned by the current method
-			color_array = utilities_gdk_rgba_to_normalized_array(self._expansion_rgba)
-			cairo_context.set_source_rgba(*color_array)
-			cairo_context.paint()
 
 		# m = cairo.Matrix(xx=1.0, yx=0.0, xy=0.0, yy=1.0, x0=0.0, y0=0.0)
 		m = cairo.Matrix(xx=p_xx, yx=p_yx, xy=p_xy, yy=p_yy, x0=p_x0, y0=p_y0)
