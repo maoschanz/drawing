@@ -298,7 +298,12 @@ class ToolSkew(AbstractCanvasTool):
 		cairo_context.line_to(*new_corners['bottom-left'])
 		cairo_context.line_to(*new_corners['bottom-right'])
 		cairo_context.close_path()
-		cairo_context.fill()
+		cairo_context.fill_preserve()
+
+		# better-looking boundaries
+		cairo_context.set_source_rgba(*color_array)
+		cairo_context.set_line_width(1)
+		cairo_context.stroke_preserve()
 
 	############################################################################
 ################################################################################
