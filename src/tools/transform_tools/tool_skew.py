@@ -260,6 +260,7 @@ class ToolSkew(AbstractCanvasTool):
 		# cairo_context.set_antialias(cairo.Antialias.NONE)
 		color_array = utilities_gdk_rgba_to_normalized_array(self._expansion_rgba)
 		cairo_context.set_source_rgba(*color_array)
+		cairo_context.paint()
 
 		new_corners = {
 			'top-left': [None] * 2,
@@ -290,45 +291,14 @@ class ToolSkew(AbstractCanvasTool):
 			new_corners['bottom-left'][1] = h
 			new_corners['bottom-right'][1] = h0
 
-		# Doing only one path is possible but it's a mess: as a dumbass, i
-		# prefer to draw 4 simple triangles
-		if yx != 0:
-			# Top triangle
-			cairo_context.new_path()
-			cairo_context.move_to(0, 0)
-			cairo_context.line_to(w, 0)
-			cairo_context.line_to(*new_corners['top-right'])
-			cairo_context.line_to(*new_corners['top-left'])
-			cairo_context.close_path()
-			cairo_context.fill()
-
-			# Bottom triangle
-			cairo_context.new_path()
-			cairo_context.move_to(0, h)
-			cairo_context.line_to(w, h)
-			cairo_context.line_to(*new_corners['bottom-right'])
-			cairo_context.line_to(*new_corners['bottom-left'])
-			cairo_context.close_path()
-			cairo_context.fill()
-
-		if xy != 0:
-			# Right triangle
-			cairo_context.new_path()
-			cairo_context.move_to(w, 0)
-			cairo_context.line_to(w, h)
-			cairo_context.line_to(*new_corners['bottom-right'])
-			cairo_context.line_to(*new_corners['top-right'])
-			cairo_context.close_path()
-			cairo_context.fill()
-
-			# Left triangle
-			cairo_context.new_path()
-			cairo_context.move_to(0, 0)
-			cairo_context.line_to(0, h)
-			cairo_context.line_to(*new_corners['bottom-left'])
-			cairo_context.line_to(*new_corners['top-left'])
-			cairo_context.close_path()
-			cairo_context.fill()
+		cairo_context.set_operator(cairo.Operator.SOURCE)
+		cairo_context.set_source_rgba(1.0, 1.0, 1.0, 0.0)
+		cairo_context.move_to(*new_corners['top-right'])
+		cairo_context.line_to(*new_corners['top-left'])
+		cairo_context.line_to(*new_corners['bottom-left'])
+		cairo_context.line_to(*new_corners['bottom-right'])
+		cairo_context.close_path()
+		cairo_context.fill()
 
 	############################################################################
 ################################################################################
