@@ -236,6 +236,8 @@ class ToolSkew(AbstractCanvasTool):
 
 		new_surface = self.get_deformed_surface(source_surface, coefs)
 		if prefill:
+			# x_new = xx * x + xy * y + x0
+			# y_new = yx * x + yy * y + y0
 			w = new_surface.get_width()
 			h = new_surface.get_height()
 			cairo_context = cairo.Context(new_surface)
@@ -270,12 +272,12 @@ class ToolSkew(AbstractCanvasTool):
 						cairo_context.move_to(x0, y0)
 						cairo_context.line_to(w, 0)
 						x_new = w
-						y_new = yx * w0 + 1.0 * 0 + y0
+						y_new = yx * w0 + y0
 					else:
 						cairo_context.move_to(0, 0)
 						cairo_context.line_to(w, 0)
-						x_new = 1.0 * 0 + xy * 0 + x0
-						y_new = yx * 0 + 1.0 * 0 + y0
+						x_new = x0
+						y_new = y0
 				cairo_context.line_to(x_new, y_new)
 				cairo_context.close_path()
 				cairo_context.fill()
@@ -323,13 +325,20 @@ class ToolSkew(AbstractCanvasTool):
 						cairo_context.move_to(w, h - h0)
 						cairo_context.line_to(w, h)
 						x_new = w - x0
+						y_new = h
 				else:
 					if xy >= 0:
-						# "upwards diamond" scenario
-						pass # TODO
-					else:
 						# "rotated rectangle" scenario
-						pass # TODO
+						cairo_context.move_to(w0, 0)
+						cairo_context.line_to(w, 0)
+						x_new = w
+						y_new = h0
+					else:
+						# "upwards diamond" scenario
+						cairo_context.move_to(w, 0)
+						cairo_context.line_to(w0, h0)
+						x_new = w
+						y_new = h
 				cairo_context.line_to(x_new, y_new)
 				cairo_context.close_path()
 				cairo_context.fill()
