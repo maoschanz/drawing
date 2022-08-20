@@ -88,6 +88,23 @@ class DrDecoManagerMenubar():
 		if self._main_menu_btn is not None:
 			self._main_menu_btn.set_active(not self._main_menu_btn.get_active())
 
+	def set_release_notes_available(self, available):
+		"""It should have been the class 'needs-attention' to get a badge on the
+		icon instead, but things don't behave as i expect."""
+		if self._main_menu_btn is None:
+			return
+
+		if available:
+			icon_name = 'dialog-information-symbolic'
+			self._main_menu_btn.get_style_context().add_class('suggested-action')
+		else:
+			icon_name = 'open-menu-symbolic'
+			self._main_menu_btn.get_style_context().remove_class('suggested-action')
+		# XXX ackshually depending on the layout, it shouldn't always be
+		# symbolic, and it shouldn't always be the "BUTTON" size
+		image = Gtk.Image.new_from_icon_name(icon_name, Gtk.IconSize.BUTTON)
+		self._main_menu_btn.set_image(image)
+
 	def set_undo_label(self, label):
 		pass # update "undo" item in the menubar ?
 
