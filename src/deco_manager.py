@@ -93,6 +93,9 @@ class DrDecoManagerMenubar():
 		icon instead, but things don't behave as i expect."""
 		if self._main_menu_btn is None:
 			return
+		return # i don't trust users to understand that the suggested style is
+		# a hint to the "what's new" menu item, so i prefer to keep a more basic
+		# button in all situations for now
 
 		if available:
 			icon_name = 'dialog-information-symbolic'
@@ -100,7 +103,7 @@ class DrDecoManagerMenubar():
 		else:
 			icon_name = 'open-menu-symbolic'
 			self._main_menu_btn.get_style_context().remove_class('suggested-action')
-		# XXX ackshually depending on the layout, it shouldn't always be
+		# XXX ackshually, depending on the layout, it shouldn't always be
 		# symbolic, and it shouldn't always be the "BUTTON" size
 		image = Gtk.Image.new_from_icon_name(icon_name, Gtk.IconSize.BUTTON)
 		self._main_menu_btn.set_image(image)
