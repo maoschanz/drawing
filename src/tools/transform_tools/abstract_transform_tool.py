@@ -170,16 +170,21 @@ class AbstractCanvasTool(AbstractAbstractTool):
 		else:
 			self.cursor_name = self._directions + '-resize'
 
-	def set_directional_cursor(self, event_x, event_y):
+	def set_directional_cursor(self, event_x, event_y, movable_center=False):
 		"""Set the accurate cursor depending on the position of the pointer on
 		the canvas."""
 		n_sizes = self.get_image().get_nineths_sizes(self.apply_to_selection, \
 		                                                       self._x, self._y)
 		# if we're transforming the selection from its top and/or left, coords
 		# to decide the direction depend on local deltas (self._x and self._y)
-		if self._set_directions(event_x, event_y, n_sizes):
+		if not self._set_directions(event_x, event_y, n_sizes):
+			# directions haven't changed
+			return
+		if movable_center and self._directions == '':
+			self.cursor_name = 'move'
+		else:
 			self._set_cursor_name()
-			self.window.set_cursor(True)
+		self.window.set_cursor(True)
 
 	############################################################################
 
