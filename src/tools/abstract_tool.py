@@ -239,17 +239,18 @@ class AbstractAbstractTool():
 		pass
 
 	def cancel_ongoing_operation(self):
+		"""Reset the current tool when 'undo' is pressed while an operation has
+		been started but not applied."""
 		self.on_tool_unselected()
-		self.give_back_control(self.accept_selection) # XXX pas sûr
+		self.give_back_control(self.accept_selection)
 		self.on_tool_selected()
 		self.restore_pixbuf()
 		self.non_destructive_show_modif()
 		self._ongoing_operation = False
 
-	def give_back_control(self, preserve_selection, next_tool=None):
+	def give_back_control(self, preserve_selection):
 		self.restore_pixbuf()
 		self.non_destructive_show_modif()
-		return next_tool
 
 	############################################################################
 	# History ##################################################################
