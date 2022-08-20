@@ -15,11 +15,9 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-import cairo, random
+import cairo
 from gi.repository import Gdk, GdkPixbuf
-from .tool_pencil import ToolPencil
 from .abstract_classic_tool import AbstractClassicTool
-from .utilities_blur import utilities_blur_surface, BlurType, BlurDirection
 
 from .eraser_area import EraserArea
 from .eraser_color import EraserColor
@@ -38,38 +36,32 @@ class ToolEraser(AbstractClassicTool):
 		self.add_tool_action_enum('eraser-type', 'mosaic')
 		self._rgba = [0.0, 0.0, 0.0, 0.0]
 
+		self._erasers = {
+			'rubber': EraserRubber(),
+			'rectangle': EraserArea(self),
+			'color': EraserColor(self),
+		}
+
 	def get_editing_tips(self):
 		self._rgba_type = self.get_option_value('selection-color')
 		self._eraser_shape = self.get_option_value('eraser-shape')
 		self._apply_shape_constraints()
 
-		label_options = self.label
-		if self._eraser_shape == 'rubber':
-			label_options += " - " + _("Pencil")
-		else:
-			label_options += " - " + _("Rectangle")
-		if self._eraser_type == 'solid':
-			label_options += " - " + {
-				'alpha': _("Transparency"),
-				'initial': _("Default color"),
-				'secondary': _("Secondary color")
-			}[self._rgba_type]
-		else:
-			label_options += " - " + {
-				'blur': _("Blur"),
-				'shuffle': _("Shuffle pixels"),
-				'mixed': _("Shuffle and blur"),
-				'mosaic': _("Mosaic")
-			}[self._eraser_type]
+		opt = {
+			'selection-color': self._rgba_type,
+			'eraser-type': self._eraser_type
+		}
+		label_options = self.label + " - " + \
+		                self._erasers[self._eraser_shape].get_label_options(opt)
 
 		if self.get_image().get_mouse_is_pressed():
 			label_modifier_shift = None
 		else:
 			label_modifier_shift = self.label + " - "
-			if self._eraser_shape == 'rubber':
-				label_modifier_shift += _("Press <Shift> to erase a rectangle area instead")
-			else:
+			if self._eraser_shape == 'rectangle':
 				label_modifier_shift += _("Press <Shift> to erase a path instead")
+			else:
+				label_modifier_shift += _("Press <Shift> to erase a rectangle area instead")
 
 		full_list = [label_options, label_modifier_shift]
 		return list(filter(None, full_list))
@@ -80,12 +72,15 @@ class ToolEraser(AbstractClassicTool):
 	def _apply_shape_constraints(self):
 		self._eraser_type = self.get_option_value('eraser-type')
 
-		can_blur = self._eraser_shape != 'rubber'
+		can_blur = 'rectangle' == self._eraser_shape
 		self.set_action_sensitivity('eraser-type', can_blur)
 		if not can_blur:
 			self._eraser_type = 'solid'
 
-		if 'solid' == self._eraser_type and 'secondary' == self._rgba_type:
+		use_solid_color = ('solid' == self._eraser_type) and \
+		                                         ('color' != self._eraser_shape)
+		self.set_action_sensitivity('selection-color', use_solid_color)
+		if use_solid_color and 'secondary' == self._rgba_type:
 			self._fallback_operator = 'source'
 		else:
 			self._fallback_operator = 'clear'
@@ -94,6 +89,9 @@ class ToolEraser(AbstractClassicTool):
 			# en fallback qui afficherait l'icône avec les gouttes.
 			# En fait on devrait yeet le délire du `_fallback_operator` ?
 		self.window.options_manager.update_pane(self)
+
+	def give_back_control(self, should_preserve_selection):
+		self.set_action_sensitivity('selection-color', True)
 
 	############################################################################
 
@@ -117,20 +115,10 @@ class ToolEraser(AbstractClassicTool):
 				self._eraser_shape = 'rectangle'
 			self._apply_shape_constraints()
 
-	def _add_point(self, event_x, event_y):
-		cairo_context = self.get_context()
-		if self._path is None:
-			cairo_context.move_to(self.x_press, self.y_press)
-		else:
-			cairo_context.append_path(self._path)
-		cairo_context.line_to(event_x, event_y)
-		self._path = cairo_context.copy_path()
-
 	def on_motion_on_area(self, event, surface, event_x, event_y, render=True):
-		if self._eraser_shape == 'rectangle':
-			self._draw_rectangle(event_x, event_y)
-		else:
-			self._add_point(event_x, event_y)
+		cairo_context = self.get_context()
+		self._path = self._erasers[self._eraser_shape].on_motion(cairo_context, \
+		           [self.x_press, self.y_press], [event_x, event_y], self._path)
 
 		if not render:
 			return
@@ -138,22 +126,12 @@ class ToolEraser(AbstractClassicTool):
 		self.do_tool_operation(operation)
 
 	def on_release_on_area(self, event, surface, event_x, event_y):
-		if self._eraser_shape == 'rectangle':
-			self._draw_rectangle(event_x, event_y)
-		else:
-			self._add_point(event_x, event_y)
+		cairo_context = self.get_context()
+		self._path = self._erasers[self._eraser_shape].on_release(cairo_context, \
+		           [self.x_press, self.y_press], [event_x, event_y], self._path)
 		operation = self.build_operation(False)
 		self.apply_operation(operation)
 		self._reset_temp_points()
-
-	def _draw_rectangle(self, event_x, event_y):
-		cairo_context = self.get_context()
-		cairo_context.move_to(self.x_press, self.y_press)
-		cairo_context.line_to(self.x_press, event_y)
-		cairo_context.line_to(event_x, event_y)
-		cairo_context.line_to(event_x, self.y_press)
-		cairo_context.close_path()
-		self._path = cairo_context.copy_path()
 
 	def _reset_temp_points(self):
 		self._path = None
@@ -180,107 +158,12 @@ class ToolEraser(AbstractClassicTool):
 		return operation
 
 	def do_tool_operation(self, operation):
+		# depending on the implementation, the "path" might not be a cairo.Path
 		if operation['path'] is None:
 			return
 		cairo_context = self.start_tool_operation(operation)
-		cairo_context.set_operator(cairo.Operator.SOURCE)
-		censor_type = operation['censor-type']
-
-		if censor_type == 'solid':
-			cairo_context.set_source_rgba(*operation['replacement'])
-			if operation['censor-shape'] == 'rectangle':
-				cairo_context.append_path(operation['path'])
-				cairo_context.fill()
-			else:
-				cairo_context.set_line_cap(cairo.LineCap.ROUND)
-				cairo_context.set_line_join(cairo.LineJoin.ROUND)
-				cairo_context.set_line_width(operation['line_width'])
-				cairo_context.append_path(operation['path'])
-				cairo_context.stroke()
-			return
-		else:
-			cairo_context.append_path(operation['path'])
-
-		[r0, r1, r2, r3] = cairo_context.path_extents()
-		[r0, r1, r2, r3] = [int(r0), int(r1), int(r2), int(r3)]
-		width = r2 - r0
-		height = r3 - r1
-		surface = cairo.ImageSurface(cairo.Format.ARGB32, width, height)
-		ccontext2 = cairo.Context(surface)
-		ccontext2.set_source_surface(self.get_surface(), -1 * r0, -1 * r1)
-		ccontext2.paint()
-		scale = self.scale_factor()
-		surface.set_device_scale(scale, scale)
-
-		b_rad = min(15, int(min(width, height) / 4))
-		b_dir = BlurDirection.BOTH
-		shuffle_intensity = int((width * height) / 2)
-		if censor_type == 'mosaic':
-			bs = utilities_blur_surface(surface, b_rad, BlurType.TILES, b_dir)
-		elif censor_type == 'blur':
-			bs = utilities_blur_surface(surface, b_rad, BlurType.PX_BOX, b_dir)
-		elif censor_type == 'shuffle':
-			bs = self._shuffle_pixels(surface, shuffle_intensity)
-		elif censor_type == 'mixed':
-			bs = self._shuffle_pixels(surface, shuffle_intensity / 2)
-			bs = utilities_blur_surface(bs, b_rad, BlurType.CAIRO_REPAINTS, b_dir)
-
-		cairo_context.clip()
-		# XXX this ^ doesn't work with the 'rubber' shape, which forces me to
-		# disable the 'eraser-type' option in this case
-		cairo_context.set_source_surface(bs, r0, r1)
-		cairo_context.paint()
-
-	############################################################################
-
-	def _shuffle_pixels(self, surface, iterations):
-		w = surface.get_width()
-		h = surface.get_height()
-		channels = 4 # ARGB
-		if w <= 1 or h <= 1:
-			return surface
-
-		pixels = surface.get_data()
-
-		random.seed(1)
-		while iterations > 0:
-			iterations = iterations - 1
-			self._shuffle_one_iteration(w, h, channels, pixels)
-		return surface
-
-	def _shuffle_one_iteration(self, w, h, channels, pixels):
-		pix1_x = random.randint(0, w - 1)
-		pix1_y = random.randint(0, h - 1)
-
-		# Get data for a first pixel
-		cur_pixel = (pix1_y * w + pix1_x) * channels
-		a1 = pixels[cur_pixel + 0]
-		r1 = pixels[cur_pixel + 1]
-		g1 = pixels[cur_pixel + 2]
-		b1 = pixels[cur_pixel + 3]
-
-		pix2_x = random.randint(0, w - 1)
-		pix2_y = random.randint(0, h - 1)
-
-		# Get data for a second pixel
-		cur_pixel = (pix2_y * w + pix2_x) * channels
-		a2 = pixels[cur_pixel + 0]
-		r2 = pixels[cur_pixel + 1]
-		g2 = pixels[cur_pixel + 2]
-		b2 = pixels[cur_pixel + 3]
-
-		# Data of the 1st pixel is written in the 2nd one
-		pixels[cur_pixel + 0] = a1
-		pixels[cur_pixel + 1] = r1
-		pixels[cur_pixel + 2] = g1
-		pixels[cur_pixel + 3] = b1
-
-		# Data of the 2nd pixel is written in the 1st one
-		cur_pixel = (pix1_y * w + pix1_x) * channels
-		pixels[cur_pixel + 0] = a2
-		pixels[cur_pixel + 1] = r2
-		pixels[cur_pixel + 2] = g2
-		pixels[cur_pixel + 3] = b2
+		eraser_id = operation['censor-shape']
+		self._erasers[eraser_id].do_operation(cairo_context, operation)
 
 	############################################################################
 ################################################################################
