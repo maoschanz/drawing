@@ -18,6 +18,7 @@
 import cairo
 from gi.repository import Gtk, Gdk, GLib, Pango, PangoCairo
 from .abstract_classic_tool import AbstractClassicTool
+from .utilities_overlay import utilities_show_composite_overlay
 
 class ToolText(AbstractClassicTool):
 	__gtype_name__ = 'ToolText'
@@ -27,6 +28,20 @@ class ToolText(AbstractClassicTool):
 
 		self._should_cancel = False
 		self._last_click_btn = 1
+
+		# There are several types of possible interactions with the canvas,
+		# depending on where the pointer is during the press event.
+		self._pointer_target = 'input' # input, resize, move, apply
+
+		# Weird ass caching (`_text_x0` and `_text_y0` are only updated when
+		# releasing a 'move' interaction) to avoid erratic motion of the preview
+		self._text_x = self._text_x0 = 0
+		self._text_y = self._text_y0 = 0
+
+		# These values are found during the operation computation, and are
+		# re-used when rendering the previewed overlay
+		self._preview_width = 0
+		self._preview_height = 0
 
 		self.add_tool_action_simple('text-set-font', self._set_font)
 		self.add_tool_action_boolean('text-bold', False)
@@ -87,7 +102,7 @@ class ToolText(AbstractClassicTool):
 		self._set_background_style()
 
 		# get_editing_tips is likely called because an option changed
-		self._force_refresh()
+		self._preview_text()
 
 		label_options = self.label + " - " + self._font_fam_name
 		if self._background_id != 'none':
@@ -132,13 +147,47 @@ class ToolText(AbstractClassicTool):
 
 	############################################################################
 
+	def on_press_on_area(self, event, surface, event_x, event_y):
+		self._last_click_btn = event.button
+		self.set_common_values(self._last_click_btn, event_x, event_y)
+		self._pointer_target = 'input'
+		if not self._has_current_text():
+			return
+
+		should_input, should_move = self.on_draw_above(None, self.get_context())
+		if should_input:
+			return
+		elif not should_move:
+			self._pointer_target = 'apply'
+			return
+
+		self._pointer_target = 'move'
+
+	def on_motion_on_area(self, event, surface, event_x, event_y, render=True):
+		if 'move' == self._pointer_target:
+			self._text_x = self._text_x0 + (event_x - self.x_press)
+			self._text_y = self._text_y0 + (event_y - self.y_press)
+		if not render:
+			return
+		self._preview_text()
+
 	def on_release_on_area(self, event, surface, event_x, event_y):
 		self._last_click_btn = event.button
 		self._should_cancel = True
-		self.set_common_values(self._last_click_btn, event_x, event_y)
-		self._open_popover_at(event.x, event.y)
+		if 'input' == self._pointer_target:
+			if not self._has_current_text():
+				self.set_common_values(self._last_click_btn, event_x, event_y)
+				self._text_x = self._text_x0 = event_x
+				self._text_y = self._text_y0 = event_y
+			self._open_popover_at(event.x, event.y)
+		elif 'apply' == self._pointer_target:
+			self._on_insert_text()
+		elif 'move' == self._pointer_target:
+			self.on_motion_on_area(event, surface, event_x, event_y)
+			self._text_x0 = self._text_x
+			self._text_y0 = self._text_y
 
-	# XXX could there be a better way to move the text ?
+	# XXX could there be a better way to input the text ?
 	def _open_popover_at(self, x, y):
 		rectangle = Gdk.Rectangle()
 		rectangle.x = x
@@ -161,7 +210,7 @@ class ToolText(AbstractClassicTool):
 		self._popover.popdown()
 
 	def _force_refresh(self, *args):
-		self.set_common_values(self._last_click_btn, self.x_press, self.y_press)
+		self.set_common_values(self._last_click_btn, self._text_x, self._text_y)
 		self._preview_text()
 
 	def _on_insert_text(self, *args):
@@ -190,6 +239,35 @@ class ToolText(AbstractClassicTool):
 			operation = self.build_operation()
 			self.do_tool_operation(operation)
 
+	def on_draw_above(self, area, ccontext):
+		if not self._has_current_text():
+			return
+
+		sorigin_x = -1 * self.get_image().scroll_x
+		sorigin_y = -1 * self.get_image().scroll_y
+		if area is None:
+			sorigin_x = 0
+			sorigin_y = 0
+
+		actual_width = self._preview_width
+		actual_height = self._preview_height
+
+		ccontext.new_path()
+		ccontext.move_to(sorigin_x, sorigin_y)
+		ccontext.rel_move_to(self._text_x, self._text_y)
+		ccontext.rel_line_to(actual_width, 0)
+		ccontext.rel_line_to(0, actual_height)
+		ccontext.rel_line_to(-1 * actual_width, 0)
+		ccontext.rel_line_to(0, -1 * actual_height)
+
+		should_input = ccontext.in_fill(self.x_press, self.y_press)
+
+		thickness = self.get_overlay_thickness()
+		should_move = utilities_show_composite_overlay(ccontext, thickness, \
+		                     sorigin_x + self.x_press, sorigin_y + self.y_press)
+
+		return should_input, should_move
+
 	def _on_cancel(self, *args):
 		self._hide_entry()
 		self._set_string('')
@@ -207,8 +285,8 @@ class ToolText(AbstractClassicTool):
 			'is_bold': self._is_bold,
 			'font_size': self.tool_width,
 			'antialias': self._use_antialias,
-			'x': self.x_press,
-			'y': self.y_press,
+			'x': self._text_x,
+			'y': self._text_y,
 			'background': self._background_id,
 			'text': self.text_string
 		}
@@ -285,6 +363,10 @@ class ToolText(AbstractClassicTool):
 		cairo_context.set_source_rgba(*operation['rgba1'])
 		self._show_text_at_coords(cairo_context, layout, entire_text, \
 		                                                         text_x, text_y)
+
+		ink_rect, logical_rect = layout.get_pixel_extents()
+		self._preview_width = logical_rect.width
+		self._preview_height = logical_rect.height
 
 		self.non_destructive_show_modif()
 

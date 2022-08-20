@@ -5,18 +5,27 @@
     <section>
       <attribute name="display-hint">horizontal-buttons</attribute>
       <item>
-        <attribute name="label" translatable="yes">Pencil</attribute>
+        <attribute name="label" translatable="yes">Rubber eraser</attribute>
         <attribute name="action">win.eraser-shape</attribute>
-        <attribute name="target">pencil</attribute>
+        <attribute name="target">rubber</attribute>
         <attribute name="verb-icon">tool-pencil-symbolic</attribute>
       </item>
       <item>
-        <attribute name="label" translatable="yes">Rectangle</attribute>
+        <attribute name="label" translatable="yes">Rectangle area</attribute>
         <attribute name="action">win.eraser-shape</attribute>
         <attribute name="target">rectangle</attribute>
         <attribute name="verb-icon">tool-rectangle-symbolic</attribute>
       </item>
+      <item>
+        <!-- Context: this feature erases the color where the user clicked. -->
+        <!-- For example to cut out an object from its solid background. -->
+        <attribute name="label" translatable="yes">Remove color</attribute>
+        <attribute name="action">win.eraser-shape</attribute>
+        <attribute name="target">color</attribute>
+        <attribute name="verb-icon">tool-magic-symbolic</attribute>
+      </item>
     </section>
+
     <section>
       <item>
         <attribute name="label" translatable="yes">Blur</attribute>
@@ -44,6 +53,7 @@
         <attribute name="target">solid</attribute>
       </item>
     </section>
+
     <section>
       <attribute name="label" translatable="yes">Replace with…</attribute>
       <item>

@@ -1,13 +1,18 @@
 
 drawing (1.2.0) unstable; urgency=low
 
+  * consistently apply a transform tool's operation if it's interrupted (#515)
+  * more intuitive way to move, edit, and apply the previewed text on the canvas (#357)
+  * remove the "what's new" message dialog in favor of less intrusive menu items (#504)
   * fix the "show labels" action's inconsistent value
   * ability to adjust the preview position when cropping (#458)
   * move the "use color editor" option to the preferences window
   * fix the "use color editor" action
+  * move the option to cut out a background color from "paint" to "eraser" (#503)
+  * preserve transparency of the original area when skewing with a solid background color
   * update several translations
 
- -- Romain F. T. <rrroschan@gmail.com>  Sat, 11 Jun 2022 13:12:00 +0100
+ -- Romain F. T. <rrroschan@gmail.com>  Sat, 17 Sep 2022 13:12:00 +0100
 
 drawing (1.0.1) unstable; urgency=low
 

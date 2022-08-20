@@ -106,6 +106,20 @@
       </item>
     </section>
     <section>
+      <attribute name="display-hint">horizontal-buttons</attribute>
+      <item>
+        <attribute name="label" translatable="yes">What's new in Drawing</attribute>
+        <attribute name="action">win.help_news_open</attribute>
+        <attribute name="hidden-when">action-disabled</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Dismiss</attribute>
+        <attribute name="action">win.help_news_dismiss</attribute>
+        <attribute name="verb-icon">window-close-symbolic</attribute>
+        <attribute name="hidden-when">action-disabled</attribute>
+      </item>
+    </section>
+    <section>
       <item>
         <attribute name="label" translatable="yes">Shortcuts</attribute>
         <attribute name="action">app.shortcuts</attribute>
@@ -187,6 +201,20 @@
       </item>
     </section>
     <section>
+      <attribute name="display-hint">horizontal-buttons</attribute>
+      <item>
+        <attribute name="label" translatable="yes">What's new in Drawing</attribute>
+        <attribute name="action">win.help_news_open</attribute>
+        <attribute name="hidden-when">action-disabled</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Dismiss</attribute>
+        <attribute name="action">win.help_news_dismiss</attribute>
+        <attribute name="verb-icon">window-close-symbolic</attribute>
+        <attribute name="hidden-when">action-disabled</attribute>
+      </item>
+    </section>
+    <section>
       <item>
         <attribute name="label" translatable="yes">Shortcuts</attribute>
         <attribute name="action">app.shortcuts</attribute>
@@ -233,6 +261,20 @@
       <item>
         <attribute name="label" translatable="yes">Preferences</attribute>
         <attribute name="action">app.settings</attribute>
+      </item>
+    </section>
+    <section>
+      <attribute name="display-hint">horizontal-buttons</attribute>
+      <item>
+        <attribute name="label" translatable="yes">What's new in Drawing</attribute>
+        <attribute name="action">win.help_news_open</attribute>
+        <attribute name="hidden-when">action-disabled</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Dismiss</attribute>
+        <attribute name="action">win.help_news_dismiss</attribute>
+        <attribute name="verb-icon">window-close-symbolic</attribute>
+        <attribute name="hidden-when">action-disabled</attribute>
       </item>
     </section>
     <section>

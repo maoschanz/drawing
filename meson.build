@@ -1,7 +1,7 @@
 
 project(
 	'drawing',
-	version: '1.0.1',
+	version: '1.2.0-dev',
 	meson_version: '>= 0.50',
 )
 app_uuid = 'com.github.maoschanz.drawing'
@@ -30,4 +30,3 @@ subdir('help')
 meson.add_install_script('build-aux/meson/postinstall.py')
 
 ################################################################################
-
