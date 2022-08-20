@@ -86,8 +86,6 @@ msgstr ""
 msgid "Supported file types include PNG, JPEG and BMP."
 msgstr "Die unterstützten Dateitypen sind PNG, JPEG und BMP."
 
-#. very generic release notes i use for ALL minor updates, please
-#. translate this one!
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "Version 1.2.0 improves the transformation tools: their previews are now "
@@ -100,19 +98,31 @@ msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-"Transparency is now correctly preserved when the \"skew\" tools expands the "
+"The text tool is more intuitive to use, with distinct areas on the canvas to "
+"edit, move and insert the text."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+#, fuzzy
+msgid ""
+"Transparency is now correctly preserved when the \"skew\" tool expands the "
 "canvas with a solid color."
 msgstr ""
 "Die Transparenz wird nun korrekt beibehalten, wenn das Verzerren-Werkzeug "
 "die Leinwand mit einer einfarbigen Farbe erweitert."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"Using the right click, you can now adjust the position of the canvas when "
-"you're cropping it."
+#, fuzzy
+msgid "You can now adjust the position of the canvas when you're cropping it."
 msgstr ""
 "Mit der rechten Maustaste können Sie jetzt die Position der Leinwand "
 "anpassen, wenn Sie sie zuschneiden."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"The option to use a color editor by default has been moved from the main "
+"window to the preferences window, and its bug has been fixed."
+msgstr ""
 
 #. very generic release notes i use for ALL minor updates, please
 #. translate this one!
@@ -956,6 +966,15 @@ msgstr "Wird geladen…"
 msgid "Exit fullscreen"
 msgstr "Vollbildansicht schließen"
 
+#: src/ui/win-menus.ui
+#, fuzzy
+msgid "What's new in Drawing"
+msgstr "Neuigkeiten"
+
+#: src/ui/win-menus.ui
+msgid "Dismiss"
+msgstr ""
+
 #: src/deco_manager.py
 #, python-format
 msgid "Undo %s"
@@ -1089,7 +1108,8 @@ msgstr "Standardhöhe"
 #: src/optionsbars/transform/optionsbar-crop.ui
 #: src/optionsbars/transform/optionsbar-skew.ui src/tools/ui/selection.ui
 #: src/tools/ui/tool-crop.ui src/tools/ui/tool-eraser.ui
-#: src/tools/classic_tools/tool_eraser.py
+#: src/tools/classic_tools/erasers/eraser_area.py
+#: src/tools/classic_tools/erasers/eraser_rubber.py
 msgid "Default color"
 msgstr "Standardfarbe"
 
@@ -1169,7 +1189,7 @@ msgstr ""
 "Diese Werkzeuge sind nicht so zuverlässig und nützlich, wie sie sein "
 "sollten. Daher sind nicht alle standardmäßig aktiviert."
 
-#. Context: this is the name of a tool, in the meaning "a rubber eraser"
+#. Context: this is the name of a tool
 #: src/preferences.py src/tools/classic_tools/tool_eraser.py
 msgid "Eraser"
 msgstr "Radiergummi"
@@ -1432,38 +1452,6 @@ msgid "Error starting the application, please report this bug."
 msgstr "Fehler beim Starten der Anwendung. Bitte melden Sie diesen Fehler."
 
 #: src/window.py
-msgid ""
-"It's the first time you use Drawing, would you like to read the help manual?"
-msgstr ""
-"Sie nutzen das erste Mal Zeichnung. Wollen Sie sich das Hilfe-Handbuch "
-"ansehen?"
-
-#. Context: %s is the version number of the app
-#: src/window.py
-#, python-format
-msgid ""
-"It's the first time you use Drawing %s, would you like to read what's new?"
-msgstr ""
-"Sie nutzen das erste Mal Zeichnung %s. Wollen Sie sich ansehen, was es Neues "
-"gibt?"
-
-#: src/window.py
-msgid ""
-"These news will always be available in the help manual: click the 'Help' "
-"menu item whenever you want!"
-msgstr ""
-"Diese Neuigkeiten werden immer im Hilfe-Handbuch verfügbar sein: Klicken Sie "
-"auf den Menüeintrag 'Hilfe', wann immer Sie möchten!"
-
-#: src/window.py
-msgid "No"
-msgstr "Nein"
-
-#: src/window.py
-msgid "Yes"
-msgstr "Ja"
-
-#: src/window.py
 msgid "The clipboard doesn't contain any image."
 msgstr "Die Zwischenablage enthält keine Bilder."
 
@@ -1701,7 +1689,8 @@ msgstr "Hauptfarbe"
 #: src/optionsbars/transform/optionsbar-crop.ui
 #: src/optionsbars/transform/optionsbar-skew.ui src/tools/ui/selection.ui
 #: src/tools/ui/tool-crop.ui src/tools/ui/tool-eraser.ui
-#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_eraser.py
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/erasers/eraser_area.py
+#: src/tools/classic_tools/erasers/eraser_rubber.py
 msgid "Secondary color"
 msgstr "Zweitfarbe"
 
@@ -1743,7 +1732,8 @@ msgstr "Ersetzen mit…"
 #: src/optionsbars/transform/optionsbar-crop.ui
 #: src/optionsbars/transform/optionsbar-skew.ui src/tools/ui/selection.ui
 #: src/tools/ui/tool-crop.ui src/tools/ui/tool-eraser.ui
-#: src/tools/classic_tools/tool_eraser.py
+#: src/tools/classic_tools/erasers/eraser_area.py
+#: src/tools/classic_tools/erasers/eraser_rubber.py
 #: src/tools/transform_tools/filters/filter_transparency.py
 msgid "Transparency"
 msgstr "Transparenz"
@@ -1942,31 +1932,36 @@ msgstr "Links gehaltene Feder"
 msgid "Horizontal nib"
 msgstr "Horizontale Feder"
 
-#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
-#: src/tools/classic_tools/tool_pencil.py
-msgid "Pencil"
-msgstr "Bleistift"
+#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/erasers/eraser_rubber.py
+msgid "Rubber eraser"
+msgstr ""
 
-#: src/tools/ui/tool-eraser.ui src/tools/ui/tool-shape.ui
-#: src/tools/classic_tools/tool_eraser.py src/tools/classic_tools/tool_shape.py
-msgid "Rectangle"
+#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/erasers/eraser_area.py
+#, fuzzy
+msgid "Rectangle area"
 msgstr "Rechteck"
 
-#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
+#. Context: this feature erases the color where the user clicked.
+#. For example to cut out an object from its solid background.
+#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/erasers/eraser_color.py
+msgid "Remove color"
+msgstr "Farbe entfernen"
+
+#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/erasers/eraser_area.py
 msgid "Blur"
 msgstr "Verwischen"
 
-#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
+#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/erasers/eraser_area.py
 msgid "Shuffle pixels"
 msgstr "Pixel mischen"
 
-#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
+#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/erasers/eraser_area.py
 msgid "Shuffle and blur"
 msgstr "Mischen und Verwischen"
 
 #. Context: a filter to censor the image with some little tiles
 #: src/tools/ui/tool-eraser.ui src/tools/ui/tool-filters.ui
-#: src/tools/classic_tools/tool_eraser.py
+#: src/tools/classic_tools/erasers/eraser_area.py
 #: src/tools/transform_tools/tool_filters.py
 msgid "Mosaic"
 msgstr "Mosaik"
@@ -2068,14 +2063,6 @@ msgstr "Löschen und ersetzen"
 msgid "Entire image"
 msgstr "Gesamtes Bild"
 
-#. Context: this is one of the possible painting algorithms. It
-#. doesn't really paint, instead it erases the color the user
-#. clicked. For example to cut out an object from its white
-#. background.
-#: src/tools/ui/tool-paint.ui
-msgid "Remove color"
-msgstr "Farbe entfernen"
-
 #: src/tools/ui/tool-points.ui
 msgid "Dots type"
 msgstr "Punktetyp"
@@ -2144,6 +2131,10 @@ msgstr "Vertikaler Farbverlauf"
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
 msgid "Radial gradient"
 msgstr "Radialer Farbverlauf"
+
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+msgid "Rectangle"
+msgstr "Rechteck"
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
 msgid "Rounded rectangle"
@@ -2250,13 +2241,13 @@ msgid "Brush options"
 msgstr "Optionen für Pinsel"
 
 #: src/tools/classic_tools/tool_eraser.py
+msgid "Press <Shift> to erase a path instead"
+msgstr "Taste <Shift> drücken, um stattdessen einen Pfad zu löschen"
+
+#: src/tools/classic_tools/tool_eraser.py
 msgid "Press <Shift> to erase a rectangle area instead"
 msgstr ""
 "Taste <Shift> drücken, um stattdessen einen rechteckigen Bereich zu löschen"
-
-#: src/tools/classic_tools/tool_eraser.py
-msgid "Press <Shift> to erase a path instead"
-msgstr "Taste <Shift> drücken, um stattdessen einen Pfad zu löschen"
 
 #: src/tools/classic_tools/tool_eraser.py
 msgid "Eraser options"
@@ -2334,6 +2325,10 @@ msgstr "Funktioniert möglicherweise nicht für komplexe Formen"
 msgid "It will not work well if the area's edges are blurry"
 msgstr ""
 "Es funktioniert nicht gut, wenn die Ränder des Bereichs verschwommen sind"
+
+#: src/tools/classic_tools/tool_pencil.py
+msgid "Pencil"
+msgstr "Bleistift"
 
 #: src/tools/classic_tools/tool_pencil.py
 msgid "Pencil options"
@@ -2462,11 +2457,6 @@ msgstr ""
 "Tasten <Alt>, <Shift> oder beide drücken, um schnell die Option für "
 "'Erweitern mit' zu wechseln"
 
-#: src/tools/transform_tools/tool_crop.py
-msgid ""
-"Change the size with the left click, adjust the position with the right click"
-msgstr "Größe ändern mit Linksklick, Position anpassen mit Rechtsklick"
-
 #: src/tools/transform_tools/tool_filters.py
 msgid "Active filter"
 msgstr "Aktiver Filter"
@@ -2533,17 +2523,6 @@ msgstr "Unschärferadius"
 #: src/tools/transform_tools/filters/filter_saturation.py
 msgid "Saturation"
 msgstr "Sättigung"
-
-#, fuzzy
-#~ msgid ""
-#~ "Version 1.0.2 features several minor bug fixes, and various new "
-#~ "translations."
-#~ msgstr ""
-#~ "Die Version 1.0.1 enthält mehrere kleine Fehlerbehebungen und "
-#~ "verschiedene neue Übersetzungen."
-
-#~ msgid "Later"
-#~ msgstr "Später"
 
 #~ msgid "Transform"
 #~ msgstr "Umwandeln"

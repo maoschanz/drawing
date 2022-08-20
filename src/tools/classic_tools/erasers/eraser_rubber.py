@@ -10,7 +10,7 @@ class EraserRubber(AbstractEraser):
 		super().__init__()
 
 	def get_label_options(self, options={}):
-		label_options = _("Pencil") # XXX << pas ultra clair/adapté en vrai
+		label_options = _("Rubber eraser")
 		label_options += " - " + {
 			'alpha': _("Transparency"),
 			'initial': _("Default color"),

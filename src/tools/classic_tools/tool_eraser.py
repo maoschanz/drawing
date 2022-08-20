@@ -27,7 +27,7 @@ class ToolEraser(AbstractClassicTool):
 	__gtype_name__ = 'ToolEraser'
 
 	def __init__(self, window, **kwargs):
-		# Context: this is the name of a tool, in the meaning "a rubber eraser"
+		# Context: this is the name of a tool
 		super().__init__('eraser', _("Eraser"), 'tool-eraser-symbolic', window)
 		self.use_operator = False
 		self._fallback_operator = 'clear'

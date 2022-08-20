@@ -83,8 +83,6 @@ msgstr ""
 msgid "Supported file types include PNG, JPEG and BMP."
 msgstr "Mezi podporované typy souborů patří PNG, JPEG a BMP"
 
-#. very generic release notes i use for ALL minor updates, please
-#. translate this one!
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "Version 1.2.0 improves the transformation tools: their previews are now "
@@ -96,18 +94,30 @@ msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-"Transparency is now correctly preserved when the \"skew\" tools expands the "
+"The text tool is more intuitive to use, with distinct areas on the canvas to "
+"edit, move and insert the text."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+#, fuzzy
+msgid ""
+"Transparency is now correctly preserved when the \"skew\" tool expands the "
 "canvas with a solid color."
 msgstr ""
 "Průhlednost je nyní správně zachována, když nástroj \"zkosení\" rozšiřuje "
 "plátno neprůhlednou barvou."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"Using the right click, you can now adjust the position of the canvas when "
-"you're cropping it."
+#, fuzzy
+msgid "You can now adjust the position of the canvas when you're cropping it."
 msgstr ""
 "Pomocí pravého tlačítka myši můžete nyní upravit polohu plátna při ořezávání."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"The option to use a color editor by default has been moved from the main "
+"window to the preferences window, and its bug has been fixed."
+msgstr ""
 
 #. very generic release notes i use for ALL minor updates, please
 #. translate this one!
@@ -947,6 +957,15 @@ msgstr "Načítání..."
 msgid "Exit fullscreen"
 msgstr "Ukončit zobrazení na celou obrazovku"
 
+#: src/ui/win-menus.ui
+#, fuzzy
+msgid "What's new in Drawing"
+msgstr "Co je nového"
+
+#: src/ui/win-menus.ui
+msgid "Dismiss"
+msgstr ""
+
 #: src/deco_manager.py
 #, python-format
 msgid "Undo %s"
@@ -1082,7 +1101,8 @@ msgstr "Výchozí výška"
 #: src/optionsbars/transform/optionsbar-crop.ui
 #: src/optionsbars/transform/optionsbar-skew.ui src/tools/ui/selection.ui
 #: src/tools/ui/tool-crop.ui src/tools/ui/tool-eraser.ui
-#: src/tools/classic_tools/tool_eraser.py
+#: src/tools/classic_tools/erasers/eraser_area.py
+#: src/tools/classic_tools/erasers/eraser_rubber.py
 msgid "Default color"
 msgstr "Výchozí barva"
 
@@ -1162,7 +1182,7 @@ msgstr ""
 "Tyto nástroje nejsou tak spolehlivé a užitečné, jak by měly být, takže ve "
 "výchozím nastavení nejsou všechny povoleny."
 
-#. Context: this is the name of a tool, in the meaning "a rubber eraser"
+#. Context: this is the name of a tool
 #: src/preferences.py src/tools/classic_tools/tool_eraser.py
 msgid "Eraser"
 msgstr "Guma"
@@ -1422,35 +1442,6 @@ msgid "Error starting the application, please report this bug."
 msgstr "Při spuštění aplikace došlo k chybě, tuto chybu prosím nahlaste."
 
 #: src/window.py
-msgid ""
-"It's the first time you use Drawing, would you like to read the help manual?"
-msgstr "Je to poprvé, co otevíráte Kreslení, chcete si přečíst nápovědu?"
-
-#. Context: %s is the version number of the app
-#: src/window.py
-#, python-format
-msgid ""
-"It's the first time you use Drawing %s, would you like to read what's new?"
-msgstr ""
-"Je to poprvé, kdy spouštíte Kreslení %s, chcete si přečíst, co je nového?"
-
-#: src/window.py
-msgid ""
-"These news will always be available in the help manual: click the 'Help' "
-"menu item whenever you want!"
-msgstr ""
-"Tyto novinky budou vždy k dispozici v nápovědě: klikněte na položku nabídky "
-"\"Nápověda\", kdykoli budete chtít!"
-
-#: src/window.py
-msgid "No"
-msgstr "Ne"
-
-#: src/window.py
-msgid "Yes"
-msgstr "Ano"
-
-#: src/window.py
 msgid "The clipboard doesn't contain any image."
 msgstr "Schránka neobsahuje žádný obrázek."
 
@@ -1682,7 +1673,8 @@ msgstr "Hlavní barva"
 #: src/optionsbars/transform/optionsbar-crop.ui
 #: src/optionsbars/transform/optionsbar-skew.ui src/tools/ui/selection.ui
 #: src/tools/ui/tool-crop.ui src/tools/ui/tool-eraser.ui
-#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_eraser.py
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/erasers/eraser_area.py
+#: src/tools/classic_tools/erasers/eraser_rubber.py
 msgid "Secondary color"
 msgstr "Vedlejší barva"
 
@@ -1724,7 +1716,8 @@ msgstr "Nahradit s..."
 #: src/optionsbars/transform/optionsbar-crop.ui
 #: src/optionsbars/transform/optionsbar-skew.ui src/tools/ui/selection.ui
 #: src/tools/ui/tool-crop.ui src/tools/ui/tool-eraser.ui
-#: src/tools/classic_tools/tool_eraser.py
+#: src/tools/classic_tools/erasers/eraser_area.py
+#: src/tools/classic_tools/erasers/eraser_rubber.py
 #: src/tools/transform_tools/filters/filter_transparency.py
 msgid "Transparency"
 msgstr "Průhlednost"
@@ -1923,31 +1916,36 @@ msgstr "Levoruké pero"
 msgid "Horizontal nib"
 msgstr "Horizontální pero"
 
-#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
-#: src/tools/classic_tools/tool_pencil.py
-msgid "Pencil"
-msgstr "Tužka"
+#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/erasers/eraser_rubber.py
+msgid "Rubber eraser"
+msgstr ""
 
-#: src/tools/ui/tool-eraser.ui src/tools/ui/tool-shape.ui
-#: src/tools/classic_tools/tool_eraser.py src/tools/classic_tools/tool_shape.py
-msgid "Rectangle"
+#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/erasers/eraser_area.py
+#, fuzzy
+msgid "Rectangle area"
 msgstr "Obdélník"
 
-#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
+#. Context: this feature erases the color where the user clicked.
+#. For example to cut out an object from its solid background.
+#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/erasers/eraser_color.py
+msgid "Remove color"
+msgstr "Odstranit barvu"
+
+#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/erasers/eraser_area.py
 msgid "Blur"
 msgstr "Rozmazat"
 
-#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
+#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/erasers/eraser_area.py
 msgid "Shuffle pixels"
 msgstr "Promíchat pixely"
 
-#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
+#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/erasers/eraser_area.py
 msgid "Shuffle and blur"
 msgstr "Promíchat a rozmazat"
 
 #. Context: a filter to censor the image with some little tiles
 #: src/tools/ui/tool-eraser.ui src/tools/ui/tool-filters.ui
-#: src/tools/classic_tools/tool_eraser.py
+#: src/tools/classic_tools/erasers/eraser_area.py
 #: src/tools/transform_tools/tool_filters.py
 msgid "Mosaic"
 msgstr "Mozaika"
@@ -2049,14 +2047,6 @@ msgstr "Smazat a nahradit"
 msgid "Entire image"
 msgstr "Celý obrázek"
 
-#. Context: this is one of the possible painting algorithms. It
-#. doesn't really paint, instead it erases the color the user
-#. clicked. For example to cut out an object from its white
-#. background.
-#: src/tools/ui/tool-paint.ui
-msgid "Remove color"
-msgstr "Odstranit barvu"
-
 #: src/tools/ui/tool-points.ui
 msgid "Dots type"
 msgstr "Typ bodů"
@@ -2125,6 +2115,10 @@ msgstr "Vertikální přechod"
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
 msgid "Radial gradient"
 msgstr "Kruhový přechod"
+
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+msgid "Rectangle"
+msgstr "Obdélník"
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
 msgid "Rounded rectangle"
@@ -2231,12 +2225,12 @@ msgid "Brush options"
 msgstr "Možnosti štětce"
 
 #: src/tools/classic_tools/tool_eraser.py
-msgid "Press <Shift> to erase a rectangle area instead"
-msgstr "Stiskněte <Shift> pro vymazání obdelníkové oblasti"
-
-#: src/tools/classic_tools/tool_eraser.py
 msgid "Press <Shift> to erase a path instead"
 msgstr "Stiskněte <Shift> pro vymazání trasy"
+
+#: src/tools/classic_tools/tool_eraser.py
+msgid "Press <Shift> to erase a rectangle area instead"
+msgstr "Stiskněte <Shift> pro vymazání obdelníkové oblasti"
 
 #: src/tools/classic_tools/tool_eraser.py
 msgid "Eraser options"
@@ -2308,6 +2302,10 @@ msgstr "Nemusí fungovat pro složité tvary"
 #: src/tools/selection_tools/select_color.py
 msgid "It will not work well if the area's edges are blurry"
 msgstr "Nebude správně pracovat pokud má oblast rozmazané okraje"
+
+#: src/tools/classic_tools/tool_pencil.py
+msgid "Pencil"
+msgstr "Tužka"
 
 #: src/tools/classic_tools/tool_pencil.py
 msgid "Pencil options"
@@ -2433,13 +2431,6 @@ msgid ""
 msgstr ""
 "Stiskněte <Alt>, <Shift>, nebo obojí pro rychlé změnění funkce 'Rozšířit'"
 
-#: src/tools/transform_tools/tool_crop.py
-msgid ""
-"Change the size with the left click, adjust the position with the right click"
-msgstr ""
-"Levým tlačítkem myši můžete měnit velikost, pravým tlačítkem myši můžete "
-"upravovat polohu"
-
 #: src/tools/transform_tools/tool_filters.py
 msgid "Active filter"
 msgstr "Aktivní filtr"
@@ -2504,16 +2495,6 @@ msgstr "Poloměr rozostření"
 #: src/tools/transform_tools/filters/filter_saturation.py
 msgid "Saturation"
 msgstr "Saturace"
-
-#, fuzzy
-#~ msgid ""
-#~ "Version 1.0.2 features several minor bug fixes, and various new "
-#~ "translations."
-#~ msgstr ""
-#~ "Verze 1.0.1 obsahuje několik drobných oprav chyb a různé nové překlady."
-
-#~ msgid "Later"
-#~ msgstr "Později"
 
 #~ msgid "Transform"
 #~ msgstr "Transormovat"

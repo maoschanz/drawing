@@ -78,8 +78,6 @@ msgstr ""
 msgid "Supported file types include PNG, JPEG and BMP."
 msgstr ""
 
-#. very generic release notes i use for ALL minor updates, please
-#. translate this one!
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "Version 1.2.0 improves the transformation tools: their previews are now "
@@ -89,14 +87,24 @@ msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-"Transparency is now correctly preserved when the \"skew\" tools expands the "
-"canvas with a solid color."
+"The text tool is more intuitive to use, with distinct areas on the canvas to "
+"edit, move and insert the text."
 msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-"Using the right click, you can now adjust the position of the canvas when "
-"you're cropping it."
+"Transparency is now correctly preserved when the \"skew\" tool expands the "
+"canvas with a solid color."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid "You can now adjust the position of the canvas when you're cropping it."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"The option to use a color editor by default has been moved from the main "
+"window to the preferences window, and its bug has been fixed."
 msgstr ""
 
 #. very generic release notes i use for ALL minor updates, please
@@ -917,6 +925,15 @@ msgstr "로딩 %s"
 msgid "Exit fullscreen"
 msgstr "전체 화면 종료"
 
+#: src/ui/win-menus.ui
+#, fuzzy
+msgid "What's new in Drawing"
+msgstr "새로운 소식"
+
+#: src/ui/win-menus.ui
+msgid "Dismiss"
+msgstr ""
+
 #: src/deco_manager.py
 #, python-format
 msgid "Undo %s"
@@ -1050,7 +1067,8 @@ msgstr "기본 높이"
 #: src/optionsbars/transform/optionsbar-crop.ui
 #: src/optionsbars/transform/optionsbar-skew.ui src/tools/ui/selection.ui
 #: src/tools/ui/tool-crop.ui src/tools/ui/tool-eraser.ui
-#: src/tools/classic_tools/tool_eraser.py
+#: src/tools/classic_tools/erasers/eraser_area.py
+#: src/tools/classic_tools/erasers/eraser_rubber.py
 msgid "Default color"
 msgstr "기본 색상"
 
@@ -1128,7 +1146,7 @@ msgid ""
 "not all enabled by default."
 msgstr "기본적으로 모두 활성화되어 있지 않습니다"
 
-#. Context: this is the name of a tool, in the meaning "a rubber eraser"
+#. Context: this is the name of a tool
 #: src/preferences.py src/tools/classic_tools/tool_eraser.py
 msgid "Eraser"
 msgstr "지우개"
@@ -1389,33 +1407,6 @@ msgstr ""
 "응용 프로그램을 시작하는 동안 오류가 발생했습니다.이 버그를보고하십시오."
 
 #: src/window.py
-#, fuzzy
-msgid ""
-"It's the first time you use Drawing, would you like to read the help manual?"
-msgstr "처음으로 Drawing %s 를 사용합니다. 새로운 기능을 읽으시겠습니까?"
-
-#. Context: %s is the version number of the app
-#: src/window.py
-#, python-format
-msgid ""
-"It's the first time you use Drawing %s, would you like to read what's new?"
-msgstr "처음으로 Drawing %s 를 사용합니다. 새로운 기능을 읽으시겠습니까?"
-
-#: src/window.py
-msgid ""
-"These news will always be available in the help manual: click the 'Help' "
-"menu item whenever you want!"
-msgstr ""
-
-#: src/window.py
-msgid "No"
-msgstr "아니오"
-
-#: src/window.py
-msgid "Yes"
-msgstr "예"
-
-#: src/window.py
 msgid "The clipboard doesn't contain any image."
 msgstr "클립 보드에 이미지가 없습니다."
 
@@ -1650,7 +1641,8 @@ msgstr "메인 색상"
 #: src/optionsbars/transform/optionsbar-crop.ui
 #: src/optionsbars/transform/optionsbar-skew.ui src/tools/ui/selection.ui
 #: src/tools/ui/tool-crop.ui src/tools/ui/tool-eraser.ui
-#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_eraser.py
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/erasers/eraser_area.py
+#: src/tools/classic_tools/erasers/eraser_rubber.py
 msgid "Secondary color"
 msgstr "보조 색상"
 
@@ -1692,7 +1684,8 @@ msgstr "다음으로 바꾸기"
 #: src/optionsbars/transform/optionsbar-crop.ui
 #: src/optionsbars/transform/optionsbar-skew.ui src/tools/ui/selection.ui
 #: src/tools/ui/tool-crop.ui src/tools/ui/tool-eraser.ui
-#: src/tools/classic_tools/tool_eraser.py
+#: src/tools/classic_tools/erasers/eraser_area.py
+#: src/tools/classic_tools/erasers/eraser_rubber.py
 #: src/tools/transform_tools/filters/filter_transparency.py
 msgid "Transparency"
 msgstr "투명도"
@@ -1892,31 +1885,36 @@ msgstr "왼손잡이 펜촉"
 msgid "Horizontal nib"
 msgstr "수평 펜촉"
 
-#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
-#: src/tools/classic_tools/tool_pencil.py
-msgid "Pencil"
-msgstr "연필"
+#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/erasers/eraser_rubber.py
+msgid "Rubber eraser"
+msgstr ""
 
-#: src/tools/ui/tool-eraser.ui src/tools/ui/tool-shape.ui
-#: src/tools/classic_tools/tool_eraser.py src/tools/classic_tools/tool_shape.py
-msgid "Rectangle"
+#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/erasers/eraser_area.py
+#, fuzzy
+msgid "Rectangle area"
 msgstr "직사각형"
 
-#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
+#. Context: this feature erases the color where the user clicked.
+#. For example to cut out an object from its solid background.
+#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/erasers/eraser_color.py
+msgid "Remove color"
+msgstr "색상 제거"
+
+#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/erasers/eraser_area.py
 msgid "Blur"
 msgstr "흐림"
 
-#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
+#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/erasers/eraser_area.py
 msgid "Shuffle pixels"
 msgstr "픽셀 셔플"
 
-#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
+#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/erasers/eraser_area.py
 msgid "Shuffle and blur"
 msgstr "셔플 및 블러"
 
 #. Context: a filter to censor the image with some little tiles
 #: src/tools/ui/tool-eraser.ui src/tools/ui/tool-filters.ui
-#: src/tools/classic_tools/tool_eraser.py
+#: src/tools/classic_tools/erasers/eraser_area.py
 #: src/tools/transform_tools/tool_filters.py
 msgid "Mosaic"
 msgstr "모자이크"
@@ -2022,14 +2020,6 @@ msgstr "지우기 및 교체"
 msgid "Entire image"
 msgstr "전체 이미지"
 
-#. Context: this is one of the possible painting algorithms. It
-#. doesn't really paint, instead it erases the color the user
-#. clicked. For example to cut out an object from its white
-#. background.
-#: src/tools/ui/tool-paint.ui
-msgid "Remove color"
-msgstr "색상 제거"
-
 #: src/tools/ui/tool-points.ui
 msgid "Dots type"
 msgstr "도트 유형"
@@ -2098,6 +2088,10 @@ msgstr "수직 기울기"
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
 msgid "Radial gradient"
 msgstr "방사형 그래디언트"
+
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+msgid "Rectangle"
+msgstr "직사각형"
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
 msgid "Rounded rectangle"
@@ -2206,11 +2200,11 @@ msgid "Brush options"
 msgstr "브러시 옵션"
 
 #: src/tools/classic_tools/tool_eraser.py
-msgid "Press <Shift> to erase a rectangle area instead"
+msgid "Press <Shift> to erase a path instead"
 msgstr ""
 
 #: src/tools/classic_tools/tool_eraser.py
-msgid "Press <Shift> to erase a path instead"
+msgid "Press <Shift> to erase a rectangle area instead"
 msgstr ""
 
 #: src/tools/classic_tools/tool_eraser.py
@@ -2283,6 +2277,10 @@ msgstr ""
 #: src/tools/selection_tools/select_color.py
 msgid "It will not work well if the area's edges are blurry"
 msgstr ""
+
+#: src/tools/classic_tools/tool_pencil.py
+msgid "Pencil"
+msgstr "연필"
 
 #: src/tools/classic_tools/tool_pencil.py
 msgid "Pencil options"
@@ -2408,11 +2406,6 @@ msgid ""
 "Press <Alt>, <Shift>, or both, to quickly change the 'expand with' option"
 msgstr ""
 
-#: src/tools/transform_tools/tool_crop.py
-msgid ""
-"Change the size with the left click, adjust the position with the right click"
-msgstr ""
-
 #: src/tools/transform_tools/tool_filters.py
 msgid "Active filter"
 msgstr "활성 필터"
@@ -2483,15 +2476,11 @@ msgstr "흐림 반경"
 msgid "Saturation"
 msgstr "채도"
 
-#, fuzzy
-#~ msgid ""
-#~ "Version 1.0.2 features several minor bug fixes, and various new "
-#~ "translations."
-#~ msgstr ""
-#~ "버전 1.0.1에는 몇 가지 사소한 버그 수정과 다양한 새로운 번역이 있습니다."
+#~ msgid "No"
+#~ msgstr "아니오"
 
-#~ msgid "Later"
-#~ msgstr "나중에"
+#~ msgid "Yes"
+#~ msgstr "예"
 
 #~ msgid "Transform"
 #~ msgstr "변환"

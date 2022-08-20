@@ -83,33 +83,43 @@ msgstr ""
 msgid "Supported file types include PNG, JPEG and BMP."
 msgstr "Ondersteunde bestandstypes: png, jpeg en bmp."
 
-#. very generic release notes i use for ALL minor updates, please
-#. translate this one!
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "Version 1.2.0 improves the transformation tools: their previews are now "
 "consistently applied when you change the active tool without clicking on "
 "\"apply\"."
 msgstr ""
-"In versie 1.2.0 verbetert zijn de transformatiegereedschappen verbeterd:"
-" voorvertoningen worden voortaan direct getoond bij het kiezen van een ander"
-" gereedschap."
+"In versie 1.2.0 verbetert zijn de transformatiegereedschappen verbeterd: "
+"voorvertoningen worden voortaan direct getoond bij het kiezen van een ander "
+"gereedschap."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-"Transparency is now correctly preserved when the \"skew\" tools expands the "
+"The text tool is more intuitive to use, with distinct areas on the canvas to "
+"edit, move and insert the text."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+#, fuzzy
+msgid ""
+"Transparency is now correctly preserved when the \"skew\" tool expands the "
 "canvas with a solid color."
 msgstr ""
-"Doorzichtigheid blijft voortaan behouden na het scheeftrekken van het canvas"
-" met een kleur."
+"Doorzichtigheid blijft voortaan behouden na het scheeftrekken van het canvas "
+"met een kleur."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+#, fuzzy
+msgid "You can now adjust the position of the canvas when you're cropping it."
+msgstr ""
+"De positie van het canvas tijdens het bijsnijden kan voortaan worden "
+"gewijzigd met de rechtermuisknop."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-"Using the right click, you can now adjust the position of the canvas when "
-"you're cropping it."
+"The option to use a color editor by default has been moved from the main "
+"window to the preferences window, and its bug has been fixed."
 msgstr ""
-"De positie van het canvas tijdens het bijsnijden kan voortaan worden"
-" gewijzigd met de rechtermuisknop."
 
 #. very generic release notes i use for ALL minor updates, please
 #. translate this one!
@@ -947,6 +957,15 @@ msgstr "Bezig met laden…"
 msgid "Exit fullscreen"
 msgstr "Beeldvullende modus verlaten"
 
+#: src/ui/win-menus.ui
+#, fuzzy
+msgid "What's new in Drawing"
+msgstr "Wijzigingslog"
+
+#: src/ui/win-menus.ui
+msgid "Dismiss"
+msgstr ""
+
 #: src/deco_manager.py
 #, python-format
 msgid "Undo %s"
@@ -1080,7 +1099,8 @@ msgstr "Standaardhoogte"
 #: src/optionsbars/transform/optionsbar-crop.ui
 #: src/optionsbars/transform/optionsbar-skew.ui src/tools/ui/selection.ui
 #: src/tools/ui/tool-crop.ui src/tools/ui/tool-eraser.ui
-#: src/tools/classic_tools/tool_eraser.py
+#: src/tools/classic_tools/erasers/eraser_area.py
+#: src/tools/classic_tools/erasers/eraser_rubber.py
 msgid "Default color"
 msgstr "Standaardkleur"
 
@@ -1160,7 +1180,7 @@ msgstr ""
 "Deze gereedschappen zijn niet zo handig en betrouwbaar als zou moeten, dus "
 "zijn ze niet allemaal ingeschakeld."
 
-#. Context: this is the name of a tool, in the meaning "a rubber eraser"
+#. Context: this is the name of a tool
 #: src/preferences.py src/tools/classic_tools/tool_eraser.py
 msgid "Eraser"
 msgstr "Gum"
@@ -1218,8 +1238,8 @@ msgstr "Gebruik standaard de kleurbewerker"
 #: src/preferences.py
 msgid "You can use a simple color palette, or use a full RGBA color editor."
 msgstr ""
-"Je kunt een eenvoudig kleurenpalet of volledige rgba-kleurenbewerker"
-" gebruiken."
+"Je kunt een eenvoudig kleurenpalet of volledige rgba-kleurenbewerker "
+"gebruiken."
 
 #. Context: title of a section of the preferences
 #: src/preferences.py
@@ -1422,38 +1442,6 @@ msgstr "‘%s’ kan niet worden geladen"
 #: src/window.py
 msgid "Error starting the application, please report this bug."
 msgstr "Kan de toepassing niet starten - meld deze fout aan de ontwikkelaar."
-
-#: src/window.py
-msgid ""
-"It's the first time you use Drawing, would you like to read the help manual?"
-msgstr ""
-"Dit is de eerste keer dat je Tekenen hebt geopend. Wil je de handleiding "
-"doornemen?"
-
-#. Context: %s is the version number of the app
-#: src/window.py
-#, python-format
-msgid ""
-"It's the first time you use Drawing %s, would you like to read what's new?"
-msgstr ""
-"Dit is de eerste keer dat je Tekenen %s hebt geopend. Wil je het "
-"wijzigingslog bekijken?"
-
-#: src/window.py
-msgid ""
-"These news will always be available in the help manual: click the 'Help' "
-"menu item whenever you want!"
-msgstr ""
-"Dit nieuws is te allen tijde na te lezen in de handleiding. Open hiervoor "
-"het menu-item ‘Hulp’."
-
-#: src/window.py
-msgid "No"
-msgstr "Nee"
-
-#: src/window.py
-msgid "Yes"
-msgstr "Ja"
 
 #: src/window.py
 msgid "The clipboard doesn't contain any image."
@@ -1687,7 +1675,8 @@ msgstr "Hoofdkleur"
 #: src/optionsbars/transform/optionsbar-crop.ui
 #: src/optionsbars/transform/optionsbar-skew.ui src/tools/ui/selection.ui
 #: src/tools/ui/tool-crop.ui src/tools/ui/tool-eraser.ui
-#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_eraser.py
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/erasers/eraser_area.py
+#: src/tools/classic_tools/erasers/eraser_rubber.py
 msgid "Secondary color"
 msgstr "Alternatieve kleur"
 
@@ -1729,7 +1718,8 @@ msgstr "Vervangen door…"
 #: src/optionsbars/transform/optionsbar-crop.ui
 #: src/optionsbars/transform/optionsbar-skew.ui src/tools/ui/selection.ui
 #: src/tools/ui/tool-crop.ui src/tools/ui/tool-eraser.ui
-#: src/tools/classic_tools/tool_eraser.py
+#: src/tools/classic_tools/erasers/eraser_area.py
+#: src/tools/classic_tools/erasers/eraser_rubber.py
 #: src/tools/transform_tools/filters/filter_transparency.py
 msgid "Transparency"
 msgstr "Doorzichtigheid"
@@ -1929,31 +1919,36 @@ msgstr "Linkshandig uiteinde"
 msgid "Horizontal nib"
 msgstr "Horizontaal uiteinde"
 
-#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
-#: src/tools/classic_tools/tool_pencil.py
-msgid "Pencil"
-msgstr "Potlood"
+#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/erasers/eraser_rubber.py
+msgid "Rubber eraser"
+msgstr ""
 
-#: src/tools/ui/tool-eraser.ui src/tools/ui/tool-shape.ui
-#: src/tools/classic_tools/tool_eraser.py src/tools/classic_tools/tool_shape.py
-msgid "Rectangle"
+#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/erasers/eraser_area.py
+#, fuzzy
+msgid "Rectangle area"
 msgstr "Rechthoek"
 
-#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
+#. Context: this feature erases the color where the user clicked.
+#. For example to cut out an object from its solid background.
+#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/erasers/eraser_color.py
+msgid "Remove color"
+msgstr "Kleur verwijderen"
+
+#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/erasers/eraser_area.py
 msgid "Blur"
 msgstr "Vervaging"
 
-#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
+#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/erasers/eraser_area.py
 msgid "Shuffle pixels"
 msgstr "Pixels husselen"
 
-#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
+#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/erasers/eraser_area.py
 msgid "Shuffle and blur"
 msgstr "Husselen en vervagen"
 
 #. Context: a filter to censor the image with some little tiles
 #: src/tools/ui/tool-eraser.ui src/tools/ui/tool-filters.ui
-#: src/tools/classic_tools/tool_eraser.py
+#: src/tools/classic_tools/erasers/eraser_area.py
 #: src/tools/transform_tools/tool_filters.py
 msgid "Mosaic"
 msgstr "Mozaïek"
@@ -2055,14 +2050,6 @@ msgstr "Wissen en vervangen"
 msgid "Entire image"
 msgstr "Gehele afbeelding"
 
-#. Context: this is one of the possible painting algorithms. It
-#. doesn't really paint, instead it erases the color the user
-#. clicked. For example to cut out an object from its white
-#. background.
-#: src/tools/ui/tool-paint.ui
-msgid "Remove color"
-msgstr "Kleur verwijderen"
-
 #: src/tools/ui/tool-points.ui
 msgid "Dots type"
 msgstr "Soort stippen"
@@ -2131,6 +2118,10 @@ msgstr "Verticaal verloop"
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
 msgid "Radial gradient"
 msgstr "Straalverloop"
+
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+msgid "Rectangle"
+msgstr "Rechthoek"
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
 msgid "Rounded rectangle"
@@ -2237,12 +2228,12 @@ msgid "Brush options"
 msgstr "Kwastopties"
 
 #: src/tools/classic_tools/tool_eraser.py
-msgid "Press <Shift> to erase a rectangle area instead"
-msgstr "Druk op <Shift> om een rechthoekig gebied te wissen"
-
-#: src/tools/classic_tools/tool_eraser.py
 msgid "Press <Shift> to erase a path instead"
 msgstr "Druk op <Shift> om een spoor te wissen"
+
+#: src/tools/classic_tools/tool_eraser.py
+msgid "Press <Shift> to erase a rectangle area instead"
+msgstr "Druk op <Shift> om een rechthoekig gebied te wissen"
 
 #: src/tools/classic_tools/tool_eraser.py
 msgid "Eraser options"
@@ -2315,6 +2306,10 @@ msgstr "Let op: dit werkt mogelijk niet bij gebruik van complexe vormen"
 #: src/tools/selection_tools/select_color.py
 msgid "It will not work well if the area's edges are blurry"
 msgstr "Let op: dit werkt niet goed als de randen vervaagd zijn"
+
+#: src/tools/classic_tools/tool_pencil.py
+msgid "Pencil"
+msgstr "Potlood"
 
 #: src/tools/classic_tools/tool_pencil.py
 msgid "Pencil options"
@@ -2439,12 +2434,6 @@ msgid ""
 msgstr ""
 "Druk op <Alt>, <Shift> of beide om de optie ‘vergroten met’ te wijzigen"
 
-#: src/tools/transform_tools/tool_crop.py
-msgid ""
-"Change the size with the left click, adjust the position with the right click"
-msgstr ""
-"Pas de grootte aan met de linkermuisknop en de positie met de rechtermuisknop"
-
 #: src/tools/transform_tools/tool_filters.py
 msgid "Active filter"
 msgstr "Actief filter"
@@ -2509,17 +2498,6 @@ msgstr "Vervaagstraal"
 #: src/tools/transform_tools/filters/filter_saturation.py
 msgid "Saturation"
 msgstr "Verzadiging"
-
-#, fuzzy
-#~ msgid ""
-#~ "Version 1.0.2 features several minor bug fixes, and various new "
-#~ "translations."
-#~ msgstr ""
-#~ "Versie 1.0.1 bevat verschillende kleine foutoplossingen en nieuwe "
-#~ "vertalingen."
-
-#~ msgid "Later"
-#~ msgstr "Later"
 
 #~ msgid "Transform"
 #~ msgstr "Transformeren"

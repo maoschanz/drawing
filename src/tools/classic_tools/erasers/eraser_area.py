@@ -12,7 +12,7 @@ class EraserArea(AbstractEraser):
 		self._tool = tool
 
 	def get_label_options(self, options={}):
-		label_options = _("Rectangle")
+		label_options = _("Rectangle area")
 		if options['eraser-type'] == 'solid':
 			label_options += " - " + {
 				'alpha': _("Transparency"),

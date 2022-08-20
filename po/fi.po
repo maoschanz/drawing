@@ -83,8 +83,6 @@ msgstr ""
 msgid "Supported file types include PNG, JPEG and BMP."
 msgstr "Tuetut tiedostotyypit ovat PNG, JPEG ja BMP."
 
-#. very generic release notes i use for ALL minor updates, please
-#. translate this one!
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "Version 1.2.0 improves the transformation tools: their previews are now "
@@ -97,19 +95,31 @@ msgstr ""
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
-"Transparency is now correctly preserved when the \"skew\" tools expands the "
+"The text tool is more intuitive to use, with distinct areas on the canvas to "
+"edit, move and insert the text."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+#, fuzzy
+msgid ""
+"Transparency is now correctly preserved when the \"skew\" tool expands the "
 "canvas with a solid color."
 msgstr ""
 "Läpinäkyvyys säilyy nyt oikein, kun \"vääntö\"-työkalut laajentavat pintaa "
 "yhtenäisellä värillä."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
-msgid ""
-"Using the right click, you can now adjust the position of the canvas when "
-"you're cropping it."
+#, fuzzy
+msgid "You can now adjust the position of the canvas when you're cropping it."
 msgstr ""
 "Napsauta hiiren oikealla painikkeella, voit nyt säätää kankaan sijaintia, "
 "kun rajaat sitä."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"The option to use a color editor by default has been moved from the main "
+"window to the preferences window, and its bug has been fixed."
+msgstr ""
 
 #. very generic release notes i use for ALL minor updates, please
 #. translate this one!
@@ -946,6 +956,15 @@ msgstr "Ladataan..."
 msgid "Exit fullscreen"
 msgstr "Poistu kokonäytöstä"
 
+#: src/ui/win-menus.ui
+#, fuzzy
+msgid "What's new in Drawing"
+msgstr "Mitä uutta?"
+
+#: src/ui/win-menus.ui
+msgid "Dismiss"
+msgstr ""
+
 #: src/deco_manager.py
 #, python-format
 msgid "Undo %s"
@@ -1079,7 +1098,8 @@ msgstr "Oletuskorkeus"
 #: src/optionsbars/transform/optionsbar-crop.ui
 #: src/optionsbars/transform/optionsbar-skew.ui src/tools/ui/selection.ui
 #: src/tools/ui/tool-crop.ui src/tools/ui/tool-eraser.ui
-#: src/tools/classic_tools/tool_eraser.py
+#: src/tools/classic_tools/erasers/eraser_area.py
+#: src/tools/classic_tools/erasers/eraser_rubber.py
 msgid "Default color"
 msgstr "Oletusväri"
 
@@ -1159,7 +1179,7 @@ msgstr ""
 "Nämä työkalut eivät ole niin luotettavia ja hyödyllisiä kuin niiden pitäisi "
 "olla, joten ne eivät ole oletuksena käytössä."
 
-#. Context: this is the name of a tool, in the meaning "a rubber eraser"
+#. Context: this is the name of a tool
 #: src/preferences.py src/tools/classic_tools/tool_eraser.py
 msgid "Eraser"
 msgstr "Pyyhekumi"
@@ -1418,37 +1438,6 @@ msgid "Error starting the application, please report this bug."
 msgstr "Virhe sovelluksen käynnistämisessä, ilmoita tästä virheestä."
 
 #: src/window.py
-msgid ""
-"It's the first time you use Drawing, would you like to read the help manual?"
-msgstr ""
-"Tämä on ensimmäinen kerta kun käytät Drawing piirtämistä. Haluatko lukea "
-"ohjekirjan?"
-
-#. Context: %s is the version number of the app
-#: src/window.py
-#, python-format
-msgid ""
-"It's the first time you use Drawing %s, would you like to read what's new?"
-msgstr ""
-"Tämä on ensimmäinen kerta, kun käytät Drawing piirtämistä %s. Haluatko lukea "
-"mitä on uutta?"
-
-#: src/window.py
-msgid ""
-"These news will always be available in the help manual: click the 'Help' "
-"menu item whenever you want!"
-msgstr ""
-"Nämä uutiset ovat aina ohjekirjassa: napsauta 'Ohje'-valikkoa milloin haluat!"
-
-#: src/window.py
-msgid "No"
-msgstr "Ei"
-
-#: src/window.py
-msgid "Yes"
-msgstr "Kyllä"
-
-#: src/window.py
 msgid "The clipboard doesn't contain any image."
 msgstr "Leikepöytä ei sisällä yhtään kuvaa."
 
@@ -1676,7 +1665,8 @@ msgstr "Pääväri"
 #: src/optionsbars/transform/optionsbar-crop.ui
 #: src/optionsbars/transform/optionsbar-skew.ui src/tools/ui/selection.ui
 #: src/tools/ui/tool-crop.ui src/tools/ui/tool-eraser.ui
-#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_eraser.py
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/erasers/eraser_area.py
+#: src/tools/classic_tools/erasers/eraser_rubber.py
 msgid "Secondary color"
 msgstr "Seuraava väri"
 
@@ -1718,7 +1708,8 @@ msgstr "Korvaa..."
 #: src/optionsbars/transform/optionsbar-crop.ui
 #: src/optionsbars/transform/optionsbar-skew.ui src/tools/ui/selection.ui
 #: src/tools/ui/tool-crop.ui src/tools/ui/tool-eraser.ui
-#: src/tools/classic_tools/tool_eraser.py
+#: src/tools/classic_tools/erasers/eraser_area.py
+#: src/tools/classic_tools/erasers/eraser_rubber.py
 #: src/tools/transform_tools/filters/filter_transparency.py
 msgid "Transparency"
 msgstr "Läpinäkyvyys"
@@ -1916,31 +1907,36 @@ msgstr "Vasenkätinen kärki"
 msgid "Horizontal nib"
 msgstr "Vaakakärki"
 
-#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
-#: src/tools/classic_tools/tool_pencil.py
-msgid "Pencil"
-msgstr "Kynä"
+#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/erasers/eraser_rubber.py
+msgid "Rubber eraser"
+msgstr ""
 
-#: src/tools/ui/tool-eraser.ui src/tools/ui/tool-shape.ui
-#: src/tools/classic_tools/tool_eraser.py src/tools/classic_tools/tool_shape.py
-msgid "Rectangle"
+#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/erasers/eraser_area.py
+#, fuzzy
+msgid "Rectangle area"
 msgstr "Suorakulmio"
 
-#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
+#. Context: this feature erases the color where the user clicked.
+#. For example to cut out an object from its solid background.
+#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/erasers/eraser_color.py
+msgid "Remove color"
+msgstr "Poista väri"
+
+#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/erasers/eraser_area.py
 msgid "Blur"
 msgstr "Sumennus"
 
-#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
+#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/erasers/eraser_area.py
 msgid "Shuffle pixels"
 msgstr "Sekoita pikseleitä"
 
-#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
+#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/erasers/eraser_area.py
 msgid "Shuffle and blur"
 msgstr "Sekoita ja sumenna"
 
 #. Context: a filter to censor the image with some little tiles
 #: src/tools/ui/tool-eraser.ui src/tools/ui/tool-filters.ui
-#: src/tools/classic_tools/tool_eraser.py
+#: src/tools/classic_tools/erasers/eraser_area.py
 #: src/tools/transform_tools/tool_filters.py
 msgid "Mosaic"
 msgstr "Mosaiikki"
@@ -2042,14 +2038,6 @@ msgstr "Pyyhi ja korvaa"
 msgid "Entire image"
 msgstr "Koko kuva"
 
-#. Context: this is one of the possible painting algorithms. It
-#. doesn't really paint, instead it erases the color the user
-#. clicked. For example to cut out an object from its white
-#. background.
-#: src/tools/ui/tool-paint.ui
-msgid "Remove color"
-msgstr "Poista väri"
-
 #: src/tools/ui/tool-points.ui
 msgid "Dots type"
 msgstr "Pistetyyppi"
@@ -2118,6 +2106,10 @@ msgstr "Liukuväri pysty"
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
 msgid "Radial gradient"
 msgstr "Liukuväri keskeltä"
+
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+msgid "Rectangle"
+msgstr "Suorakulmio"
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
 msgid "Rounded rectangle"
@@ -2224,12 +2216,12 @@ msgid "Brush options"
 msgstr "Siveltimen vaihtoehdot"
 
 #: src/tools/classic_tools/tool_eraser.py
-msgid "Press <Shift> to erase a rectangle area instead"
-msgstr "Voit poistaa suorakaiteen alueen painamalla <Shift>"
-
-#: src/tools/classic_tools/tool_eraser.py
 msgid "Press <Shift> to erase a path instead"
 msgstr "Voit poistaa polun painamalla <Shift>"
+
+#: src/tools/classic_tools/tool_eraser.py
+msgid "Press <Shift> to erase a rectangle area instead"
+msgstr "Voit poistaa suorakaiteen alueen painamalla <Shift>"
 
 #: src/tools/classic_tools/tool_eraser.py
 msgid "Eraser options"
@@ -2301,6 +2293,10 @@ msgstr "Ei ehkä toimi monimutkaisille muodoille"
 #: src/tools/selection_tools/select_color.py
 msgid "It will not work well if the area's edges are blurry"
 msgstr "Se ei toimi hyvin, jos alueen reunat ovat epäselviä"
+
+#: src/tools/classic_tools/tool_pencil.py
+msgid "Pencil"
+msgstr "Kynä"
 
 #: src/tools/classic_tools/tool_pencil.py
 msgid "Pencil options"
@@ -2426,13 +2422,6 @@ msgid ""
 msgstr ""
 "Paina <Alt>, <Shift> tai molempia vaihtaaksesi \"laajenna\" -vaihtoehtoa "
 "nopeasti"
-
-#: src/tools/transform_tools/tool_crop.py
-msgid ""
-"Change the size with the left click, adjust the position with the right click"
-msgstr ""
-"Muuta kokoa vasemmalla napsautuksella, säädä sijaintia oikealla "
-"napsautuksella"
 
 #: src/tools/transform_tools/tool_filters.py
 msgid "Active filter"
