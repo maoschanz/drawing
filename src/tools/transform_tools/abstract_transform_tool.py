@@ -35,6 +35,9 @@ class AbstractCanvasTool(AbstractAbstractTool):
 		# Gdk.RGBA
 		self._expansion_rgba = None
 
+		# ugly ass lock so the 'cancel' button does actually cancel
+		self._auto_apply_next = True
+
 	def on_tool_selected(self, *args):
 		super().on_tool_selected()
 		self.apply_to_selection = self.selection_is_active()
@@ -55,6 +58,16 @@ class AbstractCanvasTool(AbstractAbstractTool):
 		if not preserve_selection and self.selection_is_active():
 			self.window.get_selection_tool().unselect_and_apply()
 		super().give_back_control(preserve_selection)
+
+	def auto_apply(self, next_tool_id):
+		if next_tool_id == self.id:
+			return # avoid some weird recursive situations
+		if not self._auto_apply_next:
+			self._auto_apply_next = True
+			return
+		self.restore_pixbuf()
+		operation = self.build_operation()
+		self.apply_operation(operation)
 
 	def _scroll_to_end(self, h_growth, v_growth):
 		if h_growth > 0:
@@ -92,16 +105,15 @@ class AbstractCanvasTool(AbstractAbstractTool):
 	############################################################################
 
 	def on_apply_transform_tool_operation(self):
-		self.restore_pixbuf()
-		operation = self.build_operation()
-		self.apply_operation(operation)
-		self.on_cancel_transform_tool_operation()
-
-	def on_cancel_transform_tool_operation(self, *args):
 		if self.apply_to_selection:
 			self.window.force_selection()
 		else:
 			self.window.back_to_previous()
+		# The operation itself will be applied by the `auto_apply` method
+
+	def on_cancel_transform_tool_operation(self, *args):
+		self._auto_apply_next = False
+		self.on_apply_transform_tool_operation() # change the active tool
 
 	def apply_operation(self, operation):
 		operation['is_preview'] = False

@@ -906,6 +906,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		# Disable the formerly active tool
 		self.former_tool_id = self.active_tool_id
 		should_preserve_selection = self.tools[new_tool_id].accept_selection
+		self.former_tool().auto_apply(new_tool_id)
 		self.former_tool().give_back_control(should_preserve_selection)
 		self.former_tool().on_tool_unselected()
 		self.get_active_image().selection.hide_popovers()
@@ -941,6 +942,8 @@ class DrWindow(Gtk.ApplicationWindow):
 		return self.tools[self.former_tool_id]
 
 	def back_to_previous(self, *args):
+		"""Switch back to the previously active tool, if it's different from the
+		current one."""
 		if self.former_tool_id == self.active_tool_id:
 			self.force_selection()
 			# avoid cases where applying a transform tool keeps the tool active
@@ -1252,6 +1255,19 @@ class DrWindow(Gtk.ApplicationWindow):
 
 	def action_cancel_transform(self, *args):
 		self.active_tool().on_cancel_transform_tool_operation()
+
+	# Comportements des outils de transformation
+	#
+	# SI CANEVAS ENTIER :
+	# *clic sur apply = apply, retour à l'outil précédent			OK
+	# *clic sur annuler = cancel, retour à l'outil précédent		OK
+	# *clic sur un autre outil = apply, passage à cet autre outil	OK
+	#
+	# SI SÉLECTION :
+	# *clic sur apply = apply, retour à rect_select					OK
+	# *clic sur annuler = cancel, retour à rect_select				OK
+	# *clic sur un outil de sélection = apply, passage à l'outil	OK
+	# *clic sur un autre outil = apply, passage à l'outil			OK
 
 	############################################################################
 	# HISTORY MANAGEMENT #######################################################
