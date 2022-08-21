@@ -51,8 +51,7 @@ class ToolEraser(AbstractClassicTool):
 			'selection-color': self._rgba_type,
 			'eraser-type': self._eraser_type
 		}
-		label_options = self.label + " - " + \
-		                self._erasers[self._eraser_shape].get_label_options(opt)
+		label_options = self.label + " - " + self.get_eraser().get_label_options(opt)
 
 		if self.get_image().get_mouse_is_pressed():
 			label_modifier_shift = None
@@ -62,6 +61,7 @@ class ToolEraser(AbstractClassicTool):
 				label_modifier_shift += _("Press <Shift> to erase a path instead")
 			else:
 				label_modifier_shift += _("Press <Shift> to erase a rectangle area instead")
+		# XXX ^ pas très ooc mais je sais même pas si on garde le fonctionnement
 
 		full_list = [label_options, label_modifier_shift]
 		return list(filter(None, full_list))
@@ -88,10 +88,15 @@ class ToolEraser(AbstractClassicTool):
 			# flouter, il faudrait un elif, et un autre système pour l'opérateur
 			# en fallback qui afficherait l'icône avec les gouttes.
 			# En fait on devrait yeet le délire du `_fallback_operator` ?
+
+		self.use_size = self.get_eraser().use_size()
 		self.window.options_manager.update_pane(self)
 
 	def give_back_control(self, should_preserve_selection):
 		self.set_action_sensitivity('selection-color', True)
+
+	def get_eraser(self):
+		return self._erasers[self._eraser_shape]
 
 	############################################################################
 
@@ -117,7 +122,7 @@ class ToolEraser(AbstractClassicTool):
 
 	def on_motion_on_area(self, event, surface, event_x, event_y, render=True):
 		cairo_context = self.get_context()
-		self._path = self._erasers[self._eraser_shape].on_motion(cairo_context, \
+		self._path = self.get_eraser().on_motion(cairo_context, \
 		           [self.x_press, self.y_press], [event_x, event_y], self._path)
 
 		if not render:
@@ -127,7 +132,7 @@ class ToolEraser(AbstractClassicTool):
 
 	def on_release_on_area(self, event, surface, event_x, event_y):
 		cairo_context = self.get_context()
-		self._path = self._erasers[self._eraser_shape].on_release(cairo_context, \
+		self._path = self.get_eraser().on_release(cairo_context, \
 		           [self.x_press, self.y_press], [event_x, event_y], self._path)
 		operation = self.build_operation(False)
 		self.apply_operation(operation)

@@ -21,6 +21,9 @@ class EraserRubber(AbstractEraser):
 	def get_active_options(self, options={}):
 		return ['selection-color']
 
+	def use_size(self):
+		return True
+
 	def on_release(self, cairo_context, press, event, path=None):
 		if path is None:
 			cairo_context.move_to(*press)
