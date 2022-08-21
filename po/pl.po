@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
 "POT-Creation-Date: 2022-05-21 23:53+0200\n"
-"PO-Revision-Date: 2022-05-22 00:17+0200\n"
+"PO-Revision-Date: 2022-08-21 02:06+0200\n"
 "Last-Translator: Piotr Komur <pkomur@gmail.com>\n"
 "Language-Team: Piotr Komur\n"
 "Language: pl\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 "
 "|| n%100>14) ? 1 : 2);\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.1.1\n"
 
 #: data/com.github.maoschanz.drawing.desktop.in
 #: data/com.github.maoschanz.drawing.appdata.xml.in src/deco_manager.py
@@ -100,28 +100,28 @@ msgid ""
 "The text tool is more intuitive to use, with distinct areas on the canvas to "
 "edit, move and insert the text."
 msgstr ""
+"Narzędzie tekstowe jest bardziej intuicyjne w użyciu z wyraźnymi obszarami "
+"na płótnie do edycji, przenoszenia i wstawiania tekstu."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
-#, fuzzy
 msgid ""
 "Transparency is now correctly preserved when the \"skew\" tool expands the "
 "canvas with a solid color."
 msgstr ""
 "Przezroczystość jest teraz prawidłowo zachowywana, gdy narzędzie "
-"\"Zniekształcacz\" rozszerza obszar roboczy jednolitym kolorem."
+"\"Zniekształcacz\" rozszerza płótno jednolitym kolorem."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
-#, fuzzy
 msgid "You can now adjust the position of the canvas when you're cropping it."
-msgstr ""
-"Używając prawego przycisku myszy, możesz teraz dostosować położenie płótna "
-"podczas jego przycinania."
+msgstr "Możesz teraz dostosować położenie płótna podczas kadrowania."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "The option to use a color editor by default has been moved from the main "
 "window to the preferences window, and its bug has been fixed."
 msgstr ""
+"Opcja domyślnego używania edytora kolorów została przeniesiona z okna "
+"głównego do okna preferencji, a jej błąd został naprawiony."
 
 #. very generic release notes i use for ALL minor updates, please
 #. translate this one!
@@ -963,13 +963,12 @@ msgid "Exit fullscreen"
 msgstr "Zamknij pełny ekran"
 
 #: src/ui/win-menus.ui
-#, fuzzy
 msgid "What's new in Drawing"
-msgstr "Co nowego"
+msgstr "Co nowego w programie Rysunek"
 
 #: src/ui/win-menus.ui
 msgid "Dismiss"
-msgstr ""
+msgstr "Odrzuć"
 
 #: src/deco_manager.py
 #, python-format
@@ -1190,7 +1189,7 @@ msgstr ""
 #. Context: this is the name of a tool
 #: src/preferences.py src/tools/classic_tools/tool_eraser.py
 msgid "Eraser"
-msgstr "Gumka"
+msgstr "Wymazywacz"
 
 #. Context: this is the name of a tool, a thick pencil dedicated to
 #. highlight text, for example in screenshots
@@ -1216,7 +1215,7 @@ msgstr "Punkty"
 #. can be freely defined by the user.
 #: src/preferences.py src/tools/selection_tools/select_free.py
 msgid "Free selection"
-msgstr "Zaznaczanie (dowolne)"
+msgstr "Zaznaczanie dowolne"
 
 #. Context: this is a tool to "magically" select an area depending on its
 #. color. For example clicking on a white pixel will select the
@@ -1922,12 +1921,11 @@ msgstr "Stalówka pozioma"
 
 #: src/tools/ui/tool-eraser.ui src/tools/classic_tools/erasers/eraser_rubber.py
 msgid "Rubber eraser"
-msgstr ""
+msgstr "Gumka"
 
 #: src/tools/ui/tool-eraser.ui src/tools/classic_tools/erasers/eraser_area.py
-#, fuzzy
 msgid "Rectangle area"
-msgstr "Prostokąt"
+msgstr "Obszar prostokątny"
 
 #. Context: this feature erases the color where the user clicked.
 #. For example to cut out an object from its solid background.
@@ -2234,11 +2232,11 @@ msgstr "Naciśnij <Shift>, aby zamiast tego wymazać ścieżkę"
 
 #: src/tools/classic_tools/tool_eraser.py
 msgid "Press <Shift> to erase a rectangle area instead"
-msgstr "Naciśnij <Shift>, aby zamiast tego wymazać prostokątny obszar"
+msgstr "Naciśnij <Shift>, aby zamiast tego wymazać obszar prostokątny"
 
 #: src/tools/classic_tools/tool_eraser.py
 msgid "Eraser options"
-msgstr "Opcje gumki"
+msgstr "Opcje wymazywacza"
 
 #: src/tools/classic_tools/tool_highlight.py
 msgid "Press <Shift> to temporarily highlight on dark background instead"
@@ -2397,7 +2395,7 @@ msgstr "Wybierz obszar lub kliknij obszar roboczy prawym przyciskiem myszy"
 
 #: src/tools/selection_tools/select_rect.py
 msgid "Rectangle selection"
-msgstr "Zaznaczanie (prostokątem)"
+msgstr "Zaznaczanie prostokątne"
 
 #: src/tools/transform_tools/abstract_transform_tool.py
 msgid "Error: invalid values"
@@ -2500,18 +2498,3 @@ msgstr "Stopień rozmycia"
 #: src/tools/transform_tools/filters/filter_saturation.py
 msgid "Saturation"
 msgstr "Nasycenie"
-
-#~ msgid "Apply"
-#~ msgstr "Zastosuj"
-
-#~ msgid "Cropping options"
-#~ msgstr "Opcje przycinania"
-
-#~ msgid "Transform"
-#~ msgstr "Przekształć"
-
-#~ msgid "Horizontal"
-#~ msgstr "Poziome"
-
-#~ msgid "Vertical"
-#~ msgstr "Pionowe"
