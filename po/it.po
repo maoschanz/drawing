@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
 "POT-Creation-Date: 2022-05-21 23:53+0200\n"
-"PO-Revision-Date: 2022-05-22 11:15+0100\n"
+"PO-Revision-Date: 2022-08-23 20:15+0100\n"
 "Last-Translator: Albano Battistella\n"
 "Language-Team: Italian\n"
 "Language: it\n"
@@ -100,34 +100,36 @@ msgid ""
 "The text tool is more intuitive to use, with distinct areas on the canvas to "
 "edit, move and insert the text."
 msgstr ""
+"Lo strumento di testo è più intuitivo da usare, con aree distinte sulla tela per "
+"la modifica, sposta e inserisci il testo."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "A former option of the paint bucket tool, which didn't belong there, has "
 "been improved and moved to the eraser tool."
 msgstr ""
+"Una precedente opzione dello strumento secchiello della vernice, che non apparteneva lì, è "
+"stato migliorato e spostato nello strumento gomma."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
-#, fuzzy
 msgid ""
 "Transparency is henceforth correctly preserved when the \"skew\" tool "
 "expands the canvas with a solid color."
 msgstr ""
-"La trasparenza è ora correttamente preservata quando gli strumenti "
-"\"inclinazione\" espandono la tela a tinta unita."
+"La trasparenza è d'ora in poi correttamente preservata quando lo strumento \"inclinare\" "
+"espande la tela con un colore solido."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
-#, fuzzy
 msgid "You can now adjust the position of the canvas when you're cropping it."
-msgstr ""
-"Utilizzando il clic destro, ora puoi regolare la posizione della tela quando "
-"la stai ritagliando."
+msgstr "Ora puoi regolare la posizione della tela durante il ritaglio."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "The option to use a color editor by default has been moved from the main "
 "window to the preferences window, and its bug has been fixed."
 msgstr ""
+"L'opzione per utilizzare un editor di colori per impostazione predefinita è stata spostata dalla finestra "
+"principale alla finestra delle preferenze e il suo bug è stato corretto."
 
 #. very generic release notes i use for ALL minor updates, please
 #. translate this one!
@@ -972,13 +974,12 @@ msgid "Exit fullscreen"
 msgstr "Uscire da Schermo Intero"
 
 #: src/ui/win-menus.ui
-#, fuzzy
 msgid "What's new in Drawing"
-msgstr "Cosa c'è di nuovo"
+msgstr "Cosa c'è di nuovo in Drawing"
 
 #: src/ui/win-menus.ui
 msgid "Dismiss"
-msgstr ""
+msgstr "Abbandona"
 
 #: src/deco_manager.py
 #, python-format
@@ -1935,12 +1936,11 @@ msgstr "Pennino orizzontale"
 
 #: src/tools/ui/tool-eraser.ui src/tools/classic_tools/erasers/eraser_rubber.py
 msgid "Rubber eraser"
-msgstr ""
+msgstr "Gomma da cancellare"
 
 #: src/tools/ui/tool-eraser.ui src/tools/classic_tools/erasers/eraser_area.py
-#, fuzzy
 msgid "Rectangle area"
-msgstr "Rettangolo"
+msgstr "Rettangolo dell'area"
 
 #. Context: this feature erases the color where the user clicked.
 #. For example to cut out an object from its solid background.
