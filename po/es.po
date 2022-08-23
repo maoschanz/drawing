@@ -3,22 +3,22 @@
 # This file is distributed under the same license as the drawing package.
 # Adolfo Jayme Barrientos <fitojb@ubuntu.com>, 2019-2020
 # Xoán Sampaíño <xoansampainho@gmail.com>, 2019
-# Óscar Fernández Díaz <oscfdezdz@tuta.io>, 2021-2022
+# Óscar Fernández Díaz <oscfdezdz@tuta.io>, 2021-2022.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
 "POT-Creation-Date: 2022-05-21 23:53+0200\n"
-"PO-Revision-Date: 2022-03-25 07:48+0100\n"
+"PO-Revision-Date: 2022-08-23 10:21+0200\n"
 "Last-Translator: Óscar Fernández Díaz <oscfdezdz@tuta.io>\n"
-"Language-Team: Spanish\n"
+"Language-Team: Spanish; Castilian <>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.0.1\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"X-Generator: Gtranslator 42.0\n"
 
 #: data/com.github.maoschanz.drawing.desktop.in
 #: data/com.github.maoschanz.drawing.appdata.xml.in src/deco_manager.py
@@ -92,34 +92,45 @@ msgid ""
 "consistently applied when you change the active tool without clicking on "
 "\"apply\"."
 msgstr ""
+"La versión 1.2.0 mejora las herramientas de transformación: sus vistas "
+"previas se aplican ahora de forma coherente cuando se cambia la herramienta "
+"activa sin hacer clic en \"aplicar\"."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "The text tool is more intuitive to use, with distinct areas on the canvas to "
 "edit, move and insert the text."
 msgstr ""
+"La herramienta de texto es más intuitiva de usar, con zonas diferenciadas en "
+"el lienzo para editar, mover e insertar el texto."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "A former option of the paint bucket tool, which didn't belong there, has "
 "been improved and moved to the eraser tool."
 msgstr ""
+"Una antigua opción de la herramienta cubo de pintura, que no pertenecía a "
+"ella, ha sido mejorada y trasladada a la herramienta borrador."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "Transparency is henceforth correctly preserved when the \"skew\" tool "
 "expands the canvas with a solid color."
 msgstr ""
+"A partir de ahora, la transparencia se preserva correctamente cuando la "
+"herramienta \"sesgar\" amplía el lienzo con un color sólido."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "You can now adjust the position of the canvas when you're cropping it."
-msgstr ""
+msgstr "Ahora puede ajustar la posición del lienzo cuando lo está recortando."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "The option to use a color editor by default has been moved from the main "
 "window to the preferences window, and its bug has been fixed."
 msgstr ""
+"La opción de usar un editor de colores predeterminado se ha trasladado de la "
+"ventana principal a la ventana de preferencias, y se ha corregido su error."
 
 #. very generic release notes i use for ALL minor updates, please
 #. translate this one!
@@ -135,6 +146,9 @@ msgid ""
 "By popular demand, the \"highlighter\" tool is now enabled by default, and "
 "the message dialog to warn you about the release notes is less intrusive."
 msgstr ""
+"Por petición popular, la herramienta \"resaltador\" está ahora activada por "
+"defecto, y el diálogo de mensajes para avisar de las notas de la versión es "
+"menos intrusivo."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -144,18 +158,28 @@ msgid ""
 "2000%%, scrolling up or down, or left or right, was quite violent. These "
 "problems should all have disappeared in this new version!"
 msgstr ""
+"La principal mejora en esta actualización es el flujo de trabajo del zoom: "
+"desde la versión 1.0.0 es posible hacer un zoom muy profundo, pero el "
+"proceso era muy lento, y la vista no se mantenía bien centrada alrededor del "
+"puntero del ratón; y una vez en el 2000%%, el desplazamiento hacia arriba o "
+"hacia abajo, o hacia la izquierda o la derecha, era bastante violento. Todos "
+"estos problemas deberían haber desaparecido en esta nueva versión."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "Incorrect command line parsing when using the app outside of a flatpak "
 "sandbox has also been fixed."
 msgstr ""
+"También se ha corregido el análisis incorrecto de la línea de comandos "
+"cuando se usa la aplicación fuera de un sandbox flatpak."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "For users on elementary OS, a small issue concerning window resizing has "
 "been mended too."
 msgstr ""
+"Para los usuarios de elementary OS, también se ha corregido un pequeño "
+"problema relacionado con el cambio de tamaño de las ventanas."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -189,6 +213,8 @@ msgid ""
 "Zooming very deep is now possible, and the rendering will be very crisp, "
 "even at 2000%%."
 msgstr ""
+"Ahora es posible hacer un zoom muy profundo, y el renderizado será muy "
+"nítido, incluso al 2000%%."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -732,7 +758,7 @@ msgstr "100 %"
 
 #: src/ui/minimap.ui src/ui/shortcuts.ui
 msgid "Maximum zoom"
-msgstr ""
+msgstr "Zoom máximo"
 
 #: src/ui/new-image-dialog.ui src/ui/properties.ui
 #: src/optionsbars/transform/optionsbar-crop.ui
@@ -948,13 +974,12 @@ msgid "Exit fullscreen"
 msgstr "Salir de pantalla completa"
 
 #: src/ui/win-menus.ui
-#, fuzzy
 msgid "What's new in Drawing"
-msgstr "Novedades"
+msgstr "Novedades en Dibujo"
 
 #: src/ui/win-menus.ui
 msgid "Dismiss"
-msgstr ""
+msgstr "Descartar"
 
 #: src/deco_manager.py
 #, python-format
@@ -1231,6 +1256,8 @@ msgstr "Utilizar editor de colores por defecto"
 #: src/preferences.py
 msgid "You can use a simple color palette, or use a full RGBA color editor."
 msgstr ""
+"Puede usar una simple paleta de colores, o usar un editor de colores RGBA "
+"completo."
 
 #. Context: title of a section of the preferences
 #: src/preferences.py
@@ -1912,12 +1939,11 @@ msgstr "Punta horizontal"
 
 #: src/tools/ui/tool-eraser.ui src/tools/classic_tools/erasers/eraser_rubber.py
 msgid "Rubber eraser"
-msgstr ""
+msgstr "Goma de borrar"
 
 #: src/tools/ui/tool-eraser.ui src/tools/classic_tools/erasers/eraser_area.py
-#, fuzzy
 msgid "Rectangle area"
-msgstr "Rectángulo"
+msgstr "Área del rectángulo"
 
 #. Context: this feature erases the color where the user clicked.
 #. For example to cut out an object from its solid background.
