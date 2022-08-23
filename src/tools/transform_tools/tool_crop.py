@@ -32,7 +32,6 @@ class ToolCrop(AbstractCanvasTool):
 		self._y = self.y_press = self.y_motion = 0
 		self._unclicked = True # the lock will prevent operations coming from
 		# the 'value-changed' signals, to avoid infinite loops
-		self._behavior = 'resize'
 		self.add_tool_action_enum('crop-expand', 'initial')
 
 	def try_build_pane(self):
@@ -66,10 +65,8 @@ class ToolCrop(AbstractCanvasTool):
 			if not self.get_image().get_mouse_is_pressed():
 				label_modifiers = _("Press <Alt>, <Shift>, or both, to " + \
 				                      "quickly change the 'expand with' option")
-		label_behavior = _("Change the size with the left click, adjust " + \
-		                                    "the position with the right click")
 
-		full_list = [label_action, label_direction, label_confirm, label_behavior, label_modifiers]
+		full_list = [label_action, label_direction, label_confirm, label_modifiers]
 		return list(filter(None, full_list))
 
 	############################################################################
@@ -133,7 +130,7 @@ class ToolCrop(AbstractCanvasTool):
 	############################################################################
 
 	def on_unclicked_motion_on_area(self, event, surface):
-		self.set_directional_cursor(event.x, event.y)
+		self.set_directional_cursor(event.x, event.y, True)
 
 	def on_press_on_area(self, event, surface, event_x, event_y):
 		self.x_press = self.x_motion = event_x
@@ -150,9 +147,10 @@ class ToolCrop(AbstractCanvasTool):
 			self._force_expansion_rgba('initial')
 
 		if event.button == 3:
-			self._behavior = 'move'
-		else:
-			self._behavior = 'resize'
+			self._directions = ''
+			self.cursor_name = 'move'
+			self.window.set_cursor(True)
+			# interacting with the right click will move instead of cropping
 
 	def on_motion_on_area(self, event, surface, event_x, event_y, render=True):
 		delta_x = event_x - self.x_motion
@@ -160,7 +158,9 @@ class ToolCrop(AbstractCanvasTool):
 
 		render = render or (event_x % 4 == 0) # artificially less restrictive
 
-		if self._behavior == 'move':
+		if self._directions == '':
+			# the user interacts with the central part of the image, or uses the
+			# right-click, to adjust the canvas position.
 			self._x -= delta_x
 			self._y -= delta_y
 			self.x_motion = event_x
@@ -181,8 +181,6 @@ class ToolCrop(AbstractCanvasTool):
 				self.build_and_do_op()
 			return
 
-		if self._directions == '':
-			return
 		if 'n' in self._directions:
 			self.move_north(delta_y)
 		if 's' in self._directions:

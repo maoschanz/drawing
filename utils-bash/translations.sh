@@ -1,7 +1,6 @@
 #!/bin/bash
 
 function src_lang () {
-	src_pot
 	echo "Updating translation (src) for: $1"
 	msgmerge --update --previous ./po/$1.po ./po/drawing.pot
 }
@@ -9,19 +8,27 @@ function src_lang () {
 function src_all () {
 	echo "Updating all .po files (src)"
 	ninja -C _build drawing-update-po
+}
 
-	# while IFS= read -r line; do
-	# 	if [ ${line::1} != "#" ]; then
-	# 		src_lang $line
-	# 	fi
-	# done < po/LINGUAS
-	# rm po/*.po~
+function src_all_2 () {
+	# because meson/ninja/whatever never work as expected and are impossible to
+	# properly troubleshoot
+
+	echo "Updating .pot file (src)"
+	xgettext --files-from=po/POTFILES --from-code=UTF-8 -c --add-location=file --output=po/drawing.pot
+
+	echo "Updating all .po files (src)"
+	while IFS= read -r line; do
+		if [ ${line::1} != "#" ]; then
+			src_lang $line
+		fi
+	done < po/LINGUAS
+	rm po/*.po~
 }
 
 function src_pot () {
 	echo "Updating .pot file (src)"
 	ninja -C _build drawing-pot
-	# xgettext --files-from=po/POTFILES --from-code=UTF-8 -c --add-location=file --output=po/drawing.pot
 }
 
 ################################################################################
@@ -29,8 +36,7 @@ function src_pot () {
 function help_lang () {
 	help_pot
 
-	# TODO if the dir doesn't exist,
-	if false; then
+	if [ ! -d "help/$1/$1.po" ]; then
 		echo "Creating .po file (help) for: $1"
 		echo $1 >> help/LINGUAS
 		sort help/LINGUAS -o help/LINGUAS

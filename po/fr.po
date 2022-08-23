@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.github.maoschanz.drawing 0.4\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
-"POT-Creation-Date: 2022-04-10 15:56+0200\n"
-"PO-Revision-Date: 2022-04-05 01:15+0200\n"
+"POT-Creation-Date: 2022-05-21 23:53+0200\n"
+"PO-Revision-Date: 2022-05-21 23:57+0200\n"
 "Last-Translator: Romain F. T. <rrroschan@gmail.com>\n"
 "Language-Team: French <aaaa@bbbb.com>\n"
 "Language: fr\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1)\n"
-"X-Generator: Gtranslator 41.0\n"
+"X-Generator: Gtranslator 42.0\n"
 
 #: data/com.github.maoschanz.drawing.desktop.in
 #: data/com.github.maoschanz.drawing.appdata.xml.in src/deco_manager.py
@@ -83,6 +83,53 @@ msgstr ""
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "Supported file types include PNG, JPEG and BMP."
 msgstr "Les types de fichiers supportés incluent PNG, JPEG et BMP."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Version 1.2.0 improves the transformation tools: their previews are now "
+"consistently applied when you change the active tool without clicking on "
+"\"apply\"."
+msgstr ""
+"La version 1.2.0 améliore les outils de transformation : leurs aperçus sont "
+"désormais appliqués de manière cohérente lorsque l'outil actif change sans "
+"avoir cliqué sur \"appliquer\"."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"The text tool is more intuitive to use, with distinct areas on the canvas to "
+"edit, move and insert the text."
+msgstr ""
+"L'outil texte est davantage intuitif à utiliser, avec des zones distinctes "
+"sur le canevas pour éditer, déplacer et insérer le texte."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"A former option of the paint bucket tool, which didn't belong there, has "
+"been improved and moved to the eraser tool."
+msgstr "Une ancienne option de l'outil 'pot de peinture', qui n'avait rien à "
+"faire là, a été améliorée et déplacée vers l'outil 'effaceur'."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Transparency is henceforth correctly preserved when the \"skew\" tool "
+"expands the canvas with a solid color."
+msgstr ""
+"La transparence est maintenant correctement préservée lorsque l'outil "
+"'incliner' étend le canevas avec une couleur opaque."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid "You can now adjust the position of the canvas when you're cropping it."
+msgstr ""
+"Vous pouvez maintenant ajuster la position du canevas pendant que vous le "
+"rognez."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"The option to use a color editor by default has been moved from the main "
+"window to the preferences window, and its bug has been fixed."
+msgstr ""
+"L'option pour utiliser l'éditeur de couleur par défaut a été déplacée de la "
+"fenêtre principale vers la fenêtre des préférences."
 
 #. very generic release notes i use for ALL minor updates, please
 #. translate this one!
@@ -468,7 +515,7 @@ msgstr "Cacher les barres d'outils"
 msgid "Fullscreen"
 msgstr "Plein écran"
 
-#: src/ui/app-menus.ui src/ui/shortcuts.ui
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/preferences.py
 msgid "Colors"
 msgstr "Couleurs"
 
@@ -479,10 +526,6 @@ msgstr "Éditer la couleur principale…"
 #: src/ui/app-menus.ui
 msgid "Edit Secondary Color…"
 msgstr "Éditer la couleur secondaire…"
-
-#: src/ui/app-menus.ui
-msgid "Use color editor by default"
-msgstr "Utiliser l'éditeur de couleurs par défaut"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 #: src/optionsbars/classic/optionsbar-classic.ui
@@ -918,6 +961,14 @@ msgstr "Chargement…"
 msgid "Exit fullscreen"
 msgstr "Quitter le plein écran"
 
+#: src/ui/win-menus.ui
+msgid "What's new in Drawing"
+msgstr "Nouveautés de l'application"
+
+#: src/ui/win-menus.ui
+msgid "Dismiss"
+msgstr "Ignorer"
+
 #: src/deco_manager.py
 #, python-format
 msgid "Undo %s"
@@ -1051,7 +1102,8 @@ msgstr "Hauteur par défaut"
 #: src/optionsbars/transform/optionsbar-crop.ui
 #: src/optionsbars/transform/optionsbar-skew.ui src/tools/ui/selection.ui
 #: src/tools/ui/tool-crop.ui src/tools/ui/tool-eraser.ui
-#: src/tools/classic_tools/tool_eraser.py
+#: src/tools/classic_tools/erasers/eraser_area.py
+#: src/tools/classic_tools/erasers/eraser_rubber.py
 msgid "Default color"
 msgstr "Couleur par défaut"
 
@@ -1131,10 +1183,10 @@ msgstr ""
 "Ces outils ne sont pas aussi fiables et utiles qu'ils le devraient, ils ne "
 "sont donc pas tous activés par défaut."
 
-#. Context: this is the name of a tool, in the meaning "a rubber eraser"
+#. Context: this is the name of a tool
 #: src/preferences.py src/tools/classic_tools/tool_eraser.py
 msgid "Eraser"
-msgstr "Gomme"
+msgstr "Effaceur"
 
 #. Context: this is the name of a tool, a thick pencil dedicated to
 #. highlight text, for example in screenshots
@@ -1179,6 +1231,18 @@ msgstr "Sélecteur de couleur"
 #: src/preferences.py src/tools/classic_tools/tool_paint.py
 msgid "Paint"
 msgstr "Peinture"
+
+#. Context: the color editor is an interface to pick any RGBA color, and
+#. it can be used instead of the default simple RGB palette
+#: src/preferences.py
+msgid "Use color editor by default"
+msgstr "Utiliser l'éditeur de couleurs par défaut"
+
+#: src/preferences.py
+msgid "You can use a simple color palette, or use a full RGBA color editor."
+msgstr ""
+"Vous pouvez utiliser une palette de couleurs simple, ou bien un éditeur "
+"complet de couleurs RGBA."
 
 #. Context: title of a section of the preferences
 #: src/preferences.py
@@ -1380,38 +1444,6 @@ msgstr "Erreur en chargeant l'outil : %s"
 #: src/window.py
 msgid "Error starting the application, please report this bug."
 msgstr "Erreur au démarrage de l'application, veuillez reporter ce problème."
-
-#: src/window.py
-msgid ""
-"It's the first time you use Drawing, would you like to read the help manual?"
-msgstr ""
-"C'est la première fois que vous utilisez Dessin %s, désirez-vous lire le "
-"manuel d'aide ?"
-
-#. Context: %s is the version number of the app
-#: src/window.py
-#, python-format
-msgid ""
-"It's the first time you use Drawing %s, would you like to read what's new?"
-msgstr ""
-"C'est la première fois que vous utilisez Dessin %s, désirez-vous en "
-"découvrir les nouveautés ?"
-
-#: src/window.py
-msgid ""
-"These news will always be available in the help manual: click the 'Help' "
-"menu item whenever you want!"
-msgstr ""
-"Ces informations resteront disponibles dans le manuel d'aide : cliquez sur "
-"l'item \"Aide\" quand vous le voulez !"
-
-#: src/window.py
-msgid "No"
-msgstr "Non"
-
-#: src/window.py
-msgid "Yes"
-msgstr "Oui"
 
 #: src/window.py
 msgid "The clipboard doesn't contain any image."
@@ -1647,7 +1679,8 @@ msgstr "Couleur principale"
 #: src/optionsbars/transform/optionsbar-crop.ui
 #: src/optionsbars/transform/optionsbar-skew.ui src/tools/ui/selection.ui
 #: src/tools/ui/tool-crop.ui src/tools/ui/tool-eraser.ui
-#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_eraser.py
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/erasers/eraser_area.py
+#: src/tools/classic_tools/erasers/eraser_rubber.py
 msgid "Secondary color"
 msgstr "Couleur secondaire"
 
@@ -1676,10 +1709,6 @@ msgstr "Retour à la palette"
 msgid "Palette"
 msgstr "Palette"
 
-#: src/optionsbars/classic/optionsbar-color-popover.ui
-msgid "Use this editor by default"
-msgstr "Utiliser cet éditeur par défaut"
-
 #: src/optionsbars/selection/optionsbar-selection.ui
 msgid "Selection options"
 msgstr "Options de la sélection"
@@ -1693,7 +1722,8 @@ msgstr "Remplacer par…"
 #: src/optionsbars/transform/optionsbar-crop.ui
 #: src/optionsbars/transform/optionsbar-skew.ui src/tools/ui/selection.ui
 #: src/tools/ui/tool-crop.ui src/tools/ui/tool-eraser.ui
-#: src/tools/classic_tools/tool_eraser.py
+#: src/tools/classic_tools/erasers/eraser_area.py
+#: src/tools/classic_tools/erasers/eraser_rubber.py
 #: src/tools/transform_tools/filters/filter_transparency.py
 msgid "Transparency"
 msgstr "Transparence"
@@ -1892,31 +1922,35 @@ msgstr "Plume de gaucher"
 msgid "Horizontal nib"
 msgstr "Plume horizontale"
 
-#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
-#: src/tools/classic_tools/tool_pencil.py
-msgid "Pencil"
-msgstr "Crayon"
+#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/erasers/eraser_rubber.py
+msgid "Rubber eraser"
+msgstr "Gomme"
 
-#: src/tools/ui/tool-eraser.ui src/tools/ui/tool-shape.ui
-#: src/tools/classic_tools/tool_eraser.py src/tools/classic_tools/tool_shape.py
-msgid "Rectangle"
-msgstr "Rectangle"
+#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/erasers/eraser_area.py
+msgid "Rectangle area"
+msgstr "Zone rectangulaire"
 
-#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
+#. Context: this feature erases the color where the user clicked.
+#. For example to cut out an object from its solid background.
+#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/erasers/eraser_color.py
+msgid "Remove color"
+msgstr "Retirer la couleur"
+
+#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/erasers/eraser_area.py
 msgid "Blur"
 msgstr "Flouter"
 
-#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
+#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/erasers/eraser_area.py
 msgid "Shuffle pixels"
 msgstr "Mélanger les pixels"
 
-#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
+#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/erasers/eraser_area.py
 msgid "Shuffle and blur"
 msgstr "Mélanger et flouter"
 
 #. Context: a filter to censor the image with some little tiles
 #: src/tools/ui/tool-eraser.ui src/tools/ui/tool-filters.ui
-#: src/tools/classic_tools/tool_eraser.py
+#: src/tools/classic_tools/erasers/eraser_area.py
 #: src/tools/transform_tools/tool_filters.py
 msgid "Mosaic"
 msgstr "Mosaïque"
@@ -2018,14 +2052,6 @@ msgstr "Effacer et remplacer"
 msgid "Entire image"
 msgstr "Image entière"
 
-#. Context: this is one of the possible painting algorithms. It
-#. doesn't really paint, instead it erases the color the user
-#. clicked. For example to cut out an object from its white
-#. background.
-#: src/tools/ui/tool-paint.ui
-msgid "Remove color"
-msgstr "Retirer la couleur"
-
 #: src/tools/ui/tool-points.ui
 msgid "Dots type"
 msgstr "Type de points"
@@ -2094,6 +2120,10 @@ msgstr "Dégradé vertical"
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
 msgid "Radial gradient"
 msgstr "Dégradé radial"
+
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+msgid "Rectangle"
+msgstr "Rectangle"
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
 msgid "Rounded rectangle"
@@ -2200,12 +2230,12 @@ msgid "Brush options"
 msgstr "Options du pinceau"
 
 #: src/tools/classic_tools/tool_eraser.py
-msgid "Press <Shift> to erase a rectangle area instead"
-msgstr "Appuyez sur <Maj> pour plutôt effacer une zone rectangulaire"
-
-#: src/tools/classic_tools/tool_eraser.py
 msgid "Press <Shift> to erase a path instead"
 msgstr "Appuyez sur <Maj> pour plutôt effacer un chemin"
+
+#: src/tools/classic_tools/tool_eraser.py
+msgid "Press <Shift> to erase a rectangle area instead"
+msgstr "Appuyez sur <Maj> pour plutôt effacer une zone rectangulaire"
 
 #: src/tools/classic_tools/tool_eraser.py
 msgid "Eraser options"
@@ -2281,6 +2311,10 @@ msgid "It will not work well if the area's edges are blurry"
 msgstr "Ça ne marchera pas si les bords de la zone sont flous"
 
 #: src/tools/classic_tools/tool_pencil.py
+msgid "Pencil"
+msgstr "Crayon"
+
+#: src/tools/classic_tools/tool_pencil.py
 msgid "Pencil options"
 msgstr "Options du crayon"
 
@@ -2292,6 +2326,16 @@ msgstr "Options des points"
 #, python-format
 msgid "Next number: %s"
 msgstr "Prochain numéro : %s"
+
+#. Context: fill a shape with the color of the left click
+#: src/tools/classic_tools/tool_shape.py
+msgid "Filled with main color"
+msgstr "Rempli par la couleur principale"
+
+#. Context: fill a shape with the color of the right click
+#: src/tools/classic_tools/tool_shape.py
+msgid "Filled with secondary color"
+msgstr "Rempli par la couleur secondaire"
 
 #: src/tools/classic_tools/tool_shape.py
 msgid "Shape"
@@ -2305,16 +2349,6 @@ msgstr "Rayon : %spx"
 #: src/tools/classic_tools/tool_shape.py
 msgid "Shape options"
 msgstr "Options de la forme"
-
-#. Context: fill a shape with the color of the left click
-#: src/tools/classic_tools/tool_shape.py
-msgid "Filled with main color"
-msgstr "Rempli par la couleur principale"
-
-#. Context: fill a shape with the color of the right click
-#: src/tools/classic_tools/tool_shape.py
-msgid "Filled with secondary color"
-msgstr "Rempli par la couleur secondaire"
 
 #: src/tools/classic_tools/tool_shape.py
 #: src/tools/selection_tools/select_free.py
@@ -2472,6 +2506,3 @@ msgstr "Rayon de floutage"
 #: src/tools/transform_tools/filters/filter_saturation.py
 msgid "Saturation"
 msgstr "Saturation"
-
-#~ msgid "Later"
-#~ msgstr "Plus tard"

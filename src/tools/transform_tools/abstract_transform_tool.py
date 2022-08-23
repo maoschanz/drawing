@@ -19,7 +19,6 @@ import cairo
 from gi.repository import Gtk, Gdk, GdkPixbuf
 
 from .abstract_tool import AbstractAbstractTool
-from .utilities_colors import utilities_gdk_rgba_to_normalized_array
 
 class AbstractCanvasTool(AbstractAbstractTool):
 	__gtype_name__ = 'AbstractCanvasTool'
@@ -35,6 +34,9 @@ class AbstractCanvasTool(AbstractAbstractTool):
 
 		# Gdk.RGBA
 		self._expansion_rgba = None
+
+		# ugly ass lock so the 'cancel' button does actually cancel
+		self._auto_apply_next = True
 
 	def on_tool_selected(self, *args):
 		super().on_tool_selected()
@@ -52,12 +54,20 @@ class AbstractCanvasTool(AbstractAbstractTool):
 		self.set_action_sensitivity('cancel_transform', True)
 		self.set_action_sensitivity('apply_transform', True)
 
-	def give_back_control(self, preserve_selection, next_tool=None):
+	def give_back_control(self, preserve_selection=True):
 		if not preserve_selection and self.selection_is_active():
-			self.on_apply_transform_tool_operation()
 			self.window.get_selection_tool().unselect_and_apply()
 		super().give_back_control(preserve_selection)
-		return super().give_back_control(preserve_selection, next_tool)
+
+	def auto_apply(self, next_tool_id):
+		if next_tool_id == self.id:
+			return # avoid some weird recursive situations
+		if not self._auto_apply_next:
+			self._auto_apply_next = True
+			return
+		self.restore_pixbuf()
+		operation = self.build_operation()
+		self.apply_operation(operation)
 
 	def _scroll_to_end(self, h_growth, v_growth):
 		if h_growth > 0:
@@ -94,17 +104,16 @@ class AbstractCanvasTool(AbstractAbstractTool):
 
 	############################################################################
 
-	def on_apply_transform_tool_operation(self, *args):
-		self.restore_pixbuf()
-		operation = self.build_operation()
-		self.apply_operation(operation)
-		self.on_cancel_transform_tool_operation()
-
-	def on_cancel_transform_tool_operation(self, *args):
+	def on_apply_transform_tool_operation(self):
 		if self.apply_to_selection:
 			self.window.force_selection()
 		else:
 			self.window.back_to_previous()
+		# The operation itself will be applied by the `auto_apply` method
+
+	def on_cancel_transform_tool_operation(self, *args):
+		self._auto_apply_next = False
+		self.on_apply_transform_tool_operation() # change the active tool
 
 	def apply_operation(self, operation):
 		operation['is_preview'] = False
@@ -161,16 +170,21 @@ class AbstractCanvasTool(AbstractAbstractTool):
 		else:
 			self.cursor_name = self._directions + '-resize'
 
-	def set_directional_cursor(self, event_x, event_y):
+	def set_directional_cursor(self, event_x, event_y, movable_center=False):
 		"""Set the accurate cursor depending on the position of the pointer on
 		the canvas."""
 		n_sizes = self.get_image().get_nineths_sizes(self.apply_to_selection, \
 		                                                       self._x, self._y)
 		# if we're transforming the selection from its top and/or left, coords
 		# to decide the direction depend on local deltas (self._x and self._y)
-		if self._set_directions(event_x, event_y, n_sizes):
+		if not self._set_directions(event_x, event_y, n_sizes):
+			# directions haven't changed
+			return
+		if movable_center and self._directions == '':
+			self.cursor_name = 'move'
+		else:
 			self._set_cursor_name()
-			self.window.set_cursor(True)
+		self.window.set_cursor(True)
 
 	############################################################################
 
@@ -184,27 +198,22 @@ class AbstractCanvasTool(AbstractAbstractTool):
 			cairo_context.get_source().set_filter(cairo.FILTER_NEAREST)
 		cairo_context.paint()
 
-	def get_deformed_surface(self, source_surface, coefs, prefill=False):
-		"""Use cairo.Matrix to apply a transformation to `source_surface` using
-		the coefficients in `coefs` and return a new surface with the result."""
+	def get_resized_surface(self, source_surface, coefs):
+		"""Generate a blank new surface whose size is enough to fit a cairo
+		matrix transformation of `source_surface` using the coefficients in
+		`coefs`. The method `get_deformed_surface` should be used next."""
 		p_xx, p_yx, p_xy, p_yy, p_x0, p_y0 = coefs
-
 		source_w = source_surface.get_width()
 		source_h = source_surface.get_height()
 		w = p_xx * source_w + p_xy * source_h + p_x0 * 2
 		h = p_yx * source_w + p_yy * source_h + p_y0 * 2
+		return cairo.ImageSurface(cairo.Format.ARGB32, int(w), int(h))
 
-		new_surface = cairo.ImageSurface(cairo.Format.ARGB32, int(w), int(h))
+	def get_deformed_surface(self, source_surface, new_surface, coefs):
+		"""Use cairo.Matrix to apply a transformation to `source_surface` using
+		the coefficients in `coefs` and return a new surface with the result."""
+		p_xx, p_yx, p_xy, p_yy, p_x0, p_y0 = coefs
 		cairo_context = cairo.Context(new_surface)
-
-		if prefill:
-			# TODO this exists only for the "skew" tool, and it shouldn't be
-			# here nor do this.
-			# TODO it should paint *around* the deformed surface after it's
-			# returned by the current method
-			color_array = utilities_gdk_rgba_to_normalized_array(self._expansion_rgba)
-			cairo_context.set_source_rgba(*color_array)
-			cairo_context.paint()
 
 		# m = cairo.Matrix(xx=1.0, yx=0.0, xy=0.0, yy=1.0, x0=0.0, y0=0.0)
 		m = cairo.Matrix(xx=p_xx, yx=p_yx, xy=p_xy, yy=p_yy, x0=p_x0, y0=p_y0)

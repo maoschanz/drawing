@@ -140,39 +140,25 @@ class DrWindow(Gtk.ApplicationWindow):
 		if current_version == last_version:
 			return
 
-		# To avoid spamming users too much, only major updates are worthy of
-		# that message dialog.
-		if last_version.split('.')[0] == current_version.split('.')[0] \
-		and last_version.split('.')[1] == current_version.split('.')[1]:
-			self.gsettings.set_string('last-version', current_version)
-			return
+		# if last_version.split('.')[0] == current_version.split('.')[0] \
+		# and last_version.split('.')[1] == current_version.split('.')[1]:
+		# 	self.gsettings.set_string('last-version', current_version)
+		# 	return
 
-		dialog = DrMessageDialog(self)
-		# First use of the app
-		if last_version == '0.0.0':
-			dialog.add_string(_("It's the first time you use Drawing, " + \
-			                         "would you like to read the help manual?"))
+		self._decorations.set_release_notes_available(True)
+		self.add_action_simple('help_news_dismiss', self._on_news_dismiss)
+		self.add_action_simple('help_news_open', self._on_news_open)
 
-		# Major update (assuming i actually follow semantic versionning lol)
-		else:
-			# Context: %s is the version number of the app
-			label = _("It's the first time you use Drawing %s, " + \
-			                               "would you like to read what's new?")
-			dialog.add_string(label % current_version)
-			dialog.add_string(_("These news will always be available in the" + \
-			     " help manual: click the 'Help' menu item whenever you want!"))
-
-		no_id = dialog.set_action(_("No"), None, True)
-		yes_id = dialog.set_action(_("Yes"), 'suggested-action')
-		result = dialog.run()
-		dialog.destroy()
-
-		if result == yes_id:
-			if last_version == '0.0.0':
-				self.app.on_help_index()
-			else:
-				self.app.on_help_whats_new()
+	def _on_news_dismiss(self, *args):
+		current_version = self.app.get_current_version()
 		self.gsettings.set_string('last-version', current_version)
+		self._decorations.set_release_notes_available(False)
+		self.lookup_action('help_news_dismiss').set_enabled(False)
+		self.lookup_action('help_news_open').set_enabled(False)
+
+	def _on_news_open(self, *args):
+		self.app.on_help_whats_new()
+		self._on_news_dismiss()
 
 	def _init_tools(self):
 		"""Initialize all tools, building the UI for them including the menubar,
@@ -561,8 +547,8 @@ class DrWindow(Gtk.ApplicationWindow):
 		self.add_action_simple('new_tab_clipboard', \
 		                    self.build_image_from_clipboard, ['<Ctrl><Shift>v'])
 		self.add_action_simple('open', self.action_open, ['<Ctrl>o'])
-		self.add_action_simple('tab_left', self.action_tab_left, ['<Ctrl><Shift>Left'])
-		self.add_action_simple('tab_right', self.action_tab_right, ['<Ctrl><Shift>Right'])
+		self.add_action_simple('tab_right', self.action_tab_right, ['<Ctrl>Tab'])
+		self.add_action_simple('tab_left', self.action_tab_left, ['<Ctrl><Shift>Tab'])
 		self.add_action_simple('close_tab', self.action_close_tab, ['<Ctrl>w'])
 		self.add_action_simple('close', self.action_close_window)
 
@@ -621,8 +607,12 @@ class DrWindow(Gtk.ApplicationWindow):
 			name = self.active_tool().cursor_name
 		else:
 			name = 'default'
-		cursor = Gdk.Cursor.new_from_name(Gdk.Display.get_default(), name)
-		self.get_window().set_cursor(cursor)
+		try:
+			cursor = Gdk.Cursor.new_from_name(Gdk.Display.get_default(), name)
+			self.get_window().set_cursor(cursor)
+		except Exception as ex:
+			# the cursor theme may be incorrect (not contain the cursor)
+			self.reveal_message(ex.message)
 
 	############################################################################
 	# WINDOW DECORATIONS AND LAYOUTS ###########################################
@@ -906,6 +896,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		# Disable the formerly active tool
 		self.former_tool_id = self.active_tool_id
 		should_preserve_selection = self.tools[new_tool_id].accept_selection
+		self.former_tool().auto_apply(new_tool_id)
 		self.former_tool().give_back_control(should_preserve_selection)
 		self.former_tool().on_tool_unselected()
 		self.get_active_image().selection.hide_popovers()
@@ -941,6 +932,8 @@ class DrWindow(Gtk.ApplicationWindow):
 		return self.tools[self.former_tool_id]
 
 	def back_to_previous(self, *args):
+		"""Switch back to the previously active tool, if it's different from the
+		current one."""
 		if self.former_tool_id == self.active_tool_id:
 			self.force_selection()
 			# avoid cases where applying a transform tool keeps the tool active
@@ -1252,6 +1245,19 @@ class DrWindow(Gtk.ApplicationWindow):
 
 	def action_cancel_transform(self, *args):
 		self.active_tool().on_cancel_transform_tool_operation()
+
+	# Comportements des outils de transformation
+	#
+	# SI CANEVAS ENTIER :
+	# *clic sur apply = apply, retour à l'outil précédent			OK
+	# *clic sur annuler = cancel, retour à l'outil précédent		OK
+	# *clic sur un autre outil = apply, passage à cet autre outil	OK
+	#
+	# SI SÉLECTION :
+	# *clic sur apply = apply, retour à rect_select					OK
+	# *clic sur annuler = cancel, retour à rect_select				OK
+	# *clic sur un outil de sélection = apply, passage à l'outil	OK
+	# *clic sur un autre outil = apply, passage à l'outil			OK
 
 	############################################################################
 	# HISTORY MANAGEMENT #######################################################

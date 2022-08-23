@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
-"POT-Creation-Date: 2022-04-10 15:56+0200\n"
-"PO-Revision-Date: 2022-03-25 22:02+0100\n"
+"POT-Creation-Date: 2022-05-21 23:53+0200\n"
+"PO-Revision-Date: 2022-08-03 15:28+0200\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: \n"
 "Language: hr\n"
@@ -84,6 +84,50 @@ msgstr ""
 msgid "Supported file types include PNG, JPEG and BMP."
 msgstr "Podržane vrste datoteka uključuju PNG, JPEG i BMP."
 
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Version 1.2.0 improves the transformation tools: their previews are now "
+"consistently applied when you change the active tool without clicking on "
+"\"apply\"."
+msgstr ""
+"Verzija 1.2.0 poboljšava alate za transformaciju: njihovi se pregledi sada "
+"dosljedno primijenjuju kad promijeniš aktivni alat bez pritiskanja gumba "
+"„Primjeni”."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"The text tool is more intuitive to use, with distinct areas on the canvas to "
+"edit, move and insert the text."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"A former option of the paint bucket tool, which didn't belong there, has "
+"been improved and moved to the eraser tool."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+#, fuzzy
+msgid ""
+"Transparency is henceforth correctly preserved when the \"skew\" tool "
+"expands the canvas with a solid color."
+msgstr ""
+"Transparentnost se sada ispravno čuva kada alat „Ukosi” proširuje platno "
+"punom bojom."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+#, fuzzy
+msgid "You can now adjust the position of the canvas when you're cropping it."
+msgstr ""
+"Pritiskom desnog gumba miša sada možeš prilagoditi položaj platna kad ga "
+"obrežeš."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"The option to use a color editor by default has been moved from the main "
+"window to the preferences window, and its bug has been fixed."
+msgstr ""
+
 #. very generic release notes i use for ALL minor updates, please
 #. translate this one!
 #: data/com.github.maoschanz.drawing.appdata.xml.in
@@ -98,6 +142,8 @@ msgid ""
 "By popular demand, the \"highlighter\" tool is now enabled by default, and "
 "the message dialog to warn you about the release notes is less intrusive."
 msgstr ""
+"Zbog velike potražnje, alat „Isticanje” je sada standardno uključen, a "
+"prozor s porukama upozorenja o bilješkama uz izdanja je manje nametljiv."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -107,18 +153,28 @@ msgid ""
 "2000%%, scrolling up or down, or left or right, was quite violent. These "
 "problems should all have disappeared in this new version!"
 msgstr ""
+"Glavno poboljšanje ove verzije je način rada za uvećanje prikaza: s verzijom "
+"1.0.0 je veliko uvećanja prikaza već bilo moguće, ali postupak je bio vrlo "
+"spor, a prikaz nije bio dobro usredotočen na pokazivač miša; pri prikazu od "
+"2000 %%, pomicanje prema gore ili dolje, ili lijevo ili desno bilo je "
+"prilično nasilno. Svi ti problemi više nebi trebali postojati u ovoj novoj "
+"verziji!"
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "Incorrect command line parsing when using the app outside of a flatpak "
 "sandbox has also been fixed."
 msgstr ""
+"Ispravljena je i netočna obrada naredbenog retka tijekom korištenja programa "
+"izvan testnog Flatpak okruženja."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "For users on elementary OS, a small issue concerning window resizing has "
 "been mended too."
 msgstr ""
+"Za korisnike elementary OS-a, popravljen je i mali problem koji se odnosi na "
+"mijenjanje veličine prozora."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -126,7 +182,7 @@ msgid ""
 "large images with a poor CPU."
 msgstr ""
 "Verzija 1.0.0 poboljšava performanse iscrtavanja, što je vidljivo pri "
-"uređivanju velikih slika sa slabim CPU-om."
+"uređivanju velikih slika sa slabim procesorom."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -150,6 +206,8 @@ msgid ""
 "Zooming very deep is now possible, and the rendering will be very crisp, "
 "even at 2000%%."
 msgstr ""
+"Veliko uvećanje prikaza je sada moguće. Prikaz će biti izvrstan čak i pri "
+"uvećanju od 2000 %%."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -636,7 +694,7 @@ msgstr "Osnovna pomoć"
 
 #: src/ui/app-menus.ui src/ui/minimap.ui
 msgid "Help about zooming"
-msgstr "Pomoć za uvećanje"
+msgstr "Pomoć za mijenjanje uvećanja prikaza"
 
 #: src/ui/app-menus.ui
 msgid "Help about the full-screen mode"
@@ -692,7 +750,7 @@ msgstr "100 %"
 
 #: src/ui/minimap.ui src/ui/shortcuts.ui
 msgid "Maximum zoom"
-msgstr ""
+msgstr "Maksimalno uvećanje prikaza"
 
 #: src/ui/new-image-dialog.ui src/ui/properties.ui
 #: src/optionsbars/transform/optionsbar-crop.ui
@@ -907,6 +965,15 @@ msgstr "Učitavanje …"
 msgid "Exit fullscreen"
 msgstr "Zatvori cjeloekranski prikaz"
 
+#: src/ui/win-menus.ui
+#, fuzzy
+msgid "What's new in Drawing"
+msgstr "Novosti"
+
+#: src/ui/win-menus.ui
+msgid "Dismiss"
+msgstr ""
+
 #: src/deco_manager.py
 #, python-format
 msgid "Undo %s"
@@ -1040,7 +1107,8 @@ msgstr "Standardna visina"
 #: src/optionsbars/transform/optionsbar-crop.ui
 #: src/optionsbars/transform/optionsbar-skew.ui src/tools/ui/selection.ui
 #: src/tools/ui/tool-crop.ui src/tools/ui/tool-eraser.ui
-#: src/tools/classic_tools/tool_eraser.py
+#: src/tools/classic_tools/erasers/eraser_area.py
+#: src/tools/classic_tools/erasers/eraser_rubber.py
 msgid "Default color"
 msgstr "Standardna boja"
 
@@ -1087,15 +1155,15 @@ msgstr "Pitaj prije spremanja"
 
 #: src/preferences.py
 msgid "You can zoom with Ctrl+scrolling, or only scrolling."
-msgstr "Uvećaj pomoću Ctrl+klizanje ili samo klizanjem."
+msgstr "Mijenjaj uvećanje prikaza pomoću Ctrl+klizanje ili samo klizanjem."
 
 #: src/preferences.py
 msgid "See the user help manual for explanations."
-msgstr "Za objašnjenja pogledaj priručnik za korisničku pomoć."
+msgstr "Za objašnjenja pogledaj korisnički priručnik za pomoć."
 
 #: src/preferences.py
 msgid "Use 'Ctrl' to zoom"
-msgstr "Koristi „Ctrl” za uvećvaanje"
+msgstr "Koristi „Ctrl” za mijenjanje uvećanja prikaza"
 
 #. Context: title of a section of the preferences (appearance of the
 #. tools: big icons?, labels?)
@@ -1120,7 +1188,7 @@ msgstr ""
 "Ovi alati nisu pouzdani i korisni kao što bi trebali biti, stoga neki nisu "
 "standardno aktivirani."
 
-#. Context: this is the name of a tool, in the meaning "a rubber eraser"
+#. Context: this is the name of a tool
 #: src/preferences.py src/tools/classic_tools/tool_eraser.py
 msgid "Eraser"
 msgstr "Gumica"
@@ -1178,6 +1246,8 @@ msgstr "Standardno koristi uređivač boja"
 #: src/preferences.py
 msgid "You can use a simple color palette, or use a full RGBA color editor."
 msgstr ""
+"Možeš koristiti jednostavnu paletu boja ili koristi uređivač potpunog RGBA "
+"sustava boja."
 
 #. Context: title of a section of the preferences
 #: src/preferences.py
@@ -1379,33 +1449,6 @@ msgid "Error starting the application, please report this bug."
 msgstr "Greška pri pokretanju programa. Prijavi ovu grešku."
 
 #: src/window.py
-#, fuzzy
-msgid ""
-"It's the first time you use Drawing, would you like to read the help manual?"
-msgstr "Ovo je prvi put da koristaš Crtanje %s. Želiš li pročitati novosti?"
-
-#. Context: %s is the version number of the app
-#: src/window.py
-#, python-format
-msgid ""
-"It's the first time you use Drawing %s, would you like to read what's new?"
-msgstr "Ovo je prvi put da koristaš Crtanje %s. Želiš li pročitati novosti?"
-
-#: src/window.py
-msgid ""
-"These news will always be available in the help manual: click the 'Help' "
-"menu item whenever you want!"
-msgstr ""
-
-#: src/window.py
-msgid "No"
-msgstr "Ne"
-
-#: src/window.py
-msgid "Yes"
-msgstr "Da"
-
-#: src/window.py
 msgid "The clipboard doesn't contain any image."
 msgstr "Međuspremnik ne sadrži nijednu sliku."
 
@@ -1432,7 +1475,7 @@ msgstr "Promjene će stupiti na snagu u sljedećem novom prozoru."
 #: src/window.py
 msgid "Middle-click or press F8 to show/hide controls."
 msgstr ""
-"Za prikazivanj/skrivanje kontrola koristi srednju tipku miša ili pritisni F8"
+"Za prikazivanj/skrivanje kontrola koristi srednju tipku miša ili pritisni F8."
 
 #: src/window.py
 msgid "Press F11 to exit fullscreen."
@@ -1636,7 +1679,8 @@ msgstr "Glavna boja"
 #: src/optionsbars/transform/optionsbar-crop.ui
 #: src/optionsbars/transform/optionsbar-skew.ui src/tools/ui/selection.ui
 #: src/tools/ui/tool-crop.ui src/tools/ui/tool-eraser.ui
-#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_eraser.py
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/erasers/eraser_area.py
+#: src/tools/classic_tools/erasers/eraser_rubber.py
 msgid "Secondary color"
 msgstr "Sporedna boja"
 
@@ -1678,7 +1722,8 @@ msgstr "Zamijeni sa …"
 #: src/optionsbars/transform/optionsbar-crop.ui
 #: src/optionsbars/transform/optionsbar-skew.ui src/tools/ui/selection.ui
 #: src/tools/ui/tool-crop.ui src/tools/ui/tool-eraser.ui
-#: src/tools/classic_tools/tool_eraser.py
+#: src/tools/classic_tools/erasers/eraser_area.py
+#: src/tools/classic_tools/erasers/eraser_rubber.py
 #: src/tools/transform_tools/filters/filter_transparency.py
 msgid "Transparency"
 msgstr "Prozirnost"
@@ -1877,31 +1922,36 @@ msgstr "Pero za lijevoruke"
 msgid "Horizontal nib"
 msgstr "Vodoravno pero"
 
-#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
-#: src/tools/classic_tools/tool_pencil.py
-msgid "Pencil"
-msgstr "Olovka"
+#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/erasers/eraser_rubber.py
+msgid "Rubber eraser"
+msgstr ""
 
-#: src/tools/ui/tool-eraser.ui src/tools/ui/tool-shape.ui
-#: src/tools/classic_tools/tool_eraser.py src/tools/classic_tools/tool_shape.py
-msgid "Rectangle"
+#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/erasers/eraser_area.py
+#, fuzzy
+msgid "Rectangle area"
 msgstr "Pravokutnik"
 
-#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
+#. Context: this feature erases the color where the user clicked.
+#. For example to cut out an object from its solid background.
+#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/erasers/eraser_color.py
+msgid "Remove color"
+msgstr "Ukloni boju"
+
+#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/erasers/eraser_area.py
 msgid "Blur"
 msgstr "Zamuti"
 
-#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
+#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/erasers/eraser_area.py
 msgid "Shuffle pixels"
 msgstr "Promiješaj pikslove"
 
-#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
+#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/erasers/eraser_area.py
 msgid "Shuffle and blur"
 msgstr "Promiješaj i zamuti"
 
 #. Context: a filter to censor the image with some little tiles
 #: src/tools/ui/tool-eraser.ui src/tools/ui/tool-filters.ui
-#: src/tools/classic_tools/tool_eraser.py
+#: src/tools/classic_tools/erasers/eraser_area.py
 #: src/tools/transform_tools/tool_filters.py
 msgid "Mosaic"
 msgstr "Mozaik"
@@ -2003,14 +2053,6 @@ msgstr "Izbriši i zamijeni"
 msgid "Entire image"
 msgstr "Cijela slika"
 
-#. Context: this is one of the possible painting algorithms. It
-#. doesn't really paint, instead it erases the color the user
-#. clicked. For example to cut out an object from its white
-#. background.
-#: src/tools/ui/tool-paint.ui
-msgid "Remove color"
-msgstr "Ukloni boju"
-
 #: src/tools/ui/tool-points.ui
 msgid "Dots type"
 msgstr "Vrste točaka"
@@ -2079,6 +2121,10 @@ msgstr "Okomiti gradijent"
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
 msgid "Radial gradient"
 msgstr "Kružni gradijent"
+
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+msgid "Rectangle"
+msgstr "Pravokutnik"
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
 msgid "Rounded rectangle"
@@ -2185,12 +2231,12 @@ msgid "Brush options"
 msgstr "Opcije za kist"
 
 #: src/tools/classic_tools/tool_eraser.py
-msgid "Press <Shift> to erase a rectangle area instead"
-msgstr "Umjesto toga pritisni <Shift> za brisanje pravokutnog područja"
-
-#: src/tools/classic_tools/tool_eraser.py
 msgid "Press <Shift> to erase a path instead"
 msgstr "Umjesto toga pritisni <Shift> za brisanje staze"
+
+#: src/tools/classic_tools/tool_eraser.py
+msgid "Press <Shift> to erase a rectangle area instead"
+msgstr "Umjesto toga pritisni <Shift> za brisanje pravokutnog područja"
 
 #: src/tools/classic_tools/tool_eraser.py
 msgid "Eraser options"
@@ -2267,6 +2313,10 @@ msgid "It will not work well if the area's edges are blurry"
 msgstr "Neće dobro funkcionirati ako su rubovi područja zamućeni"
 
 #: src/tools/classic_tools/tool_pencil.py
+msgid "Pencil"
+msgstr "Olovka"
+
+#: src/tools/classic_tools/tool_pencil.py
 msgid "Pencil options"
 msgstr "Opcije za olovku"
 
@@ -2278,6 +2328,16 @@ msgstr "Opcije za točke"
 #, python-format
 msgid "Next number: %s"
 msgstr "Sljedeći broj: %s"
+
+#. Context: fill a shape with the color of the left click
+#: src/tools/classic_tools/tool_shape.py
+msgid "Filled with main color"
+msgstr "Ispunjeno s glavnom bojom"
+
+#. Context: fill a shape with the color of the right click
+#: src/tools/classic_tools/tool_shape.py
+msgid "Filled with secondary color"
+msgstr "Ispunjeno sa sporednom bojom"
 
 #: src/tools/classic_tools/tool_shape.py
 msgid "Shape"
@@ -2291,16 +2351,6 @@ msgstr "Radijus: %s px"
 #: src/tools/classic_tools/tool_shape.py
 msgid "Shape options"
 msgstr "Opcije za oblik"
-
-#. Context: fill a shape with the color of the left click
-#: src/tools/classic_tools/tool_shape.py
-msgid "Filled with main color"
-msgstr "Ispunjeno s glavnom bojom"
-
-#. Context: fill a shape with the color of the right click
-#: src/tools/classic_tools/tool_shape.py
-msgid "Filled with secondary color"
-msgstr "Ispunjeno sa sporednom bojom"
 
 #: src/tools/classic_tools/tool_shape.py
 #: src/tools/selection_tools/select_free.py
@@ -2456,6 +2506,3 @@ msgstr "Radijus mutnoće"
 #: src/tools/transform_tools/filters/filter_saturation.py
 msgid "Saturation"
 msgstr "Zasićenost"
-
-#~ msgid "Later"
-#~ msgstr "Kasnije"

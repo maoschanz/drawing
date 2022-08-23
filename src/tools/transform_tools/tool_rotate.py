@@ -205,7 +205,8 @@ class ToolRotate(AbstractCanvasTool):
 			surface0.set_device_scale(self.scale_factor(), self.scale_factor())
 			coefs = self._get_rotation_matrix(cairo_rotation, \
 			                        surface0.get_width(), surface0.get_height())
-			new_surface = self.get_deformed_surface(surface0, coefs)
+			new_surface = self.get_resized_surface(surface0, coefs)
+			new_surface = self.get_deformed_surface(surface0, new_surface, coefs)
 			new_pixbuf = Gdk.pixbuf_get_from_surface(new_surface, 0, 0, \
 			                  new_surface.get_width(), new_surface.get_height())
 

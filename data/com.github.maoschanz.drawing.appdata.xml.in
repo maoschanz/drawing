@@ -38,17 +38,32 @@
   </description>
 
   <releases>
-    <release version="1.0.2" date="2022-04-09">
+    <!-- <release version="1.2.0" date="2022-09-03"> -->
+    <release version="1.2.0" date="2022-08-21">
       <description>
-        <!-- very generic release notes i use for ALL minor updates, please -->
-        <!-- translate this one! -->
         <p>
-          Version 1.0.2 features several minor bug fixes, and various new
-          translations.
+          Version 1.2.0 improves the transformation tools: their previews are
+          now consistently applied when you change the active tool without
+          clicking on "apply".
         </p>
         <p>
-          Transparency is now correctly preserved when a tool (such as "crop" or
-          "skew") expands the canvas with a solid color.
+          The text tool is more intuitive to use, with distinct areas on the
+          canvas to edit, move and insert the text.
+        </p>
+        <p>
+          A former option of the paint bucket tool, which didn't belong there,
+          has been improved and moved to the eraser tool.
+        </p>
+        <p>
+          Transparency is henceforth correctly preserved when the "skew" tool
+          expands the canvas with a solid color.
+        </p>
+        <p>
+          You can now adjust the position of the canvas when you're cropping it.
+        </p>
+        <p>
+          The option to use a color editor by default has been moved from the
+          main window to the preferences window, and its bug has been fixed.
         </p>
       </description>
     </release>
