@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface domain="drawing">
   <template class="DrImage" parent="GtkBox">
-    <property name="visible">True</property>
     <property name="orientation">vertical</property>
 
     <child>
@@ -12,10 +11,8 @@
         <property name="message-type">question</property>
         <child internal-child="content_area">
           <object class="GtkBox">
-            <property name="visible">True</property>
             <child>
               <object class="GtkLabel" id="reload_label">
-                <property name="visible">True</property>
                 <property name="wrap">True</property>
                 <property name="label" translatable="yes">The image changed on the disk, do you want to reload it?</property>
               </object>
@@ -24,10 +21,8 @@
         </child>
         <child internal-child="action_area">
           <object class="GtkButtonBox">
-            <property name="visible">True</property>
             <child>
               <object class="GtkButton" id="reload_action">
-                <property name="visible">True</property>
                 <property name="action-name">win.reload_file</property>
                 <property name="label" translatable="yes">Reload</property>
               </object>
@@ -42,18 +37,16 @@
 
     <child>
       <object class="GtkBox">
-        <property name="visible">True</property>
         <property name="expand">True</property>
         <child>
           <object class="GtkLayout" id="_drawing_area">
             <property name="expand">True</property>
-            <property name="visible">True</property>
             <property name="can-focus">False</property>
           </object>
         </child>
         <child>
           <object class="GtkVScrollbar" id="_v_scrollbar">
-            <!-- <property name="visible">True</property> -->
+            <property name="visible">False</property>
           </object>
         </child>
       </object>
@@ -61,7 +54,7 @@
 
     <child>
       <object class="GtkHScrollbar" id="_h_scrollbar">
-        <!-- <property name="visible">True</property> -->
+        <property name="visible">False</property>
       </object>
     </child>
   </template>

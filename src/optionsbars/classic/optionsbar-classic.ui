@@ -13,38 +13,29 @@
     <property name="expand">True</property>
     <child>
       <object class="GtkBox" id="color_box">
-      <property name="visible">True</property>
       <property name="valign">center</property>
         <child>
           <object class="GtkMenuButton" id="color_menu_btn_l">
-            <property name="visible">True</property>
             <child>
-              <object class="GtkImage" id="l_btn_image">
-                <property name="visible">True</property>
-              </object>
+              <object class="GtkImage" id="l_btn_image"/>
             </child>
           </object>
         </child>
         <child>
           <object class="GtkButton" id="color_btn_exc">
-            <property name="visible">True</property>
             <property name="action_name">win.exchange_color</property>
             <property name="tooltip-text" translatable="yes">Exchange colors</property>
             <child>
               <object class="GtkImage">
                 <property name="icon-name">exchange-colors-symbolic</property>
-                <property name="visible">True</property>
               </object>
             </child>
           </object>
         </child>
         <child>
           <object class="GtkMenuButton" id="color_menu_btn_r">
-            <property name="visible">True</property>
             <child>
-              <object class="GtkImage" id="r_btn_image">
-                <property name="visible">True</property>
-              </object>
+              <object class="GtkImage" id="r_btn_image"/>
             </child>
           </object>
         </child>
@@ -58,8 +49,7 @@
       <object class="GtkScaleButton" id="thickness_scalebtn">
         <property name="tooltip-text" translatable="yes">Tool size</property>
         <property name="valign">center</property>
-        <property name="visible">True</property>
-        <property name="relief">normal</property>
+        <property name="has-frame">True</property>
         <property name="icons">size-1-symbolic
 size-9-symbolic
 size-3-symbolic
@@ -73,32 +63,26 @@ size-8-symbolic</property>
       <object class="GtkSpinButton" id="thickness_spinbtn">
         <property name="tooltip-text" translatable="yes">Tool size</property>
         <property name="valign">center</property>
-        <property name="visible">True</property>
         <property name="adjustment">adjustment_size</property>
       </object>
     </child>
     <child>
       <object class="GtkMenuButton" id="options_btn">
         <property name="valign">center</property>
-        <property name="visible">True</property>
         <child>
           <object class="GtkBox">
-            <property name="visible">True</property>
             <property name="spacing">10</property>
             <child>
               <object class="GtkBox" id="options_long_box">
-                <property name="visible">True</property>
                 <property name="spacing">10</property>
                 <child>
                   <object class="GtkLabel" id="options_label">
                     <property name="label" translatable="yes">No options</property>
-                    <property name="visible">True</property>
                   </object>
                 </child>
                 <child>
                   <object class="GtkImage">
                     <property name="icon-name">pan-down-symbolic</property>
-                    <property name="visible">True</property>
                   </object>
                   <packing>
                     <property name="pack-type">end</property>
@@ -109,7 +93,6 @@ size-8-symbolic</property>
             <child>
               <object class="GtkImage" id="options_short_box">
                 <property name="icon-name">view-more-symbolic</property>
-                <property name="visible">True</property>
               </object>
             </child>
           </object>
@@ -120,22 +103,18 @@ size-8-symbolic</property>
       <object class="GtkToggleButton" id="minimap_btn">
         <property name="valign">center</property>
         <property name="tooltip-text" translatable="yes">Preview</property>
-        <property name="visible">True</property>
         <property name="action-name">win.toggle_preview</property>
         <child>
           <object class="GtkBox">
-            <property name="visible">True</property>
             <property name="spacing">10</property>
             <child>
               <object class="GtkLabel" id="minimap_label">
                 <property name="label">100%</property>
-                <property name="visible">True</property>
               </object>
             </child>
             <child>
               <object class="GtkImage" id="minimap_arrow">
                 <property name="icon-name">pan-down-symbolic</property>
-                <property name="visible">True</property>
               </object>
               <packing>
                 <property name="pack-type">end</property>

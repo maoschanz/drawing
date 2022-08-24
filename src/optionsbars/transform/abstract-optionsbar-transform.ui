@@ -61,7 +61,7 @@
 
     <child>
       <object class="GtkButton" id="help_btn">
-        <property name="relief">none</property>
+        <property name="has-frame">False</property>
         <property name="tooltip-text" translatable="yes">Help about transformation tools</property>
         <property name="action-name">app.help_transform</property>
         <child>

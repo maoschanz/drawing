@@ -5,7 +5,7 @@
 
     <child type="start">
       <object class="GtkMenuButton" id="new_btn">
-        <property name="relief">none</property>
+        <property name="has-frame">False</property>
         <property name="valign">center</property>
         <property name="tooltip-text" translatable="yes">New Image</property>
         <child>
@@ -29,7 +29,7 @@
     <child type="start">
       <object class="GtkButton">
         <property name="action-name">win.open</property>
-        <property name="relief">none</property>
+        <property name="has-frame">False</property>
         <property name="valign">center</property>
         <property name="tooltip-text" translatable="yes">Open</property>
         <child>
@@ -46,7 +46,7 @@
         <property name="valign">center</property>
         <child>
           <object class="GtkButton" id="undo_btn">
-            <property name="relief">none</property>
+            <property name="has-frame">False</property>
             <property name="action-name">win.undo</property>
             <property name="tooltip-text" translatable="yes">Undo</property>
             <child>
@@ -59,7 +59,7 @@
         </child>
         <child>
           <object class="GtkButton" id="redo_btn">
-            <property name="relief">none</property>
+            <property name="has-frame">False</property>
             <property name="action-name">win.redo</property>
             <property name="tooltip-text" translatable="yes">Redo</property>
             <child>
@@ -78,7 +78,7 @@
     <child type="end">
       <object class="GtkMenuButton" id="main_menu_btn">
         <property name="valign">center</property>
-        <property name="relief">none</property>
+        <property name="has-frame">False</property>
         <child>
           <object class="GtkImage">
             <property name="icon-name">open-menu</property>
@@ -90,7 +90,7 @@
 
     <child type="end">
       <object class="GtkMenuButton" id="hidable1">
-        <property name="relief">none</property>
+        <property name="has-frame">False</property>
         <property name="valign">center</property>
         <property name="tooltip-text" translatable="yes">Save as…</property>
         <child>
@@ -115,7 +115,7 @@
       <object class="GtkButton" id="save_long">
         <property name="visible">False</property>
         <property name="valign">center</property>
-        <property name="relief">none</property>
+        <property name="has-frame">False</property>
         <property name="action-name">win.save</property>
         <property name="tooltip-text" translatable="yes">Save</property>
         <child>
@@ -131,7 +131,7 @@
       <!-- identical to save_long in this implementation of the headerbar -->
       <object class="GtkButton" id="save_short">
         <property name="valign">center</property>
-        <property name="relief">none</property>
+        <property name="has-frame">False</property>
         <property name="action-name">win.save</property>
         <property name="tooltip-text" translatable="yes">Save</property>
         <child>
@@ -145,7 +145,7 @@
 
     <child type="end">
       <object class="GtkMenuButton" id="hidable2">
-        <property name="relief">none</property>
+        <property name="has-frame">False</property>
         <property name="valign">center</property>
         <property name="tooltip-text" translatable="yes">Share the image</property>
         <child>

@@ -29,21 +29,17 @@
     <property name="icon-name">com.github.maoschanz.drawing</property>
     <child>
       <object class="GtkBox" id="content_area">
-        <property name="visible">True</property>
         <property name="orientation">horizontal</property>
 
         <child>
           <object class="GtkStack" id="stack">
-            <property name="visible">True</property>
             <property name="transition-type">crossfade</property>
 
             <child>
               <object class="GtkScrolledWindow">
-                <property name="visible">True</property>
                 <property name="expand">True</property>
                 <child>
                   <object class="GtkGrid" id="page_images">
-                    <property name="visible">True</property>
                     <property name="halign">fill</property>
                     <property name="valign">start</property>
                     <property name="expand">True</property>
@@ -62,11 +58,9 @@
 
             <child>
               <object class="GtkScrolledWindow">
-                <property name="visible">True</property>
                 <property name="expand">True</property>
                 <child>
                   <object class="GtkGrid" id="page_tools">
-                    <property name="visible">True</property>
                     <property name="halign">fill</property>
                     <property name="valign">start</property>
                     <property name="expand">True</property>
@@ -85,11 +79,9 @@
 
             <child>
               <object class="GtkScrolledWindow">
-                <property name="visible">True</property>
                 <property name="expand">True</property>
                 <child>
                   <object class="GtkGrid" id="page_advanced">
-                    <property name="visible">True</property>
                     <property name="halign">fill</property>
                     <property name="valign">start</property>
                     <property name="expand">True</property>
@@ -117,3 +109,4 @@
     </child>
   </template>
 </interface>
+

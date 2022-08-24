@@ -15,47 +15,30 @@
     <child>
       <object class="GtkBox" id="main_box">
         <property name="orientation">vertical</property>
-        <property name="visible">True</property>
         <child>
           <object class="GtkBox" id="toolbar_box">
             <property name="orientation">vertical</property>
             <property name="visible">False</property>
             <style><class name="primary-toolbar"/></style>
             <child>
-              <object class="GtkSeparator" />
-              <packing>
-                <property name="pack-type">end</property>
-              </packing>
+              <object class="GtkSeparator"/>
             </child>
           </object>
         </child>
         <child>
           <object class="GtkInfoBar" id="info_bar">
-            <property name="visible">True</property>
             <property name="show-close-button">True</property>
             <property name="revealed">True</property>
-            <child internal-child="content_area">
-              <object class="GtkBox">
-                <property name="visible">True</property>
-                <child>
-                  <object class="GtkLabel" id="info_label">
-                    <property name="visible">True</property>
-                    <property name="wrap">True</property>
-                    <property name="label" translatable="yes">Loading…</property>
-                  </object>
-                </child>
+            <child>
+              <object class="GtkLabel" id="info_label">
+                <property name="wrap">True</property>
+                <property name="label" translatable="yes">Loading…</property>
               </object>
             </child>
-            <child internal-child="action_area">
-              <object class="GtkButtonBox">
-                <property name="visible">True</property>
-                <child>
-                  <object class="GtkButton" id="info_action">
-                    <property name="visible">True</property>
-                    <property name="action-name">app.report-issue</property>
-                    <property name="label" translatable="yes">Report a bug</property>
-                  </object>
-                </child>
+            <child type="action">
+              <object class="GtkButton" id="info_action">
+                <property name="action-name">app.report-issue</property>
+                <property name="label" translatable="yes">Report a bug</property>
               </object>
             </child>
             <action-widgets>
@@ -65,17 +48,13 @@
         </child>
         <child>
           <object class="GtkBox">
-            <property name="visible">True</property>
             <property name="orientation">horizontal</property>
             <child>
               <object class="GtkScrolledWindow">
-                <property name="visible">True</property>
                 <property name="vscrollbar-policy">external</property>
                 <property name="hscrollbar-policy">never</property>
                 <child>
                   <object class="GtkBox" id="tools_scrollable_box">
-                    <property name="visible">True</property>
-                    <property name="expand">False</property>
                     <property name="halign">center</property>
                     <!-- <child> -->
                     <!--   the flowbox will move here if needed -->
@@ -86,10 +65,8 @@
             </child>
             <child>
               <object class="GtkBox" id="tools_nonscrollable_box">
-                <property name="visible">True</property>
                 <child>
                   <object class="GtkFlowBox" id="tools_flowbox">
-                    <property name="visible">True</property>
                     <property name="activate-on-single-click">True</property>
                     <property name="selection-mode">single</property>
                     <property name="orientation">vertical</property>
@@ -98,13 +75,10 @@
               </object>
             </child>
             <child>
-              <object class="GtkSeparator">
-                <property name="visible">True</property>
-              </object>
+              <object class="GtkSeparator"/>
             </child>
             <child>
               <object class="GtkNotebook" id="notebook">
-                <property name="visible">True</property>
                 <property name="can-focus">False</property>
                 <property name="show-tabs">False</property>
                 <property name="show-border">True</property>
@@ -113,38 +87,26 @@
                 <child type="action-end">
                   <object class="GtkButton">
                     <property name="can-focus">False</property>
-                    <property name="visible">True</property>
-                    <property name="relief">none</property>
+                    <property name="has-frame">False</property>
                     <property name="action-name">win.new_tab</property>
                     <property name="tooltip-text" translatable="yes">New Image</property>
                     <child>
                       <object class="GtkImage">
                         <property name="icon-name">tab-new-symbolic</property>
-                        <property name="visible">True</property>
                       </object>
                     </child>
                   </object>
                 </child>
               </object>
-              <packing>
-                <property name="expand">True</property>
-              </packing>
             </child>
           </object>
-          <packing>
-            <property name="expand">True</property>
-          </packing>
         </child>
         <child>
           <object class="GtkBox" id="bottom_meta_box">
             <property name="orientation">horizontal</property>
-            <property name="visible">True</property>
-            <property name="expand">False</property>
             <child>
               <object class="GtkBox" id="bottom_panes_box">
                 <property name="orientation">vertical</property>
-                <property name="visible">True</property>
-                <property name="expand">True</property>
                 <property name="halign">fill</property>
                 <!-- Tools will add their optionsbars here -->
               </object>
@@ -153,13 +115,11 @@
               <object class="GtkButton" id="unfullscreen_btn">
                 <property name="visible">False</property>
                 <property name="valign">center</property>
-                <property name="margin-right">6</property>
                 <property name="tooltip-text" translatable="yes">Exit fullscreen</property>
                 <property name="action-name">win.unfullscreen</property>
                 <child>
                   <object class="GtkImage">
                     <property name="icon-name">view-restore-symbolic</property>
-                    <property name="visible">True</property>
                   </object>
                 </child>
               </object>
@@ -170,3 +130,4 @@
     </child>
   </template>
 </interface>
+

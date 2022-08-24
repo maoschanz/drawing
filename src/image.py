@@ -281,7 +281,7 @@ class DrImage(Gtk.Box):
 		"""Build the GTK widget displayed as the tab title."""
 		# The tab can be closed with a button.
 		btn = Gtk.Button.new_from_icon_name('window-close-symbolic', Gtk.IconSize.BUTTON)
-		btn.set_relief(Gtk.ReliefStyle.NONE)
+		btn.set_has_frame(False)
 		btn.connect('clicked', self.try_close_tab)
 		# The title is a label. Middle-clicking on it closes the tab too.
 		self.tab_label = Gtk.Label(label=self.get_filename_for_display())

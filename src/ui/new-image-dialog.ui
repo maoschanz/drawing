@@ -18,14 +18,11 @@
   </object>
 
   <object class="GtkBox" id="props_content_area">
-    <property name="visible">True</property>
     <property name="orientation">vertical</property>
-    <property name="margin">10</property>
     <property name="spacing">10</property>
     <property name="expand">True</property>
     <child>
       <object class="GtkGrid">
-        <property name="visible">True</property>
         <property name="column_spacing">25</property>
         <property name="row_spacing">15</property>
         <property name="halign">center</property>
@@ -33,7 +30,6 @@
 
         <child>
           <object class="GtkLabel">
-            <property name="visible">True</property>
             <property name="halign">end</property>
             <property name="label" translatable="yes">Width</property>
           </object>
@@ -47,7 +43,6 @@
 
         <child>
           <object class="GtkLabel">
-            <property name="visible">True</property>
             <property name="halign">end</property>
             <property name="label" translatable="yes">Height</property>
           </object>
@@ -61,7 +56,6 @@
 
         <child>
           <object class="GtkLabel">
-            <property name="visible">True</property>
             <property name="halign">end</property>
             <property name="label" translatable="yes">Color</property>
           </object>
@@ -75,7 +69,6 @@
 
         <child>
           <object class="GtkSpinButton" id="spin_width">
-            <property name="visible">True</property>
             <property name="adjustment">adj_width</property>
           </object>
           <packing>
@@ -88,7 +81,6 @@
 
         <child>
           <object class="GtkSpinButton" id="spin_height">
-            <property name="visible">True</property>
             <property name="adjustment">adj_height</property>
           </object>
           <packing>
@@ -101,7 +93,6 @@
 
         <child>
           <object class="GtkColorButton" id="color_btn">
-            <property name="visible">True</property>
             <property name="use-alpha">True</property>
           </object>
           <packing>
@@ -114,7 +105,6 @@
 
         <child>
           <object class="GtkSeparator">
-            <property name="visible">True</property>
           </object>
           <packing>
             <property name="left-attach">0</property>
@@ -130,7 +120,6 @@
     <child>
       <object class="GtkCheckButton" id="default_checkbtn">
         <property name="halign">center</property>
-        <property name="visible">True</property>
         <property name="label" translatable="yes">Use these settings by default</property>
       </object>
       <packing>

@@ -1,18 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface domain="drawing">
   <object class="GtkBox" id="main-box">
-    <property name="visible">True</property>
-    <property name="margin">10</property>
     <property name="spacing">10</property>
     <property name="orientation">vertical</property>
     <child>
       <object class="GtkBox">
-        <property name="visible">True</property>
         <property name="spacing">6</property>
         <property name="orientation">horizontal</property>
         <child>
           <object class="GtkLabel" id="popover-title">
-            <property name="visible">True</property>
             <property name="label">set by python code</property>
             <style><class name="dim-label"/></style>
           </object>
@@ -20,13 +16,11 @@
 
         <child>
           <object class="GtkBox" id="operator-box-start">
-            <property name="visible">True</property>
             <property name="spacing">6</property>
             <property name="orientation">horizontal</property>
             <property name="tooltip-text" translatable="yes">How the color will be applied to the existing pixels</property>
             <child>
               <object class="GtkRadioButton" id="op-group">
-                <property name="visible">True</property>
                 <property name="draw-indicator">False</property>
                 <property name="label" translatable="yes">Normal</property>
                 <property name="action-name">win.cairo_op_mirror</property>
@@ -38,7 +32,6 @@
 
         <child>
           <object class="GtkRadioButton" id="operator-box-end">
-            <property name="visible">True</property>
             <property name="group">op-group</property>
             <property name="draw-indicator">False</property>
             <property name="tooltip-text" translatable="yes">Erase</property>
@@ -46,7 +39,6 @@
             <property name="action-target">'clear'</property>
             <child>
               <object class="GtkImage">
-                <property name="visible">True</property>
                 <property name="icon-name">tool-eraser-symbolic</property>
               </object>
             </child>
@@ -55,13 +47,11 @@
 
         <child>
           <object class="GtkButton">
-            <property name="visible">True</property>
             <property name="tooltip-text" translatable="yes">Help about colors</property>
             <property name="action-name">app.help_colors</property>
-            <property name="relief">none</property>
+            <property name="has-frame">False</property>
             <child>
               <object class="GtkImage">
-                <property name="visible">True</property>
                 <property name="icon-name">help-faq-symbolic</property>
               </object>
             </child>
@@ -75,32 +65,26 @@
     </child>
     <child>
       <object class="GtkColorChooserWidget" id="color-widget">
-        <property name="visible">True</property>
         <property name="use-alpha">True</property>
       </object>
     </child>
     <child>
       <object class="GtkBox" id="editor-box">
-        <property name="visible">True</property>
         <property name="spacing">10</property>
         <property name="orientation">horizontal</property>
         <child>
           <object class="GtkButton" id="back-btn">
-            <property name="visible">True</property>
             <property name="tooltip-text" translatable="yes">Back to the palette</property>
             <child>
               <object class="GtkBox">
-                <property name="visible">True</property>
                 <property name="spacing">10</property>
                 <child>
                   <object class="GtkImage">
-                    <property name="visible">True</property>
                     <property name="icon-name">go-previous-symbolic</property>
                   </object>
                 </child>
                 <child>
                   <object class="GtkLabel">
-                    <property name="visible">True</property>
                     <property name="label" translatable="yes">Palette</property>
                   </object>
                 </child>

@@ -1,19 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface domain="drawing">
   <object class="GtkPopover" id="insertion-popover">
-    <property name="visible">True</property>
     <child>
       <object class="GtkBox">
-        <property name="visible">True</property>
-        <property name="margin">2</property>
         <property name="spacing">2</property>
         <property name="orientation">vertical</property>
         <child>
           <object class="GtkFrame">
-            <property name="visible">True</property>
             <child>
               <object class="GtkTextView" id="entry">
-                <property name="visible">True</property>
                 <property name="accepts-tab">False</property>
               </object>
             </child>
@@ -21,37 +16,31 @@
         </child>
         <child>
           <object class="GtkBox">
-            <property name="visible">True</property>
             <property name="orientation">horizontal</property>
             <child>
               <object class="GtkButton">
-                <property name="visible">True</property>
                 <property name="action-name">win.text-cancel</property>
                 <property name="tooltip_text" translatable="yes">Cancel</property>
                 <child>
                   <object class="GtkImage">
                     <property name="icon-name">window-close-symbolic</property>
-                    <property name="visible">True</property>
                   </object>
                 </child>
               </object>
             </child>
             <child>
               <object class="GtkButton">
-                <property name="visible">True</property>
                 <property name="action-name">win.text-preview</property>
                 <property name="tooltip_text" translatable="yes">Preview</property>
                 <child>
                   <object class="GtkImage">
                     <property name="icon-name">view-refresh-symbolic</property>
-                    <property name="visible">True</property>
                   </object>
                 </child>
               </object>
             </child>
             <child>
               <object class="GtkButton">
-                <property name="visible">True</property>
                 <property name="expand">True</property>
                 <property name="action-name">win.text-insert</property>
                 <property name="tooltip_text" translatable="yes">Insert here</property>

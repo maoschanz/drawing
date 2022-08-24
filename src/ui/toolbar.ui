@@ -160,12 +160,11 @@
     </child>
     <child>
       <object class="GtkMenuButton" id="main_menu_btn">
-        <property name="relief">none</property>
+        <property name="has-frame">False</property>
         <property name="valign">center</property>
         <child>
           <object class="GtkImage">
             <property name="icon-name">open-menu</property>
-            <property name="visible">True</property>
           </object>
         </child>
       </object>

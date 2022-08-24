@@ -218,7 +218,7 @@ class DrPrefsWindow(Gtk.Window):
 		help_btn = Gtk.Button.new_from_icon_name('help-faq-symbolic', \
 		                                                    Gtk.IconSize.BUTTON)
 		help_btn.set_valign(Gtk.Align.CENTER)
-		help_btn.set_relief(Gtk.ReliefStyle.NONE)
+		help_btn.set_has_frame(False)
 		help_btn.set_action_name('app.help_prefs') # could be a parameter
 
 		label = Gtk.Label(label=label_text)

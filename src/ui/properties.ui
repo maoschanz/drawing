@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface domain="drawing">
   <object class="GtkBox" id="main_widget">
-    <property name="visible">True</property>
     <property name="orientation">vertical</property>
-    <property name="margin">10</property>
     <property name="expand">True</property>
     <child>
       <object class="GtkGrid" id="image_props_grid">
-        <property name="visible">True</property>
         <property name="column_spacing">25</property>
         <property name="row_spacing">15</property>
         <property name="halign">center</property>
@@ -17,7 +14,6 @@
 
         <child>
           <object class="GtkSeparator">
-            <property name="visible">True</property>
           </object>
           <packing>
             <property name="left-attach">0</property>
@@ -29,7 +25,6 @@
 
         <child>
           <object class="GtkLabel">
-            <property name="visible">True</property>
             <property name="halign">end</property>
             <property name="label" translatable="yes">Width</property>
           </object>
@@ -43,7 +38,6 @@
 
         <child>
           <object class="GtkLabel">
-            <property name="visible">True</property>
             <property name="halign">end</property>
             <property name="label" translatable="yes">Height</property>
           </object>
@@ -57,7 +51,6 @@
 
         <child>
           <object class="GtkLabel" id="label_width">
-            <property name="visible">True</property>
             <property name="halign">start</property>
             <property name="label">0</property>
             <style>
@@ -74,7 +67,6 @@
 
         <child>
           <object class="GtkLabel" id="label_height">
-            <property name="visible">True</property>
             <property name="halign">start</property>
             <property name="label">0</property>
             <style>
@@ -91,23 +83,19 @@
 
         <child>
           <object class="GtkBox">
-            <property name="visible">True</property>
             <property name="orientation">vertical</property>
             <child>
               <object class="GtkRadioButton" id="units_pixels">
-                <property name="visible">True</property>
                 <property name="label" translatable="yes">pixels</property>
               </object>
             </child>
             <child>
               <object class="GtkRadioButton" id="units_cm">
-                <property name="visible">True</property>
                 <property name="label" translatable="yes">centimeters</property>
               </object>
             </child>
             <child>
               <object class="GtkRadioButton" id="units_inches">
-                <property name="visible">True</property>
                 <property name="label" translatable="yes">inches</property>
               </object>
             </child>
