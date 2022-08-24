@@ -286,7 +286,8 @@ class Application(Gtk.Application):
 
 	def on_about(self, *args):
 		"""Action callback, showing the "about" dialog."""
-		about_dialog = Gtk.AboutDialog(transient_for=self.props.active_window,
+		about_dialog = Gtk.AboutDialog(
+			transient_for=self.props.active_window, modal=True,
 			copyright="© 2018-2022 Romain F. T.",
 			authors=["Romain F. T.", "Fábio Colacio", "Alexis Lozano"],
 			# To tranlators: "translate" this by a list of your names (one name
@@ -298,16 +299,16 @@ class Application(Gtk.Application):
 			                       _("GNOME's \"Art Libre\" icon set authors")],
 			comments=_("Simple image editor for Linux"),
 			license_type=Gtk.License.GPL_3_0,
-			logo_icon_name=self.APP_ID, version=str(self._version),
+			logo_icon_name=self.APP_ID, icon_name=self.APP_ID,
+			version=str(self._version),
 			website='https://maoschanz.github.io/drawing/',
-			website_label=_("Official webpage"))
+			website_label=_("Official webpage")
+		)
 		bug_report_btn = Gtk.LinkButton(halign=Gtk.Align.CENTER, visible=True, \
 		               label=_("Report bugs or ideas"), uri=self.BUG_REPORT_URL)
 		# about_dialog.get_content_area().add(bug_report_btn) # should i?
-		about_dialog.set_icon_name('com.github.maoschanz.drawing')
 
-		about_dialog.run()
-		about_dialog.destroy()
+		about_dialog.present()
 
 	def on_quit(self, *args):
 		"""Action callback, quitting the entire app."""
