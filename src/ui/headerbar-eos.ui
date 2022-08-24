@@ -1,29 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface domain="drawing">
   <object class="GtkHeaderBar" id="header_bar">
-    <property name="visible">True</property>
     <property name="show-title-buttons">True</property>
 
-    <child>
+    <child type="start">
       <object class="GtkMenuButton" id="new_btn">
-        <property name="visible">True</property>
         <property name="relief">none</property>
         <property name="valign">center</property>
         <property name="tooltip-text" translatable="yes">New Image</property>
         <child>
           <object class="GtkBox">
-            <property name="visible">True</property>
             <child>
               <object class="GtkImage">
                 <property name="icon-name">document-new</property>
                 <property name="pixel-size">24</property>
-                <property name="visible">True</property>
               </object>
             </child>
             <child>
               <object class="GtkImage">
                 <property name="icon-name">pan-down</property>
-                <property name="visible">True</property>
               </object>
             </child>
           </object>
@@ -31,9 +26,8 @@
       </object>
     </child>
 
-    <child>
+    <child type="start">
       <object class="GtkButton">
-        <property name="visible">True</property>
         <property name="action-name">win.open</property>
         <property name="relief">none</property>
         <property name="valign">center</property>
@@ -42,19 +36,16 @@
           <object class="GtkImage">
             <property name="icon-name">document-open</property>
             <property name="pixel-size">24</property>
-            <property name="visible">True</property>
           </object>
         </child>
       </object>
     </child>
 
-    <child>
+    <child type="start">
       <object class="GtkBox">
-        <property name="visible">True</property>
         <property name="valign">center</property>
         <child>
           <object class="GtkButton" id="undo_btn">
-            <property name="visible">True</property>
             <property name="relief">none</property>
             <property name="action-name">win.undo</property>
             <property name="tooltip-text" translatable="yes">Undo</property>
@@ -62,14 +53,12 @@
               <object class="GtkImage">
                 <property name="icon-name">edit-undo</property>
                 <property name="pixel-size">24</property>
-                <property name="visible">True</property>
               </object>
             </child>
           </object>
         </child>
         <child>
           <object class="GtkButton" id="redo_btn">
-            <property name="visible">True</property>
             <property name="relief">none</property>
             <property name="action-name">win.redo</property>
             <property name="tooltip-text" translatable="yes">Redo</property>
@@ -77,7 +66,6 @@
               <object class="GtkImage">
                 <property name="icon-name">edit-redo</property>
                 <property name="pixel-size">24</property>
-                <property name="visible">True</property>
               </object>
             </child>
           </object>
@@ -85,55 +73,45 @@
       </object>
     </child>
 
-    <child>
+    <!-- -->
+
+    <child type="end">
       <object class="GtkMenuButton" id="main_menu_btn">
-        <property name="visible">True</property>
         <property name="valign">center</property>
         <property name="relief">none</property>
         <child>
           <object class="GtkImage">
             <property name="icon-name">open-menu</property>
             <property name="pixel-size">24</property>
-            <property name="visible">True</property>
           </object>
         </child>
       </object>
-      <packing>
-        <property name="pack-type">end</property>
-      </packing>
     </child>
 
-    <child>
+    <child type="end">
       <object class="GtkMenuButton" id="hidable1">
-        <property name="visible">True</property>
         <property name="relief">none</property>
         <property name="valign">center</property>
         <property name="tooltip-text" translatable="yes">Save as…</property>
         <child>
           <object class="GtkBox">
-            <property name="visible">True</property>
             <child>
               <object class="GtkImage">
                 <property name="icon-name">document-save-as</property>
                 <property name="pixel-size">24</property>
-                <property name="visible">True</property>
               </object>
             </child>
             <child>
               <object class="GtkImage">
                 <property name="icon-name">pan-down</property>
-                <property name="visible">True</property>
               </object>
             </child>
           </object>
         </child>
       </object>
-      <packing>
-        <property name="pack-type">end</property>
-      </packing>
     </child>
 
-    <child>
+    <child type="end">
       <object class="GtkButton" id="save_long">
         <property name="visible">False</property>
         <property name="valign">center</property>
@@ -144,19 +122,14 @@
           <object class="GtkImage">
             <property name="icon-name">document-save</property>
             <property name="pixel-size">24</property>
-            <property name="visible">True</property>
           </object>
         </child>
       </object>
-      <packing>
-        <property name="pack-type">end</property>
-      </packing>
     </child>
 
-    <child>
+    <child type="end">
       <!-- identical to save_long in this implementation of the headerbar -->
       <object class="GtkButton" id="save_short">
-        <property name="visible">True</property>
         <property name="valign">center</property>
         <property name="relief">none</property>
         <property name="action-name">win.save</property>
@@ -165,44 +138,34 @@
           <object class="GtkImage">
             <property name="icon-name">document-save</property>
             <property name="pixel-size">24</property>
-            <property name="visible">True</property>
           </object>
         </child>
       </object>
-      <packing>
-        <property name="pack-type">end</property>
-      </packing>
     </child>
 
-    <child>
+    <child type="end">
       <object class="GtkMenuButton" id="hidable2">
-        <property name="visible">True</property>
         <property name="relief">none</property>
         <property name="valign">center</property>
         <property name="tooltip-text" translatable="yes">Share the image</property>
         <child>
           <object class="GtkBox">
-            <property name="visible">True</property>
             <child>
               <object class="GtkImage">
                 <property name="icon-name">send-to</property>
                 <property name="pixel-size">24</property>
-                <property name="visible">True</property>
               </object>
             </child>
             <child>
               <object class="GtkImage">
                 <property name="icon-name">pan-down</property>
-                <property name="visible">True</property>
               </object>
             </child>
           </object>
         </child>
       </object>
-      <packing>
-        <property name="pack-type">end</property>
-      </packing>
     </child>
 
   </object>
 </interface>
+

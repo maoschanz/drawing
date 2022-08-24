@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface domain="drawing">
   <object class="GtkHeaderBar" id="header_bar">
-    <property name="visible">True</property>
     <property name="show-title-buttons">True</property>
 
-    <child>
+    <child type="start">
       <object class="GtkButton" id="hidable1">
         <property name="visible">False</property>
         <property name="valign">center</property>
@@ -13,25 +12,22 @@
       </object>
     </child>
 
-    <child>
+    <child type="start">
       <object class="GtkMenuButton" id="hidable2">
         <property name="visible">False</property>
         <property name="valign">center</property>
         <property name="tooltip-text" translatable="yes">New Image</property>
         <child>
           <object class="GtkBox">
-            <property name="visible">True</property>
             <property name="spacing">6</property>
             <child>
               <object class="GtkImage">
                 <property name="icon-name">document-new-symbolic</property>
-                <property name="visible">True</property>
               </object>
             </child>
             <child>
               <object class="GtkImage">
                 <property name="icon-name">pan-down-symbolic</property>
-                <property name="visible">True</property>
               </object>
             </child>
           </object>
@@ -39,33 +35,28 @@
       </object>
     </child>
 
-    <child>
+    <child type="start">
       <object class="GtkBox">
-        <property name="visible">True</property>
         <property name="valign">center</property>
         <style><class name="linked"/></style>
         <child>
           <object class="GtkButton" id="undo_btn">
-            <property name="visible">True</property>
             <property name="action_name">win.undo</property>
             <property name="tooltip-text" translatable="yes">Undo</property>
             <child>
               <object class="GtkImage">
                 <property name="icon-name">edit-undo-symbolic</property>
-                <property name="visible">True</property>
               </object>
             </child>
           </object>
         </child>
         <child>
           <object class="GtkButton" id="redo_btn">
-            <property name="visible">True</property>
             <property name="action_name">win.redo</property>
             <property name="tooltip-text" translatable="yes">Redo</property>
             <child>
               <object class="GtkImage">
                 <property name="icon-name">edit-redo-symbolic</property>
-                <property name="visible">True</property>
               </object>
             </child>
           </object>
@@ -75,51 +66,39 @@
 
     <!-- -->
 
-    <child>
+    <child type="end">
       <object class="GtkMenuButton" id="main_menu_btn">
-        <property name="visible">True</property>
         <property name="valign">center</property>
         <child>
           <object class="GtkImage">
             <property name="icon-name">open-menu-symbolic</property>
-            <property name="visible">True</property>
           </object>
         </child>
       </object>
-      <packing>
-        <property name="pack-type">end</property>
-      </packing>
     </child>
 
-    <child>
+    <child type="end">
       <object class="GtkButton" id="save_long">
         <property name="visible">False</property>
         <property name="valign">center</property>
         <property name="action_name">win.save</property>
         <property name="label" translatable="yes">Save</property>
       </object>
-      <packing>
-        <property name="pack-type">end</property>
-      </packing>
     </child>
 
-    <child>
+    <child type="end">
       <object class="GtkButton" id="save_short">
-        <property name="visible">True</property>
         <property name="valign">center</property>
         <property name="action_name">win.save</property>
         <property name="tooltip-text" translatable="yes">Save</property>
         <child>
           <object class="GtkImage">
             <property name="icon-name">document-save-symbolic</property>
-            <property name="visible">True</property>
           </object>
         </child>
       </object>
-      <packing>
-        <property name="pack-type">end</property>
-      </packing>
     </child>
 
   </object>
 </interface>
+
