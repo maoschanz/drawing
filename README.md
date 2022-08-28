@@ -79,7 +79,7 @@ If your language is not here, or is incompletely translated, you can
 | pt_BR | Br. portuguese | 100%    | @haurenburu and @ArthurBacci64            |
 | ru   | Russian      | 99%        | @tim77 and @Ser82-png                     |
 | sv   | Swedish      | 95%        | @eson57                                   |
-| tr   | Turkish      | 88%        | @TeknoMobil and @serkan-maker             |
+| tr   | Turkish      | 100%       | @TeknoMobil and @serkan-maker             |
 | zh_CN | Chinese, simpl. | 64%    | @OverflowCat                              |
 | zh_TW | Chinese, tradi. | 65%    | @pan93412, @OverflowCat and @cges30901    |
 

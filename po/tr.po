@@ -1,23 +1,24 @@
 # Drawing Türkçe çeviri.
-# Copyright (C) 2020
+# Copyright (C) 2018-2022
 # This file is distributed under the same license as the drawing package.
 # Serdar Sağlam <teknomobil@yandex.com>, 2018, 2019, 2020.
 # Serkan ÖNDER <serkanonder@outlook.com>, 2021, 2022.
+# Sabri Ünal <libreajans@gmail.com>, 2022.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
 "POT-Creation-Date: 2022-05-21 23:53+0200\n"
-"PO-Revision-Date: 2022-05-28 19:10+0300\n"
-"Last-Translator: Serkan ÖNDER <serkanonder@outlook.com>\n"
+"PO-Revision-Date: 2022-08-28 14:48+0300\n"
+"Last-Translator: Sabri Ünal <libreajans@gmail.com>\n"
 "Language-Team: \n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.3\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Poedit 3.1.1\n"
 
 #: data/com.github.maoschanz.drawing.desktop.in
 #: data/com.github.maoschanz.drawing.appdata.xml.in src/deco_manager.py
@@ -100,33 +101,36 @@ msgid ""
 "The text tool is more intuitive to use, with distinct areas on the canvas to "
 "edit, move and insert the text."
 msgstr ""
+"Tuval üzerindeki metni düzenlemek, taşımak ve eklemek için belirgin "
+"alanlarla metin aracının kullanımı daha sezgisel."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "A former option of the paint bucket tool, which didn't belong there, has "
 "been improved and moved to the eraser tool."
 msgstr ""
+"Boya kovası aracının oraya ait olmayan eski bir seçeneği iyileştirilerek "
+"silgi aracına taşındı."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
-#, fuzzy
 msgid ""
 "Transparency is henceforth correctly preserved when the \"skew\" tool "
 "expands the canvas with a solid color."
 msgstr ""
-"\"Eğim\" araçları tuvali düz bir renkle genişlettiğinde şeffaflık artık "
-"doğru bir şekilde korunuyor."
+"\"Eğrilik\" aracı tuvali düz bir renkle genişlettiğinde şeffaflık artık "
+"doğru şekilde korunuyor."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
-#, fuzzy
 msgid "You can now adjust the position of the canvas when you're cropping it."
-msgstr ""
-"Sağ tıklamayı kullanarak artık tuvali kırparken konumunu ayarlayabilirsiniz."
+msgstr "Artık tuvali kırparken konumunu ayarlayabilirsiniz."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "The option to use a color editor by default has been moved from the main "
 "window to the preferences window, and its bug has been fixed."
 msgstr ""
+"Varsayılan olarak renk düzenleyici kullanma seçeneği ana pencereden "
+"tercihler penceresine taşındı ve hatası düzeltildi."
 
 #. very generic release notes i use for ALL minor updates, please
 #. translate this one!
@@ -967,13 +971,12 @@ msgid "Exit fullscreen"
 msgstr "Tam ekrandan çık"
 
 #: src/ui/win-menus.ui
-#, fuzzy
 msgid "What's new in Drawing"
-msgstr "Neler yeni"
+msgstr "Çizim'de Neler yeni"
 
 #: src/ui/win-menus.ui
 msgid "Dismiss"
-msgstr ""
+msgstr "Vazgeç"
 
 #: src/deco_manager.py
 #, python-format
@@ -1928,12 +1931,11 @@ msgstr "Yatay uç"
 
 #: src/tools/ui/tool-eraser.ui src/tools/classic_tools/erasers/eraser_rubber.py
 msgid "Rubber eraser"
-msgstr ""
+msgstr "Silgi silici"
 
 #: src/tools/ui/tool-eraser.ui src/tools/classic_tools/erasers/eraser_area.py
-#, fuzzy
 msgid "Rectangle area"
-msgstr "Dikdörtgen"
+msgstr "Dikdörtgen alan"
 
 #. Context: this feature erases the color where the user clicked.
 #. For example to cut out an object from its solid background.
@@ -2513,24 +2515,3 @@ msgstr "Bulanıklık yarıçapı"
 #: src/tools/transform_tools/filters/filter_saturation.py
 msgid "Saturation"
 msgstr "Doygunluk"
-
-#~ msgid "Transform"
-#~ msgstr "Dönüşüm"
-
-#~ msgid "Horizontal"
-#~ msgstr "Yatay"
-
-#~ msgid "Vertical"
-#~ msgstr "Dikey"
-
-#~ msgid "A drawing application for the GNOME desktop"
-#~ msgstr "GNOME masaüstü için çizim uygulaması"
-
-#~ msgid "Quit"
-#~ msgstr "Çıkış"
-
-#~ msgid "Exit fullscreen mode"
-#~ msgstr "Tam ekran kipinden çık"
-
-#~ msgid "Close"
-#~ msgstr "Kapat"
