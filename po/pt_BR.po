@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
 "POT-Creation-Date: 2022-05-21 23:53+0200\n"
-"PO-Revision-Date: 2022-05-24 20:42-0300\n"
+"PO-Revision-Date: 2022-09-18 18:08-0300\n"
 "Last-Translator: Fúlvio Alves <fga.fulvio@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <arthurbacci64@gmail.com>\n"
 "Language: pt_BR\n"
@@ -101,34 +101,36 @@ msgid ""
 "The text tool is more intuitive to use, with distinct areas on the canvas to "
 "edit, move and insert the text."
 msgstr ""
+"A ferramenta de texto é mais intuitiva de usar, com áreas distintas na tela "
+"para editar, mover e inserir o texto."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "A former option of the paint bucket tool, which didn't belong there, has "
 "been improved and moved to the eraser tool."
 msgstr ""
+"Uma antiga opção da ferramenta Balde de Tinta, que não pertencia a ela, foi "
+"melhorada e movida para a ferramenta Borracha."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
-#, fuzzy
 msgid ""
 "Transparency is henceforth correctly preserved when the \"skew\" tool "
 "expands the canvas with a solid color."
 msgstr ""
-"A transparência agora é preservada corretamente quando as ferramentas "
-"\"inclinar\" expandem a tela com uma cor sólida."
+"A transparência agora é preservada corretamente quando a ferramenta "
+"\"inclinar\" expande a tela com uma cor sólida."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
-#, fuzzy
 msgid "You can now adjust the position of the canvas when you're cropping it."
-msgstr ""
-"Usando o botão direito, agora você pode ajustar a posição da tela ao cortá-"
-"la."
+msgstr "Agora você pode ajustar a posição da tela ao cortá-la."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "The option to use a color editor by default has been moved from the main "
 "window to the preferences window, and its bug has been fixed."
 msgstr ""
+"A opção de usar um editor de cores por padrão foi movida da janela principal "
+"para a janela de preferências e seu erro foi corrigido."
 
 #. very generic release notes i use for ALL minor updates, please
 #. translate this one!
@@ -970,13 +972,12 @@ msgid "Exit fullscreen"
 msgstr "Sair da tela cheia"
 
 #: src/ui/win-menus.ui
-#, fuzzy
 msgid "What's new in Drawing"
-msgstr "O que há de novo"
+msgstr "O que há de novo no Drawing"
 
 #: src/ui/win-menus.ui
 msgid "Dismiss"
-msgstr ""
+msgstr "Dispensar"
 
 #: src/deco_manager.py
 #, python-format
@@ -1934,12 +1935,11 @@ msgstr "Bico horizontal"
 
 #: src/tools/ui/tool-eraser.ui src/tools/classic_tools/erasers/eraser_rubber.py
 msgid "Rubber eraser"
-msgstr ""
+msgstr "Apagador de borracha"
 
 #: src/tools/ui/tool-eraser.ui src/tools/classic_tools/erasers/eraser_area.py
-#, fuzzy
 msgid "Rectangle area"
-msgstr "Retângulo"
+msgstr "Área retangular"
 
 #. Context: this feature erases the color where the user clicked.
 #. For example to cut out an object from its solid background.
