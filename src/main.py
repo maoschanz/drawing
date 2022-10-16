@@ -331,7 +331,7 @@ class Application(Gtk.Application):
 				w.close()
 				w.destroy()
 
-		# The expected behavior, but now theorically useless, since closing all
+		# The expected behavior, but now theoretically useless, since closing all
 		# appwindows should quit automatically. It's too violent to be left
 		# without a guard clause.
 		if can_quit:
