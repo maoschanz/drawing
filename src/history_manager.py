@@ -22,7 +22,7 @@ class DrHistoryManager():
 		return self._is_saved
 
 	def empty_history(self):
-		"""Probably useless way to explicitely 'forget' the objects. It doesn't
+		"""Probably useless way to explicitly 'forget' the objects. It doesn't
 		really free the memory, but it kinda helps i suppose."""
 		for op in self._undo_history:
 			self._delete_operation(op)

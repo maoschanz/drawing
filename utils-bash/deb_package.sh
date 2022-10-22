@@ -19,7 +19,7 @@ echo "Is it correct? [Return/^C]"
 read confirmation
 separator
 
-# remember current directory (theorically, the project's root) to bring the
+# remember current directory (theoretically, the project's root) to bring the
 # package here in the end
 previous_dir=`pwd`
 

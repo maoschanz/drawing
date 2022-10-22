@@ -2,8 +2,19 @@ on:
   push:
     branches: [master]
   pull_request:
+
 name: CI
 jobs:
+  codespell:
+    name: Spelling check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: codespell-project/actions-codespell@master
+        with:
+          skip: help,po
+          ignore_words_list: sur,correspondant,sais
+
   flatpak-builder:
     name: Flatpak Builder
     runs-on: ubuntu-latest
@@ -11,9 +22,9 @@ jobs:
       image: bilelmoussaoui/flatpak-github-actions:gnome-41
       options: --privileged
     steps:
-    - uses: actions/checkout@v2.4.0
-    - uses: bilelmoussaoui/flatpak-github-actions/flatpak-builder@v4
-      with:
-        bundle: drawing.flatpak
-        manifest-path: com.github.maoschanz.drawing.json
-        run-tests: true
+      - uses: actions/checkout@v3
+      - uses: bilelmoussaoui/flatpak-github-actions/flatpak-builder@v4
+        with:
+          bundle: drawing.flatpak
+          manifest-path: com.github.maoschanz.drawing.json
+          run-tests: true

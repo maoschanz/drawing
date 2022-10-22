@@ -14,7 +14,7 @@ assignees: ''
 
 ## System
 
-<!-- Please complete the following informations: -->
+<!-- Please complete the following information: -->
 
 - Device (desktop computer/tablet/phone/...):
 - OS:
