@@ -180,7 +180,7 @@ class DrImage(Gtk.Box):
 		self._apply_state(last_saved_pixbuf_op)
 
 	def reset_to_initial_pixbuf(self):
-		self._apply_state(self._history.initial_operation)
+		self._apply_state(self._history.get_initial_operation())
 		self._history.rewind_history()
 
 	def _apply_state(self, state_op):
@@ -379,7 +379,7 @@ class DrImage(Gtk.Box):
 		return not self._history.has_initial_pixbuf()
 
 	def get_initial_rgba(self):
-		return self._history.initial_operation['rgba']
+		return self._history.get_initial_operation()['rgba']
 
 	############################################################################
 	# Misc ? ###################################################################
