@@ -176,7 +176,7 @@ class DrImage(Gtk.Box):
 	def restore_last_state(self):
 		"""Set the last saved pixbuf from the history as the main_pixbuf. This
 		is used to rebuild the picture from its history."""
-		last_saved_pixbuf_op = self._history.get_last_saved_state()
+		last_saved_pixbuf_op = self._history.get_last_stored_state()
 		self._apply_state(last_saved_pixbuf_op)
 
 	def reset_to_initial_pixbuf(self):
@@ -229,7 +229,6 @@ class DrImage(Gtk.Box):
 		self.window.update_picture_title()
 		self.use_stable_pixbuf()
 		self.update()
-		self.remember_current_state()
 
 	def try_load_file(self, gfile):
 		try:
@@ -312,6 +311,7 @@ class DrImage(Gtk.Box):
 		if not self.is_saved():
 			main_title = "*" + main_title
 		self.set_tab_label(main_title)
+
 		return main_title
 
 	def get_filename_for_display(self):

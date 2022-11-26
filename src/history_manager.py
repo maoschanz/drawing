@@ -6,12 +6,13 @@ from gi.repository import Gdk, Gio, GdkPixbuf, GLib
 ################################################################################
 
 # 
+
 class State():
 
-	def __init__(self, saved_state, max_operations=20):
+	def __init__(self, stored_state, max_operations=20):
 
 		# A saved state operation, containing a pixbuf, width, height...
-		self.initial_state = saved_state
+		self.initial_state = stored_state
 
 		# The next operations following self.initial state.
 		# This list can have at most max_operations items.
@@ -70,34 +71,32 @@ class DrHistoryManager():
 	# Controls accessed by DrImage #############################################
 
 	def try_undo(self):
-
+	
 		if self._operation_is_ongoing():
 			self._image.active_tool().cancel_ongoing_operation()
 			return
-		
+
 		undone_op = self._undo_history[-1].pop_last_operation()
 		if undone_op is not None:
+			# Dont save reloads from disk to redo history
 			self._redo_history.append(undone_op)
 
-			# Never pop the first saved state.
-			if self._undo_history[-1].is_empty() and len(self._undo_history) > 1:
-				self._undo_history.pop()
-
-			self._rebuild_from_history_async()
-			self._image.update_history_sensitivity()
+		if self._undo_history[-1].is_empty() and len(self._undo_history) > 1:
+			self._undo_history.pop()
+		
+		self._rebuild_from_history_async()
+		self._image.update_history_sensitivity()
 
 	def try_redo(self, *args):
 		operation = self._redo_history.pop()
 		self._get_tool(operation['tool_id']).apply_operation(operation)
-		self.add_operation(operation)
 
 	def can_undo(self):
-		# XXX incorrect si ya des states et qu'on redo
-		return (len(self._undo_history[-1].operations) > 0 
-				or self._operation_is_ongoing())
+		return (len(self._undo_history) > 1 or
+				len(self._undo_history[0].operations) > 0 or
+				self._operation_is_ongoing())
 
 	def can_redo(self):
-		# XXX incorrect si ya des states ?
 		return len(self._redo_history) > 0
 
 #	def update_history_actions_labels(self):
@@ -132,21 +131,19 @@ class DrHistoryManager():
 	def add_operation(self, operation):
 
 		self._image.set_surface_as_stable_pixbuf()
-
-
 		if self._undo_history[-1].is_full():
 			self.add_state(self._image.main_pixbuf.copy())
 
 		self._undo_history[-1].add_operation(operation)
-		# TODO: clear redo_history after a new operation is 
-		# drawn (manually) by the user.
-		# self._redo_history.clear()	
 		self._is_saved = False
+		self._image.update_title()
+		
 
 	############################################################################
 	# Cached pixbufs ###########################################################
 
 	def set_initial_operation(self, rgba_array, pixbuf, width, height):
+		
 		r = float(rgba_array[0])
 		g = float(rgba_array[1])
 		b = float(rgba_array[2])
@@ -160,7 +157,6 @@ class DrHistoryManager():
 		self._undo_history.append(State(initial_operation))
 
 	def add_state(self, pixbuf):
-
 		if pixbuf is None:
 			# Context: an error message
 			raise Exception("Attempt to save an invalid state")
@@ -178,28 +174,8 @@ class DrHistoryManager():
 	def has_initial_pixbuf(self):
 		return len(self._undo_history) > 0
 
-	def get_last_saved_state(self):	
+	def get_last_stored_state(self):	
 		return self._undo_history[-1].initial_state
-
-	# def _get_last_state_index(self, allow_yeeting_states):
-	# 	"""Return the index of the last "state" operation (dict whose 'tool_id'
-	# 	value is None) in the undo-history. If there is no such operation, the
-	# 	returned index is -1 which means the only known state is the
-	# 	self.initial_operation attribute."""
-
-	# 	returned_index = -1
-	# 	nbPixbufs = 0
-	# 	for op in self._undo_history:
-	# 		if op['tool_id'] is None:
-	# 			last_saved_pixbuf_op = op
-	# 			returned_index = self._undo_history.index(op)
-	# 			nbPixbufs += 1
-
-	# 	# TODO if there are too many pixbufs in the history, remove a few ones
-	# 	# Issue #200, needs more design because saving can change the data
-
-	# 	# print("returned_index : " + str(returned_index))
-	# 	return returned_index
 
 	############################################################################
 	# Other private methods ####################################################
