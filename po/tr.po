@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
 "POT-Creation-Date: 2022-05-21 23:53+0200\n"
-"PO-Revision-Date: 2022-08-28 14:48+0300\n"
+"PO-Revision-Date: 2022-12-06 01:18+0300\n"
 "Last-Translator: Sabri Ünal <libreajans@gmail.com>\n"
 "Language-Team: \n"
 "Language: tr\n"
@@ -307,7 +307,7 @@ msgstr "Kaydet"
 
 #: src/ui/app-menus.ui src/ui/win-menus.ui
 msgid "Save without transparency"
-msgstr "Şeffaflık olmadan kaydedin"
+msgstr "Şeffaflık olmadan kaydet"
 
 #. This "feature" is only visible on April Fools' day, and it
 #. will just rickroll the user.
@@ -320,10 +320,11 @@ msgstr "NFT olarak hazırlayın…"
 msgid "Save as…"
 msgstr "Farklı kaydet…"
 
+# Dışa Farklı aktar dersek tane fark üst üste binip menüde kafa karışıklığı yaratıyor.
 #: src/ui/app-menus.ui src/ui/selection-manager.ui src/ui/win-menus.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 msgid "Export as…"
-msgstr "Farklı aktar…"
+msgstr "Dışa aktar…"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/toolbar.ui
 #: src/ui/toolbar-symbolic.ui src/ui/win-menus.ui
@@ -414,7 +415,7 @@ msgstr "Önizlemeyi göster"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/preferences.py
 msgid "Zoom"
-msgstr "Yakınlaştır"
+msgstr "Yakınlaştırma"
 
 #: src/ui/app-menus.ui src/ui/minimap.ui src/ui/shortcuts.ui
 msgid "Optimal Zoom"
@@ -1121,7 +1122,7 @@ msgstr "Öntanımlı renk"
 #. Context: title of a section of the preferences
 #: src/preferences.py
 msgid "Images saving"
-msgstr "Görüntüler kayediliyor"
+msgstr "Görüntü kaydetme"
 
 #: src/preferences.py
 msgid "JPEG and BMP images can't handle transparency."
@@ -1353,7 +1354,7 @@ msgstr "Biçim"
 
 #: src/properties.py
 msgid "Colorspace"
-msgstr "Renk boşluğu"
+msgstr "Renk uzayı"
 
 #. Context: an invalid colorspace format
 #: src/properties.py
@@ -1364,7 +1365,7 @@ msgstr "Geçersiz biçim"
 #: src/saving_manager.py
 #, python-format
 msgid "Failed to save %s"
-msgstr "Kaydedilemedi %s"
+msgstr "%s kaydedilemedi "
 
 #. Context: Untitled(.png) is the default name of a newly saved file
 #: src/saving_manager.py
@@ -1724,7 +1725,7 @@ msgstr "Seçici seçenekleri"
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 #: src/tools/ui/tool-eraser.ui
 msgid "Replace with…"
-msgstr "Şununla genişlet…"
+msgstr "Şununla değiştir…"
 
 #: src/optionsbars/selection/optionsbar-selection.ui
 #: src/optionsbars/transform/optionsbar-crop.ui
@@ -2446,7 +2447,7 @@ msgstr "İşlemi onaylamayı unutmayın!"
 msgid ""
 "Press <Alt>, <Shift>, or both, to quickly change the 'expand with' option"
 msgstr ""
-"'Birlikte genişlet' seçeneğini hızlı bir şekilde değiştirmek için <Alt>, "
+"'Şununla genişlet' seçeneğini hızlı bir şekilde değiştirmek için <Alt>, "
 "<Shift> veya her ikisine basın"
 
 #: src/tools/transform_tools/tool_filters.py
