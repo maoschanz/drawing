@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
 "POT-Creation-Date: 2022-05-21 23:53+0200\n"
-"PO-Revision-Date: 2022-05-26 22:01+0200\n"
+"PO-Revision-Date: 2022-12-25 17:37+0100\n"
 "Last-Translator: Onno Giesmann <nutzer3105@gmail.com>\n"
 "Language-Team: German <--->\n"
 "Language: de\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.2.2\n"
 
 #: data/com.github.maoschanz.drawing.desktop.in
 #: data/com.github.maoschanz.drawing.appdata.xml.in src/deco_manager.py
@@ -101,15 +101,19 @@ msgid ""
 "The text tool is more intuitive to use, with distinct areas on the canvas to "
 "edit, move and insert the text."
 msgstr ""
+"Text Textwerkzeug ist jetzt intuitiver zu bedienen. Es stehen nun "
+"unterschiedliche Bereiche auf der Leinwand zur Verfügung, um Text "
+"einzufügen, zu bearbeiten und zu verschieben."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "A former option of the paint bucket tool, which didn't belong there, has "
 "been improved and moved to the eraser tool."
 msgstr ""
+"Eine ehemalige Option des Farbeimers, welche dort nicht hingehörte, wurde "
+"verbessert und zum Werkzeug Radiergummi verschoben."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
-#, fuzzy
 msgid ""
 "Transparency is henceforth correctly preserved when the \"skew\" tool "
 "expands the canvas with a solid color."
@@ -118,17 +122,19 @@ msgstr ""
 "die Leinwand mit einer einfarbigen Farbe erweitert."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
-#, fuzzy
 msgid "You can now adjust the position of the canvas when you're cropping it."
 msgstr ""
-"Mit der rechten Maustaste können Sie jetzt die Position der Leinwand "
-"anpassen, wenn Sie sie zuschneiden."
+"Sie können jetzt die Position der Leinwand anpassen, wenn Sie sie "
+"zuschneiden."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "The option to use a color editor by default has been moved from the main "
 "window to the preferences window, and its bug has been fixed."
 msgstr ""
+"Die Option, einen Farbwähler standardmäßig zu verwenden, wurde vom "
+"Hauptfenster in das Einstellungenfenster verschoben und dazugehörige Fehler "
+"wurden ebenfalls beseitigt."
 
 #. very generic release notes i use for ALL minor updates, please
 #. translate this one!
@@ -973,13 +979,12 @@ msgid "Exit fullscreen"
 msgstr "Vollbildansicht schließen"
 
 #: src/ui/win-menus.ui
-#, fuzzy
 msgid "What's new in Drawing"
-msgstr "Neuigkeiten"
+msgstr "Neuigkeiten in Zeichnung"
 
 #: src/ui/win-menus.ui
 msgid "Dismiss"
-msgstr ""
+msgstr "Verwerfen"
 
 #: src/deco_manager.py
 #, python-format
@@ -1940,12 +1945,11 @@ msgstr "Horizontale Feder"
 
 #: src/tools/ui/tool-eraser.ui src/tools/classic_tools/erasers/eraser_rubber.py
 msgid "Rubber eraser"
-msgstr ""
+msgstr "Radiergummi"
 
 #: src/tools/ui/tool-eraser.ui src/tools/classic_tools/erasers/eraser_area.py
-#, fuzzy
 msgid "Rectangle area"
-msgstr "Rechteck"
+msgstr "Rechteckiger Bereich"
 
 #. Context: this feature erases the color where the user clicked.
 #. For example to cut out an object from its solid background.
