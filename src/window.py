@@ -416,7 +416,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		# What happens when the active image change
 		self.notebook.connect('switch-page', self.on_active_tab_changed)
 
-		# Select tools using "alt" mnemonics
+		# Change the active tool using "alt" mnemonics
 		self.connect('key-press-event', self._check_for_alt_key)
 		self.connect('key-release-event', self._check_for_alt_key)
 
