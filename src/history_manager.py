@@ -1,39 +1,12 @@
 # Licensed under GPL3 https://github.com/maoschanz/drawing/blob/master/LICENSE
 
-from gi.repository import Gdk, Gio, GdkPixbuf, GLib
+from gi.repository import Gdk, GLib
+from .history_state import DrHistoryState
 # from .abstract_tool import WrongToolIdException
 
 ################################################################################
 
 # 
-
-class State():
-
-	def __init__(self, stored_state, max_operations=20):
-
-		# A saved state operation, containing a pixbuf, width, height...
-		self.initial_state = stored_state
-
-		# The next operations following self.initial state.
-		# This list can have at most max_operations items.
-		self.operations = []
-
-		self._max_operations = max_operations
-		
-	# Convenience methods.
-
-	def pop_last_operation(self):
-		return self.operations.pop() if len(self.operations) > 0 else None
-	
-	def add_operation(self, op):
-		self.operations.append(op)
-
-	def is_empty(self):
-		return len(self.operations) == 0
-
-	def is_full(self):
-		return len(self.operations) == self._max_operations
-
 
 class DrHistoryManager():
 	__gtype_name__ = 'DrHistoryManager'
@@ -154,7 +127,7 @@ class DrHistoryManager():
 			'rgba': Gdk.RGBA(red=r, green=g, blue=b, alpha=a),
 			'width': width, 'height': height
 		}
-		self._undo_history.append(State(initial_operation))
+		self._undo_history.append(DrHistoryState(initial_operation))
 
 	def add_state(self, pixbuf):
 		if pixbuf is None:
@@ -168,7 +141,7 @@ class DrHistoryManager():
 			'height': pixbuf.get_height()
 		}
 
-		self._undo_history.append(State(new_state))
+		self._undo_history.append(DrHistoryState(new_state))
 		self._is_saved = True
 
 	def has_initial_pixbuf(self):
