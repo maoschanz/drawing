@@ -27,18 +27,9 @@ class DrHistoryManager():
 	def get_initial_operation(self):
 		return self._undo_history[-1].initial_state
 
-
 	def empty_history(self):
-		"""Probably useless way to explicitely 'forget' the objects. It doesn't
-		really free the memory, but it kinda helps i suppose."""
 		self._undo_history.clear()
 		self._redo_history.clear()
-
-	def _delete_operation(self, op):
-		for key in op:
-			op[key] = None
-		op = {}
-		op = None
 
 	############################################################################
 	# Controls accessed by DrImage #############################################
@@ -51,7 +42,11 @@ class DrHistoryManager():
 
 		undone_op = self._undo_history[-1].pop_last_operation()
 		if undone_op is not None:
-			# Dont save reloads from disk to redo history
+			# Dont save reloads from disk to the redo_history.
+			# TODO: The reason is the redo can cause some weird
+			# behaviour with the undo button if it is done just 
+			# after reloading. It might be able to get fixed by 
+			# rethinking the try_redo method a bit.
 			self._redo_history.append(undone_op)
 
 		if self._undo_history[-1].is_empty() and len(self._undo_history) > 1:
@@ -105,6 +100,8 @@ class DrHistoryManager():
 
 		self._image.set_surface_as_stable_pixbuf()
 		if self._undo_history[-1].is_full():
+			# TODO if there are too many pixbufs in the history, remove a few ones
+			# Issue #200, needs more design because saving can change the data
 			self.add_state(self._image.main_pixbuf.copy())
 
 		self._undo_history[-1].add_operation(operation)
@@ -132,7 +129,7 @@ class DrHistoryManager():
 	def add_state(self, pixbuf):
 		if pixbuf is None:
 			# Context: an error message
-			raise Exception("Attempt to save an invalid state")
+			raise Exception(_("Attempt to save an invalid state"))
 		
 		new_state = {
 			'tool_id': None,
@@ -190,7 +187,7 @@ class DrHistoryManager():
 		if tool_id in all_tools:
 			return all_tools[tool_id]
 		else:
-			self._image.window.reveal_action_report("Error: no tool '%s'" % tool_id)
+			self._image.window.reveal_action_report(_("Error: no tool '%s'" % tool_id))
 			# no raise: this may happen normally if last_save_index is incorrect
 
 	############################################################################
