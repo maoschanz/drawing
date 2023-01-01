@@ -1,6 +1,6 @@
 # main.py
 #
-# Copyright 2018-2022 Romain F. T.
+# Copyright 2018-2023 Romain F. T.
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -102,6 +102,7 @@ class Application(Gtk.Application):
 		self.add_action_simple('help_whats_new', self.on_help_whats_new)
 
 		self.add_action_simple('report-issue', self.on_report)
+		# we don't need an action for the shortcuts because #563
 		self.add_action_simple('about', self.on_about, ['<Shift>F1'])
 		self.add_action_simple('quit', self.on_quit, ['<Ctrl>q'])
 
@@ -281,7 +282,7 @@ class Application(Gtk.Application):
 	def on_about(self, *args):
 		"""Action callback, showing the "about" dialog."""
 		about_dialog = Gtk.AboutDialog(transient_for=self.props.active_window,
-			copyright="© 2018-2022 Romain F. T.",
+			copyright="© 2018-2023 Romain F. T.",
 			authors=["Romain F. T.", "Fábio Colacio", "Alexis Lozano"],
 			# To tranlators: "translate" this by a list of your names (one name
 			# per line), they will be displayed in the "about" dialog
