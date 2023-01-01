@@ -27,6 +27,7 @@
 
   <section id="basic-draw">
     <title>Basic lines</title>
+
     <list>
       <item>
         <p>Pencil: The pencil draws following the mouse pointer, and according
@@ -34,19 +35,9 @@
         <note style="tip">
           <p>Using the "eraser" mode from the color menu, the pencil can delete
           all existing colors. Using the "highlight" mode and a semi-transparent
-          color, it can also highlight text. For this reason, the two next tools
-          are <link xref="preferences#tools">optional</link>.</p>
+          color, it can also highlight text. For this reason, the two related
+          tools are <link xref="preferences#tools">optional</link>.</p>
         </note>
-      </item>
-      <item>
-        <p>Eraser: Ignore the current color settings and just erase to get fully
-        transparent pixels. Optionally, the erased pixels can be changed to the
-        initial color of the canvas, or to the secondary color.</p>
-        <p>Another option of this tool is its behavior: it can erase according
-        to the line you draw with it, or according to a rectangular shape you
-        define. Using this rectangle mode, you have more available options:
-        blur, mosaic, randomly shuffle pixels, etc. so you can — for example —
-        quickly censor text over wide areas of the image.</p>
       </item>
       <item>
         <p>Highlighter: Ignore the transparency of the current color, and draw
@@ -84,6 +75,32 @@
     line you draw. This outline uses the secondary color, and is available with
     the <gui style="menuitem">Pencil</gui>, <gui style="menuitem">Line</gui>,
     and <gui style="menuitem">Curve</gui> tools.</p>
+  </section>
+
+  <section id="erase">
+    <title>Erase</title>
+
+    <p>The optional <gui style="menuitem">Eraser</gui> tool has several possible
+    behaviors:</p>
+    <list>
+      <item>
+        <p>It can erase according to the line you draw with the cursor, ignoring
+        the current color settings to just get fully transparent pixels.
+        Optionally, the erased pixels can be changed to the initial color of the
+        canvas (as set in the app preferences), or to the secondary color.</p>
+      </item>
+      <item>
+        <p>It can also erase a rectangular area: then you have more available
+        options: blur, mosaic, randomly shuffle pixels, etc. so you can — for
+        example — quickly censor text over wide areas of the image.</p>
+      </item>
+      <item>
+        <p>The option to <gui style="menuitem">remove color</gui> will erase all
+        the pixels where the color is the same as where you hovered or clicked,
+        across the entire image. It can be useful, for example, to cut out an
+        image from its background.</p>
+      </item>
+    </list>
   </section>
 
   <section id="brushes">
@@ -175,9 +192,6 @@
         still fails in a few situations.</p>
         <p>The <gui style="menuitem">Entire image</gui> option paints over the
         the entire image, regardless of what's already drawn.</p>
-        <p><gui style="menuitem">Erase color</gui> doesn't paint but erase the
-        color you clicked, on the entire image, for example to cut out an image
-        from its white background.</p>
       </item>
     </list>
   </section>
@@ -188,8 +202,8 @@
     <p>The <link xref="tools_selection">selection tools</link> don't draw, but
     their capabilities are very powerful and useful for any image editing.</p>
 
-    <p>Use these special tools to <link xref="tools_transform">transform the
-    canvas or the selected area</link>.</p>
+    <p>Use <link xref="tools_transform">these special tools</link> to transform
+    the canvas or the selected area.</p>
   </section>
 
 </page>

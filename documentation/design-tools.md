@@ -43,7 +43,7 @@ entirely managed in `abstract_select.py`.
 
 They (scale/crop/rotate/filters/…) can be applied to the selection pixbuf or the
 main pixbuf, and may use the image's `temp_pixbuf` attribute to store a preview
-of their changes. These tools have to be explicitely applied by the user, using
+of their changes. These tools have to be explicitly applied by the user, using
 a button in the [bottom bar](./design-optionsbars.md).
 
 `abstract_transform_tool.py` defines methods to preview and apply the changes.

@@ -1,6 +1,6 @@
 # image.py
 #
-# Copyright 2018-2022 Romain F. T.
+# Copyright 2018-2023 Romain F. T.
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -475,7 +475,7 @@ class DrImage(Gtk.Box):
 			self.active_tool().on_unclicked_motion_on_area(event, self.surface)
 
 		elif self.motion_behavior == DrMotionBehavior.DRAW:
-			# implicitely impossible if not self._is_pressed
+			# implicitly impossible if not self._is_pressed
 			self.active_tool().on_motion_on_area(event, self.surface, event_x, \
 			                                 event_y, self._rendering_is_locked)
 			if self._rendering_is_locked:
@@ -721,7 +721,7 @@ class DrImage(Gtk.Box):
 		wl, wr, ht, hb = self.get_corrected_coords(int(x1), width, int(y1), \
 		                                       height, apply_to_selection, True)
 		# XXX using local deltas this way "works" but isn't mathematically
-		# correct: scaled selections have a "null" and excentred central nineth
+		# correct: scaled selections have a "null" and excentred central ninth
 		# ^ c'est toujours vrai ça ??
 		wl += 0.4 * width * self.zoom_level
 		wr -= 0.4 * width * self.zoom_level

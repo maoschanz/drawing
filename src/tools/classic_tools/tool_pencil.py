@@ -1,6 +1,6 @@
 # tool_pencil.py
 #
-# Copyright 2018-2022 Romain F. T.
+# Copyright 2018-2023 Romain F. T.
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -104,7 +104,7 @@ class ToolPencil(AbstractClassicTool):
 
 		if self.x_press == event_x and self.y_press == event_y:
 			# Special case when the pointer hasn't moved: in order to "force"
-			# cairo to draw a pixel, a tiny segment is added artifically
+			# cairo to draw a pixel, a tiny segment is added artificially
 			float_x, float_y = self.get_image().get_event_coords(event, False)
 			decimals_x = float_x - event_x
 			if decimals_x > 0:

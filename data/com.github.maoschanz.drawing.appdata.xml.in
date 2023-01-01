@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Copyright 2022 Romain F. T. -->
+<!-- Copyright 2018-2023 Romain F. T. -->
 <component type="desktop">
   <id>com.github.maoschanz.drawing</id>
   <metadata_license>CC0-1.0</metadata_license>
@@ -38,22 +38,32 @@
   </description>
 
   <releases>
-    <release version="1.2.0" date="2022-05-21">
+    <!-- <release version="1.2.0" date="2022-09-03"> -->
+    <release version="1.2.0" date="2022-08-21">
       <description>
-        <!-- very generic release notes i use for ALL minor updates, please -->
-        <!-- translate this one! -->
         <p>
           Version 1.2.0 improves the transformation tools: their previews are
           now consistently applied when you change the active tool without
           clicking on "apply".
         </p>
         <p>
-          Transparency is now correctly preserved when the "skew" tools expands
-          the canvas with a solid color.
+          The text tool is more intuitive to use, with distinct areas on the
+          canvas to edit, move and insert the text.
         </p>
         <p>
-          Using the right click, you can now adjust the position of the canvas
-          when you're cropping it.
+          A former option of the paint bucket tool, which didn't belong there,
+          has been improved and moved to the eraser tool.
+        </p>
+        <p>
+          Transparency is henceforth correctly preserved when the "skew" tool
+          expands the canvas with a solid color.
+        </p>
+        <p>
+          You can now adjust the position of the canvas when you're cropping it.
+        </p>
+        <p>
+          The option to use a color editor by default has been moved from the
+          main window to the preferences window, and its bug has been fixed.
         </p>
       </description>
     </release>

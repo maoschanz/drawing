@@ -1,6 +1,6 @@
 # tool_crop.py
 #
-# Copyright 2018-2022 Romain F. T.
+# Copyright 2018-2023 Romain F. T.
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -343,7 +343,7 @@ class ToolCrop(AbstractCanvasTool):
 		new_pixbuf.fill(hexa_rgba)
 
 		temp_p = self.get_image().temp_pixbuf
-		# The width/height we want (mesured from the respective origins of the
+		# The width/height we want (measured from the respective origins of the
 		# `src` and the `dest` rectangles)
 		min_w = min(width - dest_x, temp_p.get_width() - src_x)
 		min_h = min(height - dest_y, temp_p.get_height() - src_y)

@@ -1,6 +1,6 @@
 # saving_manager.py
 #
-# Copyright 2018-2022 Romain F. T.
+# Copyright 2018-2023 Romain F. T.
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -84,8 +84,8 @@ class DrSavingManager():
 		except Exception as e:
 			if not is_export and str(e) == '2': # exception has been raised
 				# because the user wants to save the file under an other format
-				return self.saving_manager.save_current_image(False, True, False, True)
-			# else the exception was raised because an actual error occured, or
+				return self.save_current_image(False, True, False, True)
+			# else the exception was raised because an actual error occurred, or
 			# the user clicked on "cancel" XXX that's dumb
 			print(e)
 			# Context: an error message

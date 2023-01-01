@@ -14,7 +14,7 @@ How to contribute to Drawing
 - If you can, try to **check if the bug has already been reported**
 	- See [here](https://github.com/maoschanz/drawing/issues?q=is%3Aissue)
 	- Some bugs might be already fixed but not released!
-- Report it with informations required by the adequate issue template.
+- Report it with information required by the adequate issue template.
 - If it's meaningful, try to include screenshots.
 
 ----
@@ -24,7 +24,7 @@ How to contribute to Drawing
 - If you can, try to **check if the feature has already been requested**.
 	- See [here](https://github.com/maoschanz/drawing/issues?q=is%3Aissue)
 	- Some features might be already implemented but not released!
-- Report it with informations required by the adequate issue template.
+- Report it with information required by the adequate issue template.
 - In the report, explain **what** it does, **not how** it does it.
 
 ----

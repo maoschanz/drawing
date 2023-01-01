@@ -17,14 +17,31 @@
   <p>The most recent versions are listed first.</p>
 
   <section>
-    <title>Version 1.0.2</title>
+    <title>Version 1.2.0</title>
     <p>
-      Version 1.0.2 features several minor bug fixes, and various new
-      translations.
+      The <link xref="tools_transform">transformation tools</link> now
+      consistently apply their preview when you change the active tool without
+      clicking on "apply".
     </p>
     <p>
-      Transparency is now correctly preserved when a tool (such as "crop" or
-      "skew") expands the canvas with a solid color.
+      The text tool is more intuitive to use, with distinct areas on the
+      canvas to edit, move and insert the text.
+    </p>
+    <p>
+      A former option of the paint bucket tool, which didn't belong there,
+      has been improved and moved to the eraser tool.
+    </p>
+    <p>
+      Transparency is henceforth correctly preserved when the "skew" tool
+      expands the canvas with a solid color.
+    </p>
+    <p>
+      You can now adjust the position of the canvas when you're cropping it.
+    </p>
+    <p>
+      The option to use a color editor by default has been moved from the
+      main window to <link xref="preferences">the preferences window</link>, and
+      its bug has been fixed.
     </p>
   </section>
 

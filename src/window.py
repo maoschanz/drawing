@@ -1,6 +1,6 @@
 # window.py
 #
-# Copyright 2018-2022 Romain F. T.
+# Copyright 2018-2023 Romain F. T.
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -88,7 +88,7 @@ class DrWindow(Gtk.ApplicationWindow):
 
 		This method is called asynchronously, which isn't *correct* (not very
 		thread-safe or anything) but it allows the window to be shown quicker.
-		If it fails, a window is here anyway because this is independant from
+		If it fails, a window is here anyway because this is independent from
 		the object constructor."""
 
 		self.reveal_action_report(_("Error starting the application, please" + \
@@ -131,15 +131,13 @@ class DrWindow(Gtk.ApplicationWindow):
 		return False
 
 	def _try_show_release_notes(self):
+		"""Add specific actions to the primary menu if the current version is a
+		new one (the corresponding release notes have never been opened or
+		dismissed)"""
 		last_version = self.gsettings.get_string('last-version')
 		current_version = self.app.get_current_version()
 		if current_version == last_version:
 			return
-
-		# if last_version.split('.')[0] == current_version.split('.')[0] \
-		# and last_version.split('.')[1] == current_version.split('.')[1]:
-		# 	self.gsettings.set_string('last-version', current_version)
-		# 	return
 
 		self._decorations.set_release_notes_available(True)
 		self.add_action_simple('help_news_dismiss', self._on_news_dismiss)
@@ -418,7 +416,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		# What happens when the active image change
 		self.notebook.connect('switch-page', self.on_active_tab_changed)
 
-		# Select tools using "alt" mnemonics
+		# Change the active tool using "alt" mnemonics
 		self.connect('key-press-event', self._check_for_alt_key)
 		self.connect('key-release-event', self._check_for_alt_key)
 
@@ -627,7 +625,7 @@ class DrWindow(Gtk.ApplicationWindow):
 
 	def show_info_settings(self, *args):
 		"""This is executed when a setting changed but the method to apply it
-		immediatly in the current window doesn't exist."""
+		immediately in the current window doesn't exist."""
 		self.reveal_message(_("Modifications will take effect in the next new window."))
 
 	def update_picture_title(self, main_title=None):
@@ -1178,7 +1176,7 @@ class DrWindow(Gtk.ApplicationWindow):
 	def action_paste(self, *args):
 		"""By default, this action pastes an image, but if there is no image in
 		the clipboard, it will paste text using the text tool. Once the text
-		tool is active, this action is disabled to not interfer with the default
+		tool is active, this action is disabled to not interfere with the default
 		behavior of ctrl+v provided by the GTK text entry."""
 		cb = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
 		pixbuf = cb.wait_for_image()

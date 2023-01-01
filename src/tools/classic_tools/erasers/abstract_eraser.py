@@ -14,6 +14,9 @@ class AbstractEraser():
 	def get_active_options(self):
 		return []
 
+	def use_size(self):
+		return False
+
 	def on_motion(self, cairo_context, press, event, path=None):
 		return self.on_release(cairo_context, press, event, path)
 

@@ -1,16 +1,19 @@
+#
+# Óscar Fernández Díaz <oscfdezdz@tuta.io>, 2022.
+#
 msgid ""
 msgstr ""
-"Project-Id-Version: \n"
-"POT-Creation-Date: 2022-03-25 07:38+0100\n"
-"PO-Revision-Date: 2022-03-25 07:47+0100\n"
-"Last-Translator: \n"
-"Language-Team: \n"
+"Project-Id-Version: unnamed project\n"
+"POT-Creation-Date: 2022-08-23 10:23+0200\n"
+"PO-Revision-Date: 2022-08-23 10:33+0200\n"
+"Last-Translator: Óscar Fernández Díaz <oscfdezdz@tuta.io>\n"
+"Language-Team: Spanish; Castilian <>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.0.1\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"X-Generator: Gtranslator 42.0\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
@@ -234,8 +237,8 @@ msgid ""
 "Create a new image from the current <link xref=\"tools_selection\"> "
 "selection</link>."
 msgstr ""
-"Crear una imagen nueva a partir de la selección actual <link xref="
-"\"tools_selection\">."
+"Crear una imagen nueva a partir de la <link xref=\"tools_selection\">"
+"selección</link> actual."
 
 #. (itstool) path: item/p
 #: ../help/C/main_features.page:59
@@ -585,12 +588,12 @@ msgstr ""
 #: ../help/C/preferences.page:94
 msgid ""
 "The <gui style=\"menuitem\">Highlighter</gui> is a little redundant too, "
-"since you can to the same with the pencil and <link xref="
+"since you can do the same with the pencil and <link xref="
 "\"tools_classic_colors\"> the adequate color application mode</link>."
 msgstr ""
 "El <gui style=\"menuitem\">Resaltador</gui> es un poco redundante también, "
-"ya que se puede hacer lo mismo con el lápiz y <link xref="
-"\"tools_classic_colors\"> el modo de aplicación de color adecuado</link>."
+"ya que puede hacer lo mismo con el lápiz y <link xref=\"tools_classic_colors"
+"\"> el modo de aplicación de color adecuado</link>."
 
 #. (itstool) path: note/p
 #: ../help/C/preferences.page:98
@@ -612,13 +615,31 @@ msgstr ""
 "Consulte <link xref=\"tools_classic\">esta página sobre herramientas</link> "
 "para obtener más información."
 
+#. (itstool) path: subsection/title
 #. (itstool) path: section/title
+#: ../help/C/preferences.page:108 ../help/C/tools_classic_colors.page:26
+msgid "Colors"
+msgstr "Colores"
+
+#. (itstool) path: subsection/p
 #: ../help/C/preferences.page:109
+msgid ""
+"The <link xref=\"tools_classic_colors\">color selection menu</link> is a "
+"color palette by default, but you can optionally use the full RGBA color "
+"editor as the default way to pick a color instead."
+msgstr ""
+"El <link xref=\"tools_classic_colors\">menú de selección de colores</link> "
+"es una paleta de colores predeterminada, pero puede usar opcionalmente el "
+"editor de colores RGBA completo como forma predeterminada de elegir un color "
+"en su lugar."
+
+#. (itstool) path: section/title
+#: ../help/C/preferences.page:116
 msgid "Window"
 msgstr "Ventana"
 
 #. (itstool) path: section/p
-#: ../help/C/preferences.page:111
+#: ../help/C/preferences.page:118
 msgid ""
 "Here you can set the size of the thumbnail preview, but using a bigger "
 "preview is not recommended for technical reasons."
@@ -627,21 +648,21 @@ msgstr ""
 "recomienda usar una vista previa más grande por razones técnicas."
 
 #. (itstool) path: section/p
-#: ../help/C/preferences.page:114
+#: ../help/C/preferences.page:121
 msgid "You can also set the color of the background \"behind\" the canvas."
 msgstr "También puede establecer el color del fondo \"detrás\" del lienzo."
 
 #. (itstool) path: section/p
-#: ../help/C/preferences.page:116
+#: ../help/C/preferences.page:123
 msgid ""
-"The \"theme variant\" option can force the app to use the dark or light "
+"The \"theme variant\" option can force the app to use the dark "
 "variant of your current GTK theme."
 msgstr ""
 "La opción \"variante de tema\" puede forzar a la aplicación a usar la "
-"variante oscura o clara de su tema GTK actual."
+"variante oscura de su tema GTK actual."
 
 #. (itstool) path: section/p
-#: ../help/C/preferences.page:119
+#: ../help/C/preferences.page:126
 msgid ""
 "Finally, it's possible to choose the layout of the user interface: the "
 "\"Compact\" layout, designed for the GNOME desktop, is well tested. Other "
@@ -654,7 +675,7 @@ msgstr ""
 "elementary OS, y el diseño tradicional, para el escritorio MATE o Cinnamon."
 
 #. (itstool) path: note/p
-#: ../help/C/preferences.page:125
+#: ../help/C/preferences.page:132
 msgid ""
 "In this context,\"symbolic icons\" means that the icons are monochrome "
 "(black if you use a light theme, or white if you use a dark theme). "
@@ -716,7 +737,7 @@ msgid "Basic lines"
 msgstr "Líneas básicas"
 
 #. (itstool) path: item/p
-#: ../help/C/tools_classic.page:32
+#: ../help/C/tools_classic.page:33
 msgid ""
 "Pencil: The pencil draws following the mouse pointer, and according to the "
 "chosen color."
@@ -725,47 +746,21 @@ msgstr ""
 "elegido."
 
 #. (itstool) path: note/p
-#: ../help/C/tools_classic.page:35
+#: ../help/C/tools_classic.page:36
 msgid ""
 "Using the \"eraser\" mode from the color menu, the pencil can delete all "
 "existing colors. Using the \"highlight\" mode and a semi-transparent color, "
-"it can also highlight text. For this reason, the two next tools are <link "
+"it can also highlight text. For this reason, the two related tools are <link "
 "xref=\"preferences#tools\">optional</link>."
 msgstr ""
 "Usando el modo \"borrador\" del menú de colores, el lápiz puede borrar todos "
 "los colores existentes. Usando el modo \"resaltar\" y un color "
 "semitransparente, también puede resaltar el texto. Por esta razón, las dos "
-"herramientas siguientes son <link xref=\"preferences#tools\">opcionales</"
+"herramientas relacionadas son <link xref=\"preferences#tools\">opcionales</"
 "link>."
 
 #. (itstool) path: item/p
-#: ../help/C/tools_classic.page:42
-msgid ""
-"Eraser: Ignore the current color settings and just erase to get fully "
-"transparent pixels. Optionally, the erased pixels can be changed to the "
-"initial color of the canvas, or to the secondary color."
-msgstr ""
-"Borrador: Ignora la configuración de color actual y sólo borra para obtener "
-"píxeles totalmente transparentes. Opcionalmente, los píxeles borrados pueden "
-"cambiarse al color inicial del lienzo, o al color secundario."
-
-#. (itstool) path: item/p
-#: ../help/C/tools_classic.page:45
-msgid ""
-"Another option of this tool is its behavior: it can erase according to the "
-"line you draw with it, or according to a rectangular shape you define. Using "
-"this rectangle mode, you have more available options: blur, mosaic, randomly "
-"shuffle pixels, etc. so you can — for example — quickly censor text over "
-"wide areas of the image."
-msgstr ""
-"Otra opción de esta herramienta es su comportamiento: puede borrar según la "
-"línea que dibuje con ella, o según una forma rectangular que defina. Usando "
-"este modo de rectángulo, tiene más opciones disponibles: desenfoque, "
-"mosaico, barajar píxeles aleatoriamente, etc. para que pueda, por ejemplo, "
-"censurar rápidamente el texto en zonas amplias de la imagen."
-
-#. (itstool) path: item/p
-#: ../help/C/tools_classic.page:52
+#: ../help/C/tools_classic.page:43
 msgid ""
 "Highlighter: Ignore the transparency of the current color, and draw with a "
 "semi-transparent version of the current color."
@@ -774,7 +769,7 @@ msgstr ""
 "versión semitransparente del color actual."
 
 #. (itstool) path: item/p
-#: ../help/C/tools_classic.page:54
+#: ../help/C/tools_classic.page:45
 msgid ""
 "The \"highlight\" color application mode is used, so the selected color is "
 "added to the lighter pixels only, which highlights dark text on light "
@@ -787,7 +782,7 @@ msgstr ""
 "(resaltar texto claro sobre fondo oscuro)."
 
 #. (itstool) path: item/p
-#: ../help/C/tools_classic.page:60
+#: ../help/C/tools_classic.page:51
 msgid ""
 "Line: This tool can draw straight lines. Its options also include ending the "
 "line with an arrow, and using a gradient from the main color to the "
@@ -798,7 +793,7 @@ msgstr ""
 "desde el color principal hasta el color secundario."
 
 #. (itstool) path: item/p
-#: ../help/C/tools_classic.page:63
+#: ../help/C/tools_classic.page:54
 msgid ""
 "The option to lock the orientation of the line will force the line to be "
 "perfectly horizontal, at 45°, or vertical."
@@ -807,7 +802,7 @@ msgstr ""
 "perfectamente horizontal, a 45°, o vertical."
 
 #. (itstool) path: item/p
-#: ../help/C/tools_classic.page:67
+#: ../help/C/tools_classic.page:58
 msgid ""
 "Curve: This tool can draw Bézier curves, optionally with an arrow at the "
 "end. Two clicks are required, if you only click once to draw a straight "
@@ -819,7 +814,7 @@ msgstr ""
 "clic."
 
 #. (itstool) path: section/p
-#: ../help/C/tools_classic.page:75
+#: ../help/C/tools_classic.page:66
 msgid ""
 "Aside of the colors, a usual option for classic tools is whether or not you "
 "want to use anti-aliasing. If you use anti-aliasing, the lines will look "
@@ -834,7 +829,7 @@ msgstr ""
 "de la <link xref=\"tools_selection\">selección</link>."
 
 #. (itstool) path: section/p
-#: ../help/C/tools_classic.page:80
+#: ../help/C/tools_classic.page:71
 msgid ""
 "With several tools, you can change the ends of the line: it can be rounded "
 "or square. You can also draw various patterns of dashed lines with a few "
@@ -845,7 +840,7 @@ msgstr ""
 "discontinuas con unas pocas herramientas."
 
 #. (itstool) path: section/p
-#: ../help/C/tools_classic.page:83
+#: ../help/C/tools_classic.page:74
 msgid ""
 "The <gui style=\"menuitem\">Outline</gui> option adds an outline around the "
 "line you draw. This outline uses the secondary color, and is available with "
@@ -858,19 +853,72 @@ msgstr ""
 "style=\"menuitem\">Línea</gui> y <gui style=\"menuitem\">Curva</gui>."
 
 #. (itstool) path: section/title
-#: ../help/C/tools_classic.page:90
+#: ../help/C/tools_classic.page:81
+msgid "Erase"
+msgstr "Borrar"
+
+#. (itstool) path: section/p
+#: ../help/C/tools_classic.page:83
+msgid ""
+"The optional <gui style=\"menuitem\">Eraser</gui> tool has several possible "
+"behaviors:"
+msgstr ""
+"La herramienta opcional <gui style=\"menuitem\">Borrar</gui> tiene varios "
+"comportamientos posibles:"
+
+#. (itstool) path: item/p
+#: ../help/C/tools_classic.page:87
+msgid ""
+"It can erase according to the line you draw with the cursor, ignoring the "
+"current color settings to just get fully transparent pixels. Optionally, the "
+"erased pixels can be changed to the initial color of the canvas (as set in "
+"the app preferences), or to the secondary color."
+msgstr ""
+"Puede borrar según la línea que dibuje con el cursor, ignorando la "
+"configuración del color actual para obtener sólo píxeles totalmente "
+"transparentes. Opcionalmente, los píxeles borrados pueden ser cambiados al "
+"color inicial del lienzo (como se establece en las preferencias de la "
+"aplicación), o al color secundario."
+
+#. (itstool) path: item/p
+#: ../help/C/tools_classic.page:93
+msgid ""
+"It can also erase a rectangular area: then you have more available options: "
+"blur, mosaic, randomly shuffle pixels, etc. so you can — for example — "
+"quickly censor text over wide areas of the image."
+msgstr ""
+"También puede borrar un área rectangular: entonces tiene más opciones "
+"disponibles: desenfoque, mosaico, barajar aleatoriamente los píxeles, etc. "
+"para que pueda -por ejemplo- censurar rápidamente el texto en amplias zonas "
+"de la imagen."
+
+#. (itstool) path: item/p
+#: ../help/C/tools_classic.page:98
+msgid ""
+"The option to <gui style=\"menuitem\">remove color</gui> will erase all the "
+"pixels where the color is the same as where you hovered or clicked, across "
+"the entire image. It can be useful, for example, to cut out an image from "
+"its background."
+msgstr ""
+"La opción de <gui style=\"menuitem\">eliminar color</gui> borrará todos los "
+"píxeles en los que el color sea el mismo que el del lugar en el que pasó el "
+"ratón o hizo clic, en toda la imagen. Puede ser útil, por ejemplo, para "
+"recortar una imagen de su fondo."
+
+#. (itstool) path: section/title
+#: ../help/C/tools_classic.page:107
 msgid "Pressure-sensitive brushes"
 msgstr "Pinceles sensibles a la presión"
 
 #. (itstool) path: note/p
-#: ../help/C/tools_classic.page:92
+#: ../help/C/tools_classic.page:109
 msgid "This tool is disabled by default, because it has performance issues."
 msgstr ""
 "Esta herramienta está desactivada por defecto, porque tiene problemas de "
 "rendimiento."
 
 #. (itstool) path: section/p
-#: ../help/C/tools_classic.page:95
+#: ../help/C/tools_classic.page:112
 msgid ""
 "If you use a drawing tablet and a stylus, you may appreciate the \"brush\" "
 "tool, which reacts to the pressure of your input. Various possible brushes "
@@ -881,7 +929,7 @@ msgstr ""
 "pinceles posibles:"
 
 #. (itstool) path: item/p
-#: ../help/C/tools_classic.page:100
+#: ../help/C/tools_classic.page:117
 msgid ""
 "Simple: this brush is basically a pencil with no options. The line will be "
 "wider if you apply more pressure. Otherwise (if you use a mouse for "
@@ -894,7 +942,7 @@ msgstr ""
 "movimiento."
 
 #. (itstool) path: item/p
-#: ../help/C/tools_classic.page:106
+#: ../help/C/tools_classic.page:123
 msgid ""
 "Airbrush: small \"droplets\" of color will be added to the canvas. If you "
 "apply more pressure, there will be more droplets. Without a pressure-"
@@ -905,7 +953,7 @@ msgstr ""
 "densidad es constante."
 
 #. (itstool) path: item/p
-#: ../help/C/tools_classic.page:111
+#: ../help/C/tools_classic.page:128
 msgid ""
 "Hairy brush: thin parallel lines will be added to the canvas. If you apply "
 "more pressure, the lines will be more outspread. Without a pressure-"
@@ -916,7 +964,7 @@ msgstr ""
 "presión, su proximidad es constante."
 
 #. (itstool) path: item/p
-#: ../help/C/tools_classic.page:116
+#: ../help/C/tools_classic.page:133
 msgid ""
 "Calligraphic nib: this brush draws wider in one direction than in the other, "
 "according to an angle which is an option of the brush. For a given "
@@ -930,12 +978,12 @@ msgstr ""
 "dirección determinada."
 
 #. (itstool) path: section/title
-#: ../help/C/tools_classic.page:126
+#: ../help/C/tools_classic.page:143
 msgid "Insert text"
 msgstr "Insertar texto"
 
 #. (itstool) path: section/p
-#: ../help/C/tools_classic.page:128
+#: ../help/C/tools_classic.page:145
 msgid ""
 "With the <gui style=\"menuitem\">Text</gui> tool, you can insert text on the "
 "image. A few formatting options are available in the options menu, such as "
@@ -947,7 +995,7 @@ msgstr ""
 "de fuentes."
 
 #. (itstool) path: section/p
-#: ../help/C/tools_classic.page:132
+#: ../help/C/tools_classic.page:149
 msgid ""
 "For better contrast, the text can be displayed on a rectangle background, or "
 "with a shadow, or with an outline. The color of this background is the "
@@ -958,7 +1006,7 @@ msgstr ""
 "secundario que haya elegido."
 
 #. (itstool) path: note/p
-#: ../help/C/tools_classic.page:140
+#: ../help/C/tools_classic.page:157
 msgid ""
 "Don't forget to confirm the insertion using the <gui style=\"button\"> "
 "Insert here</gui> button."
@@ -967,7 +1015,7 @@ msgstr ""
 "Insertar aquí</gui>."
 
 #. (itstool) path: section/p
-#: ../help/C/tools_classic.page:144
+#: ../help/C/tools_classic.page:161
 msgid ""
 "An optional tool named <gui style=\"menuitem\">Points</gui> is designed to "
 "help you captioning pictures: you can add numbered round dots or crosses to "
@@ -978,19 +1026,19 @@ msgstr ""
 "numerados o cruces a los elementos de la imagen."
 
 #. (itstool) path: section/title
-#: ../help/C/tools_classic.page:150
+#: ../help/C/tools_classic.page:167
 msgid "Fill an area"
 msgstr "Rellenar un área"
 
 #. (itstool) path: section/p
-#: ../help/C/tools_classic.page:152
+#: ../help/C/tools_classic.page:169
 msgid "To paint an area using a given color, several tools can be used:"
 msgstr ""
 "Para pintar un área con un color determinado, se pueden usar varias "
 "herramientas:"
 
 #. (itstool) path: item/p
-#: ../help/C/tools_classic.page:156
+#: ../help/C/tools_classic.page:173
 msgid ""
 "Shapes. Available shapes include rectangle, rounded rectangle, oval, circle, "
 "polygon, and free shape."
@@ -999,7 +1047,7 @@ msgstr ""
 "círculo, polígono y forma libre."
 
 #. (itstool) path: item/p
-#: ../help/C/tools_classic.page:158
+#: ../help/C/tools_classic.page:175
 msgid ""
 "Polygons and free shapes are drawn in several clicks. To close them, do a "
 "last click at the position where you began the shape, or use the <gui style="
@@ -1010,7 +1058,7 @@ msgstr ""
 "use el elemento de menú <gui style=\"menuitem\">Cerrar forma</gui>."
 
 #. (itstool) path: item/p
-#: ../help/C/tools_classic.page:161
+#: ../help/C/tools_classic.page:178
 msgid ""
 "Various filling options are available (using a plain color, or a gradient, "
 "or nothing), as well as outline options (using a plain outline, dashes, or "
@@ -1021,7 +1069,7 @@ msgstr ""
 "nada)."
 
 #. (itstool) path: item/p
-#: ../help/C/tools_classic.page:166
+#: ../help/C/tools_classic.page:183
 msgid ""
 "Paint. This tool tries to paint an area of a given color with a new color."
 msgstr ""
@@ -1029,7 +1077,7 @@ msgstr ""
 "un nuevo color."
 
 #. (itstool) path: note/p
-#: ../help/C/tools_classic.page:169
+#: ../help/C/tools_classic.page:186
 msgid ""
 "This tool is disabled by default, because it will not work if the shape to "
 "paint is too complex."
@@ -1038,7 +1086,7 @@ msgstr ""
 "forma a pintar es demasiado compleja."
 
 #. (itstool) path: item/p
-#: ../help/C/tools_classic.page:172
+#: ../help/C/tools_classic.page:189
 msgid ""
 "It can use several possible algorithms: <gui style=\"menuitem\"> Encircle "
 "and fill</gui> is very simplistic and discouraged, <gui style=\"menuitem"
@@ -1051,7 +1099,7 @@ msgstr ""
 "algunas situaciones."
 
 #. (itstool) path: item/p
-#: ../help/C/tools_classic.page:176
+#: ../help/C/tools_classic.page:193
 msgid ""
 "The <gui style=\"menuitem\">Entire image</gui> option paints over the the "
 "entire image, regardless of what's already drawn."
@@ -1059,24 +1107,13 @@ msgstr ""
 "La opción <gui style=\"menuitem\">Imagen completa</gui> pinta sobre toda la "
 "imagen, independientemente de lo que ya esté dibujado."
 
-#. (itstool) path: item/p
-#: ../help/C/tools_classic.page:178
-msgid ""
-"<gui style=\"menuitem\">Erase color</gui> doesn't paint but erase the color "
-"you clicked, on the entire image, for example to cut out an image from its "
-"white background."
-msgstr ""
-"<gui style=\"menuitem\">Borrar color</gui> no pinta, sino que borra el color "
-"que ha pulsado, en toda la imagen, por ejemplo para recortar una imagen de "
-"su fondo blanco."
-
 #. (itstool) path: section/title
-#: ../help/C/tools_classic.page:186
+#: ../help/C/tools_classic.page:200
 msgid "Other kinds of tools"
 msgstr "Otros tipos de herramientas"
 
 #. (itstool) path: section/p
-#: ../help/C/tools_classic.page:188
+#: ../help/C/tools_classic.page:202
 msgid ""
 "The <link xref=\"tools_selection\">selection tools</link> don't draw, but "
 "their capabilities are very powerful and useful for any image editing."
@@ -1086,10 +1123,8 @@ msgstr ""
 "edición de imágenes."
 
 #. (itstool) path: section/p
-#: ../help/C/tools_classic.page:191
-msgid ""
-"Use these special tools to <link xref=\"tools_transform\">transform the "
-"canvas or the selected area</link>."
+#: ../help/C/tools_classic.page:205
+msgid "Use <link xref=\"tools_transform\">these special tools</link> to transform the canvas or the selected area."
 msgstr ""
 "Use estas herramientas especiales para <link xref=\"tools_transform"
 "\">transformar el lienzo o el área seleccionada</link>."
@@ -1129,11 +1164,6 @@ msgstr ""
 "estar etiquetado como \"Color principal\", mientras que el color de la "
 "derecha es el \"Color secundario\". Haga clic en estos botones para editar "
 "sus respectivos colores:"
-
-#. (itstool) path: section/title
-#: ../help/C/tools_classic_colors.page:26
-msgid "Colors"
-msgstr "Colores"
 
 #. (itstool) path: section/p
 #: ../help/C/tools_classic_colors.page:27
@@ -1542,25 +1572,14 @@ msgstr ""
 #. (itstool) path: note/p
 #: ../help/C/tools_transform.page:23
 msgid ""
-"With these tools, once you have the transformation you want, you have to "
-"apply the result with the <gui style=\"button\">Apply</gui> button at the "
-"right."
+"You can cancel a transformation with the <gui style=\"button\">Cancel</gui> "
+"button at the left of the bottom bar."
 msgstr ""
-"Con estas herramientas, una vez que tenga la transformación que quiera, "
-"tiene que aplicar el resultado con el botón <gui style=\"button\">Aplicar</"
-"gui> de la derecha."
-
-#. (itstool) path: note/p
-#: ../help/C/tools_transform.page:26
-msgid ""
-"Otherwise you can cancel the transformation with the <gui style=\"button\"> "
-"Cancel</gui> button at the left."
-msgstr ""
-"Si no, puede cancelar la transformación con el botón <gui style=\"button\"> "
-"Cancelar</gui> de la izquierda."
+"Puede cancelar una transformación con el botón <gui style=\"button"
+"\">Cancelar</gui> situado a la izquierda de la barra inferior."
 
 #. (itstool) path: page/p
-#: ../help/C/tools_transform.page:30
+#: ../help/C/tools_transform.page:27
 msgid ""
 "When a selection is defined, these tools will transform the selected area, "
 "otherwise they will transform the picture as a whole."
@@ -1568,19 +1587,8 @@ msgstr ""
 "Cuando se define una selección, estas herramientas transformarán el área "
 "seleccionada, de lo contrario, transformarán la imagen en su conjunto."
 
-#. (itstool) path: note/p
-#: ../help/C/tools_transform.page:34
-msgid ""
-"If you switch to another tool without applying the transformation "
-"explicitely, the transformation will be automatically applied if it concerns "
-"the selection, but automatically cancelled if it concerns the whole image."
-msgstr ""
-"Si cambia a otra herramienta sin aplicar la transformación explícitamente, "
-"la transformación se aplicará automáticamente si afecta a la selección, pero "
-"se cancelará automáticamente si afecta a toda la imagen."
-
 #. (itstool) path: page/p
-#: ../help/C/tools_transform.page:39
+#: ../help/C/tools_transform.page:30
 msgid ""
 "If you try to save without applying the transformation, a dialog will remind "
 "you that you should apply it before saving."
@@ -1589,12 +1597,12 @@ msgstr ""
 "que debe aplicarla antes de guardar."
 
 #. (itstool) path: section/title
-#: ../help/C/tools_transform.page:43
+#: ../help/C/tools_transform.page:34
 msgid "Crop"
 msgstr "Recortar"
 
 #. (itstool) path: section/p
-#: ../help/C/tools_transform.page:45
+#: ../help/C/tools_transform.page:36
 msgid ""
 "Change the size of the image, by removing parts of it. The side you're "
 "cropping is indicated by the mouse cursor: it changes depending on the "
@@ -1605,13 +1613,13 @@ msgstr ""
 "posición del puntero del ratón en el lienzo."
 
 #. (itstool) path: section/p
-#: ../help/C/tools_transform.page:48
+#: ../help/C/tools_transform.page:39
 msgid "The exact size can be set using the values in the bottom bar."
 msgstr ""
 "El tamaño exacto se puede ajustar mediante los valores de la barra inferior."
 
 #. (itstool) path: note/p
-#: ../help/C/tools_transform.page:51
+#: ../help/C/tools_transform.page:42
 msgid ""
 "If your increasing the size of the image instead of decreasing it, you may "
 "need to change the zoom level to see what you're doing."
@@ -1620,7 +1628,7 @@ msgstr ""
 "tenga que cambiar el nivel de zoom para ver lo que está haciendo."
 
 #. (itstool) path: section/p
-#: ../help/C/tools_transform.page:55
+#: ../help/C/tools_transform.page:46
 msgid ""
 "The color of the pixels you create when increasing the size is customizable, "
 "using the menu at the bottom-right of the window, or by pressing <key>Shift</"
@@ -1632,18 +1640,18 @@ msgstr ""
 "tamaño."
 
 #. (itstool) path: section/title
-#: ../help/C/tools_transform.page:61
+#: ../help/C/tools_transform.page:52
 msgid "Scale"
 msgstr "Escala"
 
 #. (itstool) path: section/p
-#: ../help/C/tools_transform.page:63
+#: ../help/C/tools_transform.page:54
 msgid "Resize the image, using the mouse or the values in the bottom bar."
 msgstr ""
 "Redimensione la imagen, usando el ratón o los valores de la barra inferior."
 
 #. (itstool) path: section/p
-#: ../help/C/tools_transform.page:64
+#: ../help/C/tools_transform.page:55
 msgid ""
 "These numerical values are in pixels by default, but it's possible to resize "
 "according to a percentage of the original image."
@@ -1652,7 +1660,7 @@ msgstr ""
 "cambiar el tamaño según un porcentaje de la imagen original."
 
 #. (itstool) path: section/p
-#: ../help/C/tools_transform.page:67
+#: ../help/C/tools_transform.page:58
 msgid ""
 "The proportions of the image can be locked or not, using the menu at the "
 "bottom-right of the window, or by pressing <key>Shift</key> when you click "
@@ -1663,12 +1671,12 @@ msgstr ""
 "clic para cambiar el tamaño."
 
 #. (itstool) path: section/title
-#: ../help/C/tools_transform.page:76
+#: ../help/C/tools_transform.page:67
 msgid "Rotate"
 msgstr "Girar"
 
 #. (itstool) path: section/p
-#: ../help/C/tools_transform.page:78
+#: ../help/C/tools_transform.page:69
 msgid ""
 "Change the orientation of the image, or flip it, using the buttons in the "
 "bottom bar."
@@ -1677,7 +1685,7 @@ msgstr ""
 "barra inferior."
 
 #. (itstool) path: section/p
-#: ../help/C/tools_transform.page:80
+#: ../help/C/tools_transform.page:71
 msgid ""
 "If a selection is defined, you can freely choose the precise angle of the "
 "rotation. Otherwise, only rotations of 90°, 180° or 270° are possible."
@@ -1687,12 +1695,12 @@ msgstr ""
 "270°."
 
 #. (itstool) path: section/title
-#: ../help/C/tools_transform.page:85
+#: ../help/C/tools_transform.page:76
 msgid "Skew"
 msgstr "Sesgar"
 
 #. (itstool) path: section/p
-#: ../help/C/tools_transform.page:87
+#: ../help/C/tools_transform.page:78
 msgid ""
 "This optional tool tilts the image horizontally, vertically, or in both "
 "directions."
@@ -1701,7 +1709,7 @@ msgstr ""
 "en ambas direcciones."
 
 #. (itstool) path: section/p
-#: ../help/C/tools_transform.page:89
+#: ../help/C/tools_transform.page:80
 msgid ""
 "If you're skewing the canvas, the operation creates new pixels: their color "
 "is customizable, using the menu at the bottom-right of the window, or by "
@@ -1712,12 +1720,12 @@ msgstr ""
 "pulsando <key>Shift</key> y/o <key>Alt</key> al hacer clic para sesgar."
 
 #. (itstool) path: section/title
-#: ../help/C/tools_transform.page:95
+#: ../help/C/tools_transform.page:86
 msgid "Filters"
 msgstr "Filtros"
 
 #. (itstool) path: section/p
-#: ../help/C/tools_transform.page:97
+#: ../help/C/tools_transform.page:88
 msgid ""
 "You can apply a filter to the image or the selection. Click on the picture "
 "to preview the selected filter."
@@ -1726,7 +1734,7 @@ msgstr ""
 "para obtener una vista previa del filtro seleccionado."
 
 #. (itstool) path: item/p
-#: ../help/C/tools_transform.page:101
+#: ../help/C/tools_transform.page:92
 msgid ""
 "Change the <gui style=\"menuitem\">Saturation</gui>: increase or decrease "
 "the saturation of the image by modifying the number in the bottom bar."
@@ -1735,7 +1743,7 @@ msgstr ""
 "saturación de la imagen modificando el número de la barra inferior."
 
 #. (itstool) path: item/p
-#: ../help/C/tools_transform.page:104
+#: ../help/C/tools_transform.page:95
 msgid ""
 "A saturation bigger than 100% boosts the colors, a saturation smaller than "
 "100% does a greyish image."
@@ -1744,7 +1752,7 @@ msgstr ""
 "100% hace una imagen grisácea."
 
 #. (itstool) path: item/p
-#: ../help/C/tools_transform.page:108
+#: ../help/C/tools_transform.page:99
 msgid ""
 "<gui style=\"menuitem\">Veil</gui> will add a slightly desaturated veil upon "
 "the image, with a thin grey pixelated pattern."
@@ -1753,7 +1761,7 @@ msgstr ""
 "sobre la imagen, con un fino patrón gris pixelado."
 
 #. (itstool) path: item/p
-#: ../help/C/tools_transform.page:114
+#: ../help/C/tools_transform.page:105
 msgid ""
 "<gui style=\"menuitem\">Add transparency</gui> can make the image partly "
 "translucent, depending on the percentage you can set in the bottom bar."
@@ -1763,7 +1771,7 @@ msgstr ""
 "barra inferior."
 
 #. (itstool) path: item/p
-#: ../help/C/tools_transform.page:119
+#: ../help/C/tools_transform.page:110
 msgid ""
 "<gui style=\"menuitem\">Increase contrast</gui> will increase the contrast "
 "in the picture: dark areas will be darker, light areas will be lighter, and "
@@ -1776,7 +1784,7 @@ msgstr ""
 "puede elegir cómo de fuerte será el efecto."
 
 #. (itstool) path: item/p
-#: ../help/C/tools_transform.page:128
+#: ../help/C/tools_transform.page:119
 msgid ""
 "<gui style=\"menuitem\">Blur</gui>, and several variations of it, will blur "
 "the image using a parametrable radius."
@@ -1785,7 +1793,7 @@ msgstr ""
 "desenfocarán la imagen usando un radio parametrizable."
 
 #. (itstool) path: note/p
-#: ../help/C/tools_transform.page:131
+#: ../help/C/tools_transform.page:122
 msgid ""
 "Be careful, if the image is big, applying blur to the image can take a few "
 "seconds."
@@ -1794,12 +1802,12 @@ msgstr ""
 "llevar unos segundos."
 
 #. (itstool) path: item/p
-#: ../help/C/tools_transform.page:136
+#: ../help/C/tools_transform.page:127
 msgid "<gui style=\"menuitem\">Invert colors</gui>."
 msgstr "<gui style=\"menuitem\">Invertir colores</gui>."
 
 #. (itstool) path: section/p
-#: ../help/C/tools_transform.page:140
+#: ../help/C/tools_transform.page:131
 msgid "Here is an example of filters applied on small areas of an image:"
 msgstr ""
 "Este es un ejemplo de filtros aplicados en pequeñas áreas de una imagen:"
@@ -1821,16 +1829,124 @@ msgstr "Las versiones más recientes aparecen en primer lugar."
 
 #. (itstool) path: section/title
 #: ../help/C/whats_new.page:20
+msgid "Version 1.2.0"
+msgstr "Versión 1.2.0"
+
+#. (itstool) path: section/p
+#: ../help/C/whats_new.page:21
+msgid ""
+"The <link xref=\"tools_transform\">transformation tools</link> now "
+"consistently apply their preview when you change the active tool without "
+"clicking on \"apply\"."
+msgstr ""
+"Las <link xref=\"tools_transform\">herramientas de transformación</link> "
+"ahora aplican de forma consistente su vista previa cuando se cambia la "
+"herramienta activa sin hacer clic en \"aplicar\"."
+
+#. (itstool) path: section/p
+#: ../help/C/whats_new.page:26
+msgid ""
+"The text tool is more intuitive to use, with distinct areas on the canvas to "
+"edit, move and insert the text."
+msgstr ""
+"La herramienta de texto es más intuitiva de usar, con zonas diferenciadas en "
+"el lienzo para editar, mover e insertar el texto."
+
+#. (itstool) path: section/p
+#: ../help/C/whats_new.page:30
+msgid ""
+"A former option of the paint bucket tool, which didn't belong there, has "
+"been improved and moved to the eraser tool."
+msgstr ""
+"Una antigua opción de la herramienta cubo de pintura, que no pertenecía a "
+"ella, ha sido mejorada y trasladada a la herramienta borrador."
+
+#. (itstool) path: section/p
+#: ../help/C/whats_new.page:34
+msgid ""
+"Transparency is henceforth correctly preserved when the \"skew\" tool "
+"expands the canvas with a solid color."
+msgstr ""
+"A partir de ahora, la transparencia se preserva correctamente cuando la "
+"herramienta \"sesgar\" amplía el lienzo con un color sólido."
+
+#. (itstool) path: section/p
+#: ../help/C/whats_new.page:38
+msgid "You can now adjust the position of the canvas when you're cropping it."
+msgstr "Ahora puede ajustar la posición del lienzo cuando lo está recortando."
+
+#. (itstool) path: section/p
+#: ../help/C/whats_new.page:41
+msgid ""
+"The option to use a color editor by default has been moved from the main "
+"window to <link xref=\"preferences\">the preferences window</link>, and its "
+"bug has been fixed."
+msgstr ""
+"La opción de usar un editor de colores predeterminado se ha trasladado de la "
+"ventana principal a <link xref=\"preferencias\">la ventana de preferencias</"
+"link>, y se ha corregido su error."
+
+#. (itstool) path: section/title
+#: ../help/C/whats_new.page:49
+msgid "Version 1.0.1"
+msgstr "Versión 1.0.1"
+
+#. (itstool) path: section/p
+#: ../help/C/whats_new.page:50
+msgid ""
+"By popular demand, the \"highlighter\" tool is now enabled by default, and "
+"the message dialog to warn you about the release notes is less intrusive."
+msgstr ""
+"Por petición popular, la herramienta \"resaltador\" está ahora activada por "
+"defecto, y el diálogo de mensajes para avisar de las notas de la versión es "
+"menos intrusivo."
+
+#. (itstool) path: section/p
+#: ../help/C/whats_new.page:55
+msgid ""
+"The main improvement in this update is the zoom workflow: since the version "
+"1.0.0 it's possible to zoom in very deep, but the process was very slow, and "
+"the view didn't stay well centered around the mouse pointer; and once at "
+"2000%%, scrolling up or down, or left or right, was quite violent. These "
+"problems should all have disappeared in this new version!"
+msgstr ""
+"La principal mejora en esta actualización es el flujo de trabajo del zoom: "
+"desde la versión 1.0.0 es posible hacer un zoom muy profundo, pero el "
+"proceso era muy lento, y la vista no se mantenía bien centrada alrededor del "
+"puntero del ratón; y una vez en el 2000%%, el desplazamiento hacia arriba o "
+"hacia abajo, o hacia la izquierda o la derecha, era bastante violento. Todos "
+"estos problemas deberían haber desaparecido en esta nueva versión."
+
+#. (itstool) path: section/p
+#: ../help/C/whats_new.page:63
+msgid ""
+"Incorrect command line parsing when using the app outside of a flatpak "
+"sandbox has also been fixed."
+msgstr ""
+"También se ha corregido el análisis incorrecto de la línea de comandos "
+"cuando se usa la aplicación fuera de un sandbox flatpak."
+
+#. (itstool) path: section/p
+#: ../help/C/whats_new.page:67
+msgid ""
+"For users on elementary OS, a small issue concerning window resizing has "
+"been mended too."
+msgstr ""
+"Para los usuarios de elementary OS, también se ha corregido un pequeño "
+"problema relacionado con el cambio de tamaño de las ventanas."
+
+#. (itstool) path: section/title
+#: ../help/C/whats_new.page:74
 msgid "Version 1.0.0"
 msgstr "Versión 1.0.0"
 
 #. (itstool) path: subsection/title
-#: ../help/C/whats_new.page:23
+#: ../help/C/whats_new.page:77
 msgid "Performance"
 msgstr "Rendimiento"
 
 #. (itstool) path: subsection/p
-#: ../help/C/whats_new.page:24
+#: ../help/C/whats_new.page:78
 msgid ""
 "This new version improves rendering performance, which is visible when "
 "editing large images with a poor CPU."
@@ -1839,79 +1955,81 @@ msgstr ""
 "visible cuando se editan imágenes grandes con una CPU poco potente."
 
 #. (itstool) path: subsection/p
-#: ../help/C/whats_new.page:28
+#: ../help/C/whats_new.page:82
 msgid "It's still not perfect, but it's better!"
 msgstr "¡Todavía no es perfecto, pero es mejor!"
 
 #. (itstool) path: subsection/title
-#: ../help/C/whats_new.page:34
+#: ../help/C/whats_new.page:88
 msgid "Keyboard controls"
 msgstr "Controles del teclado"
 
 #. (itstool) path: subsection/p
-#: ../help/C/whats_new.page:35
+#: ../help/C/whats_new.page:89
 msgid ""
-"You can select tools with keyboard accelerators (Alt+letter). This may not "
-"work yet with languages using a non-latin alphabet."
+"You can select tools with keyboard accelerators (<key>Alt</key>+letter). "
+"This may not work yet with languages using a non-latin alphabet."
 msgstr ""
-"Puede seleccionar herramientas con aceleradores de teclado (Alt+letra). Es "
-"posible que esto no funcione todavía con los idiomas que usan un alfabeto no "
-"latino."
+"Puede seleccionar herramientas con aceleradores de teclado (<key>Alt</key>"
+"+letra). Es posible que esto no funcione todavía con los idiomas que usan un "
+"alfabeto no latino."
 
 #. (itstool) path: subsection/p
-#: ../help/C/whats_new.page:39
+#: ../help/C/whats_new.page:93
 msgid ""
-"Pressing \"ctrl\" will display the cursor coordinates in a tooltip. If you "
-"do it while using a tool, it may display additional data, for example the "
-"dimensions of the shape you're drawing!"
+"Pressing <key>Ctrl</key> will display the cursor coordinates in a tooltip. "
+"If you do it while using a tool, it may display additional data, for example "
+"the dimensions of the shape you're drawing!"
 msgstr ""
-"Al pulsar \"ctrl\" se mostrarán las coordenadas del cursor en un tooltip. Si "
-"lo hace mientras usa una herramienta, puede mostrar datos adicionales, por "
-"ejemplo, las dimensiones de la forma que está dibujando."
+"Al pulsar <key>Ctrl</key> se mostrarán las coordenadas del cursor en un "
+"tooltip. Si lo hace mientras usa una herramienta, puede mostrar datos "
+"adicionales, por ejemplo, las dimensiones de la forma que está dibujando."
 
 #. (itstool) path: subsection/p
-#: ../help/C/whats_new.page:44
+#: ../help/C/whats_new.page:98
 msgid ""
-"Pressing \"shift\", or \"alt\" when using a tool enables specific options, "
-"such as locking the direction for the \"line\" tool, or changing the filling "
-"style of a shape."
+"Pressing <key>Shift</key>, or <key>Alt</key> when using a tool enables "
+"specific options, such as locking the direction for the \"line\" tool, or "
+"changing the filling style of a shape."
 msgstr ""
-"Al pulsar \"shift\" o \"alt\" cuando se usa una herramienta se activan "
-"opciones específicas, como bloquear la dirección de la herramienta \"línea\" "
-"o cambiar el estilo de relleno de una forma."
+"Al pulsar <key>Shift</key>, o <key>Alt</key> cuando se usa una herramienta "
+"se activan opciones específicas, como bloquear la dirección de la "
+"herramienta \"línea\", o cambiar el estilo de relleno de una forma."
 
 #. (itstool) path: subsection/title
-#: ../help/C/whats_new.page:52
+#: ../help/C/whats_new.page:106
 msgid "New tool!"
 msgstr "¡Herramienta nueva!"
 
 #. (itstool) path: subsection/p
-#: ../help/C/whats_new.page:53
+#: ../help/C/whats_new.page:107
 msgid ""
-"You can now use the new \"skew\" tool, to tilt an image from a rectangle to "
-"a parallelogram. Such a deformation can be applied horizontally or "
-"vertically."
+"You can now use the new <link xref=\"tools_transform#skew\">\"skew\" tool </"
+"link>, to tilt an image from a rectangle to a parallelogram. Such a "
+"deformation can be applied horizontally or vertically."
 msgstr ""
-"Ahora puede usar la nueva herramienta \"sesgar\", para inclinar una imagen "
-"de un rectángulo a un paralelogramo. Dicha deformación puede aplicarse "
-"horizontal o verticalmente."
+"Ahora puede usar la nueva herramienta <link xref=\"tools_transform#skew\">"
+"\"sesgar\" </link>, para inclinar una imagen de un rectángulo a un "
+"paralelogramo. Esta deformación puede aplicarse horizontal o verticalmente."
 
 #. (itstool) path: subsection/title
-#: ../help/C/whats_new.page:61
+#: ../help/C/whats_new.page:115
 msgid "New options!"
 msgstr "¡Opciones nuevas!"
 
 #. (itstool) path: subsection/p
-#: ../help/C/whats_new.page:62
+#: ../help/C/whats_new.page:116
 msgid ""
-"Using the \"scale\" tool, you may optionally set the new size as a relative "
-"percentage rather than an absolute value in pixels."
+"Using <link xref=\"tools_transform#scale\">the \"scale\" tool</link>, you "
+"may optionally set the new size as a relative percentage rather than an "
+"absolute value in pixels."
 msgstr ""
-"Con la herramienta \"escala\", puede establecer opcionalmente el tamaño "
-"nuevo como un porcentaje relativo en lugar de un valor absoluto en píxeles."
+"Usando <link xref=\"tools_transform#scale\">la herramienta \"escala\"</"
+"link>, puede establecer opcionalmente el nuevo tamaño como un porcentaje "
+"relativo en lugar de un valor absoluto en píxeles."
 
 #. (itstool) path: subsection/p
-#: ../help/C/whats_new.page:66
+#: ../help/C/whats_new.page:121
 msgid ""
 "Thanks to a new option, the highlighter will draw straighter, less messy "
 "lines."
@@ -1920,22 +2038,23 @@ msgstr ""
 "desordenadas."
 
 #. (itstool) path: subsection/p
-#: ../help/C/whats_new.page:70
+#: ../help/C/whats_new.page:125
 msgid ""
-"Pixel rendering is now very sharp when the image is very zoomed in, and the "
-"pencil is more precise, so you can draw each pixel precisely."
+"Pixel rendering is now very sharp when the image is very <link xref="
+"\"zoom_preview\">zoomed in</link>, and the pencil is more precise, so you "
+"can draw each pixel precisely."
 msgstr ""
-"La representación de los píxeles es ahora muy nítida cuando la imagen está "
-"muy ampliada, y el lápiz es más preciso, por lo que se puede dibujar cada "
-"píxel con exactitud."
+"El renderizado de los píxeles es ahora muy nítido cuando la imagen está muy "
+"<link xref=\"zoom_preview\">ampliada</link>, y el lápiz es más preciso, por "
+"lo que puede dibujar cada píxel con exactitud."
 
 #. (itstool) path: subsection/title
-#: ../help/C/whats_new.page:77
+#: ../help/C/whats_new.page:133
 msgid "Translations"
 msgstr "Traducciones"
 
 #. (itstool) path: subsection/p
-#: ../help/C/whats_new.page:78
+#: ../help/C/whats_new.page:134
 msgid ""
 "The version 1.0.0 also features new updates to many translations, such as "
 "czech, croatian, german, hebrew, and many more."
@@ -1944,7 +2063,7 @@ msgstr ""
 "traducciones, como la checa, la croata, la alemana y la hebrea, entre otras."
 
 #. (itstool) path: subsection/p
-#: ../help/C/whats_new.page:82
+#: ../help/C/whats_new.page:138
 msgid ""
 "The help manual you're reading is now mostly translated in spanish, russian, "
 "and turkish."
@@ -1953,17 +2072,17 @@ msgstr ""
 "español, ruso y turco."
 
 #. (itstool) path: subsection/p
-#: ../help/C/whats_new.page:86
+#: ../help/C/whats_new.page:142
 msgid "A huge \"thank you\" to contributors all around the world!"
 msgstr "Un enorme \"gracias\" a los colaboradores de todo el mundo."
 
 #. (itstool) path: section/title
-#: ../help/C/whats_new.page:93
+#: ../help/C/whats_new.page:149
 msgid "Version 0.8.5"
 msgstr "Versión 0.8.5"
 
 #. (itstool) path: section/p
-#: ../help/C/whats_new.page:95
+#: ../help/C/whats_new.page:151
 msgid ""
 "Changing the view's position within the thumbnail preview now dynamically "
 "and immediately updates the view, instead of only reacting to your the click "
@@ -1974,13 +2093,13 @@ msgstr ""
 "lugar de reaccionar únicamente a la liberación del clic."
 
 #. (itstool) path: section/p
-#: ../help/C/whats_new.page:100
+#: ../help/C/whats_new.page:156
 msgid "The text tool gains an option to use a thicker outline."
 msgstr ""
 "La herramienta de texto gana una opción para usar un contorno más grueso."
 
 #. (itstool) path: section/p
-#: ../help/C/whats_new.page:103
+#: ../help/C/whats_new.page:159
 msgid ""
 "Both the thumbnail preview and the blending mode selection have become more "
 "reliable and efficient."
@@ -1989,30 +2108,22 @@ msgstr ""
 "ahora más fiables y eficaces."
 
 #. (itstool) path: section/p
-#: ../help/C/whats_new.page:107
+#: ../help/C/whats_new.page:163
 msgid "The version 0.8.5 also features new translations."
 msgstr "La versión 0.8.5 también incluye nuevas traducciones."
 
 #. (itstool) path: section/title
-#: ../help/C/whats_new.page:113
+#: ../help/C/whats_new.page:169
 msgid "Version 0.8.4"
 msgstr "Versión 0.8.4"
 
 #. (itstool) path: section/p
-#: ../help/C/whats_new.page:115
-msgid ""
-"Version 0.8.4 features several minor bug fixes, and various new translations."
-msgstr ""
-"La versión 0.8.4 incluye varias correcciones de errores menores y varias "
-"traducciones nuevas."
-
-#. (itstool) path: section/p
-#: ../help/C/whats_new.page:119
+#: ../help/C/whats_new.page:171
 msgid "Undoing several operations one after another should be less slow."
 msgstr "Deshacer varias operaciones una tras otra debería ser menos lento."
 
 #. (itstool) path: section/p
-#: ../help/C/whats_new.page:122
+#: ../help/C/whats_new.page:174
 msgid ""
 "It's not possible anymore to reload the picture from the disk if it has "
 "never been saved on the disk to begin with."
@@ -2021,18 +2132,18 @@ msgstr ""
 "se ha guardado en él."
 
 #. (itstool) path: section/p
-#: ../help/C/whats_new.page:126
+#: ../help/C/whats_new.page:178
 msgid "The text tool gains an option to disable anti-aliasing."
 msgstr ""
 "La herramienta de texto gana una opción para desactivar el antialiasing."
 
 #. (itstool) path: section/title
-#: ../help/C/whats_new.page:132
+#: ../help/C/whats_new.page:184
 msgid "Version 0.8.3"
 msgstr "Versión 0.8.3"
 
 #. (itstool) path: section/p
-#: ../help/C/whats_new.page:134
+#: ../help/C/whats_new.page:186
 msgid ""
 "After rotating the selection, it had an incorrectly big height, but now it's "
 "fixed."
@@ -2041,7 +2152,7 @@ msgstr ""
 "ahora está arreglado."
 
 #. (itstool) path: section/p
-#: ../help/C/whats_new.page:138
+#: ../help/C/whats_new.page:190
 msgid ""
 "The outline of the <link xref=\"tools_selection\">free selection</link> is "
 "now visible even when the image is very zoomed out."
@@ -2050,7 +2161,7 @@ msgstr ""
 "ahora visible incluso cuando la imagen está muy alejada."
 
 #. (itstool) path: section/p
-#: ../help/C/whats_new.page:142
+#: ../help/C/whats_new.page:194
 msgid ""
 "In specific configurations, opening a file would open a second tab with an "
 "empty image. This weird behaviour should have disappeared."
@@ -2060,12 +2171,12 @@ msgstr ""
 "desaparecido."
 
 #. (itstool) path: section/title
-#: ../help/C/whats_new.page:149
+#: ../help/C/whats_new.page:201
 msgid "Version 0.8.2"
 msgstr "Versión 0.8.2"
 
 #. (itstool) path: section/p
-#: ../help/C/whats_new.page:151
+#: ../help/C/whats_new.page:203
 msgid ""
 "The boundaries of the canvas are now always visibly delimited, to better "
 "render the area where you can draw, even if the canvas is transparent. It "
@@ -2078,7 +2189,7 @@ msgstr ""
 "desaparecer cuando la deseleccione."
 
 #. (itstool) path: section/p
-#: ../help/C/whats_new.page:157
+#: ../help/C/whats_new.page:209
 msgid ""
 "<link xref=\"tools_transform\">Transform tools</link> can now draw a preview "
 "of the pixels they may create outside of the current canvas, which makes the "
@@ -2091,7 +2202,7 @@ msgstr ""
 "intuitivas de usar."
 
 #. (itstool) path: section/p
-#: ../help/C/whats_new.page:162
+#: ../help/C/whats_new.page:214
 msgid ""
 "The straight line tool has a new option to lock its angle, so you can draw "
 "perfect horizontal, vertical, or 45° strokes."
@@ -2101,7 +2212,7 @@ msgstr ""
 "o de 45°."
 
 #. (itstool) path: section/p
-#: ../help/C/whats_new.page:166
+#: ../help/C/whats_new.page:218
 msgid ""
 "The `--edit-clipboard` command line option now works better with Wayland."
 msgstr ""
@@ -2109,7 +2220,7 @@ msgstr ""
 "Wayland."
 
 #. (itstool) path: section/p
-#: ../help/C/whats_new.page:169
+#: ../help/C/whats_new.page:221
 msgid ""
 "Scaling an image using the numerical inputs now preserves the original "
 "proportions of the image (unless the \"never keep proportions\" option is "
@@ -2120,7 +2231,7 @@ msgstr ""
 "\"no conservar nunca las proporciones\")."
 
 #. (itstool) path: section/p
-#: ../help/C/whats_new.page:174
+#: ../help/C/whats_new.page:226
 msgid ""
 "This version of the app is compatible with older GNOME versions (Ubuntu LTS "
 "18.04)."
@@ -2129,12 +2240,12 @@ msgstr ""
 "GNOME (Ubuntu LTS 18.04)."
 
 #. (itstool) path: section/title
-#: ../help/C/whats_new.page:181
+#: ../help/C/whats_new.page:233
 msgid "Version 0.8.1"
 msgstr "Versión 0.8.1"
 
 #. (itstool) path: section/p
-#: ../help/C/whats_new.page:183
+#: ../help/C/whats_new.page:235
 msgid ""
 "You can now crop or expand the canvas to an \"automatic\" size based on the "
 "current selection size, using new actions available in the selection menus."
@@ -2144,7 +2255,7 @@ msgstr ""
 "los menús de selección."
 
 #. (itstool) path: section/p
-#: ../help/C/whats_new.page:188
+#: ../help/C/whats_new.page:240
 msgid ""
 "A bug, where the \"crop\" tool could erase the image under certain "
 "conditions, has been fixed."
@@ -2153,7 +2264,7 @@ msgstr ""
 "borrar la imagen en determinadas condiciones."
 
 #. (itstool) path: section/p
-#: ../help/C/whats_new.page:192
+#: ../help/C/whats_new.page:244
 msgid ""
 "In the preferences window, there is now an option to select if you prefer "
 "the dark theme variant."
@@ -2162,12 +2273,12 @@ msgstr ""
 "prefiere la variante de tema oscuro."
 
 #. (itstool) path: section/p
-#: ../help/C/whats_new.page:196
+#: ../help/C/whats_new.page:248
 msgid "Several minor options have been added to the tools:"
 msgstr "Se han añadido varias opciones menores a las herramientas:"
 
 #. (itstool) path: item/p
-#: ../help/C/whats_new.page:200
+#: ../help/C/whats_new.page:252
 msgid ""
 "The orientation of the calligraphic nib (<gui style=\"button\">Brush</gui> "
 "tool);"
@@ -2176,7 +2287,7 @@ msgstr ""
 "\">Pincel</gui>);"
 
 #. (itstool) path: item/p
-#: ../help/C/whats_new.page:204
+#: ../help/C/whats_new.page:256
 msgid ""
 "Various ways to censor an information using filters, with a far quicker "
 "workflow, as an option of the <gui style=\"button\">Eraser</gui> tool;"
@@ -2186,7 +2297,7 @@ msgstr ""
 "\">Borrador</gui>;"
 
 #. (itstool) path: item/p
-#: ../help/C/whats_new.page:208
+#: ../help/C/whats_new.page:260
 msgid ""
 "An \"outline\" option to the <gui style=\"button\">Pencil</gui>, <gui style="
 "\"button\">Line</gui> and <gui style=\"button\">Curve</gui> tools, to get "
@@ -2198,12 +2309,12 @@ msgstr ""
 "chulo alrededor de sus líneas."
 
 #. (itstool) path: section/title
-#: ../help/C/whats_new.page:217
+#: ../help/C/whats_new.page:269
 msgid "Version 0.8.0"
 msgstr "Versión 0.8.0"
 
 #. (itstool) path: section/p
-#: ../help/C/whats_new.page:219
+#: ../help/C/whats_new.page:271
 msgid ""
 "The <link xref=\"fullscreen\">fullscreen mode</link> has been completely "
 "redesigned to provide an easier yet less intrusive access to the tools and "
@@ -2214,7 +2325,7 @@ msgstr ""
 "intrusivo a las herramientas y sus opciones."
 
 #. (itstool) path: section/p
-#: ../help/C/whats_new.page:224
+#: ../help/C/whats_new.page:276
 msgid ""
 "The help manual has been splitted in smaller pages to be easier to read, and "
 "several buttons to access it have been added across the application."
@@ -2224,12 +2335,12 @@ msgstr ""
 "aplicación."
 
 #. (itstool) path: subsection/title
-#: ../help/C/whats_new.page:230
+#: ../help/C/whats_new.page:282
 msgid "New tools"
 msgstr "Herramientas nuevas"
 
 #. (itstool) path: subsection/p
-#: ../help/C/whats_new.page:231
+#: ../help/C/whats_new.page:283
 msgid ""
 "You can now use a tablet and a stylus to <link xref=\"tools_classic#brushes"
 "\"> draw with pressure-sensitive brushes</link>, available under the new "
@@ -2242,12 +2353,12 @@ msgstr ""
 "simple, un aerógrafo, un pincel de pelo y una pluma caligráfica."
 
 #. (itstool) path: subsection/title
-#: ../help/C/whats_new.page:240
+#: ../help/C/whats_new.page:292
 msgid "New options for existing tools"
 msgstr "Opciones nuevas para las herramientas existentes"
 
 #. (itstool) path: item/p
-#: ../help/C/whats_new.page:242
+#: ../help/C/whats_new.page:294
 msgid ""
 "The <link xref=\"tools_selection\">selection tools</link> have a new, more "
 "rich, more readable bottom pane."
@@ -2256,7 +2367,7 @@ msgstr ""
 "un nuevo panel inferior más rico y legible."
 
 #. (itstool) path: item/p
-#: ../help/C/whats_new.page:246
+#: ../help/C/whats_new.page:298
 msgid ""
 "<link xref=\"tools_transform#filters\">Filters</link> have been rewritten to "
 "be more reliable, and a new filter to harmoniously increase contrast has "
@@ -2267,7 +2378,7 @@ msgstr ""
 "aumentar armoniosamente el contraste."
 
 #. (itstool) path: item/p
-#: ../help/C/whats_new.page:251
+#: ../help/C/whats_new.page:303
 msgid ""
 "When you move or delete the selection, now the pixels left behind can "
 "optionally be a specific color, rather than always transparency. This "
@@ -2280,7 +2391,7 @@ msgstr ""
 "característica es compleja de explicar con palabras, pruébela y verá."
 
 #. (itstool) path: item/p
-#: ../help/C/whats_new.page:257
+#: ../help/C/whats_new.page:309
 msgid ""
 "The eraser tool now as options: it can use a specific color, rather than "
 "always transparency. This option has the same value as the selection "
@@ -2293,7 +2404,7 @@ msgstr ""
 "Esta herramienta también tiene un icono nuevo, basado en el tema de Adwaita."
 
 #. (itstool) path: item/p
-#: ../help/C/whats_new.page:263
+#: ../help/C/whats_new.page:315
 msgid ""
 "Options such as the text background type, the shape filling style, or the "
 "aforementioned eraser/selection replacement color, are now persisted when "
@@ -2304,12 +2415,12 @@ msgstr ""
 "selección, se mantienen ahora al cerrar la aplicación."
 
 #. (itstool) path: subsection/title
-#: ../help/C/whats_new.page:272
+#: ../help/C/whats_new.page:324
 msgid "Color modes"
 msgstr "Modos de color"
 
 #. (itstool) path: subsection/p
-#: ../help/C/whats_new.page:273
+#: ../help/C/whats_new.page:325
 msgid ""
 "The user interface for selecting the <link xref=\"tools_classic_colors\"> "
 "active color application mode</link> has been redesigned to better show the "
@@ -2321,7 +2432,7 @@ msgstr ""
 "submenús."
 
 #. (itstool) path: subsection/p
-#: ../help/C/whats_new.page:280
+#: ../help/C/whats_new.page:332
 msgid ""
 "The \"blur\" mode has been removed, which simplifies the situation and "
 "allows <link xref=\"tools_classic\">several tools</link> (\"shapes\" and "
@@ -2333,388 +2444,18 @@ msgstr ""
 "en general."
 
 #. (itstool) path: subsection/title
-#: ../help/C/whats_new.page:288
+#: ../help/C/whats_new.page:340
 msgid "Bugs fixed"
 msgstr "Fallos corregidos"
 
 #. (itstool) path: subsection/p
-#: ../help/C/whats_new.page:289
+#: ../help/C/whats_new.page:341
 msgid ""
 "Coordinates of the selection were lost when unselecting a selection defined "
 "by an undo."
 msgstr ""
 "Las coordenadas de la selección se perdían al deseleccionar una selección "
 "definida por un deshacer."
-
-#. (itstool) path: section/title
-#: ../help/C/whats_new.page:297
-msgid "Version 0.6.5"
-msgstr "Versión 0.6.5"
-
-#. (itstool) path: section/p
-#: ../help/C/whats_new.page:299
-msgid ""
-"Bugs fixed: the bottom panes sometimes refused to adapt to the screen size, "
-"and could disappear under certain conditions."
-msgstr ""
-"Fallos corregidos: los paneles inferiores a veces se negaban a adaptarse al "
-"tamaño de la pantalla, y podían desaparecer bajo ciertas condiciones."
-
-#. (itstool) path: section/p
-#: ../help/C/whats_new.page:303
-msgid ""
-"The catastrophic \"print\" action, that no one ever used so no one ever "
-"noticed, is now somewhat usable."
-msgstr ""
-"La catastrófica acción de \"imprimir\", que nadie usó nunca, por lo que "
-"nadie se dio cuenta, es ahora algo usable."
-
-#. (itstool) path: section/p
-#: ../help/C/whats_new.page:307
-msgid ""
-"Importing or opening an image using drag-and-drop is now disabled with "
-"flatpak, because it can't work with the sandbox."
-msgstr ""
-"Importar o abrir una imagen usando el método de arrastrar y soltar está "
-"ahora desactivado con flatpak, porque no puede funcionar con el depósito "
-"seguro."
-
-#. (itstool) path: section/p
-#: ../help/C/whats_new.page:311
-msgid ""
-"The <link xref=\"zoom_preview\">movements of the view</link> when holding "
-"and moving the middle-click are now far more accurate."
-msgstr ""
-"Los <link xref=\"zoom_preview\">movimientos de la vista</link> al mantener y "
-"mover el clic del medio son ahora mucho más precisos."
-
-#. (itstool) path: section/title
-#: ../help/C/whats_new.page:318
-msgid "Version 0.6.4"
-msgstr "Versión 0.6.4"
-
-#. (itstool) path: section/p
-#: ../help/C/whats_new.page:320
-msgid ""
-"The value of the \"use anti-aliasing\" option is now persisted when the app "
-"is closed, and restored when the app starts."
-msgstr ""
-"El valor de la opción \"usar antialiasing\" ahora se mantiene cuando se "
-"cierra la aplicación y se restaura cuando se inicia."
-
-#. (itstool) path: section/p
-#: ../help/C/whats_new.page:324
-msgid ""
-"Various changes to the way file types are handled should help you to get "
-"informative error messages, and the app should be usable despite these "
-"errors."
-msgstr ""
-"Varios cambios en la forma de manejar los tipos de archivos deberían ayudar "
-"a obtener mensajes de error informativos, y la aplicación debería ser usable "
-"a pesar de estos errores."
-
-#. (itstool) path: section/title
-#: ../help/C/whats_new.page:332
-msgid "Version 0.6.3"
-msgstr "Versión 0.6.3"
-
-#. (itstool) path: section/p
-#: ../help/C/whats_new.page:334
-msgid ""
-"More options to draw using dashes (several type of dashes) and arrows "
-"(several scenarios where they were broken have been addressed). An option to "
-"draw double-ended arrows is available."
-msgstr ""
-"Más opciones para dibujar con guiones (varios tipos de guiones) y flechas "
-"(se han solucionado varios escenarios en los que se rompían). Hay una opción "
-"para dibujar flechas de doble punta."
-
-#. (itstool) path: section/p
-#: ../help/C/whats_new.page:339
-msgid ""
-"This version is compatible with older distributions (versions of GNOME "
-"libraries older than 3.30)."
-msgstr ""
-"Esta versión es compatible con distribuciones más antiguas (versiones de las "
-"bibliotecas de GNOME anteriores a la 3.30)."
-
-#. (itstool) path: section/p
-#: ../help/C/whats_new.page:343
-msgid ""
-"When the app uses a menu-bar, the tools have been arranged in a submenu: "
-"\"Tools / Active tool\"."
-msgstr ""
-"Cuando la aplicación usa una barra de menú, las herramientas se han "
-"organizado en un submenú: \"Herramientas / Herramienta activa\"."
-
-#. (itstool) path: section/title
-#: ../help/C/whats_new.page:350
-msgid "Version 0.6.2"
-msgstr "Versión 0.6.2"
-
-#. (itstool) path: section/p
-#: ../help/C/whats_new.page:352
-msgid ""
-"The 'highlighter' tool now provides options to highlight light text on a "
-"dark background."
-msgstr ""
-"La herramienta \"resaltador\" ofrece ahora opciones para resaltar el texto "
-"claro sobre un fondo oscuro."
-
-#. (itstool) path: section/p
-#: ../help/C/whats_new.page:356
-msgid ""
-"When an image has been saved without its transparency, the app now suggests "
-"to reload the image from the disk. Also, this 'reload from disk' feature is "
-"now available with every possible window layout."
-msgstr ""
-"Cuando una imagen se ha guardado sin su transparencia, la aplicación ahora "
-"sugiere recargar la imagen desde el disco. Además, esta función de \"recarga "
-"desde el disco\" está ahora disponible con todos los diseños de ventana "
-"posibles."
-
-#. (itstool) path: section/p
-#: ../help/C/whats_new.page:361
-msgid "An action to copy the whole image to clipboard has been added."
-msgstr "Se ha añadido una acción para copiar toda la imagen al portapapeles."
-
-#. (itstool) path: section/p
-#: ../help/C/whats_new.page:364
-msgid ""
-"Keyboard shortcuts for increasing and decreasing the tool width have been "
-"added."
-msgstr ""
-"Se han añadido atajos del teclado para aumentar y disminuir el ancho de la "
-"herramienta."
-
-#. (itstool) path: section/p
-#: ../help/C/whats_new.page:368
-msgid "The 'paint' tool can now optionally paint over the entire image."
-msgstr ""
-"La herramienta \"pintar\" ahora puede pintar opcionalmente sobre toda la "
-"imagen."
-
-#. (itstool) path: section/title
-#: ../help/C/whats_new.page:374
-msgid "Version 0.6.1"
-msgstr "Versión 0.6.1"
-
-#. (itstool) path: section/p
-#: ../help/C/whats_new.page:376
-msgid ""
-"It's now possible to remove transparency when saving PNG files too. And "
-"there are more color options to replace the transparent pixels: 'initial "
-"color' means the transparent pixels will be replaced by the initial color of "
-"the canvas, as set in the app preferences."
-msgstr ""
-"Ahora también es posible eliminar la transparencia al guardar los archivos "
-"PNG. Y hay más opciones de color para reemplazar los píxeles transparentes: "
-"El \"color inicial\" significa que los píxeles transparentes serán "
-"sustituidos por el color inicial del lienzo, tal y como se establece en las "
-"preferencias de la aplicación."
-
-#. (itstool) path: section/p
-#: ../help/C/whats_new.page:382
-msgid ""
-"A new optional tool named \"Points\" has been added, it may help captioning "
-"pictures."
-msgstr ""
-"Se ha añadido una herramienta opcional nueva llamada \"Puntos\", que puede "
-"ayudar a subtitular las imágenes."
-
-#. (itstool) path: section/p
-#: ../help/C/whats_new.page:386
-msgid ""
-"Minors bugs to the 'rotate' tool have been fixed, that occurred when the "
-"selection was flipped before being rotated."
-msgstr ""
-"Se han corregido pequeños fallos en la herramienta 'rotar', que se producían "
-"cuando se volteaba la selección antes de ser rotada."
-
-#. (itstool) path: section/title
-#: ../help/C/whats_new.page:393
-msgid "Version 0.6.0"
-msgstr "Versión 0.6.0"
-
-#. (itstool) path: subsection/title
-#: ../help/C/whats_new.page:396
-msgid "Zoom"
-msgstr "Zoom"
-
-#. (itstool) path: subsection/p
-#: ../help/C/whats_new.page:397
-msgid ""
-"The most prominent new feature is the ability to <link xref=\"zoom_preview"
-"\"> zoom in (or zoom out)</link> on the image. It can be achieved using:"
-msgstr ""
-"La novedad más destacada es la posibilidad de <link xref=\"zoom_preview\"> "
-"ampliar (o reducir)</link> la imagen. Se puede conseguir usando:"
-
-#. (itstool) path: item/p
-#: ../help/C/whats_new.page:402
-msgid "buttons in the minimap popover;"
-msgstr "botones en la ventana emergente del minimapa;"
-
-#. (itstool) path: item/p
-#: ../help/C/whats_new.page:405
-msgid "touch gestures (touchpad or touchscreen);"
-msgstr "gestos táctiles (panel táctil o pantalla táctil);"
-
-#. (itstool) path: item/p
-#: ../help/C/whats_new.page:408
-msgid "the mouse wheel;"
-msgstr "la rueda del ratón;"
-
-#. (itstool) path: item/p
-#: ../help/C/whats_new.page:411
-msgid "keyboard shortcuts."
-msgstr "atajos del teclado."
-
-#. (itstool) path: subsection/p
-#: ../help/C/whats_new.page:417
-msgid ""
-"With HiDPI displays, most problems have been fixed: the canvas should be "
-"displayed without unwanted rescalings and destructive croppings."
-msgstr ""
-"Con las pantallas HiDPI, la mayoría de los problemas se han solucionado: el "
-"lienzo debería mostrarse sin reescalados indeseados ni recortes destructivos."
-
-#. (itstool) path: subsection/title
-#: ../help/C/whats_new.page:424
-msgid "Improvements to tools"
-msgstr "Mejoras en las herramientas"
-
-#. (itstool) path: subsection/p
-#: ../help/C/whats_new.page:425
-msgid ""
-"An \"additional tools\" section has been added to <link xref="
-"\"preferences#tools\"> the preferences window</link>, and several tools "
-"listed in this section are disabled by default. It includes tools that are "
-"redundant with other more powerful tools, or tools whose implementation "
-"isn't reliable enough."
-msgstr ""
-"Se ha añadido una sección de \"herramientas adicionales\" a <link xref="
-"\"preferences#tools\"> la ventana de preferencias</link>, y varias de las "
-"herramientas que aparecen en esta sección están desactivadas por defecto. "
-"Incluye herramientas que son redundantes con otras herramientas más "
-"potentes, o herramientas cuya implementación no es lo suficientemente fiable."
-
-#. (itstool) path: subsection/p
-#: ../help/C/whats_new.page:432
-msgid "Otherwise, the following changes occurred:"
-msgstr "Por lo demás, se han producido los siguientes cambios:"
-
-#. (itstool) path: item/p
-#: ../help/C/whats_new.page:436
-msgid ""
-"<link xref=\"tools_selection\">Rectangle selection and freehand selection</"
-"link> are now distinct tools, that share the same bottom pane."
-msgstr ""
-"<link xref=\"tools_selection\">La selección de rectángulos y la selección a "
-"mano alzada</link> son ahora herramientas distintas, que comparten el mismo "
-"panel inferior."
-
-#. (itstool) path: item/p
-#: ../help/C/whats_new.page:441
-msgid ""
-"The 'rotate' tool now supports any angle when rotating the selection, and it "
-"handles horizontal or vertical flipping."
-msgstr ""
-"La herramienta 'rotar' ahora admite cualquier ángulo al rotar la selección, "
-"y maneja el volteo horizontal o vertical."
-
-#. (itstool) path: item/p
-#: ../help/C/whats_new.page:445
-msgid ""
-"The numerous tools producing shapes (circle, rectangle, polygon, …), have "
-"been merged into a single, more consistent 'shape' tool, along with 'rounded "
-"rectangle' and 'ellipse'. Their filling options now include various types of "
-"gradients."
-msgstr ""
-"Las numerosas herramientas que producen formas (círculo, rectángulo, "
-"polígono, ...), se han fusionado en una única herramienta de \"forma\" más "
-"consistente, junto con \"rectángulo redondeado\" y \"elipse\". Sus opciones "
-"de relleno incluyen ahora varios tipos de gradientes."
-
-#. (itstool) path: item/p
-#: ../help/C/whats_new.page:451
-msgid ""
-"The text tool can now write using most system fonts, thus allowing more "
-"complex characters to be used (e.g. Asian characters)."
-msgstr ""
-"La herramienta de texto ahora puede escribir usando la mayoría de las "
-"fuentes del sistema, lo que permite usar caracteres más complejos (por "
-"ejemplo, caracteres asiáticos)."
-
-#. (itstool) path: item/p
-#: ../help/C/whats_new.page:455
-msgid ""
-"The 'saturate' tool has been replaced by <link xref=\"tools_transform#filters"
-"\"> 'filters'</link>, a more powerful tool with several types of blur, color "
-"inversion, pixelization, saturation and transparency."
-msgstr ""
-"La herramienta 'saturar' ha sido sustituida por <link xref="
-"\"tools_transform#filters\"> 'filtros'</link>, una herramienta más potente "
-"con varios tipos de desenfoque, inversión de color, pixelización, saturación "
-"y transparencia."
-
-#. (itstool) path: item/p
-#: ../help/C/whats_new.page:460
-msgid ""
-"Specialized types of pencils (eraser, highlighter) have been added, as "
-"optional tools."
-msgstr ""
-"Se han añadido tipos de lápices especializados (goma de borrar, resaltador), "
-"como herramientas opcionales."
-
-#. (itstool) path: item/p
-#: ../help/C/whats_new.page:464
-msgid ""
-"The \"free selection\" tool, as well as the \"free shape\" and \"polygon\" "
-"shape, are easier to use thanks to an action to close the path, available in "
-"the tool options menu."
-msgstr ""
-"La herramienta de \"selección libre\", así como la de \"forma libre\" y la "
-"de \"polígono\", son más fáciles de usar gracias a una acción para cerrar el "
-"trazado, disponible en el menú de opciones de la herramienta."
-
-#. (itstool) path: subsection/p
-#: ../help/C/whats_new.page:470
-msgid ""
-"Concerning common options, you can now disable anti-aliasing. Also, the "
-"\"color application mode\" is now an option listed in the <link xref="
-"\"tools_classic_colors\">colors menus and popovers</link>."
-msgstr ""
-"En cuanto a las opciones comunes, ahora se puede desactivar el antialiasing. "
-"Además, el \"modo de aplicación del color\" es ahora una opción que aparece "
-"en los menús y ventanas emergentes de <link xref=\"tools_classic_colors"
-"\">colores</link>."
-
-#. (itstool) path: subsection/title
-#: ../help/C/whats_new.page:478
-msgid "Other features"
-msgstr "Otras características"
-
-#. (itstool) path: subsection/p
-#: ../help/C/whats_new.page:479
-msgid "A <link xref=\"fullscreen\">fullscreen mode</link> is now available."
-msgstr ""
-"Ahora está disponible un <link xref=\"fullscreen\">modo de pantalla "
-"completa</link>."
-
-#. (itstool) path: subsection/p
-#: ../help/C/whats_new.page:482
-msgid "The \"windows\" menu has been removed from the menubar."
-msgstr "Se ha eliminado el menú \"ventanas\" de la barra de menús."
-
-#. (itstool) path: subsection/p
-#: ../help/C/whats_new.page:485
-msgid ""
-"The user should be warned when they try to save despite the current "
-"operation not being applied."
-msgstr ""
-"El usuario debe ser advertido cuando intente guardar a pesar de que la "
-"operación actual no se aplica."
 
 #. (itstool) path: info/desc
 #: ../help/C/zoom_preview.page:13
@@ -2784,7 +2525,7 @@ msgid ""
 msgstr ""
 "Puede usar los controles de vista previa de las miniaturas para cambiar el "
 "nivel de zoom, pero también puede usar atajos del teclado, gestos táctiles o "
-"puede desplazarse mientras presione la tecla <ctrl</tecla>. Este "
+"puede desplazarse mientras presione la tecla <key>Ctrl</key>. Este "
 "comportamiento se puede cambiar:"
 
 #. (itstool) path: section/title
@@ -2832,11 +2573,11 @@ msgid ""
 "fingers)</em>, which will not work if you turn off this setting."
 msgstr ""
 "Si tienes un panel táctil, o una pantalla táctil, se recomienda seguir "
-"usando la tecla <em>Ctrl</em> para hacer zoom (comportamiento "
+"usando la tecla <key>Ctrl</key> para hacer zoom (comportamiento "
 "predeterminado): con un dispositivo así, podrá desplazarse intuitivamente en "
 "ambas direcciones para navegar por toda la imagen. Si su dispositivo es "
 "compatible con los gestos multitáctiles, podrá incluso acercar y alejar la "
-"imagen usando los gestos táctiles predeterminados (estirar o pellizcar con "
+"imagen usando los <em>gestos táctiles predeterminados (estirar o pellizcar con "
 "dos dedos)</em>, que no funcionarán si desactiva este ajuste."
 
 #. (itstool) path: section/p

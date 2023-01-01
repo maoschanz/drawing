@@ -12,7 +12,7 @@ class EraserArea(AbstractEraser):
 		self._tool = tool
 
 	def get_label_options(self, options={}):
-		label_options = _("Rectangle")
+		label_options = _("Rectangle area")
 		if options['eraser-type'] == 'solid':
 			label_options += " - " + {
 				'alpha': _("Transparency"),
@@ -78,6 +78,8 @@ class EraserArea(AbstractEraser):
 			bs = utilities_blur_surface(bs, b_rad, BlurType.CAIRO_REPAINTS, b_dir)
 
 		cairo_context.clip()
+		# XXX this ^ doesn't work with the 'rubber' shape, which forces me to
+		# disable the 'eraser-type' option in this case
 		cairo_context.set_source_surface(bs, r0, r1)
 		cairo_context.paint()
 

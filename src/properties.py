@@ -1,6 +1,6 @@
 # properties.py
 #
-# Copyright 2018-2022 Romain F. T.
+# Copyright 2018-2023 Romain F. T.
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -42,7 +42,7 @@ class DrPropertiesDialog(Gtk.Dialog):
 		self.show()
 
 	def _build_ui(self):
-		"""Fill the dialog with labels displaying correct informations."""
+		"""Fill the dialog with labels displaying correct information."""
 		ui_file_path = '/com/github/maoschanz/drawing/ui/properties.ui'
 		builder = Gtk.Builder.new_from_resource(ui_file_path)
 		self.get_content_area().add(builder.get_object('main_widget'))

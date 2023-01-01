@@ -10,7 +10,7 @@ class EraserRubber(AbstractEraser):
 		super().__init__()
 
 	def get_label_options(self, options={}):
-		label_options = _("Pencil") # XXX << pas ultra clair/adapté en vrai
+		label_options = _("Rubber eraser")
 		label_options += " - " + {
 			'alpha': _("Transparency"),
 			'initial': _("Default color"),
@@ -20,6 +20,9 @@ class EraserRubber(AbstractEraser):
 
 	def get_active_options(self, options={}):
 		return ['selection-color']
+
+	def use_size(self):
+		return True
 
 	def on_release(self, cairo_context, press, event, path=None):
 		if path is None:
