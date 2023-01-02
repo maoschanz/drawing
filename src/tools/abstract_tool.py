@@ -102,6 +102,9 @@ class AbstractAbstractTool():
 			modifier_keys.append('ALT')
 		self._modifier_keys = modifier_keys
 
+	def on_options_changed(self):
+		pass
+
 	############################################################################
 	# Various utilities ########################################################
 

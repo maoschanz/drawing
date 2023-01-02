@@ -84,7 +84,7 @@ class ToolText(AbstractClassicTool):
 			self.window.lookup_action('text-active-family').set_state(font_gvar)
 			self._preview_text()
 		dialog.destroy()
-		# TODO update le editing tip !!
+		self.window.on_tool_options_changed()
 
 	def _set_font_options(self, *args):
 		# XXX incomplete? OBLIQUE exists
@@ -98,12 +98,6 @@ class ToolText(AbstractClassicTool):
 		return _("Text options")
 
 	def get_editing_tips(self):
-		self._set_font_options()
-		self._set_background_style()
-
-		# get_editing_tips is likely called because an option changed
-		self._preview_text()
-
 		label_options = self.label + " - " + self._font_fam_name
 		if self._background_id != 'none':
 			bg_label = {
@@ -114,8 +108,13 @@ class ToolText(AbstractClassicTool):
 				'rectangle': _("Rectangle background"),
 			}[self._background_id]
 			label_options += " - " + bg_label
-
 		return [label_options]
+
+	def on_options_changed(self):
+		super().on_options_changed()
+		self._set_font_options()
+		self._set_background_style()
+		self._preview_text()
 
 	############################################################################
 

@@ -69,6 +69,10 @@ class AbstractClassicTool(AbstractAbstractTool):
 		self.y_press = event_y
 		self._operator = self.window.options_manager.get_operator()[0]
 
+	def on_options_changed(self):
+		self._use_antialias = self.get_option_value('antialias')
+		self.tool_width = self.window.options_manager.get_tool_width()
+
 	############################################################################
 	# Operations common methods ################################################
 

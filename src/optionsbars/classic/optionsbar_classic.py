@@ -1,19 +1,4 @@
-# optionsbar_classic.py
-#
-# Copyright 2018-2023 Romain F. T.
-#
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+# Licensed under GPL3 https://github.com/maoschanz/drawing/blob/master/LICENSE
 
 import cairo
 from .abstract_optionsbar import AbstractOptionsBar
@@ -48,6 +33,7 @@ class OptionsBarClassic(AbstractOptionsBar):
 		last_size = self._get_tool_options().get_int('last-size')
 		self.thickness_spinbtn.set_value(last_size)
 		utilities_add_unit_to_spinbtn(self.thickness_spinbtn, 3, 'px')
+		self.thickness_spinbtn.connect('value-changed', self._on_size_changed)
 
 		self.minimap_btn = builder.get_object('minimap_btn')
 		self.minimap_label = builder.get_object('minimap_label')
@@ -100,7 +86,17 @@ class OptionsBarClassic(AbstractOptionsBar):
 		self.minimap_arrow.set_visible(not state)
 
 	############################################################################
+	# Size #####################################################################
+
+	def _on_size_changed(self, *args):
+		self.window.on_tool_options_changed()
+
+	############################################################################
 	# Colors ###################################################################
+
+	def _on_color_changed(self, *args):
+		# TODO connect that to whatever needs it
+		self.window.on_tool_options_changed()
 
 	def middle_click_action(self):
 		left_color = self._color_l.color_widget.get_rgba()

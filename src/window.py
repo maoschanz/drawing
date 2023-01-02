@@ -903,7 +903,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		self.active_tool().on_tool_selected()
 		self._update_bottom_pane()
 		self.get_active_image().update_actions_state()
-		self.set_window_subtitles()
+		self.on_tool_options_changed()
 
 		self.pointer_to_current_page = None
 
@@ -954,6 +954,13 @@ class DrWindow(Gtk.ApplicationWindow):
 			self.app.get_menubar().insert_submenu(5, label, model)
 		pane = self.options_manager.get_active_pane()
 		pane.build_options_menu(widget, model, label)
+
+	def on_tool_options_changed(self, *args):
+		self.active_tool().on_options_changed()
+		self.set_window_subtitles()
+
+	############################################################################
+	# CLASSIC TOOLS PANE #######################################################
 
 	def _update_use_color_editor(self, *args):
 		use_editor = self.gsettings.get_boolean('direct-color-edit')
