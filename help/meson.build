@@ -22,7 +22,7 @@ gnome.yelp(
 		'zoom_preview.page'
 	],
 	media: [
-		'figures/icon.png',
+		'figures/drawing.svg',
 		'figures/screenshot_arrow.png', # 0.8.0
 		'figures/screenshot_color_editor.png', # 0.8.0
 		'figures/screenshot_color_palette.png', # 0.8.0
