@@ -139,7 +139,13 @@ class ToolFilters(AbstractCanvasTool):
 		GLib.timeout_add(100, self._async_open_menu, {})
 		if self.blur_algo == BlurType.INVALID:
 			self.on_filter_preview()
-			# XXX great optimization but it displays shit
+		else:
+			operation = self.build_operation()
+			operation['radius'] = 0
+			# when the active filter is blurring the image, we cheat a little to
+			# improve performance, but the filtered pixbuf isn't preview until
+			# the user explicitely clicks on the canvas to preview
+			self.do_tool_operation(operation)
 
 	def _async_open_menu(self, *args):
 		"""This is used as a GSourceFunc so it should return False."""
