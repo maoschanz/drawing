@@ -51,7 +51,7 @@ class DrImage(Gtk.Box):
 	# HiDPI scale factor
 	SCALE_FACTOR = 1.0 # XXX doesn't work well enough to be anything else
 
-	# Threshold between normal rendering and crisp (costly) rendering
+	# Threshold between normal rendering and crisp rendering
 	ZOOM_THRESHOLD = 4.0
 
 	# Maximal level of zoom (crisp rendering only)
@@ -136,7 +136,7 @@ class DrImage(Gtk.Box):
 	############################################################################
 	# Image initialization #####################################################
 
-	def init_image_common(self):
+	def _init_image_common(self):
 		"""Part of the initialization common to both a new blank image and an
 		opened image."""
 		self._is_pressed = False
@@ -144,7 +144,7 @@ class DrImage(Gtk.Box):
 		# Zoom and scroll initialization
 		self.scroll_x = 0
 		self.scroll_y = 0
-		self.set_zoom_level(100) # will do `self.zoom_level = 1.0`
+		self.zoom_level = 1.0
 		self.motion_behavior = DrMotionBehavior.HOVER
 		self._slip_press_x = 0.0
 		self._slip_press_y = 0.0
@@ -160,12 +160,12 @@ class DrImage(Gtk.Box):
 		self.set_action_sensitivity('redo', False)
 
 	def init_background(self, width, height, background_rgba):
-		self.init_image_common()
+		self._init_image_common()
 		self._history.set_initial_operation(background_rgba, None, width, height)
 		self.restore_last_state()
 
 	def try_load_pixbuf(self, pixbuf):
-		self.init_image_common()
+		self._init_image_common()
 		self._load_pixbuf_common(pixbuf)
 		self.restore_last_state()
 		self.update_title()
