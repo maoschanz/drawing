@@ -94,10 +94,6 @@ class OptionsBarClassic(AbstractOptionsBar):
 	############################################################################
 	# Colors ###################################################################
 
-	def _on_color_changed(self, *args):
-		# TODO connect that to whatever needs it
-		self.window.on_tool_options_changed()
-
 	def middle_click_action(self):
 		left_color = self._color_l.color_widget.get_rgba()
 		self._color_l.color_widget.set_rgba(self._color_r.color_widget.get_rgba())

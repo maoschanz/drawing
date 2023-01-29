@@ -144,7 +144,7 @@ class ToolFilters(AbstractCanvasTool):
 			operation['radius'] = 0
 			# when the active filter is blurring the image, we cheat a little to
 			# improve performance, but the filtered pixbuf isn't preview until
-			# the user explicitely clicks on the canvas to preview
+			# the user explicitly clicks on the canvas to preview
 			self.do_tool_operation(operation)
 
 	def _async_open_menu(self, *args):

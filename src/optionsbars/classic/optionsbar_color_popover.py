@@ -207,6 +207,8 @@ class OptionsBarClassicColorPopover(Gtk.Popover):
 		op_as_string = self._options_manager.get_value('cairo_operator')
 		self._set_thumbnail_color(op_as_string)
 
+		self._options_manager.window.on_tool_options_changed()
+
 	def _set_thumbnail_color(self, op_as_string):
 		"""Sets the icon and the tooltip of the popover's button. The icon can
 		be an actual icon, or a rectangle of color. The tooltip shows the active

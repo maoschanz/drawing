@@ -956,6 +956,8 @@ class DrWindow(Gtk.ApplicationWindow):
 		pane.build_options_menu(widget, model, label)
 
 	def on_tool_options_changed(self, *args):
+		if self.active_tool_id is None:
+			return
 		self.active_tool().on_options_changed()
 		self.set_window_subtitles()
 
