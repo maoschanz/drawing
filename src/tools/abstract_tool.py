@@ -48,6 +48,7 @@ class AbstractAbstractTool():
 		self.cursor_name = 'cell'
 		self._ongoing_operation = False
 		self._modifier_keys = []
+		self._last_btn = 1
 		# Once everything is set, build the UI
 		self.try_build_pane()
 
@@ -236,7 +237,7 @@ class AbstractAbstractTool():
 	# Activation or not ########################################################
 
 	def on_tool_selected(self):
-		pass
+		self._last_btn = 1
 
 	def on_tool_unselected(self):
 		pass

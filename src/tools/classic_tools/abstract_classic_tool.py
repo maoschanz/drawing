@@ -55,6 +55,15 @@ class AbstractClassicTool(AbstractAbstractTool):
 	# Options ##################################################################
 
 	def set_common_values(self, event_btn, event_x, event_y):
+		self.x_press = event_x
+		self.y_press = event_y
+		self._last_btn = event_btn
+		self._set_options(event_btn)
+
+	def on_options_changed(self):
+		self._set_options(self._last_btn)
+
+	def _set_options(self, event_btn):
 		self._use_antialias = self.get_option_value('antialias')
 		self.tool_width = self.window.options_manager.get_tool_width()
 		left_c = self.window.options_manager.get_left_color()
@@ -65,13 +74,7 @@ class AbstractClassicTool(AbstractAbstractTool):
 		if event_btn == 3:
 			self.main_color = utilities_gdk_rgba_to_normalized_array(right_c)
 			self.secondary_color = utilities_gdk_rgba_to_normalized_array(left_c)
-		self.x_press = event_x
-		self.y_press = event_y
 		self._operator = self.window.options_manager.get_operator()[0]
-
-	def on_options_changed(self):
-		self._use_antialias = self.get_option_value('antialias')
-		self.tool_width = self.window.options_manager.get_tool_width()
 
 	############################################################################
 	# Operations common methods ################################################

@@ -227,6 +227,7 @@ class AbstractCanvasTool(AbstractAbstractTool):
 		return new_surface
 
 	############################################################################
+	# Options ##################################################################
 
 	def _update_expansion_rgba(self, event_btn=1):
 		"""When the canvas grows, the color of the new pixels is parametrable"""
