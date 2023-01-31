@@ -25,9 +25,7 @@ class ToolText(AbstractClassicTool):
 
 	def __init__(self, window, **kwargs):
 		super().__init__('text', _("Text"), 'tool-text-symbolic', window)
-
 		self._should_cancel = False
-		self._last_click_btn = 1
 
 		# There are several types of possible interactions with the canvas,
 		# depending on where the pointer is during the press event.
@@ -118,10 +116,6 @@ class ToolText(AbstractClassicTool):
 
 	############################################################################
 
-	def on_tool_selected(self):
-		super().on_tool_selected()
-		self._last_click_btn = 1
-
 	def on_tool_unselected(self):
 		self.set_action_sensitivity('paste', True)
 		self.set_action_sensitivity('select_all', True)
@@ -135,7 +129,9 @@ class ToolText(AbstractClassicTool):
 
 	def force_text_tool(self, string):
 		self.select_flowbox_child()
-		self.set_common_values(self._last_click_btn, 100, 100)
+		# XXX déterminer des coordonnées qui fassent sens quel que soit l'état
+		# du scrolling et du zoom
+		self.set_common_values(self._last_btn, 100, 100)
 		self._open_popover_at(100, 100)
 		self._set_string(string)
 
@@ -147,8 +143,7 @@ class ToolText(AbstractClassicTool):
 	############################################################################
 
 	def on_press_on_area(self, event, surface, event_x, event_y):
-		self._last_click_btn = event.button
-		self.set_common_values(self._last_click_btn, event_x, event_y)
+		self.set_common_values(event.button, event_x, event_y)
 		self._pointer_target = 'input'
 		if not self._has_current_text():
 			return
@@ -158,6 +153,8 @@ class ToolText(AbstractClassicTool):
 			return
 		elif not should_move:
 			self._pointer_target = 'apply'
+			# FIXME avoir appelé set_common_values alors qu'on va juste apply me
+			# semble être une grosse erreur d'UX
 			return
 
 		self._pointer_target = 'move'
@@ -171,11 +168,10 @@ class ToolText(AbstractClassicTool):
 		self._preview_text()
 
 	def on_release_on_area(self, event, surface, event_x, event_y):
-		self._last_click_btn = event.button
 		self._should_cancel = True
 		if 'input' == self._pointer_target:
 			if not self._has_current_text():
-				self.set_common_values(self._last_click_btn, event_x, event_y)
+				self.set_common_values(event.button, event_x, event_y)
 				self._text_x = self._text_x0 = event_x
 				self._text_y = self._text_y0 = event_y
 			self._open_popover_at(event.x, event.y)
@@ -209,7 +205,7 @@ class ToolText(AbstractClassicTool):
 		self._popover.popdown()
 
 	def _force_refresh(self, *args):
-		self.set_common_values(self._last_click_btn, self._text_x, self._text_y)
+		self.set_common_values(self._last_btn, self._text_x, self._text_y)
 		self._preview_text()
 
 	def _on_insert_text(self, *args):
