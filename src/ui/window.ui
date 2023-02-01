@@ -49,12 +49,14 @@
         <child>
           <object class="GtkBox">
             <property name="orientation">horizontal</property>
+            <property name="hexpand">True</property>
             <child>
               <object class="GtkScrolledWindow">
                 <property name="vscrollbar-policy">external</property>
                 <property name="hscrollbar-policy">never</property>
                 <child>
                   <object class="GtkBox" id="tools_scrollable_box">
+                    <property name="hexpand">False</property>
                     <property name="halign">center</property>
                     <!-- <child> -->
                     <!--   the flowbox will move here if needed -->
@@ -83,6 +85,7 @@
                 <property name="show-tabs">False</property>
                 <property name="show-border">True</property>
                 <property name="scrollable">True</property>
+                <property name="hexpand">True</property>
                 <property name="group-name">drawing-tabs</property>
                 <child type="action-end">
                   <object class="GtkButton">

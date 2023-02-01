@@ -42,8 +42,7 @@ class DrPrefsWindow(Gtk.Window):
 		if wants_csd:
 			header_bar = Gtk.HeaderBar(
 				visible=True, \
-				title=_("Preferences"), \
-				show_close_button=True \
+				show_title_buttons=True \
 			)
 			self.set_titlebar(header_bar)
 			stack_switcher = Gtk.StackSwitcher(
@@ -51,7 +50,7 @@ class DrPrefsWindow(Gtk.Window):
 				stack=self.stack, \
 				halign=Gtk.Align.CENTER \
 			)
-			header_bar.set_custom_title(stack_switcher)
+			header_bar.set_title_widget(stack_switcher)
 			self.set_default_size(480, 500)
 		else:
 			stack_sidebar = Gtk.StackSidebar(visible=True, stack=self.stack)
@@ -67,8 +66,8 @@ class DrPrefsWindow(Gtk.Window):
 		self.page_builder_tools()
 		self.page_builder_advanced(is_beta)
 
-	# Each `page_*` attribute is a GtkGrid. Each `page_builder_*` method declare
-	# its grid to be the currently filled one, and reset the counter.
+	# Each `page_*` attribute is a GtkGrid. Each `page_builder_*` method says
+	# its grid should be the currently filled one, and it resets the counter.
 	# Then, each `page_builder_*` method will call the `add_*` methods, who will
 	# build accurate widgets to be packed on the grid by the `attach_*` methods.
 
@@ -215,20 +214,19 @@ class DrPrefsWindow(Gtk.Window):
 		self.attach_large(label)
 
 	def add_help(self, label_text):
-		help_btn = Gtk.Button.new_from_icon_name('help-faq-symbolic', \
-		                                                    Gtk.IconSize.BUTTON)
+		help_btn = Gtk.Button.new_from_icon_name('help-faq-symbolic')
 		help_btn.set_valign(Gtk.Align.CENTER)
+		help_btn.set_halign(Gtk.Align.END)
 		help_btn.set_has_frame(False)
 		help_btn.set_action_name('app.help_prefs') # could be a parameter
 
-		label = Gtk.Label(label=label_text)
-		label.set_line_wrap(True)
+		label = Gtk.Label(label=label_text, wrap=True, hexpand=True)
+		label.set_halign(Gtk.Align.START)
 		label.get_style_context().add_class('dim-label')
 
 		box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=10)
-		box.pack_start(label, expand=False, fill=False, padding=0)
-		box.pack_end(help_btn, expand=False, fill=False, padding=0)
-		box.show_all()
+		box.prepend(label)
+		box.append(help_btn)
 		self.attach_large(box)
 
 	def add_row(self, label_text, widget):
@@ -263,27 +261,27 @@ class DrPrefsWindow(Gtk.Window):
 		self.add_row(label_text, spinbtn)
 
 	def add_radio_flowbox(self, setting_key, labels_dict):
-		flowbox = Gtk.FlowBox(selection_mode=Gtk.SelectionMode.NONE, expand=True)
+		flowbox = Gtk.FlowBox(selection_mode=Gtk.SelectionMode.NONE, hexpand=True)
 		self._radio_are_active = False
 		w0 = None
 		for id0 in labels_dict:
 			w0 = self.build_radio_btn(labels_dict[id0], id0, setting_key, w0)
-			flowbox.add(w0)
+			flowbox.append(w0)
 		self._radio_are_active = True
 		self.attach_large(flowbox)
 
 	def build_radio_btn(self, label, btn_id, key, group):
-		btn = Gtk.RadioButton(label=label, visible=True, group=group)
+		btn = Gtk.CheckButton(label=label, visible=True, group=group)
 		active_id = self._gsettings.get_string(key)
 		btn.set_active(btn_id == active_id)
 		btn.connect('toggled', self.on_radio_btn_changed, key, btn_id)
 		return btn
 
 	def add_check_flowbox(self, setting_key, labels_dict):
-		flowbox = Gtk.FlowBox(selection_mode=Gtk.SelectionMode.NONE, expand=True)
+		flowbox = Gtk.FlowBox(selection_mode=Gtk.SelectionMode.NONE, hexpand=True)
 		for id0 in labels_dict:
 			w0 = self.build_check_btn(labels_dict[id0], id0, setting_key)
-			flowbox.add(w0)
+			flowbox.append(w0)
 		self.attach_large(flowbox)
 
 	def build_check_btn(self, label, row_id, key):

@@ -36,73 +36,88 @@
             <property name="transition-type">crossfade</property>
 
             <child>
-              <object class="GtkScrolledWindow">
-                <property name="expand">True</property>
-                <child>
-                  <object class="GtkGrid" id="page_images">
-                    <property name="halign">fill</property>
-                    <property name="valign">start</property>
-                    <property name="expand">True</property>
-                    <property name="column-homogeneous">False</property>
-                    <property name="row-spacing">10</property>
-                    <property name="column-spacing">16</property>
-                    <property name="margin">10</property>
-                  </object>
-                </child>
-              </object>
-              <packing>
+              <object class="GtkStackPage">
                 <property name="name">page_images</property>
                 <property name="title" translatable="yes">Images</property>
-              </packing>
+                <property name="child">
+                  <object class="GtkScrolledWindow">
+                    <property name="hexpand">True</property>
+                    <child>
+                      <object class="GtkGrid" id="page_images">
+                        <property name="halign">fill</property>
+                        <property name="valign">start</property>
+                        <property name="hexpand">True</property>
+                        <property name="column-homogeneous">False</property>
+                        <property name="row-spacing">10</property>
+                        <property name="column-spacing">16</property>
+
+                        <property name="margin-top">10</property>
+                        <property name="margin-bottom">10</property>
+                        <property name="margin-start">10</property>
+                        <property name="margin-end">10</property>
+                      </object>
+                    </child>
+                  </object>
+                </property>
+              </object>
             </child>
 
             <child>
-              <object class="GtkScrolledWindow">
-                <property name="expand">True</property>
-                <child>
-                  <object class="GtkGrid" id="page_tools">
-                    <property name="halign">fill</property>
-                    <property name="valign">start</property>
-                    <property name="expand">True</property>
-                    <property name="column-homogeneous">False</property>
-                    <property name="row-spacing">10</property>
-                    <property name="column-spacing">16</property>
-                    <property name="margin">10</property>
-                  </object>
-                </child>
-              </object>
-              <packing>
+              <object class="GtkStackPage">
                 <property name="name">page_tools</property>
                 <property name="title" translatable="yes">Tools</property>
-              </packing>
+                <property name="child">
+                  <object class="GtkScrolledWindow">
+                    <property name="hexpand">True</property>
+                    <child>
+                      <object class="GtkGrid" id="page_tools">
+                        <property name="halign">fill</property>
+                        <property name="valign">start</property>
+                        <property name="hexpand">True</property>
+                        <property name="column-homogeneous">False</property>
+                        <property name="row-spacing">10</property>
+                        <property name="column-spacing">16</property>
+
+                        <property name="margin-top">10</property>
+                        <property name="margin-bottom">10</property>
+                        <property name="margin-start">10</property>
+                        <property name="margin-end">10</property>
+                      </object>
+                    </child>
+                  </object>
+                </property>
+              </object>
             </child>
 
             <child>
-              <object class="GtkScrolledWindow">
-                <property name="expand">True</property>
-                <child>
-                  <object class="GtkGrid" id="page_advanced">
-                    <property name="halign">fill</property>
-                    <property name="valign">start</property>
-                    <property name="expand">True</property>
-                    <property name="column-homogeneous">False</property>
-                    <property name="row-spacing">10</property>
-                    <property name="column-spacing">16</property>
-                    <property name="margin">10</property>
-                  </object>
-                </child>
-              </object>
-              <packing>
+              <object class="GtkStackPage">
                 <property name="name">page_advanced</property>
                 <property name="icon-name">view-more-horizontal-symbolic</property>
                 <property name="title" translatable="yes">Window</property>
-              </packing>
+                <property name="child">
+                  <object class="GtkScrolledWindow">
+                    <property name="hexpand">True</property>
+                    <child>
+                      <object class="GtkGrid" id="page_advanced">
+                        <property name="halign">fill</property>
+                        <property name="valign">start</property>
+                        <property name="hexpand">True</property>
+                        <property name="column-homogeneous">False</property>
+                        <property name="row-spacing">10</property>
+                        <property name="column-spacing">16</property>
+
+                        <property name="margin-top">10</property>
+                        <property name="margin-bottom">10</property>
+                        <property name="margin-start">10</property>
+                        <property name="margin-end">10</property>
+                      </object>
+                    </child>
+                  </object>
+                </property>
+              </object>
             </child>
 
           </object>
-          <packing>
-            <property name="pack-type">end</property>
-          </packing>
         </child>
 
       </object>
