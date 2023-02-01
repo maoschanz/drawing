@@ -140,7 +140,9 @@ class ToolSkew(AbstractCanvasTool):
 		self._xy = self.get_xy() # horizontal deformation
 		# TODO répliquer ce que fait le scale avec son x2/y2 qui évite un effet
 		# flamby dégueulasse lié aux arrondis ?
-		self._update_expansion_rgba(event.button)
+		if event.button != self._last_btn:
+			self._update_expansion_rgba(event.button)
+		self._last_btn = event.button
 
 		self.update_modifier_state(event.state)
 		if 'SHIFT' in self._modifier_keys and 'ALT' in self._modifier_keys:

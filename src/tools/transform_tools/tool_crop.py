@@ -135,8 +135,10 @@ class ToolCrop(AbstractCanvasTool):
 	def on_press_on_area(self, event, surface, event_x, event_y):
 		self.x_press = self.x_motion = event_x
 		self.y_press = self.y_motion = event_y
+		if event.button != self._last_btn:
+			self._update_expansion_rgba(event.button)
+		self._last_btn = event.button
 		self._unclicked = False
-		self._update_expansion_rgba(event.button)
 
 		self.update_modifier_state(event.state)
 		if 'SHIFT' in self._modifier_keys and 'ALT' in self._modifier_keys:
