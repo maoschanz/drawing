@@ -1,6 +1,6 @@
 # abstract_classic_tool.py
 #
-# Copyright 2018-2022 Romain F. T.
+# Copyright 2018-2023 Romain F. T.
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -55,6 +55,17 @@ class AbstractClassicTool(AbstractAbstractTool):
 	# Options ##################################################################
 
 	def set_common_values(self, event_btn, event_x, event_y):
+		self.x_press = event_x
+		self.y_press = event_y
+		# TODO eventually all tools will correctly rely on on_options_changed so
+		# this call to _set_options will only exist if the button changed
+		self._set_options(event_btn)
+		self._last_btn = event_btn
+
+	def on_options_changed(self):
+		self._set_options(self._last_btn)
+
+	def _set_options(self, event_btn):
 		self._use_antialias = self.get_option_value('antialias')
 		self.tool_width = self.window.options_manager.get_tool_width()
 		left_c = self.window.options_manager.get_left_color()
@@ -65,8 +76,6 @@ class AbstractClassicTool(AbstractAbstractTool):
 		if event_btn == 3:
 			self.main_color = utilities_gdk_rgba_to_normalized_array(right_c)
 			self.secondary_color = utilities_gdk_rgba_to_normalized_array(left_c)
-		self.x_press = event_x
-		self.y_press = event_y
 		self._operator = self.window.options_manager.get_operator()[0]
 
 	############################################################################

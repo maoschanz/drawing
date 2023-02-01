@@ -1,6 +1,6 @@
 # optionsbar_color_popover.py
 #
-# Copyright 2018-2022 Romain F. T.
+# Copyright 2018-2023 Romain F. T.
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -206,6 +206,8 @@ class OptionsBarClassicColorPopover(Gtk.Popover):
 		"""When the use clicks on a color in the palette"""
 		op_as_string = self._options_manager.get_value('cairo_operator')
 		self._set_thumbnail_color(op_as_string)
+
+		self._options_manager.window.on_tool_options_changed()
 
 	def _set_thumbnail_color(self, op_as_string):
 		"""Sets the icon and the tooltip of the popover's button. The icon can

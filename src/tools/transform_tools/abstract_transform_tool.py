@@ -1,6 +1,6 @@
 # abstract_transform_tool.py
 #
-# Copyright 2018-2022 Romain F. T.
+# Copyright 2018-2023 Romain F. T.
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -227,6 +227,11 @@ class AbstractCanvasTool(AbstractAbstractTool):
 		return new_surface
 
 	############################################################################
+	# Options ##################################################################
+
+	def on_options_changed(self):
+		super().on_options_changed()
+		self._update_expansion_rgba(self._last_btn)
 
 	def _update_expansion_rgba(self, event_btn=1):
 		"""When the canvas grows, the color of the new pixels is parametrable"""

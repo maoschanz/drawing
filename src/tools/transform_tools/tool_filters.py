@@ -1,6 +1,6 @@
 # tool_filters.py
 #
-# Copyright 2018-2022 Romain F. T.
+# Copyright 2018-2023 Romain F. T.
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -139,7 +139,13 @@ class ToolFilters(AbstractCanvasTool):
 		GLib.timeout_add(100, self._async_open_menu, {})
 		if self.blur_algo == BlurType.INVALID:
 			self.on_filter_preview()
-			# XXX great optimization but it displays shit
+		else:
+			operation = self.build_operation()
+			operation['radius'] = 0
+			# when the active filter is blurring the image, we cheat a little to
+			# improve performance, but the filtered pixbuf isn't preview until
+			# the user explicitly clicks on the canvas to preview
+			self.do_tool_operation(operation)
 
 	def _async_open_menu(self, *args):
 		"""This is used as a GSourceFunc so it should return False."""

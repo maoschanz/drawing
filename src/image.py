@@ -1,6 +1,6 @@
 # image.py
 #
-# Copyright 2018-2022 Romain F. T.
+# Copyright 2018-2023 Romain F. T.
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -51,7 +51,7 @@ class DrImage(Gtk.Box):
 	# HiDPI scale factor
 	SCALE_FACTOR = 1.0 # XXX doesn't work well enough to be anything else
 
-	# Threshold between normal rendering and crisp (costly) rendering
+	# Threshold between normal rendering and crisp rendering
 	ZOOM_THRESHOLD = 4.0
 
 	# Maximal level of zoom (crisp rendering only)
@@ -136,7 +136,7 @@ class DrImage(Gtk.Box):
 	############################################################################
 	# Image initialization #####################################################
 
-	def init_image_common(self):
+	def _init_image_common(self):
 		"""Part of the initialization common to both a new blank image and an
 		opened image."""
 		self._is_pressed = False
@@ -144,7 +144,7 @@ class DrImage(Gtk.Box):
 		# Zoom and scroll initialization
 		self.scroll_x = 0
 		self.scroll_y = 0
-		self.set_zoom_level(100) # will do `self.zoom_level = 1.0`
+		self.zoom_level = 1.0
 		self.motion_behavior = DrMotionBehavior.HOVER
 		self._slip_press_x = 0.0
 		self._slip_press_y = 0.0
@@ -160,12 +160,12 @@ class DrImage(Gtk.Box):
 		self.set_action_sensitivity('redo', False)
 
 	def init_background(self, width, height, background_rgba):
-		self.init_image_common()
+		self._init_image_common()
 		self._history.set_initial_operation(background_rgba, None, width, height)
 		self.restore_last_state()
 
 	def try_load_pixbuf(self, pixbuf):
-		self.init_image_common()
+		self._init_image_common()
 		self._load_pixbuf_common(pixbuf)
 		self.restore_last_state()
 		self.update_title()
@@ -475,7 +475,7 @@ class DrImage(Gtk.Box):
 			self.active_tool().on_unclicked_motion_on_area(event, self.surface)
 
 		elif self.motion_behavior == DrMotionBehavior.DRAW:
-			# implicitely impossible if not self._is_pressed
+			# implicitly impossible if not self._is_pressed
 			self.active_tool().on_motion_on_area(event, self.surface, event_x, \
 			                                 event_y, self._rendering_is_locked)
 			if self._rendering_is_locked:
@@ -721,7 +721,7 @@ class DrImage(Gtk.Box):
 		wl, wr, ht, hb = self.get_corrected_coords(int(x1), width, int(y1), \
 		                                       height, apply_to_selection, True)
 		# XXX using local deltas this way "works" but isn't mathematically
-		# correct: scaled selections have a "null" and excentred central nineth
+		# correct: scaled selections have a "null" and excentred central ninth
 		# ^ c'est toujours vrai ça ??
 		wl += 0.4 * width * self.zoom_level
 		wr -= 0.4 * width * self.zoom_level

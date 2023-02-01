@@ -1,6 +1,6 @@
 # main.py
 #
-# Copyright 2018-2022 Romain F. T.
+# Copyright 2018-2023 Romain F. T.
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -98,8 +98,7 @@ class Application(Gtk.Application):
 		self.add_action_simple('help_whats_new', self.on_help_whats_new)
 
 		self.add_action_simple('report-issue', self.on_report)
-		self.add_action_simple('shortcuts', self.on_shortcuts, \
-		                                         ['<Ctrl>question', '<Ctrl>F1'])
+		# we don't need an action for the shortcuts because #563
 		self.add_action_simple('about', self.on_about, ['<Shift>F1'])
 		self.add_action_simple('quit', self.on_quit, ['<Ctrl>q'])
 
@@ -228,14 +227,6 @@ class Application(Gtk.Application):
 		win = self.props.active_window
 		Gtk.show_uri_on_window(win, self.BUG_REPORT_URL, Gdk.CURRENT_TIME)
 
-	def on_shortcuts(self, *args):
-		"""Action callback, showing the 'shortcuts' dialog."""
-		if self.shortcuts_window is not None:
-			self.shortcuts_window.destroy()
-		builder = Gtk.Builder().new_from_resource(self.APP_PATH + '/ui/shortcuts.ui')
-		self.shortcuts_window = builder.get_object('shortcuts-window')
-		self.shortcuts_window.present()
-
 	def on_prefs(self, *args):
 		"""Action callback, showing the preferences window."""
 		if self.prefs_window is not None:
@@ -288,7 +279,7 @@ class Application(Gtk.Application):
 		"""Action callback, showing the "about" dialog."""
 		about_dialog = Gtk.AboutDialog(
 			transient_for=self.props.active_window, modal=True,
-			copyright="© 2018-2022 Romain F. T.",
+			copyright="© 2018-2023 Romain F. T.",
 			authors=["Romain F. T.", "Fábio Colacio", "Alexis Lozano"],
 			# To tranlators: "translate" this by a list of your names (one name
 			# per line), they will be displayed in the "about" dialog
@@ -328,7 +319,7 @@ class Application(Gtk.Application):
 				w.close()
 				w.destroy()
 
-		# The expected behavior, but now theorically useless, since closing all
+		# The expected behavior, but now theoretically useless, since closing all
 		# appwindows should quit automatically. It's too violent to be left
 		# without a guard clause.
 		if can_quit:

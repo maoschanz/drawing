@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
 "POT-Creation-Date: 2022-05-21 23:53+0200\n"
-"PO-Revision-Date: 2021-05-17 13:45+0900\n"
+"PO-Revision-Date: 2022-09-13 15:12+0900\n"
 "Last-Translator: Kevin Kim <root@hamonikr.org>\n"
 "Language-Team: Korean\n"
 "Language: ko\n"
@@ -248,7 +248,7 @@ msgstr "이미지 속성"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Reset canvas"
-msgstr ""
+msgstr "캔버스 재설정"
 
 #: src/ui/app-menus.ui src/ui/headerbar.ui src/ui/headerbar-eos.ui
 #: src/ui/shortcuts.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
@@ -418,31 +418,29 @@ msgstr "오른쪽으로 이동"
 #. canvas. The "go left" action only goes a few centimeters
 #. to the left, but this one goes all the way left.
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
-#, fuzzy
 msgid "Go to the left end"
-msgstr "왼쪽 탭"
+msgstr "왼쪽 끝으로 이동"
 
 #. Context: this action scrolls to the top of the canvas
 #. The "go up" action only goes a few centimeters up, but
 #. this one goes all the way to the top.
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Go to the top"
-msgstr ""
+msgstr "맨 위로 이동"
 
 #. Context: this action scrolls to the bottom of the canvas
 #. The "go down" action only goes a few centimeters down,
 #. but this one goes all the way to the bottom.
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Go to the bottom"
-msgstr ""
+msgstr "맨 아래로 이동"
 
 #. Context: this action scrolls to the right end of the
 #. canvas. The "go right" action only goes a few centimeters
 #. to the right, but this one goes all the way right.
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
-#, fuzzy
 msgid "Go to the right end"
-msgstr "오른쪽 탭"
+msgstr "오른쪽 끝으로 이동"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Tab at the left"
@@ -462,14 +460,12 @@ msgid "Track framerate"
 msgstr ""
 
 #: src/ui/app-menus.ui
-#, fuzzy
 msgid "Dark theme variant"
-msgstr "테마 변경"
+msgstr "어두운 테마 변경"
 
 #: src/ui/app-menus.ui
-#, fuzzy
 msgid "Show the menu-bar"
-msgstr "미리보기 전환"
+msgstr "메뉴바 표시"
 
 #: src/ui/app-menus.ui
 msgid "Hide toolbars"
@@ -597,7 +593,7 @@ msgstr "도구 선택"
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
 #: src/preferences.py
 msgid "Show tools names"
-msgstr "도구 이름 표시"
+msgstr "도구 이름 표시소"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Bigger width"
@@ -613,13 +609,11 @@ msgstr "선택 문제 해결"
 
 #: src/ui/app-menus.ui
 #: src/optionsbars/transform/abstract-optionsbar-transform.ui
-#, fuzzy
 msgid "Cancel transformation"
-msgstr "변형 적용"
+msgstr "변형 취소"
 
 #: src/ui/app-menus.ui
 #: src/optionsbars/transform/abstract-optionsbar-transform.ui
-#, fuzzy
 msgid "Apply transformation"
 msgstr "변형 적용"
 
@@ -803,16 +797,15 @@ msgstr "자유 선택"
 #. Define the image as being the currently selected area
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
-#, fuzzy
 msgid "Define as current image"
-msgstr "이미지 열기"
+msgstr "현재 이미지로 정의"
 
 #. Expand the canvas of the current image to make the current selection fit in it.
 #. Can be translated as "Expand to this size".
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 msgid "Expand image to fit"
-msgstr ""
+msgstr "이미지에 맞게 확장"
 
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
@@ -1210,6 +1203,7 @@ msgstr "기본 색상 편집기 사용"
 #: src/preferences.py
 msgid "You can use a simple color palette, or use a full RGBA color editor."
 msgstr ""
+"간단한 색상 팔레트를 사용하거나 전체 RGBA 색상 편집기를 사용할 수 있습니다."
 
 #. Context: title of a section of the preferences
 #: src/preferences.py
@@ -1230,9 +1224,8 @@ msgid "Background color"
 msgstr "배경색"
 
 #: src/preferences.py
-#, fuzzy
 msgid "Prefer dark theme variant"
-msgstr "테마 변경"
+msgstr "어두운 테마 변경"
 
 #. Context: title of a section of the preferences. It corresponds to the
 #. window layout (header-bar? tool-bar? menu-bar?)
@@ -1758,7 +1751,7 @@ msgstr "모서리에서 크기를 조정할 때"
 #. Context for translations: "[Keep proportions only] when setting values manually"
 #: src/optionsbars/transform/optionsbar-scale.ui src/tools/ui/tool-scale.ui
 msgid "When setting values manually"
-msgstr ""
+msgstr "수동으로 값을 설정"
 
 #. Context: an item in a menu whose title is "Keep proportions"
 #. Context for translations: "Never [keep proportions]"
@@ -1767,12 +1760,10 @@ msgid "Never"
 msgstr "절대"
 
 #: src/optionsbars/transform/optionsbar-scale.ui src/tools/ui/tool-scale.ui
-#, fuzzy
 msgid "Pixels"
 msgstr "픽셀"
 
 #: src/optionsbars/transform/optionsbar-scale.ui src/tools/ui/tool-scale.ui
-#, fuzzy
 msgid "Percentage"
 msgstr "퍼센트"
 
@@ -1893,10 +1884,9 @@ msgstr "수평 펜촉"
 
 #: src/tools/ui/tool-eraser.ui src/tools/classic_tools/erasers/eraser_rubber.py
 msgid "Rubber eraser"
-msgstr ""
+msgstr "고무 지우개"
 
 #: src/tools/ui/tool-eraser.ui src/tools/classic_tools/erasers/eraser_area.py
-#, fuzzy
 msgid "Rectangle area"
 msgstr "직사각형"
 
@@ -1972,32 +1962,28 @@ msgid "No direction"
 msgstr "방향 없음"
 
 #: src/tools/ui/tool-filters.ui
-#, fuzzy
 msgid "Blur horizontally"
-msgstr "수평으로 뒤집기"
+msgstr "수평으로 흐림"
 
 #: src/tools/ui/tool-filters.ui
-#, fuzzy
 msgid "Blur vertically"
-msgstr "수직으로 뒤집기"
+msgstr "수직으로 흐림"
 
 #: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
 msgid "Invert colors"
 msgstr "색상 반전"
 
 #: src/tools/ui/tool-highlight.ui
-#, fuzzy
 msgid "Straighten the line"
-msgstr "선택 크기 조정"
+msgstr "직선 긋기"
 
 #: src/tools/ui/tool-line.ui
 msgid "Color gradient"
 msgstr "그라디언트 색상"
 
 #: src/tools/ui/tool-line.ui
-#, fuzzy
 msgid "Locked direction"
-msgstr "방향 없음"
+msgstr "고정 방향"
 
 #. Context: title for the list of the possible painting algorithms.
 #: src/tools/ui/tool-paint.ui
@@ -2156,15 +2142,13 @@ msgstr "그림자"
 
 #. Context: a type of background behind the inserted text
 #: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
-#, fuzzy
 msgid "Thin outline"
-msgstr "윤곽선 없음"
+msgstr "얇은 윤곽"
 
 #. Context: a type of background behind the inserted text
 #: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
-#, fuzzy
 msgid "Thick outline"
-msgstr "윤곽선 없음"
+msgstr "두꺼운 윤곽"
 
 #. Context: a type of background behind the inserted text
 #: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
@@ -2181,7 +2165,7 @@ msgstr "곡선 옵션"
 
 #: src/tools/classic_tools/tool_arc.py
 msgid "Draw a second segment to complete the curve"
-msgstr ""
+msgstr "곡선을 완성하기 위해 두 번째 세그먼트를 그립니다"
 
 #: src/tools/classic_tools/tool_arc.py src/tools/classic_tools/tool_line.py
 msgid "Dashed arrow"
@@ -2199,7 +2183,7 @@ msgstr "점선"
 #: src/tools/classic_tools/tool_arc.py src/tools/classic_tools/tool_line.py
 #: src/tools/classic_tools/tool_pencil.py
 msgid "Press <Alt> to toggle the 'outline' option"
-msgstr ""
+msgstr "<Alt>를 눌러 '아웃라인' 옵션을 전환하십시오"
 
 #: src/tools/classic_tools/tool_brush.py
 msgid "Brush options"
@@ -2207,11 +2191,11 @@ msgstr "브러시 옵션"
 
 #: src/tools/classic_tools/tool_eraser.py
 msgid "Press <Shift> to erase a path instead"
-msgstr ""
+msgstr "<Shift>를 눌러 경로를 지우십시오"
 
 #: src/tools/classic_tools/tool_eraser.py
 msgid "Press <Shift> to erase a rectangle area instead"
-msgstr ""
+msgstr "<Shift>를 눌러 사각형 영역을 지우십시오"
 
 #: src/tools/classic_tools/tool_eraser.py
 msgid "Eraser options"
@@ -2219,11 +2203,11 @@ msgstr "지우개 옵션"
 
 #: src/tools/classic_tools/tool_highlight.py
 msgid "Press <Shift> to temporarily highlight on dark background instead"
-msgstr ""
+msgstr "<Shift>를 눌러 어두운 배경에서 일시적으로 강조 표시하십시오"
 
 #: src/tools/classic_tools/tool_highlight.py
 msgid "Press <Shift> to temporarily highlight on light background instead"
-msgstr ""
+msgstr "<Shift>를 눌러 밝은 배경에서 일시적으로 강조 표시하십시오"
 
 #: src/tools/classic_tools/tool_highlight.py
 msgid "Highlighter options"
@@ -2256,11 +2240,11 @@ msgstr "라인 옵션"
 
 #: src/tools/classic_tools/tool_line.py
 msgid "Press <Shift> to unlock the line direction"
-msgstr ""
+msgstr "<Shift>를 눌러 라인 방향 잠금을 해제하십시오"
 
 #: src/tools/classic_tools/tool_line.py
 msgid "Press <Shift> to lock the line direction"
-msgstr ""
+msgstr "<Shift>를 눌러 라인 방향을 잠그십시오"
 
 #: src/tools/classic_tools/tool_paint.py
 msgid "Painting options"
@@ -2331,7 +2315,7 @@ msgstr "도형의 첫 번째 지점을 클릭하여 닫습니다."
 
 #: src/tools/classic_tools/tool_shape.py
 msgid "Press <Alt>, <Shift>, or both, to quickly change the 'filling' option"
-msgstr ""
+msgstr "<Alt>, <Shift> 또는 둘 다 눌러 '채우기' 옵션을 빠르게 변경합니다"
 
 #: src/tools/classic_tools/tool_text.py
 msgid "Text"
@@ -2382,35 +2366,33 @@ msgstr "오류 : 잘못된 값"
 #. The options of the "crop" tool are all about how to expand the canvas,
 #. hence this label.
 #: src/tools/transform_tools/tool_crop.py
-#, fuzzy
 msgid "Expanding options"
-msgstr "페인팅 옵션"
+msgstr "확장 옵션"
 
 #: src/tools/transform_tools/tool_crop.py
 msgid "The sides you'll crop are hinted by the mouse pointer"
-msgstr ""
+msgstr "자를 면은 마우스 포인터로 표시됩니다"
 
 #: src/tools/transform_tools/tool_crop.py
 msgid "Cropping the selection"
 msgstr "선택 자르기"
 
 #: src/tools/transform_tools/tool_crop.py
-#, fuzzy
 msgid "Cropping or expanding the canvas"
-msgstr "캔버스 자르기"
+msgstr "캔버스 자르기 또는 확장"
 
 #: src/tools/transform_tools/tool_crop.py
 #: src/tools/transform_tools/tool_rotate.py
 #: src/tools/transform_tools/tool_scale.py
 #: src/tools/transform_tools/tool_skew.py
 msgid "Don't forget to confirm the operation!"
-msgstr ""
+msgstr "작업을 확인하는 것을 잊지 마십시오!"
 
 #: src/tools/transform_tools/tool_crop.py
 #: src/tools/transform_tools/tool_skew.py
 msgid ""
 "Press <Alt>, <Shift>, or both, to quickly change the 'expand with' option"
-msgstr ""
+msgstr "<Alt>, <Shift> 또는 둘 다 눌러 '확장' 옵션을 빠르게 변경합니다"
 
 #: src/tools/transform_tools/tool_filters.py
 msgid "Active filter"
@@ -2426,9 +2408,8 @@ msgid "Emboss"
 msgstr "엠보싱"
 
 #: src/tools/transform_tools/tool_rotate.py
-#, fuzzy
 msgid "Rotating options"
-msgstr "페인팅 옵션"
+msgstr "회전 옵션"
 
 #: src/tools/transform_tools/tool_rotate.py
 msgid "Rotating the selection"
@@ -2439,9 +2420,8 @@ msgid "Rotating the canvas"
 msgstr "캔버스 회전"
 
 #: src/tools/transform_tools/tool_scale.py
-#, fuzzy
 msgid "Scaling options"
-msgstr "페인팅 옵션"
+msgstr "크기조정 옵션"
 
 #: src/tools/transform_tools/tool_scale.py
 msgid "Scaling the selection"
@@ -2453,16 +2433,15 @@ msgstr "캔버스 크기 조정"
 
 #: src/tools/transform_tools/tool_scale.py
 msgid "Press <Shift> to quickly toggle the 'lock proportions' option"
-msgstr ""
+msgstr "<Shift>를 눌러 '잠금 비율' 옵션을 빠르게 전환합니다"
 
 #: src/tools/transform_tools/tool_skew.py
-#, fuzzy
 msgid "Skewing options"
-msgstr "페인팅 옵션"
+msgstr "기울이기 옵션"
 
 #: src/tools/transform_tools/tool_skew.py
 msgid "The directions of the deformation are hinted by the mouse pointer"
-msgstr ""
+msgstr "자를 면은 마우스 포인터로 표시됩니다"
 
 #: src/tools/transform_tools/tool_skew.py
 #, fuzzy
@@ -2470,7 +2449,6 @@ msgid "Skewing the selection"
 msgstr "선택 크기 조정"
 
 #: src/tools/transform_tools/tool_skew.py
-#, fuzzy
 msgid "Skewing the canvas"
 msgstr "캔버스 크기 조정"
 

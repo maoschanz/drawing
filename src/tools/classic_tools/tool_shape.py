@@ -1,6 +1,6 @@
 # tool_shape.py
 #
-# Copyright 2018-2022 Romain F. T.
+# Copyright 2018-2023 Romain F. T.
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -111,19 +111,15 @@ class ToolShape(AbstractClassicTool):
 		return _("Shape options")
 
 	def get_editing_tips(self):
-		self._set_active_shape()
 		shape_name = self.SHAPE_TYPES[self._shape_id]
-
 		label_options = shape_name
-		self._set_filling_style()
-		self._set_outline_style()
+
 		if self._outline_id != 'solid':
 			label_options += " - " + self.OUTLINE_TYPES[self._outline_id]
 		if self._filling_id != 'empty':
 			label_options += " - " + self.FILLING_TYPES[self._filling_id]
 
-		if (self._shape_id == 'polygon' or self._shape_id == 'freeshape') and \
-		                                                 self._path is not None:
+		if self._shape_id in ['polygon', 'freeshape'] and self._path is not None:
 			label_instruction = shape_name + " - " + \
 			                  _("Click on the shape's first point to close it.")
 		else:
@@ -139,6 +135,19 @@ class ToolShape(AbstractClassicTool):
 		full_list = [label_options, label_instruction, label_modifiers]
 		return list(filter(None, full_list))
 
+	def on_options_changed(self):
+		super().on_options_changed()
+		self._set_active_shape()
+		self._set_filling_style()
+		self._set_outline_style()
+
+		if self._path is None:
+			return
+		operation = self.build_operation(self._path)
+		if self._shape_id in ['polygon', 'freeshape']:
+			operation['closed'] = False
+		self.do_tool_operation(operation)
+
 	def give_back_control(self, preserve_selection, next_tool=None):
 		self.restore_pixbuf()
 		self._reset_temp_points()
@@ -150,6 +159,7 @@ class ToolShape(AbstractClassicTool):
 		self.last_mouse_btn = event.button
 		self.set_common_values(self.last_mouse_btn, event_x, event_y)
 
+		former_modifiers = self._modifier_keys
 		self.update_modifier_state(event.state)
 		if 'SHIFT' in self._modifier_keys and 'ALT' in self._modifier_keys:
 			self._filling_id = 'secondary'
@@ -160,6 +170,8 @@ class ToolShape(AbstractClassicTool):
 		elif 'ALT' in self._modifier_keys:
 			self._filling_id = 'filled'
 			self._outline_id = 'none'
+		elif former_modifiers != self._modifier_keys:
+			self.on_options_changed()
 
 	def on_motion_on_area(self, event, surface, event_x, event_y, render=True):
 		if self._shape_id == 'freeshape':

@@ -3,7 +3,7 @@
 
 DISTRO="unstable" # this script is for local use, distros manage this themselves
 PACKAGE_NAME="drawing"
-VERSION="1.0.1" # XXX ask it as an input maybe?
+VERSION="1.2.0" # XXX ask it as an input maybe?
 
 function separator () {
 	echo ""
@@ -19,7 +19,7 @@ echo "Is it correct? [Return/^C]"
 read confirmation
 separator
 
-# remember current directory (theorically, the project's root) to bring the
+# remember current directory (theoretically, the project's root) to bring the
 # package here in the end
 previous_dir=`pwd`
 

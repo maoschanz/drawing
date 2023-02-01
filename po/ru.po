@@ -8,16 +8,16 @@ msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
 "POT-Creation-Date: 2022-05-21 23:53+0200\n"
-"PO-Revision-Date: 2022-05-30 22:50+1000\n"
-"Last-Translator: Ser82-png <sw@atrus.ru>\n"
+"PO-Revision-Date: 2022-08-30 00:06+1000\n"
+"Last-Translator: Ser82-png <asvmail.as@gmail.com>\n"
 "Language-Team: \n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.3\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #: data/com.github.maoschanz.drawing.desktop.in
 #: data/com.github.maoschanz.drawing.appdata.xml.in src/deco_manager.py
@@ -101,33 +101,36 @@ msgid ""
 "The text tool is more intuitive to use, with distinct areas on the canvas to "
 "edit, move and insert the text."
 msgstr ""
+"С явными полями инструмент «Текст» стал более интуитивно понятен в "
+"использовании для редактирования, перемещения и вставки текста."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "A former option of the paint bucket tool, which didn't belong there, has "
 "been improved and moved to the eraser tool."
 msgstr ""
+"Старый вариант инструмента «Заливка», которому там не место, был улучшен и "
+"перемещен в инструмент «Ластик»."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
-#, fuzzy
 msgid ""
 "Transparency is henceforth correctly preserved when the \"skew\" tool "
 "expands the canvas with a solid color."
 msgstr ""
-"Теперь правильно сохраняется прозрачность, когда инструмент «Наклон» "
+"Отныне правильно сохраняется прозрачность, когда инструмент «Наклон» "
 "расширяет холст с заполнением образовавшихся пикселей сплошным цветом."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
-#, fuzzy
 msgid "You can now adjust the position of the canvas when you're cropping it."
-msgstr ""
-"Теперь щелчком правой кнопкой мыши вы можете настроить место обрезки холста."
+msgstr "Теперь вы можете настроить положение холста при обрезки."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "The option to use a color editor by default has been moved from the main "
 "window to the preferences window, and its bug has been fixed."
 msgstr ""
+"Параметр для использования по умолчанию редактора цвета был перемещён из "
+"главного окна в окно настроек."
 
 #. very generic release notes i use for ALL minor updates, please
 #. translate this one!
@@ -683,7 +686,7 @@ msgstr "Сообщить об ошибке"
 #. Context: open the index of all help pages
 #: src/ui/app-menus.ui
 msgid "Index"
-msgstr "Индекс"
+msgstr "Содержание"
 
 #. Context: submenu listing individual help pages
 #: src/ui/app-menus.ui
@@ -969,13 +972,12 @@ msgid "Exit fullscreen"
 msgstr "Выход из полноэкранного режима"
 
 #: src/ui/win-menus.ui
-#, fuzzy
 msgid "What's new in Drawing"
-msgstr "Что нового"
+msgstr "Что нового в Drawing"
 
 #: src/ui/win-menus.ui
 msgid "Dismiss"
-msgstr ""
+msgstr "Отказаться"
 
 #: src/deco_manager.py
 #, python-format
@@ -1047,7 +1049,7 @@ msgstr "Сообщить об ошибках или идеях"
 msgid "translator-credits"
 msgstr ""
 "Artem Polishchuk <ego.cordatus@gmail.com>, 2019\n"
-"Ser82-png <sw@atrus.ru>, 2021-2022"
+"Ser82-png <asvmail.as@mail.ru>, 2021-2022"
 
 #. To translators: this is credits for the icons, consider that "Art
 #. Libre" is proper name
@@ -1932,12 +1934,11 @@ msgstr "Горизонтальное перо"
 
 #: src/tools/ui/tool-eraser.ui src/tools/classic_tools/erasers/eraser_rubber.py
 msgid "Rubber eraser"
-msgstr ""
+msgstr "Резиновый ластик"
 
 #: src/tools/ui/tool-eraser.ui src/tools/classic_tools/erasers/eraser_area.py
-#, fuzzy
 msgid "Rectangle area"
-msgstr "Прямоугольник"
+msgstr "Прямоугольная область"
 
 #. Context: this feature erases the color where the user clicked.
 #. For example to cut out an object from its solid background.

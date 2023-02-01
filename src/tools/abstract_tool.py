@@ -1,6 +1,6 @@
 # abstract_tool.py
 #
-# Copyright 2018-2022 Romain F. T.
+# Copyright 2018-2023 Romain F. T.
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -48,6 +48,7 @@ class AbstractAbstractTool():
 		self.cursor_name = 'cell'
 		self._ongoing_operation = False
 		self._modifier_keys = []
+		self._last_btn = 1
 		# Once everything is set, build the UI
 		self.try_build_pane()
 
@@ -101,6 +102,9 @@ class AbstractAbstractTool():
 		if (event_state & Gdk.ModifierType.MOD1_MASK) == Gdk.ModifierType.MOD1_MASK:
 			modifier_keys.append('ALT')
 		self._modifier_keys = modifier_keys
+
+	def on_options_changed(self):
+		pass
 
 	############################################################################
 	# Various utilities ########################################################
@@ -233,7 +237,7 @@ class AbstractAbstractTool():
 	# Activation or not ########################################################
 
 	def on_tool_selected(self):
-		pass
+		self._last_btn = 1
 
 	def on_tool_unselected(self):
 		pass

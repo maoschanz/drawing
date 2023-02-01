@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
-"POT-Creation-Date: 2022-07-18 13:02+0200\n"
-"PO-Revision-Date: 2022-07-18 13:20+0200\n"
+"POT-Creation-Date: 2022-08-27 11:41+0200\n"
+"PO-Revision-Date: 2022-08-27 11:49+0200\n"
 "Last-Translator: Vojtěch Perník <translations@pervoj.cz>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2\n"
-"X-Generator: Gtranslator 42.0\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"X-Generator: Poedit 3.1.1\n"
 
 #: data/com.github.maoschanz.drawing.desktop.in
 #: data/com.github.maoschanz.drawing.appdata.xml.in src/deco_manager.py
@@ -76,12 +76,12 @@ msgid ""
 "and options."
 msgstr ""
 "A samozřejmě, lze i kreslit použitím nástrojů jako například Tužka, Čára, "
-"Křivka, ale i pomocí mnoha tvarů, štětců a jejich barev a možností"
+"Křivka, ale i pomocí mnoha tvarů, štětců a jejich barev a možností."
 
 #. IMPORTANT: complete description of the application (3/3)
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "Supported file types include PNG, JPEG and BMP."
-msgstr "Mezi podporované typy souborů patří PNG, JPEG a BMP"
+msgstr "Mezi podporované typy souborů patří PNG, JPEG a BMP."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -97,15 +97,18 @@ msgid ""
 "The text tool is more intuitive to use, with distinct areas on the canvas to "
 "edit, move and insert the text."
 msgstr ""
+"Používání nástroje textu je intuitivnější, na plátně jsou zřetelné oblasti "
+"pro úpravu, přesouvání a vkládání textu."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "A former option of the paint bucket tool, which didn't belong there, has "
 "been improved and moved to the eraser tool."
 msgstr ""
+"Předchozí možnost nástroje kyblíku, která tam být neměla, byla vylepšena a "
+"přesunuta do nástroje guma."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
-#, fuzzy
 msgid ""
 "Transparency is henceforth correctly preserved when the \"skew\" tool "
 "expands the canvas with a solid color."
@@ -114,16 +117,16 @@ msgstr ""
 "plátno neprůhlednou barvou."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
-#, fuzzy
 msgid "You can now adjust the position of the canvas when you're cropping it."
-msgstr ""
-"Pomocí pravého tlačítka myši můžete nyní upravit polohu plátna při ořezávání."
+msgstr "Při ořezávání plátna můžete nyní upravit jeho polohu."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "The option to use a color editor by default has been moved from the main "
 "window to the preferences window, and its bug has been fixed."
 msgstr ""
+"Možnost výchozího použití editoru barev byla přesunuta z hlavního okna do "
+"okna předvoleb a byla opravena její chyba."
 
 #. very generic release notes i use for ALL minor updates, please
 #. translate this one!
@@ -215,7 +218,7 @@ msgid ""
 msgstr ""
 "Stisknutím klávesy \"ctrl\" zobrazíte souřadnice kurzoru. Pokud to uděláte "
 "běhen práce s nástrojem, můžou se také zobrazit data navíc, například "
-"rozměry tvaru kterým kreslíte"
+"rozměry tvaru kterým kreslíte!"
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -253,7 +256,7 @@ msgstr "Přiblížení v různých tvarech"
 #. Caption of a screenshot, for appstores
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "The \"new image\" menu opened"
-msgstr "Otevřeno menu \"nový obrázek\" "
+msgstr "Otevřeno menu \"nový obrázek\""
 
 #: src/ui/app-menus.ui
 msgid "File"
@@ -306,17 +309,17 @@ msgstr "Uložit bez zachování průhlednosti"
 #. will just rickroll the user.
 #: src/ui/app-menus.ui src/ui/win-menus.ui
 msgid "Prepare as NFT…"
-msgstr "Zpracovat jako NFT"
+msgstr "Zpracovat jako NFT…"
 
 #: src/ui/app-menus.ui src/ui/headerbar-eos.ui src/ui/win-menus.ui
 #: src/saving_manager.py
 msgid "Save as…"
-msgstr "Uložit jako..."
+msgstr "Uložit jako…"
 
 #: src/ui/app-menus.ui src/ui/selection-manager.ui src/ui/win-menus.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 msgid "Export as…"
-msgstr "Exportovat jako..."
+msgstr "Exportovat jako…"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/toolbar.ui
 #: src/ui/toolbar-symbolic.ui src/ui/win-menus.ui
@@ -523,11 +526,11 @@ msgstr "Barvy"
 
 #: src/ui/app-menus.ui
 msgid "Edit Main Color…"
-msgstr "Upravit hlavní barvu..."
+msgstr "Upravit hlavní barvu…"
 
 #: src/ui/app-menus.ui
 msgid "Edit Secondary Color…"
-msgstr "Upravit vedlejší barvu..."
+msgstr "Upravit vedlejší barvu…"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 #: src/optionsbars/classic/optionsbar-classic.ui
@@ -613,7 +616,7 @@ msgstr "Rozdíl"
 
 #: src/ui/app-menus.ui
 msgid "Don't use the colors but…"
-msgstr "Nepoužívat barvy, ale ..."
+msgstr "Nepoužívat barvy, ale…"
 
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
@@ -883,7 +886,7 @@ msgstr "Znovu načíst obrázek z disku"
 
 #: src/ui/shortcuts.ui src/saving_manager.py
 msgid "Save picture as…"
-msgstr "Uložit obrázek jako..."
+msgstr "Uložit obrázek jako…"
 
 #: src/ui/shortcuts.ui
 msgid "Close the active image"
@@ -957,20 +960,19 @@ msgstr "Dotyková gesta"
 
 #: src/ui/window.ui src/deco_manager.py
 msgid "Loading…"
-msgstr "Načítání..."
+msgstr "Načítání…"
 
 #: src/ui/window.ui
 msgid "Exit fullscreen"
 msgstr "Ukončit zobrazení na celou obrazovku"
 
 #: src/ui/win-menus.ui
-#, fuzzy
 msgid "What's new in Drawing"
-msgstr "Co je nového"
+msgstr "Co je v Kreslení nového"
 
 #: src/ui/win-menus.ui
 msgid "Dismiss"
-msgstr ""
+msgstr "Zavřít"
 
 #: src/deco_manager.py
 #, python-format
@@ -1042,7 +1044,7 @@ msgstr "Nahlásit chyby nebo nápady"
 msgid "translator-credits"
 msgstr ""
 "Vojtěch Perník <translations@pervoj.cz>\n"
-"Maggie.M "
+"Maggie.M"
 
 #. To translators: this is credits for the icons, consider that "Art
 #. Libre" is proper name
@@ -1479,7 +1481,7 @@ msgstr ""
 
 #: src/window.py
 msgid "Press F11 to exit fullscreen."
-msgstr "Stiskněte F11 pro ukončení zobrazení na celou obrazovku"
+msgstr "Chcete-li ukončit zobrazení na celou obrazovku, stiskněte F11."
 
 #: src/window.py
 #, python-format
@@ -1523,7 +1525,7 @@ msgstr "Co si přejete udělat s %s?"
 
 #: src/window.py
 msgid "Image copied to clipboard"
-msgstr "Obrázek zkopírován do schránky."
+msgstr "Obrázek zkopírován do schránky"
 
 #: src/window.py
 msgid "Import a picture"
@@ -1716,7 +1718,7 @@ msgstr "Možnosti výběru"
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 #: src/tools/ui/tool-eraser.ui
 msgid "Replace with…"
-msgstr "Nahradit s..."
+msgstr "Nahradit s…"
 
 #: src/optionsbars/selection/optionsbar-selection.ui
 #: src/optionsbars/transform/optionsbar-crop.ui
@@ -1739,12 +1741,12 @@ msgstr "Více možností"
 #: src/optionsbars/transform/optionsbar-crop.ui
 #: src/optionsbars/transform/optionsbar-skew.ui src/tools/ui/tool-crop.ui
 msgid "Expand with…"
-msgstr "Rozbalit pomocí..."
+msgstr "Rozbalit pomocí…"
 
 #: src/optionsbars/transform/optionsbar-filters.ui
 #: src/tools/transform_tools/tool_filters.py
 msgid "Select a filter…"
-msgstr "Vybrat filtr..."
+msgstr "Vybrat filtr…"
 
 #: src/optionsbars/transform/optionsbar-rotate.ui
 msgid "Angle (degrees)"
@@ -1924,12 +1926,11 @@ msgstr "Horizontální pero"
 
 #: src/tools/ui/tool-eraser.ui src/tools/classic_tools/erasers/eraser_rubber.py
 msgid "Rubber eraser"
-msgstr ""
+msgstr "Guma"
 
 #: src/tools/ui/tool-eraser.ui src/tools/classic_tools/erasers/eraser_area.py
-#, fuzzy
 msgid "Rectangle area"
-msgstr "Obdélník"
+msgstr "Plocha obdélníku"
 
 #. Context: this feature erases the color where the user clicked.
 #. For example to cut out an object from its solid background.
@@ -2068,7 +2069,7 @@ msgstr "Kříž"
 
 #: src/tools/ui/tool-points.ui src/tools/classic_tools/tool_points.py
 msgid "X-shaped cross"
-msgstr "Kříž ve tvaru X."
+msgstr "Kříž ve tvaru X"
 
 #: src/tools/ui/tool-points.ui
 msgid "Include a number"
@@ -2156,7 +2157,7 @@ msgstr "Font"
 
 #: src/tools/ui/tool-text.ui
 msgid "Select a font…"
-msgstr "Vybrat font..."
+msgstr "Vybrat font…"
 
 #: src/tools/ui/tool-text.ui
 msgid "Italic"

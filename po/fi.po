@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
 "POT-Creation-Date: 2022-05-21 23:53+0200\n"
-"PO-Revision-Date: 2022-07-14 23:57+0300\n"
+"PO-Revision-Date: 2022-11-27 12:00+0200\n"
 "Last-Translator: Kimmo Kujansuu <mrkujansuu@gmail.com>\n"
 "Language-Team: \n"
 "Language: fi\n"
@@ -34,7 +34,7 @@ msgstr "Helppo piirustus apuohjelma"
 #. Don't forget the semicolons.
 #: data/com.github.maoschanz.drawing.desktop.in
 msgid "Paint;Sketch;Pencil;"
-msgstr "Paint;Maali;Luonnos;Kynä;"
+msgstr "Paint;Maalaus;Kynä;Piirtäminen;Kuvankäsittely;"
 
 #: data/com.github.maoschanz.drawing.desktop.in src/ui/app-menus.ui
 #: src/ui/shortcuts.ui src/ui/win-menus.ui src/window.py
@@ -98,34 +98,35 @@ msgid ""
 "The text tool is more intuitive to use, with distinct areas on the canvas to "
 "edit, move and insert the text."
 msgstr ""
+"Tekstityökalua on helpompi käyttää, sillä kankaalla on erilliset alueet "
+"tekstin muokkaamista, siirtämistä ja lisäämistä varten."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "A former option of the paint bucket tool, which didn't belong there, has "
 "been improved and moved to the eraser tool."
 msgstr ""
+"Aiempi maalisanko-työkalu on paranneltu ja siirretty pyyhekumin yhteyteen."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
-#, fuzzy
 msgid ""
 "Transparency is henceforth correctly preserved when the \"skew\" tool "
 "expands the canvas with a solid color."
 msgstr ""
-"Läpinäkyvyys säilyy nyt oikein, kun \"vääntö\"-työkalut laajentavat pintaa "
-"yhtenäisellä värillä."
+"Läpinäkyvyys säilyy vastedes oikein, kun \"vääntö\"-työkalu laajentaa "
+"kangasta yhtenäisellä värillä."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
-#, fuzzy
 msgid "You can now adjust the position of the canvas when you're cropping it."
-msgstr ""
-"Napsauta hiiren oikealla painikkeella, voit nyt säätää kankaan sijaintia, "
-"kun rajaat sitä."
+msgstr "Voit nyt säätää kankaan sijaintia, kun rajaat sitä."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "The option to use a color editor by default has been moved from the main "
 "window to the preferences window, and its bug has been fixed."
 msgstr ""
+"Mahdollisuus käyttää värieditoria on siirretty pääikkunasta asetukset "
+"ikkunaan ja sen virhe on korjattu."
 
 #. very generic release notes i use for ALL minor updates, please
 #. translate this one!
@@ -289,7 +290,7 @@ msgstr "Kuvan ominaisuudet"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Reset canvas"
-msgstr "Nollaa pohja"
+msgstr "Nollaa kangas"
 
 #: src/ui/app-menus.ui src/ui/headerbar.ui src/ui/headerbar-eos.ui
 #: src/ui/shortcuts.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
@@ -305,12 +306,12 @@ msgstr "Tallenna ilman läpinäkyvyyttä"
 #. will just rickroll the user.
 #: src/ui/app-menus.ui src/ui/win-menus.ui
 msgid "Prepare as NFT…"
-msgstr "Aprilliä, syö silliä..."
+msgstr "Valmistaudu NFT..."
 
 #: src/ui/app-menus.ui src/ui/headerbar-eos.ui src/ui/win-menus.ui
 #: src/saving_manager.py
 msgid "Save as…"
-msgstr "Tallenna nimellä."
+msgstr "Tallenna nimellä…"
 
 #: src/ui/app-menus.ui src/ui/selection-manager.ui src/ui/win-menus.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
@@ -963,13 +964,12 @@ msgid "Exit fullscreen"
 msgstr "Poistu kokonäytöstä"
 
 #: src/ui/win-menus.ui
-#, fuzzy
 msgid "What's new in Drawing"
-msgstr "Mitä uutta?"
+msgstr "Drawing, mitä uutta?"
 
 #: src/ui/win-menus.ui
 msgid "Dismiss"
-msgstr ""
+msgstr "Hylkää"
 
 #: src/deco_manager.py
 #, python-format
@@ -1915,12 +1915,11 @@ msgstr "Vaakakärki"
 
 #: src/tools/ui/tool-eraser.ui src/tools/classic_tools/erasers/eraser_rubber.py
 msgid "Rubber eraser"
-msgstr ""
+msgstr "Pyyhekumi"
 
 #: src/tools/ui/tool-eraser.ui src/tools/classic_tools/erasers/eraser_area.py
-#, fuzzy
 msgid "Rectangle area"
-msgstr "Suorakulmio"
+msgstr "Suorakulmion alue"
 
 #. Context: this feature erases the color where the user clicked.
 #. For example to cut out an object from its solid background.

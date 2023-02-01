@@ -14,7 +14,8 @@ def utilities_show_composite_overlay(ccontext, thickness=1, x_press=None, y_pres
 	x1, y1, x2, y2 = ccontext.path_extents()
 	radius = _get_radius((x2 - x1), (y2 - y1), thickness)
 
-	radius_with_margin = (radius + 10) * 1.2
+	# Empirical way to get a wide-enough margin regardless of the zoom level
+	radius_with_margin = (radius + 13 * thickness) * 1.2
 	ccontext.move_to(x1 - radius_with_margin, y1 - radius_with_margin)
 	ccontext.line_to(x2 + radius_with_margin, y1 - radius_with_margin)
 	ccontext.line_to(x2 + radius_with_margin, y2 + radius_with_margin)
