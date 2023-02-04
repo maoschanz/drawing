@@ -34,10 +34,6 @@ class ToolHighlighter(ToolPencil):
 		self.add_tool_action_enum('highlight-bg', 'light')
 
 	def get_editing_tips(self):
-		self._bg_type = self.get_option_value('highlight-bg')
-		self._force_alpha = self.get_option_value('highlight-alpha')
-		self._is_rigid = self.get_option_value('highlight-rigid')
-
 		label_options = self.label + " - "
 		if self._bg_type == 'light':
 			label_options += _("Dark text on light background")
@@ -52,6 +48,13 @@ class ToolHighlighter(ToolPencil):
 
 		full_list = [label_options, label_modifier_shift]
 		return list(filter(None, full_list))
+
+	def on_options_changed(self):
+		super().on_options_changed()
+		self._bg_type = self.get_option_value('highlight-bg')
+		self._force_alpha = self.get_option_value('highlight-alpha')
+		self._is_rigid = self.get_option_value('highlight-rigid')
+		# refreshing the rendered operation isn't pertinent
 
 	def get_options_label(self):
 		return _("Highlighter options")

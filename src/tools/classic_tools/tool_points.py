@@ -36,24 +36,7 @@ class ToolPoints(AbstractClassicTool):
 		self.add_tool_action_simple('points_dec_num', self._decrement_number)
 
 		self._next_number = 1
-		self._set_active_type() # Not optimal but more readable
-
-	def _set_active_type(self):
-		state_as_string = self.get_option_value('points_type')
-		if state_as_string == 'cross':
-			self._shape_label = _("Cross")
-		elif state_as_string == 'x-cross':
-			self._shape_label = _("X-shaped cross")
-		elif state_as_string == 'square':
-			self._shape_label = _("Square")
-		else:
-			self._shape_label = _("Circle")
-		self._points_type = state_as_string
-
-		self._use_number = self.get_option_value('points_number')
-		self.set_action_sensitivity('points_reset_num', self._use_number)
-		self.set_action_sensitivity('points_inc_num', self._use_number)
-		self.set_action_sensitivity('points_dec_num', self._use_number)
+		self.on_options_changed() # Not optimal but more readable XXX useful?
 
 	def _reset_number(self, *args):
 		self._next_number = 1
@@ -71,12 +54,32 @@ class ToolPoints(AbstractClassicTool):
 		return _("Points options")
 
 	def get_editing_tips(self):
-		self._set_active_type()
 		label = self.label + " - " + self._shape_label
 		if self._use_number:
 			label += " - " + _("Next number: %s") % self._next_number
 		# A single label is returned so the next number is always visible
 		return [label]
+
+	def on_options_changed(self):
+		super().on_options_changed()
+
+		state_as_string = self.get_option_value('points_type')
+		if state_as_string == 'cross':
+			self._shape_label = _("Cross")
+		elif state_as_string == 'x-cross':
+			self._shape_label = _("X-shaped cross")
+		elif state_as_string == 'square':
+			self._shape_label = _("Square")
+		else:
+			self._shape_label = _("Circle")
+		self._points_type = state_as_string
+
+		self._use_number = self.get_option_value('points_number')
+		self.set_action_sensitivity('points_reset_num', self._use_number)
+		self.set_action_sensitivity('points_inc_num', self._use_number)
+		self.set_action_sensitivity('points_dec_num', self._use_number)
+
+		# refreshing the rendered operation isn't pertinent
 
 	############################################################################
 

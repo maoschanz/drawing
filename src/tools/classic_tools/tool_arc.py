@@ -57,10 +57,6 @@ class ToolArc(AbstractClassicTool):
 		return _("Curve options")
 
 	def get_editing_tips(self):
-		self._use_outline = self.get_option_value('pencil-outline')
-		self._dashes_type = self.get_option_value('dashes-type')
-		self._arrow_type = self.get_option_value('arrow-type')
-		self.set_active_shape()
 		is_arrow = self._arrow_type != 'none'
 		use_dashes = self._dashes_type != 'none'
 
@@ -88,6 +84,13 @@ class ToolArc(AbstractClassicTool):
 
 		full_list = [label_segments, label_options, label_modifier_alt]
 		return list(filter(None, full_list))
+
+	def on_options_changed(self):
+		super().on_options_changed()
+		self._use_outline = self.get_option_value('pencil-outline')
+		self._dashes_type = self.get_option_value('dashes-type')
+		self._arrow_type = self.get_option_value('arrow-type')
+		self.set_active_shape()
 
 	############################################################################
 

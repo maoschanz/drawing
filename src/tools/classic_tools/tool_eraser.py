@@ -43,10 +43,6 @@ class ToolEraser(AbstractClassicTool):
 		}
 
 	def get_editing_tips(self):
-		self._rgba_type = self.get_option_value('selection-color')
-		self._eraser_shape = self.get_option_value('eraser-shape')
-		self._apply_shape_constraints()
-
 		opt = {
 			'selection-color': self._rgba_type,
 			'eraser-type': self._eraser_type
@@ -65,6 +61,13 @@ class ToolEraser(AbstractClassicTool):
 
 		full_list = [label_options, label_modifier_shift]
 		return list(filter(None, full_list))
+
+	def on_options_changed(self):
+		super().on_options_changed()
+		self._rgba_type = self.get_option_value('selection-color')
+		self._eraser_shape = self.get_option_value('eraser-shape')
+		self._apply_shape_constraints()
+		# refreshing the rendered operation isn't pertinent
 
 	def get_options_label(self):
 		return _("Eraser options")
