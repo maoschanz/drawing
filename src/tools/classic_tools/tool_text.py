@@ -52,7 +52,6 @@ class ToolText(AbstractClassicTool):
 
 		# XXX actions sensitivity?
 		self.add_tool_action_simple('text-cancel', self._on_cancel)
-		self.add_tool_action_simple('text-preview', self._force_refresh)
 		self.add_tool_action_simple('text-insert', self._on_insert_text)
 
 		builder = Gtk.Builder().new_from_resource(self.UI_PATH + 'tool-text.ui')
@@ -208,10 +207,6 @@ class ToolText(AbstractClassicTool):
 
 	def _hide_entry(self):
 		self._popover.popdown()
-
-	def _force_refresh(self, *args):
-		self.set_common_values(self._last_btn, self._text_x, self._text_y)
-		self._preview_text()
 
 	def _on_insert_text(self, *args):
 		self._hide_entry()
