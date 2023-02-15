@@ -31,7 +31,7 @@ class BrushSimple(AbstractBrush):
 		make it less ugly)."""
 
 		if operation['is_preview']: # Previewing helps performance & debug
-			operation['line_width'] = max(1, int(operation['line_width'] / 2))
+			operation['line_width'] = max(1, int(operation['line_width'] * 0.8))
 			return self.draw_preview(operation, cairo_context)
 
 		if len(operation['path']) < 3:
