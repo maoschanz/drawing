@@ -81,6 +81,9 @@ class ToolFilters(AbstractCanvasTool):
 		tip_label = _("Click on the image to preview the selected filter")
 		return [self.type_label, tip_label]
 
+	def on_options_changed(self):
+		self._preview_filter()
+
 	############################################################################
 
 	def _set_blur_direction(self, *args):
@@ -138,7 +141,7 @@ class ToolFilters(AbstractCanvasTool):
 		self._set_blur_direction()
 		GLib.timeout_add(100, self._async_open_menu, {})
 		if self.blur_algo == BlurType.INVALID:
-			self.on_filter_preview()
+			self._preview_filter()
 		else:
 			operation = self.build_operation()
 			operation['radius'] = 0
@@ -153,9 +156,9 @@ class ToolFilters(AbstractCanvasTool):
 		return False
 
 	def on_press_on_area(self, event, surface, event_x, event_y):
-		self.on_filter_preview()
+		self._preview_filter()
 
-	def on_filter_preview(self, *args):
+	def _preview_filter(self, *args):
 		self._set_active_type()
 		self._set_blur_direction()
 		self.build_and_do_op()
