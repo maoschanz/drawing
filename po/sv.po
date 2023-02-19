@@ -2,21 +2,22 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the drawing package.
 # Åke Engelbrektson <eson@svenskasprakfiler.se>, 2019-2022.
+# Luna Jernberg <droidbittin@gmail.com>, 2023.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
 "POT-Creation-Date: 2022-05-21 23:53+0200\n"
-"PO-Revision-Date: 2022-02-17 12:27+0100\n"
-"Last-Translator: Åke Engelbrektson <eson@svenskasprakfiler.se>\n"
+"PO-Revision-Date: 2023-02-19 11:11+0100\n"
+"Last-Translator: Luna Jernberg <droidbittin@gmail.com>\n"
 "Language-Team: Svenska Språkfiler <contactform@svenskasprakfiler.se>\n"
 "Language: sv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.2.2\n"
 
 #: data/com.github.maoschanz.drawing.desktop.in
 #: data/com.github.maoschanz.drawing.appdata.xml.in src/deco_manager.py
@@ -90,34 +91,45 @@ msgid ""
 "consistently applied when you change the active tool without clicking on "
 "\"apply\"."
 msgstr ""
+"Version 1.2.0 förbättrar transformationsverktygen: deras "
+"förhandsgranskningar tillämpas nu konsekvent när du ändrar det aktiva "
+"verktyget utan att klicka på \"Verkställ\"."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "The text tool is more intuitive to use, with distinct areas on the canvas to "
 "edit, move and insert the text."
 msgstr ""
+"Textverktyget är mer intuitivt att använda, med distinkta områden på "
+"arbetsytan för att redigera, flytta och infoga texten."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "A former option of the paint bucket tool, which didn't belong there, has "
 "been improved and moved to the eraser tool."
 msgstr ""
+"Ett tidigare alternativ av färghinkverktyget, som inte hörde dit, har "
+"förbättrats och flyttats till suddgummiverktyget."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "Transparency is henceforth correctly preserved when the \"skew\" tool "
 "expands the canvas with a solid color."
 msgstr ""
+"Transparensen är hädanefter korrekt bevarad när \"skevningsverktyget\" "
+"expanderar arbetsytan med en enfärgad färg."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "You can now adjust the position of the canvas when you're cropping it."
-msgstr ""
+msgstr "Du kan nu justera arbetsytans position när du beskär den."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "The option to use a color editor by default has been moved from the main "
 "window to the preferences window, and its bug has been fixed."
 msgstr ""
+"Alternativet att använda en färgredigerare som standard har flyttats från "
+"huvudfönstret till inställningsfönstret, och dess bugg har åtgärdats."
 
 #. very generic release notes i use for ALL minor updates, please
 #. translate this one!
@@ -133,6 +145,9 @@ msgid ""
 "By popular demand, the \"highlighter\" tool is now enabled by default, and "
 "the message dialog to warn you about the release notes is less intrusive."
 msgstr ""
+"På populär efterfrågan är verktyget \"markeringspenna\" nu aktiverat som "
+"standard, och meddelandedialogrutan för att varna dig om versionsinformation "
+"är mindre påträngande."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -142,18 +157,28 @@ msgid ""
 "2000%%, scrolling up or down, or left or right, was quite violent. These "
 "problems should all have disappeared in this new version!"
 msgstr ""
+"Den huvudsakliga förbättringen i den här uppdateringen är zoomarbetsflödet: "
+"sedan version 1.0.0 är det möjligt att zooma in väldigt djupt, men processen "
+"var väldigt långsam och vyn höll sig inte väl centrerad kring muspekaren; "
+"och en gång vid 2000 %% var det ganska våldsamt att scrolla upp eller ner, "
+"eller vänster eller höger. Dessa problem borde alla ha försvunnit i denna "
+"nya version!"
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "Incorrect command line parsing when using the app outside of a flatpak "
 "sandbox has also been fixed."
 msgstr ""
+"Felaktig kommandoradsanalys när du använder programmet utanför en flatpak-"
+"sandlåda har också åtgärdats."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "For users on elementary OS, a small issue concerning window resizing has "
 "been mended too."
 msgstr ""
+"För användare på elementary OS har ett litet problem angående fönsterstorlek "
+"också åtgärdats."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -186,6 +211,8 @@ msgid ""
 "Zooming very deep is now possible, and the rendering will be very crisp, "
 "even at 2000%%."
 msgstr ""
+"Det är nu möjligt att zooma mycket djupt och renderingen blir mycket skarp, "
+"även vid 2000%%."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -724,7 +751,7 @@ msgstr "100%"
 
 #: src/ui/minimap.ui src/ui/shortcuts.ui
 msgid "Maximum zoom"
-msgstr ""
+msgstr "Maximal zoom"
 
 #: src/ui/new-image-dialog.ui src/ui/properties.ui
 #: src/optionsbars/transform/optionsbar-crop.ui
@@ -940,13 +967,12 @@ msgid "Exit fullscreen"
 msgstr "Avsluta fullskärm"
 
 #: src/ui/win-menus.ui
-#, fuzzy
 msgid "What's new in Drawing"
-msgstr "Vad nytt"
+msgstr "Vad är nytt i Drawing"
 
 #: src/ui/win-menus.ui
 msgid "Dismiss"
-msgstr ""
+msgstr "Avfärda"
 
 #: src/deco_manager.py
 #, python-format
@@ -1016,7 +1042,9 @@ msgstr "Rapportera fel eller idéer"
 #. per line), they will be displayed in the "about" dialog
 #: src/main.py
 msgid "translator-credits"
-msgstr "Åke Engelbrektson <eson@svenskasprakfiler.se>"
+msgstr ""
+"Åke Engelbrektson <eson@svenskasprakfiler.se>\n"
+"Luna Jernberg <droidbittin@gmail.com>"
 
 #. To translators: this is credits for the icons, consider that "Art
 #. Libre" is proper name
@@ -1220,6 +1248,8 @@ msgstr "Använd färgredigerare som standard"
 #: src/preferences.py
 msgid "You can use a simple color palette, or use a full RGBA color editor."
 msgstr ""
+"Du kan använda en enkel färgpalett eller använda en komplett RGBA-"
+"färgredigerare."
 
 #. Context: title of a section of the preferences
 #: src/preferences.py
@@ -1761,7 +1791,7 @@ msgstr "Vid skalning från hörnen"
 #. Context for translations: "[Keep proportions only] when setting values manually"
 #: src/optionsbars/transform/optionsbar-scale.ui src/tools/ui/tool-scale.ui
 msgid "When setting values manually"
-msgstr ""
+msgstr "Vid manuell inställning av värden"
 
 #. Context: an item in a menu whose title is "Keep proportions"
 #. Context for translations: "Never [keep proportions]"
@@ -1894,12 +1924,11 @@ msgstr "Horisontell spets"
 
 #: src/tools/ui/tool-eraser.ui src/tools/classic_tools/erasers/eraser_rubber.py
 msgid "Rubber eraser"
-msgstr ""
+msgstr "Suddgummi"
 
 #: src/tools/ui/tool-eraser.ui src/tools/classic_tools/erasers/eraser_area.py
-#, fuzzy
 msgid "Rectangle area"
-msgstr "Rektangel"
+msgstr "Rektangelområde"
 
 #. Context: this feature erases the color where the user clicked.
 #. For example to cut out an object from its solid background.
