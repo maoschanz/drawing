@@ -268,7 +268,7 @@ class DrSavingManager():
 
 	def _replace_alpha(self, pixbuf, replacement, image):
 		if replacement == 'nothing':
-			return
+			return pixbuf
 		width = pixbuf.get_width()
 		height = pixbuf.get_height()
 		if replacement == 'white':
