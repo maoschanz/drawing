@@ -3,14 +3,14 @@
 # This file is distributed under the same license as the drawing package.
 # Antonio Hauren <haurenburu@protonmail.com>, 2019.
 # Arthur <arthurbacci64@gmail.com>, 2020.
-# Fúlvio Alves <fga.fulvio@gmail.com>, 2022.
+# Fúlvio Alves <fga.fulvio@gmail.com>, 2023.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
 "POT-Creation-Date: 2023-02-21 23:31+0100\n"
-"PO-Revision-Date: 2022-09-18 18:08-0300\n"
+"PO-Revision-Date: 2023-02-21 19:53-0300\n"
 "Last-Translator: Fúlvio Alves <fga.fulvio@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <arthurbacci64@gmail.com>\n"
 "Language: pt_BR\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.1.1\n"
 
 #: data/com.github.maoschanz.drawing.desktop.in
 #: data/com.github.maoschanz.drawing.appdata.xml.in src/deco_manager.py
@@ -36,7 +36,7 @@ msgstr "Ferramenta de desenho simples"
 #. Don't forget the semicolons.
 #: data/com.github.maoschanz.drawing.desktop.in
 msgid "Paint;Sketch;Pencil;"
-msgstr "Paint;Pintura;Esboço;Lápis;"
+msgstr "Paint;Sketch;Pencil;Pintura;Esboço;Lápis;"
 
 #: data/com.github.maoschanz.drawing.desktop.in src/ui/app-menus.ui
 #: src/ui/shortcuts.ui src/ui/win-menus.ui src/window.py
@@ -1367,9 +1367,8 @@ msgstr "Formato inválido"
 #. an actual error occurred!
 #. Context: an error message
 #: src/saving_manager.py
-#, fuzzy
 msgid "Failed to replace transparency"
-msgstr "Substituír transparência com:"
+msgstr "Falha ao substituir a transparência"
 
 #. Context: an error message
 #: src/saving_manager.py
@@ -1379,9 +1378,9 @@ msgstr "Falha ao salvar: %s"
 
 #. Context: an error message
 #: src/saving_manager.py
-#, fuzzy, python-format
+#, python-format
 msgid "Failed to reload %s"
-msgstr "Falha ao carregar a ferramenta: %s"
+msgstr "Falha ao recarregar %s"
 
 #. Context: Untitled(.png) is the default name of a newly saved file
 #: src/saving_manager.py
@@ -2389,11 +2388,11 @@ msgstr "Opções de fonte"
 
 #: src/tools/classic_tools/tool_text.py
 msgid "Grab the rectangle to adjust the text position"
-msgstr ""
+msgstr "Pegue o retângulo para ajustar a posição do texto"
 
 #: src/tools/classic_tools/tool_text.py
 msgid "Click outside the rectangle to apply"
-msgstr ""
+msgstr "Clique fora do retângulo para aplicar"
 
 #: src/tools/classic_tools/brushes/brush_airbrush.py
 msgid "Density depends on the stylus pressure"
