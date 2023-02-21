@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.github.maoschanz.drawing 0.4\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
-"POT-Creation-Date: 2022-05-21 23:53+0200\n"
+"POT-Creation-Date: 2023-02-21 23:31+0100\n"
 "PO-Revision-Date: 2022-05-21 23:57+0200\n"
 "Last-Translator: Romain F. T. <rrroschan@gmail.com>\n"
 "Language-Team: French <aaaa@bbbb.com>\n"
@@ -106,8 +106,9 @@ msgstr ""
 msgid ""
 "A former option of the paint bucket tool, which didn't belong there, has "
 "been improved and moved to the eraser tool."
-msgstr "Une ancienne option de l'outil 'pot de peinture', qui n'avait rien à "
-"faire là, a été améliorée et déplacée vers l'outil 'effaceur'."
+msgstr ""
+"Une ancienne option de l'outil 'pot de peinture', qui n'avait rien à faire "
+"là, a été améliorée et déplacée vers l'outil 'effaceur'."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -398,6 +399,11 @@ msgstr "Préférences"
 #: src/ui/app-menus.ui
 msgid "View"
 msgstr "Affichage"
+
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-classic.ui
+#: src/optionsbars/selection/optionsbar-selection.ui
+msgid "Preview"
+msgstr "Aperçu"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/preferences.py
 msgid "Zoom"
@@ -1345,11 +1351,24 @@ msgstr "Encodage des couleurs"
 msgid "Invalid format"
 msgstr "Format invalide"
 
+#. an actual error occurred!
+#. Context: an error message
+#: src/saving_manager.py
+#, fuzzy
+msgid "Failed to replace transparency"
+msgstr "Remplacer la transparence par :"
+
 #. Context: an error message
 #: src/saving_manager.py
 #, python-format
 msgid "Failed to save %s"
 msgstr "Erreur en enregistrant %s"
+
+#. Context: an error message
+#: src/saving_manager.py
+#, fuzzy, python-format
+msgid "Failed to reload %s"
+msgstr "Erreur en chargeant l'outil : %s"
 
 #. Context: Untitled(.png) is the default name of a newly saved file
 #: src/saving_manager.py
@@ -1687,11 +1706,6 @@ msgstr "Taille de l'outil"
 #: src/optionsbars/classic/optionsbar-classic.ui src/tools/abstract_tool.py
 msgid "No options"
 msgstr "Pas d'options"
-
-#: src/optionsbars/classic/optionsbar-classic.ui
-#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/tool-text.ui
-msgid "Preview"
-msgstr "Aperçu"
 
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "How the color will be applied to the existing pixels"
@@ -2364,6 +2378,14 @@ msgstr "Texte"
 #: src/tools/classic_tools/tool_text.py
 msgid "Text options"
 msgstr "Options du texte"
+
+#: src/tools/classic_tools/tool_text.py
+msgid "Grab the rectangle to adjust the text position"
+msgstr ""
+
+#: src/tools/classic_tools/tool_text.py
+msgid "Click outside the rectangle to apply"
+msgstr ""
 
 #: src/tools/classic_tools/brushes/brush_airbrush.py
 msgid "Density depends on the stylus pressure"
