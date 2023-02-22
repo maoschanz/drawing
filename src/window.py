@@ -549,8 +549,8 @@ class DrWindow(Gtk.ApplicationWindow):
 		self.add_action_simple('new_tab_clipboard', \
 		                    self.build_image_from_clipboard, ['<Ctrl><Shift>v'])
 		self.add_action_simple('open', self.action_open, ['<Ctrl>o'])
-		self.add_action_simple('tab_left', self.action_tab_left, ['<Ctrl><Shift>Left'])
-		self.add_action_simple('tab_right', self.action_tab_right, ['<Ctrl><Shift>Right'])
+		self.add_action_simple('tab_right', self.action_tab_right, ['<Ctrl>Tab'])
+		self.add_action_simple('tab_left', self.action_tab_left, ['<Ctrl><Shift>Tab'])
 		self.add_action_simple('close_tab', self.action_close_tab, ['<Ctrl>w'])
 		self.add_action_simple('close', self.action_close_window)
 
