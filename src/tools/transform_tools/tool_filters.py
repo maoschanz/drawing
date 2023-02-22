@@ -138,8 +138,8 @@ class ToolFilters(AbstractCanvasTool):
 		self._set_blur_direction()
 		GLib.timeout_add(100, self._async_open_menu, {})
 		if self.blur_algo == BlurType.INVALID:
-			self.on_filter_preview()
 			# XXX great optimization but it displays shit
+			self._preview_filter()
 
 	def _async_open_menu(self, *args):
 		"""This is used as a GSourceFunc so it should return False."""
@@ -147,9 +147,9 @@ class ToolFilters(AbstractCanvasTool):
 		return False
 
 	def on_press_on_area(self, event, surface, event_x, event_y):
-		self.on_filter_preview()
+		self._preview_filter()
 
-	def on_filter_preview(self, *args):
+	def _preview_filter(self, *args):
 		self._set_active_type()
 		self._set_blur_direction()
 		self.build_and_do_op()

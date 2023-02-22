@@ -136,7 +136,7 @@ class DrImage(Gtk.Box):
 	############################################################################
 	# Image initialization #####################################################
 
-	def init_image_common(self):
+	def _init_image_common(self):
 		"""Part of the initialization common to both a new blank image and an
 		opened image."""
 		self._is_pressed = False
@@ -160,12 +160,12 @@ class DrImage(Gtk.Box):
 		self.set_action_sensitivity('redo', False)
 
 	def init_background(self, width, height, background_rgba):
-		self.init_image_common()
+		self._init_image_common()
 		self._history.set_initial_operation(background_rgba, None, width, height)
 		self.restore_last_state()
 
 	def try_load_pixbuf(self, pixbuf):
-		self.init_image_common()
+		self._init_image_common()
 		self._load_pixbuf_common(pixbuf)
 		self.restore_last_state()
 		self.update_title()
