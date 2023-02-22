@@ -144,7 +144,7 @@ class DrImage(Gtk.Box):
 		# Zoom and scroll initialization
 		self.scroll_x = 0
 		self.scroll_y = 0
-		self.set_zoom_level(100) # will do `self.zoom_level = 1.0`
+		self.zoom_level = 1.0
 		self.motion_behavior = DrMotionBehavior.HOVER
 		self._slip_press_x = 0.0
 		self._slip_press_y = 0.0

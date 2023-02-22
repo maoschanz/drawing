@@ -61,7 +61,12 @@ class ToolText(AbstractClassicTool):
 		# for f in PangoCairo.font_map_get_default().list_families():
 		# 	print(f.get_name())
 
-		status = dialog.run() # <<< FIXME
+		try:
+			status = dialog.run()
+			# ^ FIXME #479
+		except Exception as ex:
+			# probablement qu'on ne catchera rien
+			pass
 		if(status == Gtk.ResponseType.OK):
 			self._font_fam_name = dialog.get_font_family().get_name()
 			# print(dialog.get_font())

@@ -27,7 +27,7 @@ class ToolHighlighter(ToolPencil):
 		# highlight text, for example in screenshots
 		AbstractClassicTool.__init__(self, 'highlight', _("Highlighter"), \
 		                                      'tool-highlight-symbolic', window)
-		self.use_operator = True
+		self.use_operator = False
 		self._path = None
 		self.add_tool_action_boolean('highlight-alpha', True)
 		self.add_tool_action_boolean('highlight-rigid', True)
