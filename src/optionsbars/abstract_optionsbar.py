@@ -71,12 +71,6 @@ class AbstractOptionsBar():
 		the given tool."""
 		pass
 
-	def get_minimap_btn(self):
-		pass
-
-	def set_minimap_label(self, label):
-		pass
-
 	def toggle_options_menu(self):
 		if self._togglable_btn and self._togglable_btn.get_visible():
 			self._togglable_btn.set_active(not self._togglable_btn.get_active())

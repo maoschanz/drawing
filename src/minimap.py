@@ -6,8 +6,8 @@ from gi.repository import Gtk, Gdk, GdkPixbuf
 class DrMinimap(Gtk.Popover):
 	__gtype_name__ = 'DrMinimap'
 
-	def __init__(self, window, minimap_btn, **kwargs):
-		super().__init__(**kwargs)
+	def __init__(self, window):
+		super().__init__()
 		self._window = window
 		self._preview_size = self._window.gsettings.get_int('preview-size')
 		self.mini_pixbuf = GdkPixbuf.Pixbuf.new(GdkPixbuf.Colorspace.RGB, True, 8, 300, 300)
@@ -31,11 +31,14 @@ class DrMinimap(Gtk.Popover):
 		self._minimap_area.connect('motion-notify-event', self._on_mm_motion)
 		self._minimap_area.connect('button-release-event', self._on_mm_motion)
 
+		# TODO custom "moving hand" cursor?
+
 		self.add(box)
 		self.connect('closed', self._on_popover_dismissed)
-		self.set_relative_to(minimap_btn)
+		self.set_relative_to(self._window.minimap_btn)
 
-		# TODO custom "moving hand" cursor?
+		self._label = self._window.minimap_label
+		self._arrow = self._window.minimap_arrow
 
 	############################################################################
 
@@ -46,7 +49,7 @@ class DrMinimap(Gtk.Popover):
 		# This string displays the zoom level: %s will be replaced with a
 		# number, while %% will be rendered as the symbol '%'
 		zoom_label = _("%s%%") % str(int(int_value))
-		self._window.options_manager.set_minimap_label(zoom_label)
+		self._label.set_label(zoom_label)
 		self.update_overlay()
 
 	def update_content(self):

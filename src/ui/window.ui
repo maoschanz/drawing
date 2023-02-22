@@ -140,6 +140,7 @@
             <property name="orientation">horizontal</property>
             <property name="visible">True</property>
             <property name="expand">False</property>
+
             <child>
               <object class="GtkBox" id="bottom_panes_box">
                 <property name="orientation">vertical</property>
@@ -149,6 +150,38 @@
                 <!-- Tools will add their optionsbars here -->
               </object>
             </child>
+
+            <child>
+              <object class="GtkToggleButton" id="minimap_btn">
+                <property name="valign">center</property>
+                <property name="margin-right">6</property>
+                <property name="tooltip-text" translatable="yes">Preview</property>
+                <property name="visible">True</property>
+                <property name="action-name">win.toggle_preview</property>
+                <child>
+                  <object class="GtkBox">
+                    <property name="visible">True</property>
+                    <property name="spacing">10</property>
+                    <child>
+                      <object class="GtkLabel" id="minimap_label">
+                        <property name="label">100%</property>
+                        <property name="visible">True</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkImage" id="minimap_arrow">
+                        <property name="icon-name">pan-down-symbolic</property>
+                        <property name="visible">True</property>
+                      </object>
+                      <packing>
+                        <property name="pack-type">end</property>
+                      </packing>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+
             <child>
               <object class="GtkButton" id="unfullscreen_btn">
                 <property name="visible">False</property>
@@ -164,6 +197,7 @@
                 </child>
               </object>
             </child>
+
           </object>
         </child>
       </object>

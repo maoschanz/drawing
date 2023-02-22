@@ -182,7 +182,6 @@ class DrOptionsManager():
 		else:
 			self._active_pane_id = pane_id
 			self._show_active_pane()
-			self.update_minimap_position()
 
 	def _show_active_pane(self):
 		for each_id in self._bottom_panes_dict:
@@ -216,18 +215,6 @@ class DrOptionsManager():
 
 	def toggle_menu(self):
 		self.get_active_pane().toggle_options_menu()
-
-	def set_minimap_label(self, label):
-		for pane_id in self._bottom_panes_dict:
-			self._bottom_panes_dict[pane_id].set_minimap_label(label)
-
-	def update_minimap_position(self):
-		"""Move the minimap popover to the currently active optionsbar."""
-		btn = self.get_active_pane().get_minimap_btn()
-		if btn is not None:
-			self.window.minimap.set_relative_to(btn)
-		else:
-			self.window.minimap.set_relative_to(self.window.bottom_panes_box)
 
 	############################################################################
 	# Methods specific to the optionsbar for classic tools #####################

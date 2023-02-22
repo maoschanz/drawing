@@ -60,6 +60,10 @@ class DrWindow(Gtk.ApplicationWindow):
 	tools_scrollable_box = Gtk.Template.Child()
 	tools_nonscrollable_box = Gtk.Template.Child()
 
+	minimap_btn = Gtk.Template.Child()
+	minimap_label = Gtk.Template.Child()
+	minimap_arrow = Gtk.Template.Child()
+
 	def __init__(self, **kwargs):
 		super().__init__(**kwargs)
 		self.app = kwargs['application']
@@ -98,7 +102,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		get_cb = content_params['get_cb']
 
 		self.tools = {}
-		self.minimap = DrMinimap(self, None)
+		self.minimap = DrMinimap(self)
 		self.options_manager = DrOptionsManager(self)
 		self.saving_manager = DrSavingManager(self)
 		self.printing_manager = DrPrintingManager(self)
