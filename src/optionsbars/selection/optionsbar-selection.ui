@@ -6,68 +6,7 @@
     <property name="expand">True</property>
 
     <child>
-      <object class="GtkBox" id="import_box_narrow">
-        <property name="visible">True</property>
-        <style><class name="linked"/></style>
-        <child>
-          <object class="GtkButton">
-            <property name="action_name">win.import</property>
-            <property name="tooltip-text" translatable="yes">Import</property>
-            <property name="visible">True</property>
-            <child>
-              <object class="GtkImage">
-                <property name="icon-name">insert-image-symbolic</property>
-                <property name="visible">True</property>
-              </object>
-            </child>
-          </object>
-        </child>
-        <child>
-          <object class="GtkButton">
-            <property name="action_name">win.paste</property>
-            <property name="tooltip-text" translatable="yes">Paste</property>
-            <property name="visible">True</property>
-            <child>
-              <object class="GtkImage">
-                <property name="icon-name">edit-paste-symbolic</property>
-                <property name="visible">True</property>
-              </object>
-            </child>
-          </object>
-        </child>
-        <child>
-          <object class="GtkMenuButton" id="actions_btn_long">
-            <property name="visible">True</property>
-            <style><class name="suggested-action"/></style>
-            <property name="menu-model">actions-menu-long</property>
-            <child>
-              <object class="GtkBox">
-                <property name="visible">True</property>
-                <property name="spacing">10</property>
-                <child>
-                  <object class="GtkImage">
-                    <property name="icon-name">system-run-symbolic</property>
-                    <property name="visible">True</property>
-                  </object>
-                </child>
-                <child>
-                  <object class="GtkImage">
-                    <property name="icon-name">pan-down-symbolic</property>
-                    <property name="visible">True</property>
-                  </object>
-                  <packing>
-                    <property name="pack-type">end</property>
-                  </packing>
-                </child>
-              </object>
-            </child>
-          </object>
-        </child>
-      </object>
-    </child>
-
-    <child>
-      <object class="GtkBox" id="import_box_long">
+      <object class="GtkBox" id="import_box">
         <property name="visible">True</property>
         <style><class name="linked"/></style>
         <child>
@@ -86,35 +25,6 @@
         </child>
       </object>
     </child>
-
-    <child>
-      <object class="GtkMenuButton" id="actions_btn">
-        <property name="visible">True</property>
-        <property name="menu-model">actions-menu-short</property>
-        <child>
-          <object class="GtkBox">
-            <property name="visible">True</property>
-            <property name="spacing">10</property>
-            <child>
-              <object class="GtkImage">
-                <property name="icon-name">system-run-symbolic</property>
-                <property name="visible">True</property>
-              </object>
-            </child>
-            <child>
-              <object class="GtkImage">
-                <property name="icon-name">pan-down-symbolic</property>
-                <property name="visible">True</property>
-              </object>
-              <packing>
-                <property name="pack-type">end</property>
-              </packing>
-            </child>
-          </object>
-        </child>
-      </object>
-    </child>
-
     <child>
       <object class="GtkBox" id="clipboard_box">
         <property name="visible">True</property>
@@ -162,14 +72,99 @@
     </child>
 
     <child>
+      <object class="GtkMenuButton" id="actions_btn">
+        <property name="visible">True</property>
+        <property name="menu-model">actions-menu-short</property>
+        <child>
+          <object class="GtkBox">
+            <property name="visible">True</property>
+            <property name="spacing">10</property>
+            <child>
+              <object class="GtkImage">
+                <property name="icon-name">system-run-symbolic</property>
+                <property name="visible">True</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkImage">
+                <property name="icon-name">pan-down-symbolic</property>
+                <property name="visible">True</property>
+              </object>
+              <packing>
+                <property name="pack-type">end</property>
+              </packing>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+
+    <child>
+      <object class="GtkMenuButton" id="actions_btn_long">
+        <property name="visible">True</property>
+        <style><class name="suggested-action"/></style>
+        <property name="menu-model">actions-menu-long</property>
+        <child>
+          <object class="GtkBox">
+            <property name="visible">True</property>
+            <property name="spacing">10</property>
+            <child>
+              <object class="GtkImage">
+                <property name="icon-name">system-run-symbolic</property>
+                <property name="visible">True</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkImage">
+                <property name="icon-name">pan-down-symbolic</property>
+                <property name="visible">True</property>
+              </object>
+              <packing>
+                <property name="pack-type">end</property>
+              </packing>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+
+    <child>
       <object class="GtkMenuButton" id="options_btn">
+        <property name="valign">center</property>
         <property name="visible">True</property>
         <property name="menu-model">options-menu</property>
-        <property name="tooltip-text" translatable="yes">Selection options</property>
         <child>
-          <object class="GtkImage">
-            <property name="icon-name">view-more-symbolic</property>
+          <object class="GtkBox">
             <property name="visible">True</property>
+            <property name="spacing">10</property>
+            <child>
+              <object class="GtkBox" id="options_long_box">
+                <property name="visible">True</property>
+                <property name="spacing">10</property>
+                <child>
+                  <object class="GtkLabel">
+                    <property name="label" translatable="yes">Selection options</property>
+                    <property name="visible">True</property>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkImage">
+                    <property name="icon-name">pan-down-symbolic</property>
+                    <property name="visible">True</property>
+                  </object>
+                  <packing>
+                    <property name="pack-type">end</property>
+                  </packing>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="GtkImage" id="options_short_box">
+                <property name="icon-name">view-more-symbolic</property>
+                <property name="tooltip-text" translatable="yes">Selection options</property>
+                <property name="visible">True</property>
+              </object>
+            </child>
           </object>
         </child>
       </object>
@@ -253,19 +248,12 @@
     <section>
       <attribute name="display-hint">horizontal-buttons</attribute>
       <item>
-        <attribute name="label" translatable="yes">Delete</attribute>
-        <attribute name="action">win.selection_delete</attribute>
-        <attribute name="verb-icon">edit-delete-symbolic</attribute>
+        <attribute name="label" translatable="yes">Import</attribute>
+        <attribute name="action">win.import</attribute>
       </item>
       <item>
-        <attribute name="label" translatable="yes">Cut</attribute>
-        <attribute name="action">win.selection_cut</attribute>
-        <attribute name="verb-icon">edit-cut-symbolic</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">Copy</attribute>
-        <attribute name="action">win.selection_copy</attribute>
-        <attribute name="verb-icon">edit-copy-symbolic</attribute>
+        <attribute name="label" translatable="yes">Paste</attribute>
+        <attribute name="action">win.paste</attribute>
       </item>
     </section>
     <section>
