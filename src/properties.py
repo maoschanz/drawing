@@ -42,7 +42,7 @@ class DrPropertiesDialog(Gtk.Dialog):
 		self.show()
 
 	def _build_ui(self):
-		"""Fill the dialog with labels displaying correct informations."""
+		"""Fill the dialog with labels displaying correct information."""
 		ui_file_path = '/com/github/maoschanz/drawing/ui/properties.ui'
 		builder = Gtk.Builder.new_from_resource(ui_file_path)
 		self.get_content_area().add(builder.get_object('main_widget'))
