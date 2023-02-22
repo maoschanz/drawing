@@ -1,31 +1,32 @@
-# Indonesian translations for drawing package.
-# Copyright (C) 2020 THE drawing'S COPYRIGHT HOLDER
+# Hindi translations for drawing package.
+# Copyright (C) 2022 THE drawing'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the drawing package.
-# Ghani Rafif <ghani.rafif.2112@gmail.com>, 2020.
+# Sujal Singh <email.sujalsingh@gmail.com>, 2022.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
 "POT-Creation-Date: 2023-02-23 00:46+0100\n"
-"PO-Revision-Date: 2020-10-25 01:41+0700\n"
-"Last-Translator: Ghani Rafif <ghani.rafif.2112@gmail.com>\n"
-"Language-Team: Indonesian\n"
-"Language: id\n"
+"PO-Revision-Date: 2022-08-19 14:11+0530\n"
+"Last-Translator: Sujal Singh <email.sujalsingh@gmail.com>\n"
+"Language-Team: Hindi <>\n"
+"Language: hi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Gtranslator 3.38.0\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"X-Generator: Gtranslator 42.0\n"
 
 #: data/com.github.maoschanz.drawing.desktop.in
 #: data/com.github.maoschanz.drawing.appdata.xml.in src/deco_manager.py
 #: src/main.py
 msgid "Drawing"
-msgstr ""
+msgstr "चित्र"
 
 #: data/com.github.maoschanz.drawing.desktop.in
 msgid "Simple drawing utility"
-msgstr "Utilitas menggambar yang sederhana"
+msgstr "सरल चित्र यूटिलिटी"
 
 #. This is a list of keywords, you can add any keyword that would be useful to
 #. find the app in your language. "Paint" should stay listed in its untranslated
@@ -33,28 +34,28 @@ msgstr "Utilitas menggambar yang sederhana"
 #. Don't forget the semicolons.
 #: data/com.github.maoschanz.drawing.desktop.in
 msgid "Paint;Sketch;Pencil;"
-msgstr "Paint;Sketsa;Pensil;"
+msgstr "पेंट;स्केच;पेंसिल;"
 
 #: data/com.github.maoschanz.drawing.desktop.in src/ui/app-menus.ui
 #: src/ui/shortcuts.ui src/ui/win-menus.ui src/window.py
 msgid "New Window"
-msgstr "Jendela Baru"
+msgstr "नई विंडो"
 
 #: data/com.github.maoschanz.drawing.desktop.in src/ui/app-menus.ui
 #: src/ui/headerbar.ui src/ui/headerbar-eos.ui src/ui/toolbar.ui
 #: src/ui/toolbar-symbolic.ui src/ui/window.ui src/ui/win-menus.ui
 msgid "New Image"
-msgstr "Gambar Baru"
+msgstr "नई इमेज"
 
 #: data/com.github.maoschanz.drawing.desktop.in
 msgid "Edit Image in Clipboard"
-msgstr "Sunting Gambar di papan klip"
+msgstr "क्लिपबोर्ड की इमेज को एडिट करें"
 
 #. IMPORTANT: the summarized description of the application.
 #. https://gitlab.gnome.org/GNOME/Initiatives/-/wikis/App-Metadata
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "Edit screenshots or memes"
-msgstr ""
+msgstr "स्क्रीनशेत या मीम एडिट करें"
 
 #. IMPORTANT: complete description of the application (1/3)
 #: data/com.github.maoschanz.drawing.appdata.xml.in
@@ -183,7 +184,7 @@ msgstr ""
 #. Caption of a screenshot, for appstores
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "The window and its primary menu"
-msgstr ""
+msgstr "विंडो और इसका प्राथमिक मेनू"
 
 #. Caption of a screenshot, for appstores
 #: data/com.github.maoschanz.drawing.appdata.xml.in
@@ -202,235 +203,233 @@ msgstr ""
 
 #: src/ui/app-menus.ui
 msgid "File"
-msgstr "Berkas"
+msgstr "फाइल"
 
 #: src/ui/app-menus.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
 #: src/ui/win-menus.ui
 msgid "Open an image"
-msgstr "Buka gambar"
+msgstr "इमेज खोलें"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
 msgid "New Blank Image"
-msgstr "Gambar Kosong Baru"
+msgstr "नई खाली इमेज"
 
 #: src/ui/app-menus.ui src/ui/win-menus.ui src/new_image_dialog.py
 msgid "New Image With Custom Size"
-msgstr "Gambar Baru Dengan Ukuran Khusus"
+msgstr "कस्टम आकार की नई इमेज"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
 msgid "New Image From Selection"
-msgstr "Gambar Baru Dari Seleksi"
+msgstr "सिलेक्शन से नयी इमेज"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
 msgid "New Image From Clipboard"
-msgstr "Gambar Baru Dari Papan Klip"
+msgstr "क्लिपबोर्ड से नयी इमेज"
 
 #: src/ui/app-menus.ui src/ui/win-menus.ui
 msgid "Reload file"
-msgstr "Muat ulang berkas"
+msgstr "फाइल दोबारा लोड करें"
 
 #: src/ui/app-menus.ui src/ui/win-menus.ui src/properties.py
 msgid "Image properties"
-msgstr "Properti gambar"
+msgstr "इमेज के गुण"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Reset canvas"
-msgstr ""
+msgstr "कैनवास रीसेट करें"
 
 #: src/ui/app-menus.ui src/ui/headerbar.ui src/ui/headerbar-eos.ui
 #: src/ui/shortcuts.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
 #: src/saving_manager.py
 msgid "Save"
-msgstr "Simpan"
+msgstr "सेव करें"
 
 #: src/ui/app-menus.ui src/ui/win-menus.ui
 msgid "Save without transparency"
-msgstr "Simpan tanpa transparansi"
+msgstr "पारदर्शिता के बिना सेव करें"
 
 #. This "feature" is only visible on April Fools' day, and it
 #. will just rickroll the user.
 #: src/ui/app-menus.ui src/ui/win-menus.ui
 msgid "Prepare as NFT…"
-msgstr ""
+msgstr "एन.एफ.टी .  के रूप में तैयार करें..."
 
 #: src/ui/app-menus.ui src/ui/headerbar-eos.ui src/ui/win-menus.ui
 #: src/saving_manager.py
 msgid "Save as…"
-msgstr "Simpan sebagai..."
+msgstr "प्रारूप चुनें फिर सेव करें"
 
 #: src/ui/app-menus.ui src/ui/selection-manager.ui src/ui/win-menus.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 msgid "Export as…"
-msgstr "Ekspor sebagai..."
+msgstr "प्रारूप चुनें फिर निर्यात करें"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/toolbar.ui
 #: src/ui/toolbar-symbolic.ui src/ui/win-menus.ui
 msgid "Copy to clipboard"
-msgstr "Salin ke papan klip"
+msgstr "क्लिपबोर्ड पर कॉपी करें"
 
 #: src/ui/app-menus.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
 #: src/ui/win-menus.ui
 msgid "Print"
-msgstr "Cetak"
+msgstr "प्रिंट"
 
 #: src/ui/app-menus.ui
 msgid "Close Image"
-msgstr "Tutup Gambar"
+msgstr "इमेज बंद करें"
 
 #: src/ui/app-menus.ui
 msgid "Close Window"
-msgstr "Tutup Jendela"
+msgstr "विंडो बंद करें"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Quit all windows"
-msgstr "Tinggalkan semua jendela"
+msgstr "सभी विंडो बंद करें"
 
 #: src/ui/app-menus.ui
 msgid "Edit"
-msgstr "Sunting"
+msgstr "एडिट"
 
 #: src/ui/app-menus.ui src/ui/headerbar.ui src/ui/headerbar-eos.ui
 #: src/ui/shortcuts.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
 #: src/deco_manager.py
 msgid "Undo"
-msgstr "Nirjadikan"
+msgstr "पूर्ववत् करें"
 
 #: src/ui/app-menus.ui src/ui/headerbar.ui src/ui/headerbar-eos.ui
 #: src/ui/shortcuts.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
 #: src/deco_manager.py
 msgid "Redo"
-msgstr "Jadikan lagi"
+msgstr "फिरसे करें"
 
 #: src/ui/app-menus.ui
 msgid "Rebuild from history"
-msgstr "Bangun ulang dari riwayat"
+msgstr ""
 
 #: src/ui/app-menus.ui src/ui/selection-manager.ui src/ui/shortcuts.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 msgid "Select all"
-msgstr "Pilih semua"
+msgstr "सब कुछ सेलेक्ट करें"
 
 #: src/ui/app-menus.ui src/ui/selection-manager.ui src/ui/shortcuts.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 msgid "Cut"
-msgstr "Potong"
+msgstr "कट करें"
 
 #: src/ui/app-menus.ui src/ui/selection-manager.ui src/ui/shortcuts.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 msgid "Copy"
-msgstr "Salin"
+msgstr "कॉपी करें"
 
 #: src/ui/app-menus.ui src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 msgid "Delete"
-msgstr "Hapus"
+msgstr "हटाएँ"
 
 #: src/ui/app-menus.ui src/ui/selection-manager.ui src/ui/shortcuts.ui
 #: src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
 #: src/optionsbars/selection/optionsbar-selection.ui
 msgid "Paste"
-msgstr "Tempel"
+msgstr "पेस्ट करें"
 
 #: src/ui/app-menus.ui src/ui/selection-manager.ui src/ui/toolbar.ui
 #: src/ui/toolbar-symbolic.ui src/window.py
 #: src/optionsbars/selection/optionsbar-selection.ui
 msgid "Import"
-msgstr "Impor"
+msgstr "इम्पोर्ट करें"
 
 #: src/ui/app-menus.ui src/ui/preferences.ui src/ui/win-menus.ui
 #: src/preferences.py
 msgid "Preferences"
-msgstr "Prefrensi"
+msgstr ""
 
 #: src/ui/app-menus.ui
 msgid "View"
-msgstr "Tampilan"
+msgstr "दृश्य"
 
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-classic.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/tool-text.ui
 msgid "Preview"
-msgstr "Pratinjau"
+msgstr ""
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/preferences.py
 msgid "Zoom"
-msgstr "Zum"
+msgstr "कैमरा का स्थान बदलें"
 
 #: src/ui/app-menus.ui src/ui/minimap.ui src/ui/shortcuts.ui
 msgid "Optimal Zoom"
-msgstr "Zum Optimal"
+msgstr "कैमरे को सर्वोत्तम स्थान पर रखें"
 
 #: src/ui/app-menus.ui src/ui/minimap.ui src/ui/shortcuts.ui src/ui/toolbar.ui
 #: src/ui/toolbar-symbolic.ui src/optionsbars/transform/optionsbar-crop.ui
 #: src/optionsbars/transform/optionsbar-scale.ui
 #: src/optionsbars/transform/optionsbar-skew.ui
 msgid "Zoom Out"
-msgstr "Perkecil"
+msgstr "कैमरे को कैनवास के नजदीक लाएं"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/toolbar.ui
 #: src/ui/toolbar-symbolic.ui src/optionsbars/transform/optionsbar-crop.ui
 #: src/optionsbars/transform/optionsbar-scale.ui
 #: src/optionsbars/transform/optionsbar-skew.ui
 msgid "Original Zoom"
-msgstr "Zum Asli"
+msgstr "कैमरे को प्रारंभिक स्थान पर लाएं"
 
 #: src/ui/app-menus.ui src/ui/minimap.ui src/ui/shortcuts.ui src/ui/toolbar.ui
 #: src/ui/toolbar-symbolic.ui src/optionsbars/transform/optionsbar-crop.ui
 #: src/optionsbars/transform/optionsbar-scale.ui
 #: src/optionsbars/transform/optionsbar-skew.ui
 msgid "Zoom In"
-msgstr "Perbesar"
+msgstr "कैमरे को कैनवास से दूर लाएं"
 
 #. Context: this submenu is about moving the view to the
 #. left/right/top/bottom
 #: src/ui/app-menus.ui
 msgid "Position"
-msgstr "Posisi"
+msgstr "स्थान बदलें"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Go Left"
-msgstr ""
+msgstr "बाएं जाएं"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Go Up"
-msgstr ""
+msgstr "ऊपर जाएं"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Go Down"
-msgstr ""
+msgstr "नीचे जाएं"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Go Right"
-msgstr ""
+msgstr "दाहिने जाएं"
 
 #. Context: this action scrolls to the left end of the
 #. canvas. The "go left" action only goes a few centimeters
 #. to the left, but this one goes all the way left.
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
-#, fuzzy
 msgid "Go to the left end"
-msgstr "Putar ke kiri"
+msgstr "बाईने अंत तक जाएं"
 
 #. Context: this action scrolls to the top of the canvas
 #. The "go up" action only goes a few centimeters up, but
 #. this one goes all the way to the top.
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Go to the top"
-msgstr ""
+msgstr "ऊपरी सिरे तक जाये"
 
 #. Context: this action scrolls to the bottom of the canvas
 #. The "go down" action only goes a few centimeters down,
 #. but this one goes all the way to the bottom.
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Go to the bottom"
-msgstr ""
+msgstr "निचले सिरे तक जाएं"
 
 #. Context: this action scrolls to the right end of the
 #. canvas. The "go right" action only goes a few centimeters
 #. to the right, but this one goes all the way right.
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
-#, fuzzy
 msgid "Go to the right end"
-msgstr "Putar ke kanan"
+msgstr "दाहिने अंत तक जाएं"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Tab at the left"
@@ -442,7 +441,7 @@ msgstr ""
 
 #: src/ui/app-menus.ui
 msgid "Refresh"
-msgstr "Segarkan"
+msgstr "ताजा करें"
 
 #. Label shown only in developer mode
 #: src/ui/app-menus.ui
@@ -450,14 +449,12 @@ msgid "Track framerate"
 msgstr ""
 
 #: src/ui/app-menus.ui
-#, fuzzy
 msgid "Dark theme variant"
-msgstr "Lebar bawaan"
+msgstr ""
 
 #: src/ui/app-menus.ui
-#, fuzzy
 msgid "Show the menu-bar"
-msgstr "Jungkitkan pratinjau"
+msgstr ""
 
 #: src/ui/app-menus.ui
 msgid "Hide toolbars"
@@ -465,28 +462,28 @@ msgstr ""
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
 msgid "Fullscreen"
-msgstr "Layar penuh"
+msgstr "पूर्ण स्क्रीन का प्रयोग करें"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Colors"
-msgstr "Warna"
+msgstr "रंग"
 
 #: src/ui/app-menus.ui
 msgid "Edit Main Color…"
-msgstr "Sunting Warna Utama..."
+msgstr ""
 
 #: src/ui/app-menus.ui
 msgid "Edit Secondary Color…"
-msgstr "Sunting Warna Sekunder..."
+msgstr ""
 
 #: src/ui/app-menus.ui
 msgid "Use color editor by default"
-msgstr "Gunakan penyunting warna secara bawaan"
+msgstr ""
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 #: src/optionsbars/classic/optionsbar-classic.ui
 msgid "Exchange colors"
-msgstr "Tukar warna"
+msgstr ""
 
 #: src/ui/app-menus.ui
 msgid "Color application mode"
@@ -495,34 +492,33 @@ msgstr ""
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Normal"
-msgstr "Normal"
+msgstr "साधारण"
 
 #. Context: possible ways to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/classic/optionsbar-operator-menus.ui
 msgid "Highlight"
-msgstr "Sorot"
+msgstr "प्रमुखता से दिखाएं"
 
 #. Context: a possible way to highlight text
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-operator-menus.ui
 #: src/tools/ui/tool-highlight.ui src/tools/classic_tools/tool_highlight.py
 msgid "Dark text on light background"
-msgstr "Teks gelap pada latar belakang terang"
+msgstr ""
 
 #. Context: a possible way to highlight text
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-operator-menus.ui
 #: src/tools/ui/tool-highlight.ui src/tools/classic_tools/tool_highlight.py
 msgid "Light text on dark background"
-msgstr "Teks terang pada latar belakang gelap"
+msgstr ""
 
 #. Context: possible ways to apply the color to the canvas, using
 #. only some specific dimension(s) of the selected color in its
 #. hue-saturation-luminosity (HSL) representation
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/classic/optionsbar-operator-menus.ui
-#, fuzzy
 msgid "HSL modes"
-msgstr "Mode lain"
+msgstr ""
 
 #. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
@@ -540,7 +536,7 @@ msgstr ""
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/classic/optionsbar-operator-menus.ui
 msgid "Hue and saturation"
-msgstr "Hue dan penjenuhan"
+msgstr ""
 
 #. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
@@ -552,7 +548,7 @@ msgstr ""
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/classic/optionsbar-operator-menus.ui
 msgid "Other modes"
-msgstr "Mode lain"
+msgstr ""
 
 #. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
@@ -564,7 +560,7 @@ msgstr ""
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/classic/optionsbar-operator-menus.ui
 msgid "Difference"
-msgstr "Perbedaan"
+msgstr ""
 
 #: src/ui/app-menus.ui
 msgid "Don't use the colors but…"
@@ -573,70 +569,67 @@ msgstr ""
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Erase"
-msgstr "Hapus"
+msgstr "मिटाये"
 
 #: src/ui/app-menus.ui src/ui/preferences.ui src/ui/shortcuts.ui
 msgid "Tools"
-msgstr "Perkakas"
+msgstr "औजार"
 
 #: src/ui/app-menus.ui
 msgid "Previous tool"
-msgstr "Alat sebelumnya"
+msgstr "पिछला औजार"
 
 #: src/ui/app-menus.ui
-#, fuzzy
 msgid "Active tool"
-msgstr "Alat lainnya"
+msgstr "सक्रिय औजार"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
 #: src/preferences.py
 msgid "Show tools names"
-msgstr "Tampilkan nama alat"
+msgstr "औजार के नाम दिखाएं"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Bigger width"
-msgstr "Lebar yang lebih besar"
+msgstr "चौड़ाई बड़ी करें"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Smaller width"
-msgstr "Lebar yang lebih kecil"
+msgstr "चौड़ाई छोटी करें"
 
 #: src/ui/app-menus.ui
 msgid "Troubleshoot selection"
-msgstr ""
+msgstr "सिलेक्शन में समस्या का हल निकालें"
 
 #: src/ui/app-menus.ui
 #: src/optionsbars/transform/abstract-optionsbar-transform.ui
-#, fuzzy
 msgid "Cancel transformation"
-msgstr "Bantuan tentang perkakas"
+msgstr "परिवर्तन रद्द करें"
 
 #: src/ui/app-menus.ui
 #: src/optionsbars/transform/abstract-optionsbar-transform.ui
-#, fuzzy
 msgid "Apply transformation"
-msgstr "Bantuan tentang perkakas"
+msgstr "परिवर्तन लागू करें"
 
 #: src/ui/app-menus.ui
 msgid "Options"
-msgstr "Opsi"
+msgstr "विकल्प"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
 msgid "Help"
-msgstr "Bantuan"
+msgstr "सहायता"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
 msgid "Shortcuts"
-msgstr "Pintasan"
+msgstr "शॉर्टकट"
 
 #: src/ui/app-menus.ui src/ui/window.ui src/window.py
 msgid "Report a bug"
-msgstr "Laporkan kutu"
+msgstr "समस्या सूचित करें"
 
 #. Context: open the index of all help pages
 #: src/ui/app-menus.ui
 msgid "Index"
-msgstr "Indeks"
+msgstr "सूचि"
 
 #. Context: submenu listing individual help pages
 #: src/ui/app-menus.ui
@@ -646,68 +639,63 @@ msgstr ""
 #. Context: open the help page about general use of the app
 #: src/ui/app-menus.ui
 msgid "Basic help"
-msgstr "Bantuan dasar"
+msgstr "मूल सहायता"
 
 #: src/ui/app-menus.ui src/ui/minimap.ui
-#, fuzzy
 msgid "Help about zooming"
-msgstr "Bantuan tentang perkakas"
+msgstr ""
 
 #: src/ui/app-menus.ui
-#, fuzzy
 msgid "Help about the full-screen mode"
-msgstr "Masuk mode layar penuh"
+msgstr ""
 
 #: src/ui/app-menus.ui
-#, fuzzy
 msgid "Help about classic tools"
-msgstr "Bantuan tentang perkakas"
+msgstr ""
 
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-color-popover.ui
-#, fuzzy
 msgid "Help about colors"
-msgstr "Bantuan tentang perkakas"
+msgstr ""
 
 #. Context: open the help page about transformation tools (crop,
 #. scale, rotate, filters, ...
 #: src/ui/app-menus.ui
 #: src/optionsbars/transform/abstract-optionsbar-transform.ui
-#, fuzzy
 msgid "Help about transformation tools"
-msgstr "Bantuan tentang perkakas"
+msgstr ""
 
 #: src/ui/app-menus.ui src/optionsbars/selection/optionsbar-selection.ui
 msgid "Help about selection"
-msgstr "Bantuan tentang seleksi"
+msgstr ""
 
 #: src/ui/app-menus.ui
 msgid "What's new"
-msgstr ""
+msgstr "नया चीजें"
 
 #: src/ui/app-menus.ui src/ui/win-menus.ui
 msgid "About Drawing"
-msgstr "Tentang Drawing"
+msgstr ""
 
 #: src/ui/headerbar.ui src/ui/headerbar-eos.ui src/ui/toolbar.ui
 #: src/ui/toolbar-symbolic.ui src/window.py
 msgid "Open"
-msgstr "Buka"
+msgstr "खोलें"
 
 #: src/ui/headerbar-eos.ui
 msgid "Share the image"
-msgstr "Bagikan gambar"
+msgstr "इमेज को प्रसारित करें"
 
 #: src/ui/image.ui
 msgid "The image changed on the disk, do you want to reload it?"
-msgstr "Gambar telah diubah pada diska, apakah anda ingin memuatnya ulang?"
+msgstr ""
 
 #: src/ui/image.ui
 msgid "Reload"
-msgstr "Muat ulang"
+msgstr "फाइल दोबारा लोड करें"
 
 #: src/ui/minimap.ui
 msgid "100%"
-msgstr "100%"
+msgstr "१००%"
 
 #: src/ui/minimap.ui src/ui/shortcuts.ui
 msgid "Maximum zoom"
@@ -717,65 +705,65 @@ msgstr ""
 #: src/optionsbars/transform/optionsbar-crop.ui
 #: src/optionsbars/transform/optionsbar-scale.ui
 msgid "Width"
-msgstr "Lebar"
+msgstr ""
 
 #: src/ui/new-image-dialog.ui src/ui/properties.ui
 #: src/optionsbars/transform/optionsbar-crop.ui
 #: src/optionsbars/transform/optionsbar-scale.ui
 msgid "Height"
-msgstr "Tinggi"
+msgstr ""
 
 #: src/ui/new-image-dialog.ui
 msgid "Color"
-msgstr "Warna"
+msgstr ""
 
 #: src/ui/new-image-dialog.ui
 msgid "Use these settings by default"
-msgstr "Gunakan pengaturan ini secara bawaan"
+msgstr ""
 
 #: src/ui/preferences.ui
 msgid "Images"
-msgstr "Gambar"
+msgstr ""
 
 #: src/ui/preferences.ui
 msgid "Window"
-msgstr "Jendela"
+msgstr "विंडो"
 
 #. To translators: it's a measure unit, it appears in tooltips over
 #. numerical inputs
 #: src/ui/properties.ui src/utilities/utilities_units.py
 msgid "pixels"
-msgstr "piksel"
+msgstr ""
 
 #: src/ui/properties.ui
 msgid "centimeters"
-msgstr "sentimeter"
+msgstr "सेन्टीमीटर्स"
 
 #: src/ui/properties.ui
 msgid "inches"
-msgstr "inci"
+msgstr "इनचेस"
 
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 msgid "Close selection"
-msgstr "Tutup seleksi"
+msgstr ""
 
 #: src/ui/selection-manager.ui src/ui/shortcuts.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 msgid "Deselect"
-msgstr "Nirpilih"
+msgstr ""
 
 #: src/ui/selection-manager.ui src/tools/transform_tools/tool_crop.py
 msgid "Crop"
-msgstr "Pangkas"
+msgstr "क्रॉप"
 
 #: src/ui/selection-manager.ui src/tools/transform_tools/tool_scale.py
 msgid "Scale"
-msgstr "Skalakan"
+msgstr "स्केल"
 
 #: src/ui/selection-manager.ui src/tools/transform_tools/tool_rotate.py
 msgid "Rotate"
-msgstr "Putar"
+msgstr "घुमाएँ"
 
 #. This is the name of the tool changing rectangles into parallelograms.
 #. It's synonymous with tilt, slant, bend. If you need a reference to
@@ -783,11 +771,11 @@ msgstr "Putar"
 #: src/ui/selection-manager.ui src/preferences.py
 #: src/tools/transform_tools/tool_skew.py
 msgid "Skew"
-msgstr "Condongkan"
+msgstr ""
 
 #: src/ui/selection-manager.ui src/tools/transform_tools/tool_filters.py
 msgid "Filters"
-msgstr "Penapis"
+msgstr ""
 
 #: src/ui/selection-manager.ui src/tools/ui/selection.ui
 msgid "More actions"
@@ -795,16 +783,14 @@ msgstr ""
 
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
-#, fuzzy
 msgid "Invert selection"
-msgstr "Seleksi bebas"
+msgstr ""
 
 #. Define the image as being the currently selected area
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
-#, fuzzy
 msgid "Define as current image"
-msgstr "Buka gambar"
+msgstr ""
 
 #. Expand the canvas of the current image to make the current selection fit in it.
 #. Can be translated as "Expand to this size".
@@ -816,52 +802,51 @@ msgstr ""
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 msgid "Open As New Image"
-msgstr "Buka Sebagai Gambar Baru"
+msgstr ""
 
 #: src/ui/shortcuts.ui
 msgid "Keyboard Shortcuts"
-msgstr "Pintasan Papan Tik"
+msgstr ""
 
 #: src/ui/shortcuts.ui
 msgid "General"
-msgstr "Umum"
+msgstr ""
 
 #: src/ui/shortcuts.ui
 msgid "Main menu"
-msgstr "Menu utama"
+msgstr ""
 
 #: src/ui/shortcuts.ui
-#, fuzzy
 msgid "Toggle the menu-bar"
-msgstr "Jungkitkan pratinjau"
+msgstr ""
 
 #: src/ui/shortcuts.ui
 msgid "Image"
-msgstr "Gambar"
+msgstr "इमेज"
 
 #: src/ui/shortcuts.ui src/window.py
 msgid "Open a picture"
-msgstr "Buka gambar"
+msgstr ""
 
 #: src/ui/shortcuts.ui
 msgid "Reload image from disk"
-msgstr "Muat gambar dari diska"
+msgstr ""
 
 #: src/ui/shortcuts.ui src/saving_manager.py
 msgid "Save picture as…"
-msgstr "Simpan gambar sebagai..."
+msgstr ""
 
 #: src/ui/shortcuts.ui
 msgid "Close the active image"
-msgstr "Tutup gambar yang aktif"
+msgstr ""
 
 #: src/ui/shortcuts.ui
 msgid "Open the tool options menu"
-msgstr "Buka menu opsi alat"
+msgstr ""
 
 #: src/ui/shortcuts.ui
 msgid "Back to previous tool"
-msgstr "Kembali ke alat sebelumnya"
+msgstr ""
 
 #: src/ui/shortcuts.ui
 msgid "Apply a transformation"
@@ -869,16 +854,16 @@ msgstr ""
 
 #: src/ui/shortcuts.ui
 msgid "Toggle the preview"
-msgstr "Jungkitkan pratinjau"
+msgstr ""
 
 #: src/ui/shortcuts.ui src/tools/selection_tools/abstract_select.py
 msgid "Selection"
-msgstr "Seleksi"
+msgstr "सिलेक्शन"
 
 #. Label displayed in the keyboard shortcuts dialog
 #: src/ui/shortcuts.ui
 msgid "Delete the selection"
-msgstr "Hapus seleksi"
+msgstr ""
 
 #. Label displayed in the keyboard shortcuts dialog
 #: src/ui/shortcuts.ui
@@ -888,31 +873,30 @@ msgstr ""
 #. Label displayed in the keyboard shortcuts dialog
 #: src/ui/shortcuts.ui
 msgid "Edit the main color (left click)"
-msgstr "Sunting warna utama (klik kiri)"
+msgstr ""
 
 #. Label displayed in the keyboard shortcuts dialog
 #: src/ui/shortcuts.ui
 msgid "Edit the secondary color (right click)"
-msgstr "Sunting warna sekunder (klik kanan)"
+msgstr ""
 
 #: src/ui/shortcuts.ui
 msgid "History"
-msgstr "Riwayat"
+msgstr "इतिहास"
 
 #. Context: this section of the shortcuts window is about moving
 #. the view to the left/right/top/bottom
 #: src/ui/shortcuts.ui
 msgid "Navigation"
-msgstr "Navigasi"
+msgstr "नेविगेशन"
 
 #: src/ui/shortcuts.ui
 msgid "Tabs"
 msgstr ""
 
 #: src/ui/shortcuts.ui
-#, fuzzy
 msgid "Toggle fullscreen mode"
-msgstr "Masuk mode layar penuh"
+msgstr ""
 
 #: src/ui/shortcuts.ui
 msgid "Toggle toolbars visibility"
@@ -923,23 +907,22 @@ msgid "Touch gestures"
 msgstr ""
 
 #: src/ui/window.ui src/deco_manager.py
-#, fuzzy
 msgid "Loading…"
-msgstr "Memuat %s"
+msgstr ""
 
 #: src/ui/window.ui
 msgid "Exit fullscreen"
-msgstr "Keluar dari layar penuh"
+msgstr "पूर्ण स्क्रीन का प्रयोग ना करें"
 
 #: src/deco_manager.py
 #, python-format
 msgid "Undo %s"
-msgstr "Nirjadikan %s"
+msgstr ""
 
 #: src/deco_manager.py
 #, python-format
 msgid "Redo %s"
-msgstr "Jadikan %s lagi"
+msgstr ""
 
 #. Context: an error message
 #: src/history_manager.py
@@ -959,7 +942,7 @@ msgstr ""
 
 #: src/image.py src/properties.py
 msgid "Unsaved file"
-msgstr "Berkas tak tersimpan"
+msgstr ""
 
 #. Context: this is a debug information that users will never see
 #: src/image.py
@@ -970,42 +953,42 @@ msgstr ""
 #. Description of a command line option
 #: src/main.py
 msgid "Show the app version"
-msgstr "Tampilkan versi aplikasi"
+msgstr ""
 
 #. Description of a command line option
 #: src/main.py
 msgid "Open a new window"
-msgstr "Buka jendela baru"
+msgstr ""
 
 #. Description of a command line option
 #: src/main.py
 msgid "Open a new tab"
-msgstr "Buka tab baru"
+msgstr ""
 
 #. Description of a command line option
 #: src/main.py
 msgid "Edit the clipboard content"
-msgstr "Sunting konten papan klip"
+msgstr ""
 
 #: src/main.py
 msgid "This version isn't stable!"
-msgstr "Versi ini tidak stabil!"
+msgstr ""
 
 #: src/main.py
 msgid "Report bugs or ideas"
-msgstr "Laporkan kutu atau ide"
+msgstr ""
 
 #. To tranlators: "translate" this by a list of your names (one name
 #. per line), they will be displayed in the "about" dialog
 #: src/main.py
 msgid "translator-credits"
-msgstr "Ghani Rafif"
+msgstr ""
 
 #. To translators: this is credits for the icons, consider that "Art
 #. Libre" is proper name
 #: src/main.py
 msgid "GNOME's \"Art Libre\" icon set authors"
-msgstr "Pembuat set ikon \"Art Libre\""
+msgstr ""
 
 #: src/main.py
 msgid "Simple image editor for Linux"
@@ -1013,12 +996,11 @@ msgstr ""
 
 #: src/main.py
 msgid "Official webpage"
-msgstr "Laman web resmi"
+msgstr ""
 
 #: src/main.py
-#, fuzzy
 msgid "Error opening this file."
-msgstr "Tidak bisa membuka berkas. Apakah maksud anda %s ?"
+msgstr ""
 
 #. This is an error message, %s is a better command suggestion
 #: src/main.py
@@ -1031,30 +1013,30 @@ msgstr ""
 #: src/minimap.py
 #, python-format
 msgid "%s%%"
-msgstr "%s%%"
+msgstr ""
 
 #: src/new_image_dialog.py src/saving_manager.py src/window.py
 #: src/utilities/utilities_paths.py src/tools/ui/tool-text.ui
 msgid "Cancel"
-msgstr "Batalkan"
+msgstr "रद्द करें"
 
 #. Context: Create a new image
 #: src/new_image_dialog.py
 msgid "Create"
-msgstr "Buat"
+msgstr "बनायें"
 
 #. Context: title of a section of the preferences
 #: src/preferences.py
 msgid "New images"
-msgstr "Gambar baru"
+msgstr ""
 
 #: src/preferences.py
 msgid "Default width"
-msgstr "Lebar bawaan"
+msgstr ""
 
 #: src/preferences.py
 msgid "Default height"
-msgstr "Tinggi bawaan"
+msgstr ""
 
 #. Context: this is the label that describes the initial color of an
 #. image (as set in the preferences or in the "new image with custom
@@ -1067,16 +1049,16 @@ msgstr "Tinggi bawaan"
 #: src/tools/ui/tool-crop.ui src/tools/ui/tool-eraser.ui
 #: src/tools/classic_tools/tool_eraser.py
 msgid "Default color"
-msgstr "Warna bawaan"
+msgstr ""
 
 #. Context: title of a section of the preferences
 #: src/preferences.py
 msgid "Images saving"
-msgstr "Menyimpan gambar"
+msgstr ""
 
 #: src/preferences.py
 msgid "JPEG and BMP images can't handle transparency."
-msgstr "Gambar JPEG dan BMP tidak bisa menangani transparansi."
+msgstr ""
 
 #: src/preferences.py
 msgid ""
@@ -1086,17 +1068,17 @@ msgstr ""
 
 #: src/preferences.py src/saving_manager.py src/utilities/utilities_colors.py
 msgid "White"
-msgstr "Putih"
+msgstr "सफेद"
 
 #: src/preferences.py src/saving_manager.py src/utilities/utilities_colors.py
 msgid "Black"
-msgstr "Hitam"
+msgstr "काला"
 
 #. Context: replace transparent pixels with [checkboard]. This is a
 #. pattern of dark and light greys.
 #: src/preferences.py src/saving_manager.py
 msgid "Checkboard"
-msgstr "Papan catur"
+msgstr ""
 
 #. Context: replace transparent pixels with [nothing]. In practice it
 #. means the alpha channel is just removed.
@@ -1106,7 +1088,7 @@ msgstr ""
 
 #: src/preferences.py
 msgid "Ask before saving"
-msgstr "Tanya sebelum menyimpan"
+msgstr ""
 
 #: src/preferences.py
 msgid "You can zoom with Ctrl+scrolling, or only scrolling."
@@ -1114,7 +1096,7 @@ msgstr ""
 
 #: src/preferences.py
 msgid "See the user help manual for explanations."
-msgstr "Lihat panduan pengguna untuk penjelasan."
+msgstr ""
 
 #: src/preferences.py
 msgid "Use 'Ctrl' to zoom"
@@ -1124,16 +1106,16 @@ msgstr ""
 #. tools: big icons?, labels?)
 #: src/preferences.py
 msgid "Appearance"
-msgstr "Tampilan"
+msgstr "दिखावट"
 
 #: src/preferences.py
 msgid "Use big icons"
-msgstr "Gunakan ikon besar"
+msgstr ""
 
 #. Context: title of a section of the preferences
 #: src/preferences.py
 msgid "Additional tools"
-msgstr "Perkakas lainnya"
+msgstr ""
 
 #: src/preferences.py
 msgid ""
@@ -1144,13 +1126,13 @@ msgstr ""
 #. Context: this is the name of a tool, in the meaning "a rubber eraser"
 #: src/preferences.py src/tools/classic_tools/tool_eraser.py
 msgid "Eraser"
-msgstr "Penghapus"
+msgstr "रबड़"
 
 #. Context: this is the name of a tool, a thick pencil dedicated to
 #. highlight text, for example in screenshots
 #: src/preferences.py src/tools/classic_tools/tool_highlight.py
 msgid "Highlighter"
-msgstr "Stabilo"
+msgstr ""
 
 #: src/preferences.py src/tools/classic_tools/tool_brush.py
 #: src/tools/classic_tools/brushes/abstract_brush.py
@@ -1164,176 +1146,175 @@ msgstr ""
 #. the elements of an image.
 #: src/preferences.py src/tools/classic_tools/tool_points.py
 msgid "Points"
-msgstr "Ujung"
+msgstr ""
 
 #. Context: this is a tool to select an area according to a shape that
 #. can be freely defined by the user.
 #: src/preferences.py src/tools/selection_tools/select_free.py
 msgid "Free selection"
-msgstr "Seleksi bebas"
+msgstr ""
 
 #. Context: this is a tool to "magically" select an area depending on its
 #. color. For example clicking on a white pixel will select the
 #. surrounding area made of white pixels.
 #: src/preferences.py src/tools/selection_tools/select_color.py
 msgid "Color selection"
-msgstr "Seleksi warna"
+msgstr ""
 
 #. Context: this is a tool to pick a RGBA color in the image in order to
 #. use it to draw with other tools
 #: src/preferences.py src/tools/classic_tools/tool_picker.py
 msgid "Color Picker"
-msgstr "Pengambil Warna"
+msgstr ""
 
 #. Context: the name of a tool to fill an area of one color with an other
 #: src/preferences.py src/tools/classic_tools/tool_paint.py
 msgid "Paint"
-msgstr "Cat"
+msgstr ""
 
 #. Context: title of a section of the preferences
 #: src/preferences.py
 msgid "Advanced options"
-msgstr "Opsi tingkat lanjut"
+msgstr ""
 
 #: src/preferences.py
 msgid "Preview size"
-msgstr "Ukuran pratinjau"
+msgstr ""
 
 #. This label will not be displayed in the UI of stable versions
 #: src/preferences.py
 msgid "Development features"
-msgstr "Fitur pengembangan"
+msgstr ""
 
 #: src/preferences.py
 msgid "Background color"
-msgstr "Warna latar belakang"
+msgstr ""
 
 #: src/preferences.py
-#, fuzzy
 msgid "Prefer dark theme variant"
-msgstr "Lebar bawaan"
+msgstr ""
 
 #. Context: title of a section of the preferences. It corresponds to the
 #. window layout (header-bar? tool-bar? menu-bar?)
 #: src/preferences.py
 msgid "Layout"
-msgstr "Tata letak"
+msgstr ""
 
 #: src/preferences.py
 msgid "The recommended value is \"Automatic\"."
-msgstr "Nilai yang direkomendasikan adalah \"Otomatis\"."
+msgstr ""
 
 #. It has to match what's written in the previous string.
 #: src/preferences.py
 msgid "Automatic"
-msgstr "Otomatis"
+msgstr ""
 
 #: src/preferences.py
 msgid "Compact"
-msgstr "Kompak"
+msgstr ""
 
 #: src/preferences.py
 msgid "elementary OS"
-msgstr "elementary OS"
+msgstr "एलिमेंट्री ओ.स. "
 
 #. "Legacy" is about the window layout, it means menubar+toolbar, you
 #. can translate it like if it was "Traditional"
 #: src/preferences.py
 msgid "Legacy"
-msgstr "Tampilan lama"
+msgstr "पुराना"
 
 #. "Legacy" is about the window layout, it means menubar+toolbar, you
 #. can translate it like if it was "Traditional".
 #. Symbolic icons are monochrome icons.
 #: src/preferences.py
 msgid "Legacy (symbolic icons)"
-msgstr "Tampilan lama (ikon monokrom)"
+msgstr ""
 
 #: src/preferences.py
 msgid "Menubar only"
-msgstr "Hanya bilah menu"
+msgstr ""
 
 #: src/preferences.py
 msgid "Toolbar only"
-msgstr "Hanya bilah alat"
+msgstr ""
 
 #. Symbolic icons are monochrome icons.
 #: src/preferences.py
 msgid "Toolbar only (symbolic icons)"
-msgstr "Hanya bilah alat (ikon monokrom)"
+msgstr ""
 
 #: src/properties.py
 #, python-format
 msgid "%s px"
-msgstr "%s px"
+msgstr ""
 
 #: src/properties.py
 #, python-format
 msgid "%s cm"
-msgstr "%s cm"
+msgstr ""
 
 #: src/properties.py
 #, python-format
 msgid "%s in"
-msgstr "%s in"
+msgstr ""
 
 #. Context: the path of the edited file
 #: src/properties.py
 msgid "Path"
-msgstr "Lokasi"
+msgstr ""
 
 #. Context: the file format of the edited file
 #: src/properties.py
 msgid "Format"
-msgstr "Format"
+msgstr ""
 
 #: src/properties.py
 msgid "Colorspace"
-msgstr "Rentang warna"
+msgstr ""
 
 #. Context: an invalid colorspace format
 #: src/properties.py
 msgid "Invalid format"
-msgstr "Format tidak valid"
+msgstr ""
 
 #. an actual error occurred!
 #. Context: an error message
 #: src/saving_manager.py
 #, fuzzy
 msgid "Failed to replace transparency"
-msgstr "Ganti transparansi dengan:"
+msgstr "पारदर्शिता के बिना सेव करें"
 
 #. Context: an error message
 #: src/saving_manager.py
 #, python-format
 msgid "Failed to save %s"
-msgstr "Gagal menyimpan %s"
+msgstr ""
 
 #. Context: an error message
 #: src/saving_manager.py
-#, fuzzy, python-format
+#, python-format
 msgid "Failed to reload %s"
-msgstr "Gagal memuat alat: %s"
+msgstr ""
 
 #. Context: Untitled(.png) is the default name of a newly saved file
 #: src/saving_manager.py
 msgid "Untitled"
-msgstr "Tanpa judul"
+msgstr ""
 
 #. Context: the sentence "There are unsaved modifications to %s."
 #: src/saving_manager.py
 msgid "this picture"
-msgstr "gambar ini"
+msgstr ""
 
 #: src/saving_manager.py
 msgid "Discard"
-msgstr "Buang"
+msgstr ""
 
 #. Context: %s will be replaced by the name of a file.
 #: src/saving_manager.py src/window.py
 #, python-format
 msgid "There are unsaved modifications to %s."
-msgstr "Terdapat modifikasi yang belum tersimpan ke %s."
+msgstr ""
 
 #: src/saving_manager.py
 msgid ""
@@ -1345,7 +1326,7 @@ msgstr ""
 #. unapplied "transform" operation (scaling, cropping, whatever)
 #: src/saving_manager.py
 msgid "Modifications from the current tool haven't been applied."
-msgstr "Modifikasi dari alat saat ini belum diterapkan."
+msgstr ""
 
 #. To translators: this string should be quite short
 #: src/saving_manager.py
@@ -1354,9 +1335,8 @@ msgstr ""
 
 #. To translators: this string should be quite short
 #: src/saving_manager.py
-#, fuzzy
 msgid "Deselect & save"
-msgstr "Nirpilih"
+msgstr ""
 
 #: src/saving_manager.py
 msgid "Save anyway"
@@ -1364,26 +1344,24 @@ msgstr ""
 
 #: src/saving_manager.py
 msgid "Do you want to save anyway?"
-msgstr "Apakah anda ingin tetap menyimpannya?"
+msgstr ""
 
 #. Context: confirm replacing transparent pixels with the selected color
 #: src/saving_manager.py
 msgid "Replace"
-msgstr "Ganti"
+msgstr ""
 
 #: src/saving_manager.py
 msgid "This file format doesn't support transparent colors."
-msgstr "Format berkas ini tidak mendukung warna transparan."
+msgstr ""
 
 #: src/saving_manager.py
 msgid "You can save the image as a PNG file, or replace transparency with:"
 msgstr ""
-"Anda bisa menyimpan gambar ini sebagai berkas PNG, atau mengganti "
-"transparansinya dengan:"
 
 #: src/saving_manager.py
 msgid "Replace transparency with:"
-msgstr "Ganti transparansi dengan:"
+msgstr ""
 
 #. Context: an error message
 #: src/selection_manager.py
@@ -1398,11 +1376,11 @@ msgstr ""
 #: src/tools_initializer.py
 #, python-format
 msgid "Failed to load tool: %s"
-msgstr "Gagal memuat alat: %s"
+msgstr ""
 
 #: src/window.py
 msgid "Error starting the application, please report this bug."
-msgstr "Kesalahan saat memulai aplikasi, silakan laporkan kutu ini."
+msgstr ""
 
 #: src/window.py
 msgid ""
@@ -1443,14 +1421,12 @@ msgstr ""
 #. Context: the user would click here to confirm they want to open the
 #. same file twice
 #: src/window.py
-#, fuzzy
 msgid "Open again"
-msgstr "Buka gambar"
+msgstr ""
 
 #: src/window.py
-#, fuzzy
 msgid "Switch to this image"
-msgstr "Bagikan gambar"
+msgstr ""
 
 #: src/window.py
 msgid "Modifications will take effect in the next new window."
@@ -1461,80 +1437,79 @@ msgid "Middle-click or press F8 to show/hide controls."
 msgstr ""
 
 #: src/window.py
-#, fuzzy
 msgid "Press F11 to exit fullscreen."
-msgstr "Keluar dari layar penuh"
+msgstr ""
 
 #: src/window.py
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Error loading the bottom pane for the tool '%s', please report this bug."
-msgstr "Kesalahan saat memulai aplikasi, silakan laporkan kutu ini."
+msgstr ""
 
 #: src/window.py
 #, python-format
 msgid "Loading %s"
-msgstr "Memuat %s"
+msgstr ""
 
 #: src/window.py
 msgid "New Tab"
-msgstr "Tab baru"
+msgstr ""
 
 #: src/window.py
 msgid "Discard changes"
-msgstr "Buang perubahan"
+msgstr ""
 
 #. Context: %s will be replaced by the name of a file.
 #: src/window.py
 #, python-format
 msgid "Where do you want to open %s?"
-msgstr "Di mana anda ingin membuka %s?"
+msgstr ""
 
 #. Context for translation:
 #. "What do you want to do with *these files*?"
 #: src/window.py
 msgid "these files"
-msgstr "berkas ini"
+msgstr ""
 
 #. Context: %s will be replaced by the name of a file. The possible
 #. answers are "cancel", "open", and "import"
 #: src/window.py
 #, python-format
 msgid "What do you want to do with %s?"
-msgstr "Apa yang ingin anda lakukan dengan %s?"
+msgstr ""
 
 #: src/window.py
 msgid "Image copied to clipboard"
-msgstr "Gambar tersalin ke papan klip"
+msgstr ""
 
 #: src/window.py
 msgid "Import a picture"
-msgstr "Impor gambar"
+msgstr ""
 
 #: src/window.py
 msgid "Required tool is not available"
-msgstr "Alat yang dibutuhkan tidak tersedia"
+msgstr ""
 
 #: src/utilities/utilities_colors.py
 msgid "Transparent"
-msgstr "Transparan"
+msgstr ""
 
 #: src/utilities/utilities_colors.py
 #, python-format
 msgid "%s%% transparent"
-msgstr "%s%% transparan"
+msgstr ""
 
 #: src/utilities/utilities_colors.py
 msgid "Grey"
-msgstr "Kelabu"
+msgstr ""
 
 #: src/utilities/utilities_colors.py
 msgid "Orange"
-msgstr "Oranye"
+msgstr ""
 
 #: src/utilities/utilities_colors.py
 msgid "Brown"
-msgstr "Coklat"
+msgstr ""
 
 #. Context: the name of the current color is provided as a tooltip to
 #. help users with color blindness, but some color names don't have a
@@ -1545,31 +1520,31 @@ msgstr ""
 
 #: src/utilities/utilities_colors.py
 msgid "Red"
-msgstr "Merah"
+msgstr ""
 
 #: src/utilities/utilities_colors.py
 msgid "Green"
-msgstr "Hijau"
+msgstr ""
 
 #: src/utilities/utilities_colors.py
 msgid "Blue"
-msgstr "Biru"
+msgstr ""
 
 #: src/utilities/utilities_colors.py
 msgid "Yellow"
-msgstr "Kuning"
+msgstr ""
 
 #: src/utilities/utilities_colors.py
 msgid "Magenta"
-msgstr "Magenta"
+msgstr ""
 
 #: src/utilities/utilities_colors.py
 msgid "Purple"
-msgstr "Ungu"
+msgstr ""
 
 #: src/utilities/utilities_colors.py
 msgid "Cyan"
-msgstr "Cyan"
+msgstr ""
 
 #. Context: the name of the current color is provided as a tooltip to
 #. help users with color blindness, but some color names don't have a
@@ -1585,28 +1560,28 @@ msgstr ""
 #. clear definition. Here, the app can't find a corresponding color name.
 #: src/utilities/utilities_colors.py
 msgid "Unknown color name"
-msgstr "Nama warna tak diketahui"
+msgstr ""
 
 #: src/utilities/utilities_files.py
 msgid "All pictures"
-msgstr "Semua gambar"
+msgstr ""
 
 #: src/utilities/utilities_files.py
 msgid "PNG images"
-msgstr "Gambar PNG"
+msgstr ""
 
 #: src/utilities/utilities_files.py
 msgid "JPEG images"
-msgstr "Gambar JPEG"
+msgstr ""
 
 #: src/utilities/utilities_files.py
 msgid "BMP images"
-msgstr "Gambar BMP"
+msgstr ""
 
 #: src/utilities/utilities_files.py
-#, fuzzy, python-format
+#, python-format
 msgid "%s isn't an image."
-msgstr "Buka gambar"
+msgstr ""
 
 #: src/utilities/utilities_files.py
 msgid "Sorry, WEBP images can't be loaded by this app."
@@ -1620,7 +1595,7 @@ msgstr ""
 
 #: src/utilities/utilities_paths.py
 msgid "Continue"
-msgstr "Lanjutkan"
+msgstr ""
 
 #: src/utilities/utilities_paths.py
 msgid "The area seems poorly delimited, or is very complex."
@@ -1628,7 +1603,7 @@ msgstr ""
 
 #: src/utilities/utilities_paths.py
 msgid "This algorithm may not be able to manage the wanted area."
-msgstr "Algoritma mungkin tidak dapat menangani area yang diinginkan."
+msgstr ""
 
 #: src/utilities/utilities_paths.py
 msgid "Do you want to abort the operation, or to let the tool struggle ?"
@@ -1637,25 +1612,24 @@ msgstr ""
 #. To translators: it appears in tooltips over numerical inputs
 #: src/utilities/utilities_units.py
 msgid "percents"
-msgstr "persen"
+msgstr ""
 
 #. To translators: it's the angle measure unit, it appears in a tooltip
 #. over a numerical input
 #: src/utilities/utilities_units.py
 msgid "degrees"
-msgstr "derajat"
+msgstr ""
 
 #. Context: this is equivalent to "Highlight: Light text on dark background"
 #. but it has to be FAR SHORTER so it fits in the color chooser
 #: src/optionsbars/classic/optionsbar_color_popover.py
-#, fuzzy
 msgid "Highlight (dark)"
-msgstr "Stabilo"
+msgstr ""
 
 #: src/optionsbars/classic/optionsbar_color_popover.py
 #: src/tools/ui/tool-shape.ui
 msgid "Main color"
-msgstr "Warna utama"
+msgstr ""
 
 #: src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/selection/optionsbar-selection.ui
@@ -1664,15 +1638,15 @@ msgstr "Warna utama"
 #: src/tools/ui/tool-crop.ui src/tools/ui/tool-eraser.ui
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_eraser.py
 msgid "Secondary color"
-msgstr "Warna sekunder"
+msgstr ""
 
 #: src/optionsbars/classic/optionsbar-classic.ui
 msgid "Tool size"
-msgstr "Ukuran alat"
+msgstr ""
 
 #: src/optionsbars/classic/optionsbar-classic.ui src/tools/abstract_tool.py
 msgid "No options"
-msgstr "Tidak ada opsi"
+msgstr ""
 
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "How the color will be applied to the existing pixels"
@@ -1684,22 +1658,20 @@ msgstr ""
 
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Palette"
-msgstr "Palet"
+msgstr ""
 
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Use this editor by default"
-msgstr "Gunakan penyunting ini secara bawaan"
+msgstr ""
 
 #: src/optionsbars/selection/optionsbar-selection.ui
-#, fuzzy
 msgid "Selection options"
-msgstr "Opsi pensil"
+msgstr ""
 
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 #: src/tools/ui/tool-eraser.ui
-#, fuzzy
 msgid "Replace with…"
-msgstr "Ganti"
+msgstr ""
 
 #: src/optionsbars/selection/optionsbar-selection.ui
 #: src/optionsbars/transform/optionsbar-crop.ui
@@ -1708,7 +1680,7 @@ msgstr "Ganti"
 #: src/tools/classic_tools/tool_eraser.py
 #: src/tools/transform_tools/filters/filter_transparency.py
 msgid "Transparency"
-msgstr "Transparansi"
+msgstr ""
 
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 msgid "Extract from this color"
@@ -1716,7 +1688,7 @@ msgstr ""
 
 #: src/optionsbars/transform/abstract-optionsbar-transform.ui
 msgid "More options"
-msgstr "Lebih banyak opsi"
+msgstr ""
 
 #: src/optionsbars/transform/optionsbar-crop.ui
 #: src/optionsbars/transform/optionsbar-skew.ui src/tools/ui/tool-crop.ui
@@ -1726,48 +1698,48 @@ msgstr ""
 #: src/optionsbars/transform/optionsbar-filters.ui
 #: src/tools/transform_tools/tool_filters.py
 msgid "Select a filter…"
-msgstr "Pilih penapis..."
+msgstr ""
 
 #: src/optionsbars/transform/optionsbar-rotate.ui
 msgid "Angle (degrees)"
-msgstr "Sudut (derajat)"
+msgstr ""
 
 #: src/optionsbars/transform/optionsbar-rotate.ui
 msgid "Angle"
-msgstr "Sudut"
+msgstr ""
 
 #: src/optionsbars/transform/optionsbar-rotate.ui src/tools/ui/tool-rotate.ui
 msgid "Rotate left"
-msgstr "Putar ke kiri"
+msgstr ""
 
 #: src/optionsbars/transform/optionsbar-rotate.ui src/tools/ui/tool-rotate.ui
 msgid "Rotate right"
-msgstr "Putar ke kanan"
+msgstr ""
 
 #: src/optionsbars/transform/optionsbar-rotate.ui src/tools/ui/tool-rotate.ui
 msgid "Flip horizontally"
-msgstr "Balik secara horisontal"
+msgstr ""
 
 #: src/optionsbars/transform/optionsbar-rotate.ui src/tools/ui/tool-rotate.ui
 msgid "Flip vertically"
-msgstr "Balik secara vertikal"
+msgstr ""
 
 #. Context: the title of a menu to chose how the image will be scaled
 #: src/optionsbars/transform/optionsbar-scale.ui src/tools/ui/tool-scale.ui
 msgid "Keep proportions"
-msgstr "Jaga proporsi"
+msgstr ""
 
 #. Context: an item in a menu whose title is "Keep proportions"
 #. Context for translations: "Always [keep proportions]"
 #: src/optionsbars/transform/optionsbar-scale.ui src/tools/ui/tool-scale.ui
 msgid "Always"
-msgstr "Selalu"
+msgstr ""
 
 #. Context: an item in a menu whose title is "Keep proportions"
 #. Context for translations: "[Keep proportions only] when scaling from corners"
 #: src/optionsbars/transform/optionsbar-scale.ui src/tools/ui/tool-scale.ui
 msgid "When scaling from corners"
-msgstr "Saat menskalakan dari pojok"
+msgstr ""
 
 #. Context for translations: "[Keep proportions only] when setting values manually"
 #: src/optionsbars/transform/optionsbar-scale.ui src/tools/ui/tool-scale.ui
@@ -1778,25 +1750,23 @@ msgstr ""
 #. Context for translations: "Never [keep proportions]"
 #: src/optionsbars/transform/optionsbar-scale.ui src/tools/ui/tool-scale.ui
 msgid "Never"
-msgstr "Jangan pernah"
+msgstr ""
 
 #: src/optionsbars/transform/optionsbar-scale.ui src/tools/ui/tool-scale.ui
-#, fuzzy
 msgid "Pixels"
-msgstr "piksel"
+msgstr ""
 
 #: src/optionsbars/transform/optionsbar-scale.ui src/tools/ui/tool-scale.ui
-#, fuzzy
 msgid "Percentage"
-msgstr "persen"
+msgstr ""
 
 #: src/optionsbars/transform/optionsbar-skew.ui
 msgid "Horizontal deformation"
-msgstr "Deformasi horisontal"
+msgstr ""
 
 #: src/optionsbars/transform/optionsbar-skew.ui
 msgid "Vertical deformation"
-msgstr "Deformasi vertikal"
+msgstr ""
 
 #. Context: an error message
 #: src/tools/abstract_tool.py
@@ -1807,13 +1777,13 @@ msgstr ""
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui
 msgid "Line shape"
-msgstr "Bentuk garis"
+msgstr ""
 
 #. Context: this is the name of a line shape
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui src/tools/classic_tools/tool_pencil.py
 msgid "Round"
-msgstr "Cembung"
+msgstr ""
 
 #. Context: this is the name of a line shape
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
@@ -1821,36 +1791,32 @@ msgstr "Cembung"
 #: src/tools/classic_tools/tool_pencil.py
 #: src/tools/classic_tools/tool_points.py
 msgid "Square"
-msgstr "Persegi"
+msgstr ""
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui
 msgid "Outline"
-msgstr "Garis luar"
+msgstr ""
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui
-#, fuzzy
 msgid "No dashes"
-msgstr "Gunakan garis putus-putus"
+msgstr ""
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui
-#, fuzzy
 msgid "Simple dashes"
-msgstr "Gunakan garis putus-putus"
+msgstr ""
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui
-#, fuzzy
 msgid "Long dashes"
-msgstr "Gunakan garis putus-putus"
+msgstr ""
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui
-#, fuzzy
 msgid "Short dashes"
-msgstr "Gunakan garis putus-putus"
+msgstr ""
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui
@@ -1858,39 +1824,35 @@ msgid "Alternated dashes"
 msgstr ""
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
-#, fuzzy
 msgid "No arrow"
-msgstr "Panah"
+msgstr ""
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 msgid "Simple arrow"
 msgstr ""
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
-#, fuzzy
 msgid "Double arrow"
-msgstr "Panah putus-putus"
+msgstr ""
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-brush.ui
 #: src/tools/ui/tool-highlight.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui src/tools/ui/tool-points.ui
 #: src/tools/ui/tool-shape.ui src/tools/ui/tool-text.ui
 msgid "Antialiasing"
-msgstr "Antialias"
+msgstr ""
 
 #: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_simple.py
-#, fuzzy
 msgid "Simple brush"
-msgstr "Gunakan garis putus-putus"
+msgstr ""
 
 #: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_airbrush.py
 msgid "Airbrush"
 msgstr ""
 
 #: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_hairy.py
-#, fuzzy
 msgid "Hairy brush"
-msgstr "Gunakan garis putus-putus"
+msgstr ""
 
 #: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_nib.py
 msgid "Calligraphic nib"
@@ -1901,9 +1863,8 @@ msgid "Right-handed nib"
 msgstr ""
 
 #: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_nib.py
-#, fuzzy
 msgid "Vertical nib"
-msgstr "Vertikal"
+msgstr ""
 
 #: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_nib.py
 msgid "Left-handed nib"
@@ -1911,28 +1872,26 @@ msgstr ""
 
 #. brush_direction == 'horizontal':
 #: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_nib.py
-#, fuzzy
 msgid "Horizontal nib"
-msgstr "horisontal"
+msgstr ""
 
 #: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
 #: src/tools/classic_tools/tool_pencil.py
 msgid "Pencil"
-msgstr "Pensil"
+msgstr ""
 
 #: src/tools/ui/tool-eraser.ui src/tools/ui/tool-shape.ui
 #: src/tools/classic_tools/tool_eraser.py src/tools/classic_tools/tool_shape.py
 msgid "Rectangle"
-msgstr "Segiempat"
+msgstr ""
 
 #: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
 msgid "Blur"
-msgstr "Kabur"
+msgstr ""
 
 #: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
-#, fuzzy
 msgid "Shuffle pixels"
-msgstr "piksel"
+msgstr ""
 
 #: src/tools/ui/tool-eraser.ui src/tools/classic_tools/tool_eraser.py
 msgid "Shuffle and blur"
@@ -1946,13 +1905,12 @@ msgid "Mosaic"
 msgstr ""
 
 #: src/tools/ui/tool-eraser.ui
-#, fuzzy
 msgid "Solid color"
-msgstr "Warna sekunder"
+msgstr ""
 
 #: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
 msgid "Change saturation"
-msgstr "Ubah penjenuhan"
+msgstr ""
 
 #. Context: a filter adding like a light veil on the image
 #: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
@@ -1962,7 +1920,7 @@ msgstr ""
 #: src/tools/ui/tool-filters.ui src/tools/ui/tool-highlight.ui
 #: src/tools/transform_tools/tool_filters.py
 msgid "Add transparency"
-msgstr "Tambahkan transparansi"
+msgstr ""
 
 #: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
 #: src/tools/transform_tools/filters/filter_contrast.py
@@ -1973,57 +1931,53 @@ msgstr ""
 #. filters and their options.
 #: src/tools/ui/tool-filters.ui
 msgid "Blurring"
-msgstr "Pengaburan"
+msgstr ""
 
 #: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
 msgid "Fast blur"
-msgstr "Pengaburan cepat"
+msgstr ""
 
 #: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
 msgid "Slow blur"
-msgstr "Pengaburan lamban"
+msgstr ""
 
 #: src/tools/ui/tool-filters.ui
 msgid "Blur direction"
-msgstr "Arah pengaburan"
+msgstr ""
 
 #. Context: about the blur direction
 #: src/tools/ui/tool-filters.ui
 msgid "No direction"
-msgstr "Tanpa arah"
+msgstr ""
 
 #: src/tools/ui/tool-filters.ui
-#, fuzzy
 msgid "Blur horizontally"
-msgstr "Balik secara horisontal"
+msgstr ""
 
 #: src/tools/ui/tool-filters.ui
-#, fuzzy
 msgid "Blur vertically"
-msgstr "Balik secara vertikal"
+msgstr ""
 
 #: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
 msgid "Invert colors"
-msgstr "Balik warna"
+msgstr ""
 
 #: src/tools/ui/tool-highlight.ui
-#, fuzzy
 msgid "Straighten the line"
-msgstr "Skalakan seleksi"
+msgstr ""
 
 #: src/tools/ui/tool-line.ui
 msgid "Color gradient"
-msgstr "Gradasi warna"
+msgstr ""
 
 #: src/tools/ui/tool-line.ui
-#, fuzzy
 msgid "Locked direction"
-msgstr "Tanpa arah"
+msgstr ""
 
 #. Context: title for the list of the possible painting algorithms.
 #: src/tools/ui/tool-paint.ui
 msgid "Behavior"
-msgstr "Perilaku"
+msgstr ""
 
 #. Context: this is one of the possible painting algorithms. It
 #. tries to draw a shape around the area to paint, and fill it
@@ -2038,14 +1992,14 @@ msgstr ""
 #. pixels with the new color.
 #: src/tools/ui/tool-paint.ui
 msgid "Erase and replace"
-msgstr "Hilangkan dan ganti"
+msgstr ""
 
 #. Context: this is one of the possible painting algorithms. It
 #. paints over the entire image, instead of following the shapes
 #. already drawn.
 #: src/tools/ui/tool-paint.ui
 msgid "Entire image"
-msgstr "Seluruh gambar"
+msgstr ""
 
 #. Context: this is one of the possible painting algorithms. It
 #. doesn't really paint, instead it erases the color the user
@@ -2053,7 +2007,7 @@ msgstr "Seluruh gambar"
 #. background.
 #: src/tools/ui/tool-paint.ui
 msgid "Remove color"
-msgstr "Hilangkan warna"
+msgstr ""
 
 #: src/tools/ui/tool-points.ui
 msgid "Dots type"
@@ -2062,7 +2016,7 @@ msgstr ""
 #: src/tools/ui/tool-points.ui src/tools/ui/tool-shape.ui
 #: src/tools/classic_tools/tool_points.py src/tools/classic_tools/tool_shape.py
 msgid "Circle"
-msgstr "Lingkaran"
+msgstr ""
 
 #: src/tools/ui/tool-points.ui src/tools/classic_tools/tool_points.py
 msgid "Cross"
@@ -2094,115 +2048,113 @@ msgstr ""
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
 msgid "Solid outline"
-msgstr "Garis penuh"
+msgstr ""
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
 msgid "Dashed outline"
-msgstr "Garis putus-putus"
+msgstr ""
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
 msgid "No outline"
-msgstr "Tanpa garis luar"
+msgstr ""
 
 #: src/tools/ui/tool-shape.ui
 msgid "Filling"
-msgstr "Pengisian"
+msgstr ""
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
 msgid "Empty shape"
-msgstr "Bentuk kosong"
+msgstr ""
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
 msgid "Horizontal gradient"
-msgstr "Gradasi horizontal"
+msgstr ""
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
 msgid "Vertical gradient"
-msgstr "Gradasi vertikal"
+msgstr ""
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
 msgid "Radial gradient"
-msgstr "Gradasi radial"
+msgstr ""
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
 msgid "Rounded rectangle"
-msgstr "Segiempat cembung"
+msgstr ""
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
 msgid "Oval"
-msgstr "Oval"
+msgstr ""
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
 msgid "Polygon"
-msgstr "Poligon"
+msgstr ""
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
 msgid "Free shape"
-msgstr "Bentuk bebas"
+msgstr ""
 
 #: src/tools/ui/tool-shape.ui
 msgid "Close shape"
-msgstr "Tutup bentuk"
+msgstr ""
 
 #: src/tools/ui/tool-text.ui
 msgid "Insert here"
-msgstr "Sisipkan di sini"
+msgstr ""
 
 #: src/tools/ui/tool-text.ui
 msgid "Font"
-msgstr "Fonta"
+msgstr ""
 
 #: src/tools/ui/tool-text.ui
 msgid "Select a font…"
-msgstr "Pilih fonta..."
+msgstr ""
 
 #: src/tools/ui/tool-text.ui
 msgid "Italic"
-msgstr "Miring"
+msgstr ""
 
 #: src/tools/ui/tool-text.ui
 msgid "Bold"
-msgstr "Tebal"
+msgstr ""
 
 #. Context: the types of background behind the inserted text
 #: src/tools/ui/tool-text.ui
 msgid "Background"
-msgstr "Latar belakang"
+msgstr ""
 
 #. Context: a type of background behind the inserted text
 #: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
 msgid "No background"
-msgstr "Tanpa latar belakang"
+msgstr ""
 
 #. Context: a type of background behind the inserted text
 #: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
 msgid "Shadow"
-msgstr "Bayangan"
+msgstr ""
 
 #. Context: a type of background behind the inserted text
 #: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
-#, fuzzy
 msgid "Thin outline"
-msgstr "Tanpa garis luar"
+msgstr ""
 
 #. Context: a type of background behind the inserted text
 #: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
-#, fuzzy
 msgid "Thick outline"
-msgstr "Tanpa garis luar"
+msgstr ""
 
 #. Context: a type of background behind the inserted text
 #: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
 msgid "Rectangle background"
-msgstr "Latar belakang persegi"
+msgstr ""
 
 #: src/tools/classic_tools/tool_arc.py
 msgid "Curve"
-msgstr "Kurva"
+msgstr ""
 
 #: src/tools/classic_tools/tool_arc.py
 msgid "Curve options"
-msgstr "Opsi kurva"
+msgstr ""
 
 #: src/tools/classic_tools/tool_arc.py
 msgid "Draw a second segment to complete the curve"
@@ -2210,16 +2162,16 @@ msgstr ""
 
 #: src/tools/classic_tools/tool_arc.py src/tools/classic_tools/tool_line.py
 msgid "Dashed arrow"
-msgstr "Panah putus-putus"
+msgstr ""
 
 #: src/tools/classic_tools/tool_arc.py src/tools/classic_tools/tool_line.py
 msgid "Arrow"
-msgstr "Panah"
+msgstr ""
 
 #: src/tools/classic_tools/tool_arc.py src/tools/classic_tools/tool_line.py
 #: src/tools/classic_tools/tool_pencil.py
 msgid "Dashed"
-msgstr "Putus-putus"
+msgstr ""
 
 #: src/tools/classic_tools/tool_arc.py src/tools/classic_tools/tool_line.py
 #: src/tools/classic_tools/tool_pencil.py
@@ -2227,9 +2179,8 @@ msgid "Press <Alt> to toggle the 'outline' option"
 msgstr ""
 
 #: src/tools/classic_tools/tool_brush.py
-#, fuzzy
 msgid "Brush options"
-msgstr "Lebih banyak opsi"
+msgstr ""
 
 #: src/tools/classic_tools/tool_eraser.py
 msgid "Press <Shift> to erase a rectangle area instead"
@@ -2240,9 +2191,8 @@ msgid "Press <Shift> to erase a path instead"
 msgstr ""
 
 #: src/tools/classic_tools/tool_eraser.py
-#, fuzzy
 msgid "Eraser options"
-msgstr "Lebih banyak opsi"
+msgstr ""
 
 #: src/tools/classic_tools/tool_highlight.py
 msgid "Press <Shift> to temporarily highlight on dark background instead"
@@ -2254,23 +2204,23 @@ msgstr ""
 
 #: src/tools/classic_tools/tool_highlight.py
 msgid "Highlighter options"
-msgstr "Opsi stabilo"
+msgstr ""
 
 #: src/tools/classic_tools/tool_line.py
 msgid "Line"
-msgstr "Garis"
+msgstr "रेखा"
 
 #: src/tools/classic_tools/tool_line.py src/tools/classic_tools/tool_shape.py
 #: src/tools/selection_tools/select_rect.py
-#, fuzzy, python-format
+#, python-format
 msgid "Width: %spx"
-msgstr "Lebar"
+msgstr ""
 
 #: src/tools/classic_tools/tool_line.py src/tools/classic_tools/tool_shape.py
 #: src/tools/selection_tools/select_rect.py
-#, fuzzy, python-format
+#, python-format
 msgid "Height: %spx"
-msgstr "Tinggi"
+msgstr ""
 
 #: src/tools/classic_tools/tool_line.py
 #, python-format
@@ -2279,7 +2229,7 @@ msgstr ""
 
 #: src/tools/classic_tools/tool_line.py
 msgid "Line options"
-msgstr "Opsi garis"
+msgstr "रेखा विकल्प"
 
 #: src/tools/classic_tools/tool_line.py
 msgid "Press <Shift> to unlock the line direction"
@@ -2291,15 +2241,15 @@ msgstr ""
 
 #: src/tools/classic_tools/tool_paint.py
 msgid "Painting options"
-msgstr "Opsi pengecatan"
+msgstr ""
 
 #: src/tools/classic_tools/tool_paint.py
 msgid "Click on an area to replace its color by transparency"
-msgstr "Klik pada area untuk mengganti warna dengan transparansi"
+msgstr ""
 
 #: src/tools/classic_tools/tool_paint.py
 msgid "Click on the canvas to entirely paint it"
-msgstr "Klik pada kanvas untuk mengecat seluruhnya"
+msgstr ""
 
 #: src/tools/classic_tools/tool_paint.py
 #: src/tools/selection_tools/select_color.py
@@ -2313,12 +2263,11 @@ msgstr ""
 
 #: src/tools/classic_tools/tool_pencil.py
 msgid "Pencil options"
-msgstr "Opsi pensil"
+msgstr ""
 
 #: src/tools/classic_tools/tool_points.py
-#, fuzzy
 msgid "Points options"
-msgstr "Opsi teks"
+msgstr ""
 
 #: src/tools/classic_tools/tool_points.py
 #, python-format
@@ -2327,7 +2276,7 @@ msgstr ""
 
 #: src/tools/classic_tools/tool_shape.py
 msgid "Shape"
-msgstr "Bentuk"
+msgstr ""
 
 #: src/tools/classic_tools/tool_shape.py
 #, python-format
@@ -2336,19 +2285,17 @@ msgstr ""
 
 #: src/tools/classic_tools/tool_shape.py
 msgid "Shape options"
-msgstr "Opsi bentuk"
+msgstr ""
 
 #. Context: fill a shape with the color of the left click
 #: src/tools/classic_tools/tool_shape.py
-#, fuzzy
 msgid "Filled with main color"
-msgstr "Sunting Warna Utama..."
+msgstr ""
 
 #. Context: fill a shape with the color of the right click
 #: src/tools/classic_tools/tool_shape.py
-#, fuzzy
 msgid "Filled with secondary color"
-msgstr "Sunting Warna Sekunder..."
+msgstr ""
 
 #: src/tools/classic_tools/tool_shape.py
 #: src/tools/selection_tools/select_free.py
@@ -2361,11 +2308,11 @@ msgstr ""
 
 #: src/tools/classic_tools/tool_text.py
 msgid "Text"
-msgstr "Teks"
+msgstr "टेक्स्ट"
 
 #: src/tools/classic_tools/tool_text.py
 msgid "Text options"
-msgstr "Opsi teks"
+msgstr "टेक्स्ट विकल्प"
 
 #: src/tools/classic_tools/brushes/brush_airbrush.py
 msgid "Density depends on the stylus pressure"
@@ -2391,26 +2338,25 @@ msgstr ""
 
 #: src/tools/selection_tools/abstract_select.py
 msgid "Drag the selection or right-click on the canvas"
-msgstr "Seret seleksi atau klik kanan pada kanvas"
+msgstr ""
 
 #: src/tools/selection_tools/abstract_select.py
 msgid "Select an area or right-click on the canvas"
-msgstr "Pilih area atau klik kanan pada kanvas"
+msgstr ""
 
 #: src/tools/selection_tools/select_rect.py
 msgid "Rectangle selection"
-msgstr "Seleksi persegi"
+msgstr ""
 
 #: src/tools/transform_tools/abstract_transform_tool.py
 msgid "Error: invalid values"
-msgstr "Galat: nilai tidak valid"
+msgstr ""
 
 #. The options of the "crop" tool are all about how to expand the canvas,
 #. hence this label.
 #: src/tools/transform_tools/tool_crop.py
-#, fuzzy
 msgid "Expanding options"
-msgstr "Opsi pengecatan"
+msgstr ""
 
 #: src/tools/transform_tools/tool_crop.py
 msgid "The sides you'll crop are hinted by the mouse pointer"
@@ -2418,12 +2364,11 @@ msgstr ""
 
 #: src/tools/transform_tools/tool_crop.py
 msgid "Cropping the selection"
-msgstr "Pangkas seleksi"
+msgstr ""
 
 #: src/tools/transform_tools/tool_crop.py
-#, fuzzy
 msgid "Cropping or expanding the canvas"
-msgstr "Pangkas kanvas"
+msgstr ""
 
 #: src/tools/transform_tools/tool_crop.py
 #: src/tools/transform_tools/tool_rotate.py
@@ -2439,13 +2384,12 @@ msgid ""
 msgstr ""
 
 #: src/tools/transform_tools/tool_filters.py
-#, fuzzy
 msgid "Active filter"
-msgstr "Alat lainnya"
+msgstr ""
 
 #: src/tools/transform_tools/tool_filters.py
 msgid "Click on the image to preview the selected filter"
-msgstr "Klik gambar untuk melihat pratinjau penapis pilihan"
+msgstr ""
 
 #. Context: a filter. See "image embossing" on wikipedia
 #: src/tools/transform_tools/tool_filters.py
@@ -2453,73 +2397,57 @@ msgid "Emboss"
 msgstr ""
 
 #: src/tools/transform_tools/tool_rotate.py
-#, fuzzy
 msgid "Rotating options"
-msgstr "Opsi pengecatan"
+msgstr ""
 
 #: src/tools/transform_tools/tool_rotate.py
 msgid "Rotating the selection"
-msgstr "Putar seleksi"
+msgstr ""
 
 #: src/tools/transform_tools/tool_rotate.py
 msgid "Rotating the canvas"
-msgstr "Putar kanvas"
+msgstr ""
 
 #: src/tools/transform_tools/tool_scale.py
-#, fuzzy
 msgid "Scaling options"
-msgstr "Opsi pengecatan"
+msgstr ""
 
 #: src/tools/transform_tools/tool_scale.py
 msgid "Scaling the selection"
-msgstr "Skalakan seleksi"
+msgstr ""
 
 #: src/tools/transform_tools/tool_scale.py
 msgid "Scaling the canvas"
-msgstr "Skalakan kanvas"
+msgstr ""
 
 #: src/tools/transform_tools/tool_scale.py
 msgid "Press <Shift> to quickly toggle the 'lock proportions' option"
 msgstr ""
 
 #: src/tools/transform_tools/tool_skew.py
-#, fuzzy
 msgid "Skewing options"
-msgstr "Opsi pengecatan"
+msgstr ""
 
 #: src/tools/transform_tools/tool_skew.py
 msgid "The directions of the deformation are hinted by the mouse pointer"
 msgstr ""
 
 #: src/tools/transform_tools/tool_skew.py
-#, fuzzy
 msgid "Skewing the selection"
-msgstr "Skalakan seleksi"
+msgstr ""
 
 #: src/tools/transform_tools/tool_skew.py
-#, fuzzy
 msgid "Skewing the canvas"
-msgstr "Skalakan kanvas"
+msgstr ""
 
 #: src/tools/transform_tools/filters/filter_blur.py
 msgid "Blur radius"
-msgstr "Radius pengaburan"
+msgstr ""
 
 #: src/tools/transform_tools/filters/filter_saturation.py
 msgid "Saturation"
-msgstr "Penjenuhan"
+msgstr ""
 
-#~ msgid "Horizontal"
-#~ msgstr "horisontal"
-
-#~ msgid "Vertical"
-#~ msgstr "Vertikal"
-
-#~ msgid "A drawing application for the GNOME desktop"
-#~ msgstr "Aplikasi menggambar untuk destop GNOME"
-
-#~ msgid "Quit"
-#~ msgstr "Keluar"
-
-#~ msgid "Other tools"
-#~ msgstr "Alat lainnya"
+#, fuzzy
+#~ msgid "What's new in Drawing"
+#~ msgstr "नया चीजें"
