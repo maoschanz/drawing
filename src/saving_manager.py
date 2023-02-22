@@ -55,22 +55,40 @@ class DrSavingManager():
 		else:
 			pixbuf = image.main_pixbuf
 
-		try:
-			# Ask the user what to do concerning formats with no alpha channel
-			if not allow_alpha:
-				can_save_as = False
-			else:
-				can_save_as = not is_export
-			if file_format not in ['png'] or not allow_alpha:
+		# Ask the user what to do concerning formats with no alpha channel
+		if not allow_alpha:
+			# the user clicked on "save without alpha", i'll not suggest the
+			# exact opposite in the dialog
+			can_save_as = False
+		else:
+			# no need to suggest "save as png" if it's an export, because
+			# the file chooser dialog allows any format
+			can_save_as = not is_export
+
+		if file_format not in ['png']:
+			allow_alpha = False
+
+		if not allow_alpha:
+			try:
 				replacement = self._window.gsettings.get_string('replace-alpha')
 				if replacement == 'ask':
 					replacement = self._ask_overwrite_alpha(allow_alpha, can_save_as)
 				pixbuf = self._replace_alpha(pixbuf, replacement, image)
+			except WantAnotherFormatException as e:
+				# the user wants to save the file under an other format
+				return self.save_current_image(False, True, False, True)
+			except WantToCancelException as e:
+				# the user clicks on "cancel"
+				return True
+			except Exception as e:
+				print(e) # an actual error occurred!
+				# Context: an error message
+				self._window.reveal_message(_("Failed to replace transparency"))
 
-			# The "reload?" message shouldn't be shown imho, so i do this
-			if not is_export and allow_alpha:
-				image.lock_monitoring()
+		# The "reload?" message shouldn't be shown, i force the reload later
+		image.set_monitoring(False)
 
+		try:
 			# Actually save the pixbuf to the given file path
 			pixbuf.savev(file_path, file_format, [None], [])
 
@@ -82,16 +100,29 @@ class DrSavingManager():
 				image.post_save()
 				self._window.update_picture_title()
 		except Exception as e:
-			if not is_export and str(e) == '2': # exception has been raised
-				# because the user wants to save the file under an other format
-				return self.save_current_image(False, True, False, True)
-			# else the exception was raised because an actual error occurred, or
-			# the user clicked on "cancel" XXX that's dumb
+			image.set_monitoring(False)
 			print(e)
 			# Context: an error message
 			self._window.reveal_message(_("Failed to save %s") % file_path)
 			return False
 
+		# Reset the file monitoring flag
+		image.set_monitoring(True)
+
+		if not is_export:
+			# Update the image and the window objects
+			try:
+				image.gfile = gfile
+				image.connect_gfile_monitoring()
+				image.post_save()
+				image.reload_from_disk()
+			except Exception as e:
+				print(e)
+				# Context: an error message
+				self._window.reveal_message(_("Failed to reload %s") % file_path)
+				return False
+
+		# everything went fine, return true
 		return True
 
 	############################################################################
@@ -237,6 +268,8 @@ class DrSavingManager():
 		cancel_id = dialog.set_action(_("Cancel"), None)
 		if can_save_as:
 			save_as_id = dialog.set_action(_("Save as…"), None)
+		else:
+			save_as_id = None
 		# Context: confirm replacing transparent pixels with the selected color
 		replace_id = dialog.set_action(_("Replace"), None, True)
 
@@ -262,13 +295,15 @@ class DrSavingManager():
 		result = dialog.run()
 		repl = alpha_combobox.get_active_id()
 		dialog.destroy()
-		if result != replace_id:
-			raise Exception(result)
+		if result == cancel_id:
+			raise WantToCancelException()
+		if result == save_as_id:
+			raise WantAnotherFormatException()
 		return repl
 
 	def _replace_alpha(self, pixbuf, replacement, image):
 		if replacement == 'nothing':
-			return
+			return pixbuf
 		width = pixbuf.get_width()
 		height = pixbuf.get_height()
 		if replacement == 'white':
@@ -293,5 +328,15 @@ class DrSavingManager():
 		                   GdkPixbuf.InterpType.TILES, 255, 8, pcolor1, pcolor2)
 
 	############################################################################
+################################################################################
+
+class WantToCancelException(Exception):
+	def __init__(self):
+		super().__init__(_("Cancel"))
+
+class WantAnotherFormatException(Exception):
+	def __init__(self):
+		super().__init__(_("Replace"))
+
 ################################################################################
 

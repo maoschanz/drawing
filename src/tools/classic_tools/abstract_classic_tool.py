@@ -57,9 +57,8 @@ class AbstractClassicTool(AbstractAbstractTool):
 	def set_common_values(self, event_btn, event_x, event_y):
 		self.x_press = event_x
 		self.y_press = event_y
-		# TODO eventually all tools will correctly rely on on_options_changed so
-		# this call to _set_options will only exist if the button changed
-		self._set_options(event_btn)
+		if event_btn != self._last_btn:
+			self._set_options(event_btn)
 		self._last_btn = event_btn
 
 	def on_options_changed(self):

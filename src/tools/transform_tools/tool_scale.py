@@ -74,19 +74,6 @@ class ToolScale(AbstractCanvasTool):
 		return _("Scaling options")
 
 	def get_editing_tips(self):
-		# The current method is called when options change, so i use it to:
-
-		# 1) update the visibility of the spinbuttons depending on which ones
-		# the user wants to use.
-		self._update_to_wanted_unit()
-
-		# 2) update the bullshit around ratio preservation actions
-		ratio_option = self.get_option_value('scale-proportions')
-		if not ratio_option == 'corners':
-			action = self.window.lookup_action('scale-ratio-spinbtns')
-			action.set_state(GLib.Variant.new_boolean(ratio_option == 'always'))
-		self.set_action_sensitivity('scale-ratio-spinbtns', ratio_option == 'corners')
-
 		if self.apply_to_selection:
 			label_action = _("Scaling the selection")
 			label_confirm = None
@@ -106,6 +93,28 @@ class ToolScale(AbstractCanvasTool):
 
 		full_list = [label_action, label_confirm, label_modifier_shift]
 		return list(filter(None, full_list))
+
+	def on_options_changed(self):
+		# 1) update the visibility of the spinbuttons depending on which ones
+		# the user wants to use.
+		want_pixels = self.get_option_value('scale-unit') == 'pixels'
+		if want_pixels:
+			self._width_btn.set_visible(True)
+			self._height_btn.set_visible(True)
+			self._w100_btn.set_visible(False)
+			self._h100_btn.set_visible(False)
+		else:
+			self._width_btn.set_visible(False)
+			self._height_btn.set_visible(False)
+			self._w100_btn.set_visible(True)
+			self._h100_btn.set_visible(True)
+
+		# 2) update the bullshit around ratio preservation actions
+		ratio_option = self.get_option_value('scale-proportions')
+		if not ratio_option == 'corners':
+			action = self.window.lookup_action('scale-ratio-spinbtns')
+			action.set_state(GLib.Variant.new_boolean(ratio_option == 'always'))
+		self.set_action_sensitivity('scale-ratio-spinbtns', ratio_option == 'corners')
 
 	def on_tool_selected(self, *args):
 		super().on_tool_selected()
@@ -132,19 +141,6 @@ class ToolScale(AbstractCanvasTool):
 		return original_pixbuf.get_width(), original_pixbuf.get_height()
 
 	############################################################################
-
-	def _update_to_wanted_unit(self):
-		want_pixels = self.get_option_value('scale-unit') == 'pixels'
-		if want_pixels:
-			self._width_btn.set_visible(True)
-			self._height_btn.set_visible(True)
-			self._w100_btn.set_visible(False)
-			self._h100_btn.set_visible(False)
-		else:
-			self._width_btn.set_visible(False)
-			self._height_btn.set_visible(False)
-			self._w100_btn.set_visible(True)
-			self._h100_btn.set_visible(True)
 
 	def set_preserve_ratio(self, for_spinbtns=False):
 		"""Set whether or not `self._preserve_ratio` should be true. If it is,

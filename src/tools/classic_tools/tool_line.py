@@ -39,7 +39,7 @@ class ToolLine(AbstractClassicTool):
 		self.add_tool_action_boolean('use_gradient', self._use_gradient)
 		self.add_tool_action_boolean('pencil-outline', self._use_outline)
 		self.add_tool_action_boolean('line-ortholock', self._ortholock)
-		self._set_options_attributes() # Not optimal but more readable
+		self.on_options_changed() # Not optimal but more readable XXX useful?
 
 	def get_tooltip(self, event_x, event_y, motion_behavior):
 		if motion_behavior != 1:
@@ -64,16 +64,7 @@ class ToolLine(AbstractClassicTool):
 	def get_options_label(self):
 		return _("Line options")
 
-	def _set_options_attributes(self):
-		self._use_outline = self.get_option_value('pencil-outline')
-		self._dashes_type = self.get_option_value('dashes-type')
-		self._arrow_type = self.get_option_value('arrow-type')
-		self._use_gradient = self.get_option_value('use_gradient')
-		self._ortholock = self.get_option_value('line-ortholock')
-		self._set_active_shape()
-
 	def get_editing_tips(self):
-		self._set_options_attributes()
 		is_arrow = self._arrow_type != 'none'
 		use_dashes = self._dashes_type != 'none'
 
@@ -102,6 +93,16 @@ class ToolLine(AbstractClassicTool):
 
 		full_list = [label_options, label_modifier_shift, label_modifier_alt]
 		return list(filter(None, full_list))
+
+	def on_options_changed(self):
+		super().on_options_changed()
+		self._use_outline = self.get_option_value('pencil-outline')
+		self._dashes_type = self.get_option_value('dashes-type')
+		self._arrow_type = self.get_option_value('arrow-type')
+		self._use_gradient = self.get_option_value('use_gradient')
+		self._ortholock = self.get_option_value('line-ortholock')
+		self._set_active_shape()
+		# refreshing the rendered operation isn't pertinent
 
 	############################################################################
 

@@ -52,12 +52,7 @@ class ToolPencil(AbstractClassicTool):
 		return _("Pencil options")
 
 	def get_editing_tips(self):
-		self._dashes_type = self.get_option_value('dashes-type')
-		use_dashes = self._dashes_type != 'none'
-		self._use_outline = self.get_option_value('pencil-outline')
-		self._set_active_shape()
-
-		if use_dashes:
+		if self._dashes_type != 'none':
 			label_options = self.label + " - " + _("Dashed")
 		else:
 			label_options = None
@@ -72,6 +67,13 @@ class ToolPencil(AbstractClassicTool):
 
 		full_list = [label_options, label_modifier_alt]
 		return list(filter(None, full_list))
+
+	def on_options_changed(self):
+		super().on_options_changed()
+		self._dashes_type = self.get_option_value('dashes-type')
+		self._use_outline = self.get_option_value('pencil-outline')
+		self._set_active_shape()
+		# refreshing the rendered operation isn't pertinent
 
 	############################################################################
 

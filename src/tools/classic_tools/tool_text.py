@@ -25,7 +25,6 @@ class ToolText(AbstractClassicTool):
 
 	def __init__(self, window, **kwargs):
 		super().__init__('text', _("Text"), 'tool-text-symbolic', window)
-		self._should_cancel = False
 
 		# There are several types of possible interactions with the canvas,
 		# depending on where the pointer is during the press event.
@@ -52,7 +51,6 @@ class ToolText(AbstractClassicTool):
 
 		# XXX actions sensitivity?
 		self.add_tool_action_simple('text-cancel', self._on_cancel)
-		self.add_tool_action_simple('text-preview', self._force_refresh)
 		self.add_tool_action_simple('text-insert', self._on_insert_text)
 
 		builder = Gtk.Builder().new_from_resource(self.UI_PATH + 'tool-text.ui')
@@ -101,6 +99,13 @@ class ToolText(AbstractClassicTool):
 		return _("Text options")
 
 	def get_editing_tips(self):
+		if self._has_current_text():
+			label_move = self.label + " - " + _("Grab the rectangle to adjust the text position")
+			label_apply = self.label + " - " + _("Click outside the rectangle to apply")
+		else:
+			label_move = None
+			label_apply = None
+
 		label_options = self.label + " - " + self._font_fam_name
 		if self._background_id != 'none':
 			bg_label = {
@@ -111,7 +116,9 @@ class ToolText(AbstractClassicTool):
 				'rectangle': _("Rectangle background"),
 			}[self._background_id]
 			label_options += " - " + bg_label
-		return [label_options]
+
+		full_list = [label_options, label_move, label_apply]
+		return list(filter(None, full_list))
 
 	def on_options_changed(self):
 		super().on_options_changed()
@@ -128,7 +135,11 @@ class ToolText(AbstractClassicTool):
 		self.set_action_sensitivity('selection_copy', True)
 
 	def give_back_control(self, preserve_selection, next_tool=None):
-		if self._should_cancel:
+		if self._has_current_text():
+			operation = self.build_operation()
+			self.apply_operation(operation)
+			self._set_string('')
+		else:
 			self._on_cancel()
 		return next_tool
 
@@ -173,7 +184,6 @@ class ToolText(AbstractClassicTool):
 		self._preview_text()
 
 	def on_release_on_area(self, event, surface, event_x, event_y):
-		self._should_cancel = True
 		if 'input' == self._pointer_target:
 			if not self._has_current_text():
 				self.set_common_values(event.button, event_x, event_y)
@@ -208,10 +218,6 @@ class ToolText(AbstractClassicTool):
 
 	def _hide_entry(self):
 		self._popover.popdown()
-
-	def _force_refresh(self, *args):
-		self.set_common_values(self._last_btn, self._text_x, self._text_y)
-		self._preview_text()
 
 	def _on_insert_text(self, *args):
 		self._hide_entry()
@@ -271,7 +277,13 @@ class ToolText(AbstractClassicTool):
 	def _on_cancel(self, *args):
 		self._hide_entry()
 		self._set_string('')
-		self._should_cancel = False
+
+	def on_unclicked_motion_on_area(self, event, surface):
+		if not self._has_current_text():
+			self.cursor_name = 'text'
+		else:
+			self.cursor_name = 'pointer'
+		self.window.set_cursor(True)
 
 	############################################################################
 

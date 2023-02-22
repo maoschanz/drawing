@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
-"POT-Creation-Date: 2022-05-21 23:53+0200\n"
-"PO-Revision-Date: 2022-08-23 15:22+0200\n"
+"POT-Creation-Date: 2023-02-21 23:31+0100\n"
+"PO-Revision-Date: 2023-02-22 00:07+0100\n"
 "Last-Translator: Piotr Komur <pkomur@gmail.com>\n"
 "Language-Team: Piotr Komur\n"
 "Language: pl\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 "
 "|| n%100>14) ? 1 : 2);\n"
-"X-Generator: Poedit 3.1.1\n"
+"X-Generator: Poedit 3.2\n"
 
 #: data/com.github.maoschanz.drawing.desktop.in
 #: data/com.github.maoschanz.drawing.appdata.xml.in src/deco_manager.py
@@ -408,9 +408,10 @@ msgstr "Preferencje"
 msgid "View"
 msgstr "Podgląd"
 
-#: src/ui/app-menus.ui
-msgid "Show the preview"
-msgstr "Pokaż podgląd"
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-classic.ui
+#: src/optionsbars/selection/optionsbar-selection.ui
+msgid "Preview"
+msgstr "Podgląd"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/preferences.py
 msgid "Zoom"
@@ -1358,11 +1359,23 @@ msgstr "Przestrzeń kolorów"
 msgid "Invalid format"
 msgstr "Niewłaściwy format"
 
+#. an actual error occurred!
+#. Context: an error message
+#: src/saving_manager.py
+msgid "Failed to replace transparency"
+msgstr "Nie udało się zastąpić przezroczystości"
+
 #. Context: an error message
 #: src/saving_manager.py
 #, python-format
 msgid "Failed to save %s"
-msgstr "Błąd zapisu %s"
+msgstr "Nie udało się zapisać %s"
+
+#. Context: an error message
+#: src/saving_manager.py
+#, python-format
+msgid "Failed to reload %s"
+msgstr "Nie udało się ponownie załadować %s"
 
 #. Context: Untitled(.png) is the default name of a newly saved file
 #: src/saving_manager.py
@@ -1695,11 +1708,6 @@ msgstr "Rozmiar narządzia"
 #: src/optionsbars/classic/optionsbar-classic.ui src/tools/abstract_tool.py
 msgid "No options"
 msgstr "Brak opcji"
-
-#: src/optionsbars/classic/optionsbar-classic.ui
-#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/tool-text.ui
-msgid "Preview"
-msgstr "Podgląd"
 
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "How the color will be applied to the existing pixels"
@@ -2370,6 +2378,14 @@ msgstr "Tekst"
 #: src/tools/classic_tools/tool_text.py
 msgid "Text options"
 msgstr "Opcje tekstu"
+
+#: src/tools/classic_tools/tool_text.py
+msgid "Grab the rectangle to adjust the text position"
+msgstr "Chwyć prostokąt, aby dostosować położenie tekstu"
+
+#: src/tools/classic_tools/tool_text.py
+msgid "Click outside the rectangle to apply"
+msgstr "Kliknij poza prostokątem, aby zastosować"
 
 #: src/tools/classic_tools/brushes/brush_airbrush.py
 msgid "Density depends on the stylus pressure"

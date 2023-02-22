@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
-"POT-Creation-Date: 2022-05-21 23:53+0200\n"
+"POT-Creation-Date: 2023-02-21 23:31+0100\n"
 "PO-Revision-Date: 2020-08-29 16:24+0200\n"
 "Last-Translator: Alexander Gabilondo <alexgabi@disroot.org>\n"
 "Language-Team: \n"
@@ -380,9 +380,10 @@ msgstr "Hobespenak"
 msgid "View"
 msgstr "Ikusi"
 
-#: src/ui/app-menus.ui
-msgid "Show the preview"
-msgstr "Erakutsi aurrebista"
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-classic.ui
+#: src/optionsbars/selection/optionsbar-selection.ui
+msgid "Preview"
+msgstr "Aurrebista"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/preferences.py
 msgid "Zoom"
@@ -1343,11 +1344,24 @@ msgstr "Kolore-eredua"
 msgid "Invalid format"
 msgstr "Formatu baliogabea"
 
+#. an actual error occurred!
+#. Context: an error message
+#: src/saving_manager.py
+#, fuzzy
+msgid "Failed to replace transparency"
+msgstr "Gardentasunaren ordez hau jarri:"
+
 #. Context: an error message
 #: src/saving_manager.py
 #, python-format
 msgid "Failed to save %s"
 msgstr "Errorea %s gordetzean"
+
+#. Context: an error message
+#: src/saving_manager.py
+#, fuzzy, python-format
+msgid "Failed to reload %s"
+msgstr "Errorea tresna kargatzean: %s"
 
 #. Context: Untitled(.png) is the default name of a newly saved file
 #: src/saving_manager.py
@@ -1688,11 +1702,6 @@ msgstr "Tresnaren tamaina"
 #: src/optionsbars/classic/optionsbar-classic.ui src/tools/abstract_tool.py
 msgid "No options"
 msgstr "Aukerarik gabe"
-
-#: src/optionsbars/classic/optionsbar-classic.ui
-#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/tool-text.ui
-msgid "Preview"
-msgstr "Aurrebista"
 
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "How the color will be applied to the existing pixels"
@@ -2388,6 +2397,14 @@ msgstr "Testua"
 #: src/tools/classic_tools/tool_text.py
 msgid "Text options"
 msgstr "Letra motaren aukerak"
+
+#: src/tools/classic_tools/tool_text.py
+msgid "Grab the rectangle to adjust the text position"
+msgstr ""
+
+#: src/tools/classic_tools/tool_text.py
+msgid "Click outside the rectangle to apply"
+msgstr ""
 
 #: src/tools/classic_tools/brushes/brush_airbrush.py
 #, fuzzy

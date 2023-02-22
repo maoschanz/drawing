@@ -3,14 +3,14 @@
 # This file is distributed under the same license as the drawing package.
 # Antonio Hauren <haurenburu@protonmail.com>, 2019.
 # Arthur <arthurbacci64@gmail.com>, 2020.
-# Fúlvio Alves <fga.fulvio@gmail.com>, 2022.
+# Fúlvio Alves <fga.fulvio@gmail.com>, 2023.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
-"POT-Creation-Date: 2022-05-21 23:53+0200\n"
-"PO-Revision-Date: 2022-09-18 18:08-0300\n"
+"POT-Creation-Date: 2023-02-21 23:31+0100\n"
+"PO-Revision-Date: 2023-02-21 19:53-0300\n"
 "Last-Translator: Fúlvio Alves <fga.fulvio@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <arthurbacci64@gmail.com>\n"
 "Language: pt_BR\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.1.1\n"
 
 #: data/com.github.maoschanz.drawing.desktop.in
 #: data/com.github.maoschanz.drawing.appdata.xml.in src/deco_manager.py
@@ -36,7 +36,7 @@ msgstr "Ferramenta de desenho simples"
 #. Don't forget the semicolons.
 #: data/com.github.maoschanz.drawing.desktop.in
 msgid "Paint;Sketch;Pencil;"
-msgstr "Paint;Pintura;Esboço;Lápis;"
+msgstr "Paint;Sketch;Pencil;Pintura;Esboço;Lápis;"
 
 #: data/com.github.maoschanz.drawing.desktop.in src/ui/app-menus.ui
 #: src/ui/shortcuts.ui src/ui/win-menus.ui src/window.py
@@ -409,9 +409,10 @@ msgstr "Preferências"
 msgid "View"
 msgstr "Vista"
 
-#: src/ui/app-menus.ui
-msgid "Show the preview"
-msgstr "Mostrar preview"
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-classic.ui
+#: src/optionsbars/selection/optionsbar-selection.ui
+msgid "Preview"
+msgstr "Previsualizar"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/preferences.py
 msgid "Zoom"
@@ -1363,11 +1364,23 @@ msgstr "Espaço de cores"
 msgid "Invalid format"
 msgstr "Formato inválido"
 
+#. an actual error occurred!
+#. Context: an error message
+#: src/saving_manager.py
+msgid "Failed to replace transparency"
+msgstr "Falha ao substituir a transparência"
+
 #. Context: an error message
 #: src/saving_manager.py
 #, python-format
 msgid "Failed to save %s"
 msgstr "Falha ao salvar: %s"
+
+#. Context: an error message
+#: src/saving_manager.py
+#, python-format
+msgid "Failed to reload %s"
+msgstr "Falha ao recarregar %s"
 
 #. Context: Untitled(.png) is the default name of a newly saved file
 #: src/saving_manager.py
@@ -1701,11 +1714,6 @@ msgstr "Ferramenta de tamanho"
 #: src/optionsbars/classic/optionsbar-classic.ui src/tools/abstract_tool.py
 msgid "No options"
 msgstr "Sem opções"
-
-#: src/optionsbars/classic/optionsbar-classic.ui
-#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/tool-text.ui
-msgid "Preview"
-msgstr "Previsualizar"
 
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "How the color will be applied to the existing pixels"
@@ -2377,6 +2385,14 @@ msgstr "Texto"
 #: src/tools/classic_tools/tool_text.py
 msgid "Text options"
 msgstr "Opções de fonte"
+
+#: src/tools/classic_tools/tool_text.py
+msgid "Grab the rectangle to adjust the text position"
+msgstr "Pegue o retângulo para ajustar a posição do texto"
+
+#: src/tools/classic_tools/tool_text.py
+msgid "Click outside the rectangle to apply"
+msgstr "Clique fora do retângulo para aplicar"
 
 #: src/tools/classic_tools/brushes/brush_airbrush.py
 msgid "Density depends on the stylus pressure"

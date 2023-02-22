@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
-"POT-Creation-Date: 2022-05-21 23:53+0200\n"
+"POT-Creation-Date: 2023-02-21 23:31+0100\n"
 "PO-Revision-Date: 2021-09-20 14:23+0200\n"
 "Last-Translator: Quentin PAGÈS\n"
 "Language-Team: \n"
@@ -357,9 +357,10 @@ msgstr "Preferéncias"
 msgid "View"
 msgstr "Afichatge"
 
-#: src/ui/app-menus.ui
-msgid "Show the preview"
-msgstr ""
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-classic.ui
+#: src/optionsbars/selection/optionsbar-selection.ui
+msgid "Preview"
+msgstr "Ulhada"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/preferences.py
 msgid "Zoom"
@@ -1304,10 +1305,22 @@ msgstr "Espaci de colors"
 msgid "Invalid format"
 msgstr "Format invalid"
 
+#. an actual error occurred!
+#. Context: an error message
+#: src/saving_manager.py
+msgid "Failed to replace transparency"
+msgstr ""
+
 #. Context: an error message
 #: src/saving_manager.py
 #, python-format
 msgid "Failed to save %s"
+msgstr ""
+
+#. Context: an error message
+#: src/saving_manager.py
+#, python-format
+msgid "Failed to reload %s"
 msgstr ""
 
 #. Context: Untitled(.png) is the default name of a newly saved file
@@ -1636,11 +1649,6 @@ msgstr ""
 #: src/optionsbars/classic/optionsbar-classic.ui src/tools/abstract_tool.py
 msgid "No options"
 msgstr ""
-
-#: src/optionsbars/classic/optionsbar-classic.ui
-#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/tool-text.ui
-msgid "Preview"
-msgstr "Ulhada"
 
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "How the color will be applied to the existing pixels"
@@ -2313,6 +2321,14 @@ msgstr "Tèxte"
 
 #: src/tools/classic_tools/tool_text.py
 msgid "Text options"
+msgstr ""
+
+#: src/tools/classic_tools/tool_text.py
+msgid "Grab the rectangle to adjust the text position"
+msgstr ""
+
+#: src/tools/classic_tools/tool_text.py
+msgid "Click outside the rectangle to apply"
 msgstr ""
 
 #: src/tools/classic_tools/brushes/brush_airbrush.py

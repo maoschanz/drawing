@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
-"POT-Creation-Date: 2022-05-21 23:53+0200\n"
+"POT-Creation-Date: 2023-02-21 23:31+0100\n"
 "PO-Revision-Date: 2022-11-27 12:00+0200\n"
 "Last-Translator: Kimmo Kujansuu <mrkujansuu@gmail.com>\n"
 "Language-Team: \n"
@@ -401,9 +401,10 @@ msgstr "Asetukset"
 msgid "View"
 msgstr "Näytä"
 
-#: src/ui/app-menus.ui
-msgid "Show the preview"
-msgstr "Näytä esikatselu"
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-classic.ui
+#: src/optionsbars/selection/optionsbar-selection.ui
+msgid "Preview"
+msgstr "Esikatselu"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/preferences.py
 msgid "Zoom"
@@ -1349,11 +1350,24 @@ msgstr "Värialue"
 msgid "Invalid format"
 msgstr "Väärä muoto"
 
+#. an actual error occurred!
+#. Context: an error message
+#: src/saving_manager.py
+#, fuzzy
+msgid "Failed to replace transparency"
+msgstr "Korvaa läpinäkyvyys seuraavilla:"
+
 #. Context: an error message
 #: src/saving_manager.py
 #, python-format
 msgid "Failed to save %s"
 msgstr "Kohteen %s tallentaminen epäonnistui"
+
+#. Context: an error message
+#: src/saving_manager.py
+#, fuzzy, python-format
+msgid "Failed to reload %s"
+msgstr "Työkalun lataus epäonnistui: %s"
 
 #. Context: Untitled(.png) is the default name of a newly saved file
 #: src/saving_manager.py
@@ -1683,11 +1697,6 @@ msgstr "Työkalun koko"
 #: src/optionsbars/classic/optionsbar-classic.ui src/tools/abstract_tool.py
 msgid "No options"
 msgstr "Ei vaihtoehtoja"
-
-#: src/optionsbars/classic/optionsbar-classic.ui
-#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/tool-text.ui
-msgid "Preview"
-msgstr "Esikatselu"
 
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "How the color will be applied to the existing pixels"
@@ -2356,6 +2365,14 @@ msgstr "Teksti"
 #: src/tools/classic_tools/tool_text.py
 msgid "Text options"
 msgstr "Fontin asetukset"
+
+#: src/tools/classic_tools/tool_text.py
+msgid "Grab the rectangle to adjust the text position"
+msgstr ""
+
+#: src/tools/classic_tools/tool_text.py
+msgid "Click outside the rectangle to apply"
+msgstr ""
 
 #: src/tools/classic_tools/brushes/brush_airbrush.py
 msgid "Density depends on the stylus pressure"

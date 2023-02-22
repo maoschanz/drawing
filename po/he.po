@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
-"POT-Creation-Date: 2022-05-21 23:53+0200\n"
+"POT-Creation-Date: 2023-02-21 23:31+0100\n"
 "PO-Revision-Date: 2022-03-15 18:29+0200\n"
 "Last-Translator: Omer I.S. <omeritzicschwartz@gmail.com>\n"
 "Language-Team: Hebrew <shaked.a21@gmail.com>\n"
@@ -362,9 +362,10 @@ msgstr "מאפיינים"
 msgid "View"
 msgstr "הצגה"
 
-#: src/ui/app-menus.ui
-msgid "Show the preview"
-msgstr "הצג תצוגה מקדימה"
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-classic.ui
+#: src/optionsbars/selection/optionsbar-selection.ui
+msgid "Preview"
+msgstr "תצוגה מקדימה"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/preferences.py
 msgid "Zoom"
@@ -1341,10 +1342,23 @@ msgstr "מרחב צבעים"
 msgid "Invalid format"
 msgstr "תבנית לא תקינה"
 
+#. an actual error occurred!
+#. Context: an error message
+#: src/saving_manager.py
+#, fuzzy
+msgid "Failed to replace transparency"
+msgstr "שמירה ללא שקיפות"
+
 #. Context: an error message
 #: src/saving_manager.py
 #, python-format
 msgid "Failed to save %s"
+msgstr "שמירת %s נכשלה"
+
+#. Context: an error message
+#: src/saving_manager.py
+#, fuzzy, python-format
+msgid "Failed to reload %s"
 msgstr "שמירת %s נכשלה"
 
 #. Context: Untitled(.png) is the default name of a newly saved file
@@ -1677,11 +1691,6 @@ msgstr "גודל כלי"
 #: src/optionsbars/classic/optionsbar-classic.ui src/tools/abstract_tool.py
 msgid "No options"
 msgstr "אין אפשרויות"
-
-#: src/optionsbars/classic/optionsbar-classic.ui
-#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/tool-text.ui
-msgid "Preview"
-msgstr "תצוגה מקדימה"
 
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "How the color will be applied to the existing pixels"
@@ -2377,6 +2386,14 @@ msgstr "טקסט"
 #: src/tools/classic_tools/tool_text.py
 msgid "Text options"
 msgstr "אפשרויות טקסט"
+
+#: src/tools/classic_tools/tool_text.py
+msgid "Grab the rectangle to adjust the text position"
+msgstr ""
+
+#: src/tools/classic_tools/tool_text.py
+msgid "Click outside the rectangle to apply"
+msgstr ""
 
 #: src/tools/classic_tools/brushes/brush_airbrush.py
 msgid "Density depends on the stylus pressure"

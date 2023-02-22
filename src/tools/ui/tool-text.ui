@@ -26,13 +26,6 @@
             </child>
             <child>
               <object class="GtkButton">
-                <property name="action-name">win.text-preview</property>
-                <property name="tooltip_text" translatable="yes">Preview</property>
-                <property name="icon-name">view-refresh-symbolic</property>
-              </object>
-            </child>
-            <child>
-              <object class="GtkButton">
                 <property name="expand">True</property>
                 <property name="action-name">win.text-insert</property>
                 <property name="tooltip_text" translatable="yes">Insert here</property>
@@ -118,14 +111,8 @@
         <attribute name="verb-icon">window-close-symbolic</attribute>
       </item>
       <item>
-        <attribute name="label" translatable="yes">Preview</attribute>
-        <attribute name="action">win.text-preview</attribute>
-        <attribute name="verb-icon">view-refresh-symbolic</attribute>
-      </item>
-      <item>
         <attribute name="label" translatable="yes">Insert here</attribute>
         <attribute name="action">win.text-insert</attribute>
-        <attribute name="verb-icon">insert-text-symbolic</attribute>
       </item>
     </section>
   </menu>

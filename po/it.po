@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
-"POT-Creation-Date: 2022-05-21 23:53+0200\n"
+"POT-Creation-Date: 2023-02-21 23:31+0100\n"
 "PO-Revision-Date: 2022-08-23 20:15+0100\n"
 "Last-Translator: Albano Battistella\n"
 "Language-Team: Italian\n"
@@ -100,24 +100,24 @@ msgid ""
 "The text tool is more intuitive to use, with distinct areas on the canvas to "
 "edit, move and insert the text."
 msgstr ""
-"Lo strumento di testo è più intuitivo da usare, con aree distinte sulla tela per "
-"la modifica, sposta e inserisci il testo."
+"Lo strumento di testo è più intuitivo da usare, con aree distinte sulla tela "
+"per la modifica, sposta e inserisci il testo."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "A former option of the paint bucket tool, which didn't belong there, has "
 "been improved and moved to the eraser tool."
 msgstr ""
-"Una precedente opzione dello strumento secchiello della vernice, che non apparteneva lì, è "
-"stato migliorato e spostato nello strumento gomma."
+"Una precedente opzione dello strumento secchiello della vernice, che non "
+"apparteneva lì, è stato migliorato e spostato nello strumento gomma."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "Transparency is henceforth correctly preserved when the \"skew\" tool "
 "expands the canvas with a solid color."
 msgstr ""
-"La trasparenza è d'ora in poi correttamente preservata quando lo strumento \"inclinare\" "
-"espande la tela con un colore solido."
+"La trasparenza è d'ora in poi correttamente preservata quando lo strumento "
+"\"inclinare\" espande la tela con un colore solido."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "You can now adjust the position of the canvas when you're cropping it."
@@ -128,8 +128,9 @@ msgid ""
 "The option to use a color editor by default has been moved from the main "
 "window to the preferences window, and its bug has been fixed."
 msgstr ""
-"L'opzione per utilizzare un editor di colori per impostazione predefinita è stata spostata dalla finestra "
-"principale alla finestra delle preferenze e il suo bug è stato corretto."
+"L'opzione per utilizzare un editor di colori per impostazione predefinita è "
+"stata spostata dalla finestra principale alla finestra delle preferenze e il "
+"suo bug è stato corretto."
 
 #. very generic release notes i use for ALL minor updates, please
 #. translate this one!
@@ -411,9 +412,10 @@ msgstr "Preferenze"
 msgid "View"
 msgstr "Vista"
 
-#: src/ui/app-menus.ui
-msgid "Show the preview"
-msgstr "Mostra anteprima"
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-classic.ui
+#: src/optionsbars/selection/optionsbar-selection.ui
+msgid "Preview"
+msgstr "Anteprima"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/preferences.py
 msgid "Zoom"
@@ -1363,11 +1365,24 @@ msgstr "Spazio colore"
 msgid "Invalid format"
 msgstr "Formato non valido"
 
+#. an actual error occurred!
+#. Context: an error message
+#: src/saving_manager.py
+#, fuzzy
+msgid "Failed to replace transparency"
+msgstr "Sostituisci la trasparenza con:"
+
 #. Context: an error message
 #: src/saving_manager.py
 #, python-format
 msgid "Failed to save %s"
 msgstr "Impossibile salvare %s"
+
+#. Context: an error message
+#: src/saving_manager.py
+#, fuzzy, python-format
+msgid "Failed to reload %s"
+msgstr "Strumento di caricamento non riuscito: %s"
 
 #. Context: Untitled(.png) is the default name of a newly saved file
 #: src/saving_manager.py
@@ -1702,11 +1717,6 @@ msgstr "Dimensione strumento"
 #: src/optionsbars/classic/optionsbar-classic.ui src/tools/abstract_tool.py
 msgid "No options"
 msgstr "Nessuna opzione"
-
-#: src/optionsbars/classic/optionsbar-classic.ui
-#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/tool-text.ui
-msgid "Preview"
-msgstr "Anteprima"
 
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "How the color will be applied to the existing pixels"
@@ -2379,6 +2389,14 @@ msgstr "Testo"
 #: src/tools/classic_tools/tool_text.py
 msgid "Text options"
 msgstr "Opzioni di testo"
+
+#: src/tools/classic_tools/tool_text.py
+msgid "Grab the rectangle to adjust the text position"
+msgstr ""
+
+#: src/tools/classic_tools/tool_text.py
+msgid "Click outside the rectangle to apply"
+msgstr ""
 
 #: src/tools/classic_tools/brushes/brush_airbrush.py
 msgid "Density depends on the stylus pressure"

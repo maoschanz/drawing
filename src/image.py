@@ -254,8 +254,8 @@ class DrImage(Gtk.Box):
 		self._gfile_monitor = self.gfile.monitor(flags)
 		self._gfile_monitor.connect('changed', self.reveal_reload_message)
 
-	def lock_monitoring(self):
-		self._waiting_for_monitor = True
+	def set_monitoring(self, value):
+		self._waiting_for_monitor = value
 
 	def reveal_reload_message(self, *args):
 		if self._waiting_for_monitor:

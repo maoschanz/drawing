@@ -232,6 +232,7 @@ class AbstractCanvasTool(AbstractAbstractTool):
 	def on_options_changed(self):
 		super().on_options_changed()
 		self._update_expansion_rgba(self._last_btn)
+		self.build_and_do_op()
 
 	def _update_expansion_rgba(self, event_btn=1):
 		"""When the canvas grows, the color of the new pixels is parametrable"""

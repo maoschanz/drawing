@@ -50,8 +50,7 @@ class ToolExperiment(AbstractClassicTool):
 		}
 		self._operator_label = "OVER"
 		self.operator2 = cairo.Operator.OVER
-		self._selected_mode = 'feather'
-		self._feather_dir = 'up'
+		self._selected_mode = 'aero2'
 
 		self.add_tool_action_enum('experiment_operator', self._operator_label)
 		self.add_tool_action_enum('experiment_mode', self._selected_mode)
@@ -168,11 +167,12 @@ class ToolExperiment(AbstractClassicTool):
 		cairo_context.set_line_join(operation['line_join'])
 		cairo_context.set_source_rgba(*operation['rgba'])
 
-		if operation['mode'] == 'pressure':
-			if operation['is_preview']: # Previewing helps performance & debug
-				operation['line_width'] = int(operation['line_width'] / 2)
-				return self.op_simple(operation, cairo_context)
-			self.op_pressure(operation, cairo_context)
+		if operation['mode'] == 'aero1':
+			self.op_aerodots(operation, cairo_context)
+		elif operation['mode'] == 'aero2':
+			self.op_aerogradient(operation, cairo_context)
+		elif operation['mode'] == 'aero3':
+			self.op_aeroeraser(operation, cairo_context)
 		elif operation['mode'] == 'smooth':
 			if operation['is_preview']: # Previewing helps performance & debug
 				return self.op_simple(operation, cairo_context)
@@ -183,6 +183,33 @@ class ToolExperiment(AbstractClassicTool):
 			self.op_simple(operation, cairo_context)
 
 	############################################################################
+
+	def op_aeroeraser(self, operation, cairo_context):
+		self.op_aerodots(operation, cairo_context)
+
+	def op_aerodots(self, operation, cairo_context):
+		cairo_context.set_operator(operation['operator'])
+		cairo_context.new_path()
+		for pt in operation['path']:
+			radius = operation['line_width'] / 2
+			cairo_context.arc(pt['x'], pt['y'], radius, 0.0, 2 * math.pi)
+			cairo_context.fill()
+
+	def op_aerogradient(self, operation, cairo_context):
+		cairo_context.set_operator(operation['operator'])
+		cairo_context.new_path()
+		for pt in operation['path']:
+			radius = operation['line_width'] / 2
+			cairo_context.arc(pt['x'], pt['y'], radius, 0.0, 2 * math.pi)
+
+			pattern = cairo.RadialGradient(pt['x'], pt['y'], 0.1 * radius, \
+			                               pt['x'], pt['y'], 1.0 * radius)
+			[r, g, b, a] = operation['rgba']
+			pattern.add_color_stop_rgba(0.1, r, g, b, a)
+			pattern.add_color_stop_rgba(1.0, r, g, b, 0.0)
+			cairo_context.set_source(pattern)
+
+			cairo_context.fill()
 
 	def op_macro_w(self, operation, cairo_context):
 		"""Trying to study whatever tf is the rendering issue #337"""

@@ -54,6 +54,13 @@ class AbstractSelectionTool(AbstractAbstractTool):
 			label_tip = _("Select an area or right-click on the canvas")
 		return [label_tip]
 
+	# def on_options_changed(self):
+	# 	super().on_options_changed()
+		# TODO changing the value of 'selection-color' or 'selection-extract'
+		# can't have an actual result, because they're parameters of a "define"
+		# operation, which is already applied at the time the user tries to use
+		# another value for these options
+
 	def get_options_model(self):
 		builder = Gtk.Builder.new_from_resource(self.UI_PATH + 'selection.ui')
 		return builder.get_object('options-menu')

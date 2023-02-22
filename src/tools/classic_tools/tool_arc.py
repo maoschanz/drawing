@@ -32,6 +32,7 @@ class ToolArc(AbstractClassicTool):
 		self._dashes_type = 'none'
 		self._arrow_type = 'none'
 		self._use_outline = False
+		self._path = None
 
 		self.add_tool_action_enum('line_shape', 'round')
 		self.add_tool_action_enum('dashes-type', self._dashes_type)
@@ -57,10 +58,6 @@ class ToolArc(AbstractClassicTool):
 		return _("Curve options")
 
 	def get_editing_tips(self):
-		self._use_outline = self.get_option_value('pencil-outline')
-		self._dashes_type = self.get_option_value('dashes-type')
-		self._arrow_type = self.get_option_value('arrow-type')
-		self.set_active_shape()
 		is_arrow = self._arrow_type != 'none'
 		use_dashes = self._dashes_type != 'none'
 
@@ -89,6 +86,16 @@ class ToolArc(AbstractClassicTool):
 		full_list = [label_segments, label_options, label_modifier_alt]
 		return list(filter(None, full_list))
 
+	def on_options_changed(self):
+		super().on_options_changed()
+		self._use_outline = self.get_option_value('pencil-outline')
+		self._dashes_type = self.get_option_value('dashes-type')
+		self._arrow_type = self.get_option_value('arrow-type')
+		self.set_active_shape()
+
+		operation = self.build_operation()
+		self.do_tool_operation(operation)
+
 	############################################################################
 
 	def on_press_on_area(self, event, surface, event_x, event_y):
@@ -111,7 +118,7 @@ class ToolArc(AbstractClassicTool):
 
 		if not render:
 			return
-		operation = self.build_operation(event_x, event_y)
+		operation = self.build_operation()
 		self.do_tool_operation(operation)
 
 	def on_release_on_area(self, event, surface, event_x, event_y):
@@ -126,12 +133,12 @@ class ToolArc(AbstractClassicTool):
 			self._1st_segment = None
 
 		self._path = cairo_context.copy_path()
-		operation = self.build_operation(event_x, event_y)
+		operation = self.build_operation()
 		self.apply_operation(operation)
 
 	############################################################################
 
-	def build_operation(self, event_x, event_y):
+	def build_operation(self):
 		operation = {
 			'tool_id': self.id,
 			'rgba': self.main_color,
@@ -144,14 +151,14 @@ class ToolArc(AbstractClassicTool):
 			'arrow': self._arrow_type,
 			'outline': self._use_outline,
 			'path': self._path,
-			'x_release': event_x,
-			'y_release': event_y,
 			'x_press': self.x_press,
 			'y_press': self.y_press
 		}
 		return operation
 
 	def do_tool_operation(self, operation):
+		if operation['path'] is None:
+			return
 		cairo_context = self.start_tool_operation(operation)
 
 		cairo_context.set_operator(operation['operator'])
@@ -176,8 +183,8 @@ class ToolArc(AbstractClassicTool):
 		if operation['arrow'] != 'none':
 			x1 = operation['x_press']
 			y1 = operation['y_press']
-			x2 = operation['x_release']
-			y2 = operation['y_release']
+			x2 = cairo_context.get_current_point()[0]
+			y2 = cairo_context.get_current_point()[1]
 			utilities_add_arrow_triangle(cairo_context, x2, y2, x1, y1, line_width)
 
 		if operation['outline']:
