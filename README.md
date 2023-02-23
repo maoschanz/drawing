@@ -56,32 +56,32 @@ If your language is not here, or is incompletely translated, you can
 
 | code | name         | complete*? | main translators                          |
 |------|--------------|------------|-------------------------------------------|
-| cs   | Czech        | 90%        | @pervoj                                   |
-| ca   | Catalan      | 89%        | @jordimas                                 |
-| da   | Danish       | 81%        | @scootergrisen                            |
+| ca   | Catalan      | 93%        | @jordimas                                 |
+| cs   | Czech        | 99%        | @pervoj                                   |
+| da   | Danish       | 77%        | @scootergrisen                            |
 | de   | German       | 100%       | @Etamuk                                   |
 |      | English      | 100%       | help welcome **                           |
 | es   | Castillan    | 100%       | @fitojb, @xoan, @oscfdezdz                |
-| eu   | Basque       | 86%        | @alexgabi                                 |
-| fi   | Finnish      | **60%**    | @mahtiankka                               |
+| eu   | Basque       | 82%        | @alexgabi                                 |
+| fi   | Finnish      | 99%        | @mahtiankka                               |
 | fr   | French       | 100%       |                                           |
-| he   | Hebrew       | **61%**    | @moriel5, @shaqash, @omeritzics           |
-| hi   | Hindi        | ~20%       | @sujaldev                                 |
-| hr   | Croatian     | 99%        | @milotype                                 |
-| hu   | Hungarian    | **50%**    | @kami911                                  |
-| id   | Indonesian   | 61%        | @ekickx                                   |
+| he   | Hebrew       | **57%**    | @moriel5, @shaqash, @omeritzics           |
+| hi   | Hindi        | **~20%**   | @sujaldev                                 |
+| hr   | Croatian     | 97%        | @milotype                                 |
+| hu   | Hungarian    | **48%**    | @kami911                                  |
+| id   | Indonesian   | **59%**    | @ekickx                                   |
 | it   | Italian      | 99%        | @amivaleo and @albanobattistella          |
-| ja   | Japanese     | 90%        | @rlbxku1r                                 |
-| kr   | Korean       | 85%        | @chaeya                                   |
-| nl   | Dutch        | 96%        | @Vistaus                                  |
-| oc   | Occitan      | 35%        | @Mejans                                   |
+| ja   | Japanese     | 86%        | @rlbxku1r                                 |
+| kr   | Korean       | 90%        | @chaeya                                   |
+| nl   | Dutch        | 97%        | @Vistaus                                  |
+| oc   | Occitan      | **33%**    | @Mejans                                   |
 | pl   | Polish       | 100%       | @pkomur                                   |
 | pt_BR | Br. portuguese | 100%    | @haurenburu and @ArthurBacci64            |
 | ru   | Russian      | 99%        | @tim77 and @Ser82-png                     |
-| sv   | Swedish      | 95%        | @eson57                                   |
+| sv   | Swedish      | 99%        | @eson57                                   |
 | tr   | Turkish      | 100%       | @TeknoMobil and @serkan-maker             |
-| zh_CN | Chinese, simpl. | 64%    | @OverflowCat                              |
-| zh_TW | Chinese, tradi. | 65%    | @pan93412, @OverflowCat and @cges30901    |
+| zh_CN | Chinese, simpl. | 61%    | @OverflowCat                              |
+| zh_TW | Chinese, tradi. | 62%    | @pan93412, @OverflowCat and @cges30901    |
 
 \*Completion percentages correspond to **the next** major version, still in
 development.

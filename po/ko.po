@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
-"POT-Creation-Date: 2023-02-21 23:31+0100\n"
+"POT-Creation-Date: 2023-02-23 23:35+0100\n"
 "PO-Revision-Date: 2022-09-13 15:12+0900\n"
 "Last-Translator: Kevin Kim <root@hamonikr.org>\n"
 "Language-Team: Korean\n"
@@ -111,6 +111,32 @@ msgstr ""
 msgid ""
 "The option to use a color editor by default has been moved from the main "
 "window to the preferences window, and its bug has been fixed."
+msgstr ""
+
+#. very generic release notes i use for ALL minor updates, please
+#. translate this one!
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Version 1.0.2 features several minor bug fixes, and various new translations."
+msgstr ""
+"버전 1.0.2에는 몇 가지 사소한 버그 수정과 다양한 새로운 번역이 있습니다."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Saving the image should be more reliable, especially when replacing the "
+"transparent pixels with a solid color. Pictures are now automatically "
+"reloaded from the disk after being saved."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"The user interface of the \"select\" tool changed, as well as the keyboard "
+"shortcuts to change tab."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"A small rendering issue when previewing a blur filter has also been fixed."
 msgstr ""
 
 #. very generic release notes i use for ALL minor updates, please
@@ -1060,8 +1086,8 @@ msgstr "기본 높이"
 
 #. Context: this is the label that describes the initial color of an
 #. image (as set in the preferences or in the "new image with custom
-#. size" dialog). This is displayed in the context of editing or
-#. saving the image, but not when creating it.
+#. size" dialog). This is displayed in the context of editing or saving
+#. the image, but not when creating it.
 #: src/preferences.py src/saving_manager.py
 #: src/optionsbars/selection/optionsbar-selection.ui
 #: src/optionsbars/transform/optionsbar-crop.ui

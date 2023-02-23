@@ -4,7 +4,7 @@ drawing (1.4.0) unstable; urgency=low
   * update the user help manual
   * update several translations
 
- -- Romain F. T. <rrroschan@gmail.com>  Sat, 08 Apr 2023 13:12:00 +0100
+ -- Romain F. T. <rrroschan@gmail.com>  Sat, 15 Apr 2023 13:12:00 +0100
 
 drawing (1.2.0) unstable; urgency=low
 
@@ -21,7 +21,22 @@ drawing (1.2.0) unstable; urgency=low
   * preserve transparency of the original area when skewing with a solid background color
   * update several translations
 
- -- Romain F. T. <rrroschan@gmail.com>  Sat, 04 Mar 2023 13:12:00 +0100
+ -- Romain F. T. <rrroschan@gmail.com>  Sat, 11 Mar 2023 13:12:00 +0100
+
+drawing (1.0.2) unstable; urgency=low
+
+  * fix the default value of the text background option (as reported by #521 and #559)
+  * fix a scenario where saving without transparency would consistenly fail
+  * automatically reload the picture after saving
+  * mitigate initial state of the "filters" tool if "blur" is selected (#577)
+  * change the keyboard shortcuts to switch tabs
+  * remove from the highlighter the (ineffective) UI to change the active cairo operator
+  * change the UI of the selection tools to improve readability of various items
+  * fix typos in the user help manual
+  * change the label of the "toggle the preview" menu item (#137)
+  * update several translations
+
+ -- Romain F. T. <rrroschan@gmail.com>  Sat, 25 Feb 2023 13:12:00 +0100
 
 drawing (1.0.1) unstable; urgency=low
 
