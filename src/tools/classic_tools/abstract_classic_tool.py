@@ -77,7 +77,6 @@ class AbstractClassicTool(AbstractAbstractTool):
 		context = self.get_context()
 		if 'antialias' not in operation:
 			antialias = cairo.Antialias.DEFAULT
-			# print("pas de clef pour l'antialias :", operation['tool_id'])
 		elif operation['antialias']:
 			antialias = cairo.Antialias.DEFAULT
 		else:

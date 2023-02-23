@@ -131,6 +131,9 @@ class DrWindow(Gtk.ApplicationWindow):
 		return False
 
 	def _try_show_release_notes(self):
+		"""Add specific actions to the primary menu if the current version is a
+		new one (the corresponding release notes have never been opened or
+		dismissed)"""
 		last_version = self.gsettings.get_string('last-version')
 		current_version = self.app.get_current_version()
 		if current_version == last_version:
@@ -432,7 +435,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		# What happens when the active image change
 		self.notebook.connect('switch-page', self.on_active_tab_changed)
 
-		# Select tools using "alt" mnemonics
+		# Change the active tool using "alt" mnemonics
 		self.connect('key-press-event', self._check_for_alt_key)
 		self.connect('key-release-event', self._check_for_alt_key)
 
@@ -938,6 +941,8 @@ class DrWindow(Gtk.ApplicationWindow):
 		return self.tools[self.former_tool_id]
 
 	def back_to_previous(self, *args):
+		"""Switch back to the previously active tool, if it's different from the
+		current one."""
 		if self.former_tool_id == self.active_tool_id:
 			self.force_selection()
 			# avoid cases where applying a transform tool keeps the tool active

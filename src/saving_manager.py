@@ -55,9 +55,14 @@ class DrSavingManager():
 		else:
 			pixbuf = image.main_pixbuf
 
+		# Ask the user what to do concerning formats with no alpha channel
 		if not allow_alpha:
+			# the user clicked on "save without alpha", i'll not suggest the
+			# exact opposite in the dialog
 			can_save_as = False
 		else:
+			# no need to suggest "save as png" if it's an export, because
+			# the file chooser dialog allows any format
 			can_save_as = not is_export
 
 		if file_format not in ['png']:
@@ -70,14 +75,17 @@ class DrSavingManager():
 					replacement = self._ask_overwrite_alpha(allow_alpha, can_save_as)
 				pixbuf = self._replace_alpha(pixbuf, replacement, image)
 			except WantAnotherFormatException as e:
+				# the user wants to save the file under an other format
 				return self.save_current_image(False, True, False, True)
 			except WantToCancelException as e:
+				# the user clicks on "cancel"
 				return True
 			except Exception as e:
 				print(e) # an actual error occurred!
 				# Context: an error message
 				self._window.reveal_message(_("Failed to replace transparency"))
 
+		# The "reload?" message shouldn't be shown, i force the reload later
 		image.set_monitoring(False)
 
 		try:
@@ -98,9 +106,11 @@ class DrSavingManager():
 			self._window.reveal_message(_("Failed to save %s") % file_path)
 			return False
 
+		# Reset the file monitoring flag
 		image.set_monitoring(True)
 
 		if not is_export:
+			# Update the image and the window objects
 			try:
 				image.gfile = gfile
 				image.connect_gfile_monitoring()
@@ -112,6 +122,7 @@ class DrSavingManager():
 				self._window.reveal_message(_("Failed to reload %s") % file_path)
 				return False
 
+		# everything went fine, return true
 		return True
 
 	############################################################################

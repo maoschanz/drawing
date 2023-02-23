@@ -253,8 +253,7 @@ class OptionsBarClassicColorPopover(Gtk.Popover):
 		self._button.activate()
 
 	def _update_nav_box(self, *args):
-		"""Update the visibility of navigation controls ('back to the palette'
-		and 'always use this editor')."""
+		"""Update the visibility of the 'back to the palette' button."""
 		self.editor_box.set_visible(self.color_widget.props.show_editor)
 
 	############################################################################
