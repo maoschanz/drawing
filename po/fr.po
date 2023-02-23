@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.github.maoschanz.drawing 0.4\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
-"POT-Creation-Date: 2023-02-21 23:31+0100\n"
+"POT-Creation-Date: 2023-02-23 23:35+0100\n"
 "PO-Revision-Date: 2023-02-21 23:44+0100\n"
 "Last-Translator: Romain F. T. <rrroschan@gmail.com>\n"
 "Language-Team: French <aaaa@bbbb.com>\n"
@@ -65,8 +65,8 @@ msgid ""
 msgstr ""
 "Cet éditeur d'images basique peut redimensionner, rogner, ou pivoter une "
 "image, appliquer des filtres simples, insérer ou censurer du texte, et "
-"manipuler une portion sélectionnée de l'image (couper/copier/coller/déplacer/"
-"…)"
+"manipuler une portion sélectionnée de l'image (couper/copier/coller/"
+"déplacer/…)"
 
 #. IMPORTANT: complete description of the application (2/3)
 #: data/com.github.maoschanz.drawing.appdata.xml.in
@@ -131,6 +131,33 @@ msgid ""
 msgstr ""
 "L'option pour utiliser l'éditeur de couleur par défaut a été déplacée de la "
 "fenêtre principale vers la fenêtre des préférences."
+
+#. very generic release notes i use for ALL minor updates, please
+#. translate this one!
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Version 1.0.2 features several minor bug fixes, and various new translations."
+msgstr ""
+"La version 1.0.2 comporte plusieurs correctifs de bugs mineurs, et diverses "
+"nouvelles traductions."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Saving the image should be more reliable, especially when replacing the "
+"transparent pixels with a solid color. Pictures are now automatically "
+"reloaded from the disk after being saved."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"The user interface of the \"select\" tool changed, as well as the keyboard "
+"shortcuts to change tab."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"A small rendering issue when previewing a blur filter has also been fixed."
+msgstr ""
 
 #. very generic release notes i use for ALL minor updates, please
 #. translate this one!
@@ -222,8 +249,8 @@ msgid ""
 "style of a shape."
 msgstr ""
 "Presser \"maj\" ou \"alt\" en utilisant un outil activera désormais des "
-"options spécifiques, tel que verrouiller la direction pour l'outil \"ligne"
-"\", ou changer le style de remplissage d'une forme."
+"options spécifiques, tel que verrouiller la direction pour l'outil "
+"\"ligne\", ou changer le style de remplissage d'une forme."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -1097,8 +1124,8 @@ msgstr "Hauteur par défaut"
 
 #. Context: this is the label that describes the initial color of an
 #. image (as set in the preferences or in the "new image with custom
-#. size" dialog). This is displayed in the context of editing or
-#. saving the image, but not when creating it.
+#. size" dialog). This is displayed in the context of editing or saving
+#. the image, but not when creating it.
 #: src/preferences.py src/saving_manager.py
 #: src/optionsbars/selection/optionsbar-selection.ui
 #: src/optionsbars/transform/optionsbar-crop.ui

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
-"POT-Creation-Date: 2023-02-21 23:31+0100\n"
+"POT-Creation-Date: 2023-02-23 23:35+0100\n"
 "PO-Revision-Date: 2022-12-25 17:37+0100\n"
 "Last-Translator: Onno Giesmann <nutzer3105@gmail.com>\n"
 "Language-Team: German <--->\n"
@@ -135,6 +135,33 @@ msgstr ""
 "Die Option, einen Farbwähler standardmäßig zu verwenden, wurde vom "
 "Hauptfenster in das Einstellungenfenster verschoben und dazugehörige Fehler "
 "wurden ebenfalls beseitigt."
+
+#. very generic release notes i use for ALL minor updates, please
+#. translate this one!
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Version 1.0.2 features several minor bug fixes, and various new translations."
+msgstr ""
+"Die Version 1.0.2 enthält mehrere kleine Fehlerbehebungen und verschiedene "
+"neue Übersetzungen."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Saving the image should be more reliable, especially when replacing the "
+"transparent pixels with a solid color. Pictures are now automatically "
+"reloaded from the disk after being saved."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"The user interface of the \"select\" tool changed, as well as the keyboard "
+"shortcuts to change tab."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"A small rendering issue when previewing a blur filter has also been fixed."
+msgstr ""
 
 #. very generic release notes i use for ALL minor updates, please
 #. translate this one!
@@ -1113,8 +1140,8 @@ msgstr "Standardhöhe"
 
 #. Context: this is the label that describes the initial color of an
 #. image (as set in the preferences or in the "new image with custom
-#. size" dialog). This is displayed in the context of editing or
-#. saving the image, but not when creating it.
+#. size" dialog). This is displayed in the context of editing or saving
+#. the image, but not when creating it.
 #: src/preferences.py src/saving_manager.py
 #: src/optionsbars/selection/optionsbar-selection.ui
 #: src/optionsbars/transform/optionsbar-crop.ui
