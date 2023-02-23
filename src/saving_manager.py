@@ -31,7 +31,9 @@ class DrSavingManager():
 		self._window = window
 
 	def save_current_image(self, is_export, to_new, selection_only, allow_alpha):
-		"""All parameters are booleans. Returns a boolean (true if success)."""
+		"""All parameters are booleans. The value of `allow_alpha` reflects the
+		user's intention (action they activated), not a technical capability.
+		It returns a boolean (true if success)."""
 		if not selection_only and not self._confirm_despite_ongoing_operation():
 			return False
 
@@ -65,14 +67,12 @@ class DrSavingManager():
 			# the file chooser dialog allows any format
 			can_save_as = not is_export
 
-		if file_format not in ['png']:
-			allow_alpha = False
-
-		if not allow_alpha:
+		supports_alpha = file_format in ['png']
+		if not allow_alpha or not supports_alpha:
 			try:
 				replacement = self._window.gsettings.get_string('replace-alpha')
 				if replacement == 'ask':
-					replacement = self._ask_overwrite_alpha(allow_alpha, can_save_as)
+					replacement = self._ask_overwrite_alpha(supports_alpha, can_save_as)
 				pixbuf = self._replace_alpha(pixbuf, replacement, image)
 			except WantAnotherFormatException as e:
 				# the user wants to save the file under an other format
@@ -260,10 +260,10 @@ class DrSavingManager():
 			file_format = 'png'
 		return file_format
 
-	def _ask_overwrite_alpha(self, allow_alpha, can_save_as):
+	def _ask_overwrite_alpha(self, supports_alpha, can_save_as):
 		"""Warn the user about the replacement of the alpha channel for JPG or
 		BMP files, but it may quickly annoy users to see a dialog so it's an
-		option. Can be used on PNG files if 'allow_alpha' is false."""
+		option. Can be used on PNG files (if 'supports_alpha' is true)."""
 		dialog = DrMessageDialog(self._window)
 		cancel_id = dialog.set_action(_("Cancel"), None)
 		if can_save_as:
@@ -273,7 +273,7 @@ class DrSavingManager():
 		# Context: confirm replacing transparent pixels with the selected color
 		replace_id = dialog.set_action(_("Replace"), None, True)
 
-		if allow_alpha:
+		if not supports_alpha:
 			dialog.add_string(_("This file format doesn't support transparent colors."))
 		if can_save_as:
 			dialog.add_string(_("You can save the image as a PNG file, or " \
@@ -282,11 +282,20 @@ class DrSavingManager():
 			dialog.add_string(_("Replace transparency with:"))
 
 		alpha_combobox = Gtk.ComboBoxText(halign=Gtk.Align.CENTER)
+		# Context: this is the label that describes the initial color of an
+		# image (as set in the preferences or in the "new image with custom
+		# size" dialog). This is displayed in the context of editing or saving
+		# the image, but not when creating it.
 		alpha_combobox.append('initial', _("Default color"))
 		alpha_combobox.append('white', _("White"))
 		alpha_combobox.append('black', _("Black"))
+		# Context: replace transparent pixels with [checkboard]. This is a
+		# pattern of dark and light greys.
 		alpha_combobox.append('checkboard', _("Checkboard"))
-		alpha_combobox.append('nothing', _("Nothing"))
+		if not supports_alpha:
+			# Context: replace transparent pixels with [nothing]. In practice it
+			# means the alpha channel is just removed.
+			alpha_combobox.append('nothing', _("Nothing"))
 		alpha_combobox.set_active_id('initial') # If we run the dialog, it often
 		# means the active preference is 'ask', so there is no way we can set
 		# the default value to something more pertinent.
@@ -303,6 +312,7 @@ class DrSavingManager():
 
 	def _replace_alpha(self, pixbuf, replacement, image):
 		if replacement == 'nothing':
+			# wouldn't work with a PNG file
 			return pixbuf
 		width = pixbuf.get_width()
 		height = pixbuf.get_height()
