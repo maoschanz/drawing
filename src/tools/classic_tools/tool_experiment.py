@@ -185,6 +185,7 @@ class ToolExperiment(AbstractClassicTool):
 	############################################################################
 
 	def op_aeroeraser(self, operation, cairo_context):
+		# TODO issue #575
 		self.op_aerodots(operation, cairo_context)
 
 	def op_aerodots(self, operation, cairo_context):
