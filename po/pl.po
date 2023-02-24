@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
 "POT-Creation-Date: 2023-02-23 23:35+0100\n"
-"PO-Revision-Date: 2023-02-22 00:07+0100\n"
+"PO-Revision-Date: 2023-02-24 00:16+0100\n"
 "Last-Translator: Piotr Komur <pkomur@gmail.com>\n"
 "Language-Team: Piotr Komur\n"
 "Language: pl\n"
@@ -145,17 +145,24 @@ msgid ""
 "transparent pixels with a solid color. Pictures are now automatically "
 "reloaded from the disk after being saved."
 msgstr ""
+"Zapisywanie obrazu powinno być bardziej niezawodne, zwłaszcza przy "
+"zastępowaniu przezroczystych pikseli jednolitym kolorem. Obrazy są teraz "
+"ponownie ładowane z dysku automatycznie po ich zapisaniu."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "The user interface of the \"select\" tool changed, as well as the keyboard "
 "shortcuts to change tab."
 msgstr ""
+"Zmieniono interfejs użytkownika narzędzia „Zaznacz”, a także skróty "
+"klawiszowe umożliwiające zmianę karty."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "A small rendering issue when previewing a blur filter has also been fixed."
 msgstr ""
+"Naprawiono również mały problem z renderowaniem podczas podglądu filtra "
+"rozmycia."
 
 #. very generic release notes i use for ALL minor updates, please
 #. translate this one!
@@ -1257,7 +1264,7 @@ msgstr "Zaznaczanie dowolne"
 #. surrounding area made of white pixels.
 #: src/preferences.py src/tools/selection_tools/select_color.py
 msgid "Color selection"
-msgstr "Zaznaczanie koloru"
+msgstr "Wybieranie koloru"
 
 #. Context: this is a tool to pick a RGBA color in the image in order to
 #. use it to draw with other tools
@@ -2441,7 +2448,7 @@ msgstr "Przeciągnij zaznaczenie lub kliknij na płótno prawym przyciskiem mysz
 
 #: src/tools/selection_tools/abstract_select.py
 msgid "Select an area or right-click on the canvas"
-msgstr "Wybierz obszar lub kliknij obszar roboczy prawym przyciskiem myszy"
+msgstr "Zaznacz obszar lub kliknij obszar roboczy prawym przyciskiem myszy"
 
 #: src/tools/selection_tools/select_rect.py
 msgid "Rectangle selection"
