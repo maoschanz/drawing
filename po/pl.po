@@ -99,17 +99,24 @@ msgid ""
 "transparent pixels with a solid color. Pictures are now automatically "
 "reloaded from the disk after being saved."
 msgstr ""
+"Zapisywanie obrazu powinno być bardziej niezawodne, zwłaszcza przy "
+"zastępowaniu przezroczystych pikseli jednolitym kolorem. Obrazy są teraz "
+"ponownie ładowane z dysku automatycznie po ich zapisaniu."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "The user interface of the \"select\" tool changed, as well as the keyboard "
 "shortcuts to change tab."
 msgstr ""
+"Zmieniono interfejs użytkownika narzędzia „Zaznacz”, a także skróty "
+"klawiszowe umożliwiające zmianę karty."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "A small rendering issue when previewing a blur filter has also been fixed."
 msgstr ""
+"Naprawiono również mały problem z renderowaniem podczas podglądu filtra "
+"rozmycia."
 
 #. very generic release notes i use for ALL minor updates, please
 #. translate this one!
@@ -740,7 +747,7 @@ msgstr "100%"
 
 #: src/ui/minimap.ui src/ui/shortcuts.ui
 msgid "Maximum zoom"
-msgstr ""
+msgstr "Maksymalne powiększenie"
 
 #: src/ui/new-image-dialog.ui src/ui/properties.ui
 #: src/optionsbars/transform/optionsbar-crop.ui
@@ -1081,8 +1088,8 @@ msgstr "Domyślna wysokość"
 
 #. Context: this is the label that describes the initial color of an
 #. image (as set in the preferences or in the "new image with custom
-#. size" dialog). This is displayed in the context of editing or
-#. saving the image, but not when creating it.
+#. size" dialog). This is displayed in the context of editing or saving
+#. the image, but not when creating it.
 #: src/preferences.py src/saving_manager.py
 #: src/optionsbars/selection/optionsbar-selection.ui
 #: src/optionsbars/transform/optionsbar-crop.ui
@@ -1170,10 +1177,10 @@ msgstr ""
 "Działanie poniższych narzędzi nie jest jeszcze dopracowane, więc nie "
 "wszystkie są domyślnie włączone."
 
-#. Context: this is the name of a tool, in the meaning "a rubber eraser"
+#. Context: this is the name of a tool
 #: src/preferences.py src/tools/classic_tools/tool_eraser.py
 msgid "Eraser"
-msgstr "Gumka"
+msgstr "Wymazywacz"
 
 #. Context: this is the name of a tool, a thick pencil dedicated to
 #. highlight text, for example in screenshots
@@ -1199,14 +1206,14 @@ msgstr "Punkty"
 #. can be freely defined by the user.
 #: src/preferences.py src/tools/selection_tools/select_free.py
 msgid "Free selection"
-msgstr "Zaznaczanie (dowolne)"
+msgstr "Zaznaczanie dowolne"
 
 #. Context: this is a tool to "magically" select an area depending on its
 #. color. For example clicking on a white pixel will select the
 #. surrounding area made of white pixels.
 #: src/preferences.py src/tools/selection_tools/select_color.py
 msgid "Color selection"
-msgstr "Zaznaczanie koloru"
+msgstr "Wybieranie koloru"
 
 #. Context: this is a tool to pick a RGBA color in the image in order to
 #. use it to draw with other tools
@@ -1327,21 +1334,20 @@ msgstr "Niewłaściwy format"
 #. an actual error occurred!
 #. Context: an error message
 #: src/saving_manager.py
-#, fuzzy
 msgid "Failed to replace transparency"
-msgstr "Zastąp przezroczystość:"
+msgstr "Nie udało się zastąpić przezroczystości"
 
 #. Context: an error message
 #: src/saving_manager.py
 #, python-format
 msgid "Failed to save %s"
-msgstr "Błąd zapisu %s"
+msgstr "Nie udało się zapisać %s"
 
 #. Context: an error message
 #: src/saving_manager.py
-#, fuzzy, python-format
+#, python-format
 msgid "Failed to reload %s"
-msgstr "Nie udało się załadować narzędzia: %s"
+msgstr "Nie udało się ponownie załadować %s"
 
 #. Context: Untitled(.png) is the default name of a newly saved file
 #: src/saving_manager.py
@@ -2252,7 +2258,7 @@ msgstr "Naciśnij <Shift>, aby zamiast tego wymazać ścieżkę"
 
 #: src/tools/classic_tools/tool_eraser.py
 msgid "Eraser options"
-msgstr "Opcje gumki"
+msgstr "Opcje wymazywacza"
 
 #: src/tools/classic_tools/tool_highlight.py
 msgid "Press <Shift> to temporarily highlight on dark background instead"
@@ -2403,11 +2409,11 @@ msgstr "Przeciągnij zaznaczenie lub kliknij na płótno prawym przyciskiem mysz
 
 #: src/tools/selection_tools/abstract_select.py
 msgid "Select an area or right-click on the canvas"
-msgstr "Wybierz obszar lub kliknij obszar roboczy prawym przyciskiem myszy"
+msgstr "Zaznacz obszar lub kliknij obszar roboczy prawym przyciskiem myszy"
 
 #: src/tools/selection_tools/select_rect.py
 msgid "Rectangle selection"
-msgstr "Zaznaczanie (prostokątem)"
+msgstr "Zaznaczanie prostokątne"
 
 #: src/tools/transform_tools/abstract_transform_tool.py
 msgid "Error: invalid values"
@@ -2510,9 +2516,6 @@ msgstr "Stopień rozmycia"
 #: src/tools/transform_tools/filters/filter_saturation.py
 msgid "Saturation"
 msgstr "Nasycenie"
-
-#~ msgid "Later"
-#~ msgstr "Później"
 
 #~ msgid "Apply"
 #~ msgstr "Zastosuj"

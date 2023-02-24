@@ -178,21 +178,35 @@
       <h2><a id="news"></a>What's new</h2><!-- ***************************** -->
 
       <details open="open">
-        <summary>New features in version 1.0.1</summary>
+        <summary>New features in version 1.0.2</summary>
         <ul itemprop="releaseNotes">
+          <li>fix the default value of the text background option</li>
+          <li>fix a scenario where saving without transparency would consistently fail</li>
+          <li>automatically reload the picture after saving</li>
+          <li>mitigate a bug concerning the initial state of the "filters" tool when "blur" is selected</li>
+          <li>change the keyboard shortcuts to switch tabs</li>
+          <li>remove from the highlighter the (ineffective) UI to change the active cairo operator</li>
+          <li>change the UI of the selection tools to improve readability of various items</li>
+          <li>fix typos in the user help manual</li>
+        </ul>
+      </details>
+
+      <details>
+        <summary>New features in versions 1.0.0 to 1.0.1</summary>
+
+        <p>Drawing 1.0.1</p>
+        <ul>
           <li>enable the highlighter by default</li>
           <li>less intrusive "what's new" message dialog</li>
           <li>non-linear zooming speed profile (to zoom faster when using extreme values)</li>
           <li>slower scrolling speed to have a better precision with higher zoom levels</li>
           <li>require itstool as a dependency even though it's some useless bloat</li>
-          <li>fix the adaptivity of the elementaryOS layout</li>
+          <li>fix the adaptativity of the elementaryOS layout</li>
           <li>better keep the image centered on the mouse pointer when changing the zoom</li>
           <li>avoid —again— insane attempts to open the binary as an image</li>
         </ul>
-      </details>
 
-      <details>
-        <summary>New features in version 1.0.0</summary>
+        <p>Drawing 1.0.0</p>
         <ul>
           <li>enable tools with "alt+letter" mnemonics</li>
           <li>larger sidebar items, where the selected tool is easier to see</li>
@@ -225,27 +239,27 @@
       <details>
         <summary>New features in versions 0.8.0 to 0.8.5</summary>
 
-        <p>Drawing 0.8.5:</p>
+        <p>Drawing 0.8.5</p>
         <ul>
           <li>text tool option for a thicker outline</li>
           <li>visual feedback when the user moves the minimap preview</li>
         </ul>
 
-        <p>Drawing 0.8.4:</p>
+        <p>Drawing 0.8.4</p>
         <ul>
           <li>option to disable anti-aliasing with the text tool</li>
           <li>if "undo" is pressed several times in a short period, recompute only once</li>
           <li>disable the 'reload image from the disk' action if it has never been saved</li>
         </ul>
 
-        <p>Drawing 0.8.3:</p>
+        <p>Drawing 0.8.3</p>
         <ul>
           <li>draw a wider outline to the free selection when the image is zoomed out</li>
           <li>don't try to open the app binary as an image when running outside of a flatpak sandbox</li>
           <li>fix incorrectly huge height of the selection after rotating it</li>
         </ul>
 
-        <p>Drawing 0.8.2:</p>
+        <p>Drawing 0.8.2</p>
         <ul>
           <li>refactoring of the optionsbars (bottom panes) of the transform tools</li>
           <li>add a "lock line orientation" option to the line tool</li>
@@ -259,7 +273,7 @@
           <li>compatibility with older distributions (Ubuntu 18.04 LTS)</li>
         </ul>
 
-        <p>Drawing 0.8.1:</p>
+        <p>Drawing 0.8.1</p>
         <ul>
           <li>add an action "selection > define as current image"</li>
           <li>fix how the canvas was ERASED if it was being cropped on one side but expanded on the other side</li>
@@ -273,7 +287,7 @@
           <li>install files in /usr instead of /usr/local</li>
         </ul>
 
-        <p>Drawing 0.8.0:</p>
+        <p>Drawing 0.8.0</p>
         <ul>
           <li>new, richer, more readable bottom pane for the selection tool</li>
           <li>add a "replace with" option to the eraser tool</li>
@@ -300,7 +314,7 @@
       <details>
         <summary>New features in versions 0.6.0 to 0.6.5</summary>
 
-        <p>Drawing 0.6.5:</p>
+        <p>Drawing 0.6.5</p>
         <ul>
           <li>fix unexplained regression of bottom panes responsiveness</li>
           <li>mitigation of the "very quick series of ctrl+b" bug</li>
@@ -309,7 +323,7 @@
           <li>more pertinent movements of the view when holding and moving the middle-click</li>
         </ul>
 
-        <p>Drawing 0.6.4:</p>
+        <p>Drawing 0.6.4</p>
         <ul>
           <li>add more keyboard shortcuts</li>
           <li>slightly better "erase and replace" algo for the paint tool</li>
@@ -318,7 +332,7 @@
           <li>remember the value of the antialiasing option</li>
         </ul>
 
-        <p>Drawing 0.6.3:</p>
+        <p>Drawing 0.6.3</p>
         <ul>
           <li>use submenus for the "tools" menu in the menubar</li>
           <li>fix arrows' heads when the line was semi-transparent</li>
@@ -329,7 +343,7 @@
           <li>support for older distributions (pygobject older than 3.30)</li>
         </ul>
 
-        <p>Drawing 0.6.2:</p>
+        <p>Drawing 0.6.2</p>
         <ul>
           <li>add keyboard shortcuts for increasing and decreasing the tool width</li>
           <li>ensure all features are available with all layouts (e.g. "reload" with Cinnamon and eOS)</li>
@@ -340,7 +354,7 @@
           <li>add option for the 'highlighter' tool to highlight on dark background</li>
         </ul>
 
-        <p>Drawing 0.6.1:</p>
+        <p>Drawing 0.6.1</p>
         <ul>
           <li>new 'save without transparency' action, that works with PNG</li>
           <li>add 'initial color' as a replacement for transparent pixels</li>
@@ -349,7 +363,7 @@
           <li>update the user help manual</li>
         </ul>
 
-        <p>Drawing 0.6.0:</p>
+        <p>Drawing 0.6.0</p>
         <ul>
           <li>remove the "windows" menu from the menubar</li>
           <li>refactor bottom panes management to allow several tools to share the same pane</li>
@@ -454,6 +468,7 @@
             <li>French</li>
             <li>German</li>
             <li>Hebrew</li>
+            <li>Hindi</li>
             <li>Hungarian</li>
             <li>Italian</li>
             <li>Japanese</li>
