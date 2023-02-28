@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
 "POT-Creation-Date: 2023-02-23 23:35+0100\n"
-"PO-Revision-Date: 2022-08-05 18:27+0200\n"
+"PO-Revision-Date: 2023-02-28 13:40+0100\n"
 "Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
 "Language-Team: Dutch\n"
 "Language: nl_NL\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 22.04.3\n"
+"X-Generator: Poedit 3.2.2\n"
 
 #: data/com.github.maoschanz.drawing.desktop.in
 #: data/com.github.maoschanz.drawing.appdata.xml.in src/deco_manager.py
@@ -98,34 +98,38 @@ msgid ""
 "The text tool is more intuitive to use, with distinct areas on the canvas to "
 "edit, move and insert the text."
 msgstr ""
+"Het tekstgereedschap is eenvoudiger in het gebruik, met duidelijke "
+"canvasgebieden voor invoegen, bewerken en verplaatsen."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "A former option of the paint bucket tool, which didn't belong there, has "
 "been improved and moved to the eraser tool."
 msgstr ""
+"Een voormalige optie van het opvulgereedschap dat daar niet behoorde is "
+"verbeterd en verplaatst naar de gum."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
-#, fuzzy
 msgid ""
 "Transparency is henceforth correctly preserved when the \"skew\" tool "
 "expands the canvas with a solid color."
 msgstr ""
 "Doorzichtigheid blijft voortaan behouden na het scheeftrekken van het canvas "
-"met een kleur."
+"met een vaste kleur."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
-#, fuzzy
 msgid "You can now adjust the position of the canvas when you're cropping it."
 msgstr ""
 "De positie van het canvas tijdens het bijsnijden kan voortaan worden "
-"gewijzigd met de rechtermuisknop."
+"gewijzigd."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "The option to use a color editor by default has been moved from the main "
 "window to the preferences window, and its bug has been fixed."
 msgstr ""
+"De optie om standaard de kleurenbewerker te gebruiken is verplaatst van het "
+"hoofdvenster naar de voorkeuren."
 
 #. very generic release notes i use for ALL minor updates, please
 #. translate this one!
@@ -142,17 +146,24 @@ msgid ""
 "transparent pixels with a solid color. Pictures are now automatically "
 "reloaded from the disk after being saved."
 msgstr ""
+"Het opslaan van afbeeldingen zou voortaan beter moeten werken, vooral na het "
+"vervangen van doorzichtige pixels door een vaste kleur. Afbeeldingen worden "
+"voortaan automatisch herladen na het opslaan ervan."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "The user interface of the \"select\" tool changed, as well as the keyboard "
 "shortcuts to change tab."
 msgstr ""
+"De vormgeving van het selectiegereedschap is aangepast, evenals de "
+"sneltoetsen om van tabblad te wisselen."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "A small rendering issue when previewing a blur filter has also been fixed."
 msgstr ""
+"Een klein probleem omtrent het voorvertonen van een vervaagfilter is "
+"opgelost."
 
 #. very generic release notes i use for ALL minor updates, please
 #. translate this one!
@@ -992,13 +1003,12 @@ msgid "Exit fullscreen"
 msgstr "Beeldvullende modus verlaten"
 
 #: src/ui/win-menus.ui
-#, fuzzy
 msgid "What's new in Drawing"
 msgstr "Wijzigingslog"
 
 #: src/ui/win-menus.ui
 msgid "Dismiss"
-msgstr ""
+msgstr "Negeren"
 
 #: src/deco_manager.py
 #, python-format
@@ -1383,9 +1393,8 @@ msgstr "Ongeldig formaat"
 #. an actual error occurred!
 #. Context: an error message
 #: src/saving_manager.py
-#, fuzzy
 msgid "Failed to replace transparency"
-msgstr "Doorzichtigheid vervangen door:"
+msgstr "De doorzichtigheid kan niet worden vervangen"
 
 #. Context: an error message
 #: src/saving_manager.py
@@ -1395,9 +1404,9 @@ msgstr "‘%s’ kan niet worden opgeslagen"
 
 #. Context: an error message
 #: src/saving_manager.py
-#, fuzzy, python-format
+#, python-format
 msgid "Failed to reload %s"
-msgstr "‘%s’ kan niet worden geladen"
+msgstr "‘%s’ kan niet worden herladen"
 
 #. Context: Untitled(.png) is the default name of a newly saved file
 #: src/saving_manager.py
@@ -1963,12 +1972,11 @@ msgstr "Horizontaal uiteinde"
 
 #: src/tools/ui/tool-eraser.ui src/tools/classic_tools/erasers/eraser_rubber.py
 msgid "Rubber eraser"
-msgstr ""
+msgstr "Rubberen gum"
 
 #: src/tools/ui/tool-eraser.ui src/tools/classic_tools/erasers/eraser_area.py
-#, fuzzy
 msgid "Rectangle area"
-msgstr "Rechthoek"
+msgstr "Rechthoekig gebied"
 
 #. Context: this feature erases the color where the user clicked.
 #. For example to cut out an object from its solid background.
@@ -2408,11 +2416,11 @@ msgstr "Lettertype-opties"
 
 #: src/tools/classic_tools/tool_text.py
 msgid "Grab the rectangle to adjust the text position"
-msgstr ""
+msgstr "Versleep de rechthoek om de tekstlocatie te wijzigen"
 
 #: src/tools/classic_tools/tool_text.py
 msgid "Click outside the rectangle to apply"
-msgstr ""
+msgstr "Klik buiten de rechthoek om toe te passen"
 
 #: src/tools/classic_tools/brushes/brush_airbrush.py
 msgid "Density depends on the stylus pressure"
