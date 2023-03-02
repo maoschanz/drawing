@@ -2,7 +2,7 @@
 # Copyright (C) 2018-2022
 # This file is distributed under the same license as the drawing package.
 # Serdar Sağlam <teknomobil@yandex.com>, 2018, 2019, 2020.
-# Serkan ÖNDER <serkanonder@outlook.com>, 2021, 2022.
+# Serkan ÖNDER <serkanonder@outlook.com>, 2021, 2022, 2023.
 # Sabri Ünal <libreajans@gmail.com>, 2022.
 #
 msgid ""
@@ -10,15 +10,15 @@ msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
 "POT-Creation-Date: 2023-02-23 23:35+0100\n"
-"PO-Revision-Date: 2022-12-06 01:18+0300\n"
-"Last-Translator: Sabri Ünal <libreajans@gmail.com>\n"
+"PO-Revision-Date: 2023-03-02 10:25+0300\n"
+"Last-Translator: Serkan ÖNDER <serkanonder@outlook.com>\n"
 "Language-Team: \n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 3.1.1\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #: data/com.github.maoschanz.drawing.desktop.in
 #: data/com.github.maoschanz.drawing.appdata.xml.in src/deco_manager.py
@@ -147,17 +147,24 @@ msgid ""
 "transparent pixels with a solid color. Pictures are now automatically "
 "reloaded from the disk after being saved."
 msgstr ""
+"Görüntünün kaydedilmesi, özellikle saydam pikselleri düz bir renkle "
+"değiştirirken daha güvenilir olmalıdır. Resimler artık kaydedildikten sonra "
+"otomatik olarak diskten yeniden yükleniyor."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "The user interface of the \"select\" tool changed, as well as the keyboard "
 "shortcuts to change tab."
 msgstr ""
+"\"Seç\" aracının kullanıcı arabirimi ve sekmeyi değiştirmek için klavye "
+"kısayolları değişti."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "A small rendering issue when previewing a blur filter has also been fixed."
 msgstr ""
+"Bulanıklaştırma filtresini önizlerken ortaya çıkan küçük bir işleme sorunu "
+"da düzeltildi."
 
 #. very generic release notes i use for ALL minor updates, please
 #. translate this one!
@@ -1077,7 +1084,8 @@ msgstr "Hata veya fikir bildirin"
 msgid "translator-credits"
 msgstr ""
 "Serdar Sağlam <teknomobil@yandex.com>\n"
-"Serkan Önder <serkanonder@outlook.com>"
+"Serkan Önder <serkanonder@outlook.com>\n"
+"Sabri Ünal <libreajans@gmail.com>"
 
 #. To translators: this is credits for the icons, consider that "Art
 #. Libre" is proper name
@@ -1392,9 +1400,8 @@ msgstr "Geçersiz biçim"
 #. an actual error occurred!
 #. Context: an error message
 #: src/saving_manager.py
-#, fuzzy
 msgid "Failed to replace transparency"
-msgstr "Saydamlığı şununla değiştir:"
+msgstr "Saydamlık değiştirilemedi"
 
 #. Context: an error message
 #: src/saving_manager.py
@@ -1404,9 +1411,9 @@ msgstr "%s kaydedilemedi "
 
 #. Context: an error message
 #: src/saving_manager.py
-#, fuzzy, python-format
+#, python-format
 msgid "Failed to reload %s"
-msgstr "Araç yüklenemedi: %s"
+msgstr "%s yeniden yüklenemedi"
 
 #. Context: Untitled(.png) is the default name of a newly saved file
 #: src/saving_manager.py
@@ -2417,11 +2424,11 @@ msgstr "Yazıtipi seçenekleri"
 
 #: src/tools/classic_tools/tool_text.py
 msgid "Grab the rectangle to adjust the text position"
-msgstr ""
+msgstr "Metin konumunu ayarlamak için dikdörtgeni tutun"
 
 #: src/tools/classic_tools/tool_text.py
 msgid "Click outside the rectangle to apply"
-msgstr ""
+msgstr "Uygulamak için dikdörtgenin dışına tıklayın"
 
 #: src/tools/classic_tools/brushes/brush_airbrush.py
 msgid "Density depends on the stylus pressure"
