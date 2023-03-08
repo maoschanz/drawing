@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/"
+      xmlns:its="http://www.w3.org/2005/11/its" type="task" style="task"
+      id="tools_classic">
+
+  <info>
+    <link type="guide" xref="index#tools"/>
+    <include xmlns="http://www.w3.org/2001/XInclude" href="legal.xml"/>
+    <credit type="author">
+      <name its:translate="no">Romain F. T.</name>
+      <email its:translate="no">rrroschan@gmail.com</email>
+    </credit>
+    <desc>Basit araçlarla çizin.</desc>
+  </info>
+
+  <title>Klasik araçlar</title>
+
+  <p>Seçtiğiniz renk ve seçeneklerle görselin üzerine çizin!</p>
+
+  <p>Klasik bir çizim aracı kullandığınızda, seçenekler alt çubuğun solunda yer alır:
+  iki renk vardır, araç boyutu ve bir menü (içeriği araca göre değişir).</p>
+  <p>Renklerle ilgili seçenekleri daha iyi anlamak için bu
+  <link xref="tools_classic_colors">sayfadaki açıklamalara bakınız.</link>.</p>
+  <p>Birçok aracın, aracı kullanmak için tıkladığınızda <key>Shift</key>
+  ve/veya <key>Alt</key> tuşlarına basarak değiştirilebilen bir ana seçeneği vardır.</p>
+
+  <section id="basic-draw">
+    <title>Temel çizgiler</title>
+
+    <list>
+      <item>
+        <p>Kalem: Kalem, fare imlecini takip ederek ve seçilen
+        renge göre çizer.</p>
+        <note style="tip">
+          <p>Kalem, renk menüsünden "silgi" modunu kullanarak mevcut tüm renkleri silebilir.
+          "Vurgu" modunu ve yarı saydam bir rengi kullanarak metni de vurgulayabilir.
+          Bu nedenle ilgili iki araç <link xref="preferences#tools">isteğe bağlı</link>dır.</p>
+        </note>
+      </item>
+      <item>
+        <p>Fosforlu Kalem: Geçerli rengin şeffaflığını yok sayın ve mevcut rengin 
+        yarı saydam versiyonuyla çizin.</p>
+        <p>"Vurgu" renk uygulama modu kullanılır, bu nedenle seçilen renk yalnızca
+        açık renkli piksellere eklenir ve bu da açık renkli arka planda koyu
+        metni vurgular. Tersini yapmak için bir seçenek kullanılabilir
+        (koyu arka planda açık renkli metni vurgulayın).</p>
+      </item>
+      <item>
+        <p>Çizgi: Bu araç düz çizgiler çizebilir. Seçenekler arasında çizgiyi bir
+        okla bitirmek ve ana renkten ikincil renge geçiş yapmak da yer alır.</p>
+        <p>Çizginin yönünü kilitleme seçeneği, çizgiyi tamamen yatay,45°'de 
+        veya dikey olmaya zorlar.</p>
+      </item>
+      <item>
+        <p>Eğri: Bu araç, isteğe bağlı olarak sonunda bir ok bulunan Bézier eğrileri
+        çizebilir. İki tıklama gerekir, düz bir çizgi çizmek için yalnızca
+        bir kez tıklarsanız, o çizgi ikinci bir tıklamaya kadar geçici olarak çizilir.</p>
+        <media type="image" mime="image/png" width="80%" its:translate="no"
+               src="figures/screenshot_arrow.png" />
+      </item>
+    </list>
+
+    <p>Renklerin yanı sıra, klasik araçlar için olağan bir seçenek, kenar yumuşatma
+    kullanmak isteyip istemediğinizdir. Kenar yumuşatma kullanırsanız,
+    çizgiler daha pürüzsüz görünür, ancak bu, sonraki <gui style="menuitem">Boya</gui>
+    aracı kullanımını ve ayrıca xref="tools_selection">seçimin</link> çeşitli seçeneklerini
+    olumsuz etkileyebilir..</p>
+    <p>Birkaç araçla çizginin uçlarını değiştirebilirsiniz: yuvarlak veya kare olabilir
+    Birkaç araçla çeşitli kesikli çizgi desenleri de çizebilirsiniz.</p>
+    <p><gui style="menuitem">Anahat</gui> seçeneği, çizdiğiniz çizginin 
+    çevresine bir ana hat ekler. Bu taslak ikincil rengi kullanır ve
+    <gui style="menuitem">Kurşun Kalem</gui>, <gui style="menuitem">Çizgi</gui>,
+    ve <gui style="menuitem">Eğri</gui> araçlarıyla kullanılabilir.</p>
+  </section>
+
+  <section id="erase">
+    <title>Silgi</title>
+
+    <p>İsteğe bağlı <gui style="menuitem">Silgi</gui> aracının birkaç olası davranışı 
+    vardır:</p>
+    <list>
+      <item>
+        <p>Tamamen şeffaf pikseller elde etmek için mevcut renk ayarlarını
+        göz ardı ederek imleçle çizdiğiniz çizgiye göre silebilir. İsteğe bağlı
+        olarak, silinen pikseller tuvalin ilk rengine (uygulama tercihlerinde
+        ayarlandığı gibi) veya ikincil renge değiştirilebilir.</p>
+      </item>
+      <item>
+        <p>Dikdörtgen bir alanı da silebilir: o zaman daha fazla seçeneğiniz olur:
+        bulanıklaştırma, mozaik, pikselleri rasgele karıştırma vb.</p>
+      </item>
+      <item>
+        <p><gui style="menuitem">Rengi kaldırma</gui> seçeneği, tüm görüntü
+        boyunca rengin üzerine geldiğiniz veya tıkladığınız yerle aynı olduğu
+        tüm pikselleri siler. Örneğin, bir görüntüyü arka planından kesmek 
+        yararlı olabilir.</p>
+      </item>
+    </list>
+  </section>
+
+  <section id="brushes">
+    <title>Basınca duyarlı fırçalar</title>
+    <note style="warning">
+      <p>Bu araç, performans sorunları olduğu için varsayılan olarak devre dışıdır.</p>
+    </note>
+
+    <p>Bir çizim tableti ve kalem kullanıyorsanız, girişinizin baskısına tepki
+    veren "fırça" aracını takdir edebilirsiniz. Çeşitli olası fırçalar 
+    mevcuttur:</p>
+    <list>
+      <item>
+        <p>Basit: Bu fırça temelde hiçbir seçeneği olmayan bir kalemdir. Daha
+        fazla baskı uygularsanız çizgi daha geniş olacaktır. Aksi takdirde
+        (örneğin fare kullanıyorsanız), hareket hızınıza göre çizginin genişliği 
+        değişecektir.</p>
+      </item>
+      <item>
+        <p>Pistole: tuvale küçük renk "damlacıkları" eklenecektir. Daha fazla
+        basınç uygularsanız, daha fazla damlacık olacaktır. Basınca duyarlı
+        bir cihaz olmadan yoğunlukları sabittir.</p>
+      </item>
+      <item>
+        <p>Tüylü fırça: tuvale ince paralel çizgiler eklenecektir. Daha fazla baskı
+        uygularsanız, çizgiler daha geniş olacaktır. Basınca duyarlı
+        bir cihaz olmadan yakınlıkları sabittir.</p>
+      </item>
+      <item>
+        <p>Kaligrafik uç: Bu fırça, fırçanın opsiyonu olan bir açıya göre bir yönde
+        diğer yöne göre daha geniş çizer. Belirli bir yön için, daha fazla basınç
+        uygularsanız çizgi daha geniş olacaktır. Basınca duyarlı bir
+        cihaz olmadan, genişlik belirli bir yön için sabittir.</p>
+      </item>
+    </list>
+  </section>
+
+  <section>
+    <title>Metin ekle</title>
+
+    <p><gui style="menuitem">Metin</gui> aracıyla görüntüye metin ekleyebilirsiniz
+    Seçenekler menüsünde "italik", "kalın" veya temel yazı tipi ailesi seçimi gibi
+    birkaç biçimlendirme seçeneği mevcuttur.</p>
+
+    <p>Daha iyi kontrast için, metin dikdörtgen bir arka planda veya gölgeli
+    veya anahatlı olarak görüntülenebilir. Bu arka planın rengi, seçtiğiniz 
+    ikincil renktir.</p>
+
+    <media type="image" mime="image/png" width="80%" its:translate="no"
+           src="figures/screenshot_text.png" />
+
+    <note style="tip">
+      <p><gui style="button">Buraya ekle</gui> düğmesini kullanarak eklemeyi onaylamayı
+      unutmayın.</p>
+    </note>
+
+    <p><gui style="menuitem">Noktalar</gui> adlı isteğe bağlı bir araç,
+    resimlere altyazı eklemenize yardımcı olmak için tasarlanmıştır:
+    resmin öğelerine numaralı yuvarlak noktalar veya çarpı işaretleri ekleyebilirsiniz.</p>
+  </section>
+
+  <section>
+    <title>Bir alanı doldurun</title>
+
+    <p>Belirli bir rengi kullanarak bir alanı boyamak için birkaç araç kullanılabilir:</p>
+
+    <list>
+      <item>
+        <p>şekiller. Kullanılabilir şekiller arasında dikdörtgen, yuvarlak dikdörtgen,
+        oval, daire, çokgen ve serbest şekil bulunur.</p>
+        <p>Çokgenler ve serbest şekiller birkaç tıklamayla çizilir. Bunları kapatmak,
+        için şekle başladığınız konuma son bir kez tıklayın veya
+        <gui style="menuitem">Şekli kapat</gui> menü öğesini kullanın.</p>
+        <p>Çeşitli doldurma seçenekleri (düz bir renk veya gradyan veya hiçbir
+        şey kullanma) ve anahat seçenekleri (düz bir anahat, kısa çizgiler
+        veya hiçbir şey kullanma) mevcuttur.</p>
+      </item>
+      <item>
+        <p>Boyama. Bu araç, belirli bir rengin bir alanını yeni bir renkle
+        boyamaya çalışır.</p>
+        <note style="warning">
+          <p>Bu araç varsayılan olarak devre dışıdır çünkü boyanacak
+          şekil çok karmaşıksa çalışmaz.</p>
+        </note>
+        <p>Birkaç olası algoritma kullanabilir: <gui style="menuitem">
+        Çevrele ve doldur</gui> çok basittir ve önerilmez 
+        <gui style="menuitem">Sil ve değiştir</gui> daha iyi çalışır
+        ancak yine de birkaç durumda başarısız olur.</p>
+        <p><gui style="menuitem">Tüm görüntü</gui> seçeneği, önceden çizilmiş
+        olandan bağımsız olarak görüntünün tamamını boyar.</p>
+      </item>
+    </list>
+  </section>
+
+  <section>
+    <title>Diğer araç türleri</title>
+
+    <p><link xref="tools_selection">Seçim araçları</link> çizmez, ancak
+    yetenekleri çok güçlüdür ve herhangi bir görüntü düzenleme için kullanışlıdır.</p>
+
+    <p>Tuvali veya seçilen alanı dönüştürmek için bu <link xref="tools_transform">
+    özel araçları</link> kullanın.</p>
+  </section>
+
+</page>
+
