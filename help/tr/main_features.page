@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/"
+      xmlns:its="http://www.w3.org/2005/11/its" type="task" style="task"
+      id="main_features">
+
+  <info>
+    <link type="guide" xref="index#main"/>
+    <include xmlns="http://www.w3.org/2001/XInclude" href="legal.xml"/>
+    <credit type="author">
+      <name its:translate="no">Romain F. T.</name>
+      <email its:translate="no">rrroschan@gmail.com</email>
+    </credit>
+    <desc>Dosya oluşturma, açma ve kaydetme.</desc>
+  </info>
+
+  <title>Temel özellikler</title>
+
+  <p><app>Çizim</app>, GNOME masaüstü için basit bir raster görüntü düzenleyicisidir.
+   Görüntüleri oluşturmanıza ve düzenlemenize yardımcı olacaktır.</p>
+
+  <note style="tip">
+    <p>Burada açıklanan birçok özellik, pencerenin başlığında bulunur, ancak
+     uygulamanın tam düzeni, masaüstü ortamınıza bağlıdır. Ekran görüntüleri
+     standart bir GNOME ortamı için sağlanmıştır.</p>
+  </note>
+
+  <section>
+    <title>"Aç" düğmesi</title>
+
+    <p>Belgelerinizden bir resim dosyası açın.</p>
+    <p>Pencere boyutu, <gui style="button">Aç</gui> düğmesini görüntülemek
+    için çok küçükse, birincil menüde bulunur.</p>
+
+    <p>Desteklenen dosya türleri arasında PNG, JPEG ve BMP bulunur. Uygulama herhangi birini açabilir
+     GdkPixbuf kitaplığı sürümünüz tarafından bilinen dosya biçimi (TIFF, XPM, vb.)
+     ve belki de dağıtımınız ilgili paketi sağlıyorsa WebP), ancak
+     <app>Çizim</app> onlar düşünülerek geliştirilmemiştir, bu nedenle uygun olmayabilir
+     bu biçimlerle bir görüntüyü her zaman doğru şekilde kaydedebileceksiniz.</p>
+  </section>
+
+  <section>
+    <title>"Yeni Görüntü" menüsü</title>
+
+    <p>Bu menünün amacı yeni bir görüntü oluşturmaktır. Çeşitli seçenekler
+     mevcuttur:</p>
+    <list>
+      <item>
+        <p>Yeni bir sekmede yeni bir boş görüntü oluşturun. Bu yeni görüntü,
+        <link xref="preferences">varsayılan boyutu ve arka plan rengini kullanacak</link>.</p>
+      </item>
+      <item>
+        <p>Özel boyut ve arka plan rengiyle yeni bir boş görüntü oluşturun.</p>
+      </item>
+      <item>
+        <p>Mevcut seçimden yeni bir resim  <link xref="tools_selection">
+        oluştur</link>.</p>
+      </item>
+      <item>
+        <p>Geçerli pano içeriğinden yeni bir görüntü oluşturun.</p>
+      </item>
+      <item>
+        <p>Yeni bir boş resimle yeni bir pencere aç.</p>
+      </item>
+    </list>
+    <p>Pencere boyutu, düğmesini görüntüleyemeyecek kadar küçükse, 
+    <gui style="button">Yeni Görüntü</gui> menüsü birincil menüde birleştirilir.</p>
+  </section>
+
+  <section id="main-menu">
+    <title>Birincil menü</title>
+
+    <media type="image" mime="image/png" width="80%" its:translate="no"
+           src="figures/screenshot_menu.png" />
+
+    <list>
+      <item>
+        <p>Resmi diskten yeniden yükleyin. Bu, yeni ve hiç kaydedilmemiş bir görüntü 
+         için mümkün olmayacaktır. Görüntü diskte değişirse ve yeniden yüklenmesi
+         gerekirse, yine de bir uyarı mesajı gösterilecektir.</p>
+      </item>
+      <item>
+        <p>Boyutu ve renk alanı gibi resim özelliklerine bakın.</p>
+      </item>
+      <item>
+        <p><link xref="fullscreen">Tam ekran modunu</link> etkinleştir.</p>
+      </item>
+      <item>
+        <p>Görüntüyü dışa aktarın veya yeni bir dosya olarak kaydedin. Her iki seçenek de     
+        orijinal dosyanın üzerine yazmaz. <gui style="menuitem">Farklı dışa aktar…</gui>, ile
+        orijinal dosyayı düzenlemeye devam edersiniz, ancak <gui style="menuitem">Farklı kaydet…</gui>
+        orijinal dosyayı kapatır ve yeni dosyayı düzenlemenizi sağlar.</p>
+      </item>
+      <item>
+        <p>Resmi yazdırın.</p>
+      </item>
+      <item>
+        <p>Örneğin başka bir uygulamayla paylaşmak için resmi panoya kopyalayın.</p>
+      </item>
+      <item>
+        <p>Araç adlarını göster. <link xref="preferences">Tercihleri</link> Düzenle.</p>
+      </item>
+    </list>
+  </section>
+
+  <section>
+    <title>Düzenleme</title>
+
+    <p>Kenar çubuğundaki araçlarla resmi düzenleyebilirsiniz.Birkaç
+    tür araç vardır.:</p>
+
+    <list>
+      <item>
+        <p>Kalemler, şekiller veya metin ekleme gibi <link xref="tools_classic">klasik araçlar</link>.</p>
+      </item>
+      <item>
+        <p>Aşağıdaki araçlarla resmin taşımak veya daha fazla düzenlemek 
+        istediğiniz bir bölümünü tanımlamak için çeşitli
+        <link xref="tools_selection">seçim</link> türleri:</p>
+      </item>
+      <item>
+        <p>Son olarak, <link xref="tools_transform">bazı araçlar</link> seçimi veya
+        tüm tuvali dönüştürebilir. Kırpma, döndürme veya çevirme, ölçekleme
+        veya filtre uygulama buna dahildir.</p>
+      </item>
+    </list>
+    <p>Pencerenin başlığındaki ilgili düğmelerle, az önce yaptığınız herhangi bir 
+    düzenlemeyi <gui style="button">Geri</gui> Alabilir (ve ardından 
+    <gui style="button">Yeniden</gui> Yapabilirsiniz).</p>
+
+    <p>Alt çubukta, her araç çeşitli seçenekler ve eylemler sağlar.</p>
+
+    <note style="tip">
+      <p>İşaretçi koordinatlarını ve kullandığınız araca bağlı olarak diğer
+      çeşitli verileri görüntülemek için tuvalin üzerine gelirken
+      <key>Ctrl</key>'e basabilirsiniz.</p>
+    </note>
+  </section>
+
+  <section>
+    <p>Görüntünün yakınlaştırma düzeyini ayarlamak için ayrıca <link xref="zoom_preview">bu
+    </link> sayfaya bakın.</p>
+  </section>
+
+</page>
+
