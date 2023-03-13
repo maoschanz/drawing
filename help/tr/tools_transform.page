@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/"
+      xmlns:its="http://www.w3.org/2005/11/its" type="task" style="task"
+      id="tools_transform">
+
+  <info>
+    <link type="guide" xref="index#tools"/>
+    <include xmlns="http://www.w3.org/2001/XInclude" href="legal.xml"/>
+    <credit type="author">
+      <name its:translate="no">Romain F. T.</name>
+      <email its:translate="no">rrroschan@gmail.com</email>
+    </credit>
+    <desc>Görüntüye veya geçerli seçime bir dönüştürme uygulayın.</desc>
+  </info>
+
+  <title>Görüntüyü veya seçimi dönüştürün</title>
+
+  <p>Bu araçlara kenar çubuğundan erişilebilir (
+  <link xref="tools_classic">diğer araçlar</link>la birlikte veya
+  <link xref="tools_selection">seçilen alan</link>a sağ tıklanarak).</p>
+
+  <note style="tip">
+    <p>Alt çubuğun solundaki <gui style="button">İptal</gui>
+    düğmesiyle bir dönüşümü iptal edebilirsiniz.</p>
+  </note>
+
+  <p>Bir seçim tanımlandığında, bu araçlar seçilen alanı dönüştürecek,
+  aksi takdirde resmi bir bütün olarak dönüştürecektir.</p>
+
+  <p>Dönüşümü uygulamadan kaydetmeye çalışırsanız, bir iletişim kutusu
+  size kaydetmeden önce dönüştürmeyi uygulamanız gerektiğini hatırlatır.</p>
+
+  <section id="crop">
+    <title>Crop</title>
+
+    <p>Bazı kısımlarını kaldırarak görüntünün boyutunu değiştirin
+    Kırpmakta olduğunuz taraf, fare imleciyle gösterilir: fare
+    işaretçisinin tuval üzerindeki konumuna bağlı olarak değişir.</p>
+    <p>Tam boyut, alt çubuktaki değerler kullanılarak ayarlanabilir.</p>
+
+    <note style="tip">
+      <p>Görüntünün boyutunu küçültmek yerine büyütüyorsanız, ne yaptığınızı
+      görmek için yakınlaştırma düzeyini değiştirmeniz gerekebilir.</p>
+    </note>
+
+    <p>Boyutu büyütürken oluşturduğunuz piksellerin rengi, pencerenin sağ alt 
+    tarafındaki menü kullanılarak veya yeniden boyutlandırmak için tıkladığınızda 
+    <key>Shift</key> ve/veya <key>Alt</key> tuşlarına basarak özelleştirilebilir.</p>
+  </section>
+
+  <section id="scale">
+    <title>Ölçek</title>
+
+    <p>Fareyi veya alt çubuktaki değerleri kullanarak görüntüyü yeniden boyutlandırın.</p>
+    <p>Bu sayısal değerler varsayılan olarak piksel cinsindendir, ancak orijinal
+    görüntünün bir yüzdesine göre yeniden boyutlandırmak mümkündür.</p>
+
+    <p>Görüntünün oranları, pencerenin sağ alt kısmındaki menü kullanılarak
+    veya yeniden boyutlandırmak için tıkladığınızda <key>Shift</key> 
+    tuşuna basarak kilitlenebilir veya kiliti açılabilir.</p>
+
+    <media type="image" mime="image/png" width="80%" its:translate="no"
+           src="figures/screenshot_scale.png" />
+  </section>
+
+  <section id="rotate">
+    <title>Döndür</title>
+
+    <p>Alt çubuktaki düğmeleri kullanarak görüntünün yönünü değiştirin veya 
+    çevirin.</p>
+    <p>Bir seçim tanımlanmışsa, tam dönüş açısını serbestçe seçebilirsiniz.
+    Aksi takdirde sadece 90°, 180° veya 270° dönüşler mümkündür.</p>
+  </section>
+
+  <section id="skew">
+    <title>Eğriltme</title>
+
+    <p>Bu isteğe bağlı araç, görüntüyü yatay, dikey veya her iki yönde yatırır.</p>
+    <p>Tuvali eğiyorsanız, işlem yeni pikseller oluşturur: pencerenin sağ alt
+    tarafındaki menü kullanılarak veya eğmek için tıkladığınızda <key>Shift</key>
+    ve/veya <key>Alt</key> tuşlarına basarak renkleri özelleştirilebilir.</p>
+  </section>
+
+  <section id="filters">
+    <title>Filtreler</title>
+
+    <p>Görüntüye veya seçime filtre uygulayabilirsiniz. Seçilen filtreyi
+    önizlemek için resme tıklayın</p>
+    <list>
+      <item>
+        <p><gui style="menuitem">Doygunluğu</gui> Değiştirin: alt çubuktaki 
+        sayıyı değiştirerek görüntünün doygunluğunu artırın veya azaltın.</p>
+        <p>%100'den büyük bir doygunluk grimsi bir görüntü oluşturur.</p>
+      </item>
+      <item>
+        <p><gui style="menuitem">Perde</gui> ince gri pikselli bir desenle görüntünün 
+        üzerine hafifçe doygunluğu giderilmiş bir perde ekleyecektir.</p>
+        <!-- une trame se dit "screentone" mais ici ça ne s'applique guère -->
+        <!-- puisque c'est gris -->
+      </item>
+      <item>
+        <p><gui style="menuitem">Saydamlık ekle</gui> alt çubukta ayarlayabileceğiniz 
+        yüzdeye bağlı olarak görüntüyü kısmen yarı saydam yapabilir.</p>
+      </item>
+      <item>
+        <p><gui style="menuitem">Kontrast arttırmak</gui> resimdeki kontrastı 
+        artıracaktır: koyu alanlar daha koyu, açık alanlar daha açık ve renkler
+        daha güçlü olacaktır. Alt çubuktaki seçeneği kullanarak, efektin ne
+        kadar güçlü olacağını seçebilirsiniz.</p>
+      </item>
+      <!-- <item> -->
+      <!--   <p><gui style="menuitem">Kabartma</gui>, şimdilik devre dışı</p> -->
+      <!-- </item> -->
+      <item>
+        <p><gui style="menuitem">Bulanıklaştırma</gui> ve çeşitli varyasyonları,
+        parametrelenebilir bir yarıçap kullanarak görüntüyü bulanıklaştırır</p>
+        <note style="warning">
+          <p>Dikkatli olun, görüntü büyükse görüntüye bulanıklık
+          uygulamak birkaç saniye sürebilir.</p>
+        </note>
+      </item>
+      <item>
+        <p><gui style="menuitem">Renkleri ters çevir</gui>.</p>
+      </item>
+    </list>
+
+    <p>İşte bir görüntünün küçük alanlarına uygulanan filtrelere bir örnek:</p>
+    <media type="image" mime="image/png" width="80%" its:translate="no"
+           src="figures/screenshot_filters.png" />
+  </section>
+
+</page>
