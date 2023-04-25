@@ -17,21 +17,21 @@
               <object class="GtkShortcutsShortcut">
                 <property name="visible">True</property>
                 <property name="title" translatable="yes">New Window</property>
-                <property name="accelerator">&lt;Primary&gt;n</property>
+                <property name="action-name">app.new_window</property>
               </object>
             </child>
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="visible">True</property>
                 <property name="title" translatable="yes">Main menu</property>
-                <property name="accelerator">F10</property>
+                <property name="action-name">win.main_menu</property>
               </object>
             </child>
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="visible">True</property>
                 <property name="title" translatable="yes">Toggle the menu-bar</property>
-                <property name="accelerator">&lt;Primary&gt;F2</property>
+                <property name="action-name">win.show-menubar</property>
               </object>
             </child>
             <child>
@@ -45,14 +45,14 @@
               <object class="GtkShortcutsShortcut">
                 <property name="visible">True</property>
                 <property name="title" translatable="yes">Help</property>
-                <property name="accelerator">F1</property>
+                <property name="action-name">app.help</property>
               </object>
             </child>
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="visible">True</property>
                 <property name="title" translatable="yes">Quit all windows</property>
-                <property name="accelerator">&lt;Primary&gt;q</property>
+                <property name="action-name">app.quit</property>
               </object>
             </child>
           </object>
@@ -65,56 +65,56 @@
               <object class="GtkShortcutsShortcut">
                 <property name="visible">True</property>
                 <property name="title" translatable="yes">New Blank Image</property>
-                <property name="accelerator">&lt;Primary&gt;t</property>
+                <property name="action-name">win.new_tab</property>
               </object>
             </child>
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="visible">True</property>
                 <property name="title" translatable="yes">New Image From Clipboard</property>
-                <property name="accelerator">&lt;Primary&gt;&lt;Shift&gt;v</property>
+                <property name="action-name">win.new_tab_clipboard</property>
               </object>
             </child>
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="visible">True</property>
                 <property name="title" translatable="yes">Open a picture</property>
-                <property name="accelerator">&lt;Primary&gt;o</property>
+                <property name="action-name">win.open</property>
               </object>
             </child>
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="visible">True</property>
                 <property name="title" translatable="yes">Reload image from disk</property>
-                <property name="accelerator">&lt;Primary&gt;r</property>
+                <property name="action-name">win.reload_file</property>
               </object>
             </child>
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="visible">True</property>
                 <property name="title" translatable="yes">Save</property>
-                <property name="accelerator">&lt;Primary&gt;s</property>
+                <property name="action-name">win.save</property>
               </object>
             </child>
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="visible">True</property>
                 <property name="title" translatable="yes">Save picture as…</property>
-                <property name="accelerator">&lt;Primary&gt;&lt;Shift&gt;s</property>
+                <property name="action-name">win.save_as</property>
               </object>
             </child>
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="visible">True</property>
                 <property name="title" translatable="yes">Copy to clipboard</property>
-                <property name="accelerator">&lt;Primary&gt;&lt;Shift&gt;c</property>
+                <property name="action-name">win.to_clipboard</property>
               </object>
             </child>
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="visible">True</property>
                 <property name="title" translatable="yes">Close the active image</property>
-                <property name="accelerator">&lt;Primary&gt;w</property>
+                <property name="action-name">win.close_tab</property>
               </object>
             </child>
           </object>
@@ -128,42 +128,42 @@
               <object class="GtkShortcutsShortcut">
                 <property name="visible">True</property>
                 <property name="title" translatable="yes">Show tools names</property>
-                <property name="accelerator">F9</property>
+                <property name="action-name">win.show-labels</property>
               </object>
             </child>
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="visible">True</property>
                 <property name="title" translatable="yes">Open the tool options menu</property>
-                <property name="accelerator">&lt;Primary&gt;F10</property>
+                <property name="action-name">win.options_menu</property>
               </object>
             </child>
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="visible">True</property>
                 <property name="title" translatable="yes">Back to previous tool</property>
-                <property name="accelerator">&lt;Primary&gt;b</property>
+                <property name="action-name">win.back_to_previous</property>
               </object>
             </child>
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="visible">True</property>
                 <property name="title" translatable="yes">Bigger width</property>
-                <property name="accelerator">&lt;Primary&gt;&lt;Shift&gt;Up</property>
+                <property name="action-name">win.size_more</property>
               </object>
             </child>
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="visible">True</property>
                 <property name="title" translatable="yes">Smaller width</property>
-                <property name="accelerator">&lt;Primary&gt;&lt;Shift&gt;Down</property>
+                <property name="action-name">win.size_less</property>
               </object>
             </child>
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="visible">True</property>
                 <property name="title" translatable="yes">Apply a transformation</property>
-                <property name="accelerator">&lt;Primary&gt;Return</property>
+                <property name="action-name">win.apply_transform</property>
               </object>
             </child>
             <!-- TODO "cancel transformation"? -->
@@ -177,7 +177,7 @@
               <object class="GtkShortcutsShortcut">
                 <property name="visible">True</property>
                 <property name="title" translatable="yes">Toggle the preview</property>
-                <property name="accelerator">&lt;Primary&gt;m</property>
+                <property name="action-name">win.toggle_preview</property>
               </object>
             </child>
             <child>
@@ -226,14 +226,14 @@
               <object class="GtkShortcutsShortcut">
                 <property name="visible">True</property>
                 <property name="title" translatable="yes">Select all</property>
-                <property name="accelerator">&lt;Primary&gt;a</property>
+                <property name="action-name">win.select_all</property>
               </object>
             </child>
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="visible">True</property>
                 <property name="title" translatable="yes">Deselect</property>
-                <property name="accelerator">&lt;Primary&gt;&lt;Shift&gt;a</property>
+                <property name="action-name">win.unselect</property>
               </object>
             </child>
             <child>
@@ -241,35 +241,35 @@
                 <property name="visible">True</property>
                 <!-- Label displayed in the keyboard shortcuts dialog -->
                 <property name="title" translatable="yes">Delete the selection</property>
-                <property name="accelerator">Delete</property>
+                <property name="action-name">win.selection_delete</property>
               </object>
             </child>
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="visible">True</property>
                 <property name="title" translatable="yes">Cut</property>
-                <property name="accelerator">&lt;Primary&gt;x</property>
+                <property name="action-name">win.selection_cut</property>
               </object>
             </child>
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="visible">True</property>
                 <property name="title" translatable="yes">Copy</property>
-                <property name="accelerator">&lt;Primary&gt;c</property>
+                <property name="action-name">win.selection_copy</property>
               </object>
             </child>
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="visible">True</property>
                 <property name="title" translatable="yes">Paste</property>
-                <property name="accelerator">&lt;Primary&gt;v</property>
+                <property name="action-name">win.paste</property>
               </object>
             </child>
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="visible">True</property>
                 <property name="title" translatable="yes">New Image From Selection</property>
-                <property name="accelerator">&lt;Primary&gt;&lt;Shift&gt;t</property>
+                <property name="action-name">win.new_tab_selection</property>
               </object>
             </child>
             <child>
@@ -277,7 +277,7 @@
                 <property name="visible">True</property>
                 <!-- Label displayed in the keyboard shortcuts dialog -->
                 <property name="title" translatable="yes">Import a file as the selection</property>
-                <property name="accelerator">&lt;Primary&gt;i</property>
+                <property name="action-name">win.import</property>
               </object>
             </child>
           </object>
@@ -291,7 +291,7 @@
                 <property name="visible">True</property>
                 <!-- Label displayed in the keyboard shortcuts dialog -->
                 <property name="title" translatable="yes">Edit the main color (left click)</property>
-                <property name="accelerator">&lt;Primary&gt;&lt;Shift&gt;l</property>
+                <property name="action-name">win.main_color</property>
               </object>
             </child>
             <child>
@@ -299,14 +299,14 @@
                 <property name="visible">True</property>
                 <!-- Label displayed in the keyboard shortcuts dialog -->
                 <property name="title" translatable="yes">Edit the secondary color (right click)</property>
-                <property name="accelerator">&lt;Primary&gt;&lt;Shift&gt;r</property>
+                <property name="action-name">win.secondary_color</property>
               </object>
             </child>
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="visible">True</property>
                 <property name="title" translatable="yes">Exchange colors</property>
-                <property name="accelerator">&lt;Primary&gt;e</property>
+                <property name="action-name">win.exchange_color</property>
               </object>
             </child>
           </object>
@@ -319,21 +319,21 @@
               <object class="GtkShortcutsShortcut">
                 <property name="visible">True</property>
                 <property name="title" translatable="yes">Undo</property>
-                <property name="accelerator">&lt;Primary&gt;z</property>
+                <property name="action-name">win.undo</property>
               </object>
             </child>
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="visible">True</property>
                 <property name="title" translatable="yes">Redo</property>
-                <property name="accelerator">&lt;Primary&gt;&lt;Shift&gt;z</property>
+                <property name="action-name">win.redo</property>
               </object>
             </child>
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="visible">True</property>
                 <property name="title" translatable="yes">Reset canvas</property>
-                <property name="accelerator">&lt;Primary&gt;BackSpace</property>
+                <property name="action-name">win.reset_canvas</property>
               </object>
             </child>
           </object>
@@ -349,28 +349,28 @@
               <object class="GtkShortcutsShortcut">
                 <property name="visible">True</property>
                 <property name="title" translatable="yes">Go Left</property>
-                <property name="accelerator">&lt;Primary&gt;Left</property>
+                <property name="action-name">win.go_left</property>
               </object>
             </child>
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="visible">True</property>
                 <property name="title" translatable="yes">Go Up</property>
-                <property name="accelerator">&lt;Primary&gt;Up</property>
+                <property name="action-name">win.go_up</property>
               </object>
             </child>
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="visible">True</property>
                 <property name="title" translatable="yes">Go Down</property>
-                <property name="accelerator">&lt;Primary&gt;Down</property>
+                <property name="action-name">win.go_down</property>
               </object>
             </child>
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="visible">True</property>
                 <property name="title" translatable="yes">Go Right</property>
-                <property name="accelerator">&lt;Primary&gt;Right</property>
+                <property name="action-name">win.go_right</property>
               </object>
             </child>
             <child>
@@ -411,14 +411,14 @@
               <object class="GtkShortcutsShortcut">
                 <property name="visible">True</property>
                 <property name="title" translatable="yes">Tab at the left</property>
-                <property name="accelerator">&lt;Primary&gt;&lt;Shift&gt;Tab</property>
+                <property name="action-name">win.tab_left</property>
               </object>
             </child>
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="visible">True</property>
                 <property name="title" translatable="yes">Tab at the right</property>
-                <property name="accelerator">&lt;Primary&gt;Tab</property>
+                <property name="action-name">win.tab_right</property>
               </object>
             </child>
           </object>
@@ -431,14 +431,14 @@
               <object class="GtkShortcutsShortcut">
                 <property name="visible">True</property>
                 <property name="title" translatable="yes">Toggle fullscreen mode</property>
-                <property name="accelerator">F11</property>
+                <property name="action-name">win.fullscreen</property>
               </object>
             </child>
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="visible">True</property>
                 <property name="title" translatable="yes">Toggle toolbars visibility</property>
-                <property name="accelerator">F8</property>
+                <property name="action-name">win.hide_controls</property>
               </object>
             </child>
           </object>
