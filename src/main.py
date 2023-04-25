@@ -84,7 +84,7 @@ class Application(Gtk.Application):
 	def _build_actions(self):
 		"""Add all app-wide actions."""
 		self.add_action_simple('new_window', self.on_new_window, ['<Ctrl>n'])
-		self.add_action_simple('settings', self.on_prefs)
+		self.add_action_simple('settings', self.on_prefs, ['<Ctrl>comma'])
 
 		current_date = datetime.datetime.now()
 		if current_date.month == 4 and current_date.day == 1:
