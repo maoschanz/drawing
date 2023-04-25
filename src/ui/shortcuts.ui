@@ -58,6 +58,13 @@
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="visible">True</property>
+                <property name="title" translatable="yes">Show preferences</property>
+                <property name="action-name">app.settings</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="visible">True</property>
                 <property name="title" translatable="yes">Quit all windows</property>
                 <property name="action-name">app.quit</property>
               </object>
@@ -122,6 +129,13 @@
                 <property name="visible">True</property>
                 <property name="title" translatable="yes">Close the active image</property>
                 <property name="action-name">win.close_tab</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="visible">True</property>
+                <property name="title" translatable="yes">Print image</property>
+                <property name="action-name">win.print</property>
               </object>
             </child>
           </object>
