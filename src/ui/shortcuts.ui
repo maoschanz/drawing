@@ -51,6 +51,13 @@
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="visible">True</property>
+                <property name="title" translatable="yes">About Drawing</property>
+                <property name="action-name">app.about</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="visible">True</property>
                 <property name="title" translatable="yes">Quit all windows</property>
                 <property name="action-name">app.quit</property>
               </object>
