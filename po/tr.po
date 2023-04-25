@@ -10,15 +10,15 @@ msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
 "POT-Creation-Date: 2023-02-23 23:35+0100\n"
-"PO-Revision-Date: 2023-03-02 10:25+0300\n"
-"Last-Translator: Serkan ÖNDER <serkanonder@outlook.com>\n"
+"PO-Revision-Date: 2023-04-25 14:11+0300\n"
+"Last-Translator: Sabri Ünal <libreajans@gmail.com>\n"
 "Language-Team: \n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.2.2\n"
 
 #: data/com.github.maoschanz.drawing.desktop.in
 #: data/com.github.maoschanz.drawing.appdata.xml.in src/deco_manager.py
@@ -1420,10 +1420,11 @@ msgstr "%s yeniden yüklenemedi"
 msgid "Untitled"
 msgstr "Başlıksız"
 
+# %s ile gelen dosya adı olmadığında bu değer kullanılıyor. Türkçede Özne, cümle başında geldiği için Büyük harf kullanıldı.
 #. Context: the sentence "There are unsaved modifications to %s."
 #: src/saving_manager.py
 msgid "this picture"
-msgstr "bu resim"
+msgstr "Bu resim"
 
 #: src/saving_manager.py
 msgid "Discard"
@@ -1433,7 +1434,7 @@ msgstr "Yoksay"
 #: src/saving_manager.py src/window.py
 #, python-format
 msgid "There are unsaved modifications to %s."
-msgstr "%s üstünde kaydedilmemiş değişiklikler."
+msgstr "%s üstünde kaydedilmemiş değişiklikler var."
 
 #: src/saving_manager.py
 msgid ""
