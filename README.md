@@ -36,7 +36,7 @@ You can install it from flathub.org using the instructions on
 
 ### Other packages available
 
-[![Packaging status](https://repology.org/badge/vertical-allrepos/drawing.svg)](https://repology.org/project/drawing/versions)
+[![Packaging status](https://repology.org/badge/vertical-allrepos/drawing.svg?minversion=0.8.5)](https://repology.org/project/drawing/versions)
 
 - Ubuntu 18.04, 20.10 and 21.04: [PPA](https://launchpad.net/~cartes/+archive/ubuntu/drawing/)
 - [Gentoo package](https://gitlab.com/src_prepare/src_prepare-overlay/-/tree/master/media-gfx/drawing) from an external overlay

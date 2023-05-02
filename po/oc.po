@@ -1,21 +1,21 @@
-# SOME DESCRIPTIVE TITLE.
+# Occitan translation file.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the drawing package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Quentin PAGÈS, 2023.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
 "POT-Creation-Date: 2023-02-23 23:35+0100\n"
-"PO-Revision-Date: 2021-09-20 14:23+0200\n"
+"PO-Revision-Date: 2023-02-25 13:21+0100\n"
 "Last-Translator: Quentin PAGÈS\n"
 "Language-Team: \n"
 "Language: oc\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.0\n"
+"X-Generator: Poedit 3.2.2\n"
 
 #: data/com.github.maoschanz.drawing.desktop.in
 #: data/com.github.maoschanz.drawing.appdata.xml.in src/deco_manager.py
@@ -25,7 +25,7 @@ msgstr "Dessenh"
 
 #: data/com.github.maoschanz.drawing.desktop.in
 msgid "Simple drawing utility"
-msgstr ""
+msgstr "Un utilitaire simple de dessenh"
 
 #. This is a list of keywords, you can add any keyword that would be useful to
 #. find the app in your language. "Paint" should stay listed in its untranslated
@@ -33,7 +33,7 @@ msgstr ""
 #. Don't forget the semicolons.
 #: data/com.github.maoschanz.drawing.desktop.in
 msgid "Paint;Sketch;Pencil;"
-msgstr ""
+msgstr "Paint;dessenh;gredon;estilo;croquís;"
 
 #: data/com.github.maoschanz.drawing.desktop.in src/ui/app-menus.ui
 #: src/ui/shortcuts.ui src/ui/win-menus.ui src/window.py
@@ -44,11 +44,11 @@ msgstr "Novèla fenèstra"
 #: src/ui/headerbar.ui src/ui/headerbar-eos.ui src/ui/toolbar.ui
 #: src/ui/toolbar-symbolic.ui src/ui/window.ui src/ui/win-menus.ui
 msgid "New Image"
-msgstr "Imatge nèlov"
+msgstr "Imatge novèl"
 
 #: data/com.github.maoschanz.drawing.desktop.in
 msgid "Edit Image in Clipboard"
-msgstr ""
+msgstr "Modificar l’imatge del quichapapièrs"
 
 #. IMPORTANT: the summarized description of the application.
 #. https://gitlab.gnome.org/GNOME/Initiatives/-/wikis/App-Metadata
@@ -247,7 +247,7 @@ msgstr "Dobrir un imatge"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
 msgid "New Blank Image"
-msgstr ""
+msgstr "Imatge novèl void"
 
 #: src/ui/app-menus.ui src/ui/win-menus.ui src/new_image_dialog.py
 msgid "New Image With Custom Size"
@@ -263,15 +263,15 @@ msgstr ""
 
 #: src/ui/app-menus.ui src/ui/win-menus.ui
 msgid "Reload file"
-msgstr ""
+msgstr "Recargar lo fichièr"
 
 #: src/ui/app-menus.ui src/ui/win-menus.ui src/properties.py
 msgid "Image properties"
-msgstr ""
+msgstr "Proprietats de l'imatge"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Reset canvas"
-msgstr ""
+msgstr "Reïnicializar lo canabàs"
 
 #: src/ui/app-menus.ui src/ui/headerbar.ui src/ui/headerbar-eos.ui
 #: src/ui/shortcuts.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
@@ -281,7 +281,7 @@ msgstr "Salvar"
 
 #: src/ui/app-menus.ui src/ui/win-menus.ui
 msgid "Save without transparency"
-msgstr ""
+msgstr "Enregistrar sens transparéncia"
 
 #. This "feature" is only visible on April Fools' day, and it
 #. will just rickroll the user.
@@ -292,12 +292,12 @@ msgstr ""
 #: src/ui/app-menus.ui src/ui/headerbar-eos.ui src/ui/win-menus.ui
 #: src/saving_manager.py
 msgid "Save as…"
-msgstr ""
+msgstr "Salvar jos…"
 
 #: src/ui/app-menus.ui src/ui/selection-manager.ui src/ui/win-menus.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 msgid "Export as…"
-msgstr "Exportar..."
+msgstr "Exportar…"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/toolbar.ui
 #: src/ui/toolbar-symbolic.ui src/ui/win-menus.ui
@@ -311,7 +311,7 @@ msgstr "Imprimir"
 
 #: src/ui/app-menus.ui
 msgid "Close Image"
-msgstr ""
+msgstr "Tampar l’imatge"
 
 #: src/ui/app-menus.ui
 msgid "Close Window"
@@ -319,7 +319,7 @@ msgstr "Tampar la fenèstra"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Quit all windows"
-msgstr ""
+msgstr "Tampar totas las fenèstras"
 
 #: src/ui/app-menus.ui
 msgid "Edit"
@@ -495,7 +495,7 @@ msgstr ""
 
 #: src/ui/app-menus.ui
 msgid "Hide toolbars"
-msgstr ""
+msgstr "Rescondre las barras d'aisinas"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
 msgid "Fullscreen"
@@ -575,13 +575,13 @@ msgstr ""
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/classic/optionsbar-operator-menus.ui
 msgid "Luminosity only"
-msgstr ""
+msgstr "Luminositat sonque"
 
 #. Context: possible ways to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/classic/optionsbar-operator-menus.ui
 msgid "Other modes"
-msgstr ""
+msgstr "Autres mòdes"
 
 #. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
@@ -672,7 +672,7 @@ msgstr ""
 #. Context: open the help page about general use of the app
 #: src/ui/app-menus.ui
 msgid "Basic help"
-msgstr ""
+msgstr "Ajuda basica"
 
 #: src/ui/app-menus.ui src/ui/minimap.ui
 msgid "Help about zooming"
@@ -707,7 +707,7 @@ msgstr "Qué de nòu"
 
 #: src/ui/app-menus.ui src/ui/win-menus.ui
 msgid "About Drawing"
-msgstr ""
+msgstr "A prepaus de Dessenh"
 
 #: src/ui/headerbar.ui src/ui/headerbar-eos.ui src/ui/toolbar.ui
 #: src/ui/toolbar-symbolic.ui src/window.py
@@ -716,7 +716,7 @@ msgstr "Dobrir"
 
 #: src/ui/headerbar-eos.ui
 msgid "Share the image"
-msgstr ""
+msgstr "Partejar l’imatge"
 
 #: src/ui/image.ui
 msgid "The image changed on the disk, do you want to reload it?"
@@ -732,7 +732,7 @@ msgstr "100 %"
 
 #: src/ui/minimap.ui src/ui/shortcuts.ui
 msgid "Maximum zoom"
-msgstr ""
+msgstr "Zoom maximum"
 
 #: src/ui/new-image-dialog.ui src/ui/properties.ui
 #: src/optionsbars/transform/optionsbar-crop.ui
@@ -847,7 +847,7 @@ msgstr "General"
 
 #: src/ui/shortcuts.ui
 msgid "Main menu"
-msgstr ""
+msgstr "Menú principal"
 
 #: src/ui/shortcuts.ui
 msgid "Toggle the menu-bar"
@@ -859,19 +859,19 @@ msgstr "Imatge"
 
 #: src/ui/shortcuts.ui src/window.py
 msgid "Open a picture"
-msgstr ""
+msgstr "Dobrir un imatge"
 
 #: src/ui/shortcuts.ui
 msgid "Reload image from disk"
-msgstr ""
+msgstr "Recargar l’imatge a partir del disc"
 
 #: src/ui/shortcuts.ui src/saving_manager.py
 msgid "Save picture as…"
-msgstr ""
+msgstr "Salvar l’imatge jos…"
 
 #: src/ui/shortcuts.ui
 msgid "Close the active image"
-msgstr ""
+msgstr "Tampar l’imatge actiu"
 
 #: src/ui/shortcuts.ui
 msgid "Open the tool options menu"
@@ -887,7 +887,7 @@ msgstr ""
 
 #: src/ui/shortcuts.ui
 msgid "Toggle the preview"
-msgstr ""
+msgstr "Alternar l’apercebut"
 
 #: src/ui/shortcuts.ui src/tools/selection_tools/abstract_select.py
 msgid "Selection"
@@ -948,9 +948,8 @@ msgid "Exit fullscreen"
 msgstr "Quitar lo mòde ecran complet"
 
 #: src/ui/win-menus.ui
-#, fuzzy
 msgid "What's new in Drawing"
-msgstr "Qué de nòu"
+msgstr "Qué de nòu dins Dessenh"
 
 #: src/ui/win-menus.ui
 msgid "Dismiss"
@@ -984,7 +983,7 @@ msgstr ""
 
 #: src/image.py src/properties.py
 msgid "Unsaved file"
-msgstr ""
+msgstr "Fichièr pas enregistrat"
 
 #. Context: this is a debug information that users will never see
 #: src/image.py
@@ -1038,24 +1037,24 @@ msgstr ""
 
 #: src/main.py
 msgid "Official webpage"
-msgstr ""
+msgstr "Site web oficial"
 
 #: src/main.py
 msgid "Error opening this file."
-msgstr ""
+msgstr "Error pendent la dobertura del fichièr."
 
 #. This is an error message, %s is a better command suggestion
 #: src/main.py
 #, python-format
 msgid "Did you mean %s ?"
-msgstr ""
+msgstr "Voliatz dire %s ?"
 
 #. This string displays the zoom level: %s will be replaced with a
 #. number, while %% will be rendered as the symbol '%'
 #: src/minimap.py
 #, python-format
 msgid "%s%%"
-msgstr ""
+msgstr "%s%%"
 
 #: src/new_image_dialog.py src/saving_manager.py src/window.py
 #: src/utilities/utilities_paths.py src/tools/ui/tool-text.ui
@@ -1070,15 +1069,15 @@ msgstr "Crear"
 #. Context: title of a section of the preferences
 #: src/preferences.py
 msgid "New images"
-msgstr ""
+msgstr "Imatges novèls"
 
 #: src/preferences.py
 msgid "Default width"
-msgstr ""
+msgstr "Largor per defaut"
 
 #: src/preferences.py
 msgid "Default height"
-msgstr ""
+msgstr "Nautor per defaut"
 
 #. Context: this is the label that describes the initial color of an
 #. image (as set in the preferences or in the "new image with custom
@@ -1092,12 +1091,12 @@ msgstr ""
 #: src/tools/classic_tools/erasers/eraser_area.py
 #: src/tools/classic_tools/erasers/eraser_rubber.py
 msgid "Default color"
-msgstr ""
+msgstr "Color per defaut"
 
 #. Context: title of a section of the preferences
 #: src/preferences.py
 msgid "Images saving"
-msgstr ""
+msgstr "Enregistrament dels imatges"
 
 #: src/preferences.py
 msgid "JPEG and BMP images can't handle transparency."
@@ -1131,7 +1130,7 @@ msgstr "Pas res"
 
 #: src/preferences.py
 msgid "Ask before saving"
-msgstr ""
+msgstr "Demandar abans d’enregistrar"
 
 #: src/preferences.py
 msgid "You can zoom with Ctrl+scrolling, or only scrolling."
@@ -1158,7 +1157,7 @@ msgstr ""
 #. Context: title of a section of the preferences
 #: src/preferences.py
 msgid "Additional tools"
-msgstr ""
+msgstr "Aisinas suplementàrias"
 
 #: src/preferences.py
 msgid ""
@@ -1195,7 +1194,7 @@ msgstr "Punts"
 #. can be freely defined by the user.
 #: src/preferences.py src/tools/selection_tools/select_free.py
 msgid "Free selection"
-msgstr ""
+msgstr "Seleccion liura"
 
 #. Context: this is a tool to "magically" select an area depending on its
 #. color. For example clicking on a white pixel will select the
@@ -1232,12 +1231,12 @@ msgstr "Opcions avançadas"
 
 #: src/preferences.py
 msgid "Preview size"
-msgstr ""
+msgstr "Talha de l'apercebut"
 
 #. This label will not be displayed in the UI of stable versions
 #: src/preferences.py
 msgid "Development features"
-msgstr ""
+msgstr "Foncionalitats de desvolopament"
 
 #: src/preferences.py
 msgid "Background color"
@@ -1289,7 +1288,7 @@ msgstr ""
 
 #: src/preferences.py
 msgid "Toolbar only"
-msgstr ""
+msgstr "Barra d'aisinas sonque"
 
 #. Symbolic icons are monochrome icons.
 #: src/preferences.py
@@ -1392,7 +1391,7 @@ msgstr ""
 
 #: src/saving_manager.py
 msgid "Save anyway"
-msgstr ""
+msgstr "Enregistrar malgrat tot"
 
 #: src/saving_manager.py
 msgid "Do you want to save anyway?"
@@ -1448,7 +1447,7 @@ msgstr ""
 #. same file twice
 #: src/window.py
 msgid "Open again"
-msgstr ""
+msgstr "Dobrir tornamai"
 
 #: src/window.py
 msgid "Switch to this image"
@@ -1510,7 +1509,7 @@ msgstr ""
 
 #: src/window.py
 msgid "Import a picture"
-msgstr ""
+msgstr "Importar un imatge"
 
 #: src/window.py
 msgid "Required tool is not available"
@@ -1523,7 +1522,7 @@ msgstr "Transparent"
 #: src/utilities/utilities_colors.py
 #, python-format
 msgid "%s%% transparent"
-msgstr ""
+msgstr "%s%% transparent"
 
 #: src/utilities/utilities_colors.py
 msgid "Grey"
@@ -1590,7 +1589,7 @@ msgstr ""
 
 #: src/utilities/utilities_files.py
 msgid "All pictures"
-msgstr ""
+msgstr "Totes los imatges"
 
 #: src/utilities/utilities_files.py
 msgid "PNG images"
@@ -1655,7 +1654,7 @@ msgstr ""
 #: src/optionsbars/classic/optionsbar_color_popover.py
 #: src/tools/ui/tool-shape.ui
 msgid "Main color"
-msgstr ""
+msgstr "Color principala"
 
 #: src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/selection/optionsbar-selection.ui
@@ -1665,7 +1664,7 @@ msgstr ""
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/erasers/eraser_area.py
 #: src/tools/classic_tools/erasers/eraser_rubber.py
 msgid "Secondary color"
-msgstr ""
+msgstr "Color segondària"
 
 #: src/optionsbars/classic/optionsbar-classic.ui
 msgid "Tool size"
@@ -1673,7 +1672,7 @@ msgstr ""
 
 #: src/optionsbars/classic/optionsbar-classic.ui src/tools/abstract_tool.py
 msgid "No options"
-msgstr ""
+msgstr "Pas cap d'opcions"
 
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "How the color will be applied to the existing pixels"
@@ -1689,12 +1688,12 @@ msgstr "Paleta"
 
 #: src/optionsbars/selection/optionsbar-selection.ui
 msgid "Selection options"
-msgstr ""
+msgstr "Opcions de seleccion"
 
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 #: src/tools/ui/tool-eraser.ui
 msgid "Replace with…"
-msgstr ""
+msgstr "Remplaçar per…"
 
 #: src/optionsbars/selection/optionsbar-selection.ui
 #: src/optionsbars/transform/optionsbar-crop.ui
@@ -1722,7 +1721,7 @@ msgstr ""
 #: src/optionsbars/transform/optionsbar-filters.ui
 #: src/tools/transform_tools/tool_filters.py
 msgid "Select a filter…"
-msgstr ""
+msgstr "Seleccionar un filtre…"
 
 #: src/optionsbars/transform/optionsbar-rotate.ui
 msgid "Angle (degrees)"
@@ -1751,7 +1750,7 @@ msgstr "Reflectar verticalament"
 #. Context: the title of a menu to chose how the image will be scaled
 #: src/optionsbars/transform/optionsbar-scale.ui src/tools/ui/tool-scale.ui
 msgid "Keep proportions"
-msgstr ""
+msgstr "Gardar las proporcions"
 
 #. Context: an item in a menu whose title is "Keep proportions"
 #. Context for translations: "Always [keep proportions]"
@@ -1777,13 +1776,12 @@ msgid "Never"
 msgstr "Pas jamai"
 
 #: src/optionsbars/transform/optionsbar-scale.ui src/tools/ui/tool-scale.ui
-#, fuzzy
 msgid "Pixels"
-msgstr "pixèls"
+msgstr "Pixèls"
 
 #: src/optionsbars/transform/optionsbar-scale.ui src/tools/ui/tool-scale.ui
 msgid "Percentage"
-msgstr ""
+msgstr "Percentatge"
 
 #: src/optionsbars/transform/optionsbar-skew.ui
 msgid "Horizontal deformation"
@@ -1905,9 +1903,8 @@ msgid "Rubber eraser"
 msgstr ""
 
 #: src/tools/ui/tool-eraser.ui src/tools/classic_tools/erasers/eraser_area.py
-#, fuzzy
 msgid "Rectangle area"
-msgstr "Rectangular"
+msgstr "Zòna rectangulara"
 
 #. Context: this feature erases the color where the user clicked.
 #. For example to cut out an object from its solid background.
@@ -1950,12 +1947,12 @@ msgstr ""
 #: src/tools/ui/tool-filters.ui src/tools/ui/tool-highlight.ui
 #: src/tools/transform_tools/tool_filters.py
 msgid "Add transparency"
-msgstr ""
+msgstr "Apondre transparéncia"
 
 #: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
 #: src/tools/transform_tools/filters/filter_contrast.py
 msgid "Increase contrast"
-msgstr ""
+msgstr "Aumentar lo contraste"
 
 #. Context: the title of the menu with various types of blurring
 #. filters and their options.
@@ -2031,7 +2028,7 @@ msgstr ""
 #. already drawn.
 #: src/tools/ui/tool-paint.ui
 msgid "Entire image"
-msgstr ""
+msgstr "Imatge entièr"
 
 #: src/tools/ui/tool-points.ui
 msgid "Dots type"
@@ -2080,11 +2077,11 @@ msgstr ""
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
 msgid "No outline"
-msgstr ""
+msgstr "Cap de contorn"
 
 #: src/tools/ui/tool-shape.ui
 msgid "Filling"
-msgstr ""
+msgstr "Emplenatge"
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
 msgid "Empty shape"
@@ -2120,7 +2117,7 @@ msgstr "Poligòn"
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
 msgid "Free shape"
-msgstr ""
+msgstr "Fòrma liura"
 
 #: src/tools/ui/tool-shape.ui
 msgid "Close shape"
@@ -2128,15 +2125,15 @@ msgstr ""
 
 #: src/tools/ui/tool-text.ui
 msgid "Insert here"
-msgstr ""
+msgstr "Inserir aquí"
 
 #: src/tools/ui/tool-text.ui
 msgid "Font"
-msgstr ""
+msgstr "Polissa"
 
 #: src/tools/ui/tool-text.ui
 msgid "Select a font…"
-msgstr ""
+msgstr "Seleccionar una polissa…"
 
 #: src/tools/ui/tool-text.ui
 msgid "Italic"
@@ -2154,7 +2151,7 @@ msgstr "Fons de l’imatge"
 #. Context: a type of background behind the inserted text
 #: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
 msgid "No background"
-msgstr ""
+msgstr "Cap de rèireplan"
 
 #. Context: a type of background behind the inserted text
 #: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
@@ -2163,20 +2160,18 @@ msgstr "Ombra"
 
 #. Context: a type of background behind the inserted text
 #: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
-#, fuzzy
 msgid "Thin outline"
-msgstr "Contorn"
+msgstr "Contorn fin"
 
 #. Context: a type of background behind the inserted text
 #: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
-#, fuzzy
 msgid "Thick outline"
-msgstr "Contorn"
+msgstr "Contorn espés"
 
 #. Context: a type of background behind the inserted text
 #: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
 msgid "Rectangle background"
-msgstr ""
+msgstr "Rèireplan rectangle"
 
 #: src/tools/classic_tools/tool_arc.py
 msgid "Curve"
@@ -2201,7 +2196,7 @@ msgstr "Sageta"
 #: src/tools/classic_tools/tool_arc.py src/tools/classic_tools/tool_line.py
 #: src/tools/classic_tools/tool_pencil.py
 msgid "Dashed"
-msgstr "jonhent"
+msgstr "Puntilhat"
 
 #: src/tools/classic_tools/tool_arc.py src/tools/classic_tools/tool_line.py
 #: src/tools/classic_tools/tool_pencil.py
@@ -2210,7 +2205,7 @@ msgstr ""
 
 #: src/tools/classic_tools/tool_brush.py
 msgid "Brush options"
-msgstr ""
+msgstr "Opcions de bròssa"
 
 #: src/tools/classic_tools/tool_eraser.py
 msgid "Press <Shift> to erase a path instead"
@@ -2222,7 +2217,7 @@ msgstr ""
 
 #: src/tools/classic_tools/tool_eraser.py
 msgid "Eraser options"
-msgstr ""
+msgstr "Opcions de la goma"
 
 #: src/tools/classic_tools/tool_highlight.py
 msgid "Press <Shift> to temporarily highlight on dark background instead"
@@ -2242,24 +2237,24 @@ msgstr "Linha"
 
 #: src/tools/classic_tools/tool_line.py src/tools/classic_tools/tool_shape.py
 #: src/tools/selection_tools/select_rect.py
-#, fuzzy, python-format
+#, python-format
 msgid "Width: %spx"
-msgstr "Largor"
+msgstr "Largor : %spx"
 
 #: src/tools/classic_tools/tool_line.py src/tools/classic_tools/tool_shape.py
 #: src/tools/selection_tools/select_rect.py
-#, fuzzy, python-format
+#, python-format
 msgid "Height: %spx"
-msgstr "Nautor"
+msgstr "Nautor : %spx"
 
 #: src/tools/classic_tools/tool_line.py
 #, python-format
 msgid "Length: %spx"
-msgstr ""
+msgstr "Longor : %spx"
 
 #: src/tools/classic_tools/tool_line.py
 msgid "Line options"
-msgstr ""
+msgstr "Opcions de linha"
 
 #: src/tools/classic_tools/tool_line.py
 msgid "Press <Shift> to unlock the line direction"
@@ -2271,7 +2266,7 @@ msgstr ""
 
 #: src/tools/classic_tools/tool_paint.py
 msgid "Painting options"
-msgstr ""
+msgstr "Opcions de pintura"
 
 #: src/tools/classic_tools/tool_paint.py
 msgid "Click on an area to replace its color by transparency"
@@ -2297,7 +2292,7 @@ msgstr "Gredon"
 
 #: src/tools/classic_tools/tool_pencil.py
 msgid "Pencil options"
-msgstr ""
+msgstr "Opcions de gredon"
 
 #: src/tools/classic_tools/tool_points.py
 msgid "Points options"
@@ -2329,7 +2324,7 @@ msgstr ""
 
 #: src/tools/classic_tools/tool_shape.py
 msgid "Shape options"
-msgstr ""
+msgstr "Opcions de fòrmas"
 
 #: src/tools/classic_tools/tool_shape.py
 #: src/tools/selection_tools/select_free.py
@@ -2346,7 +2341,7 @@ msgstr "Tèxte"
 
 #: src/tools/classic_tools/tool_text.py
 msgid "Text options"
-msgstr ""
+msgstr "Opcions de tèxt"
 
 #: src/tools/classic_tools/tool_text.py
 msgid "Grab the rectangle to adjust the text position"
@@ -2388,7 +2383,7 @@ msgstr ""
 
 #: src/tools/selection_tools/select_rect.py
 msgid "Rectangle selection"
-msgstr ""
+msgstr "Rectangle de seleccion"
 
 #: src/tools/transform_tools/abstract_transform_tool.py
 msgid "Error: invalid values"
@@ -2428,7 +2423,7 @@ msgstr ""
 
 #: src/tools/transform_tools/tool_filters.py
 msgid "Active filter"
-msgstr ""
+msgstr "Filtre actiu"
 
 #: src/tools/transform_tools/tool_filters.py
 msgid "Click on the image to preview the selected filter"
@@ -2441,7 +2436,7 @@ msgstr "Embossar"
 
 #: src/tools/transform_tools/tool_rotate.py
 msgid "Rotating options"
-msgstr ""
+msgstr "Opcions de rotacion"
 
 #: src/tools/transform_tools/tool_rotate.py
 msgid "Rotating the selection"
