@@ -558,7 +558,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		self.add_action_simple('save_as', self.action_save_as, ['<Ctrl><Shift>s'])
 		self.add_action_simple('export_as', self.action_export_as)
 		self.add_action_simple('to_clipboard', self.action_export_cb, ['<Ctrl><Shift>c'])
-		self.add_action_simple('print', self.action_print)
+		self.add_action_simple('print', self.action_print, ['<Ctrl>p'])
 
 		self.add_action_simple('import', self.action_import, ['<Ctrl>i'])
 		self.add_action_simple('paste', self.action_paste, ['<Ctrl>v'])
