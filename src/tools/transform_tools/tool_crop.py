@@ -148,12 +148,6 @@ class ToolCrop(AbstractCanvasTool):
 		elif 'ALT' in self._modifier_keys:
 			self._force_expansion_rgba('initial')
 
-		if event.button == 3:
-			self._directions = ''
-			self.cursor_name = 'move'
-			self.window.set_cursor(True)
-			# interacting with the right click will move instead of cropping
-
 	def on_motion_on_area(self, event, surface, event_x, event_y, render=True):
 		delta_x = event_x - self.x_motion
 		delta_y = event_y - self.y_motion
