@@ -970,6 +970,7 @@ class DrWindow(Gtk.ApplicationWindow):
 
 	def exchange_colors(self, *args):
 		self.options_manager.get_classic_tools_pane().middle_click_action()
+		self.active_tool().on_options_changed()
 
 	def action_color1(self, *args):
 		if self.active_tool().use_color:
