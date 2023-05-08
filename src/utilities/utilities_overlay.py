@@ -23,10 +23,10 @@ def utilities_show_composite_overlay(ccontext, thickness=1, x_press=None, y_pres
 	ccontext.close_path()
 
 	ccontext.set_fill_rule(cairo.FillRule.EVEN_ODD)
-	if x_press is not None and y_press is not None:
-		press_in_filled_area = ccontext.in_fill(x_press, y_press)
-	else:
-		press_in_filled_area = None
+	if x_press is None or y_press is None:
+		return None
+
+	press_in_filled_area = ccontext.in_fill(x_press, y_press)
 
 	ccontext.set_source_rgba(0.3, 0.3, 0.3, 0.2)
 	ccontext.fill_preserve()
