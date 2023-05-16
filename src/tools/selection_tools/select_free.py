@@ -34,6 +34,8 @@ class ToolFreeSelect(AbstractSelectionTool):
 	def on_tool_unselected(self, *args):
 		super().on_tool_unselected()
 		self.set_action_sensitivity('selection_close', False)
+		if not self.selection_is_active():
+			self.get_selection().reset_future_data()
 
 	def get_editing_tips(self):
 		tips = super().get_editing_tips()
