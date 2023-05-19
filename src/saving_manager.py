@@ -104,10 +104,7 @@ class DrSavingManager():
 		if not is_export:
 			# Update the image and the window objects
 			try:
-				image.gfile = gfile
-				image.connect_gfile_monitoring()
-				image.post_save()
-				image.reload_from_disk()
+				image.post_save(gfile)
 			except Exception as e:
 				print(e)
 				# Context: an error message

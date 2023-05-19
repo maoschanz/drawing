@@ -235,7 +235,7 @@ class DrImage(Gtk.Box):
 		try:
 			self.gfile = gfile
 			pixbuf = GdkPixbuf.Pixbuf.new_from_file(self.get_file_path())
-			self.connect_gfile_monitoring()
+			self._connect_gfile_monitoring()
 		except Exception as ex:
 			if not ex.message:
 				ex.message = "[exception without a valid message]"
@@ -249,7 +249,7 @@ class DrImage(Gtk.Box):
 		self.try_load_pixbuf(pixbuf)
 		self._can_reload()
 
-	def connect_gfile_monitoring(self):
+	def _connect_gfile_monitoring(self):
 		flags = Gio.FileMonitorFlags.WATCH_MOUNTS
 		self._gfile_monitor = self.gfile.monitor(flags)
 		self._gfile_monitor.connect('changed', self.reveal_reload_message)
@@ -553,9 +553,12 @@ class DrImage(Gtk.Box):
 	def on_leave_image(self, *args):
 		self.window.set_cursor(False)
 
-	def post_save(self):
+	def post_save(self, gfile):
+		self.gfile = gfile
+		self._connect_gfile_monitoring()
 		self.use_stable_pixbuf()
 		self.update()
+		self.reload_from_disk()
 
 	def set_surface_as_stable_pixbuf(self):
 		w = self.surface.get_width()
