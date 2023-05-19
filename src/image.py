@@ -531,6 +531,8 @@ class DrImage(Gtk.Box):
 		return mx or my
 
 	def _get_tool_tooltip(self, ev_x, ev_y):
+		"""Generates the part of the tooltip which is specific to the active
+		tool (it can return None!) to show when Ctrl is pressed."""
 		return self.active_tool().get_tooltip(ev_x, ev_y ,self.motion_behavior)
 
 	def update(self):

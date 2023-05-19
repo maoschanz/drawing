@@ -91,14 +91,6 @@ class DrSavingManager():
 		try:
 			# Actually save the pixbuf to the given file path
 			pixbuf.savev(file_path, file_format, [None], [])
-
-			# Update the image and the window objects
-			if not is_export:
-				image.gfile = gfile
-				image.connect_gfile_monitoring()
-				image.remember_current_state()
-				image.post_save()
-				self._window.update_picture_title()
 		except Exception as e:
 			image.set_monitoring(False)
 			print(e)
