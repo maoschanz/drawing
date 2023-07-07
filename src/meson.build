@@ -42,6 +42,7 @@ drawing_sources = [
 	'tools_initializer.py',
 
 	'image.py',
+	'history_state.py',
 	'history_manager.py',
 	'printing_manager.py',
 	'saving_manager.py',

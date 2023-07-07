@@ -1,9 +1,12 @@
 # Licensed under GPL3 https://github.com/maoschanz/drawing/blob/master/LICENSE
 
-from gi.repository import Gdk, Gio, GdkPixbuf, GLib
+from gi.repository import Gdk, GLib
+from .history_state import DrHistoryState
 # from .abstract_tool import WrongToolIdException
 
 ################################################################################
+
+# 
 
 class DrHistoryManager():
 	__gtype_name__ = 'DrHistoryManager'
@@ -21,48 +24,47 @@ class DrHistoryManager():
 		# in all situations around a saving
 		return self._is_saved
 
-	def empty_history(self):
-		"""Probably useless way to explicitly 'forget' the objects. It doesn't
-		really free the memory, but it kinda helps i suppose."""
-		for op in self._undo_history:
-			self._delete_operation(op)
-		for op in self._redo_history:
-			self._delete_operation(op)
-		self._delete_operation(self.initial_operation)
+	def get_initial_operation(self):
+		return self._undo_history[-1].initial_state
 
-	def _delete_operation(self, op):
-		for key in op:
-			op[key] = None
-		op = {}
-		op = None
+	def empty_history(self):
+		self._undo_history.clear()
+		self._redo_history.clear()
 
 	############################################################################
 	# Controls accessed by DrImage #############################################
 
 	def try_undo(self):
+	
 		if self._operation_is_ongoing():
 			self._image.active_tool().cancel_ongoing_operation()
 			return
-		if len(self._undo_history) > 0:
-			last_op = self._undo_history.pop()
-			self._redo_history.append(last_op)
+
+		undone_op = self._undo_history[-1].pop_last_operation()
+		if undone_op is not None:
+			# Dont save reloads from disk to the redo_history.
+			# TODO: The reason is the redo can cause some weird
+			# behaviour with the undo button if it is done just 
+			# after reloading. It might be able to get fixed by 
+			# rethinking the try_redo method a bit.
+			self._redo_history.append(undone_op)
+
+		if self._undo_history[-1].is_empty() and len(self._undo_history) > 1:
+			self._undo_history.pop()
+		
 		self._rebuild_from_history_async()
 		self._image.update_history_sensitivity()
 
 	def try_redo(self, *args):
 		operation = self._redo_history.pop()
-		if operation['tool_id'] is None:
-			self._undo_history.append(operation)
-			self._image.restore_last_state()
-		else:
-			self._get_tool(operation['tool_id']).apply_operation(operation)
+		self._get_tool(operation['tool_id']).apply_operation(operation)
 
 	def can_undo(self):
-		# XXX incorrect si ya des states et qu'on redo
-		return (len(self._undo_history) > 0) or self._operation_is_ongoing()
+		return (len(self._undo_history) > 1 or
+				len(self._undo_history[0].operations) > 0 or
+				self._operation_is_ongoing())
 
 	def can_redo(self):
-		# XXX incorrect si ya des states ?
 		return len(self._redo_history) > 0
 
 #	def update_history_actions_labels(self):
@@ -95,71 +97,55 @@ class DrHistoryManager():
 	# Serialized operations ####################################################
 
 	def add_operation(self, operation):
+
 		self._image.set_surface_as_stable_pixbuf()
-		# print('add_operation_to_history')
-		# print(operation['tool_id'])
-		# if 'select' in operation['tool_id']:
-		# 	print(operation['operation_type'])
-		# 	print('-----------------------------------')
+		if self._undo_history[-1].is_full():
+			# TODO if there are too many pixbufs in the history, remove a few ones
+			# Issue #200, needs more design because saving can change the data
+			self.add_state(self._image.main_pixbuf.copy())
+
+		self._undo_history[-1].add_operation(operation)
 		self._is_saved = False
-		self._undo_history.append(operation)
+		self._image.update_title()
+		
 
 	############################################################################
 	# Cached pixbufs ###########################################################
 
 	def set_initial_operation(self, rgba_array, pixbuf, width, height):
+		
 		r = float(rgba_array[0])
 		g = float(rgba_array[1])
 		b = float(rgba_array[2])
 		a = float(rgba_array[3])
-		self.initial_operation = {
+		initial_operation = {
 			'tool_id': None,
 			'pixbuf': pixbuf,
 			'rgba': Gdk.RGBA(red=r, green=g, blue=b, alpha=a),
 			'width': width, 'height': height
 		}
+		self._undo_history.append(DrHistoryState(initial_operation))
 
 	def add_state(self, pixbuf):
 		if pixbuf is None:
 			# Context: an error message
 			raise Exception(_("Attempt to save an invalid state"))
-		self._undo_history.append({
+		
+		new_state = {
 			'tool_id': None,
 			'pixbuf': pixbuf,
 			'width': pixbuf.get_width(),
 			'height': pixbuf.get_height()
-		})
+		}
+
+		self._undo_history.append(DrHistoryState(new_state))
 		self._is_saved = True
 
 	def has_initial_pixbuf(self):
-		return self.initial_operation['pixbuf'] is not None
+		return len(self._undo_history) > 0
 
-	def get_last_saved_state(self):
-		index = self._get_last_state_index(False)
-		if index == -1:
-			return self.initial_operation
-		else:
-			return self._undo_history[index]
-
-	def _get_last_state_index(self, allow_yeeting_states):
-		"""Return the index of the last "state" operation (dict whose 'tool_id'
-		value is None) in the undo-history. If there is no such operation, the
-		returned index is -1 which means the only known state is the
-		self.initial_operation attribute."""
-
-		returned_index = -1
-		nbPixbufs = 0
-		for op in self._undo_history:
-			if op['tool_id'] is None:
-				last_saved_pixbuf_op = op
-				returned_index = self._undo_history.index(op)
-				nbPixbufs += 1
-
-		# TODO if there are too many pixbufs in the history, remove a few ones
-		# Issue #200, needs more design because saving can change the data
-
-		# print("returned_index : " + str(returned_index))
-		return returned_index
+	def get_last_stored_state(self):	
+		return self._undo_history[-1].initial_state
 
 	############################################################################
 	# Other private methods ####################################################
@@ -182,17 +168,14 @@ class DrHistoryManager():
 			return False
 		self._waiting_for_rebuild = False
 
-		last_save_index = self._get_last_state_index(True)
 		self._image.restore_last_state()
-		history = self._undo_history.copy()
-		self._undo_history = []
-		for op in history:
-			if history.index(op) > last_save_index:
-				# print("do", op['tool_id'])
-				self._get_tool(op['tool_id']).simple_apply_operation(op)
-			else:
-				# print("skip", op['tool_id'])
-				self._undo_history.append(op)
+
+		x = self._undo_history[-1].operations
+		self._undo_history[-1].operations = []
+
+		for op in x:
+			self._get_tool(op['tool_id']).simple_apply_operation(op)
+	
 		self._image.update()
 		return False
 
