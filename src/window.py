@@ -1025,37 +1025,41 @@ class DrWindow(Gtk.ApplicationWindow):
 		else:
 			file_name = gfile.get_path().split('/')[-1]
 			self.reveal_message(_("Loading %s") % file_name)
+
 		if self.get_active_image().should_replace():
-			# XXX ne marche pas de ouf en pratique ^
+			# XXX ne marche pas de ouf en pratique ^ issue #553
 			# If the current image is just a blank, unmodified canvas.
 			self._try_load_file(gfile)
-		else:
-			# it makes more sense to ask *if* the user want to open it BEFORE
-			# asking *where* to open it
-			w, duplicate = self.app.has_image_opened(gfile.get_path())
-			if duplicate is not None and not self.confirm_open_twice(gfile):
-				w.notebook.set_current_page(duplicate)
-				self._hide_message()
-				return
+			self._hide_message()
+			return
 
-			dialog = DrMessageDialog(self)
-			new_tab_id = dialog.set_action(_("New Tab"), None, True)
-			new_window_id = dialog.set_action(_("New Window"), None)
-			discard_id = dialog.set_action(_("Discard changes"), 'destructive-action')
-			if not self.get_active_image().is_saved():
-				# Context: %s will be replaced by the name of a file.
-				dialog.add_string(_("There are unsaved modifications to %s.") % \
-				             self.get_active_image().get_filename_for_display())
+		# it makes more sense to ask *if* the user wants to open it BEFORE
+		# asking *where* to open it
+		w, duplicate = self.app.has_image_opened(gfile.get_path())
+		if duplicate is not None and not self.confirm_open_twice(gfile):
+			w.notebook.set_current_page(duplicate)
+			self._hide_message()
+			return # the user doesn't want to open it
+
+		dialog = DrMessageDialog(self)
+		new_tab_id = dialog.set_action(_("New Tab"), None, True)
+		new_window_id = dialog.set_action(_("New Window"), None)
+		discard_id = dialog.set_action(_("Discard changes"), 'destructive-action')
+		if not self.get_active_image().is_saved():
 			# Context: %s will be replaced by the name of a file.
-			dialog.add_string(_("Where do you want to open %s?") % file_name)
-			result = dialog.run()
-			dialog.destroy()
-			if result == new_tab_id:
-				self.build_new_from_file(gfile, False)
-			elif result == discard_id:
-				self._try_load_file(gfile, False)
-			elif result == new_window_id:
-				self.app.open_window_with_content(gfile, False, False)
+			dialog.add_string(_("There are unsaved modifications to %s.") % \
+			                 self.get_active_image().get_filename_for_display())
+		# Context: %s will be replaced by the name of a file.
+		dialog.add_string(_("Where do you want to open %s?") % file_name)
+		result = dialog.run()
+		dialog.destroy()
+		if result == new_tab_id:
+			self.build_new_from_file(gfile, False)
+		elif result == discard_id:
+			self._try_load_file(gfile, False)
+		elif result == new_window_id:
+			self.app.open_window_with_content(gfile, False, False)
+
 		self._hide_message()
 
 	def file_chooser_open(self, *args):
