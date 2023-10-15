@@ -145,7 +145,7 @@ def _get_radius(dx, dy, thickness):
 	return min([dx/5, dy/5, 12 * thickness])
 
 ################################################################################
-# Canvas generic ouline ########################################################
+# Canvas generic outline ########################################################
 
 def utilities_generic_canvas_outline(cairo_context, zoom_level, w, h):
 	cairo_context.set_source_rgba(0.0, 0.0, 0.0, 1.0)
