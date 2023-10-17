@@ -242,7 +242,7 @@ class DrWindow(Gtk.ApplicationWindow):
 	def delayed_build_from_clipboard(self, *args):
 		"""Calls `async_build_from_clipboard` asynchronously."""
 		self._build_new_tab() # temporary image to avoid errors when the window
-		# finishes its initialisation.
+		# finishes its initialisation while we wait for the timeout.
 		GLib.timeout_add(500, self.async_build_from_clipboard, {})
 
 	def async_build_from_clipboard(self, content_params):
