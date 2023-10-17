@@ -244,9 +244,10 @@ class DrWindow(Gtk.ApplicationWindow):
 
 	def async_build_from_clipboard(self, content_params):
 		"""This is used as a GSourceFunc so it should return False."""
-		self.get_active_image().try_close_tab()
+		temporary_tab = self.notebook.get_current_page()
 		if self.build_image_from_clipboard():
 			self.switch_to(self.active_tool_id)
+			self.notebook.get_nth_page(temporary_tab).try_close_tab()
 		return False
 
 	def build_image_from_clipboard(self, *args):
