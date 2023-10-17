@@ -63,7 +63,7 @@ class DrImage(Gtk.Box):
 
 		self.gfile = None
 		self.filename = None
-		self._waiting_for_monitor = False
+		self._monitoring_disabled = False
 		self._gfile_monitor = None
 		self._can_reload()
 
@@ -254,15 +254,15 @@ class DrImage(Gtk.Box):
 		self._gfile_monitor = self.gfile.monitor(flags)
 		self._gfile_monitor.connect('changed', self.reveal_reload_message)
 
-	def set_monitoring(self, value):
-		self._waiting_for_monitor = value
+	def lock_monitoring(self, value):
+		self._monitoring_disabled = value
 
 	def reveal_reload_message(self, *args):
-		if self._waiting_for_monitor:
+		if self._monitoring_disabled:
 			# I'm not sure this lock is 100% correct because i'm monitoring the
 			# portal proxy file when testing with flatpak. Better than nothing.
 			if args[3] != Gio.FileMonitorEvent.CHANGED:
-				self._waiting_for_monitor = False
+				self._monitoring_disabled = False
 			return
 		self._can_reload()
 		self.reload_label.set_visible(self.window.get_allocated_width() > 500)
