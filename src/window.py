@@ -114,7 +114,10 @@ class DrWindow(Gtk.ApplicationWindow):
 		# can continue normally.
 		try:
 			if get_cb:
-				self.delayed_build_from_clipboard()
+				self._build_new_tab() # temporary image, to avoid errors when
+				# the window finishes its initialisation while we wait for the
+				# timeout. It will be discarded later.
+				GLib.timeout_add(500, self.async_build_from_clipboard, {})
 			elif gfile is not None:
 				self._build_new_tab(gfile=gfile)
 			else:
@@ -238,12 +241,6 @@ class DrWindow(Gtk.ApplicationWindow):
 			self._build_new_tab(width=width, height=height, background_rgba=rgba)
 			self.update_picture_title()
 		dialog.destroy()
-
-	def delayed_build_from_clipboard(self, *args):
-		"""Calls `async_build_from_clipboard` asynchronously."""
-		self._build_new_tab() # temporary image to avoid errors when the window
-		# finishes its initialisation while we wait for the timeout.
-		GLib.timeout_add(500, self.async_build_from_clipboard, {})
 
 	def async_build_from_clipboard(self, content_params):
 		"""This is used as a GSourceFunc so it should return False."""
