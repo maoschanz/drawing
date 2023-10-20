@@ -93,6 +93,10 @@ class ToolArc(AbstractClassicTool):
 		self._arrow_type = self.get_option_value('arrow-type')
 		self.set_active_shape()
 
+		if self._1st_segment is None:
+			# the 1st click hasn't happened, or the 2nd is released, so there is
+			# no operation currently "ongoing"
+			return
 		operation = self.build_operation()
 		self.do_tool_operation(operation)
 
