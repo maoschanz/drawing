@@ -118,7 +118,10 @@ class DrWindow(Gtk.ApplicationWindow):
 		# can continue normally.
 		try:
 			if get_cb:
-				self.delayed_build_from_clipboard()
+				self._build_new_tab() # temporary image, to avoid errors when
+				# the window finishes its initialisation while we wait for the
+				# timeout. It will be discarded later.
+				GLib.timeout_add(500, self.async_build_from_clipboard, {})
 			elif gfile is not None:
 				self._build_new_tab(gfile=gfile)
 			else:
@@ -243,17 +246,12 @@ class DrWindow(Gtk.ApplicationWindow):
 			self.update_picture_title()
 		dialog.destroy()
 
-	def delayed_build_from_clipboard(self, *args):
-		"""Calls `async_build_from_clipboard` asynchronously."""
-		self._build_new_tab() # temporary image to avoid errors when the window
-		# finishes its initialisation.
-		GLib.timeout_add(500, self.async_build_from_clipboard, {})
-
 	def async_build_from_clipboard(self, content_params):
 		"""This is used as a GSourceFunc so it should return False."""
-		self.get_active_image().try_close_tab()
+		temporary_tab = self.notebook.get_current_page()
 		if self.build_image_from_clipboard():
 			self.switch_to(self.active_tool_id)
+			self.notebook.get_nth_page(temporary_tab).try_close_tab()
 		return False
 
 	def build_image_from_clipboard(self, *args):
@@ -974,6 +972,7 @@ class DrWindow(Gtk.ApplicationWindow):
 
 	def exchange_colors(self, *args):
 		self.options_manager.get_classic_tools_pane().middle_click_action()
+		self.active_tool().on_options_changed()
 
 	def action_color1(self, *args):
 		if self.active_tool().use_color:
@@ -1028,37 +1027,41 @@ class DrWindow(Gtk.ApplicationWindow):
 		else:
 			file_name = gfile.get_path().split('/')[-1]
 			self.reveal_message(_("Loading %s") % file_name)
+
 		if self.get_active_image().should_replace():
-			# XXX ne marche pas de ouf en pratique ^
+			# XXX ne marche pas de ouf en pratique ^ issue #553
 			# If the current image is just a blank, unmodified canvas.
 			self._try_load_file(gfile)
-		else:
-			# it makes more sense to ask *if* the user want to open it BEFORE
-			# asking *where* to open it
-			w, duplicate = self.app.has_image_opened(gfile.get_path())
-			if duplicate is not None and not self.confirm_open_twice(gfile):
-				w.notebook.set_current_page(duplicate)
-				self._hide_message()
-				return
+			self._hide_message()
+			return
 
-			dialog = DrMessageDialog(self)
-			new_tab_id = dialog.set_action(_("New Tab"), None, True)
-			new_window_id = dialog.set_action(_("New Window"), None)
-			discard_id = dialog.set_action(_("Discard changes"), 'destructive-action')
-			if not self.get_active_image().is_saved():
-				# Context: %s will be replaced by the name of a file.
-				dialog.add_string(_("There are unsaved modifications to %s.") % \
-				             self.get_active_image().get_filename_for_display())
+		# it makes more sense to ask *if* the user wants to open it BEFORE
+		# asking *where* to open it
+		w, duplicate = self.app.has_image_opened(gfile.get_path())
+		if duplicate is not None and not self.confirm_open_twice(gfile):
+			w.notebook.set_current_page(duplicate)
+			self._hide_message()
+			return # the user doesn't want to open it
+
+		dialog = DrMessageDialog(self)
+		new_tab_id = dialog.set_action(_("New Tab"), None, True)
+		new_window_id = dialog.set_action(_("New Window"), None)
+		discard_id = dialog.set_action(_("Discard changes"), 'destructive-action')
+		if not self.get_active_image().is_saved():
 			# Context: %s will be replaced by the name of a file.
-			dialog.add_string(_("Where do you want to open %s?") % file_name)
-			result = dialog.run()
-			dialog.destroy()
-			if result == new_tab_id:
-				self.build_new_from_file(gfile, False)
-			elif result == discard_id:
-				self._try_load_file(gfile, False)
-			elif result == new_window_id:
-				self.app.open_window_with_content(gfile, False, False)
+			dialog.add_string(_("There are unsaved modifications to %s.") % \
+			                 self.get_active_image().get_filename_for_display())
+		# Context: %s will be replaced by the name of a file.
+		dialog.add_string(_("Where do you want to open %s?") % file_name)
+		result = dialog.run()
+		dialog.destroy()
+		if result == new_tab_id:
+			self.build_new_from_file(gfile, False)
+		elif result == discard_id:
+			self._try_load_file(gfile, False)
+		elif result == new_window_id:
+			self.app.open_window_with_content(gfile, False, False)
+
 		self._hide_message()
 
 	def file_chooser_open(self, *args):

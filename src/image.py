@@ -63,7 +63,7 @@ class DrImage(Gtk.Box):
 
 		self.gfile = None
 		self.filename = None
-		self._waiting_for_monitor = False
+		self._monitoring_disabled = False
 		self._gfile_monitor = None
 		self._can_reload()
 
@@ -235,7 +235,7 @@ class DrImage(Gtk.Box):
 		try:
 			self.gfile = gfile
 			pixbuf = GdkPixbuf.Pixbuf.new_from_file(self.get_file_path())
-			self.connect_gfile_monitoring()
+			self._connect_gfile_monitoring()
 		except Exception as ex:
 			if not ex.message:
 				ex.message = "[exception without a valid message]"
@@ -249,20 +249,20 @@ class DrImage(Gtk.Box):
 		self.try_load_pixbuf(pixbuf)
 		self._can_reload()
 
-	def connect_gfile_monitoring(self):
+	def _connect_gfile_monitoring(self):
 		flags = Gio.FileMonitorFlags.WATCH_MOUNTS
 		self._gfile_monitor = self.gfile.monitor(flags)
 		self._gfile_monitor.connect('changed', self.reveal_reload_message)
 
-	def set_monitoring(self, value):
-		self._waiting_for_monitor = value
+	def lock_monitoring(self, value):
+		self._monitoring_disabled = value
 
 	def reveal_reload_message(self, *args):
-		if self._waiting_for_monitor:
+		if self._monitoring_disabled:
 			# I'm not sure this lock is 100% correct because i'm monitoring the
 			# portal proxy file when testing with flatpak. Better than nothing.
 			if args[3] != Gio.FileMonitorEvent.CHANGED:
-				self._waiting_for_monitor = False
+				self._monitoring_disabled = False
 			return
 		self._can_reload()
 		self.reload_label.set_visible(self.window.get_allocated_width() > 500)
@@ -531,6 +531,8 @@ class DrImage(Gtk.Box):
 		return mx or my
 
 	def _get_tool_tooltip(self, ev_x, ev_y):
+		"""Generates the part of the tooltip which is specific to the active
+		tool (it can return None!) to show when Ctrl is pressed."""
 		return self.active_tool().get_tooltip(ev_x, ev_y ,self.motion_behavior)
 
 	def update(self):
@@ -551,9 +553,12 @@ class DrImage(Gtk.Box):
 	def on_leave_image(self, *args):
 		self.window.set_cursor(False)
 
-	def post_save(self):
+	def post_save(self, gfile):
+		self.gfile = gfile
+		self._connect_gfile_monitoring()
 		self.use_stable_pixbuf()
 		self.update()
+		self.reload_from_disk()
 
 	def set_surface_as_stable_pixbuf(self):
 		w = self.surface.get_width()

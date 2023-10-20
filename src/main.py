@@ -105,7 +105,7 @@ class Application(Gtk.Application):
 	############################################################################
 	# Opening windows & CLI handling ###########################################
 
-	def open_window_with_content(self, gfile, get_cb, check_duplicates=True):
+	def open_window_with_content(self, gfile, get_cb=False, check_duplicates=True):
 		"""Open a new window with an optional Gio.File as an argument. If get_cb
 		is true, the Gio.File is ignored and the picture is built from the
 		clipboard content."""
@@ -185,7 +185,7 @@ class Application(Gtk.Application):
 				if f == False:
 					continue
 				f = None if f == True else f
-				self.open_window_with_content(f, False)
+				self.open_window_with_content(f)
 				windows_counter = windows_counter + 1
 			if windows_counter == 0:
 				self.on_new_window()
@@ -204,7 +204,7 @@ class Application(Gtk.Application):
 				win = self.props.active_window
 				if not win:
 					f = None if f == True else f
-					self.open_window_with_content(f, False)
+					self.open_window_with_content(f)
 				else:
 					win.present()
 					if f == True:
@@ -220,7 +220,7 @@ class Application(Gtk.Application):
 
 	def on_new_window(self, *args):
 		"""Action callback, opening a new window with an empty canvas."""
-		return self.open_window_with_content(None, False)
+		return self.open_window_with_content(None)
 
 	def on_report(self, *args):
 		"""Action callback, opening a new issue on the github repo."""
@@ -281,7 +281,7 @@ class Application(Gtk.Application):
 			transient_for=self.props.active_window, modal=True,
 			copyright="© 2018-2023 Romain F. T.",
 			authors=["Romain F. T.", "Fábio Colacio", "Alexis Lozano"],
-			# To tranlators: "translate" this by a list of your names (one name
+			# To translators: "translate" this by a list of your names (one name
 			# per line), they will be displayed in the "about" dialog
 			translator_credits=_("translator-credits"),
 			artists=["Tobias Bernard", "Romain F. T.",

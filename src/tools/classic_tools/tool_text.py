@@ -25,6 +25,7 @@ class ToolText(AbstractClassicTool):
 
 	def __init__(self, window, **kwargs):
 		super().__init__('text', _("Text"), 'tool-text-symbolic', window)
+		self.cursor_name = 'text'
 
 		# There are several types of possible interactions with the canvas,
 		# depending on where the pointer is during the press event.
@@ -247,8 +248,10 @@ class ToolText(AbstractClassicTool):
 
 	def on_draw_above(self, area, ccontext):
 		if not self._has_current_text():
-			return
+			return True, False
+		return self._update_overlay(area, ccontext, self.x_press, self.y_press)
 
+	def _update_overlay(self, area, ccontext, test_x, test_y):
 		sorigin_x = -1 * self.get_image().scroll_x
 		sorigin_y = -1 * self.get_image().scroll_y
 		if area is None:
@@ -266,11 +269,11 @@ class ToolText(AbstractClassicTool):
 		ccontext.rel_line_to(-1 * actual_width, 0)
 		ccontext.rel_line_to(0, -1 * actual_height)
 
-		should_input = ccontext.in_fill(self.x_press, self.y_press)
+		should_input = ccontext.in_fill(test_x, test_y)
 
 		thickness = self.get_overlay_thickness()
 		should_move = utilities_show_composite_overlay(ccontext, thickness, \
-		                     sorigin_x + self.x_press, sorigin_y + self.y_press)
+		                     sorigin_x + test_x, sorigin_y + test_y)
 
 		return should_input, should_move
 
@@ -281,6 +284,16 @@ class ToolText(AbstractClassicTool):
 	def on_unclicked_motion_on_area(self, event, surface):
 		if not self._has_current_text():
 			self.cursor_name = 'text'
+			self.window.set_cursor(True)
+			return
+
+		x, y = self.get_image().get_event_coords(event)
+		should_input, should_move = self._update_overlay(None, \
+		                                               self.get_context(), x, y)
+		if should_input:
+			self.cursor_name = 'text'
+		elif should_move:
+			self.cursor_name = 'grab'
 		else:
 			self.cursor_name = 'pointer'
 		self.window.set_cursor(True)
