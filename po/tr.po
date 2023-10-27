@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
 "POT-Creation-Date: 2023-02-23 23:35+0100\n"
-"PO-Revision-Date: 2023-04-25 14:11+0300\n"
+"PO-Revision-Date: 2023-10-23 22:31+0300\n"
 "Last-Translator: Sabri Ünal <libreajans@gmail.com>\n"
 "Language-Team: \n"
 "Language: tr\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 3.2.2\n"
+"X-Generator: Poedit 3.4\n"
 
 #: data/com.github.maoschanz.drawing.desktop.in
 #: data/com.github.maoschanz.drawing.appdata.xml.in src/deco_manager.py
@@ -129,8 +129,8 @@ msgid ""
 "The option to use a color editor by default has been moved from the main "
 "window to the preferences window, and its bug has been fixed."
 msgstr ""
-"Varsayılan olarak renk düzenleyici kullanma seçeneği ana pencereden "
-"tercihler penceresine taşındı ve hatası düzeltildi."
+"Öntanımlı olarak renk düzenleyici kullanma seçeneği ana pencereden tercihler "
+"penceresine taşındı ve hatası düzeltildi."
 
 #. very generic release notes i use for ALL minor updates, please
 #. translate this one!
@@ -180,7 +180,7 @@ msgid ""
 "By popular demand, the \"highlighter\" tool is now enabled by default, and "
 "the message dialog to warn you about the release notes is less intrusive."
 msgstr ""
-"Yoğun istek üzerine, \"vurgulayıcı\" aracı artık varsayılan olarak "
+"Yoğun istek üzerine, \"vurgulayıcı\" aracı artık öntanımlı olarak "
 "etkinleştirilmiştir ve sizi sürüm notları hakkında uyaran mesaj iletişim "
 "kutusu daha az müdahale ediyor."
 
@@ -811,7 +811,7 @@ msgstr "Renk"
 
 #: src/ui/new-image-dialog.ui
 msgid "Use these settings by default"
-msgstr "Bu ayarları varsayılan olarak kullan"
+msgstr "Bu ayarları öntanımlı olarak kullan"
 
 #: src/ui/preferences.ui
 msgid "Images"
@@ -1230,7 +1230,7 @@ msgid ""
 "not all enabled by default."
 msgstr ""
 "Bu araçlar olması gerektiği kadar güvenilir ve kullanışlı değildir, bu "
-"nedenle hepsi varsayılan olarak etkin değildir."
+"nedenle hepsi öntanımlı olarak etkin değildir."
 
 #. Context: this is the name of a tool
 #: src/preferences.py src/tools/classic_tools/tool_eraser.py
@@ -1428,7 +1428,7 @@ msgstr "Bu resim"
 
 #: src/saving_manager.py
 msgid "Discard"
-msgstr "Yoksay"
+msgstr "Gözden Çıkar"
 
 #. Context: %s will be replaced by the name of a file.
 #: src/saving_manager.py src/window.py
@@ -1557,7 +1557,7 @@ msgstr "Yeni Sekme"
 
 #: src/window.py
 msgid "Discard changes"
-msgstr "Değişiklikleri yoksay"
+msgstr "Değişiklikleri gözden çıkar"
 
 #. Context: %s will be replaced by the name of a file.
 #: src/window.py
