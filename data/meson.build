@@ -38,16 +38,13 @@ if get_option('enable-translations-and-appdata')
 		install_dir: join_paths(get_option('datadir'), 'metainfo')
 	)
 
-	appstream_util = find_program('appstream-util', required: false)
-	if appstream_util.found()
+	appstreamcli = find_program('appstreamcli', required: false)
+	if appstreamcli.found()
 		test(
 			'Validate appstream file',
-			appstream_util,
-			args: ['validate', appstream_file]
+			appstreamcli,
+			args: ['validate', '--no-net', appstream_file]
 		)
-		# The app will never pass "validate-strict" because appstream-util wants
-		# pictures with a 16:9 ratio, while i use pictures of the default window
-		# size, which is approximating the objectively better golden ratio.
 	endif
 endif
 
