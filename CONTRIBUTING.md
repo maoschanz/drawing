@@ -260,7 +260,7 @@ options, the right building tools, and luck.
 - `meson`. The version of meson required by the `meson.build` file at the root
 of the project can be changed if necessary, but please don't add this change to
 your commit(s).
-- [optional] `appstream-util` (validation of the `.appdata.xml` file)
+- [optional] `appstreamcli` (validation of the `.appdata.xml` file)
 - `libglib2.0-dev-bin` (IIRC that one is to compress the `.ui` files and the
 icons into a `.gresource` file: 100% necessary)
 - [optional] `itstool` (to generate translation files for the help manual)
