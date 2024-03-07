@@ -56,6 +56,7 @@ If your language is not here, or is incompletely translated, you can
 
 | code | name         | complete*? | main translators                          |
 |------|--------------|------------|-------------------------------------------|
+| ar   | Arabic       | 65%        | @ContractISover                           |
 | ca   | Catalan      | 93%        | @jordimas                                 |
 | cs   | Czech        | 99%        | @pervoj                                   |
 | da   | Danish       | 77%        | @scootergrisen                            |
