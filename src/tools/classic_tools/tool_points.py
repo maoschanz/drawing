@@ -168,8 +168,12 @@ class ToolPoints(AbstractClassicTool):
 		if number is None:
 			return
 
-		# Text size
+		# Text size and options
 		cairo_context.set_font_size(max(1, int(point_width * 0.8)))
+		if not operation['antialias']:
+			options = cairo.FontOptions()
+			options.set_antialias(cairo.Antialias.NONE)
+			cairo_context.set_font_options(options)
 
 		# Coordinates
 		if number < 10:
