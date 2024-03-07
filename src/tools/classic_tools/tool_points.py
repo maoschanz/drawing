@@ -70,6 +70,10 @@ class ToolPoints(AbstractClassicTool):
 			self._shape_label = _("X-shaped cross")
 		elif state_as_string == 'square':
 			self._shape_label = _("Square")
+		elif state_as_string == 'dot':
+			self._shape_label = _("Dot")
+		elif state_as_string == 'checkmark':
+			self._shape_label = _("Checkmark")
 		else:
 			self._shape_label = _("Circle")
 		self._points_type = state_as_string
@@ -133,7 +137,13 @@ class ToolPoints(AbstractClassicTool):
 		point_type = operation['point_type']
 		if point_type == 'circle':
 			cairo_context.arc(x, y, half_width, 0.0, 2 * math.pi)
+		elif point_type == 'dot':
+			cairo_context.arc(x, y, half_width, 0.0, 2 * math.pi)
 			cairo_context.fill()
+		elif point_type == 'checkmark':
+			cairo_context.move_to(x - half_width, y)
+			cairo_context.line_to(x - 0.2 * half_width, y + 0.8 * half_width)
+			cairo_context.line_to(x + half_width, y - half_width)
 		elif point_type == 'cross':
 			# Looks awful with small sizes, either with or without antialiasing
 			cairo_context.move_to(x, y - half_width)
