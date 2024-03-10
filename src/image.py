@@ -65,7 +65,7 @@ class DrImage(Gtk.Box):
 		self.filename = None
 		self._monitoring_disabled = False
 		self._gfile_monitor = None
-		self._can_reload()
+		self._update_can_reload_action()
 
 		# Closing the info bar
 		self.reload_info_bar.connect('close', self.hide_reload_message)
@@ -247,7 +247,7 @@ class DrImage(Gtk.Box):
 			# ya pas de fenêtre) ouvrir un truc respectant les settings, plutôt
 			# qu'un petit pixbuf corrompu
 		self.try_load_pixbuf(pixbuf)
-		self._can_reload()
+		self._update_can_reload_action()
 
 	def _connect_gfile_monitoring(self):
 		flags = Gio.FileMonitorFlags.WATCH_MOUNTS
@@ -264,14 +264,14 @@ class DrImage(Gtk.Box):
 			if args[3] != Gio.FileMonitorEvent.CHANGED:
 				self._monitoring_disabled = False
 			return
-		self._can_reload()
+		self._update_can_reload_action()
 		self.reload_label.set_visible(self.window.get_allocated_width() > 500)
 		self.reload_info_bar.set_visible(True)
 
 	def hide_reload_message(self, *args):
 		self.reload_info_bar.set_visible(False)
 
-	def _can_reload(self):
+	def _update_can_reload_action(self):
 		self.set_action_sensitivity('reload_file', self.gfile is not None)
 
 	############################################################################
@@ -348,7 +348,7 @@ class DrImage(Gtk.Box):
 
 	def update_image_wide_actions(self):
 		self.update_history_sensitivity()
-		self._can_reload()
+		self._update_can_reload_action()
 
 	############################################################################
 	# History management #######################################################
