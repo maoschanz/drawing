@@ -92,10 +92,10 @@ class DrSavingManager():
 			# Actually save the pixbuf to the given file path
 			pixbuf.savev(file_path, file_format, [None], [])
 		except Exception as e:
-			image.lock_monitoring(False)
 			print(e)
 			# Context: an error message
 			self._window.reveal_message(_("Failed to save %s") % file_path)
+			image.enable_monitoring()
 			return False
 
 		# Reset the file monitoring flag
