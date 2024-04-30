@@ -89,10 +89,20 @@
     </key>
 
     <!-- Remembered state of the window -->
+    <key type="i" name="window-width">
+      <default>1000</default>
+      <summary>Width of the window</summary>
+      <description>The width of the last closed window.</description>
+    </key>
+    <key type="i" name="window-height">
+      <default>600</default>
+      <summary>Height of the window</summary>
+      <description>The height of the last closed window.</description>
+    </key>
     <key type="b" name="maximized">
       <default>false</default>
-      <summary>State of the window</summary>
-      <description>The state of the last closed window.</description>
+      <summary>Maximization of the window</summary>
+      <description>The maximization state of the last closed window.</description>
     </key>
     <key type="b" name="show-labels">
       <default>false</default>
