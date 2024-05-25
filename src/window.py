@@ -72,6 +72,7 @@ class DrWindow(Gtk.ApplicationWindow):
 		self.devel_mode = False
 		self.should_track_framerate = False
 
+		self.resize(self.gsettings.get_int("window-width"), self.gsettings.get_int("window-height"))
 		if self.gsettings.get_boolean('maximized'):
 			self.maximize()
 
@@ -384,6 +385,8 @@ class DrWindow(Gtk.ApplicationWindow):
 		self._decorations.remove_from_ui()
 		self.options_manager.persist_tools_options()
 		self.gsettings.set_string('last-active-tool', self.active_tool_id)
+		self.gsettings.set_int("window-width", self.get_size().width)
+		self.gsettings.set_int("window-height", self.get_size().height)
 		self.gsettings.set_boolean('maximized', self.is_maximized())
 		return False
 
