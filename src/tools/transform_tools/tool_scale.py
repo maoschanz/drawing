@@ -131,6 +131,8 @@ class ToolScale(AbstractCanvasTool):
 		self._spinbtns_disabled = False
 		self._width_btn.set_value(width)
 		self._height_btn.set_value(height)
+		self._previous_width = width
+		self._previous_height = height
 		self.build_and_do_op() # Ensure a correct preview
 
 	def _get_original_size(self):
@@ -166,7 +168,10 @@ class ToolScale(AbstractCanvasTool):
 		if self._preserve_ratio == former_setting:
 			return
 		if self._preserve_ratio:
-			self._ratio = self._get_width() / self._get_height()
+			if for_spinbtns:
+			    self._ratio = self._get_previous_width() / self._get_previous_height()
+			else:
+			    self._ratio = self._get_width() / self._get_height()
 
 	def _try_scale_dimensions(self):
 		if self._reload_is_locked:
@@ -226,6 +231,10 @@ class ToolScale(AbstractCanvasTool):
 			self.set_preserve_ratio(True)
 		self._try_scale_dimensions()
 
+		if not self._preserve_ratio:
+		    self._previous_width = self._get_width()
+		    self._pervious_height = self._get_height()
+
 	def on_spinbtn100_changed(self, *args):
 		if self._spinbtns_disabled:
 			return
@@ -249,12 +258,26 @@ class ToolScale(AbstractCanvasTool):
 		else:
 			self._height_btn.set_value(new_height)
 			self._width_btn.set_value(new_width)
+		self._previous_height = new_height
+		self._previous_width = new_width
 
 	def _get_width(self):
 		return self._width_btn.get_value_as_int()
 
 	def _get_height(self):
 		return self._height_btn.get_value_as_int()
+
+	def _get_previous_width(self):
+	    try:
+	        return self._previous_width
+	    finally:
+	        self._previous_width = self._get_width()
+
+	def _get_previous_height(self):
+	    try:
+	        return self._previous_height
+	    finally:
+	        self._previous_height = self._get_height()
 
 	############################################################################
 
