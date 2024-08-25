@@ -11,6 +11,7 @@ def utilities_add_filechooser_filters(dialog):
 	allPictures.add_mime_type('image/png')
 	allPictures.add_mime_type('image/jpeg')
 	allPictures.add_mime_type('image/bmp')
+	allPictures.add_mime_type('image/svg+xml')
 
 	pngPictures = Gtk.FileFilter()
 	pngPictures.set_name(_("PNG images"))
@@ -24,10 +25,15 @@ def utilities_add_filechooser_filters(dialog):
 	bmpPictures.set_name(_("BMP images"))
 	bmpPictures.add_mime_type('image/bmp')
 
+	svgPictures = Gtk.FileFilter()
+	svgPictures.set_name(_("SVG images"))
+	svgPictures.add_mime_type('image/svg+xml')
+
 	dialog.add_filter(allPictures)
 	dialog.add_filter(pngPictures)
 	dialog.add_filter(jpegPictures)
 	dialog.add_filter(bmpPictures)
+	dialog.add_filter(svgPictures)
 
 ################################################################################
 
