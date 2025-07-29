@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the drawing package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # Kálmán „Kami” Szalai <kami911@gmail.com>, 2019.
+# Bence „BeanieBarrow” Bődi <bodi.bence@proton.me>, 2025.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
 "POT-Creation-Date: 2023-02-23 23:35+0100\n"
-"PO-Revision-Date: 2025-07-21 18:57+0200\n"
+"PO-Revision-Date: 2025-07-29 18:30+0200\n"
 "Last-Translator: Bence „BeanieBarrow” Bődi <bodi.bence@proton.me>\n"
 "Language-Team: Hungarian\n"
 "Language: hu\n"
@@ -23,7 +24,7 @@ msgstr ""
 #: data/com.github.maoschanz.drawing.appdata.xml.in src/deco_manager.py
 #: src/main.py
 msgid "Drawing"
-msgstr "Rajzolás"
+msgstr "Rajzoló"
 
 #: data/com.github.maoschanz.drawing.desktop.in
 msgid "Simple drawing utility"
@@ -65,10 +66,10 @@ msgid ""
 "filters, insert or censor text, and manipulate a selected portion of the "
 "picture (cut/copy/paste/drag/…)"
 msgstr ""
-"Ezzel az egyszerű képszerkesztővel képesek lehetünk átméretezni, vágni, vagy "
-"elforgatni egy képet, egyszerű szűrőket alkalmazni, szöveget beszúrni, vagy "
-"elrejteni, illetve egy tetszőleges képrészleten apró módosításokat végezni "
-"(például kivágni, másolni, beilleszteni, elhúzni stb.)"
+"Ezzel az egyszerű képszerkesztővel a képek átméretezhetők, vághatók vagy "
+"elforgathatók, egyszerű szűrők alkalmazhatók, szöveg szúrható be vagy "
+"rejthető el, illetve egy tetszőleges képrészleten apró módosítások (például "
+"kivágás, másolás, beillesztés, elhúzás stb.) végezhetők."
 
 #. IMPORTANT: complete description of the application (2/3)
 #: data/com.github.maoschanz.drawing.appdata.xml.in
@@ -94,7 +95,7 @@ msgid ""
 msgstr ""
 "Az 1.2.0-s verzió javítja az átalakító eszközöket: az előnézeteik mostantól "
 "egyértelműen alkalmazásra kerülnek, amikor az aktív eszköz megváltozik, "
-"anélkül, hogy az „Alkalmazás” gombra kattintanánk."
+"anélkül, hogy az „Alkalmaz” gombra kattintana."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -203,7 +204,7 @@ msgid ""
 "sandbox has also been fixed."
 msgstr ""
 "Javításra került a hibás parancssori feldolgozás is, amikor az alkalmazást a "
-"flatpak sandboxon kívül használjuk."
+"flatpak sandboxon kívül használták."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -742,7 +743,7 @@ msgstr "Súgó a teljes képernyős módról"
 
 #: src/ui/app-menus.ui
 msgid "Help about classic tools"
-msgstr "Súgó a klasszikus eszözökről"
+msgstr "Súgó a klasszikus eszközökről"
 
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Help about colors"
@@ -761,11 +762,11 @@ msgstr "Súgó a kiválasztásról"
 
 #: src/ui/app-menus.ui
 msgid "What's new"
-msgstr "Mi újság?"
+msgstr "Újdonságok"
 
 #: src/ui/app-menus.ui src/ui/win-menus.ui
 msgid "About Drawing"
-msgstr "Rajzolás alkalmazás névjegye"
+msgstr "Rajzoló alkalmazás névjegye"
 
 #: src/ui/headerbar.ui src/ui/headerbar-eos.ui src/ui/toolbar.ui
 #: src/ui/toolbar-symbolic.ui src/window.py
@@ -933,7 +934,7 @@ msgstr "Aktív képnézet bezárása"
 
 #: src/ui/shortcuts.ui
 msgid "Open the tool options menu"
-msgstr "Az eszköz beállításainak mutatása"
+msgstr "Az eszköz beállításainak megnyitása"
 
 #: src/ui/shortcuts.ui
 msgid "Back to previous tool"
@@ -1007,7 +1008,7 @@ msgstr "Kilépés a teljes képernyős módból"
 
 #: src/ui/win-menus.ui
 msgid "What's new in Drawing"
-msgstr "Mi újság a Rajzolás alkalmázással?"
+msgstr "Újdonságok a Rajzoló alkalmazásban"
 
 #: src/ui/win-menus.ui
 msgid "Dismiss"
@@ -1037,7 +1038,7 @@ msgstr "Hiba: nem létezik „%s” nevű eszköz"
 #: src/image.py
 #, python-format
 msgid "New pixbuf empty, no change applied to %s"
-msgstr "Az új képpontpuffer üres. Nem történt változtatás itt: %s"
+msgstr "Az új rajzlap üres. Nem történt változtatás itt: %s"
 
 #: src/image.py src/properties.py
 msgid "Unsaved file"
@@ -1052,7 +1053,7 @@ msgstr "%s képkocka másodpercenként"
 #. Description of a command line option
 #: src/main.py
 msgid "Show the app version"
-msgstr "Az alkalmazás-verzió mutatása"
+msgstr "Alkalmazásverzió mutatása"
 
 #. Description of a command line option
 #: src/main.py
@@ -1160,7 +1161,7 @@ msgstr "Képek mentése"
 
 #: src/preferences.py
 msgid "JPEG and BMP images can't handle transparency."
-msgstr "A JPEG és a BMP-képet nem tudják az átlátszó képpontokat kezelni."
+msgstr "A JPEG és a BMP-képek nem tudják az átlátszó képpontokat kezelni."
 
 #: src/preferences.py
 msgid ""
@@ -1488,7 +1489,7 @@ msgstr "Átlátszóság helyettesítése ezzel:"
 #. Context: an error message
 #: src/selection_manager.py
 msgid "The selection pixbuf is empty."
-msgstr "A kiválasztott képpontpuffer üres."
+msgstr "A kiválasztott rajzlap üres."
 
 #: src/selection_manager.py
 msgid "The selection path is empty."
