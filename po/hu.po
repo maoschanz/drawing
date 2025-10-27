@@ -2,27 +2,29 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the drawing package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Kálmán „Kami” Szalai <kami911@gmail.com>, 2019.
+# Bence „BeanieBarrow” Bődi <bodi.bence@proton.me>, 2025.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
 "POT-Creation-Date: 2023-02-23 23:35+0100\n"
-"PO-Revision-Date: 2019-12-12 10:58+0100\n"
-"Last-Translator: Kálmán „KAMI” Szalai <kami911@gmail.com>\n"
-"Language-Team: \n"
-"Language: hu_HU\n"
+"PO-Revision-Date: 2025-07-29 18:30+0200\n"
+"Last-Translator: Bence „BeanieBarrow” Bődi <bodi.bence@proton.me>\n"
+"Language-Team: Hungarian\n"
+"Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.0.6\n"
+"X-Generator: Gtranslator 48.0\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: data/com.github.maoschanz.drawing.desktop.in
 #: data/com.github.maoschanz.drawing.appdata.xml.in src/deco_manager.py
 #: src/main.py
 msgid "Drawing"
-msgstr "Rajzolás"
+msgstr "Rajzoló"
 
 #: data/com.github.maoschanz.drawing.desktop.in
 msgid "Simple drawing utility"
@@ -34,7 +36,7 @@ msgstr "Egyszerű rajzoló alkalmazás"
 #. Don't forget the semicolons.
 #: data/com.github.maoschanz.drawing.desktop.in
 msgid "Paint;Sketch;Pencil;"
-msgstr "Paint;Festés;Rajzolás;Skicc;Ceruza;Ecset;Festő"
+msgstr "Paint;Festés;Rajzolás;Skicc;Ceruza;Ecset;Festő;Rajz;Rajzoló"
 
 #: data/com.github.maoschanz.drawing.desktop.in src/ui/app-menus.ui
 #: src/ui/shortcuts.ui src/ui/win-menus.ui src/window.py
@@ -55,7 +57,7 @@ msgstr "Kép szerkesztése a vágólapról"
 #. https://gitlab.gnome.org/GNOME/Initiatives/-/wikis/App-Metadata
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "Edit screenshots or memes"
-msgstr ""
+msgstr "Szerkesszen képernyőképeket vagy mémeket"
 
 #. IMPORTANT: complete description of the application (1/3)
 #: data/com.github.maoschanz.drawing.appdata.xml.in
@@ -64,6 +66,10 @@ msgid ""
 "filters, insert or censor text, and manipulate a selected portion of the "
 "picture (cut/copy/paste/drag/…)"
 msgstr ""
+"Ezzel az egyszerű képszerkesztővel a képek átméretezhetők, vághatók vagy "
+"elforgathatók, egyszerű szűrők alkalmazhatók, szöveg szúrható be vagy "
+"rejthető el, illetve egy tetszőleges képrészleten apró módosítások (például "
+"kivágás, másolás, beillesztés, elhúzás stb.) végezhetők."
 
 #. IMPORTANT: complete description of the application (2/3)
 #: data/com.github.maoschanz.drawing.appdata.xml.in
@@ -72,11 +78,14 @@ msgid ""
 "line, the curve tool, many shapes, several brushes, and their various colors "
 "and options."
 msgstr ""
+"És természetesen rajzolni is tud! Ceruzával, egyenes vagy görbe vonalakkal, "
+"különböző alakzatokkal és ecsetekkel. A kiválasztott eszközök színeinek, "
+"illetve egyéb paramétereinek beállítására is van lehetőség."
 
 #. IMPORTANT: complete description of the application (3/3)
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "Supported file types include PNG, JPEG and BMP."
-msgstr ""
+msgstr "A támogatott fájltípusok között szerepel a PNG, a JPEG és a BMP is."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -84,34 +93,45 @@ msgid ""
 "consistently applied when you change the active tool without clicking on "
 "\"apply\"."
 msgstr ""
+"Az 1.2.0-s verzió javítja az átalakító eszközöket: az előnézeteik mostantól "
+"egyértelműen alkalmazásra kerülnek, amikor az aktív eszköz megváltozik, "
+"anélkül, hogy az „Alkalmaz” gombra kattintana."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "The text tool is more intuitive to use, with distinct areas on the canvas to "
 "edit, move and insert the text."
 msgstr ""
+"A szöveg eszköz használata egyszerűbbé vált. Ezentúl a vásznon elkülönített "
+"területeken lehet szöveget szerkeszteni, mozgatni és beszúrni."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "A former option of the paint bucket tool, which didn't belong there, has "
 "been improved and moved to the eraser tool."
 msgstr ""
+"A festés eszköz korábbi beállítása, amely nem illett oda, fejlesztve lett, "
+"és átkerült a radír eszközbe."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "Transparency is henceforth correctly preserved when the \"skew\" tool "
 "expands the canvas with a solid color."
 msgstr ""
+"Az átlátszóság ezentúl helyesen megmarad, amikor a ferdítés eszközzel "
+"kiterjesztjük a vásznat egy színnel."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "You can now adjust the position of the canvas when you're cropping it."
-msgstr ""
+msgstr "Mostantól beállíthatjuk a vászon helyzetét, amikor vágjuk azt."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "The option to use a color editor by default has been moved from the main "
 "window to the preferences window, and its bug has been fixed."
 msgstr ""
+"A színszerkesztő használatának alapértelmezett beállítása a főablakból a "
+"beállítások ablakba lett áthelyezve, és a hibája kijavításra került."
 
 #. very generic release notes i use for ALL minor updates, please
 #. translate this one!
@@ -128,17 +148,23 @@ msgid ""
 "transparent pixels with a solid color. Pictures are now automatically "
 "reloaded from the disk after being saved."
 msgstr ""
+"A kép mentése mostantól megbízhatóbb, különösen akkor, ha az átlátszó "
+"képpontok helyére egyszínűeket rak. A képek ezentúl automatikusan "
+"újratöltődnek a lemezről mentés után."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "The user interface of the \"select\" tool changed, as well as the keyboard "
 "shortcuts to change tab."
 msgstr ""
+"A kiválasztás eszköz felhasználói felülete, valamint a lapváltáshoz használt "
+"billentyűparancsok megváltoztak."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "A small rendering issue when previewing a blur filter has also been fixed."
 msgstr ""
+"Javításra került egy apró renderelési probléma a homályszűrő előnézeténél."
 
 #. very generic release notes i use for ALL minor updates, please
 #. translate this one!
@@ -154,6 +180,9 @@ msgid ""
 "By popular demand, the \"highlighter\" tool is now enabled by default, and "
 "the message dialog to warn you about the release notes is less intrusive."
 msgstr ""
+"Közkívánatra a kiemelő eszköz mostantól alapértelmezés szerint "
+"engedélyezett, és a kiadási megjegyzésekre figyelmeztető párbeszédpanel "
+"kevésbé zavaró."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -163,24 +192,35 @@ msgid ""
 "2000%%, scrolling up or down, or left or right, was quite violent. These "
 "problems should all have disappeared in this new version!"
 msgstr ""
+"A fő javítás ebben a frissítésben a nagyítás folyamata. Az 1.0.0-s verzió "
+"óta nagyon mélyre lehetett zoomolni, de a művelet nagyon lassú volt, és a "
+"nézet nem maradt jól középre igazítva az egérmutató körül. Ez a "
+"legszembetűnőbb 2000%%-os nagyításnál volt, amikor oldalra, vagy "
+"függőlegesen görgetett. Ez a probléma ebben az új verzióban megszűnt."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "Incorrect command line parsing when using the app outside of a flatpak "
 "sandbox has also been fixed."
 msgstr ""
+"Javításra került a hibás parancssori feldolgozás is, amikor az alkalmazást a "
+"flatpak sandboxon kívül használták."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "For users on elementary OS, a small issue concerning window resizing has "
 "been mended too."
 msgstr ""
+"Az elementary OS felhasználói számára az ablakok átméretezésével kapcsolatos "
+"apró probléma is javításra került."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "Version 1.0.0 improves rendering performance, which is visible when editing "
 "large images with a poor CPU."
 msgstr ""
+"Az 1.0.0-s verzió javítja a renderelési teljesítményt, ami nagyméretű képek "
+"gyengébb CPU-val történő szerkesztésekor látható."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -188,18 +228,26 @@ msgid ""
 "a parallelogram. Such a deformation can be applied horizontally or "
 "vertically."
 msgstr ""
+"Az új ferdítés eszközzel mostantól képesek vagyunk a képet egy téglalapból "
+"egy paralelogrammává dönteni. Ez a deformáció alkalmazható vízszintesen és "
+"függőlegesen is."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "You can select tools with keyboard accelerators (Alt+letter). This may not "
 "work yet with languages using a non-latin alphabet."
 msgstr ""
+"Mostantól billentyűparanccsal (Alt+betű) is kiválaszthatjuk az aktív "
+"eszközt. Ez a funkció még nem biztos, hogy működik nem latin betűket "
+"használó billentyűzetkiosztásoknál."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "Zooming very deep is now possible, and the rendering will be very crisp, "
 "even at 2000%%."
 msgstr ""
+"Mostantól lehetséges a nagyon mély nagyítás. A renderelés nagyon éles marad "
+"még 2000%%-os nagyításnál is."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -207,6 +255,9 @@ msgid ""
 "do it while using a tool, it may display additional data, for example the "
 "dimensions of the shape you're drawing!"
 msgstr ""
+"A „ctrl” gomb megnyomásával az egérmutató koordinátái egy helyi súgóban "
+"jelennek meg. Ha ezt egy eszköz használata közben tesszük, akkor további "
+"adatokat is megjeleníthetünk, például a rajzolt alakzat méreteit."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -214,32 +265,37 @@ msgid ""
 "such as locking the direction for the \"line\" tool, or changing the filling "
 "style of a shape."
 msgstr ""
+"A „shift” vagy az „alt” billentyű lenyomásával lehetséges egy eszköz "
+"használatakor bizonyos beállítások módosítása, például a vonal eszköz "
+"irányának rögzítése, vagy egy alakzat kitöltési stílusának megváltoztatása."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "Using the \"scale\" tool, you may optionally set the new size as a relative "
 "percentage rather than an absolute value in pixels."
 msgstr ""
+"A méretezés eszközzel az új méretet nem csak képpontokban mért abszolút "
+"értékben, hanem relatív százalékban is beállíthatjuk."
 
 #. Caption of a screenshot, for appstores
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "The window and its primary menu"
-msgstr ""
+msgstr "Az ablak és az elsődleges menüje"
 
 #. Caption of a screenshot, for appstores
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "The selection and the actions associated with it"
-msgstr ""
+msgstr "A kiválasztás és a hozzá kapcsolódó műveletek"
 
 #. Caption of a screenshot, for appstores
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "Zooming in various shapes"
-msgstr ""
+msgstr "Külöböző alakzatokra való nagyítás"
 
 #. Caption of a screenshot, for appstores
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid "The \"new image\" menu opened"
-msgstr ""
+msgstr "Az „Új kép” menü megnyitva"
 
 #: src/ui/app-menus.ui
 msgid "File"
@@ -276,7 +332,7 @@ msgstr "Képtulajdonságok"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Reset canvas"
-msgstr ""
+msgstr "Vászon alaphelyzetbe állítása"
 
 #: src/ui/app-menus.ui src/ui/headerbar.ui src/ui/headerbar-eos.ui
 #: src/ui/shortcuts.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
@@ -285,15 +341,14 @@ msgid "Save"
 msgstr "Mentés"
 
 #: src/ui/app-menus.ui src/ui/win-menus.ui
-#, fuzzy
 msgid "Save without transparency"
-msgstr "Átlátszóság"
+msgstr "Mentés átlátszó képpontok nélkül"
 
 #. This "feature" is only visible on April Fools' day, and it
 #. will just rickroll the user.
 #: src/ui/app-menus.ui src/ui/win-menus.ui
 msgid "Prepare as NFT…"
-msgstr ""
+msgstr "NFT-ként való előkészítés…"
 
 #: src/ui/app-menus.ui src/ui/headerbar-eos.ui src/ui/win-menus.ui
 #: src/saving_manager.py
@@ -308,7 +363,7 @@ msgstr "Exportálás…"
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/toolbar.ui
 #: src/ui/toolbar-symbolic.ui src/ui/win-menus.ui
 msgid "Copy to clipboard"
-msgstr ""
+msgstr "Másolás a vágólapra"
 
 #: src/ui/app-menus.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
 #: src/ui/win-menus.ui
@@ -448,41 +503,37 @@ msgstr "Ugrás jobbra"
 #. canvas. The "go left" action only goes a few centimeters
 #. to the left, but this one goes all the way left.
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
-#, fuzzy
 msgid "Go to the left end"
-msgstr "Vissza a palettához"
+msgstr "A bal oldalára"
 
 #. Context: this action scrolls to the top of the canvas
 #. The "go up" action only goes a few centimeters up, but
 #. this one goes all the way to the top.
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Go to the top"
-msgstr ""
+msgstr "A tetejére"
 
 #. Context: this action scrolls to the bottom of the canvas
 #. The "go down" action only goes a few centimeters down,
 #. but this one goes all the way to the bottom.
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Go to the bottom"
-msgstr ""
+msgstr "Az aljára"
 
 #. Context: this action scrolls to the right end of the
 #. canvas. The "go right" action only goes a few centimeters
 #. to the right, but this one goes all the way right.
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
-#, fuzzy
 msgid "Go to the right end"
-msgstr "Forgatás jobbra"
+msgstr "A jobb oldalára"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
-#, fuzzy
 msgid "Tab at the left"
-msgstr "Vissza a palettához"
+msgstr "Bal oldali lap"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
-#, fuzzy
 msgid "Tab at the right"
-msgstr "Forgatás jobbra"
+msgstr "Jobb oldali lap"
 
 #: src/ui/app-menus.ui
 msgid "Refresh"
@@ -491,21 +542,19 @@ msgstr "Frissítés"
 #. Label shown only in developer mode
 #: src/ui/app-menus.ui
 msgid "Track framerate"
-msgstr ""
+msgstr "A képfrissítési ráta nyomon követése"
 
 #: src/ui/app-menus.ui
-#, fuzzy
 msgid "Dark theme variant"
-msgstr "Alapértelmezett szélesség"
+msgstr "Sötét témavariáns"
 
 #: src/ui/app-menus.ui
-#, fuzzy
 msgid "Show the menu-bar"
-msgstr "Előnézet megjelenítése"
+msgstr "A menüsor megjelenítése"
 
 #: src/ui/app-menus.ui
 msgid "Hide toolbars"
-msgstr ""
+msgstr "A menüsor elrejtése"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
 msgid "Fullscreen"
@@ -516,14 +565,12 @@ msgid "Colors"
 msgstr "Színek"
 
 #: src/ui/app-menus.ui
-#, fuzzy
 msgid "Edit Main Color…"
-msgstr "Elsődleges szín"
+msgstr "Elsődleges szín szerkesztése…"
 
 #: src/ui/app-menus.ui
-#, fuzzy
 msgid "Edit Secondary Color…"
-msgstr "Másodlagos szín"
+msgstr "Másodlagos szín szerkesztése…"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 #: src/optionsbars/classic/optionsbar-classic.ui
@@ -531,35 +578,31 @@ msgid "Exchange colors"
 msgstr "Színek megcserélése"
 
 #: src/ui/app-menus.ui
-#, fuzzy
 msgid "Color application mode"
-msgstr "Színválasztó"
+msgstr "Színalkalmazási mód"
 
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
-#, fuzzy
 msgid "Normal"
-msgstr "Formátum"
+msgstr "Normál"
 
 #. Context: possible ways to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/classic/optionsbar-operator-menus.ui
-#, fuzzy
 msgid "Highlight"
-msgstr "Magasság"
+msgstr "Kiemelés"
 
 #. Context: a possible way to highlight text
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-operator-menus.ui
 #: src/tools/ui/tool-highlight.ui src/tools/classic_tools/tool_highlight.py
-#, fuzzy
 msgid "Dark text on light background"
-msgstr "Alapértelmezett háttér"
+msgstr "Sötét szöveg világos háttéren"
 
 #. Context: a possible way to highlight text
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-operator-menus.ui
 #: src/tools/ui/tool-highlight.ui src/tools/classic_tools/tool_highlight.py
 msgid "Light text on dark background"
-msgstr ""
+msgstr "Világos szöveg sötét háttéren"
 
 #. Context: possible ways to apply the color to the canvas, using
 #. only some specific dimension(s) of the selected color in its
@@ -567,47 +610,43 @@ msgstr ""
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/classic/optionsbar-operator-menus.ui
 msgid "HSL modes"
-msgstr ""
+msgstr "HSL színmegadási módok"
 
 #. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/classic/optionsbar-operator-menus.ui
-#, fuzzy
 msgid "Hue only"
-msgstr "Csak menüsor"
+msgstr "Csak árnyalat"
 
 #. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/classic/optionsbar-operator-menus.ui
-#, fuzzy
 msgid "Saturation only"
-msgstr "Telítettség"
+msgstr "Csak telítettség"
 
 #. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/classic/optionsbar-operator-menus.ui
-#, fuzzy
 msgid "Hue and saturation"
-msgstr "Telítettség"
+msgstr "Árnyalat és telítettség"
 
 #. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/classic/optionsbar-operator-menus.ui
 msgid "Luminosity only"
-msgstr ""
+msgstr "Csak fényerősség"
 
 #. Context: possible ways to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/classic/optionsbar-operator-menus.ui
 msgid "Other modes"
-msgstr ""
+msgstr "Egyéb módok"
 
 #. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/classic/optionsbar-operator-menus.ui
-#, fuzzy
 msgid "Raw source color"
-msgstr "Forrás szín"
+msgstr "Nyers forrásszín"
 
 #. Context: a possible way to apply the color to the canvas
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
@@ -617,13 +656,12 @@ msgstr "Különbség"
 
 #: src/ui/app-menus.ui
 msgid "Don't use the colors but…"
-msgstr ""
+msgstr "Ne használja a színeket, de…"
 
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
 #: src/optionsbars/classic/optionsbar-color-popover.ui
-#, fuzzy
 msgid "Erase"
-msgstr "Radír"
+msgstr "Törlés"
 
 #: src/ui/app-menus.ui src/ui/preferences.ui src/ui/shortcuts.ui
 msgid "Tools"
@@ -631,11 +669,11 @@ msgstr "Eszközök"
 
 #: src/ui/app-menus.ui
 msgid "Previous tool"
-msgstr "Előző szeköz"
+msgstr "Előző eszköz"
 
 #: src/ui/app-menus.ui
 msgid "Active tool"
-msgstr ""
+msgstr "Aktív eszköz"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
 #: src/preferences.py
@@ -644,28 +682,25 @@ msgstr "Eszközök neveinek megjelenítése"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
 msgid "Bigger width"
-msgstr ""
+msgstr "Nagyobb szélesség"
 
 #: src/ui/app-menus.ui src/ui/shortcuts.ui
-#, fuzzy
 msgid "Smaller width"
-msgstr "Alapértelmezett szélesség"
+msgstr "Kisebb szélesség"
 
 #: src/ui/app-menus.ui
 msgid "Troubleshoot selection"
-msgstr "Hibakeresés"
+msgstr "Kiválasztás hibáinak javítása"
 
 #: src/ui/app-menus.ui
 #: src/optionsbars/transform/abstract-optionsbar-transform.ui
-#, fuzzy
 msgid "Cancel transformation"
-msgstr "Súgó az eszközökről"
+msgstr "Átalakítás elvetése"
 
 #: src/ui/app-menus.ui
 #: src/optionsbars/transform/abstract-optionsbar-transform.ui
-#, fuzzy
 msgid "Apply transformation"
-msgstr "Súgó az eszközökről"
+msgstr "Átalakítás alkalmazása"
 
 #: src/ui/app-menus.ui
 msgid "Options"
@@ -686,45 +721,40 @@ msgstr "Hibajelentés küldése"
 #. Context: open the index of all help pages
 #: src/ui/app-menus.ui
 msgid "Index"
-msgstr "Index"
+msgstr "Névmutató"
 
 #. Context: submenu listing individual help pages
 #: src/ui/app-menus.ui
 msgid "Individual pages"
-msgstr ""
+msgstr "Különálló oldalak"
 
 #. Context: open the help page about general use of the app
 #: src/ui/app-menus.ui
 msgid "Basic help"
-msgstr "Súgó"
+msgstr "Súgó az alapokról"
 
 #: src/ui/app-menus.ui src/ui/minimap.ui
-#, fuzzy
 msgid "Help about zooming"
-msgstr "Súgó az eszközökről"
+msgstr "Súgó a nagyításról"
 
 #: src/ui/app-menus.ui
-#, fuzzy
 msgid "Help about the full-screen mode"
-msgstr "Belépés a teljes képernyős módba"
+msgstr "Súgó a teljes képernyős módról"
 
 #: src/ui/app-menus.ui
-#, fuzzy
 msgid "Help about classic tools"
-msgstr "Súgó az eszközökről"
+msgstr "Súgó a klasszikus eszközökről"
 
 #: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-color-popover.ui
-#, fuzzy
 msgid "Help about colors"
-msgstr "Súgó az eszközökről"
+msgstr "Súgó a színekről"
 
 #. Context: open the help page about transformation tools (crop,
 #. scale, rotate, filters, ...
 #: src/ui/app-menus.ui
 #: src/optionsbars/transform/abstract-optionsbar-transform.ui
-#, fuzzy
 msgid "Help about transformation tools"
-msgstr "Súgó az eszközökről"
+msgstr "Súgó az átalakító eszközökről"
 
 #: src/ui/app-menus.ui src/optionsbars/selection/optionsbar-selection.ui
 msgid "Help about selection"
@@ -732,11 +762,11 @@ msgstr "Súgó a kiválasztásról"
 
 #: src/ui/app-menus.ui
 msgid "What's new"
-msgstr ""
+msgstr "Újdonságok"
 
 #: src/ui/app-menus.ui src/ui/win-menus.ui
 msgid "About Drawing"
-msgstr "Rajzolás alkalmazás névjegye"
+msgstr "Rajzoló alkalmazás névjegye"
 
 #: src/ui/headerbar.ui src/ui/headerbar-eos.ui src/ui/toolbar.ui
 #: src/ui/toolbar-symbolic.ui src/window.py
@@ -745,16 +775,15 @@ msgstr "Megnyitás"
 
 #: src/ui/headerbar-eos.ui
 msgid "Share the image"
-msgstr ""
+msgstr "Kép megosztása"
 
 #: src/ui/image.ui
 msgid "The image changed on the disk, do you want to reload it?"
-msgstr ""
+msgstr "A képfájl megváltozott a lemezen. Szeretné újratölteni?"
 
 #: src/ui/image.ui
-#, fuzzy
 msgid "Reload"
-msgstr "Fájl újratöltése"
+msgstr "Újratöltés"
 
 #: src/ui/minimap.ui
 msgid "100%"
@@ -762,7 +791,7 @@ msgstr "100%"
 
 #: src/ui/minimap.ui src/ui/shortcuts.ui
 msgid "Maximum zoom"
-msgstr ""
+msgstr "Maximális nagyítás"
 
 #: src/ui/new-image-dialog.ui src/ui/properties.ui
 #: src/optionsbars/transform/optionsbar-crop.ui
@@ -777,9 +806,8 @@ msgid "Height"
 msgstr "Magasság"
 
 #: src/ui/new-image-dialog.ui
-#, fuzzy
 msgid "Color"
-msgstr "Színek"
+msgstr "Szín"
 
 #: src/ui/new-image-dialog.ui
 msgid "Use these settings by default"
@@ -790,9 +818,8 @@ msgid "Images"
 msgstr "Képek"
 
 #: src/ui/preferences.ui
-#, fuzzy
 msgid "Window"
-msgstr "Új ablak"
+msgstr "Ablak"
 
 #. To translators: it's a measure unit, it appears in tooltips over
 #. numerical inputs
@@ -836,7 +863,7 @@ msgstr "Forgatás"
 #: src/ui/selection-manager.ui src/preferences.py
 #: src/tools/transform_tools/tool_skew.py
 msgid "Skew"
-msgstr ""
+msgstr "Ferdítés"
 
 #: src/ui/selection-manager.ui src/tools/transform_tools/tool_filters.py
 msgid "Filters"
@@ -848,23 +875,21 @@ msgstr "További műveletek"
 
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
-#, fuzzy
 msgid "Invert selection"
-msgstr "Szabad kijelölés"
+msgstr "A kiválasztás invertálása"
 
 #. Define the image as being the currently selected area
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
-#, fuzzy
 msgid "Define as current image"
-msgstr "Képfájl megnyitása"
+msgstr "Meghatározás jelenlegi képként"
 
 #. Expand the canvas of the current image to make the current selection fit in it.
 #. Can be translated as "Expand to this size".
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 msgid "Expand image to fit"
-msgstr ""
+msgstr "Kép átméretezése a kiválasztott terület méretére"
 
 #: src/ui/selection-manager.ui
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
@@ -872,7 +897,6 @@ msgid "Open As New Image"
 msgstr "Megnyitás új képként"
 
 #: src/ui/shortcuts.ui
-#, fuzzy
 msgid "Keyboard Shortcuts"
 msgstr "Gyorsbillentyűk"
 
@@ -885,9 +909,8 @@ msgid "Main menu"
 msgstr "Főmenü"
 
 #: src/ui/shortcuts.ui
-#, fuzzy
 msgid "Toggle the menu-bar"
-msgstr "Előnézet megjelenítése"
+msgstr "A menüsor megjelenítése/elrejtése"
 
 #: src/ui/shortcuts.ui
 msgid "Image"
@@ -899,7 +922,7 @@ msgstr "Kép megnyitása"
 
 #: src/ui/shortcuts.ui
 msgid "Reload image from disk"
-msgstr ""
+msgstr "Kép újratöltése a lemezről"
 
 #: src/ui/shortcuts.ui src/saving_manager.py
 msgid "Save picture as…"
@@ -910,9 +933,8 @@ msgid "Close the active image"
 msgstr "Aktív képnézet bezárása"
 
 #: src/ui/shortcuts.ui
-#, fuzzy
 msgid "Open the tool options menu"
-msgstr "Beállítások menü"
+msgstr "Az eszköz beállításainak megnyitása"
 
 #: src/ui/shortcuts.ui
 msgid "Back to previous tool"
@@ -920,7 +942,7 @@ msgstr "Vissza az előző eszközhöz"
 
 #: src/ui/shortcuts.ui
 msgid "Apply a transformation"
-msgstr ""
+msgstr "Átalakítás alkalmazása"
 
 #: src/ui/shortcuts.ui
 msgid "Toggle the preview"
@@ -952,7 +974,7 @@ msgstr "Másodlagos szín szerkesztése (jobb kattintás)"
 
 #: src/ui/shortcuts.ui
 msgid "History"
-msgstr ""
+msgstr "Előzmények"
 
 #. Context: this section of the shortcuts window is about moving
 #. the view to the left/right/top/bottom
@@ -962,25 +984,23 @@ msgstr "Navigáció"
 
 #: src/ui/shortcuts.ui
 msgid "Tabs"
-msgstr ""
+msgstr "Lapok"
 
 #: src/ui/shortcuts.ui
-#, fuzzy
 msgid "Toggle fullscreen mode"
-msgstr "Belépés a teljes képernyős módba"
+msgstr "Belépés/kilépés a teljes képernyős módból"
 
 #: src/ui/shortcuts.ui
 msgid "Toggle toolbars visibility"
-msgstr ""
+msgstr "Az eszköztár elrejtése/mutatása"
 
 #: src/ui/shortcuts.ui
 msgid "Touch gestures"
-msgstr ""
+msgstr "Érintéses mozdulatok"
 
 #: src/ui/window.ui src/deco_manager.py
-#, fuzzy
 msgid "Loading…"
-msgstr "%s fájl betöltése"
+msgstr "Betöltés…"
 
 #: src/ui/window.ui
 msgid "Exit fullscreen"
@@ -988,16 +1008,16 @@ msgstr "Kilépés a teljes képernyős módból"
 
 #: src/ui/win-menus.ui
 msgid "What's new in Drawing"
-msgstr ""
+msgstr "Újdonságok a Rajzoló alkalmazásban"
 
 #: src/ui/win-menus.ui
 msgid "Dismiss"
-msgstr ""
+msgstr "Elutasítás"
 
 #: src/deco_manager.py
 #, python-format
 msgid "Undo %s"
-msgstr "„%s” _visszavonása"
+msgstr "„%s” visszavonása"
 
 #: src/deco_manager.py
 #, python-format
@@ -1007,18 +1027,18 @@ msgstr "„%s” újra"
 #. Context: an error message
 #: src/history_manager.py
 msgid "Attempt to save an invalid state"
-msgstr ""
+msgstr "Érvénytelen állapot mentésének kísérlete"
 
 #: src/history_manager.py
 #, python-format
 msgid "Error: no tool '%s'"
-msgstr ""
+msgstr "Hiba: nem létezik „%s” nevű eszköz"
 
 #. Context: an error message
 #: src/image.py
 #, python-format
 msgid "New pixbuf empty, no change applied to %s"
-msgstr ""
+msgstr "Az új rajzlap üres. Nem történt változtatás itt: %s"
 
 #: src/image.py src/properties.py
 msgid "Unsaved file"
@@ -1028,13 +1048,12 @@ msgstr "Mentetlen fájl"
 #: src/image.py
 #, python-format
 msgid "%s frames per second"
-msgstr ""
+msgstr "%s képkocka másodpercenként"
 
 #. Description of a command line option
 #: src/main.py
-#, fuzzy
 msgid "Show the app version"
-msgstr "Előnézet megjelenítése"
+msgstr "Alkalmazásverzió mutatása"
 
 #. Description of a command line option
 #: src/main.py
@@ -1053,44 +1072,43 @@ msgstr "Kép szerkesztése a vágólapról"
 
 #: src/main.py
 msgid "This version isn't stable!"
-msgstr ""
+msgstr "Ez a verzió nem tekinthető stabilnak!"
 
 #: src/main.py
-#, fuzzy
 msgid "Report bugs or ideas"
-msgstr "Hibajelentés küldése"
+msgstr "Hibák vagy ötletek jelentése a fejlesztőknek"
 
 #. To tranlators: "translate" this by a list of your names (one name
 #. per line), they will be displayed in the "about" dialog
 #: src/main.py
 msgid "translator-credits"
-msgstr "Kálmán „KAMI” Szalai <kami911@gmail.com>, 2019"
+msgstr ""
+"Kálmán „KAMI” Szalai <kami911@gmail.com>, 2019\n"
+"Bence „BeanieBarrow” Bődi <bodi.bence@proton.me>, 2025"
 
 #. To translators: this is credits for the icons, consider that "Art
 #. Libre" is proper name
 #: src/main.py
 msgid "GNOME's \"Art Libre\" icon set authors"
-msgstr ""
+msgstr "A GNOME-projekt „Art Libre” nevű ikonszettjének készítői"
 
 #: src/main.py
 msgid "Simple image editor for Linux"
-msgstr ""
+msgstr "Egy egyszerű képszerkesztő Linuxra"
 
 #: src/main.py
 msgid "Official webpage"
 msgstr "Hivatalos weboldal"
 
 #: src/main.py
-#, fuzzy
 msgid "Error opening this file."
-msgstr ""
-"Hiba történt a fájl megnyitása során. Próbálja meg a(z) %s fájlt megnyitni?"
+msgstr "Hiba történt a fájl megnyitása során."
 
 #. This is an error message, %s is a better command suggestion
 #: src/main.py
 #, python-format
 msgid "Did you mean %s ?"
-msgstr ""
+msgstr "Így értette: „%s”?"
 
 #. This string displays the zoom level: %s will be replaced with a
 #. number, while %% will be rendered as the symbol '%'
@@ -1133,9 +1151,8 @@ msgstr "Alapértelmezett magasság"
 #: src/tools/ui/tool-crop.ui src/tools/ui/tool-eraser.ui
 #: src/tools/classic_tools/erasers/eraser_area.py
 #: src/tools/classic_tools/erasers/eraser_rubber.py
-#, fuzzy
 msgid "Default color"
-msgstr "Alapértelmezett háttér"
+msgstr "Alapértelmezett szín"
 
 #. Context: title of a section of the preferences
 #: src/preferences.py
@@ -1144,17 +1161,15 @@ msgstr "Képek mentése"
 
 #: src/preferences.py
 msgid "JPEG and BMP images can't handle transparency."
-msgstr ""
+msgstr "A JPEG és a BMP-képek nem tudják az átlátszó képpontokat kezelni."
 
 #: src/preferences.py
-#, fuzzy
 msgid ""
 "If you save your images in these formats, what do want to use to replace "
 "transparent pixels?"
 msgstr ""
-"A JPEG és BMP fájlformátumok nem támogatják az átlátszóságot. Amennyiben "
-"ilyen formátumban menti a képeket, milyen színre legyenek lecserélve az "
-"átlátszó képpontok?"
+"Ha ezekben a formátumokban menti a képeit, mivel helyettesítse a program az "
+"átlátszó képpontokat?"
 
 #: src/preferences.py src/saving_manager.py src/utilities/utilities_colors.py
 msgid "White"
@@ -1174,7 +1189,7 @@ msgstr "Kockás"
 #. means the alpha channel is just removed.
 #: src/preferences.py src/saving_manager.py
 msgid "Nothing"
-msgstr ""
+msgstr "Semmi"
 
 #: src/preferences.py
 msgid "Ask before saving"
@@ -1183,14 +1198,16 @@ msgstr "Kérdés mentés előtt"
 #: src/preferences.py
 msgid "You can zoom with Ctrl+scrolling, or only scrolling."
 msgstr ""
+"A nagyítás lehetséges a Ctrl+görgő kombinációval, vagy csak a görgő "
+"használatával."
 
 #: src/preferences.py
 msgid "See the user help manual for explanations."
-msgstr ""
+msgstr "A magyarázatokért nézze meg a súgót."
 
 #: src/preferences.py
 msgid "Use 'Ctrl' to zoom"
-msgstr ""
+msgstr "Használja a <Ctrl> billentyűt a nagyításhoz"
 
 #. Context: title of a section of the preferences (appearance of the
 #. tools: big icons?, labels?)
@@ -1225,12 +1242,12 @@ msgstr "Radír"
 #. highlight text, for example in screenshots
 #: src/preferences.py src/tools/classic_tools/tool_highlight.py
 msgid "Highlighter"
-msgstr ""
+msgstr "Kiemelő"
 
 #: src/preferences.py src/tools/classic_tools/tool_brush.py
 #: src/tools/classic_tools/brushes/abstract_brush.py
 msgid "Brush"
-msgstr ""
+msgstr "Ecset"
 
 #. Context: this is the name of a tool to draw little circles, crosses,
 #. or squares at precise points of the image, for example to draw a vague
@@ -1239,7 +1256,7 @@ msgstr ""
 #. the elements of an image.
 #: src/preferences.py src/tools/classic_tools/tool_points.py
 msgid "Points"
-msgstr ""
+msgstr "Pontok"
 
 #. Context: this is a tool to select an area according to a shape that
 #. can be freely defined by the user.
@@ -1268,13 +1285,12 @@ msgstr "Festés"
 #. Context: the color editor is an interface to pick any RGBA color, and
 #. it can be used instead of the default simple RGB palette
 #: src/preferences.py
-#, fuzzy
 msgid "Use color editor by default"
-msgstr "Alapértelmezett szín szerkesztő"
+msgstr "Színszerkesztő használata alapértelmezetten"
 
 #: src/preferences.py
 msgid "You can use a simple color palette, or use a full RGBA color editor."
-msgstr ""
+msgstr "Használhat egyszerű színpalettát vagy teljes RGBA színszerkesztőt."
 
 #. Context: title of a section of the preferences
 #: src/preferences.py
@@ -1288,16 +1304,15 @@ msgstr "Előnézet mérete"
 #. This label will not be displayed in the UI of stable versions
 #: src/preferences.py
 msgid "Development features"
-msgstr "Fejlesztés"
+msgstr "Fejlesztési funkciók"
 
 #: src/preferences.py
 msgid "Background color"
 msgstr "Háttérszín"
 
 #: src/preferences.py
-#, fuzzy
 msgid "Prefer dark theme variant"
-msgstr "Alapértelmezett szélesség"
+msgstr "A sötét téma alkalmazása, amennyiben lehetséges"
 
 #. Context: title of a section of the preferences. It corresponds to the
 #. window layout (header-bar? tool-bar? menu-bar?)
@@ -1320,7 +1335,7 @@ msgstr "Tömör"
 
 #: src/preferences.py
 msgid "elementary OS"
-msgstr ""
+msgstr "elementary OS"
 
 #. "Legacy" is about the window layout, it means menubar+toolbar, you
 #. can translate it like if it was "Traditional"
@@ -1351,17 +1366,17 @@ msgstr "Csak eszköztár (szimbolikus ikonok)"
 #: src/properties.py
 #, python-format
 msgid "%s px"
-msgstr ""
+msgstr "%s px"
 
 #: src/properties.py
 #, python-format
 msgid "%s cm"
-msgstr ""
+msgstr "%s cm"
 
 #: src/properties.py
 #, python-format
 msgid "%s in"
-msgstr ""
+msgstr "%s in"
 
 #. Context: the path of the edited file
 #: src/properties.py
@@ -1385,21 +1400,20 @@ msgstr "Érvénytelen formátuma"
 #. an actual error occurred!
 #. Context: an error message
 #: src/saving_manager.py
-#, fuzzy
 msgid "Failed to replace transparency"
-msgstr "Átlátszóság helyettesítése ezzel:"
+msgstr "Az átlátzóság helyettesítése meghiúsult"
 
 #. Context: an error message
 #: src/saving_manager.py
 #, python-format
 msgid "Failed to save %s"
-msgstr "%s mentése meghiúsult"
+msgstr "„%s” mentése meghiúsult"
 
 #. Context: an error message
 #: src/saving_manager.py
-#, fuzzy, python-format
+#, python-format
 msgid "Failed to reload %s"
-msgstr "Nem sikerült betölteni az eszközt: %s"
+msgstr "„%s” újratöltése meghiúsult"
 
 #. Context: Untitled(.png) is the default name of a newly saved file
 #: src/saving_manager.py
@@ -1426,37 +1440,37 @@ msgid ""
 "A part of the image is selected: the pixels beneath the selection will be "
 "saved with a color you might not expect!"
 msgstr ""
+"A kép egy része ki van jelölve. A kijelölt terület alatti képpontok nem "
+"biztos, hogy egy elvárt színnel lesznek elmentve."
 
 #. Context: the user tries to save the image while previewing an
 #. unapplied "transform" operation (scaling, cropping, whatever)
 #: src/saving_manager.py
 msgid "Modifications from the current tool haven't been applied."
-msgstr ""
+msgstr "Az aktuális eszköz módosításai még nem kerültek alkalmazásra."
 
 #. To translators: this string should be quite short
 #: src/saving_manager.py
 msgid "Apply & save"
-msgstr ""
+msgstr "Alkalmazás és mentés"
 
 #. To translators: this string should be quite short
 #: src/saving_manager.py
-#, fuzzy
 msgid "Deselect & save"
-msgstr "Kijelölések megszüntetése"
+msgstr "Kijelölések megszüntetése és mentés"
 
 #: src/saving_manager.py
 msgid "Save anyway"
-msgstr ""
+msgstr "Mentés mindenképpen"
 
 #: src/saving_manager.py
-#, fuzzy
 msgid "Do you want to save anyway?"
-msgstr "Hova kívánja megnyitni a(z) %s képfájlt?"
+msgstr "Mindenképpen menteni szeretne?"
 
 #. Context: confirm replacing transparent pixels with the selected color
 #: src/saving_manager.py
 msgid "Replace"
-msgstr ""
+msgstr "Helyettesítés"
 
 #: src/saving_manager.py
 msgid "This file format doesn't support transparent colors."
@@ -1465,6 +1479,8 @@ msgstr "Ez a fájlformátum nem támogatja az átlátszó „színt”."
 #: src/saving_manager.py
 msgid "You can save the image as a PNG file, or replace transparency with:"
 msgstr ""
+"A képet elmentheti PNG-fájlként, vagy helyettesítheti az átlátszó "
+"területeket ezzel:"
 
 #: src/saving_manager.py
 msgid "Replace transparency with:"
@@ -1473,11 +1489,11 @@ msgstr "Átlátszóság helyettesítése ezzel:"
 #. Context: an error message
 #: src/selection_manager.py
 msgid "The selection pixbuf is empty."
-msgstr ""
+msgstr "A kiválasztott rajzlap üres."
 
 #: src/selection_manager.py
 msgid "The selection path is empty."
-msgstr ""
+msgstr "A kijelölési útvonal üres."
 
 #. Context: an error message
 #: src/tools_initializer.py
@@ -1488,29 +1504,28 @@ msgstr "Nem sikerült betölteni az eszközt: %s"
 #: src/window.py
 msgid "Error starting the application, please report this bug."
 msgstr ""
-"Hiba lépett fel az alkalmazás elindítása során. Kérem jelentse be ezt a "
+"Hiba lépett fel az alkalmazás elindítása során. Kérjük, jelentse be ezt a "
 "hibát a fejlesztőknek!"
 
 #: src/window.py
 msgid "The clipboard doesn't contain any image."
-msgstr ""
+msgstr "A vágólap nem tartalmaz képet."
 
 #. Context: %s is a file name
 #: src/window.py
 #, python-format
 msgid "The file %s is already opened"
-msgstr ""
+msgstr "A(z) „%s” fájl már meg van nyitva"
 
 #. Context: the user would click here to confirm they want to open the
 #. same file twice
 #: src/window.py
-#, fuzzy
 msgid "Open again"
-msgstr "Képfájl megnyitása"
+msgstr "Megnyitás újból"
 
 #: src/window.py
 msgid "Switch to this image"
-msgstr ""
+msgstr "Váltás erre a képre"
 
 #: src/window.py
 msgid "Modifications will take effect in the next new window."
@@ -1520,24 +1535,25 @@ msgstr ""
 #: src/window.py
 msgid "Middle-click or press F8 to show/hide controls."
 msgstr ""
+"A vezérlőelemek megjelenítéséhez és elrejtéséhez használja a középső "
+"egérgombot vagy az F8 billentyűt."
 
 #: src/window.py
-#, fuzzy
 msgid "Press F11 to exit fullscreen."
-msgstr "Kilépés a teljes képernyős módból"
+msgstr "Az F11 gomb lenyomásával kiléphet a teljes képernyős módból."
 
 #: src/window.py
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Error loading the bottom pane for the tool '%s', please report this bug."
 msgstr ""
-"Hiba lépett fel az alkalmazás elindítása során. Kérem jelentse be ezt a "
-"hibát a fejlesztőknek!"
+"A(z) %s eszköz alsó lapjának betöltésekor hiba lépett fel. Kérjük, jelentse "
+"ezt a hibát a fejlesztőknek!"
 
 #: src/window.py
 #, python-format
 msgid "Loading %s"
-msgstr "%s fájl betöltése"
+msgstr "„%s” fájl betöltése"
 
 #: src/window.py
 msgid "New Tab"
@@ -1551,7 +1567,7 @@ msgstr "Módosítások elvetése"
 #: src/window.py
 #, python-format
 msgid "Where do you want to open %s?"
-msgstr "Hova kívánja megnyitni a(z) %s képfájlt?"
+msgstr "Hova kívánja megnyitni a(z) „%s” képfájlt?"
 
 #. Context for translation:
 #. "What do you want to do with *these files*?"
@@ -1564,21 +1580,19 @@ msgstr "ezek a fájlok"
 #: src/window.py
 #, python-format
 msgid "What do you want to do with %s?"
-msgstr "Mit szeretne tenni a(z) %s képpel?"
+msgstr "Mit szeretne tenni a(z) „%s” képpel?"
 
 #: src/window.py
-#, fuzzy
 msgid "Image copied to clipboard"
-msgstr "Kép szerkesztése a vágólapról"
+msgstr "Kép vágólapra másolva"
 
 #: src/window.py
 msgid "Import a picture"
 msgstr "Kép importálása"
 
 #: src/window.py
-#, fuzzy
 msgid "Required tool is not available"
-msgstr "Teljes képernyős mód elérhető."
+msgstr "A szükséges eszköz nem elérhető."
 
 #: src/utilities/utilities_colors.py
 msgid "Transparent"
@@ -1650,7 +1664,7 @@ msgstr "Talán türkizkék"
 #. clear definition. Here, the app can't find a corresponding color name.
 #: src/utilities/utilities_colors.py
 msgid "Unknown color name"
-msgstr "Ismeretlen szín név"
+msgstr "Ismeretlen színnév"
 
 #: src/utilities/utilities_files.py
 msgid "All pictures"
@@ -1669,19 +1683,19 @@ msgid "BMP images"
 msgstr "BMP-képek"
 
 #: src/utilities/utilities_files.py
-#, fuzzy, python-format
+#, python-format
 msgid "%s isn't an image."
-msgstr "Képfájl megnyitása"
+msgstr "A(z) „%s” fájl nem egy kép."
 
 #: src/utilities/utilities_files.py
 msgid "Sorry, WEBP images can't be loaded by this app."
-msgstr ""
+msgstr "Sajnáljuk, a WEBP-képek nem tölthetők be ezzel az alkalmazással."
 
 #. Context: an error message, %s is a file path
 #: src/utilities/utilities_files.py
 #, python-format
 msgid "Despite its name, %s is a WEBP file."
-msgstr ""
+msgstr "A nevével ellentétben a(z) „%s” egy WEBP-fájl."
 
 #: src/utilities/utilities_paths.py
 msgid "Continue"
@@ -1710,16 +1724,14 @@ msgstr "százalék"
 #. To translators: it's the angle measure unit, it appears in a tooltip
 #. over a numerical input
 #: src/utilities/utilities_units.py
-#, fuzzy
 msgid "degrees"
-msgstr "Szög (fok)"
+msgstr "szög (fok)"
 
 #. Context: this is equivalent to "Highlight: Light text on dark background"
 #. but it has to be FAR SHORTER so it fits in the color chooser
 #: src/optionsbars/classic/optionsbar_color_popover.py
-#, fuzzy
 msgid "Highlight (dark)"
-msgstr "Magasság"
+msgstr "Kiemelés (sötét)"
 
 #: src/optionsbars/classic/optionsbar_color_popover.py
 #: src/tools/ui/tool-shape.ui
@@ -1746,7 +1758,7 @@ msgstr "Nincs beállítás"
 
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "How the color will be applied to the existing pixels"
-msgstr ""
+msgstr "Hogyan hat a szín a meglévő képpontokra"
 
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Back to the palette"
@@ -1754,7 +1766,7 @@ msgstr "Vissza a palettához"
 
 #: src/optionsbars/classic/optionsbar-color-popover.ui
 msgid "Palette"
-msgstr ""
+msgstr "Paletta"
 
 #: src/optionsbars/selection/optionsbar-selection.ui
 msgid "Selection options"
@@ -1763,7 +1775,7 @@ msgstr "Kijelölés beállításai"
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 #: src/tools/ui/tool-eraser.ui
 msgid "Replace with…"
-msgstr ""
+msgstr "Helyettesítés a következővel:"
 
 #: src/optionsbars/selection/optionsbar-selection.ui
 #: src/optionsbars/transform/optionsbar-crop.ui
@@ -1777,7 +1789,7 @@ msgstr "Átlátszóság"
 
 #: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
 msgid "Extract from this color"
-msgstr ""
+msgstr "Kivonat ebből a színből"
 
 #: src/optionsbars/transform/abstract-optionsbar-transform.ui
 msgid "More options"
@@ -1786,7 +1798,7 @@ msgstr "További lehetőségek"
 #: src/optionsbars/transform/optionsbar-crop.ui
 #: src/optionsbars/transform/optionsbar-skew.ui src/tools/ui/tool-crop.ui
 msgid "Expand with…"
-msgstr ""
+msgstr "Bővítés a következővel:"
 
 #: src/optionsbars/transform/optionsbar-filters.ui
 #: src/tools/transform_tools/tool_filters.py
@@ -1819,7 +1831,6 @@ msgstr "Függőleges tükrözés"
 
 #. Context: the title of a menu to chose how the image will be scaled
 #: src/optionsbars/transform/optionsbar-scale.ui src/tools/ui/tool-scale.ui
-#, fuzzy
 msgid "Keep proportions"
 msgstr "Arányok megtartása"
 
@@ -1827,56 +1838,53 @@ msgstr "Arányok megtartása"
 #. Context for translations: "Always [keep proportions]"
 #: src/optionsbars/transform/optionsbar-scale.ui src/tools/ui/tool-scale.ui
 msgid "Always"
-msgstr ""
+msgstr "Mindig"
 
 #. Context: an item in a menu whose title is "Keep proportions"
 #. Context for translations: "[Keep proportions only] when scaling from corners"
 #: src/optionsbars/transform/optionsbar-scale.ui src/tools/ui/tool-scale.ui
 msgid "When scaling from corners"
-msgstr ""
+msgstr "Sarkokból történő méretezéskor"
 
 #. Context for translations: "[Keep proportions only] when setting values manually"
 #: src/optionsbars/transform/optionsbar-scale.ui src/tools/ui/tool-scale.ui
 msgid "When setting values manually"
-msgstr ""
+msgstr "Értékek kézi beállításakor"
 
 #. Context: an item in a menu whose title is "Keep proportions"
 #. Context for translations: "Never [keep proportions]"
 #: src/optionsbars/transform/optionsbar-scale.ui src/tools/ui/tool-scale.ui
 msgid "Never"
-msgstr ""
+msgstr "Soha"
 
 #: src/optionsbars/transform/optionsbar-scale.ui src/tools/ui/tool-scale.ui
-#, fuzzy
 msgid "Pixels"
-msgstr "képpont"
+msgstr "Képpontok"
 
 #: src/optionsbars/transform/optionsbar-scale.ui src/tools/ui/tool-scale.ui
-#, fuzzy
 msgid "Percentage"
-msgstr "százalék"
+msgstr "Százalék"
 
 #: src/optionsbars/transform/optionsbar-skew.ui
-#, fuzzy
 msgid "Horizontal deformation"
-msgstr "Vízszintes színátmenet"
+msgstr "Vízszintes deformáció"
 
 #: src/optionsbars/transform/optionsbar-skew.ui
-#, fuzzy
 msgid "Vertical deformation"
-msgstr "Függőleges színátmenet"
+msgstr "Függőleges deformáció"
 
 #. Context: an error message
 #: src/tools/abstract_tool.py
 #, python-brace-format
 msgid "Can't start operation: wrong tool id (expected {0}, got {1})"
 msgstr ""
+"Nem lehet végrehajtani a műveletet: rossz eszközazonosító (várt: {0}, "
+"kapott: {1})"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui
-#, fuzzy
 msgid "Line shape"
-msgstr "Alakzat"
+msgstr "Vonal alakja"
 
 #. Context: this is the name of a line shape
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
@@ -1894,212 +1902,188 @@ msgstr "Négyzet"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui
-#, fuzzy
 msgid "Outline"
-msgstr "Nincs körvonal"
+msgstr "Körvonal"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui
-#, fuzzy
 msgid "No dashes"
-msgstr "Vonalkázás"
+msgstr "Vonalkák nélkül"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui
-#, fuzzy
 msgid "Simple dashes"
-msgstr "Vonalkázás"
+msgstr "Egyszerű vonalkák"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui
-#, fuzzy
 msgid "Long dashes"
-msgstr "Vonalkázás"
+msgstr "Hosszú vonalkák"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui
-#, fuzzy
 msgid "Short dashes"
-msgstr "Vonalkázás"
+msgstr "Rövid vonalkák"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui
 msgid "Alternated dashes"
-msgstr ""
+msgstr "Váltakozó vonalkák"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
-#, fuzzy
 msgid "No arrow"
-msgstr "Nyíl"
+msgstr "Nyíl nélkül"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
 msgid "Simple arrow"
-msgstr ""
+msgstr "Egyvonalas nyíl"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
-#, fuzzy
 msgid "Double arrow"
-msgstr "Szaggatott nyíl"
+msgstr "Kétvonalas nyíl"
 
 #: src/tools/ui/tool-arc.ui src/tools/ui/tool-brush.ui
 #: src/tools/ui/tool-highlight.ui src/tools/ui/tool-line.ui
 #: src/tools/ui/tool-pencil.ui src/tools/ui/tool-points.ui
 #: src/tools/ui/tool-shape.ui src/tools/ui/tool-text.ui
 msgid "Antialiasing"
-msgstr ""
+msgstr "Élsimítás"
 
 #: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_simple.py
-#, fuzzy
 msgid "Simple brush"
-msgstr "Vonalkázás"
+msgstr "Egyszerű ecset"
 
 #: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_airbrush.py
 msgid "Airbrush"
-msgstr ""
+msgstr "Festékszóró"
 
 #: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_hairy.py
-#, fuzzy
 msgid "Hairy brush"
-msgstr "Vonalkázás"
+msgstr "Szőrös ecset"
 
 #: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_nib.py
 msgid "Calligraphic nib"
-msgstr ""
+msgstr "Kalligrafikus tollhegy"
 
 #: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_nib.py
 msgid "Right-handed nib"
-msgstr ""
+msgstr "Jobbkezes tollhegy"
 
 #: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_nib.py
-#, fuzzy
 msgid "Vertical nib"
-msgstr "Függőleges elmosás"
+msgstr "Függőleges tollhegy"
 
 #: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_nib.py
 msgid "Left-handed nib"
-msgstr ""
+msgstr "Balkezes tollhegy"
 
 #. brush_direction == 'horizontal':
 #: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_nib.py
-#, fuzzy
 msgid "Horizontal nib"
-msgstr "Vízszintes elmosás"
+msgstr "Vízszintes tollhegy"
 
 #: src/tools/ui/tool-eraser.ui src/tools/classic_tools/erasers/eraser_rubber.py
 msgid "Rubber eraser"
-msgstr ""
+msgstr "Gumiradír"
 
 #: src/tools/ui/tool-eraser.ui src/tools/classic_tools/erasers/eraser_area.py
-#, fuzzy
 msgid "Rectangle area"
-msgstr "Téglalap"
+msgstr "Téglalap alakú terület"
 
 #. Context: this feature erases the color where the user clicked.
 #. For example to cut out an object from its solid background.
 #: src/tools/ui/tool-eraser.ui src/tools/classic_tools/erasers/eraser_color.py
-#, fuzzy
 msgid "Remove color"
-msgstr "Forrás szín"
+msgstr "Szín törlése"
 
 #: src/tools/ui/tool-eraser.ui src/tools/classic_tools/erasers/eraser_area.py
 msgid "Blur"
-msgstr "Elmosás"
+msgstr "Homályosítás"
 
 #: src/tools/ui/tool-eraser.ui src/tools/classic_tools/erasers/eraser_area.py
-#, fuzzy
 msgid "Shuffle pixels"
-msgstr "képpont"
+msgstr "Pixelek megkeverése"
 
 #: src/tools/ui/tool-eraser.ui src/tools/classic_tools/erasers/eraser_area.py
 msgid "Shuffle and blur"
-msgstr ""
+msgstr "Megkeverés és homályosítás"
 
 #. Context: a filter to censor the image with some little tiles
 #: src/tools/ui/tool-eraser.ui src/tools/ui/tool-filters.ui
 #: src/tools/classic_tools/erasers/eraser_area.py
 #: src/tools/transform_tools/tool_filters.py
 msgid "Mosaic"
-msgstr ""
+msgstr "Mozaik"
 
 #: src/tools/ui/tool-eraser.ui
-#, fuzzy
 msgid "Solid color"
-msgstr "Másodlagos szín"
+msgstr "Egyszínű"
 
 #: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
-#, fuzzy
 msgid "Change saturation"
-msgstr "Telítettség"
+msgstr "Telítettség megváltoztatása"
 
 #. Context: a filter adding like a light veil on the image
 #: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
 msgid "Veil"
-msgstr ""
+msgstr "Fátyolosítás"
 
 #: src/tools/ui/tool-filters.ui src/tools/ui/tool-highlight.ui
 #: src/tools/transform_tools/tool_filters.py
-#, fuzzy
 msgid "Add transparency"
-msgstr "Átlátszóság"
+msgstr "Átlátszóság hozzáadása"
 
 #: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
 #: src/tools/transform_tools/filters/filter_contrast.py
 msgid "Increase contrast"
-msgstr ""
+msgstr "Kontraszt növelése"
 
 #. Context: the title of the menu with various types of blurring
 #. filters and their options.
 #: src/tools/ui/tool-filters.ui
-#, fuzzy
 msgid "Blurring"
-msgstr "Elmosás"
+msgstr "Homályosítás"
 
 #: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
 msgid "Fast blur"
-msgstr ""
+msgstr "Gyors homályosítás"
 
 #: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
 msgid "Slow blur"
-msgstr ""
+msgstr "Lassú homályosítás"
 
 #: src/tools/ui/tool-filters.ui
-#, fuzzy
 msgid "Blur direction"
-msgstr "Színválasztó"
+msgstr "Homályosítás iránya"
 
 #. Context: about the blur direction
 #: src/tools/ui/tool-filters.ui
-#, fuzzy
 msgid "No direction"
-msgstr "Színválasztó"
+msgstr "Irány nélküli"
 
 #: src/tools/ui/tool-filters.ui
-#, fuzzy
 msgid "Blur horizontally"
-msgstr "Vízszintes tükrözés"
+msgstr "Vízszintes homályosítás"
 
 #: src/tools/ui/tool-filters.ui
-#, fuzzy
 msgid "Blur vertically"
-msgstr "Függőleges tükrözés"
+msgstr "Függőleges homályosítás"
 
 #: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
 msgid "Invert colors"
 msgstr "Színek invertálása"
 
 #: src/tools/ui/tool-highlight.ui
-#, fuzzy
 msgid "Straighten the line"
-msgstr "Kijelölés átméretezése"
+msgstr "Vonal kiegyenesítése"
 
 #: src/tools/ui/tool-line.ui
 msgid "Color gradient"
 msgstr "Színátmenet"
 
 #: src/tools/ui/tool-line.ui
-#, fuzzy
 msgid "Locked direction"
-msgstr "Színválasztó"
+msgstr "Rögzített irány"
 
 #. Context: title for the list of the possible painting algorithms.
 #: src/tools/ui/tool-paint.ui
@@ -2125,13 +2109,12 @@ msgstr "Törlés és csere"
 #. paints over the entire image, instead of following the shapes
 #. already drawn.
 #: src/tools/ui/tool-paint.ui
-#, fuzzy
 msgid "Entire image"
-msgstr "Megnyitott képek"
+msgstr "Egész kép"
 
 #: src/tools/ui/tool-points.ui
 msgid "Dots type"
-msgstr ""
+msgstr "Pontozás típusa"
 
 #: src/tools/ui/tool-points.ui src/tools/ui/tool-shape.ui
 #: src/tools/classic_tools/tool_points.py src/tools/classic_tools/tool_shape.py
@@ -2140,44 +2123,41 @@ msgstr "Kör"
 
 #: src/tools/ui/tool-points.ui src/tools/classic_tools/tool_points.py
 msgid "Cross"
-msgstr ""
+msgstr "Kereszt"
 
 #: src/tools/ui/tool-points.ui src/tools/classic_tools/tool_points.py
 msgid "X-shaped cross"
-msgstr ""
+msgstr "X alakú kereszt"
 
 #: src/tools/ui/tool-points.ui
 msgid "Include a number"
-msgstr ""
+msgstr "Egy szám felvétele"
 
 #: src/tools/ui/tool-points.ui
 msgid "Next number"
-msgstr ""
+msgstr "Következő szám"
 
 #: src/tools/ui/tool-points.ui
 msgid "Reset number"
-msgstr ""
+msgstr "Szám visszaállítása"
 
 #: src/tools/ui/tool-points.ui
 msgid "Decrement number"
-msgstr ""
+msgstr "Szám csökkentése"
 
 #: src/tools/ui/tool-points.ui
 msgid "Increment number"
-msgstr ""
+msgstr "Szám növelése"
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
-#, fuzzy
 msgid "Solid outline"
-msgstr "Nincs körvonal"
+msgstr "Egyszínű körvonal"
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
-#, fuzzy
 msgid "Dashed outline"
-msgstr "Szaggatott nyíl"
+msgstr "Szaggatott körvonal"
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
-#, fuzzy
 msgid "No outline"
 msgstr "Nincs körvonal"
 
@@ -2186,9 +2166,8 @@ msgid "Filling"
 msgstr "Kitöltés"
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
-#, fuzzy
 msgid "Empty shape"
-msgstr "Kiürítés"
+msgstr "Üres alakzat"
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
 msgid "Horizontal gradient"
@@ -2207,9 +2186,8 @@ msgid "Rectangle"
 msgstr "Téglalap"
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
-#, fuzzy
 msgid "Rounded rectangle"
-msgstr "Téglalap"
+msgstr "Lekerekített sarkú téglalap"
 
 #: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
 msgid "Oval"
@@ -2236,9 +2214,8 @@ msgid "Font"
 msgstr "Betűkészlet"
 
 #: src/tools/ui/tool-text.ui
-#, fuzzy
 msgid "Select a font…"
-msgstr "Válassza ki a szűrőt…"
+msgstr "Válassza ki a betűkészletet…"
 
 #: src/tools/ui/tool-text.ui
 msgid "Italic"
@@ -2261,25 +2238,22 @@ msgstr "Nincs háttér"
 #. Context: a type of background behind the inserted text
 #: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
 msgid "Shadow"
-msgstr ""
+msgstr "Árnyék"
 
 #. Context: a type of background behind the inserted text
 #: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
-#, fuzzy
 msgid "Thin outline"
-msgstr "Nincs körvonal"
+msgstr "Vékony körvonal"
 
 #. Context: a type of background behind the inserted text
 #: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
-#, fuzzy
 msgid "Thick outline"
-msgstr "Nincs körvonal"
+msgstr "Vastag körvonal"
 
 #. Context: a type of background behind the inserted text
 #: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
-#, fuzzy
 msgid "Rectangle background"
-msgstr "Alapértelmezett háttér"
+msgstr "Téglalap alakú háttér"
 
 #: src/tools/classic_tools/tool_arc.py
 msgid "Curve"
@@ -2287,11 +2261,11 @@ msgstr "Görbe"
 
 #: src/tools/classic_tools/tool_arc.py
 msgid "Curve options"
-msgstr "Görbe beállítások"
+msgstr "Görbe beállításai"
 
 #: src/tools/classic_tools/tool_arc.py
 msgid "Draw a second segment to complete the curve"
-msgstr ""
+msgstr "A görbe befejezéséhez rajzoljon egy második szegmenst"
 
 #: src/tools/classic_tools/tool_arc.py src/tools/classic_tools/tool_line.py
 msgid "Dashed arrow"
@@ -2310,37 +2284,40 @@ msgstr "Szaggatott"
 #: src/tools/classic_tools/tool_pencil.py
 msgid "Press <Alt> to toggle the 'outline' option"
 msgstr ""
+"Nyomja le az <Alt> billentyűt a „körvonal” beállítás be-, vagy "
+"kikapcsolásához"
 
 #: src/tools/classic_tools/tool_brush.py
-#, fuzzy
 msgid "Brush options"
-msgstr "További lehetőségek"
+msgstr "Ecset beállításai"
 
 #: src/tools/classic_tools/tool_eraser.py
 msgid "Press <Shift> to erase a path instead"
-msgstr ""
+msgstr "Nyomja le a <Shift> billentyűt, hogy ehelyett egy útvonalat töröljön"
 
 #: src/tools/classic_tools/tool_eraser.py
 msgid "Press <Shift> to erase a rectangle area instead"
-msgstr ""
+msgstr "A téglalap alakú terület törléséhez nyomja le a <Shift> billentyűt"
 
 #: src/tools/classic_tools/tool_eraser.py
-#, fuzzy
 msgid "Eraser options"
-msgstr "További lehetőségek"
+msgstr "Radír beállításai"
 
 #: src/tools/classic_tools/tool_highlight.py
 msgid "Press <Shift> to temporarily highlight on dark background instead"
 msgstr ""
+"A sötét háttéren történő ideiglenes kiemeléshez nyomja le a <Shift> "
+"billentyűt"
 
 #: src/tools/classic_tools/tool_highlight.py
 msgid "Press <Shift> to temporarily highlight on light background instead"
 msgstr ""
+"A világos háttéren történő ideiglenes kiemeléshez nyomja le a <Shift> "
+"billentyűt"
 
 #: src/tools/classic_tools/tool_highlight.py
-#, fuzzy
 msgid "Highlighter options"
-msgstr "Vonal beállítások"
+msgstr "Kiemelő beállításai"
 
 #: src/tools/classic_tools/tool_line.py
 msgid "Line"
@@ -2348,20 +2325,20 @@ msgstr "Vonal"
 
 #: src/tools/classic_tools/tool_line.py src/tools/classic_tools/tool_shape.py
 #: src/tools/selection_tools/select_rect.py
-#, fuzzy, python-format
+#, python-format
 msgid "Width: %spx"
-msgstr "Szélesség"
+msgstr "Szélesség: %spx"
 
 #: src/tools/classic_tools/tool_line.py src/tools/classic_tools/tool_shape.py
 #: src/tools/selection_tools/select_rect.py
-#, fuzzy, python-format
+#, python-format
 msgid "Height: %spx"
-msgstr "Magasság"
+msgstr "Magasság: %spx"
 
 #: src/tools/classic_tools/tool_line.py
 #, python-format
 msgid "Length: %spx"
-msgstr ""
+msgstr "Hossz: %spx"
 
 #: src/tools/classic_tools/tool_line.py
 msgid "Line options"
@@ -2370,33 +2347,33 @@ msgstr "Vonal beállítások"
 #: src/tools/classic_tools/tool_line.py
 msgid "Press <Shift> to unlock the line direction"
 msgstr ""
+"A <Shift> billentyű lenyomásával feloldható a vonal irányának rögzítése"
 
 #: src/tools/classic_tools/tool_line.py
 msgid "Press <Shift> to lock the line direction"
-msgstr ""
+msgstr "Nyomja meg a <Shift> billentyűt a vonal irányának rögzítéséhez"
 
 #: src/tools/classic_tools/tool_paint.py
 msgid "Painting options"
-msgstr "Festés beállítások"
+msgstr "Festés beállításai"
 
 #: src/tools/classic_tools/tool_paint.py
 msgid "Click on an area to replace its color by transparency"
 msgstr "Kattintson egy területre, hogy a színét átlátszóra cserélje"
 
 #: src/tools/classic_tools/tool_paint.py
-#, fuzzy
 msgid "Click on the canvas to entirely paint it"
-msgstr "Az alakzat bezárásához kattintson az első pontjára."
+msgstr "A teljes vászon befestéséhez kattintson a vászonra"
 
 #: src/tools/classic_tools/tool_paint.py
 #: src/tools/selection_tools/select_color.py
 msgid "May not work for complex shapes"
-msgstr ""
+msgstr "Összetett formák esetén elfőfordulhat, hogy nem működik"
 
 #: src/tools/classic_tools/tool_paint.py
 #: src/tools/selection_tools/select_color.py
 msgid "It will not work well if the area's edges are blurry"
-msgstr ""
+msgstr "Nem fog jól működni, ha a terület szélei homályosak"
 
 #: src/tools/classic_tools/tool_pencil.py
 msgid "Pencil"
@@ -2404,29 +2381,26 @@ msgstr "Ceruza"
 
 #: src/tools/classic_tools/tool_pencil.py
 msgid "Pencil options"
-msgstr "Ceruza beállítások"
+msgstr "Ceruza beállításai"
 
 #: src/tools/classic_tools/tool_points.py
-#, fuzzy
 msgid "Points options"
-msgstr "Betűbeállítások"
+msgstr "Pontok beállításai"
 
 #: src/tools/classic_tools/tool_points.py
 #, python-format
 msgid "Next number: %s"
-msgstr ""
+msgstr "Következő szám: %s"
 
 #. Context: fill a shape with the color of the left click
 #: src/tools/classic_tools/tool_shape.py
-#, fuzzy
 msgid "Filled with main color"
-msgstr "Elsődleges szín"
+msgstr "Az elsődleges színnel kitöltve"
 
 #. Context: fill a shape with the color of the right click
 #: src/tools/classic_tools/tool_shape.py
-#, fuzzy
 msgid "Filled with secondary color"
-msgstr "Másodlagos szín"
+msgstr "A másodlagos színnel kitöltve"
 
 #: src/tools/classic_tools/tool_shape.py
 msgid "Shape"
@@ -2435,7 +2409,7 @@ msgstr "Alakzat"
 #: src/tools/classic_tools/tool_shape.py
 #, python-format
 msgid "Radius: %spx"
-msgstr ""
+msgstr "Sugár: %spx"
 
 #: src/tools/classic_tools/tool_shape.py
 msgid "Shape options"
@@ -2449,6 +2423,8 @@ msgstr "Az alakzat bezárásához kattintson az első pontjára."
 #: src/tools/classic_tools/tool_shape.py
 msgid "Press <Alt>, <Shift>, or both, to quickly change the 'filling' option"
 msgstr ""
+"A „kitöltés” opció gyors megváltoztatásához nyomja meg az <Alt>, <Shift>, "
+"vagy mindkettő billentyűt."
 
 #: src/tools/classic_tools/tool_text.py
 msgid "Text"
@@ -2456,37 +2432,37 @@ msgstr "Szöveg"
 
 #: src/tools/classic_tools/tool_text.py
 msgid "Text options"
-msgstr "Betűbeállítások"
+msgstr "Szöveg beállításai"
 
 #: src/tools/classic_tools/tool_text.py
 msgid "Grab the rectangle to adjust the text position"
-msgstr ""
+msgstr "Fogja meg a téglalapot a szöveg pozíciójának beállításához"
 
 #: src/tools/classic_tools/tool_text.py
 msgid "Click outside the rectangle to apply"
-msgstr ""
+msgstr "Kattintson a téglalapon kívülre az alkalmazáshoz"
 
 #: src/tools/classic_tools/brushes/brush_airbrush.py
 msgid "Density depends on the stylus pressure"
-msgstr ""
+msgstr "A sűrűség függ a toll nyomásától"
 
 #: src/tools/classic_tools/brushes/brush_airbrush.py
 msgid "Density depends on the mouse speed"
-msgstr ""
+msgstr "A sűrűség függ az egér sebességétől"
 
 #: src/tools/classic_tools/brushes/brush_hairy.py
 #: src/tools/classic_tools/brushes/brush_nib.py
 #: src/tools/classic_tools/brushes/brush_simple.py
 msgid "Width depends on the stylus pressure"
-msgstr ""
+msgstr "A szélesség függ a toll nyomásától"
 
 #: src/tools/classic_tools/brushes/brush_nib.py
 msgid "Width depends on the line orientation"
-msgstr ""
+msgstr "A szélesség függ a vonal irányától"
 
 #: src/tools/classic_tools/brushes/brush_simple.py
 msgid "Width depends on the mouse speed"
-msgstr ""
+msgstr "A szélesség függ az egérmutató sebességétől"
 
 #: src/tools/selection_tools/abstract_select.py
 msgid "Drag the selection or right-click on the canvas"
@@ -2504,44 +2480,44 @@ msgstr "Téglalap kijelölés"
 
 #: src/tools/transform_tools/abstract_transform_tool.py
 msgid "Error: invalid values"
-msgstr ""
+msgstr "Hiba: érvénytelen érték(ek)"
 
 #. The options of the "crop" tool are all about how to expand the canvas,
 #. hence this label.
 #: src/tools/transform_tools/tool_crop.py
-#, fuzzy
 msgid "Expanding options"
-msgstr "Festés beállítások"
+msgstr "Kibővítési beállítások"
 
 #: src/tools/transform_tools/tool_crop.py
 msgid "The sides you'll crop are hinted by the mouse pointer"
-msgstr ""
+msgstr "A vágandó oldalakat az egérmutató jelzi."
 
 #: src/tools/transform_tools/tool_crop.py
 msgid "Cropping the selection"
 msgstr "Kijelölés vágása"
 
 #: src/tools/transform_tools/tool_crop.py
-#, fuzzy
 msgid "Cropping or expanding the canvas"
-msgstr "Rajzvászon vágása"
+msgstr "Rajzvászon vágása vagy kibővítése"
 
 #: src/tools/transform_tools/tool_crop.py
 #: src/tools/transform_tools/tool_rotate.py
 #: src/tools/transform_tools/tool_scale.py
 #: src/tools/transform_tools/tool_skew.py
 msgid "Don't forget to confirm the operation!"
-msgstr ""
+msgstr "Ne felejtse el megerősíteni a műveletet!"
 
 #: src/tools/transform_tools/tool_crop.py
 #: src/tools/transform_tools/tool_skew.py
 msgid ""
 "Press <Alt>, <Shift>, or both, to quickly change the 'expand with' option"
 msgstr ""
+"A „bővítés a következővel:” opció gyors megváltoztatásához nyomja meg az "
+"<Alt>, <Shift>, vagy mindkettő billentyűt."
 
 #: src/tools/transform_tools/tool_filters.py
 msgid "Active filter"
-msgstr ""
+msgstr "Aktív szűrő"
 
 #: src/tools/transform_tools/tool_filters.py
 msgid "Click on the image to preview the selected filter"
@@ -2550,12 +2526,11 @@ msgstr "Kattintson a képre a kiválasztott szűrő előnézetéhez"
 #. Context: a filter. See "image embossing" on wikipedia
 #: src/tools/transform_tools/tool_filters.py
 msgid "Emboss"
-msgstr ""
+msgstr "Domborítás"
 
 #: src/tools/transform_tools/tool_rotate.py
-#, fuzzy
 msgid "Rotating options"
-msgstr "Festés beállítások"
+msgstr "Forgatási beállítások"
 
 #: src/tools/transform_tools/tool_rotate.py
 msgid "Rotating the selection"
@@ -2566,9 +2541,8 @@ msgid "Rotating the canvas"
 msgstr "Rajzvászon forgatása"
 
 #: src/tools/transform_tools/tool_scale.py
-#, fuzzy
 msgid "Scaling options"
-msgstr "Festés beállítások"
+msgstr "Átméretezési beállítások"
 
 #: src/tools/transform_tools/tool_scale.py
 msgid "Scaling the selection"
@@ -2581,29 +2555,28 @@ msgstr "Rajzvászon átméretezése"
 #: src/tools/transform_tools/tool_scale.py
 msgid "Press <Shift> to quickly toggle the 'lock proportions' option"
 msgstr ""
+"Nyomja meg a <Shift> gombot az „arányok rögzítése” opció gyors be-, vagy "
+"kikapcsolásához"
 
 #: src/tools/transform_tools/tool_skew.py
-#, fuzzy
 msgid "Skewing options"
-msgstr "Festés beállítások"
+msgstr "Ferdítési beállítások"
 
 #: src/tools/transform_tools/tool_skew.py
 msgid "The directions of the deformation are hinted by the mouse pointer"
-msgstr ""
+msgstr "A deformáció irányát az egérmutató jelzi"
 
 #: src/tools/transform_tools/tool_skew.py
-#, fuzzy
 msgid "Skewing the selection"
-msgstr "Kijelölés átméretezése"
+msgstr "Kijelölés ferdítése"
 
 #: src/tools/transform_tools/tool_skew.py
-#, fuzzy
 msgid "Skewing the canvas"
-msgstr "Rajzvászon átméretezése"
+msgstr "Rajzvászon ferdítése"
 
 #: src/tools/transform_tools/filters/filter_blur.py
 msgid "Blur radius"
-msgstr "Elmosás sugara"
+msgstr "Homályosítás sugara"
 
 #: src/tools/transform_tools/filters/filter_saturation.py
 msgid "Saturation"

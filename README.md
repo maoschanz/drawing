@@ -69,7 +69,7 @@ If your language is not here, or is incompletely translated, you can
 | he   | Hebrew       | **57%**    | @moriel5, @shaqash, @omeritzics           |
 | hi   | Hindi        | **~20%**   | @sujaldev                                 |
 | hr   | Croatian     | 97%        | @milotype                                 |
-| hu   | Hungarian    | **48%**    | @kami911                                  |
+| hu   | Hungarian    | 100%       | @kami911 @BeanieBarrow                    |
 | id   | Indonesian   | **59%**    | @ekickx                                   |
 | it   | Italian      | 99%        | @amivaleo and @albanobattistella          |
 | ja   | Japanese     | 86%        | @rlbxku1r                                 |
