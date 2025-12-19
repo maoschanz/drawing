@@ -67,59 +67,6 @@ class DrImage(Gtk.Box):
         self.enable_monitoring()
         self._update_can_reload_action()
 
-        """
-        Funny strange.
-        Getting stylus gesture on the image drawing area *magically* allows
-        the brush tool's pressure axis values to be detectable (otherwise
-        it was a constant 0.0).
-        However, the window loses the ability to respond to the clicks of 
-        the SIGMACHIP usb mouse (and persists after quitting "drawing"). 
-        Another thing, the stylus_gesture connections do not run -- none of 
-        the print() show.
-        And, it seems there are two images (one for the pen, another for the
-        brush tool) and the images switch depending on which tool is used.
-        stylus_gesture = Gtk.GestureStylus.new(widget=self.window)
-        stylus_gesture.connect("down", self.on_stylus_down)
-        stylus_gesture.connect("motion", self.on_stylus_motion)
-        stylus_gesture.connect("proximity", self.on_stylus_proximity)
-        stylus_gesture.connect("up", self.on_stylus_up)
-        """
-        """
-        Another funny strange.
-        This is an alternate code from AI that dispenses with 'self.stylus_gesture'
-        when constructing a gesture stylus.
-        It uses a try-except pattern to fall back to GestureMultiPress, which is
-        a misnomer for GestureClick.
-        This code *magically* allows window to detect button click from the stylus 
-        without the fallback connection.
-        But it loses the pressure reading.
-        try:
-            stylus_gesture = Gtk.GestureStylus.new(widget=self._drawing_area)
-            stylus_gesture.connect("down", self.on_stylus_down)
-            print("stylus gesture <down> connected.")
-            stylus_gesture.connect("motion", self.on_stylus_motion)
-            print("stylus gesture <motion> connected.")
-        except TypeError as e:
-            print("Error: {e}")
-            print("Try GestureMultiPress instead")
-            press_gesture = Gtk.GestureMultiPress(widget=_drawing_area)
-            press_gesture.connect("pressed", self.on_pointer_press)
-        """
-
-
-        """
-        Strange.
-        The following allows button click by Aiptek stylus, but no pressure
-        value sensing, and brush is not registered.
-
-        stylus_gesture = Gtk.GestureStylus.new(widget=self._drawing_area)
-        stylus_gesture.connect("down", self.on_stylus_down)
-        stylus_gesture.connect("motion", self.on_stylus_motion)
-        stylus_gesture.connect("proximity", self.on_stylus_proximity)
-        stylus_gesture.connect("up", self.on_stylus_up)
-        """
-
-
         # Closing the info bar
         self.reload_info_bar.connect('close', self.hide_reload_message)
         self.reload_info_bar.connect('response', self.hide_reload_message)
@@ -146,9 +93,6 @@ class DrImage(Gtk.Box):
         self._update_zoom_behavior()
         self.window.gsettings.connect('changed::ctrl-zoom', \
                                                      self._update_zoom_behavior)
-
-    def on_pointer_press(self, gesture, n_press, x, y):
-        print(f"Pointer pressed at ({x},{y})")
 
     def on_stylus_down(self, gesture, x, y):
         print(f"Stylus down at ({x},{y})")

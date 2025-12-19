@@ -42,12 +42,14 @@ class ToolBrush(AbstractClassicTool):
         self._brush_dir = 'right'
         self.add_tool_action_enum('brush-type', self._brush_type)
         self.add_tool_action_enum('brush-dir', self._brush_dir)
+        """
         # custom
         self.stylus_gesture=Gtk.GestureStylus.new(window)
         self.stylus_gesture.connect("down",      self.on_stylus_down)
         self.stylus_gesture.connect("motion",    self.on_stylus_motion)
         self.stylus_gesture.connect("proximity", self.on_stylus_proximity)
         self.stylus_gesture.connect("up",        self.on_stylus_up)
+        """
 
         print("Brush tool initialized")
 
@@ -75,6 +77,7 @@ class ToolBrush(AbstractClassicTool):
         self._add_pressured_point(event_x, event_y, event)
         self._used_pressure = self._manual_path[0]['p'] is not None
     
+    """
     def on_stylus_down(self, gesture, x, y):
         #self.set_common_values(event.button, event_x, event_y)
         print("Stylus down.")
@@ -97,12 +100,15 @@ class ToolBrush(AbstractClassicTool):
         self._manual_path.append(new_point)
         self._used_pressure = self._manual_path[0]['p'] is not None
 
+    """
+
     def on_motion_on_area(self, event, surface, event_x, event_y, render=True):
         self._add_pressured_point(event_x, event_y, event)
         if render:
             operation = self.build_operation()
             self.do_tool_operation(operation)
 
+    """
     def on_stylus_motion(self, gesture, sequence):
         success,pressure = gesture.get_axis(Gdk.AxisUse.PRESSURE)
         if success:
@@ -124,6 +130,7 @@ class ToolBrush(AbstractClassicTool):
 
     def on_stylus_proximity(self, gesture, sequence):
         pass
+    """
 
     def on_release_on_area(self, event, surface, event_x, event_y):
         self._add_pressured_point(event_x, event_y, event)
@@ -131,6 +138,7 @@ class ToolBrush(AbstractClassicTool):
         operation['is_preview'] = False
         self.apply_operation(operation)
 
+    """
     def on_stylus_up(self, gesture, sequence):
         success,pressure = gesture.get_axis(Gdk.AxisUse.PRESSURE)
         if success:
@@ -150,6 +158,7 @@ class ToolBrush(AbstractClassicTool):
         operation = self.build_operation()
         operation['is_preview'] = False
         self.apply_operation(operation)
+    """
 
     ############################################################################
 
@@ -168,12 +177,13 @@ class ToolBrush(AbstractClassicTool):
             return None
 
         print(device.get_name())
-        print(device.get_vendor_id())
-        print(device.get_product_id())
-        print(device.get_n_axes())
+        #print(device.get_vendor_id())
+        #print(device.get_product_id())
+        #print(device.get_n_axes())
 
         # source = device.get_source()
         # print(source) # J'ignore s'il faut faire quelque chose de cette info
+        """
         axis_flags = device.get_axes()
         if (Gdk.AxisFlags.X & axis_flags) == Gdk.AxisFlags.X:
             print("Has X-axis")
@@ -191,6 +201,7 @@ class ToolBrush(AbstractClassicTool):
             print("Has Wheel info")
         else:
             print("No Wheel info")
+        """
 
         tool = event.get_device_tool()
         # print(tool) # ça indique qu'on a ici un appareil dédié au dessin (vaut
@@ -206,21 +217,7 @@ class ToolBrush(AbstractClassicTool):
         # The return type for Gdk.Event.get_axis can be either NoneType or
         # float; and this is not a tuple.
         pressure = event.get_axis(Gdk.AxisUse.PRESSURE)
-        """
-        if isinstance(pressure, tuple):
-            print("Event.get_axis returns a tuple.") 
-        else:
-            print(f"pressure is {type(pressure)}, not a tuple.")
-        print(f"Event.get_axis for pressure = {pressure}.") 
-        """
         print(f"Event.get_axis for pressure = {pressure}.")
-
-        # The SIGMACHIP usb mouse returns None for pressure (and for wheel).
-        # Aiptek pen (0) returns 0.0 for pressure (no change on pen press).
-        # Probably means Aiptek pen pressure value was not detected despite
-        # the PRESSURE axis being present.
-        #print(pressure)
-
         x_value = event.get_axis(Gdk.AxisUse.X)
         print(f"Event.get_axis for x = {x_value}.") 
         y_value = event.get_axis(Gdk.AxisUse.Y)
