@@ -72,6 +72,7 @@ drawing_sources = [
 	'tools/abstract_tool.py',
 
 	'tools/classic_tools/abstract_classic_tool.py',
+	'tools/classic_tools/aiptek_access.py',
 	'tools/classic_tools/tool_arc.py',
 	'tools/classic_tools/tool_brush.py',
 	'tools/classic_tools/tool_eraser.py',

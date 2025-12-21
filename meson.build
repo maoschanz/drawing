@@ -7,11 +7,13 @@ project(
 app_uuid = 'com.github.maoschanz.drawing'
 
 # Dependencies 
-pygobject = dependency('pygobject-3.0', version: f'>=3.0.0')
+pygobject = dependency('pygobject-3.0', version: '>=3.0.0')
+evdev     = dependency('libevdev')
 
 py_module = import('python')
 py_instln = py_module.find_installation('python3')
 py_dep    = py_instln.dependency()
+
 
 # Will be used in po and data
 if get_option('enable-translations-and-appdata')

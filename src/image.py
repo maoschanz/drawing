@@ -94,24 +94,6 @@ class DrImage(Gtk.Box):
         self.window.gsettings.connect('changed::ctrl-zoom', \
                                                      self._update_zoom_behavior)
 
-    def on_stylus_down(self, gesture, x, y):
-        print(f"Stylus down at ({x},{y})")
-        success, value = gesture.get_axis(Gdk.AxisUse.PRESSURE)
-        if success:
-            print(f"Pressure: {value:.2f}")
-        tool = gesture.get_device_tool()
-        if tool:
-            print(f"Tool type: {tool.get_tool_type()}")
-
-    def on_stylus_motion(self, gesture, x, y):
-        print("Stylus motion.")
-
-    def on_stylus_proximity(self, gesture, x, y):
-        print("Stylus proximity")
-
-    def on_stylus_up(self, gesture, x, y):
-        print(f"Stylus up at ({x},{y})")
-
     def _init_drawing_area(self):
         self._drawing_area.add_events( \
             Gdk.EventMask.BUTTON_PRESS_MASK | \
@@ -139,13 +121,6 @@ class DrImage(Gtk.Box):
         # For the cursor
         self._drawing_area.connect('enter-notify-event', self.on_enter_image)
         self._drawing_area.connect('leave-notify-event', self.on_leave_image)
-
-        # Custom
-        self.stylus_gesture = Gtk.GestureStylus.new(self._drawing_area)
-        self.stylus_gesture.connect("down", self.on_stylus_down)
-        self.stylus_gesture.connect("motion", self.on_stylus_motion)
-        self.stylus_gesture.connect("proximity", self.on_stylus_proximity)
-        self.stylus_gesture.connect("up", self.on_stylus_up)
 
     def _update_background_color(self, *args):
         rgba = self.window.gsettings.get_strv('ui-background-rgba')
