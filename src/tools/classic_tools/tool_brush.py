@@ -45,7 +45,7 @@ class ToolBrush(AbstractClassicTool):
         self.add_tool_action_enum('brush-type', self._brush_type)
         self.add_tool_action_enum('brush-dir', self._brush_dir)
 
-        print("Brush tool initialized")
+        #print("Brush tool initialized")
 
     def get_options_label(self):
         return _("Brush options")
@@ -100,12 +100,12 @@ class ToolBrush(AbstractClassicTool):
             print("Device is None.")
             return None
 
-        print(device.get_name())
-        print(device.get_vendor_id())
-        print(device.get_product_id())
+        #print(device.get_name())
+        #print(device.get_vendor_id())
+        #print(device.get_product_id())
         if device.get_vendor_id() == '08ca' and device.get_product_id() == '0010':
             pressure = test()
-            print(f"get_pressure: {pressure}")
+            #print(f"get_pressure: {pressure}")
             # Either pressure or None
             if pressure is None:
                 return None
@@ -143,7 +143,7 @@ class ToolBrush(AbstractClassicTool):
             'operator': self._operator,
             'line_width': self.tool_width,
             'antialias': self._use_antialias,
-            'is_preview': True,
+            'is_preview': False, #True,
             'smooth': not self.get_image().is_zoomed_surface_sharp(),
             'path': self._manual_path
         }

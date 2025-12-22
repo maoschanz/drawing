@@ -27,18 +27,18 @@ def previous_value(new_p=None):
             previous_value.p_press = new_p
 
 def test():
-    print("apitek_access")
+    #print("apitek_access")
     pressure = previous_value()  # initialise
     vid=0x08ca
     pid=0x0010
     devices=[InputDevice(dev) for dev in list_devices()]
     for dev in devices:
         if dev.info.vendor==vid and dev.info.product==pid:
-            print(f"Found: {dev.name} at {dev.path}")
+            #print(f"Found: {dev.name} at {dev.path}")
             # read list, write list, exception list
             r, w, x = select( [dev], [], [], 0.008) # 0.008 seconds timeout
             if dev in r: # device has readable data now
-                print("reading..")
+                #print("reading..")
                 for event in dev.read():
                     if   event.type == ecodes.EV_KEY:
                         pass
