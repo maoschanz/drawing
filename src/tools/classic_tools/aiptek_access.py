@@ -50,7 +50,8 @@ def test():
                         elif event.code ==  2:
                             pass
                         elif event.code == 24:        # 24 is pressure
-                            previous_value(new_p=event.value)
+                            factored_value = event.value/512
+                            previous_value(new_p=factored_value)
                         else:
                             print(f"EV_ABS code: {event.code}",
                                   f"value: {event.value}")
