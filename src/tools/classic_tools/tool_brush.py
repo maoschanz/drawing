@@ -23,7 +23,7 @@ from .brush_airbrush import BrushAirbrush
 from .brush_nib import BrushNib
 from .brush_hairy import BrushHairy
 
-from .aiptek_access import test, previous_value
+#from .aiptek_access import test, previous_value
 
 class ToolBrush(AbstractClassicTool):
     __gtype_name__ = 'ToolBrush'
@@ -97,22 +97,10 @@ class ToolBrush(AbstractClassicTool):
         device = event.get_source_device()
         #print(device)
         if device is None:
-            print("Device is None.")
+            #print("Device is None.")
             return None
-
-        #print(device.get_name())
-        #print(device.get_vendor_id())
-        #print(device.get_product_id())
-        if device.get_vendor_id() == '08ca' and device.get_product_id() == '0010':
-            pressure = test()
-            #print(f"get_pressure: {pressure}")
-            # Either pressure or None
-            if pressure is None:
-                return None
-            return pressure 
-
-        # source = device.get_source()
-        # print(source) # J'ignore s'il faut faire quelque chose de cette info
+        #name   = device.get_name()
+        #print(f"name:{name}")
 
         tool = event.get_device_tool()
         # print(tool) # ça indique qu'on a ici un appareil dédié au dessin (vaut
@@ -122,12 +110,23 @@ class ToolBrush(AbstractClassicTool):
         # .LENS, on pourrait adapter le comportement (couleur/opérateur/etc.)
         # à cette information à l'avenir.
 
-        pressure = event.get_axis(Gdk.AxisUse.PRESSURE)
+        #pressure = event.get_axis(Gdk.AxisUse.PRESSURE)
         # It reports device does not have get_axis method.
         # The original code uses Gdk.Event, which is a Union (not a class).
         # The return type for Gdk.Event.get_axis can be either NoneType or
         # float; and this is not a tuple.
         # print(pressure)
+        source = device.get_source()
+        # print(source) # J'ignore s'il faut faire quelque chose de cette info
+        # This makes event.get_axis work!
+        # When the event is from a pen, there is a chance to get PRESSURE.
+        if source:  # Make sure there is a source, before matching value.
+            if source == Gdk.InputSource.PEN:
+                pressure = event.get_axis(Gdk.AxisUse.PRESSURE)
+        else:
+            pressure = None
+
+        # If not None, then the pressure value is between 0.0 and 1.0.
         if pressure is None:
             return None
         return pressure
