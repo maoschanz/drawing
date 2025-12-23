@@ -45,13 +45,19 @@ def test():
                     elif event.type == ecodes.EV_REL:
                         pass
                     elif event.type == ecodes.EV_ABS: # absolute value
-                        if   event.code ==  1:
+                        if   event.code ==  0:  # x-coordinate
                             pass
-                        elif event.code ==  2:
+                        elif event.code ==  1:  # y-coordinate
                             pass
-                        elif event.code == 24:        # 24 is pressure
-                            factored_value = event.value/512
+                        elif event.code == 24:  # pressure
+                            factored_value = event.value/1024
                             previous_value(new_p=factored_value)
+                        elif event.code == 40:  # Misc
+                            if event.value == 33:
+                                print("Descend detected.")
+                            if event.value == 32:
+                                print("Lift-off noted.")
+                                previous_value(new_p=None)
                         else:
                             print(f"EV_ABS code: {event.code}",
                                   f"value: {event.value}")
