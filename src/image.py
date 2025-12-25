@@ -109,8 +109,6 @@ class DrImage(Gtk.Box):
         self._drawing_area.connect('draw', self.on_draw)
 
         # For drawing with tools
-        #self.prev_x = -1
-        #self.prev_y = -1
         self._drawing_area.connect('motion-notify-event', self.on_motion_on_area)
         self._drawing_area.connect('button-press-event', self.on_press_on_area)
         self._drawing_area.connect('button-release-event', self.on_release_on_area)
@@ -495,21 +493,6 @@ class DrImage(Gtk.Box):
         have an effect on the image, otherwise it shouldn't change anything
         except the mouse cursor icon for example."""
         event_x, event_y = self.get_event_coords(event)
-
-        """
-        It is difficult to hold a stylus still enough to calm the 'motion'
-        event notifications.
-        Therefore, making a distance threshold to return quickly.
-        distance = ((event_x-self.prev_x)**2 + (event_y-self.prev_y)**2)**0.5
-        if distance < 10:
-            # either return here
-            return
-            # or set motion behaviour to hover (TODO: only for stylus) 
-            #self.motion_behavior == DrMotionBehavior.HOVER
-
-        self.prev_x = event_x
-        self.prev_y = event_y
-        """
 
         if self.motion_behavior == DrMotionBehavior.HOVER:
             # Some tools need the coords in the image, others need the coords on

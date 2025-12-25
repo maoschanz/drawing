@@ -23,7 +23,6 @@ from .brush_airbrush import BrushAirbrush
 from .brush_nib import BrushNib
 from .brush_hairy import BrushHairy
 
-#from .aiptek_access import test, previous_value
 
 class ToolBrush(AbstractClassicTool):
     __gtype_name__ = 'ToolBrush'
@@ -45,7 +44,6 @@ class ToolBrush(AbstractClassicTool):
         self.add_tool_action_enum('brush-type', self._brush_type)
         self.add_tool_action_enum('brush-dir', self._brush_dir)
 
-        #print("Brush tool initialized")
 
     def get_options_label(self):
         return _("Brush options")
@@ -142,7 +140,7 @@ class ToolBrush(AbstractClassicTool):
             'operator': self._operator,
             'line_width': self.tool_width,
             'antialias': self._use_antialias,
-            'is_preview': False, #True,
+            'is_preview': True,
             'smooth': not self.get_image().is_zoomed_surface_sharp(),
             'path': self._manual_path
         }
