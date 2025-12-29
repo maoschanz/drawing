@@ -6,13 +6,13 @@ project(
 )
 app_uuid = 'com.github.maoschanz.drawing'
 
-# Dependencies #################################################################
+# Dependencies 
+pygobject = dependency('pygobject-3.0', version: '>=3.0.0')
 
-# TODO the proper way to check python3 libs dependencies is this:
-# https://mesonbuild.com/Python-module.html#dependency but the doc is quite bad
-# so i've no idea how to make it work
+py_module = import('python')
+py_instln = py_module.find_installation('python3')
+py_dep    = py_instln.dependency()
 
-################################################################################
 
 # Will be used in po and data
 if get_option('enable-translations-and-appdata')
