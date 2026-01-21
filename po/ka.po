@@ -1,0 +1,2500 @@
+# Georgian translation for drawing.
+# Copyright (C) 2026 Drawing's authors
+# This file is distributed under the same license as the drawing package.
+# Temuri Doghonadze <temuri.doghonadze@gmail.com>, 2026.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: drawing\n"
+"Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
+"POT-Creation-Date: 2023-02-23 23:35+0100\n"
+"PO-Revision-Date: 2026-01-21 12:05+0100\n"
+"Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
+"Language-Team: \n"
+"Language: ka\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.8\n"
+
+#: data/com.github.maoschanz.drawing.desktop.in
+#: data/com.github.maoschanz.drawing.appdata.xml.in src/deco_manager.py
+#: src/main.py
+msgid "Drawing"
+msgstr "Drawing"
+
+#: data/com.github.maoschanz.drawing.desktop.in
+msgid "Simple drawing utility"
+msgstr "მარტივი ხატვის პროგრამა"
+
+#. This is a list of keywords, you can add any keyword that would be useful to
+#. find the app in your language. "Paint" should stay listed in its untranslated
+#. version too, so people looking for a MS Paint equivalent will find the app.
+#. Don't forget the semicolons.
+#: data/com.github.maoschanz.drawing.desktop.in
+msgid "Paint;Sketch;Pencil;"
+msgstr "Paint;Sketch;Pencil;ფანქარი;ხატვა;"
+
+#: data/com.github.maoschanz.drawing.desktop.in src/ui/app-menus.ui
+#: src/ui/shortcuts.ui src/ui/win-menus.ui src/window.py
+msgid "New Window"
+msgstr "ახალი ფანჯარა"
+
+#: data/com.github.maoschanz.drawing.desktop.in src/ui/app-menus.ui
+#: src/ui/headerbar.ui src/ui/headerbar-eos.ui src/ui/toolbar.ui
+#: src/ui/toolbar-symbolic.ui src/ui/window.ui src/ui/win-menus.ui
+msgid "New Image"
+msgstr "ახალი გამოსახულება"
+
+#: data/com.github.maoschanz.drawing.desktop.in
+msgid "Edit Image in Clipboard"
+msgstr "ბუფერში არსებული გამოსახულების ჩასწორება"
+
+#. IMPORTANT: the summarized description of the application.
+#. https://gitlab.gnome.org/GNOME/Initiatives/-/wikis/App-Metadata
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid "Edit screenshots or memes"
+msgstr "ეკრანის ანაბეჭდების და მემეების ჩასწორება"
+
+#. IMPORTANT: complete description of the application (1/3)
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"This basic image editor can resize, crop, or rotate an image, apply simple "
+"filters, insert or censor text, and manipulate a selected portion of the "
+"picture (cut/copy/paste/drag/…)"
+msgstr ""
+
+#. IMPORTANT: complete description of the application (2/3)
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"And of course, you can draw! Using tools such as the pencil, the straight "
+"line, the curve tool, many shapes, several brushes, and their various colors "
+"and options."
+msgstr ""
+
+#. IMPORTANT: complete description of the application (3/3)
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid "Supported file types include PNG, JPEG and BMP."
+msgstr "მხარდაჭერილი ფაილის ტიპები შეიცავს: PNG, JPEG და BMP."
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Version 1.2.0 improves the transformation tools: their previews are now "
+"consistently applied when you change the active tool without clicking on "
+"\"apply\"."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"The text tool is more intuitive to use, with distinct areas on the canvas to "
+"edit, move and insert the text."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"A former option of the paint bucket tool, which didn't belong there, has "
+"been improved and moved to the eraser tool."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Transparency is henceforth correctly preserved when the \"skew\" tool "
+"expands the canvas with a solid color."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid "You can now adjust the position of the canvas when you're cropping it."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"The option to use a color editor by default has been moved from the main "
+"window to the preferences window, and its bug has been fixed."
+msgstr ""
+
+#. very generic release notes i use for ALL minor updates, please
+#. translate this one!
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Version 1.0.2 features several minor bug fixes, and various new translations."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Saving the image should be more reliable, especially when replacing the "
+"transparent pixels with a solid color. Pictures are now automatically "
+"reloaded from the disk after being saved."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"The user interface of the \"select\" tool changed, as well as the keyboard "
+"shortcuts to change tab."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"A small rendering issue when previewing a blur filter has also been fixed."
+msgstr ""
+
+#. very generic release notes i use for ALL minor updates, please
+#. translate this one!
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Version 1.0.1 features several minor bug fixes, and various new translations."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"By popular demand, the \"highlighter\" tool is now enabled by default, and "
+"the message dialog to warn you about the release notes is less intrusive."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"The main improvement in this update is the zoom workflow: since the version "
+"1.0.0 it's possible to zoom in very deep, but the process was very slow, and "
+"the view didn't stay well centered around the mouse pointer; and once at "
+"2000%%, scrolling up or down, or left or right, was quite violent. These "
+"problems should all have disappeared in this new version!"
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Incorrect command line parsing when using the app outside of a flatpak "
+"sandbox has also been fixed."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"For users on elementary OS, a small issue concerning window resizing has "
+"been mended too."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Version 1.0.0 improves rendering performance, which is visible when editing "
+"large images with a poor CPU."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"You can now use the new \"skew\" tool, to tilt an image from a rectangle to "
+"a parallelogram. Such a deformation can be applied horizontally or "
+"vertically."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"You can select tools with keyboard accelerators (Alt+letter). This may not "
+"work yet with languages using a non-latin alphabet."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Zooming very deep is now possible, and the rendering will be very crisp, "
+"even at 2000%%."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Pressing \"ctrl\" will display the cursor coordinates in a tooltip. If you "
+"do it while using a tool, it may display additional data, for example the "
+"dimensions of the shape you're drawing!"
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Pressing \"shift\", or \"alt\" when using a tool enables specific options, "
+"such as locking the direction for the \"line\" tool, or changing the filling "
+"style of a shape."
+msgstr ""
+
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid ""
+"Using the \"scale\" tool, you may optionally set the new size as a relative "
+"percentage rather than an absolute value in pixels."
+msgstr ""
+
+#. Caption of a screenshot, for appstores
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid "The window and its primary menu"
+msgstr "ფანჯარა და მისი მთავარი მენიუ"
+
+#. Caption of a screenshot, for appstores
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid "The selection and the actions associated with it"
+msgstr "მონიშნული და მასთან დაკავშირებული ქმედებები"
+
+#. Caption of a screenshot, for appstores
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid "Zooming in various shapes"
+msgstr "გადიდება სხვადასხვა მოხაზულობით"
+
+#. Caption of a screenshot, for appstores
+#: data/com.github.maoschanz.drawing.appdata.xml.in
+msgid "The \"new image\" menu opened"
+msgstr "გაიხსნა მენიუ \"ახალი გამოსახულება\""
+
+#: src/ui/app-menus.ui
+msgid "File"
+msgstr "ფაილი"
+
+#: src/ui/app-menus.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
+#: src/ui/win-menus.ui
+msgid "Open an image"
+msgstr "გამოსახულების გახსნა"
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+msgid "New Blank Image"
+msgstr "ახალი ცარიელი გამოსახულება"
+
+#: src/ui/app-menus.ui src/ui/win-menus.ui src/new_image_dialog.py
+msgid "New Image With Custom Size"
+msgstr "ახალი გამოსახულება მორგებული ზომით"
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+msgid "New Image From Selection"
+msgstr "ახალი გამოსახულება მონიშნულიდან"
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+msgid "New Image From Clipboard"
+msgstr "ახალი გამოსახულება ბუფერიდან"
+
+#: src/ui/app-menus.ui src/ui/win-menus.ui
+msgid "Reload file"
+msgstr "ფაილის თავიდან ჩატვირთვა"
+
+#: src/ui/app-menus.ui src/ui/win-menus.ui src/properties.py
+msgid "Image properties"
+msgstr "გამოსახულების თვისებები"
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+msgid "Reset canvas"
+msgstr "ტილოს ჩამოყრა"
+
+#: src/ui/app-menus.ui src/ui/headerbar.ui src/ui/headerbar-eos.ui
+#: src/ui/shortcuts.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
+#: src/saving_manager.py
+msgid "Save"
+msgstr "შენახვა"
+
+#: src/ui/app-menus.ui src/ui/win-menus.ui
+msgid "Save without transparency"
+msgstr "შენახვა გამჭვირვალობის გარეშე"
+
+#. This "feature" is only visible on April Fools' day, and it
+#. will just rickroll the user.
+#: src/ui/app-menus.ui src/ui/win-menus.ui
+msgid "Prepare as NFT…"
+msgstr "მომზადება NFT-ის სახით…"
+
+#: src/ui/app-menus.ui src/ui/headerbar-eos.ui src/ui/win-menus.ui
+#: src/saving_manager.py
+msgid "Save as…"
+msgstr "შენახვა, როგორც…"
+
+#: src/ui/app-menus.ui src/ui/selection-manager.ui src/ui/win-menus.ui
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+msgid "Export as…"
+msgstr "გატანა, როგორც…"
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/toolbar.ui
+#: src/ui/toolbar-symbolic.ui src/ui/win-menus.ui
+msgid "Copy to clipboard"
+msgstr "ბუფერში კოპირება"
+
+#: src/ui/app-menus.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
+#: src/ui/win-menus.ui
+msgid "Print"
+msgstr "ბეჭდვა"
+
+#: src/ui/app-menus.ui
+msgid "Close Image"
+msgstr "გამოსახულების დახურვა"
+
+#: src/ui/app-menus.ui
+msgid "Close Window"
+msgstr "ფანჯრის დახურვა"
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+msgid "Quit all windows"
+msgstr "ყველა ფანჯრიდან გასვლა"
+
+#: src/ui/app-menus.ui
+msgid "Edit"
+msgstr "ჩასწორება"
+
+#: src/ui/app-menus.ui src/ui/headerbar.ui src/ui/headerbar-eos.ui
+#: src/ui/shortcuts.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
+#: src/deco_manager.py
+msgid "Undo"
+msgstr "გაუქმება"
+
+#: src/ui/app-menus.ui src/ui/headerbar.ui src/ui/headerbar-eos.ui
+#: src/ui/shortcuts.ui src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
+#: src/deco_manager.py
+msgid "Redo"
+msgstr "გამეორება"
+
+#: src/ui/app-menus.ui
+msgid "Rebuild from history"
+msgstr "თავიდან აგება ისტორიიდან"
+
+#: src/ui/app-menus.ui src/ui/selection-manager.ui src/ui/shortcuts.ui
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+msgid "Select all"
+msgstr "ყველას მონიშვნა"
+
+#: src/ui/app-menus.ui src/ui/selection-manager.ui src/ui/shortcuts.ui
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+msgid "Cut"
+msgstr "ამოჭრა"
+
+#: src/ui/app-menus.ui src/ui/selection-manager.ui src/ui/shortcuts.ui
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+msgid "Copy"
+msgstr "კოპირება"
+
+#: src/ui/app-menus.ui src/ui/selection-manager.ui
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+msgid "Delete"
+msgstr "წაშლა"
+
+#: src/ui/app-menus.ui src/ui/selection-manager.ui src/ui/shortcuts.ui
+#: src/ui/toolbar.ui src/ui/toolbar-symbolic.ui
+#: src/optionsbars/selection/optionsbar-selection.ui
+msgid "Paste"
+msgstr "ჩასმა"
+
+#: src/ui/app-menus.ui src/ui/selection-manager.ui src/ui/toolbar.ui
+#: src/ui/toolbar-symbolic.ui src/window.py
+#: src/optionsbars/selection/optionsbar-selection.ui
+msgid "Import"
+msgstr "შემოტანა"
+
+#: src/ui/app-menus.ui src/ui/preferences.ui src/ui/win-menus.ui
+#: src/preferences.py
+msgid "Preferences"
+msgstr "მორგება"
+
+#: src/ui/app-menus.ui
+msgid "View"
+msgstr "ხედი"
+
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-classic.ui
+#: src/optionsbars/selection/optionsbar-selection.ui
+msgid "Preview"
+msgstr "მინიატურა"
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/preferences.py
+msgid "Zoom"
+msgstr "მასშტაბი"
+
+#: src/ui/app-menus.ui src/ui/minimap.ui src/ui/shortcuts.ui
+msgid "Optimal Zoom"
+msgstr "ოპტიმალური გადიდება"
+
+#: src/ui/app-menus.ui src/ui/minimap.ui src/ui/shortcuts.ui src/ui/toolbar.ui
+#: src/ui/toolbar-symbolic.ui src/optionsbars/transform/optionsbar-crop.ui
+#: src/optionsbars/transform/optionsbar-scale.ui
+#: src/optionsbars/transform/optionsbar-skew.ui
+msgid "Zoom Out"
+msgstr "დაპატარავება"
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/toolbar.ui
+#: src/ui/toolbar-symbolic.ui src/optionsbars/transform/optionsbar-crop.ui
+#: src/optionsbars/transform/optionsbar-scale.ui
+#: src/optionsbars/transform/optionsbar-skew.ui
+msgid "Original Zoom"
+msgstr "ორიგინალი მასშტაბი"
+
+#: src/ui/app-menus.ui src/ui/minimap.ui src/ui/shortcuts.ui src/ui/toolbar.ui
+#: src/ui/toolbar-symbolic.ui src/optionsbars/transform/optionsbar-crop.ui
+#: src/optionsbars/transform/optionsbar-scale.ui
+#: src/optionsbars/transform/optionsbar-skew.ui
+msgid "Zoom In"
+msgstr "გადიდება"
+
+#. Context: this submenu is about moving the view to the
+#. left/right/top/bottom
+#: src/ui/app-menus.ui
+msgid "Position"
+msgstr "პოზიცია"
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+msgid "Go Left"
+msgstr "მარცხნივ გადასვლა"
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+msgid "Go Up"
+msgstr "მაღლა ასვლა"
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+msgid "Go Down"
+msgstr "დაბლა ჩამოსვლა"
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+msgid "Go Right"
+msgstr "მარჯვნივ გასვლა"
+
+#. Context: this action scrolls to the left end of the
+#. canvas. The "go left" action only goes a few centimeters
+#. to the left, but this one goes all the way left.
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+msgid "Go to the left end"
+msgstr "მარცხენა ბოლოში გადასვლა"
+
+#. Context: this action scrolls to the top of the canvas
+#. The "go up" action only goes a few centimeters up, but
+#. this one goes all the way to the top.
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+msgid "Go to the top"
+msgstr "სულ ზემოთ ასვლა"
+
+#. Context: this action scrolls to the bottom of the canvas
+#. The "go down" action only goes a few centimeters down,
+#. but this one goes all the way to the bottom.
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+msgid "Go to the bottom"
+msgstr "სულ ქვემოთ ჩასმოსვლა"
+
+#. Context: this action scrolls to the right end of the
+#. canvas. The "go right" action only goes a few centimeters
+#. to the right, but this one goes all the way right.
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+msgid "Go to the right end"
+msgstr "მარჯვენა ბოლოში გადასვლა"
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+msgid "Tab at the left"
+msgstr "ტაბულაცია მარცხნივ"
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+msgid "Tab at the right"
+msgstr "ტაბულაცია მარჯვნივ"
+
+#: src/ui/app-menus.ui
+msgid "Refresh"
+msgstr "განახლება"
+
+#. Label shown only in developer mode
+#: src/ui/app-menus.ui
+msgid "Track framerate"
+msgstr "ტრეკის კადრების სიჩქარე"
+
+#: src/ui/app-menus.ui
+msgid "Dark theme variant"
+msgstr "მუქი თემის ვარიანტი"
+
+#: src/ui/app-menus.ui
+msgid "Show the menu-bar"
+msgstr "მენიუს ზოლის ჩვენება"
+
+#: src/ui/app-menus.ui
+msgid "Hide toolbars"
+msgstr "ხელსაწყოთა პანელის დამალვა"
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+msgid "Fullscreen"
+msgstr "სრულ ეკრანზე"
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/preferences.py
+msgid "Colors"
+msgstr "ფერები"
+
+#: src/ui/app-menus.ui
+msgid "Edit Main Color…"
+msgstr "მთავარი ფერის ჩასწორება…"
+
+#: src/ui/app-menus.ui
+msgid "Edit Secondary Color…"
+msgstr "დამხმარე ფერის ჩასწორება…"
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+#: src/optionsbars/classic/optionsbar-classic.ui
+msgid "Exchange colors"
+msgstr "ფერების მიმოცვლა"
+
+#: src/ui/app-menus.ui
+msgid "Color application mode"
+msgstr "ფერადი აპლიკაციის რეჟიმი"
+
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
+#: src/optionsbars/classic/optionsbar-color-popover.ui
+msgid "Normal"
+msgstr "ნორმალური"
+
+#. Context: possible ways to apply the color to the canvas
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
+#: src/optionsbars/classic/optionsbar-operator-menus.ui
+msgid "Highlight"
+msgstr "გამოკვეთა"
+
+#. Context: a possible way to highlight text
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-operator-menus.ui
+#: src/tools/ui/tool-highlight.ui src/tools/classic_tools/tool_highlight.py
+msgid "Dark text on light background"
+msgstr "მუქი ტექსტი ღია ფონზე"
+
+#. Context: a possible way to highlight text
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-operator-menus.ui
+#: src/tools/ui/tool-highlight.ui src/tools/classic_tools/tool_highlight.py
+msgid "Light text on dark background"
+msgstr "ღია ტექსტი მუქ ფონზე"
+
+#. Context: possible ways to apply the color to the canvas, using
+#. only some specific dimension(s) of the selected color in its
+#. hue-saturation-luminosity (HSL) representation
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
+#: src/optionsbars/classic/optionsbar-operator-menus.ui
+msgid "HSL modes"
+msgstr "HSL რეჟიმები"
+
+#. Context: a possible way to apply the color to the canvas
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
+#: src/optionsbars/classic/optionsbar-operator-menus.ui
+msgid "Hue only"
+msgstr "მხოლოდ ტონი"
+
+#. Context: a possible way to apply the color to the canvas
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
+#: src/optionsbars/classic/optionsbar-operator-menus.ui
+msgid "Saturation only"
+msgstr "მხოლოდ გაჯერებულობა"
+
+#. Context: a possible way to apply the color to the canvas
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
+#: src/optionsbars/classic/optionsbar-operator-menus.ui
+msgid "Hue and saturation"
+msgstr "ფონი და გაჯერებულობა"
+
+#. Context: a possible way to apply the color to the canvas
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
+#: src/optionsbars/classic/optionsbar-operator-menus.ui
+msgid "Luminosity only"
+msgstr "მხოლოდ სიკაშკაშე"
+
+#. Context: possible ways to apply the color to the canvas
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
+#: src/optionsbars/classic/optionsbar-operator-menus.ui
+msgid "Other modes"
+msgstr "სხვა რეჟიმები"
+
+#. Context: a possible way to apply the color to the canvas
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
+#: src/optionsbars/classic/optionsbar-operator-menus.ui
+msgid "Raw source color"
+msgstr "დაუმუშავებელი წყაროს ფერი"
+
+#. Context: a possible way to apply the color to the canvas
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
+#: src/optionsbars/classic/optionsbar-operator-menus.ui
+msgid "Difference"
+msgstr "სხვაობა"
+
+#: src/ui/app-menus.ui
+msgid "Don't use the colors but…"
+msgstr "ფერების არგამოყენება, მაგრამ…"
+
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar_color_popover.py
+#: src/optionsbars/classic/optionsbar-color-popover.ui
+msgid "Erase"
+msgstr "წაშლა"
+
+#: src/ui/app-menus.ui src/ui/preferences.ui src/ui/shortcuts.ui
+msgid "Tools"
+msgstr "ხელსაწყოები"
+
+#: src/ui/app-menus.ui
+msgid "Previous tool"
+msgstr "წინა ხელსაწყო"
+
+#: src/ui/app-menus.ui
+msgid "Active tool"
+msgstr "აქტიური ხელსაწყო"
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+#: src/preferences.py
+msgid "Show tools names"
+msgstr "ხელსაწყოს სახელების ჩვენება"
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+msgid "Bigger width"
+msgstr "უფრო დიდი სიგანე"
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui
+msgid "Smaller width"
+msgstr "უფრო მცირე სიგანე"
+
+#: src/ui/app-menus.ui
+msgid "Troubleshoot selection"
+msgstr "პრობლემების გადაწყვეტის არჩევანი"
+
+#: src/ui/app-menus.ui
+#: src/optionsbars/transform/abstract-optionsbar-transform.ui
+msgid "Cancel transformation"
+msgstr "გარდაქმნის გაუქმება"
+
+#: src/ui/app-menus.ui
+#: src/optionsbars/transform/abstract-optionsbar-transform.ui
+msgid "Apply transformation"
+msgstr "ტრანსფორმაციის გადატარება"
+
+#: src/ui/app-menus.ui
+msgid "Options"
+msgstr "მორგება"
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+msgid "Help"
+msgstr "დახმარება"
+
+#: src/ui/app-menus.ui src/ui/shortcuts.ui src/ui/win-menus.ui
+msgid "Shortcuts"
+msgstr "მალსახმობები"
+
+#: src/ui/app-menus.ui src/ui/window.ui src/window.py
+msgid "Report a bug"
+msgstr "შეცდომის პატაკი"
+
+#. Context: open the index of all help pages
+#: src/ui/app-menus.ui
+msgid "Index"
+msgstr "ინდექსი"
+
+#. Context: submenu listing individual help pages
+#: src/ui/app-menus.ui
+msgid "Individual pages"
+msgstr "ინდივიდუალური გვერდები"
+
+#. Context: open the help page about general use of the app
+#: src/ui/app-menus.ui
+msgid "Basic help"
+msgstr "ძირითადი ინფორმაცია"
+
+#: src/ui/app-menus.ui src/ui/minimap.ui
+msgid "Help about zooming"
+msgstr "დახმარება გადიდების შესახებ"
+
+#: src/ui/app-menus.ui
+msgid "Help about the full-screen mode"
+msgstr "დახმარება სრულეკრანიანი რეჟიმის შესახებ"
+
+#: src/ui/app-menus.ui
+msgid "Help about classic tools"
+msgstr "დახმარება კლასიკური ხელსაწყოების შესახებ"
+
+#: src/ui/app-menus.ui src/optionsbars/classic/optionsbar-color-popover.ui
+msgid "Help about colors"
+msgstr "დახმარება ფერების შესახებ"
+
+#. Context: open the help page about transformation tools (crop,
+#. scale, rotate, filters, ...
+#: src/ui/app-menus.ui
+#: src/optionsbars/transform/abstract-optionsbar-transform.ui
+msgid "Help about transformation tools"
+msgstr "დახმარება გარდაქმნის შესახებ"
+
+#: src/ui/app-menus.ui src/optionsbars/selection/optionsbar-selection.ui
+msgid "Help about selection"
+msgstr "დახმარება მონიშვნის შესახებ"
+
+#: src/ui/app-menus.ui
+msgid "What's new"
+msgstr "რა არის ახალი"
+
+#: src/ui/app-menus.ui src/ui/win-menus.ui
+msgid "About Drawing"
+msgstr "Drawing-ის შესახებ"
+
+#: src/ui/headerbar.ui src/ui/headerbar-eos.ui src/ui/toolbar.ui
+#: src/ui/toolbar-symbolic.ui src/window.py
+msgid "Open"
+msgstr "გახსნა"
+
+#: src/ui/headerbar-eos.ui
+msgid "Share the image"
+msgstr "ამ გამოსახულების გაზიარება"
+
+#: src/ui/image.ui
+msgid "The image changed on the disk, do you want to reload it?"
+msgstr "გამოსახულება დისკზე შეიცვალა. გნებავთ მისი თავიდან ჩატვირთვა?"
+
+#: src/ui/image.ui
+msgid "Reload"
+msgstr "თავიდან ჩატვირთვა"
+
+#: src/ui/minimap.ui
+msgid "100%"
+msgstr "100%"
+
+#: src/ui/minimap.ui src/ui/shortcuts.ui
+msgid "Maximum zoom"
+msgstr "მაქსიმალური გადიდება"
+
+#: src/ui/new-image-dialog.ui src/ui/properties.ui
+#: src/optionsbars/transform/optionsbar-crop.ui
+#: src/optionsbars/transform/optionsbar-scale.ui
+msgid "Width"
+msgstr "სიგანე"
+
+#: src/ui/new-image-dialog.ui src/ui/properties.ui
+#: src/optionsbars/transform/optionsbar-crop.ui
+#: src/optionsbars/transform/optionsbar-scale.ui
+msgid "Height"
+msgstr "სიმაღლე"
+
+#: src/ui/new-image-dialog.ui
+msgid "Color"
+msgstr "ფერი"
+
+#: src/ui/new-image-dialog.ui
+msgid "Use these settings by default"
+msgstr "ამ პარამეტრების ნაგულისხმევად გამოყენება"
+
+#: src/ui/preferences.ui
+msgid "Images"
+msgstr "გამოსახულებები"
+
+#: src/ui/preferences.ui
+msgid "Window"
+msgstr "ფანჯარა"
+
+#. To translators: it's a measure unit, it appears in tooltips over
+#. numerical inputs
+#: src/ui/properties.ui src/utilities/utilities_units.py
+msgid "pixels"
+msgstr "პიქსელი"
+
+#: src/ui/properties.ui
+msgid "centimeters"
+msgstr "სანტიმეტრი"
+
+#: src/ui/properties.ui
+msgid "inches"
+msgstr "დუიმი"
+
+#: src/ui/selection-manager.ui
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+msgid "Close selection"
+msgstr "მონიშნულის დახურვა"
+
+#: src/ui/selection-manager.ui src/ui/shortcuts.ui
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+msgid "Deselect"
+msgstr "არჩევის მოხსნა"
+
+#: src/ui/selection-manager.ui src/tools/transform_tools/tool_crop.py
+msgid "Crop"
+msgstr "ამოჭრა"
+
+#: src/ui/selection-manager.ui src/tools/transform_tools/tool_scale.py
+msgid "Scale"
+msgstr "მასშტაბი"
+
+#: src/ui/selection-manager.ui src/tools/transform_tools/tool_rotate.py
+msgid "Rotate"
+msgstr "შემობრუნება"
+
+#. This is the name of the tool changing rectangles into parallelograms.
+#. It's synonymous with tilt, slant, bend. If you need a reference to
+#. translate it, this is named after MS Paint's "Stretch/Skew" dialog.
+#: src/ui/selection-manager.ui src/preferences.py
+#: src/tools/transform_tools/tool_skew.py
+msgid "Skew"
+msgstr "გადახრა"
+
+#: src/ui/selection-manager.ui src/tools/transform_tools/tool_filters.py
+msgid "Filters"
+msgstr "ფილტრები"
+
+#: src/ui/selection-manager.ui src/tools/ui/selection.ui
+msgid "More actions"
+msgstr "მეტი ქმედება"
+
+#: src/ui/selection-manager.ui
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+msgid "Invert selection"
+msgstr "მონიშვნის ინვერსია"
+
+#. Define the image as being the currently selected area
+#: src/ui/selection-manager.ui
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+msgid "Define as current image"
+msgstr "აღწერა, როგორც მიმდინარე გამოსახულება"
+
+#. Expand the canvas of the current image to make the current selection fit in it.
+#. Can be translated as "Expand to this size".
+#: src/ui/selection-manager.ui
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+msgid "Expand image to fit"
+msgstr "გამოსახულების გაფართოება ჩასატევად"
+
+#: src/ui/selection-manager.ui
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+msgid "Open As New Image"
+msgstr "გახსნა როგორ ახალი გამოსახულების"
+
+#: src/ui/shortcuts.ui
+msgid "Keyboard Shortcuts"
+msgstr "კლავიატურის მალსახმობები"
+
+#: src/ui/shortcuts.ui
+msgid "General"
+msgstr "ზოგადი"
+
+#: src/ui/shortcuts.ui
+msgid "Main menu"
+msgstr "მთავარი მენიუ"
+
+#: src/ui/shortcuts.ui
+msgid "Toggle the menu-bar"
+msgstr "მენიუს ზოლის გადართვა"
+
+#: src/ui/shortcuts.ui
+msgid "Image"
+msgstr "გამოსახულება"
+
+#: src/ui/shortcuts.ui src/window.py
+msgid "Open a picture"
+msgstr "სურათის გახსნა"
+
+#: src/ui/shortcuts.ui
+msgid "Reload image from disk"
+msgstr "გამოსახულების თავიდან ჩატვირთვა დისკიდან"
+
+#: src/ui/shortcuts.ui src/saving_manager.py
+msgid "Save picture as…"
+msgstr "სურათის შენახვა, როგორც…"
+
+#: src/ui/shortcuts.ui
+msgid "Close the active image"
+msgstr "აქტიური გამოსახულების დახურვა"
+
+#: src/ui/shortcuts.ui
+msgid "Open the tool options menu"
+msgstr "ინსტრუმენტების გამართვის ფანჯარის გახსნა"
+
+#: src/ui/shortcuts.ui
+msgid "Back to previous tool"
+msgstr "წინა ხელსაწყოზე დაბრუნება"
+
+#: src/ui/shortcuts.ui
+msgid "Apply a transformation"
+msgstr "ტრანსფორმაციის გადატარება"
+
+#: src/ui/shortcuts.ui
+msgid "Toggle the preview"
+msgstr "მინიატურის გადართვა"
+
+#: src/ui/shortcuts.ui src/tools/selection_tools/abstract_select.py
+msgid "Selection"
+msgstr "მონიშნული"
+
+#. Label displayed in the keyboard shortcuts dialog
+#: src/ui/shortcuts.ui
+msgid "Delete the selection"
+msgstr "მონიშნულის წაშლა"
+
+#. Label displayed in the keyboard shortcuts dialog
+#: src/ui/shortcuts.ui
+msgid "Import a file as the selection"
+msgstr "ფაილის შემოტანა მონიშნულის სახით"
+
+#. Label displayed in the keyboard shortcuts dialog
+#: src/ui/shortcuts.ui
+msgid "Edit the main color (left click)"
+msgstr "მთავარი ფერის ჩასწორება (მარცხენა წკაპი)"
+
+#. Label displayed in the keyboard shortcuts dialog
+#: src/ui/shortcuts.ui
+msgid "Edit the secondary color (right click)"
+msgstr "დამხმარე ფერის ჩასწორება (მარჯვენა წკაპი)"
+
+#: src/ui/shortcuts.ui
+msgid "History"
+msgstr "ისტორია"
+
+#. Context: this section of the shortcuts window is about moving
+#. the view to the left/right/top/bottom
+#: src/ui/shortcuts.ui
+msgid "Navigation"
+msgstr "ნავიგაცია"
+
+#: src/ui/shortcuts.ui
+msgid "Tabs"
+msgstr "ჩანართები"
+
+#: src/ui/shortcuts.ui
+msgid "Toggle fullscreen mode"
+msgstr "სრული ეკრანის რეჟიმზე გადასვლის გადართვა"
+
+#: src/ui/shortcuts.ui
+msgid "Toggle toolbars visibility"
+msgstr "ხელსაწყოთა პანელების ხილვადობის გადართვა"
+
+#: src/ui/shortcuts.ui
+msgid "Touch gestures"
+msgstr "შეხების ჟესტები"
+
+#: src/ui/window.ui src/deco_manager.py
+msgid "Loading…"
+msgstr "ჩატვირთვა…"
+
+#: src/ui/window.ui
+msgid "Exit fullscreen"
+msgstr "სრული ეკრანიდან გასვლა"
+
+#: src/ui/win-menus.ui
+msgid "What's new in Drawing"
+msgstr "რა არის ახალი Drawing-ში"
+
+#: src/ui/win-menus.ui
+msgid "Dismiss"
+msgstr "მოცილება"
+
+#: src/deco_manager.py
+#, python-format
+msgid "Undo %s"
+msgstr "%s-ის დაბრუნება"
+
+#: src/deco_manager.py
+#, python-format
+msgid "Redo %s"
+msgstr "%s-ის გამეორება"
+
+#. Context: an error message
+#: src/history_manager.py
+msgid "Attempt to save an invalid state"
+msgstr "არასწორი მდგომარეობის შენახვის მცდელობა"
+
+#: src/history_manager.py
+#, python-format
+msgid "Error: no tool '%s'"
+msgstr "შეცდომა: ხელსაწყო '%s' არ არსებობს"
+
+#. Context: an error message
+#: src/image.py
+#, python-format
+msgid "New pixbuf empty, no change applied to %s"
+msgstr "ახალი pixbuf ცარიელია. %s-ში ცვლილებები არ შეტანილა"
+
+#: src/image.py src/properties.py
+msgid "Unsaved file"
+msgstr "შეუნახავი ფაილი"
+
+#. Context: this is a debug information that users will never see
+#: src/image.py
+#, python-format
+msgid "%s frames per second"
+msgstr "%s კადრი წამში"
+
+#. Description of a command line option
+#: src/main.py
+msgid "Show the app version"
+msgstr "აპის ვერსიის ჩვენება"
+
+#. Description of a command line option
+#: src/main.py
+msgid "Open a new window"
+msgstr "ახალი ფანჯრის გახსნა"
+
+#. Description of a command line option
+#: src/main.py
+msgid "Open a new tab"
+msgstr "ახალი ჩანართის გახსნა"
+
+#. Description of a command line option
+#: src/main.py
+msgid "Edit the clipboard content"
+msgstr "ბუფერის შემცველობის ჩასწორება"
+
+#: src/main.py
+msgid "This version isn't stable!"
+msgstr "ეს ვერსია სტაბილური არაა!"
+
+#: src/main.py
+msgid "Report bugs or ideas"
+msgstr "შეცდომების ან იდეების მიწერა"
+
+#. To tranlators: "translate" this by a list of your names (one name
+#. per line), they will be displayed in the "about" dialog
+#: src/main.py
+msgid "translator-credits"
+msgstr "ეკატერინე პაპავა"
+
+#. To translators: this is credits for the icons, consider that "Art
+#. Libre" is proper name
+#: src/main.py
+msgid "GNOME's \"Art Libre\" icon set authors"
+msgstr "GNOME-ის \"Art Libre\" ხატულების ნაკრების ავტორები"
+
+#: src/main.py
+msgid "Simple image editor for Linux"
+msgstr "მარტივი გრაფიკული რედაქტორი Linux-ისთვის"
+
+#: src/main.py
+msgid "Official webpage"
+msgstr "ოფიციალური ვებგვერდი"
+
+#: src/main.py
+msgid "Error opening this file."
+msgstr "ამ ფაილის გახსნის შეცდომა."
+
+#. This is an error message, %s is a better command suggestion
+#: src/main.py
+#, python-format
+msgid "Did you mean %s ?"
+msgstr "გულისხმობდით %s-ს?"
+
+#. This string displays the zoom level: %s will be replaced with a
+#. number, while %% will be rendered as the symbol '%'
+#: src/minimap.py
+#, python-format
+msgid "%s%%"
+msgstr "%s%%"
+
+#: src/new_image_dialog.py src/saving_manager.py src/window.py
+#: src/utilities/utilities_paths.py src/tools/ui/tool-text.ui
+msgid "Cancel"
+msgstr "გაუქმება"
+
+#. Context: Create a new image
+#: src/new_image_dialog.py
+msgid "Create"
+msgstr "შექმნა"
+
+#. Context: title of a section of the preferences
+#: src/preferences.py
+msgid "New images"
+msgstr "ახალი გამოსახულებები"
+
+#: src/preferences.py
+msgid "Default width"
+msgstr "ნაგულისხმევი სიგანე"
+
+#: src/preferences.py
+msgid "Default height"
+msgstr "ნაგულისხმევი სიმაღლე"
+
+#. Context: this is the label that describes the initial color of an
+#. image (as set in the preferences or in the "new image with custom
+#. size" dialog). This is displayed in the context of editing or saving
+#. the image, but not when creating it.
+#: src/preferences.py src/saving_manager.py
+#: src/optionsbars/selection/optionsbar-selection.ui
+#: src/optionsbars/transform/optionsbar-crop.ui
+#: src/optionsbars/transform/optionsbar-skew.ui src/tools/ui/selection.ui
+#: src/tools/ui/tool-crop.ui src/tools/ui/tool-eraser.ui
+#: src/tools/classic_tools/erasers/eraser_area.py
+#: src/tools/classic_tools/erasers/eraser_rubber.py
+msgid "Default color"
+msgstr "ნაგულისხმევი ფერი"
+
+#. Context: title of a section of the preferences
+#: src/preferences.py
+msgid "Images saving"
+msgstr "გამოსახულებების შენახვა"
+
+#: src/preferences.py
+msgid "JPEG and BMP images can't handle transparency."
+msgstr "JPEG და BMP გამოსახულებებს გამჭვირვალობასთან მუშაობა არ შეუძლიათ."
+
+#: src/preferences.py
+msgid ""
+"If you save your images in these formats, what do want to use to replace "
+"transparent pixels?"
+msgstr ""
+"თუ თქვენს გამოსახულებებს ამ ფორმატებში შეინახავთ, რით გნებავთ, გამჭვირვალე "
+"პიქსელები ჩანაცვლდეს?"
+
+#: src/preferences.py src/saving_manager.py src/utilities/utilities_colors.py
+msgid "White"
+msgstr "თეთრი"
+
+#: src/preferences.py src/saving_manager.py src/utilities/utilities_colors.py
+msgid "Black"
+msgstr "შავი"
+
+#. Context: replace transparent pixels with [checkboard]. This is a
+#. pattern of dark and light greys.
+#: src/preferences.py src/saving_manager.py
+msgid "Checkboard"
+msgstr "ჭადრაკის დაფა"
+
+#. Context: replace transparent pixels with [nothing]. In practice it
+#. means the alpha channel is just removed.
+#: src/preferences.py src/saving_manager.py
+msgid "Nothing"
+msgstr "არაფერი"
+
+#: src/preferences.py
+msgid "Ask before saving"
+msgstr "კითხვა შენახვამდე"
+
+#: src/preferences.py
+msgid "You can zoom with Ctrl+scrolling, or only scrolling."
+msgstr "გადიდება შეგიძლიათ Ctrl+გადახვევით, ან, მხოლოდ გადახვევით."
+
+#: src/preferences.py
+msgid "See the user help manual for explanations."
+msgstr "განმარტებებისთვის იხილეთ დახმარების სახელმძღვანელო."
+
+#: src/preferences.py
+msgid "Use 'Ctrl' to zoom"
+msgstr "გასადიდებლად 'Ctrl'-ის გამოყენება"
+
+#. Context: title of a section of the preferences (appearance of the
+#. tools: big icons?, labels?)
+#: src/preferences.py
+msgid "Appearance"
+msgstr "გარეგნობა"
+
+#: src/preferences.py
+msgid "Use big icons"
+msgstr "დიდი ხატულების გამოყენება"
+
+#. Context: title of a section of the preferences
+#: src/preferences.py
+msgid "Additional tools"
+msgstr "დამატებითი ხელსაწყოები"
+
+#: src/preferences.py
+msgid ""
+"These tools are not as reliable and useful as they should be, so they are "
+"not all enabled by default."
+msgstr ""
+"ეს ხელსაწყოები ისეთი სანდო და სასარგებლო არაა, როგორც უნდა იყოს, ასე რომ, "
+"ისინი ნაგულისხმევად ჩართული არაა."
+
+#. Context: this is the name of a tool
+#: src/preferences.py src/tools/classic_tools/tool_eraser.py
+msgid "Eraser"
+msgstr "საშლელი"
+
+#. Context: this is the name of a tool, a thick pencil dedicated to
+#. highlight text, for example in screenshots
+#: src/preferences.py src/tools/classic_tools/tool_highlight.py
+msgid "Highlighter"
+msgstr "გამომკვეთი"
+
+#: src/preferences.py src/tools/classic_tools/tool_brush.py
+#: src/tools/classic_tools/brushes/abstract_brush.py
+msgid "Brush"
+msgstr "ფუნჯი"
+
+#. Context: this is the name of a tool to draw little circles, crosses,
+#. or squares at precise points of the image, for example to draw a vague
+#. graph, or to highlight something in an image.
+#. A number can be added on the cross/circle/square to help captioning
+#. the elements of an image.
+#: src/preferences.py src/tools/classic_tools/tool_points.py
+msgid "Points"
+msgstr "ქულები"
+
+#. Context: this is a tool to select an area according to a shape that
+#. can be freely defined by the user.
+#: src/preferences.py src/tools/selection_tools/select_free.py
+msgid "Free selection"
+msgstr "თავისუფალი მონიშვნა"
+
+#. Context: this is a tool to "magically" select an area depending on its
+#. color. For example clicking on a white pixel will select the
+#. surrounding area made of white pixels.
+#: src/preferences.py src/tools/selection_tools/select_color.py
+msgid "Color selection"
+msgstr "ფერის არჩევანი"
+
+#. Context: this is a tool to pick a RGBA color in the image in order to
+#. use it to draw with other tools
+#: src/preferences.py src/tools/classic_tools/tool_picker.py
+msgid "Color Picker"
+msgstr "ფერის ამრჩევი"
+
+#. Context: the name of a tool to fill an area of one color with an other
+#: src/preferences.py src/tools/classic_tools/tool_paint.py
+msgid "Paint"
+msgstr "დახატვა"
+
+#. Context: the color editor is an interface to pick any RGBA color, and
+#. it can be used instead of the default simple RGB palette
+#: src/preferences.py
+msgid "Use color editor by default"
+msgstr "ფერადი რედაქტორის ნაგულისხმევად გამოყენება"
+
+#: src/preferences.py
+msgid "You can use a simple color palette, or use a full RGBA color editor."
+msgstr ""
+"შეგიძლიათ, გამოიყენოთ მარტივი ფერთა პალიტრა, ან გამოიყენოთ სრული RGBA ფერის "
+"რედაქტორი."
+
+#. Context: title of a section of the preferences
+#: src/preferences.py
+msgid "Advanced options"
+msgstr "დამატებითი პარამეტრები"
+
+#: src/preferences.py
+msgid "Preview size"
+msgstr "მინიატურის ზომა"
+
+#. This label will not be displayed in the UI of stable versions
+#: src/preferences.py
+msgid "Development features"
+msgstr "სატესტო თვისებები"
+
+#: src/preferences.py
+msgid "Background color"
+msgstr "ფონის ფერი"
+
+#: src/preferences.py
+msgid "Prefer dark theme variant"
+msgstr "მუქი თემის ვარიანტის არჩევა"
+
+#. Context: title of a section of the preferences. It corresponds to the
+#. window layout (header-bar? tool-bar? menu-bar?)
+#: src/preferences.py
+msgid "Layout"
+msgstr "განლაგება"
+
+#: src/preferences.py
+msgid "The recommended value is \"Automatic\"."
+msgstr "რეკომენდებული მნიშვნელობაა 'ავტომატური'."
+
+#. It has to match what's written in the previous string.
+#: src/preferences.py
+msgid "Automatic"
+msgstr "ავტომატური"
+
+#: src/preferences.py
+msgid "Compact"
+msgstr "დაპატარავება"
+
+#: src/preferences.py
+msgid "elementary OS"
+msgstr "elementary OS"
+
+#. "Legacy" is about the window layout, it means menubar+toolbar, you
+#. can translate it like if it was "Traditional"
+#: src/preferences.py
+msgid "Legacy"
+msgstr "მოძველებული"
+
+#. "Legacy" is about the window layout, it means menubar+toolbar, you
+#. can translate it like if it was "Traditional".
+#. Symbolic icons are monochrome icons.
+#: src/preferences.py
+msgid "Legacy (symbolic icons)"
+msgstr "მოძველებული (სიმბოლური ხატულები)"
+
+#: src/preferences.py
+msgid "Menubar only"
+msgstr "მხოლოდ მენიუს პანელი"
+
+#: src/preferences.py
+msgid "Toolbar only"
+msgstr "მხოლოდ ხელსაწყოების პანელი"
+
+#. Symbolic icons are monochrome icons.
+#: src/preferences.py
+msgid "Toolbar only (symbolic icons)"
+msgstr "მხოლოდ ხელსაწყოების პანელი (სიმბოლური ხატულები)"
+
+#: src/properties.py
+#, python-format
+msgid "%s px"
+msgstr "%s პიქს"
+
+#: src/properties.py
+#, python-format
+msgid "%s cm"
+msgstr "%s სმ"
+
+#: src/properties.py
+#, python-format
+msgid "%s in"
+msgstr "%s დუიმ"
+
+#. Context: the path of the edited file
+#: src/properties.py
+msgid "Path"
+msgstr "ბილიკი"
+
+#. Context: the file format of the edited file
+#: src/properties.py
+msgid "Format"
+msgstr "ფორმატი"
+
+#: src/properties.py
+msgid "Colorspace"
+msgstr "ფერების სივრცე"
+
+#. Context: an invalid colorspace format
+#: src/properties.py
+msgid "Invalid format"
+msgstr "არასწორი ფორმატი"
+
+#. an actual error occurred!
+#. Context: an error message
+#: src/saving_manager.py
+msgid "Failed to replace transparency"
+msgstr "გამჭვირვალობის ჩანაცვლება ჩავარდა"
+
+#. Context: an error message
+#: src/saving_manager.py
+#, python-format
+msgid "Failed to save %s"
+msgstr "%s-ის შენახვის შეცდომა"
+
+#. Context: an error message
+#: src/saving_manager.py
+#, python-format
+msgid "Failed to reload %s"
+msgstr "%s-ის თავიდან ჩატვირთვის შეცდომა"
+
+#. Context: Untitled(.png) is the default name of a newly saved file
+#: src/saving_manager.py
+msgid "Untitled"
+msgstr "უსათაურო"
+
+#. Context: the sentence "There are unsaved modifications to %s."
+#: src/saving_manager.py
+msgid "this picture"
+msgstr "ეს სურათი"
+
+#: src/saving_manager.py
+msgid "Discard"
+msgstr "მოცილება"
+
+#. Context: %s will be replaced by the name of a file.
+#: src/saving_manager.py src/window.py
+#, python-format
+msgid "There are unsaved modifications to %s."
+msgstr "%s-ზე არსებობს შეუნახავი ცვლილებები."
+
+#: src/saving_manager.py
+msgid ""
+"A part of the image is selected: the pixels beneath the selection will be "
+"saved with a color you might not expect!"
+msgstr ""
+"მონიშნულია გამოსახულების ნაწილი. მონიშნულის ქვეშ არსებული პიქსელები "
+"შეინახება ფერებით, რომელსაც არ ელით!"
+
+#. Context: the user tries to save the image while previewing an
+#. unapplied "transform" operation (scaling, cropping, whatever)
+#: src/saving_manager.py
+msgid "Modifications from the current tool haven't been applied."
+msgstr "მიმდინარე ხელსაწყოდან ცვლილებები არ გადატარებულა."
+
+#. To translators: this string should be quite short
+#: src/saving_manager.py
+msgid "Apply & save"
+msgstr "გადატარება და შენახვა"
+
+#. To translators: this string should be quite short
+#: src/saving_manager.py
+msgid "Deselect & save"
+msgstr "შენახვის მოხსნა და სენახვა"
+
+#: src/saving_manager.py
+msgid "Save anyway"
+msgstr "დაიმახსოვრე ყველაფრის მიუხედავად"
+
+#: src/saving_manager.py
+msgid "Do you want to save anyway?"
+msgstr "მაინც გნებავთ, შეინახოთ?"
+
+#. Context: confirm replacing transparent pixels with the selected color
+#: src/saving_manager.py
+msgid "Replace"
+msgstr "ჩანაცვლება"
+
+#: src/saving_manager.py
+msgid "This file format doesn't support transparent colors."
+msgstr "ამ ფაილის ფორმატს გამჭვირვალე ფერების მხარდაჭერა არ აქვს."
+
+#: src/saving_manager.py
+msgid "You can save the image as a PNG file, or replace transparency with:"
+msgstr ""
+"შეგიძლიათ, გამოსახულება შეინახოთ PNG ფაილში, ან ჩაანაცვლოთ გამჭვირვალობა:"
+
+#: src/saving_manager.py
+msgid "Replace transparency with:"
+msgstr "გამჭვირვალობის ჩანაცვლება რით:"
+
+#. Context: an error message
+#: src/selection_manager.py
+msgid "The selection pixbuf is empty."
+msgstr "მონიშნულის pixbuf ცარიელია."
+
+#: src/selection_manager.py
+msgid "The selection path is empty."
+msgstr "მონიშნულის ბილიკი ცარიელია."
+
+#. Context: an error message
+#: src/tools_initializer.py
+#, python-format
+msgid "Failed to load tool: %s"
+msgstr "ხელსაწყოს ჩატვირთვა ჩავარდა: %s"
+
+#: src/window.py
+msgid "Error starting the application, please report this bug."
+msgstr "აპლიკაციის გაშვების შეცდომა. მოგვწერეთ ამის შესახებ."
+
+#: src/window.py
+msgid "The clipboard doesn't contain any image."
+msgstr "ბუფერი გამოსახულებებს არ შეიცავს."
+
+#. Context: %s is a file name
+#: src/window.py
+#, python-format
+msgid "The file %s is already opened"
+msgstr "ფაილი %s უკვე ღიაა"
+
+#. Context: the user would click here to confirm they want to open the
+#. same file twice
+#: src/window.py
+msgid "Open again"
+msgstr "კიდევ ერთხელ გახსნა"
+
+#: src/window.py
+msgid "Switch to this image"
+msgstr "ამ გამოსახულებაზე გადართვა"
+
+#: src/window.py
+msgid "Modifications will take effect in the next new window."
+msgstr "ცვლილებები ძალაში შემდეგ ახალ ფანჯარაში შევა."
+
+#: src/window.py
+msgid "Middle-click or press F8 to show/hide controls."
+msgstr ""
+"შუა წკაპი, ან დააჭირეთ ღილაკს F8 კონტროლის ელემენტების საჩვენებლად/დასამალად."
+
+#: src/window.py
+msgid "Press F11 to exit fullscreen."
+msgstr "F11 სრულეკრანიანი რეჟიმიდან გასასვლელად."
+
+#: src/window.py
+#, python-format
+msgid ""
+"Error loading the bottom pane for the tool '%s', please report this bug."
+msgstr ""
+"ხელსაწყოსთვის '%s' ქვედა პანელის ჩატვირთვის შეცდომა. მოგვწერეთ ამ შეცდომის "
+"შესახებ."
+
+#: src/window.py
+#, python-format
+msgid "Loading %s"
+msgstr "%s-ის ჩატვირთვა"
+
+#: src/window.py
+msgid "New Tab"
+msgstr "ახალი ჩანართი"
+
+#: src/window.py
+msgid "Discard changes"
+msgstr "ცვლილებების გაუქმება"
+
+#. Context: %s will be replaced by the name of a file.
+#: src/window.py
+#, python-format
+msgid "Where do you want to open %s?"
+msgstr "სად გნებავთ, %s გახსნათ?"
+
+#. Context for translation:
+#. "What do you want to do with *these files*?"
+#: src/window.py
+msgid "these files"
+msgstr "ეს ფაილები"
+
+#. Context: %s will be replaced by the name of a file. The possible
+#. answers are "cancel", "open", and "import"
+#: src/window.py
+#, python-format
+msgid "What do you want to do with %s?"
+msgstr "რა გნებავთ, %s-ს უქნათ?"
+
+#: src/window.py
+msgid "Image copied to clipboard"
+msgstr "სურათი ბუფერში დაკოპირდა"
+
+#: src/window.py
+msgid "Import a picture"
+msgstr "სურათის შემოტანა"
+
+#: src/window.py
+msgid "Required tool is not available"
+msgstr "აუცილებელი ხელსაწყო ხელმისაწვდომი არაა"
+
+#: src/utilities/utilities_colors.py
+msgid "Transparent"
+msgstr "გამჭვირვალე"
+
+#: src/utilities/utilities_colors.py
+#, python-format
+msgid "%s%% transparent"
+msgstr "%s%% გამჭვირვალე"
+
+#: src/utilities/utilities_colors.py
+msgid "Grey"
+msgstr "ნაცრისფერი"
+
+#: src/utilities/utilities_colors.py
+msgid "Orange"
+msgstr "ნარინჯისფერი"
+
+#: src/utilities/utilities_colors.py
+msgid "Brown"
+msgstr "ყავისფერი"
+
+#. Context: the name of the current color is provided as a tooltip to
+#. help users with color blindness, but some color names don't have a
+#. clear definition. Here, the app thinks it's probably brown.
+#: src/utilities/utilities_colors.py
+msgid "Probably brown"
+msgstr "ალბათ ყავისფერი"
+
+#: src/utilities/utilities_colors.py
+msgid "Red"
+msgstr "წითელი"
+
+#: src/utilities/utilities_colors.py
+msgid "Green"
+msgstr "მწვანე"
+
+#: src/utilities/utilities_colors.py
+msgid "Blue"
+msgstr "ლურჯი"
+
+#: src/utilities/utilities_colors.py
+msgid "Yellow"
+msgstr "ყვითელი"
+
+#: src/utilities/utilities_colors.py
+msgid "Magenta"
+msgstr "ალისფერი"
+
+#: src/utilities/utilities_colors.py
+msgid "Purple"
+msgstr "იისფერი"
+
+#: src/utilities/utilities_colors.py
+msgid "Cyan"
+msgstr "ცისფერი"
+
+#. Context: the name of the current color is provided as a tooltip to
+#. help users with color blindness, but some color names don't have a
+#. clear definition. Here, the app thinks it's probably teal.
+#. You can translate "teal" with the name of approaching color, like
+#. turquoise or green-blue.
+#: src/utilities/utilities_colors.py
+msgid "Probably teal"
+msgstr "ალბათ მომწვანო-ლურჯი"
+
+#. Context: the name of the current color is provided as a tooltip to
+#. help users with color blindness, but some color names don't have a
+#. clear definition. Here, the app can't find a corresponding color name.
+#: src/utilities/utilities_colors.py
+msgid "Unknown color name"
+msgstr "უცნობი ფერის სახელი"
+
+#: src/utilities/utilities_files.py
+msgid "All pictures"
+msgstr "ყველა სურათი"
+
+#: src/utilities/utilities_files.py
+msgid "PNG images"
+msgstr "PNG გამოსახულებები"
+
+#: src/utilities/utilities_files.py
+msgid "JPEG images"
+msgstr "JPEG გამოსახულებები"
+
+#: src/utilities/utilities_files.py
+msgid "BMP images"
+msgstr "BMP გამოსახულებები"
+
+#: src/utilities/utilities_files.py
+#, python-format
+msgid "%s isn't an image."
+msgstr "%s გამოსახულება არაა."
+
+#: src/utilities/utilities_files.py
+msgid "Sorry, WEBP images can't be loaded by this app."
+msgstr "WEB გამოსახულებებს ამ აპში ვერ გახსნით."
+
+#. Context: an error message, %s is a file path
+#: src/utilities/utilities_files.py
+#, python-format
+msgid "Despite its name, %s is a WEBP file."
+msgstr "მიუხედავად სახელისა, %s WEP ფაილია."
+
+#: src/utilities/utilities_paths.py
+msgid "Continue"
+msgstr "გაგრძელება"
+
+#: src/utilities/utilities_paths.py
+msgid "The area seems poorly delimited, or is very complex."
+msgstr "ეს არე ცუდადაა დაყოფილი, ან ძალიან რთულია."
+
+#: src/utilities/utilities_paths.py
+msgid "This algorithm may not be able to manage the wanted area."
+msgstr "ამ ალგორითმს სასურველი არეს მართვა არ შეუძლია."
+
+#: src/utilities/utilities_paths.py
+msgid "Do you want to abort the operation, or to let the tool struggle ?"
+msgstr "გნებავთ ოპერაციის შეწყვეტა, თუ მიატოვებთ ხელსაწყოს, იწვალოს?"
+
+#. To translators: it appears in tooltips over numerical inputs
+#: src/utilities/utilities_units.py
+msgid "percents"
+msgstr "პროცენტები"
+
+#. To translators: it's the angle measure unit, it appears in a tooltip
+#. over a numerical input
+#: src/utilities/utilities_units.py
+msgid "degrees"
+msgstr "გრადუსი"
+
+#. Context: this is equivalent to "Highlight: Light text on dark background"
+#. but it has to be FAR SHORTER so it fits in the color chooser
+#: src/optionsbars/classic/optionsbar_color_popover.py
+msgid "Highlight (dark)"
+msgstr "გამოკვეთა (მუქი)"
+
+#: src/optionsbars/classic/optionsbar_color_popover.py
+#: src/tools/ui/tool-shape.ui
+msgid "Main color"
+msgstr "მთავარი ფერი"
+
+#: src/optionsbars/classic/optionsbar_color_popover.py
+#: src/optionsbars/selection/optionsbar-selection.ui
+#: src/optionsbars/transform/optionsbar-crop.ui
+#: src/optionsbars/transform/optionsbar-skew.ui src/tools/ui/selection.ui
+#: src/tools/ui/tool-crop.ui src/tools/ui/tool-eraser.ui
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/erasers/eraser_area.py
+#: src/tools/classic_tools/erasers/eraser_rubber.py
+msgid "Secondary color"
+msgstr "დამხმარე ფერი"
+
+#: src/optionsbars/classic/optionsbar-classic.ui
+msgid "Tool size"
+msgstr "ხელსაწყოს ზომა"
+
+#: src/optionsbars/classic/optionsbar-classic.ui src/tools/abstract_tool.py
+msgid "No options"
+msgstr "პარამეტრების გარეშე"
+
+#: src/optionsbars/classic/optionsbar-color-popover.ui
+msgid "How the color will be applied to the existing pixels"
+msgstr "როგორ მოხდება ფერების გადატარება არსებულ პიქსელებზე"
+
+#: src/optionsbars/classic/optionsbar-color-popover.ui
+msgid "Back to the palette"
+msgstr "პალიტრაზე დაბრუნება"
+
+#: src/optionsbars/classic/optionsbar-color-popover.ui
+msgid "Palette"
+msgstr "პალიტრა"
+
+#: src/optionsbars/selection/optionsbar-selection.ui
+msgid "Selection options"
+msgstr "მონიშვნის პარამეტრები"
+
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+#: src/tools/ui/tool-eraser.ui
+msgid "Replace with…"
+msgstr "ჩანაცვლება რით…"
+
+#: src/optionsbars/selection/optionsbar-selection.ui
+#: src/optionsbars/transform/optionsbar-crop.ui
+#: src/optionsbars/transform/optionsbar-skew.ui src/tools/ui/selection.ui
+#: src/tools/ui/tool-crop.ui src/tools/ui/tool-eraser.ui
+#: src/tools/classic_tools/erasers/eraser_area.py
+#: src/tools/classic_tools/erasers/eraser_rubber.py
+#: src/tools/transform_tools/filters/filter_transparency.py
+msgid "Transparency"
+msgstr "გამჭვირვალობა"
+
+#: src/optionsbars/selection/optionsbar-selection.ui src/tools/ui/selection.ui
+msgid "Extract from this color"
+msgstr "ამ ფერიდან ამოღება"
+
+#: src/optionsbars/transform/abstract-optionsbar-transform.ui
+msgid "More options"
+msgstr "მეტი პარამეტრი"
+
+#: src/optionsbars/transform/optionsbar-crop.ui
+#: src/optionsbars/transform/optionsbar-skew.ui src/tools/ui/tool-crop.ui
+msgid "Expand with…"
+msgstr "გაფართოება რით…"
+
+#: src/optionsbars/transform/optionsbar-filters.ui
+#: src/tools/transform_tools/tool_filters.py
+msgid "Select a filter…"
+msgstr "აირჩიეთ ფილტრი…"
+
+#: src/optionsbars/transform/optionsbar-rotate.ui
+msgid "Angle (degrees)"
+msgstr "კუთხე (გრადუსებში)"
+
+#: src/optionsbars/transform/optionsbar-rotate.ui
+msgid "Angle"
+msgstr "კუთხე"
+
+#: src/optionsbars/transform/optionsbar-rotate.ui src/tools/ui/tool-rotate.ui
+msgid "Rotate left"
+msgstr "მარცხნივ მოტრიალება"
+
+#: src/optionsbars/transform/optionsbar-rotate.ui src/tools/ui/tool-rotate.ui
+msgid "Rotate right"
+msgstr "მარჯვნივ მოტრიალება"
+
+#: src/optionsbars/transform/optionsbar-rotate.ui src/tools/ui/tool-rotate.ui
+msgid "Flip horizontally"
+msgstr "ჰორიზონტალურად გადაბრუნება"
+
+#: src/optionsbars/transform/optionsbar-rotate.ui src/tools/ui/tool-rotate.ui
+msgid "Flip vertically"
+msgstr "ვერტიკალურად გადაბრუნება"
+
+#. Context: the title of a menu to chose how the image will be scaled
+#: src/optionsbars/transform/optionsbar-scale.ui src/tools/ui/tool-scale.ui
+msgid "Keep proportions"
+msgstr "პროპორციების შენარჩუნება"
+
+#. Context: an item in a menu whose title is "Keep proportions"
+#. Context for translations: "Always [keep proportions]"
+#: src/optionsbars/transform/optionsbar-scale.ui src/tools/ui/tool-scale.ui
+msgid "Always"
+msgstr "ყოველთვის"
+
+#. Context: an item in a menu whose title is "Keep proportions"
+#. Context for translations: "[Keep proportions only] when scaling from corners"
+#: src/optionsbars/transform/optionsbar-scale.ui src/tools/ui/tool-scale.ui
+msgid "When scaling from corners"
+msgstr "როცა მასშტაბირება კუთხეებიდან ხდება"
+
+#. Context for translations: "[Keep proportions only] when setting values manually"
+#: src/optionsbars/transform/optionsbar-scale.ui src/tools/ui/tool-scale.ui
+msgid "When setting values manually"
+msgstr "მნიშვნელობების ხელით დაყენებისას"
+
+#. Context: an item in a menu whose title is "Keep proportions"
+#. Context for translations: "Never [keep proportions]"
+#: src/optionsbars/transform/optionsbar-scale.ui src/tools/ui/tool-scale.ui
+msgid "Never"
+msgstr "არასდროს"
+
+#: src/optionsbars/transform/optionsbar-scale.ui src/tools/ui/tool-scale.ui
+msgid "Pixels"
+msgstr "პიქსელი"
+
+#: src/optionsbars/transform/optionsbar-scale.ui src/tools/ui/tool-scale.ui
+msgid "Percentage"
+msgstr "პროცენტი"
+
+#: src/optionsbars/transform/optionsbar-skew.ui
+msgid "Horizontal deformation"
+msgstr "ჰორიზონტალური დეფორმაცია"
+
+#: src/optionsbars/transform/optionsbar-skew.ui
+msgid "Vertical deformation"
+msgstr "ვერტიკალური დეფორმაცია"
+
+#. Context: an error message
+#: src/tools/abstract_tool.py
+#, python-brace-format
+msgid "Can't start operation: wrong tool id (expected {0}, got {1})"
+msgstr ""
+"ოპერაციის დაწყება შეუძლებელია: არასწორი ხელსაწყოს id (მოველოდი: {0}. მივიღე: "
+"{1})"
+
+#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
+#: src/tools/ui/tool-pencil.ui
+msgid "Line shape"
+msgstr "ხაზის მოხაზულობა"
+
+#. Context: this is the name of a line shape
+#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
+#: src/tools/ui/tool-pencil.ui src/tools/classic_tools/tool_pencil.py
+msgid "Round"
+msgstr "მრგვალი"
+
+#. Context: this is the name of a line shape
+#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
+#: src/tools/ui/tool-pencil.ui src/tools/ui/tool-points.ui
+#: src/tools/classic_tools/tool_pencil.py
+#: src/tools/classic_tools/tool_points.py
+msgid "Square"
+msgstr "კვადრატი"
+
+#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
+#: src/tools/ui/tool-pencil.ui
+msgid "Outline"
+msgstr "კონტური"
+
+#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
+#: src/tools/ui/tool-pencil.ui
+msgid "No dashes"
+msgstr "ტირეების გარეშე"
+
+#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
+#: src/tools/ui/tool-pencil.ui
+msgid "Simple dashes"
+msgstr "მარტივი ტირეები"
+
+#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
+#: src/tools/ui/tool-pencil.ui
+msgid "Long dashes"
+msgstr "გრძელი ტირეები"
+
+#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
+#: src/tools/ui/tool-pencil.ui
+msgid "Short dashes"
+msgstr "მოკლე ტირეები"
+
+#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
+#: src/tools/ui/tool-pencil.ui
+msgid "Alternated dashes"
+msgstr "ცვლადი ტირეები"
+
+#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
+msgid "No arrow"
+msgstr "ისრის გარეშე"
+
+#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
+msgid "Simple arrow"
+msgstr "მარტივი ისარი"
+
+#: src/tools/ui/tool-arc.ui src/tools/ui/tool-line.ui
+msgid "Double arrow"
+msgstr "ორმაგი ისარი"
+
+#: src/tools/ui/tool-arc.ui src/tools/ui/tool-brush.ui
+#: src/tools/ui/tool-highlight.ui src/tools/ui/tool-line.ui
+#: src/tools/ui/tool-pencil.ui src/tools/ui/tool-points.ui
+#: src/tools/ui/tool-shape.ui src/tools/ui/tool-text.ui
+msgid "Antialiasing"
+msgstr "მომრგვალება"
+
+#: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_simple.py
+msgid "Simple brush"
+msgstr "მარტივი ფუნჯი"
+
+#: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_airbrush.py
+msgid "Airbrush"
+msgstr "აეროგრაფი"
+
+#: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_hairy.py
+msgid "Hairy brush"
+msgstr "თმიანი ფუნჯი"
+
+#: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_nib.py
+msgid "Calligraphic nib"
+msgstr "კალიგრაფიული კალამი"
+
+#: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_nib.py
+msgid "Right-handed nib"
+msgstr "მარჯვენა ხელის კალამი"
+
+#: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_nib.py
+msgid "Vertical nib"
+msgstr "ვერტიკალური კალამი"
+
+#: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_nib.py
+msgid "Left-handed nib"
+msgstr "ცაცია კალამი"
+
+#. brush_direction == 'horizontal':
+#: src/tools/ui/tool-brush.ui src/tools/classic_tools/brushes/brush_nib.py
+msgid "Horizontal nib"
+msgstr "ჰორიზონტალური კალამი"
+
+#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/erasers/eraser_rubber.py
+msgid "Rubber eraser"
+msgstr "რეზინის საშლელი"
+
+#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/erasers/eraser_area.py
+msgid "Rectangle area"
+msgstr "მართკუთხედი არე"
+
+#. Context: this feature erases the color where the user clicked.
+#. For example to cut out an object from its solid background.
+#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/erasers/eraser_color.py
+msgid "Remove color"
+msgstr "ფერის წაშლა"
+
+#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/erasers/eraser_area.py
+msgid "Blur"
+msgstr "ბუნდოვნება"
+
+#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/erasers/eraser_area.py
+msgid "Shuffle pixels"
+msgstr "პიქსელების არევა"
+
+#: src/tools/ui/tool-eraser.ui src/tools/classic_tools/erasers/eraser_area.py
+msgid "Shuffle and blur"
+msgstr "არევა და ბუნდოვნება"
+
+#. Context: a filter to censor the image with some little tiles
+#: src/tools/ui/tool-eraser.ui src/tools/ui/tool-filters.ui
+#: src/tools/classic_tools/erasers/eraser_area.py
+#: src/tools/transform_tools/tool_filters.py
+msgid "Mosaic"
+msgstr "მოზაიკა"
+
+#: src/tools/ui/tool-eraser.ui
+msgid "Solid color"
+msgstr "მუქი ფერი"
+
+#: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
+msgid "Change saturation"
+msgstr "გაჯერებულობის შეცვლა"
+
+#. Context: a filter adding like a light veil on the image
+#: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
+msgid "Veil"
+msgstr "დაფარვა"
+
+#: src/tools/ui/tool-filters.ui src/tools/ui/tool-highlight.ui
+#: src/tools/transform_tools/tool_filters.py
+msgid "Add transparency"
+msgstr "გამჭვირვალობის დამატება"
+
+#: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
+#: src/tools/transform_tools/filters/filter_contrast.py
+msgid "Increase contrast"
+msgstr "კონტრასტის გაზრდა"
+
+#. Context: the title of the menu with various types of blurring
+#. filters and their options.
+#: src/tools/ui/tool-filters.ui
+msgid "Blurring"
+msgstr "გაბუნდოვნება"
+
+#: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
+msgid "Fast blur"
+msgstr "სწრაფი გაბუნდოვნება"
+
+#: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
+msgid "Slow blur"
+msgstr "ნელი გაბუნდოვნება"
+
+#: src/tools/ui/tool-filters.ui
+msgid "Blur direction"
+msgstr "ბუნდოვნების მიმართულება"
+
+#. Context: about the blur direction
+#: src/tools/ui/tool-filters.ui
+msgid "No direction"
+msgstr "მიმართულების გარეშე"
+
+#: src/tools/ui/tool-filters.ui
+msgid "Blur horizontally"
+msgstr "ჰორიზონტალური ბუნდოვნება"
+
+#: src/tools/ui/tool-filters.ui
+msgid "Blur vertically"
+msgstr "ვერტიკალური ბუნდოვნება"
+
+#: src/tools/ui/tool-filters.ui src/tools/transform_tools/tool_filters.py
+msgid "Invert colors"
+msgstr "ფერების ინვერსია"
+
+#: src/tools/ui/tool-highlight.ui
+msgid "Straighten the line"
+msgstr "ხაზის გასწორება"
+
+#: src/tools/ui/tool-line.ui
+msgid "Color gradient"
+msgstr "ფერის გრადიენტი"
+
+#: src/tools/ui/tool-line.ui
+msgid "Locked direction"
+msgstr "ჩაკეტილი მიმართულება"
+
+#. Context: title for the list of the possible painting algorithms.
+#: src/tools/ui/tool-paint.ui
+msgid "Behavior"
+msgstr "ქცევა"
+
+#. Context: this is one of the possible painting algorithms. It
+#. tries to draw a shape around the area to paint, and fill it
+#. with the new color. The shape is approximative so it's not the
+#. default behavior of the tool.
+#: src/tools/ui/tool-paint.ui
+msgid "Encircle and fill"
+msgstr "შემოხაზვა და შევსება"
+
+#. Context: this is one of the possible painting algorithms. It
+#. erases the color the user clicked, and then replace transparent
+#. pixels with the new color.
+#: src/tools/ui/tool-paint.ui
+msgid "Erase and replace"
+msgstr "წაშლა და ჩანაცვლება"
+
+#. Context: this is one of the possible painting algorithms. It
+#. paints over the entire image, instead of following the shapes
+#. already drawn.
+#: src/tools/ui/tool-paint.ui
+msgid "Entire image"
+msgstr "მთელი გამოსახულება"
+
+#: src/tools/ui/tool-points.ui
+msgid "Dots type"
+msgstr "წერტილის ტიპები"
+
+#: src/tools/ui/tool-points.ui src/tools/ui/tool-shape.ui
+#: src/tools/classic_tools/tool_points.py src/tools/classic_tools/tool_shape.py
+msgid "Circle"
+msgstr "წრე"
+
+#: src/tools/ui/tool-points.ui src/tools/classic_tools/tool_points.py
+msgid "Cross"
+msgstr "ჯვარი"
+
+#: src/tools/ui/tool-points.ui src/tools/classic_tools/tool_points.py
+msgid "X-shaped cross"
+msgstr "X-ფორმის ჯვარი"
+
+#: src/tools/ui/tool-points.ui
+msgid "Include a number"
+msgstr "ნომრის ჩასმა"
+
+#: src/tools/ui/tool-points.ui
+msgid "Next number"
+msgstr "შემდეგი ნომერი"
+
+#: src/tools/ui/tool-points.ui
+msgid "Reset number"
+msgstr "ნომრის ჩამოყრა"
+
+#: src/tools/ui/tool-points.ui
+msgid "Decrement number"
+msgstr "ნომრის შემცირება"
+
+#: src/tools/ui/tool-points.ui
+msgid "Increment number"
+msgstr "ნომრის გაზრდა"
+
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+msgid "Solid outline"
+msgstr "სქელი კონტური"
+
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+msgid "Dashed outline"
+msgstr "ტირეებიანი კონტური"
+
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+msgid "No outline"
+msgstr "კონტურის გარეშე"
+
+#: src/tools/ui/tool-shape.ui
+msgid "Filling"
+msgstr "შევსება"
+
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+msgid "Empty shape"
+msgstr "ცარიელი მოხაზულობა"
+
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+msgid "Horizontal gradient"
+msgstr "ჰორიზონტალური გრადაცია"
+
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+msgid "Vertical gradient"
+msgstr "ვერტიკალური გრადაცია"
+
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+msgid "Radial gradient"
+msgstr "რადიალური გრადიენტი"
+
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+msgid "Rectangle"
+msgstr "მართკუთხედი"
+
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+msgid "Rounded rectangle"
+msgstr "მომრგვალებული მართკუთხედი"
+
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+msgid "Oval"
+msgstr "ოვალი"
+
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+msgid "Polygon"
+msgstr "მრავალკუთხედი"
+
+#: src/tools/ui/tool-shape.ui src/tools/classic_tools/tool_shape.py
+msgid "Free shape"
+msgstr "თავისუფალი ფორმა"
+
+#: src/tools/ui/tool-shape.ui
+msgid "Close shape"
+msgstr "მოხაზულობის დახურვა"
+
+#: src/tools/ui/tool-text.ui
+msgid "Insert here"
+msgstr "აქ ჩასმა"
+
+#: src/tools/ui/tool-text.ui
+msgid "Font"
+msgstr "ფონტი"
+
+#: src/tools/ui/tool-text.ui
+msgid "Select a font…"
+msgstr "აირჩიეთ ფონტი…"
+
+#: src/tools/ui/tool-text.ui
+msgid "Italic"
+msgstr "კურსივი"
+
+#: src/tools/ui/tool-text.ui
+msgid "Bold"
+msgstr "სქელი"
+
+#. Context: the types of background behind the inserted text
+#: src/tools/ui/tool-text.ui
+msgid "Background"
+msgstr "ფონი"
+
+#. Context: a type of background behind the inserted text
+#: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
+msgid "No background"
+msgstr "ფონის გარეშე"
+
+#. Context: a type of background behind the inserted text
+#: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
+msgid "Shadow"
+msgstr "ჩრდილი"
+
+#. Context: a type of background behind the inserted text
+#: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
+msgid "Thin outline"
+msgstr "თხელი კონტური"
+
+#. Context: a type of background behind the inserted text
+#: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
+msgid "Thick outline"
+msgstr "სქელი კონტური"
+
+#. Context: a type of background behind the inserted text
+#: src/tools/ui/tool-text.ui src/tools/classic_tools/tool_text.py
+msgid "Rectangle background"
+msgstr "მართკუთხედი ფონი"
+
+#: src/tools/classic_tools/tool_arc.py
+msgid "Curve"
+msgstr "მრუდი"
+
+#: src/tools/classic_tools/tool_arc.py
+msgid "Curve options"
+msgstr "რკალის მორგება"
+
+#: src/tools/classic_tools/tool_arc.py
+msgid "Draw a second segment to complete the curve"
+msgstr "დახატეთ მეორე სეგმენტი რკალის დასასრულებლად"
+
+#: src/tools/classic_tools/tool_arc.py src/tools/classic_tools/tool_line.py
+msgid "Dashed arrow"
+msgstr "წყვეტილი ისარი"
+
+#: src/tools/classic_tools/tool_arc.py src/tools/classic_tools/tool_line.py
+msgid "Arrow"
+msgstr "ისარი"
+
+#: src/tools/classic_tools/tool_arc.py src/tools/classic_tools/tool_line.py
+#: src/tools/classic_tools/tool_pencil.py
+msgid "Dashed"
+msgstr "ტირეებით"
+
+#: src/tools/classic_tools/tool_arc.py src/tools/classic_tools/tool_line.py
+#: src/tools/classic_tools/tool_pencil.py
+msgid "Press <Alt> to toggle the 'outline' option"
+msgstr "დააჭირეთ ღილაკს <Alt> 'კონტურის' პარამეტრის გადასართავად"
+
+#: src/tools/classic_tools/tool_brush.py
+msgid "Brush options"
+msgstr "ფუნჯის მორგება"
+
+#: src/tools/classic_tools/tool_eraser.py
+msgid "Press <Shift> to erase a path instead"
+msgstr "<Shift> სამაგიეროდ ბილიკის წასაშლელად"
+
+#: src/tools/classic_tools/tool_eraser.py
+msgid "Press <Shift> to erase a rectangle area instead"
+msgstr "<Shift> სამაგიეროდ მართკუთხედი არეს წასაშლელად"
+
+#: src/tools/classic_tools/tool_eraser.py
+msgid "Eraser options"
+msgstr "საშლელის მორგება"
+
+#: src/tools/classic_tools/tool_highlight.py
+msgid "Press <Shift> to temporarily highlight on dark background instead"
+msgstr "გეჭიროთ ღილაკზე <Shift> მუქ ფონზე დროებით გამოსაკვეთად"
+
+#: src/tools/classic_tools/tool_highlight.py
+msgid "Press <Shift> to temporarily highlight on light background instead"
+msgstr "გეჭიროთ ღილაკზე <Shift> ღია ფონზე დროებით გამოსაკვეთად"
+
+#: src/tools/classic_tools/tool_highlight.py
+msgid "Highlighter options"
+msgstr "გამომკვეთის მორგება"
+
+#: src/tools/classic_tools/tool_line.py
+msgid "Line"
+msgstr "ხაზი"
+
+#: src/tools/classic_tools/tool_line.py src/tools/classic_tools/tool_shape.py
+#: src/tools/selection_tools/select_rect.py
+#, python-format
+msgid "Width: %spx"
+msgstr "სიგანე: %sპიქს"
+
+#: src/tools/classic_tools/tool_line.py src/tools/classic_tools/tool_shape.py
+#: src/tools/selection_tools/select_rect.py
+#, python-format
+msgid "Height: %spx"
+msgstr "სიმაღლე: %sპიქს"
+
+#: src/tools/classic_tools/tool_line.py
+#, python-format
+msgid "Length: %spx"
+msgstr "სიგრძე: %sპიქს"
+
+#: src/tools/classic_tools/tool_line.py
+msgid "Line options"
+msgstr "ხაზის მორგება"
+
+#: src/tools/classic_tools/tool_line.py
+msgid "Press <Shift> to unlock the line direction"
+msgstr "გეჭიროთ ღილაკზე <Shift> ხაზის მიმართულების განბლოკვისთვის"
+
+#: src/tools/classic_tools/tool_line.py
+msgid "Press <Shift> to lock the line direction"
+msgstr "გეჭიროთ ღილაკზე <Shift> ხაზის მიმართულების ჩასაკეტად"
+
+#: src/tools/classic_tools/tool_paint.py
+msgid "Painting options"
+msgstr "ხატვის მორგება"
+
+#: src/tools/classic_tools/tool_paint.py
+msgid "Click on an area to replace its color by transparency"
+msgstr "დააწკაპუნეთ არეზე მისი ფერის გამჭვირვალობით შესაცვლელად"
+
+#: src/tools/classic_tools/tool_paint.py
+msgid "Click on the canvas to entirely paint it"
+msgstr "დააწკაპუნეთ ტილოზე მისი მთლიანად შესაღებად"
+
+#: src/tools/classic_tools/tool_paint.py
+#: src/tools/selection_tools/select_color.py
+msgid "May not work for complex shapes"
+msgstr "შეიძლება, არ იმუშაოს კომპლექსური ფიგურებისთვის"
+
+#: src/tools/classic_tools/tool_paint.py
+#: src/tools/selection_tools/select_color.py
+msgid "It will not work well if the area's edges are blurry"
+msgstr "შეიძლება კარგად არ იმუშაოს, თუ არეს წიბოები ბუნდოვანია"
+
+#: src/tools/classic_tools/tool_pencil.py
+msgid "Pencil"
+msgstr "ფანქარი"
+
+#: src/tools/classic_tools/tool_pencil.py
+msgid "Pencil options"
+msgstr "ფანქრის მორგება"
+
+#: src/tools/classic_tools/tool_points.py
+msgid "Points options"
+msgstr "წერტილების მორგება"
+
+#: src/tools/classic_tools/tool_points.py
+#, python-format
+msgid "Next number: %s"
+msgstr "შემდეგი ნომერი: %s"
+
+#. Context: fill a shape with the color of the left click
+#: src/tools/classic_tools/tool_shape.py
+msgid "Filled with main color"
+msgstr "შევსებულია მთავარი ფერით"
+
+#. Context: fill a shape with the color of the right click
+#: src/tools/classic_tools/tool_shape.py
+msgid "Filled with secondary color"
+msgstr "შევსებულია დამხმარე ფერით"
+
+#: src/tools/classic_tools/tool_shape.py
+msgid "Shape"
+msgstr "მოხაზულობა"
+
+#: src/tools/classic_tools/tool_shape.py
+#, python-format
+msgid "Radius: %spx"
+msgstr "რადიუსი: %sპიქს"
+
+#: src/tools/classic_tools/tool_shape.py
+msgid "Shape options"
+msgstr "მოხაზულობის მორგება"
+
+#: src/tools/classic_tools/tool_shape.py
+#: src/tools/selection_tools/select_free.py
+msgid "Click on the shape's first point to close it."
+msgstr "დააწკაპუნეთ მოხაზულობის პირველ წერტილზე მის დასახურად."
+
+#: src/tools/classic_tools/tool_shape.py
+msgid "Press <Alt>, <Shift>, or both, to quickly change the 'filling' option"
+msgstr ""
+"დააჭირეთ ღილაკს <Alt>, <Shift>, ან ორივე, რომ 'შევსების' პარამეტრი სწრაფად "
+"შეცვალოთ"
+
+#: src/tools/classic_tools/tool_text.py
+msgid "Text"
+msgstr "ტექსტი"
+
+#: src/tools/classic_tools/tool_text.py
+msgid "Text options"
+msgstr "ტექსტის მორგება"
+
+#: src/tools/classic_tools/tool_text.py
+msgid "Grab the rectangle to adjust the text position"
+msgstr "აიღეთ მართკუთხედი ტექსტის მდებარეობის გასასწორებლად"
+
+#: src/tools/classic_tools/tool_text.py
+msgid "Click outside the rectangle to apply"
+msgstr "გადასატარებლად დააწკაპუნეთ მართკუთხედის გარეთ"
+
+#: src/tools/classic_tools/brushes/brush_airbrush.py
+msgid "Density depends on the stylus pressure"
+msgstr "სიმკვრივე დამოკიდებულია სტილუსზე დაწოლაზე"
+
+#: src/tools/classic_tools/brushes/brush_airbrush.py
+msgid "Density depends on the mouse speed"
+msgstr "სიმკვრივე დამოკიდებულია თაგუნას სიჩქარეზე"
+
+#: src/tools/classic_tools/brushes/brush_hairy.py
+#: src/tools/classic_tools/brushes/brush_nib.py
+#: src/tools/classic_tools/brushes/brush_simple.py
+msgid "Width depends on the stylus pressure"
+msgstr "სიგანე დამოკიდებულია სტილუსზე დაწოლაზე"
+
+#: src/tools/classic_tools/brushes/brush_nib.py
+msgid "Width depends on the line orientation"
+msgstr "სიგანე დამოკიდებულია ხაზის ორიენტაციაზე"
+
+#: src/tools/classic_tools/brushes/brush_simple.py
+msgid "Width depends on the mouse speed"
+msgstr "სიგანე დამოკიდებულია თაგუნას სიჩქარეზე"
+
+#: src/tools/selection_tools/abstract_select.py
+msgid "Drag the selection or right-click on the canvas"
+msgstr "გადაათრიეთ მონიშნული, ამ მარჯვენა წკაპი ტილოზე"
+
+#: src/tools/selection_tools/abstract_select.py
+msgid "Select an area or right-click on the canvas"
+msgstr "მონიშნეთ არე, ან მარჯვენა წკაპი ტილოზე"
+
+#: src/tools/selection_tools/select_rect.py
+msgid "Rectangle selection"
+msgstr "მონიშვნის ოთხკუთხედი"
+
+#: src/tools/transform_tools/abstract_transform_tool.py
+msgid "Error: invalid values"
+msgstr "შეცდომა: არასწორი მნიშვნელობები"
+
+#. The options of the "crop" tool are all about how to expand the canvas,
+#. hence this label.
+#: src/tools/transform_tools/tool_crop.py
+msgid "Expanding options"
+msgstr "გაფართოების მორგება"
+
+#: src/tools/transform_tools/tool_crop.py
+msgid "The sides you'll crop are hinted by the mouse pointer"
+msgstr "გვერდები, რომლებსაც ამოჭრით, თაგუნას მაჩვენებლით შეგიძლიათ, იპოვოთ"
+
+#: src/tools/transform_tools/tool_crop.py
+msgid "Cropping the selection"
+msgstr "მონიშნულის ამოჭრა"
+
+#: src/tools/transform_tools/tool_crop.py
+msgid "Cropping or expanding the canvas"
+msgstr "ტილოს ამოჭრა ან გაფართოება"
+
+#: src/tools/transform_tools/tool_crop.py
+#: src/tools/transform_tools/tool_rotate.py
+#: src/tools/transform_tools/tool_scale.py
+#: src/tools/transform_tools/tool_skew.py
+msgid "Don't forget to confirm the operation!"
+msgstr "არ დაგავიწყდეთ ოპერაციის დადასტურება!"
+
+#: src/tools/transform_tools/tool_crop.py
+#: src/tools/transform_tools/tool_skew.py
+msgid ""
+"Press <Alt>, <Shift>, or both, to quickly change the 'expand with' option"
+msgstr ""
+"დააჭირეთ ღილაკს <Alt>, <Shift>, ან ორივე, რომ 'გაფართოების' პარამეტრი "
+"სწრაფად შეცვალოთ"
+
+#: src/tools/transform_tools/tool_filters.py
+msgid "Active filter"
+msgstr "აქტიური ფილტრი"
+
+#: src/tools/transform_tools/tool_filters.py
+msgid "Click on the image to preview the selected filter"
+msgstr "დააწკაპუნეთ გამოსახულებაზე მონიშნული ფილტრის გადასახედად"
+
+#. Context: a filter. See "image embossing" on wikipedia
+#: src/tools/transform_tools/tool_filters.py
+msgid "Emboss"
+msgstr "ამოტვიფრვა"
+
+#: src/tools/transform_tools/tool_rotate.py
+msgid "Rotating options"
+msgstr "ბრუნვის მორგება"
+
+#: src/tools/transform_tools/tool_rotate.py
+msgid "Rotating the selection"
+msgstr "მონიშნულის მობრუნება"
+
+#: src/tools/transform_tools/tool_rotate.py
+msgid "Rotating the canvas"
+msgstr "ტილოს მობრუნება"
+
+#: src/tools/transform_tools/tool_scale.py
+msgid "Scaling options"
+msgstr "გადიდების მორგება"
+
+#: src/tools/transform_tools/tool_scale.py
+msgid "Scaling the selection"
+msgstr "მონიშნულის მასშტაბი"
+
+#: src/tools/transform_tools/tool_scale.py
+msgid "Scaling the canvas"
+msgstr "ტილოს მასშტაბი"
+
+#: src/tools/transform_tools/tool_scale.py
+msgid "Press <Shift> to quickly toggle the 'lock proportions' option"
+msgstr ""
+
+#: src/tools/transform_tools/tool_skew.py
+msgid "Skewing options"
+msgstr "დაქანების მორგება"
+
+#: src/tools/transform_tools/tool_skew.py
+msgid "The directions of the deformation are hinted by the mouse pointer"
+msgstr "დეფორმაციის მიმართულებები თაგუნას მაჩვენებლით შეგიძლიათ, იპოვოთ"
+
+#: src/tools/transform_tools/tool_skew.py
+msgid "Skewing the selection"
+msgstr "მონიშნულის დაქანება"
+
+#: src/tools/transform_tools/tool_skew.py
+msgid "Skewing the canvas"
+msgstr "ტილოს დაქანება"
+
+#: src/tools/transform_tools/filters/filter_blur.py
+msgid "Blur radius"
+msgstr "ბუნდოვნების რადიუსი"
+
+#: src/tools/transform_tools/filters/filter_saturation.py
+msgid "Saturation"
+msgstr "გაჯერებულობა"
