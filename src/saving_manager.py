@@ -85,31 +85,24 @@ class DrSavingManager():
 				# Context: an error message
 				self._window.reveal_message(_("Failed to replace transparency"))
 
-		# The "reload?" message shouldn't be shown, i force the reload later
-		image.lock_monitoring(False)
+		if not is_export:
+			image.pre_save(gfile)
+			# The "reload?" message shouldn't be shown, i force the reload later
+			image.disable_monitoring()
 
 		try:
 			# Actually save the pixbuf to the given file path
 			pixbuf.savev(file_path, file_format, [None], [])
 		except Exception as e:
-			image.lock_monitoring(False)
 			print(e)
 			# Context: an error message
 			self._window.reveal_message(_("Failed to save %s") % file_path)
+			image.enable_monitoring()
 			return False
 
-		# Reset the file monitoring flag
-		image.lock_monitoring(True)
-
-		if not is_export:
-			# Update the image and the window objects
-			try:
-				image.post_save(gfile)
-			except Exception as e:
-				print(e)
-				# Context: an error message
-				self._window.reveal_message(_("Failed to reload %s") % file_path)
-				return False
+		# The file monitoring flag shall reset itself asynchronously.
+		# If it doesn't, i don't care that much tbh it's just a message for a
+		# smoother UX.
 
 		# everything went fine, return true
 		return True

@@ -35,7 +35,7 @@ class Application(Gtk.Application):
 
 	APP_ID = 'com.github.maoschanz.drawing'
 	APP_PATH = '/com/github/maoschanz/drawing'
-	BUG_REPORT_URL = 'https://github.com/maoschanz/drawing/issues/new/choose'
+	BUG_REPORT_URL = 'https://github.com/maoschanz/drawing/issues'
 	FLATPAK_BINARY_PATH = '/app/bin/drawing'
 	CURRENT_BINARY_PATH = ''
 
@@ -223,7 +223,7 @@ class Application(Gtk.Application):
 		return self.open_window_with_content(None)
 
 	def on_report(self, *args):
-		"""Action callback, opening a new issue on the github repo."""
+		"""Action callback, opening a page to the Github issue tracker."""
 		win = self.props.active_window
 		Gtk.show_uri_on_window(win, self.BUG_REPORT_URL, Gdk.CURRENT_TIME)
 
@@ -280,7 +280,7 @@ class Application(Gtk.Application):
 		about_dialog = Gtk.AboutDialog(
 			transient_for=self.props.active_window, modal=True,
 			copyright="© 2018-2023 Romain F. T.",
-			authors=["Romain F. T.", "Fábio Colacio", "Alexis Lozano"],
+			authors=["Romain F. T.", "Fábio Colacio", "Alexis Lozano", "Arak @ARAKHN1D"],
 			# To translators: "translate" this by a list of your names (one name
 			# per line), they will be displayed in the "about" dialog
 			translator_credits=_("translator-credits"),

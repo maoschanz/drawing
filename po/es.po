@@ -10,15 +10,15 @@ msgstr ""
 "Project-Id-Version: drawing\n"
 "Report-Msgid-Bugs-To: github.com/maoschanz/drawing/issues/new/choose\n"
 "POT-Creation-Date: 2023-02-23 23:35+0100\n"
-"PO-Revision-Date: 2022-08-23 10:21+0200\n"
+"PO-Revision-Date: 2025-01-03 13:35-0300\n"
 "Last-Translator: Óscar Fernández Díaz <oscfdezdz@tuta.io>\n"
 "Language-Team: Spanish; Castilian <>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"X-Generator: Gtranslator 42.0\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.4.4\n"
 
 #: data/com.github.maoschanz.drawing.desktop.in
 #: data/com.github.maoschanz.drawing.appdata.xml.in src/deco_manager.py
@@ -147,17 +147,24 @@ msgid ""
 "transparent pixels with a solid color. Pictures are now automatically "
 "reloaded from the disk after being saved."
 msgstr ""
+"Guardar la imagen debería ser más fiable, especialmente cuando se sustituyen "
+"los píxeles transparentes por un color sólido. Ahora las imágenes se "
+"recargan automáticamente desde el disco después de guardarse."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "The user interface of the \"select\" tool changed, as well as the keyboard "
 "shortcuts to change tab."
 msgstr ""
+"La interfaz de usuario de la herramienta «seleccionar» ha cambiado, así como "
+"los atajos de teclado para cambiar de pestaña."
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
 "A small rendering issue when previewing a blur filter has also been fixed."
 msgstr ""
+"También se ha corregido un pequeño problema de renderizado al previsualizar "
+"un filtro de desenfoque."
 
 #. very generic release notes i use for ALL minor updates, please
 #. translate this one!
@@ -189,8 +196,8 @@ msgstr ""
 "desde la versión 1.0.0 es posible hacer un zoom muy profundo, pero el "
 "proceso era muy lento, y la vista no se mantenía bien centrada alrededor del "
 "puntero del ratón; y una vez en el 2000%%, el desplazamiento hacia arriba o "
-"hacia abajo, o hacia la izquierda o la derecha, era bastante violento. Todos "
-"estos problemas deberían haber desaparecido en esta nueva versión."
+"hacia abajo, o hacia la izquierda o la derecha, era bastante violento. "
+"¡Todos estos problemas deberían haber desaparecido en esta nueva versión!"
 
 #: data/com.github.maoschanz.drawing.appdata.xml.in
 msgid ""
@@ -1395,9 +1402,8 @@ msgstr "Formato no válido"
 #. an actual error occurred!
 #. Context: an error message
 #: src/saving_manager.py
-#, fuzzy
 msgid "Failed to replace transparency"
-msgstr "Reemplazar la transparencia con:"
+msgstr "No se pudo reemplazar la transparencia"
 
 #. Context: an error message
 #: src/saving_manager.py
@@ -1407,9 +1413,9 @@ msgstr "Error al guardar %s"
 
 #. Context: an error message
 #: src/saving_manager.py
-#, fuzzy, python-format
+#, python-format
 msgid "Failed to reload %s"
-msgstr "Error al cargar la herramienta: %s"
+msgstr "No se pudo recargar %s"
 
 #. Context: Untitled(.png) is the default name of a newly saved file
 #: src/saving_manager.py
@@ -2422,11 +2428,11 @@ msgstr "Opciones de tipo de letra"
 
 #: src/tools/classic_tools/tool_text.py
 msgid "Grab the rectangle to adjust the text position"
-msgstr ""
+msgstr "Tome el rectángulo para ajustar la posición del texto"
 
 #: src/tools/classic_tools/tool_text.py
 msgid "Click outside the rectangle to apply"
-msgstr ""
+msgstr "Haga clic fuera del rectángulo para aplicar"
 
 #: src/tools/classic_tools/brushes/brush_airbrush.py
 msgid "Density depends on the stylus pressure"
