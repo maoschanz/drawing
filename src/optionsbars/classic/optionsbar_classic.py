@@ -34,6 +34,9 @@ class OptionsBarClassic(AbstractOptionsBar):
 		self.thickness_spinbtn.set_value(last_size)
 		utilities_add_unit_to_spinbtn(self.thickness_spinbtn, 3, 'px')
 		self.thickness_spinbtn.connect('value-changed', self._on_size_changed)
+		#
+		# self.minimap_btn = builder.get_object('minimap_btn')
+		# self.minimap_arrow = builder.get_object('minimap_arrow')
 
 	def _get_tool_options(self):
 		return self.window.options_manager._tools_gsettings
@@ -63,6 +66,7 @@ class OptionsBarClassic(AbstractOptionsBar):
 		temp_limit_size = self.color_box.get_preferred_width()[0] + \
 		          self.thickness_spinbtn.get_preferred_width()[0] + \
 		           self.options_long_box.get_preferred_width()[0] + 50
+		                # self.minimap_btn.get_preferred_width()[0]
 		# assuming 50px is enough to compensate the length of the label
 		self._set_limit_size(temp_limit_size)
 
@@ -72,6 +76,7 @@ class OptionsBarClassic(AbstractOptionsBar):
 		self.options_short_box.set_visible(state)
 		self.thickness_scalebtn.set_visible(state)
 		self.thickness_spinbtn.set_visible(not state)
+		# self.minimap_arrow.set_visible(not state)
 
 	############################################################################
 	# Size #####################################################################

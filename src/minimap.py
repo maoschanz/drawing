@@ -39,6 +39,7 @@ class DrMinimap(Gtk.Popover):
 
 		self._label = self._window.minimap_label
 		self._arrow = self._window.minimap_arrow
+		# TODO cacher la flèche en responsive
 
 	############################################################################
 

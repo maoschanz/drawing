@@ -18,6 +18,9 @@ class OptionsBarSelection(AbstractOptionsBar):
 
 		self.options_long_box = builder.get_object('options_long_box')
 		self.options_short_box = builder.get_object('options_short_box')
+		#
+		# self.minimap_btn = builder.get_object('minimap_btn')
+		# self.minimap_arrow = builder.get_object('minimap_arrow')
 
 	def middle_click_action(self):
 		self.window.lookup_action('new_tab_selection').activate()
@@ -31,6 +34,7 @@ class OptionsBarSelection(AbstractOptionsBar):
 		                      self.actions_btn.get_preferred_width()[0] + \
 		                 self.options_long_box.get_preferred_width()[0] + \
 		                         self.help_btn.get_preferred_width()[0]
+		                      # self.minimap_btn.get_preferred_width()[0]
 		self._set_limit_size(temp_limit_size)
 
 	def set_compact(self, state):
@@ -45,6 +49,8 @@ class OptionsBarSelection(AbstractOptionsBar):
 			self._togglable_btn = self.actions_btn_long
 		else:
 			self._togglable_btn = self.actions_btn
+		#
+		# self.minimap_arrow.set_visible(not state)
 
 	############################################################################
 ################################################################################
