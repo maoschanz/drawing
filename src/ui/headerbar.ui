@@ -69,6 +69,7 @@
       <object class="GtkButton" id="save_long">
         <property name="visible">False</property>
         <property name="valign">center</property>
+        <property name="halign">end</property>
         <property name="action_name">win.save</property>
         <property name="label" translatable="yes">Save</property>
       </object>
@@ -77,6 +78,7 @@
     <child type="end">
       <object class="GtkButton" id="save_short">
         <property name="valign">center</property>
+        <property name="halign">end</property>
         <property name="action_name">win.save</property>
         <property name="tooltip-text" translatable="yes">Save</property>
         <property name="icon-name">document-save-symbolic</property>

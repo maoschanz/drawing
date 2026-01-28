@@ -19,7 +19,9 @@
             <property name="visible">False</property>
             <style><class name="primary-toolbar"/></style>
             <child>
-              <object class="GtkSeparator"/>
+              <object class="GtkSeparator">
+                <property name="valign">end</property>
+              </object>
             </child>
           </object>
         </child>

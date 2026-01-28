@@ -24,5 +24,8 @@ def _add_spinbutton_icon(spinbutton, icon, tooltip):
 	spinbutton.set_icon_tooltip_text(p, tooltip)
 	spinbutton.set_icon_sensitive(p, False)
 
+	# TODO FIXME
+	# AttributeError: 'SpinButton' object has no attribute 'set_icon_from_icon_name'
+
 ################################################################################
 
