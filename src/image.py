@@ -63,9 +63,9 @@ class DrImage(Gtk.Box):
 
 		self.gfile = None
 		self.filename = None
-		self._monitoring_disabled = False
 		self._gfile_monitor = None
-		self._can_reload()
+		self.enable_monitoring()
+		self._update_can_reload_action()
 
 		# Closing the info bar
 		self.reload_info_bar.connect('close', self.hide_reload_message)
@@ -226,10 +226,10 @@ class DrImage(Gtk.Box):
 			return
 		disk_pixbuf = GdkPixbuf.Pixbuf.new_from_file(self.get_file_path())
 		self._load_pixbuf_common(disk_pixbuf)
-		self.window.update_picture_title()
 		self.use_stable_pixbuf()
 		self.update()
 		self.remember_current_state()
+		self.window.update_picture_title()
 
 	def try_load_file(self, gfile):
 		try:
@@ -247,31 +247,56 @@ class DrImage(Gtk.Box):
 			# ya pas de fenêtre) ouvrir un truc respectant les settings, plutôt
 			# qu'un petit pixbuf corrompu
 		self.try_load_pixbuf(pixbuf)
-		self._can_reload()
+		self._update_can_reload_action()
 
 	def _connect_gfile_monitoring(self):
+		if self._gfile_monitor:
+			# Probably no need to reconnect it again.
+			# XXX est-il vraiment bon ? on devrait le déconnecter, le refaire ?
+			# Tout cela n'est pas débuggable parce que le fichier que je traque
+			# est le proxy de la sandbox (/run/user/1000/...)
+			self._gfile_monitor = None
 		flags = Gio.FileMonitorFlags.WATCH_MOUNTS
 		self._gfile_monitor = self.gfile.monitor(flags)
 		self._gfile_monitor.connect('changed', self.reveal_reload_message)
 
-	def lock_monitoring(self, value):
-		self._monitoring_disabled = value
+	def disable_monitoring(self):
+		self._monitoring_disabled = True
+
+	def enable_monitoring(self):
+		"""This should only be called initially, or asynchronously, or in case
+		of an exception"""
+		self._monitoring_disabled = False
 
 	def reveal_reload_message(self, *args):
+		"""This method is called when the file changed, which is async: we can't
+		enable or disable the monitoring in the DrSavingManager's method because
+		saving the pixbuf takes longer to trigger the 'changed' signal on the
+		monitor than it takes to run the end of the saving process."""
+		# I'm not sure this lock is 100% correct because i'm monitoring the
+		# portal proxy file when testing with flatpak.
 		if self._monitoring_disabled:
-			# I'm not sure this lock is 100% correct because i'm monitoring the
-			# portal proxy file when testing with flatpak. Better than nothing.
+			# The idea is that the message banner is temporarily disabled until
+			# the monitor sends its next "changed" event, which we expect (it's
+			# the one from our own saving process).
 			if args[3] != Gio.FileMonitorEvent.CHANGED:
-				self._monitoring_disabled = False
+				try:
+					self.reload_from_disk()
+				except Exception as ex:
+					print(e)
+					# Context: an error message
+					self._window.reveal_message(_("Failed to reload %s") % \
+					                                      self.gfile.get_path())
+				self.enable_monitoring()
 			return
-		self._can_reload()
+		self._update_can_reload_action()
 		self.reload_label.set_visible(self.window.get_allocated_width() > 500)
 		self.reload_info_bar.set_visible(True)
 
 	def hide_reload_message(self, *args):
 		self.reload_info_bar.set_visible(False)
 
-	def _can_reload(self):
+	def _update_can_reload_action(self):
 		self.set_action_sensitivity('reload_file', self.gfile is not None)
 
 	############################################################################
@@ -348,7 +373,7 @@ class DrImage(Gtk.Box):
 
 	def update_image_wide_actions(self):
 		self.update_history_sensitivity()
-		self._can_reload()
+		self._update_can_reload_action()
 
 	############################################################################
 	# History management #######################################################
@@ -553,12 +578,11 @@ class DrImage(Gtk.Box):
 	def on_leave_image(self, *args):
 		self.window.set_cursor(False)
 
-	def post_save(self, gfile):
+	def pre_save(self, gfile):
+		"""The gfile is set before saving, because reveal_reload_message expects
+		self.gfile to be correct."""
 		self.gfile = gfile
 		self._connect_gfile_monitoring()
-		self.use_stable_pixbuf()
-		self.update()
-		self.reload_from_disk()
 
 	def set_surface_as_stable_pixbuf(self):
 		w = self.surface.get_width()
