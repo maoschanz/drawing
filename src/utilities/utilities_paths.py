@@ -6,25 +6,71 @@ from .message_dialog import DrMessageDialog
 
 ################################################################################
 
+def _read_pixel_rgba(data, stride, x, y):
+	"""Read a single pixel from a cairo ARGB32 buffer, returning RGBA bytes.
+
+	Cairo ARGB32 stores pixels as premultiplied BGRA on little-endian systems.
+	This un-premultiplies and converts to standard RGBA byte order."""
+	offset = y * stride + x * 4
+	# Cairo ARGB32 on little-endian: B, G, R, A
+	b = data[offset]
+	g = data[offset + 1]
+	r = data[offset + 2]
+	a = data[offset + 3]
+	# Un-premultiply alpha (cairo stores color values pre-multiplied by alpha)
+	if 0 < a < 255:
+		r = min(255, r * 255 // a)
+		g = min(255, g * 255 // a)
+		b = min(255, b * 255 // a)
+	return bytes((r, g, b, a))
+
 def utilities_get_rgba_for_xy(surface, x, y):
-	# Guard clause: we can't perform color picking outside of the surface
-	if x < 0 or x > surface.get_width() or y < 0 or y > surface.get_height():
+	"""Read the RGBA color at pixel (x, y) from a cairo ImageSurface.
+
+	Returns a bytes object with 4 values (R, G, B, A) in 0-255 range,
+	or None if the coordinates are outside the surface bounds.
+
+	This reads directly from the surface pixel buffer, avoiding the overhead
+	of allocating a GdkPixbuf for each pixel read."""
+	x = int(x)
+	y = int(y)
+	w = surface.get_width()
+	h = surface.get_height()
+	if x < 0 or x >= w or y < 0 or y >= h:
 		return None
-	screenshot = Gdk.pixbuf_get_from_surface(surface, float(x), float(y), 1, 1)
-	rgba_vals = screenshot.get_pixels()
-	return rgba_vals
+	surface.flush()
+	data = surface.get_data()
+	stride = surface.get_stride()
+	return _read_pixel_rgba(data, stride, x, y)
 
 def utilities_get_magic_path(surface, x, y, window, coef):
 	"""This method tries to build a path defining an area of the same color. It
 	will mainly be used to paint this area, or to select it."""
 	cairo_context = cairo.Context(surface)
-	old_color = utilities_get_rgba_for_xy(surface, x, y)
+
+	# Pre-read surface data buffer once for all pixel reads in this function,
+	# avoiding repeated surface.flush()/get_data() calls in the hot loop.
+	surface.flush()
+	_data = surface.get_data()
+	_stride = surface.get_stride()
+	_w = surface.get_width()
+	_h = surface.get_height()
+
+	def _get_color(px, py):
+		"""Fast pixel read using pre-cached surface data."""
+		px = int(px)
+		py = int(py)
+		if px < 0 or px >= _w or py < 0 or py >= _h:
+			return None
+		return _read_pixel_rgba(_data, _stride, px, py)
+
+	old_color = _get_color(x, y)
 
 	# Cairo doesn't provide methods for what we want to do. I will have to
 	# define myself how to decide what should be filled.
 	# The heuristic here is that we create a hull containing the area of
 	# color we want to paint. We don't care about "enclaves" of other colors.
-	while (utilities_get_rgba_for_xy(surface, x, y) == old_color) and y > 0:
+	while (_get_color(x, y) == old_color) and y > 0:
 		y = y - 1
 	y = y + 1 # sinon ça crashe ?
 	cairo_context.move_to(x, y)
@@ -49,7 +95,7 @@ def utilities_get_magic_path(surface, x, y, window, coef):
 		while (not end_circle) or (j < 8):
 			future_x = x+x_shift[direction]
 			future_y = y+y_shift[direction]
-			if (utilities_get_rgba_for_xy(surface, future_x, future_y) == old_color) \
+			if (_get_color(future_x, future_y) == old_color) \
 			and (future_x > 0) and (future_y > 0) \
 			and (future_x < surface.get_width()) \
 			and (future_y < surface.get_height()-2): # ???
