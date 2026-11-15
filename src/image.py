@@ -440,6 +440,11 @@ class DrImage(Gtk.Box):
 		if self.window.devel_mode:
 			self._fps_counter += 1
 
+		# Center the image if it's small (or undo it if it's not anymore), which
+		# is needed for example after the window is resized.
+		if self._scroll_needs_centering_fix():
+			self.correct_coords(self.scroll_x, self.scroll_y)
+
 		# Background color
 		cairo_context.set_source_rgba(*self._bg_rgba)
 		cairo_context.paint()
@@ -803,19 +808,59 @@ class DrImage(Gtk.Box):
 
 		# Update the horizontal scrollbar
 		mpb_width = self.get_previewed_width()
-		wanted_x = min(wanted_x, self.get_max_coord(mpb_width, available_w))
-		wanted_x = max(wanted_x, 0)
+		wanted_x = self._clamp_or_center(wanted_x, mpb_width, \
+		                    self.get_pixbuf_width(), available_w)
 		self.update_scrollbar(False, available_w, int(mpb_width), int(wanted_x))
 
 		# Update the vertical scrollbar
 		mpb_height = self.get_previewed_height()
-		wanted_y = min(wanted_y, self.get_max_coord(mpb_height, available_h))
-		wanted_y = max(wanted_y, 0)
+		wanted_y = self._clamp_or_center(wanted_y, mpb_height, \
+		                    self.get_pixbuf_height(), available_h)
 		self.update_scrollbar(True, available_h, int(mpb_height), int(wanted_y))
 
 	def get_max_coord(self, mpb_size, available_size):
 		max_coord = mpb_size - (available_size / self.zoom_level)
 		return max_coord
+
+	def _get_centering_scroll(self, previewed_size, real_size, available_size):
+		"""Returns the (negative) scroll coordinate which centers the image on
+		an axis, or None if the image shouldn't be centered. The position is
+		based on the real size of the image: the size of the preview of a
+		transform tool changes while the user drags its handles, and the image
+		would move under the pointer."""
+		if self.get_max_coord(previewed_size, available_size) >= 0:
+			return None
+		max_coord = self.get_max_coord(real_size, available_size)
+		if max_coord >= 0:
+			return None
+		return int(max_coord / 2)
+
+	def _scroll_needs_centering_fix(self):
+		"""True if an image smaller than the widget isn't centered on an axis,
+		or if a negative scroll coordinate remains while it shouldn't."""
+		for scroll, previewed, real, available in (
+		    (self.scroll_x, self.get_previewed_width(), \
+		            self.get_pixbuf_width(), self.get_widget_width()), \
+		    (self.scroll_y, self.get_previewed_height(), \
+		            self.get_pixbuf_height(), self.get_widget_height())):
+			centered = self._get_centering_scroll(previewed, real, available)
+			if centered is not None:
+				if scroll != centered:
+					return True
+			elif scroll < 0:
+				return True
+		return False
+
+	def _clamp_or_center(self, wanted, previewed_size, real_size, available_size):
+		"""Keeps the scroll coordinate in the valid range, except when the image
+		is smaller than the widget: then the (negative) coordinate which centers
+		the image in the widget is returned."""
+		centered = self._get_centering_scroll(previewed_size, real_size, \
+		                                                        available_size)
+		if centered is not None:
+			return centered
+		max_coord = self.get_max_coord(previewed_size, available_size)
+		return max(min(wanted, max_coord), 0)
 
 	def update_scrollbar(self, is_vertical, allocated_size, pixbuf_size, coord):
 		if is_vertical:
@@ -826,10 +871,16 @@ class DrImage(Gtk.Box):
 		scrollbar.set_range(0, pixbuf_size)
 		scrollbar.get_adjustment().set_page_size(allocated_size / self.zoom_level)
 		scrollbar.set_value(coord)
-		if is_vertical:
-			self.scroll_y = int(scrollbar.get_value())
+		# The scrollbar can't represent the negative values used to center a
+		# small image, so in this case the coordinate is used as is.
+		if coord < 0:
+			value = coord
 		else:
-			self.scroll_x = int(scrollbar.get_value())
+			value = int(scrollbar.get_value())
+		if is_vertical:
+			self.scroll_y = value
+		else:
+			self.scroll_x = value
 
 	def _zoom_to_point(self, event):
 		"""Zoom in or out the image in a way such that the point under the
@@ -868,6 +919,7 @@ class DrImage(Gtk.Box):
 		self.set_zoom_level(opti)
 		self.scroll_x = 0
 		self.scroll_y = 0
+		self.fake_scrollbar_update()
 
 	def is_zoomed_surface_sharp(self):
 		return self.zoom_level > self.ZOOM_THRESHOLD
