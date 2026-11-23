@@ -1,8 +1,7 @@
 # Licensed under GPL3 https://github.com/maoschanz/drawing/blob/master/LICENSE
 
 import cairo, math
-from gi.repository import Gdk, GdkPixbuf
-from .message_dialog import DrMessageDialog
+from gi.repository import Gdk
 
 ################################################################################
 
@@ -14,89 +13,122 @@ def utilities_get_rgba_for_xy(surface, x, y):
 	rgba_vals = screenshot.get_pixels()
 	return rgba_vals
 
-def utilities_get_magic_path(surface, x, y, window, coef):
-	"""This method tries to build a path defining an area of the same color. It
-	will mainly be used to paint this area, or to select it."""
-	cairo_context = cairo.Context(surface)
-	old_color = utilities_get_rgba_for_xy(surface, x, y)
+def utilities_get_magic_path(surface, x, y):
+	"""Return the pixel-edge outline of the clicked four-connected RGBA region.
 
-	# Cairo doesn't provide methods for what we want to do. I will have to
-	# define myself how to decide what should be filled.
-	# The heuristic here is that we create a hull containing the area of
-	# color we want to paint. We don't care about "enclaves" of other colors.
-	while (utilities_get_rgba_for_xy(surface, x, y) == old_color) and y > 0:
-		y = y - 1
-	y = y + 1 # sinon ça crashe ?
-	cairo_context.move_to(x, y)
-	(first_x, first_y) = (x, y)
+	A single snapshot avoids allocating a pixbuf for every examined pixel.
+	Each scanline span is visited once; boundary edges are consumed once when
+	building the path. Neither search depends on finding an approximate edge.
+	"""
+	width, height = surface.get_width(), surface.get_height()
+	if x < 0 or y < 0 or x >= width or y >= height:
+		return None
+	x, y = int(x), int(y)
+	pixbuf = Gdk.pixbuf_get_from_surface(surface, 0, 0, width, height)
+	if not pixbuf.get_has_alpha():
+		pixbuf = pixbuf.add_alpha(False, 0, 0, 0)
+	pixels = memoryview(pixbuf.get_pixels()).cast('I')
+	stride = pixbuf.get_rowstride() // 4
+	color = pixels[y * stride + x]
+	visited = bytearray(width * height)
+	pending = [(x, y)]
+	spans = []
 
-	# 0 1 2
-	# 7   3
-	# 6 5 4
+	while pending:
+		x, y = pending.pop()
+		row, pixel_row = y * width, y * stride
+		if visited[row + x]:
+			continue
+		left = right = x
+		while left > 0 and not visited[row + left - 1] \
+		and pixels[pixel_row + left - 1] == color:
+			left -= 1
+		while right + 1 < width and not visited[row + right + 1] \
+		and pixels[pixel_row + right + 1] == color:
+			right += 1
+		right += 1
+		visited[row + left:row + right] = b'\x01' * (right - left)
+		spans.append((y, left, right))
+		for neighbor in (y - 1, y + 1):
+			if neighbor < 0 or neighbor >= height:
+				continue
+			x = left
+			while x < right:
+				if not visited[neighbor * width + x] \
+				and pixels[neighbor * stride + x] == color:
+					pending.append((x, neighbor))
+					x += 1
+					while x < right and not visited[neighbor * width + x] \
+					and pixels[neighbor * stride + x] == color:
+						x += 1
+				else:
+					x += 1
 
-	direction = 5
-	should_stop = False
-	i = 0
+	# Only emit the perimeter: row rectangles would leave internal seams in
+	# the color-selection outline. Clockwise edges keep the region on the
+	# right, giving holes the opposite winding without a special fill rule.
+	edges = {}
+	def add_edge(start, end):
+		edges.setdefault(start, []).append(end)
 
-	x_shift = [-1 * coef, 0, coef, coef, coef, 0, -1 * coef, -1 * coef]
-	y_shift = [-1 * coef, -1 * coef, -1 * coef, 0, coef, coef, coef, 0]
+	for y, left, right in spans:
+		add_edge((left, y + 1), (left, y))
+		add_edge((right, y), (right, y + 1))
+		for neighbor, edge_y in ((y - 1, y), (y + 1, y + 1)):
+			x = left
+			while x < right:
+				if 0 <= neighbor < height:
+					row = neighbor * width
+					start = visited.find(0, row + x, row + right)
+					if start == -1:
+						break
+					x = start - row
+					end = visited.find(1, start, row + right)
+					end = right if end == -1 else end - row
+				else:
+					end = right
+				if neighbor < y:
+					add_edge((x, edge_y), (end, edge_y))
+				else:
+					add_edge((end, edge_y), (x, edge_y))
+				x = end
 
-	while (not should_stop and i < 50000):
-		new_x = -10
-		new_y = -10
-		end_circle = False
-		j = 0
-		while (not end_circle) or (j < 8):
-			future_x = x+x_shift[direction]
-			future_y = y+y_shift[direction]
-			if (utilities_get_rgba_for_xy(surface, future_x, future_y) == old_color) \
-			and (future_x > 0) and (future_y > 0) \
-			and (future_x < surface.get_width()) \
-			and (future_y < surface.get_height()-2): # ???
-				new_x = future_x
-				new_y = future_y
-				direction = (direction+1) % 8
-			elif (x != new_x or y != new_y):
-				x = new_x+x_shift[direction]
-				y = new_y+y_shift[direction]
-				end_circle = True
-			# else:
-			# 	print('cas emmerdant')
-			j = j+1
+	context = cairo.Context(surface)
+	# Keep one list of starting vertices. Repeatedly restarting a dictionary
+	# iterator after deleting a loop rescans its deleted slots for every hole.
+	for start in list(edges):
+		while start in edges:
+			current = start
+			context.move_to(*start)
+			direction = None
+			while True:
+				ends = edges[current]
+				# Turn right at diagonal contacts to keep the boundaries
+				# separate instead of making a self-crossing outline.
+				if direction is None or len(ends) == 1:
+					end = ends.pop()
+				else:
+					end = min(ends, key=lambda point:
+						(_path_direction(current, point) - direction - 1) % 4)
+					ends.remove(end)
+				if not ends:
+					del edges[current]
+				direction = _path_direction(current, end)
+				context.line_to(*end)
+				current = end
+				if current == start:
+					break
+			context.close_path()
+	return context.copy_path()
 
-		direction = (direction+4) % 8
-		# print('direction :', direction)
-		if (new_x != -10):
-			cairo_context.line_to(x, y)
-		# else:
-		#	 print("TENTATIVE ABUSIVE D'AJOUT")
-		#	 should_stop = True
-
-		if (i > 10) and (first_x-5 < x < first_x+5) and (first_y-5 < y < first_y+5):
-			should_stop = True
-
-		i = i + 1
-		if i == 2000:
-			dialog, continue_id = launch_infinite_loop_dialog(window)
-			result = dialog.run()
-			if result == continue_id: # Continue
-				dialog.destroy()
-			else: # Cancel
-				dialog.destroy()
-				return
-
-	cairo_context.close_path()
-	# print('i: ' + str(i))
-	return cairo_context.copy_path()
-
-def launch_infinite_loop_dialog(window):
-	dialog = DrMessageDialog(window)
-	cancel_id = dialog.set_action(_("Cancel"), None)
-	continue_id = dialog.set_action(_("Continue"), None, True)
-	dialog.add_string(_("The area seems poorly delimited, or is very complex."))
-	dialog.add_string(_("This algorithm may not be able to manage the wanted area."))
-	dialog.add_string(_("Do you want to abort the operation, or to let the tool struggle ?"))
-	return dialog, continue_id
+def _path_direction(start, end):
+	if end[0] > start[0]:
+		return 0
+	if end[1] > start[1]:
+		return 1
+	if end[0] < start[0]:
+		return 2
+	return 3
 
 ################################################################################
 

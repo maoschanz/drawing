@@ -57,10 +57,10 @@ class ToolColorSelect(AbstractSelectionTool):
 		pass
 
 	def release_define(self, surfc, event_x, event_y):
-		path = utilities_get_magic_path(surfc, event_x, event_y, self.window, 1)
-		self._pre_load_path(path)
+		path = utilities_get_magic_path(surfc, event_x, event_y)
 		if path is None:
 			return
+		self._pre_load_path(path)
 		self.operation_type = 'op-define'
 		operation = self.build_operation()
 		self.apply_operation(operation)

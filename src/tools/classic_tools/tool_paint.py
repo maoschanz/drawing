@@ -16,10 +16,8 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import cairo
-from gi.repository import Gdk
 from .abstract_classic_tool import AbstractClassicTool
 from .utilities_paths import utilities_get_magic_path
-from .utilities_paths import utilities_get_rgba_for_xy
 
 class ToolPaint(AbstractClassicTool):
 	__gtype_name__ = 'ToolPaint'
@@ -53,20 +51,15 @@ class ToolPaint(AbstractClassicTool):
 
 	def on_release_on_area(self, event, surface, event_x, event_y):
 		# Guard clause: we can't paint outside of the surface
-		if event_x < 0 or event_x > surface.get_width() \
-		or event_y < 0 or event_y > surface.get_height():
+		if event_x < 0 or event_x >= surface.get_width() \
+		or event_y < 0 or event_y >= surface.get_height():
 			return
 
-		self.old_color = utilities_get_rgba_for_xy(surface, event_x, event_y)
-
-		if self.get_option_value('paint_algo') == 'fill':
-			self._magic_path = utilities_get_magic_path(surface, event_x, \
-			                                            event_y, self.window, 1)
-		elif self.get_option_value('paint_algo') == 'replace':
-			self._magic_path = utilities_get_magic_path(surface, event_x, \
-			                                            event_y, self.window, 2)
-		else:
-			pass # == 'whole'
+		if self.get_option_value('paint_algo') in ('fill', 'replace'):
+			self._magic_path = utilities_get_magic_path(surface, \
+			                                          event_x, event_y)
+			if self._magic_path is None:
+				return
 
 		operation = self.build_operation(event_x, event_y)
 		self.apply_operation(operation)
@@ -81,7 +74,6 @@ class ToolPaint(AbstractClassicTool):
 			# 'y': y,
 			'new_rgba': self.main_color,
 			'antialias': self._use_antialias,
-			'old_rgba': self.old_color,
 			'path': self._magic_path
 		}
 		return operation
@@ -105,101 +97,25 @@ class ToolPaint(AbstractClassicTool):
 		cairo_context.paint()
 
 	def _op_fill(self, operation):
-		"""Simple but ugly, and it's relying on the precision of the provided
-		path whose creation is based on shitty heurisctics."""
+		"""Blend the new color over the connected region."""
 		if operation['path'] is None:
 			return
 		cairo_context = self.get_context()
 		cairo_context.set_source_rgba(*operation['new_rgba'])
 		cairo_context.append_path(operation['path'])
-		# can_fill = cairo_context.in_fill(operation['x'], operation['y'])
-		# print(can_fill)
-		# if not can_fill:
-		# 	cairo_context.set_fill_rule(cairo.FillRule.EVEN_ODD)
-		# 	XXX doesn't work as i expected
 		cairo_context.fill()
 
 	def _op_replace(self, operation):
-		"""Algorithmically less ugly than `_op_fill`, but the replacing strategy
-		itself doesn't handle (semi-) transparent colors correctly. Looks fine
-		when there is no alpha at all and the anti-aliasing is off."""
-		# In this example, the user paints in blue and clicks on X (red):
-		#
-		# rrrrrrrrrrrrrrrrrrrrrrrrr
-		# rrrgggggggggggggggggrrXrr
-		# rrrgaaaaaaaaaaaaaaagrrrrr
-		# rrrgaaaaaaaaaaaaaaagrrrrr
-		# rrrgggggggggggggggggrraaa
-		# rrrrrrrrrrrrrrrrrrrrrraaa
-		#
-		# All red pixels will be painted blue, but FIXME all the green ones too.
 		if operation['path'] is None:
 			return
-
-		# First, everything BUT the targeted area is erased
-		surface = self.get_surface()
-		cairo_context = cairo.Context(surface)
-		old_rgba = operation['old_rgba']
-		cairo_context.set_source_rgba(255, 255, 255, 1.0)
-		cairo_context.append_path(operation['path'])
-		cairo_context.set_operator(cairo.Operator.DEST_IN)
-		cairo_context.set_line_width(4) # ptêt too much mdr
-		cairo_context.set_antialias(cairo.Antialias.NONE)
-		cairo_context.stroke_preserve()
-		# cairo_context.fill_preserve()
-
-		# The result is loaded as the temp pixbuf…
-		self.get_image().set_temp_pixbuf(Gdk.pixbuf_get_from_surface(surface, \
-		                       0, 0, surface.get_width(), surface.get_height()))
-		# …where the targeted color is replaced by pure alpha
-		TOLERANCE = 10 # XXX uuugly
-		i = -1 * TOLERANCE
-		while i < TOLERANCE:
-			red = max(0, old_rgba[0]+i)
-			green = max(0, old_rgba[1]+i)
-			blue = max(0, old_rgba[2]+i)
-			red = int(min(255, red))
-			green = int(min(255, green))
-			blue = int(min(255, blue))
-			self._replace_temp_with_alpha(red, green, blue)
-			i = i+1
-
-		# The main pixbuf is restored, since its alterations were a side effect
-		# of this highly stupid algorithm
-		self.restore_pixbuf()
-		# We get a context from it again
-		cairo_context2 = self.get_context()
-
-		# The content of the path is cleared
-		cairo_context2.append_path(operation['path'])
-		cairo_context2.set_operator(cairo.Operator.CLEAR)
-		cairo_context2.set_source_rgba(255, 255, 255, 1.0)
-		cairo_context2.set_line_width(3) # ptêt too much mdr
-		cairo_context.set_antialias(cairo.Antialias.NONE)
-		cairo_context2.stroke_preserve()
-		cairo_context2.fill()
-
-		# The temp pixbuf (where "only" the pixels around the outline which are
-		# not in the targeted color still exist) is shown on top of the image
-		cairo_context2.set_operator(cairo.Operator.OVER)
-		Gdk.cairo_set_source_pixbuf(cairo_context2, \
-		                                     self.get_image().temp_pixbuf, 0, 0)
-		cairo_context2.paint()
-		self.non_destructive_show_modif()
-
-		# The transparent pixels within the path are painted with the new color
-		cairo_context2.set_operator(cairo.Operator.DEST_OVER)
-		cairo_context2.set_source_rgba(*operation['new_rgba'])
-		cairo_context2.append_path(operation['path'])
-		# cairo_context2.paint()
-		cairo_context2.set_line_width(3) # ptêt too much mdr
-		cairo_context2.stroke_preserve()
-		cairo_context2.fill()
-
-	def _replace_temp_with_alpha(self, red, green, blue):
-		new_pixbuf = self.get_image().temp_pixbuf.add_alpha(True, red, green, blue)
-		self.get_image().set_temp_pixbuf(new_pixbuf)
+		# The path already identifies the exact region, so replacing its
+		# pixels directly also handles transparent colors without disturbing
+		# neighboring pixels or creating a temporary copy of the image.
+		context = self.get_context()
+		context.append_path(operation['path'])
+		context.set_operator(cairo.Operator.SOURCE)
+		context.set_source_rgba(*operation['new_rgba'])
+		context.fill()
 
 	############################################################################
 ################################################################################
-
